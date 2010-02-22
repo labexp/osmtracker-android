@@ -2,11 +2,7 @@ package me.guillaumin.android.osmtracker.listener;
 
 import java.io.IOException;
 
-import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
-import android.app.Activity;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -19,6 +15,9 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
  */
 public class ToggleRecordOnCheckedChangeListener implements OnCheckedChangeListener {
 
+	/**
+	 * Reference to the activity
+	 */
 	private TrackLogger activity;
 	
 	public ToggleRecordOnCheckedChangeListener(TrackLogger parent) {
@@ -35,6 +34,7 @@ public class ToggleRecordOnCheckedChangeListener implements OnCheckedChangeListe
 				activity.setEnabledActionButtons(true);
 				
 			} catch (IOException ioe) {
+				// Exception occured in DataHelper
 				Toast.makeText(activity, ioe.getMessage(), Toast.LENGTH_LONG).show();
 				buttonView.setChecked(false);	
 			}
@@ -47,6 +47,7 @@ public class ToggleRecordOnCheckedChangeListener implements OnCheckedChangeListe
 				buttonView.setEnabled(false);
 			}
 			
+			// Stop tracking
 			activity.getGpsLogger().stopTracking();			
 		}
 	}

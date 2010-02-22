@@ -13,6 +13,5 @@ public class OSMTracker extends Activity {
     
 	public final static String PREF_STORAGE_DIR = "logging.storage.dir";
 	public final static String PREF_VOICEREC_DURATION = "voicerec.duration";
-	public final static String PREF_VOICEREC_PLAYAFTER = "voicerec.playafter";
 	
 }

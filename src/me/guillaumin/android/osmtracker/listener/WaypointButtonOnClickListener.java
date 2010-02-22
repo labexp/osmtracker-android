@@ -52,6 +52,7 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 	public void onClick(View v) {
 		Log.v(TAG, "Entering the BIG switch with view " + v);
 		
+		// Ugly switch to manage multiple buttons
 		switch (v.getId()) {
 		case R.id.tracklogger_main_btnMisc:
 			changeButtons(R.layout.tracklogger_misc_buttons, true);
@@ -78,7 +79,7 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 			changeButtons(R.layout.tracklogger_track_buttons, true);
 			break;
 		case R.id.tracklogger_main_btnLandUse:
-		changeButtons(R.layout.tracklogger_landuse_buttons, true);
+			changeButtons(R.layout.tracklogger_landuse_buttons, true);
 			break;
 		case R.id.tracklogger_btnBack:
 			// We're on a sub-page. Go back to main menu
@@ -97,6 +98,11 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 
 	}
 	
+	/**
+	 * Changes the button grid attached to the main view.
+	 * @param buttonResId ID of the new button layout.
+	 * @param enableBackButton Whenever to enable or not the back navigation button.
+	 */
 	private void changeButtons(int buttonResId, boolean enableBackButton) {
 		rootViewGroup.removeViewAt(1);
 		DisablableTableLayout tbl = (DisablableTableLayout) LayoutInflater.from(rootViewGroup.getContext()).inflate(buttonResId, rootViewGroup, false);

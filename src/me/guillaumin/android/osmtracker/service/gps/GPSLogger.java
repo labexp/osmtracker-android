@@ -2,12 +2,8 @@ package me.guillaumin.android.osmtracker.service.gps;
 
 import java.io.IOException;
 
-import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -16,17 +12,18 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+/**
+ * GPS logging service. Dialogs with {@link TrackLogger} activity
+ * for UI, and with the {@link GPSAndLocationListener} for location.
+ * @author nicolas
+ *
+ */
 public class GPSLogger extends Service {
 
 	private static final String TAG = Service.class.getSimpleName();
 
 	/**
-	 * Unique id for notifications.
-	 */
-	private static int notificationId = 0;
-
-	/**
-	 * Database helper.
+	 * Data helper.
 	 */
 	private DataHelper dataHelper = new DataHelper(this);
 
@@ -57,6 +54,9 @@ public class GPSLogger extends Service {
 	public class GPSLoggerBinder extends Binder {
 
 		/**
+		 * Called by the activity when binding.
+		 * Returns itself, and register the location listener.
+		 * @param a The TrackLogger activity, for UI updates.
 		 * @return the GPS Logger service
 		 */
 		public GPSLogger getService(TrackLogger a) {
@@ -73,15 +73,6 @@ public class GPSLogger extends Service {
 	}
 
 	@Override
-	public void onCreate() {
-		Log.v(TAG, "Service is starting");
-		// TODO make it compatible for 2.0 !
-		// @see
-		// http://android-developers.blogspot.com/2010/02/service-api-changes-starting-with.html
-		// setForeground(false);
-	}
-
-	@Override
 	public void onDestroy() {
 		if (gpsListener != null) {
 			if (gpsListener.isTracking()) {
@@ -90,6 +81,7 @@ public class GPSLogger extends Service {
 				dataHelper.exportTrackAsGpx();
 			}
 
+			// Unregister listener
 			LocationManager lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 			lmgr.removeGpsStatusListener(gpsListener);
 			lmgr.removeUpdates(gpsListener);

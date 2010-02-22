@@ -2,8 +2,6 @@ package me.guillaumin.android.osmtracker.service.gps;
 
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,6 +10,12 @@ import android.location.GpsStatus.Listener;
 import android.os.Bundle;
 import android.util.Log;
 
+/**
+ * Listener for Provider and GPSStatus events.
+ * 
+ * @author Nicolas Guillaumin
+ *
+ */
 public class GPSAndLocationListener implements Listener, LocationListener {
 
 	private final static String TAG = GPSAndLocationListener.class.getSimpleName();
@@ -37,7 +41,7 @@ public class GPSAndLocationListener implements Listener, LocationListener {
 	private Location lastLocation;
 	
 	/**
-	 * Is it currently tracking ?
+	 * Are we currently tracking ?
 	 */
 	private boolean tracking = false;
 
@@ -69,8 +73,8 @@ public class GPSAndLocationListener implements Listener, LocationListener {
 			updateUI();
 		}
 
-		// TODO Log location into DB
 		if (tracking) {
+			// Track location in DB
 			dataHelper.track(location);
 		}
 

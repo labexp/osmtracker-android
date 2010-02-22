@@ -17,8 +17,6 @@
 	<string name="gpsstatus_record_voicerec">Voice record</string>
 
 	<!-- Preferences -->
-	<string name="prefs_autostart_logging">Autostart track logging</string>
-	<string name="prefs_autostart_logging_summary">Automatically start to log when GPS is ready. No more "Record" button pressing !</string>
 	<string name="prefs_storage_dir">Storage dir on SD card</string>
 	<string name="prefs_storage_dir_summary">A sub-directory will be created for each tracklog</string>
 	<string name="prefs_voicerec">Voice recording</string>
@@ -29,7 +27,6 @@
 		<item>4</item>
 		<item>5</item>
 	</string-array>
-	<string name="prefs_voicerec_playafter">Play after voice record</string>
 	
 	<!-- Menu -->
 	<string name="menu_settings">Settings</string>

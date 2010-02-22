@@ -127,6 +127,10 @@ public class TrackLogger extends Activity {
 		Log.v(TAG, "Configuration has changed");
 	}
 	
+	/**
+	 * Updates the UI (buttons, images) according to GPS status
+	 * @param gpsStatus The GPSStatus concerning the update
+	 */
 	public void updateUIAccordingtoGPS(GPSStatus gpsStatus) {
 		ToggleButton toggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
 		ImageView imgGpsStatus = (ImageView) findViewById(R.id.gpsstatus_record_imgGpsStatus);
@@ -136,7 +140,7 @@ public class TrackLogger extends Activity {
 			// GPS disabled. Grey all.
 			setEnabledActionButtons(false);
 			
-			// If we are currently tracking, don't grey the toggle,
+			// If we are currently tracking, don't grey the track toggle,
 			// allowing the user to stop tracking
 			if (! toggle.isChecked() ) {
 				toggle.setEnabled(false);

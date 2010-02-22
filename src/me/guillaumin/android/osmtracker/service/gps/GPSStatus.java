@@ -5,7 +5,7 @@ import android.location.LocationProvider;
 
 /**
  * Represents the GPS Status. Used to update the UI
- * according the status.
+ * according to the status.
  *
  */
 public class GPSStatus {

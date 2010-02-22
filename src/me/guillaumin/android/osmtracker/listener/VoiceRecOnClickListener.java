@@ -1,9 +1,6 @@
 package me.guillaumin.android.osmtracker.listener;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.OSMTracker;
@@ -29,6 +26,12 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 	private final static String TAG = VoiceRecOnClickListener.class.getSimpleName();
 	
 	/**
+	 * Indicates if we are currently recording,
+	 * to prevent double click.
+	 */
+	private boolean isRecording = false;
+	
+	/**
 	 * Dialog shown while recording
 	 */
 	ProgressDialog progressDialog;
@@ -45,50 +48,58 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 	@Override
 	public void onClick(View v) {
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(v.getContext());
-		String duration = prefs.getString(OSMTracker.PREF_VOICEREC_DURATION, "2");
-		boolean playAfter = prefs.getBoolean(OSMTracker.PREF_VOICEREC_PLAYAFTER, false);
-		
-		// Get a new audio filename
-		File audioFile = activity.getGpsLogger().getDataHelper().getNewAudioFile();
-	
-		// Show a progress dialog while recording
-		progressDialog = new ProgressDialog(v.getContext());
-		progressDialog.setTitle(v.getResources().getString(R.string.tracklogger_voicerec_title));
-		progressDialog.setMessage(v.getResources().getString(R.string.tracklogger_voicerec_text).replaceAll("\\{0\\}", duration));
-		progressDialog.show();
-
-		MediaRecorder mediaRecorder = new MediaRecorder();
-		
-		try {
-			// MediaRecorder configuration
+		if (! isRecording ) {
 			
-			mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-			mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-			mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-			mediaRecorder.setOutputFile(audioFile.getAbsolutePath());
-			mediaRecorder.setMaxDuration(Integer.parseInt(duration) * 1000);
-			mediaRecorder.setOnInfoListener(this);
+			isRecording = true;
 		
-			Log.d(TAG, "Starting voice rec");
-			mediaRecorder.prepare();
-			mediaRecorder.start();
-						
-		} catch (Exception ioe) {
-			Log.w("Voice recording has failed", ioe);
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(v.getContext());
+			String duration = prefs.getString(OSMTracker.PREF_VOICEREC_DURATION, "2");
+			
+			// Get a new audio filename
+			File audioFile = activity.getGpsLogger().getDataHelper().getNewAudioFile();
+		
+			// Show a progress dialog while recording
+			progressDialog = new ProgressDialog(v.getContext());
+			progressDialog.setTitle(v.getResources().getString(R.string.tracklogger_voicerec_title));
+			progressDialog.setMessage(v.getResources().getString(R.string.tracklogger_voicerec_text).replaceAll("\\{0\\}", duration));
+			progressDialog.show();
+	
+			MediaRecorder mediaRecorder = new MediaRecorder();
+			
 			try {
-				mediaRecorder.stop();
-			} catch (Exception e) {
-				Log.w(TAG, "Recording has failed, and MediaPlayer.stop() too");
-			} finally {
-				mediaRecorder.reset();
-				mediaRecorder.release();
+				// MediaRecorder configuration
+				
+				mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+				mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+				mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+				mediaRecorder.setOutputFile(audioFile.getAbsolutePath());
+				mediaRecorder.setMaxDuration(Integer.parseInt(duration) * 1000);
+				mediaRecorder.setOnInfoListener(this);
+			
+				Log.d(TAG, "Starting voice rec");
+				mediaRecorder.prepare();
+				mediaRecorder.start();
+							
+			} catch (Exception ioe) {
+				Log.w("Voice recording has failed", ioe);
+				try {
+					mediaRecorder.stop();
+				} catch (Exception e) {
+					Log.w(TAG, "Recording has failed, and MediaPlayer.stop() too");
+				} finally {
+					mediaRecorder.reset();
+					mediaRecorder.release();
+				}
+				
+				progressDialog.dismiss();
+				Toast.makeText(v.getContext(), v.getResources().getString(R.string.error_voicerec_failed), Toast.LENGTH_SHORT).show();
+				
+				isRecording = false;
 			}
-			progressDialog.dismiss();
-			Toast.makeText(v.getContext(), v.getResources().getString(R.string.error_voicerec_failed), Toast.LENGTH_SHORT).show();
+			
+			// Still record waypoint, could be usefull even without the voice file.
+			activity.getGpsLogger().trackWayPoint(v.getResources().getString(R.string.wpt_voicerec), audioFile.getName());
 		}
-		
-		activity.getGpsLogger().trackWayPoint(v.getResources().getString(R.string.wpt_voicerec), audioFile.getName());
 	}
 
 	@Override
@@ -101,6 +112,8 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 			// Dismiss dialog
 			Log.d(TAG, "Dismissing record dialog");
 			progressDialog.dismiss();
+			
+			isRecording = false;
 		}
 		
 	}

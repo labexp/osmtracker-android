@@ -17,8 +17,14 @@ import android.database.Cursor;
  */
 public class GPXFileWriter {
 
+	/**
+	 * XML header.
+	 */
 	private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
 	
+	/**
+	 * GPX opening tag
+	 */
 	private static final String TAG_GPX = "<gpx"
 		+ " xmlns=\"http://www.topografix.com/GPX/1/1\""
 		+ " version=\"1.1\""
@@ -30,6 +36,14 @@ public class GPXFileWriter {
 	 */
 	private static final SimpleDateFormat pointDateFormatter = new SimpleDateFormat("yyyy-MM-DD'T'HH:mm:ss'Z'");
 	
+	/**
+	 * Writes the GPX file
+	 * @param trackName Name of the GPX track (metadata)
+	 * @param cTrackPoints Cursor to track points.
+	 * @param cWayPoints Cursor to way points.
+	 * @param target Target GPX file
+	 * @throws IOException 
+	 */
 	public static void writeGpxFile(String trackName, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
 		FileWriter fw = new FileWriter(target);
 		
@@ -44,6 +58,13 @@ public class GPXFileWriter {
 		fw.close();
 	}
 	
+	/**
+	 * Iterates on track points and write them.
+	 * @param trackName Name of the track (metadata).
+	 * @param fw Writer to the target file.
+	 * @param c Cursor to track points.
+	 * @throws IOException
+	 */
 	public static void writeTrackPoints(String trackName, FileWriter fw, Cursor c) throws IOException {
 		fw.write("\t" + "<trk>");
 		fw.write("\t\t" + "<name>" + trackName + "</name>" + "\n");
@@ -69,6 +90,12 @@ public class GPXFileWriter {
 		fw.write("\t" + "</trk>" + "\n");
 	}
 	
+	/**
+	 * Iterates on way points and write them.
+	 * @param fw Writer to the target file.
+	 * @param c Cursor to way points.
+	 * @throws IOException
+	 */
 	public static void writeWayPoints(FileWriter fw, Cursor c) throws IOException {
 		while(! c.isAfterLast() ) {
 			StringBuffer out = new StringBuffer();

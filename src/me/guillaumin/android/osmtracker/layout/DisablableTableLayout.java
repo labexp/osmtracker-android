@@ -1,16 +1,14 @@
 package me.guillaumin.android.osmtracker.layout;
 
-import me.guillaumin.android.osmtracker.R;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 
 /**
  * TableLayout allowing disabling of child components.
- * This layout only works for level 2 childs, ie childs
+ * This layout is hard-coded for level 2 childs, ie. childs
  * that are into a TableRow directly attaced to the TableLayout.
  * 
  * @author Nicolas Guillaumin
@@ -22,6 +20,10 @@ public class DisablableTableLayout extends TableLayout {
 		super(context, attrs);
 	}
 	
+	/**
+	 * Enables to set an OnClickListener to all the childs.
+	 * @param l The OnClickListener to set.
+	 */
 	public void setOnClickListenerForAllChild(OnClickListener l) {
 
 		for(int i=0; i<this.getChildCount(); i++) {
@@ -39,6 +41,7 @@ public class DisablableTableLayout extends TableLayout {
 	
 	/**
 	 * Enables or disable all child of the Layout.
+	 * @param enabled If true, enable all, otherwise disable all.
 	 */
 	@Override
 	public void setEnabled(boolean enabled) {

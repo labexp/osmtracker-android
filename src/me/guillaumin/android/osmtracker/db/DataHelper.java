@@ -1,7 +1,6 @@
 package me.guillaumin.android.osmtracker.db;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,9 +18,19 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+/**
+ * Data helper for storing track in DB and
+ * exporting in GPX.
+ * For the moment only 1 database is used, and deleted
+ * once done.
+ * 
+ * @author Nicolas Guillaumin
+ *
+ */
 public class DataHelper {
 
 	private static final String TAG = DataHelper.class.getName();
+	
 	/**
 	 * GPX file extension.
 	 */
@@ -82,17 +91,24 @@ public class DataHelper {
 	}
 
 	/**
-	 * Create a new track: - Creates a DB - Create a directory for track files
+	 * Create a new track:<br />
+	 * <ul>
+	 * 	<li>Creates a DB</li>
+	 *  <il>Create a directory for track files</li>
+	 * </ul>
+	 * @throws IOException
 	 */
 	public void createNewTrack() throws IOException {
 		database = context.openOrCreateDatabase(DB_NAME, Context.MODE_PRIVATE,
 				null);
 
+		// Creatae database and tables
 		database.execSQL("drop table if exists " + Schema.TBL_TRACKPOINT);
 		database.execSQL(SQL_CREATE_TABLE_TRACKPOINT);
 		database.execSQL("drop table if exists " + Schema.TBL_WAYPOINT);
 		database.execSQL(SQL_CREATE_TABLE_WAYPOINT);
 
+		// Create directory for track
 		File sdRoot = Environment.getExternalStorageDirectory();
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
@@ -204,6 +220,9 @@ public class DataHelper {
 		return trackDir;
 	}
 	
+	/**
+	 * @return A new File to record an audio way point, inside the track directory.
+	 */
 	public File getNewAudioFile() {
 		return new File(trackDir + File.separator + fileNameFormatter.format(new Date()) + EXTENSION_3GPP);
 	}
