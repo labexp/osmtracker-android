@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tracklogger_car_btnTrack">Track</string>
+    <string name="tracklogger_car_btnCycleway">Cycleway</string>
+    <string name="tracklogger_car_btnFootway">Footway</string>
+    <string name="tracklogger_car_btnBridleway">Bridleway</string>
+    <string name="tracklogger_car_btnSteps">Steps</string>
+    <string name="tracklogger_car_btnLivingStreet">Living street</string>
+    <string name="tracklogger_car_btnPedestrian">Pedestrian</string>
+    <string name="tracklogger_car_btnTrack1">Grade 1</string>
+    <string name="tracklogger_car_btnTrack2">Grade 2</string>
+    <string name="tracklogger_car_btnTrack3">Grade 3</string>
+    <string name="tracklogger_car_btnTrack4">Grade 4</string>
+    <string name="tracklogger_car_btnTrack5">Grade 5</string>
+</resources>

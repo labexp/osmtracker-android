@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.guillaumin.android.osmtracker.layout.DisablableTableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:id="@+id/tracklogger_tblAmenity">
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_amenity_btnBench"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_amenity_btnBench"></Button>
+		<Button android:id="@+id/tracklogger_amenity_btnWater"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_amenity_btnWater"></Button>
+		<Button android:id="@+id/tracklogger_amenity_btnPharmacy"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="@string/tracklogger_amenity_btnPharmacy"></Button>
+	</TableRow>
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_amenity_btnShop"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_amenity_btnShop"></Button>
+		<Button android:id="@+id/tracklogger_amenity_btnMarina"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_amenity_btnMarina"></Button>
+		<Button android:id="@+id/tracklogger_amenity_btnSport"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="@string/tracklogger_amenity_btnSport"></Button>
+	</TableRow>
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_amenity_btnTaxi"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_amenity_btnTaxi"></Button>
+		<Button android:id="@+id/tracklogger_amenity_btnDoctors"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_amenity_btnDoctors"></Button>
+		<Button android:id="@+id/tracklogger_amenity_btnRecycling"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="@string/tracklogger_amenity_btnRecycling"></Button>
+	</TableRow>
+
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_amenity_btnWorship"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_amenity_btnWorship"></Button>
+		<Button android:id="@+id/tracklogger_amenity_btnPostOffice"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_amenity_btnPostOffice"></Button>
+		<Button android:id="@+id/tracklogger_amenity_btnLibrary"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="@string/tracklogger_amenity_btnLibrary"></Button>
+	</TableRow>
+
+</me.guillaumin.android.osmtracker.layout.DisablableTableLayout>

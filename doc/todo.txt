@@ -1,0 +1,4 @@
+- Better landscape screen support. The buttons grid dimensions should be defined in regard of the screen W/H ratio.
+- Have a true background service capable of keep tracking when the ui is gone, and connect back to the UI via notification system
+- GPX save from database is long and blocks UI. Change that, maybe for an Asynctask, but must manage the fact that user starts another tracks while saving !
+- Component are oddly organized. Service should not have reference to the UI (?)

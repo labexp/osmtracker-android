@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="tracklogger_main_btnMisc">Miscellanous</string>
+   	<string name="tracklogger_main_btnRestriction">Restriction</string>
+   	<string name="tracklogger_main_btnCar">Car</string>
+   	<string name="tracklogger_main_btnAmenity">Amenity</string>
+   	<string name="tracklogger_main_btnAmenityMore">Amenity (+)</string>
+   	<string name="tracklogger_main_btnTourism">Tourism</string>
+   	<string name="tracklogger_main_btnWay">Way</string>
+   	<string name="tracklogger_main_btnTrack">Track</string>
+	<string name="tracklogger_main_btnLandUse">Land use</string>
+</resources>

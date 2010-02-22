@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tracklogger_car_btnBridge">Bridge</string>
+    <string name="tracklogger_car_btnCrossing">Zebra crossing</string>
+    <string name="tracklogger_car_btnMotorway">Motorway</string>
+    <string name="tracklogger_car_btnTrunk">Trunk</string>
+    <string name="tracklogger_car_btniPrimary">Primary</string>
+    <string name="tracklogger_car_btnSecondary">Secondary</string>
+    <string name="tracklogger_car_btnTertiary">Tertiary</string>
+    <string name="tracklogger_car_btnResidential">Residential</string>
+    <string name="tracklogger_car_btnService">Service</string>
+</resources>

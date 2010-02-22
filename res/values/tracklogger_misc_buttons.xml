@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tracklogger_misc_btnBusStop">Bus stop</string>
+	<string name="tracklogger_misc_btnRailway">Railway</string>
+   	<string name="tracklogger_misc_btnTelephone">Telephone</string>
+   	<string name="tracklogger_misc_btnPostBox">Post box</string>
+   	<string name="tracklogger_misc_btnATM">ATM</string>
+   	<string name="tracklogger_misc_btnBollard">Bollard</string>
+   	<string name="tracklogger_misc_btnToilets">Toilets</string>
+   	<string name="tracklogger_misc_btnShelter">Shelter</string>
+   	<string name="tracklogger_misc_btnSurveillance">Surveillance</string>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" android:layout_width="fill_parent">
+
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_height="fill_parent" android:layout_width="wrap_content">
+		<ImageView android:id="@+id/gpsstatus_record_imgGpsStatus"
+			android:src="@drawable/ledgrey_32x32" android:layout_weight="1"
+			android:layout_gravity="center_vertical|center_horizontal"
+			android:layout_height="fill_parent" android:layout_width="wrap_content"></ImageView>
+		<ImageView android:id="@+id/gpsstatus_record_imgLocationStatus"
+			android:src="@drawable/satellite_off" android:layout_weight="1"
+			android:layout_width="wrap_content" android:layout_gravity="center_vertical|fill_horizontal"
+			android:layout_height="fill_parent"></ImageView>
+	</LinearLayout>
+	<ToggleButton android:id="@+id/gpsstatus_record_toggleTrack"
+		android:textOff="@string/gpsstatus_record_trackoff" android:textOn="@string/gpsstatus_record_trackon"
+		android:layout_height="fill_parent" android:layout_width="fill_parent"
+		android:layout_gravity="center_vertical|center_horizontal"
+		android:layout_weight="1" android:state_enabled="false"></ToggleButton>
+	<Button android:id="@+id/gpsstatus_record_btnVoiceRecord"
+		android:text="@string/gpsstatus_record_voicerec" android:drawableTop="@drawable/voice_32x32"
+		android:layout_weight="1" android:layout_height="fill_parent"
+		android:layout_width="fill_parent" android:state_enabled="false"></Button>
+
+</LinearLayout>

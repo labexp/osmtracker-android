@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic strings -->
+    <string name="app_name">OSMTracker for Android™</string>
+	<string name="app_short_name">OSMTracker</string>
+	<string name="app_description">GPX track logging and waypoint annotation.</string>
+	
+	<!-- TrackLogger -->
+	<string name="tracklogger_waiting_gps">Waiting for GPS fix to enable buttons...</string>
+	<string name="tracklogger_voicerec_title">Voice recording</string>
+	<string name="tracklogger_voicerec_text">Recording a {0}s audio clip.</string>
+	<string name="tracklogger_btnBack">Back</string>
+	
+	<!-- GPS Status & record bar -->
+	<string name="gpsstatus_record_trackoff">Start tracking.</string>
+	<string name="gpsstatus_record_trackon">Stop tracking</string>
+	<string name="gpsstatus_record_voicerec">Voice record</string>
+
+	<!-- Preferences -->
+	<string name="prefs_autostart_logging">Autostart track logging</string>
+	<string name="prefs_autostart_logging_summary">Automatically start to log when GPS is ready. No more "Record" button pressing !</string>
+	<string name="prefs_storage_dir">Storage dir on SD card</string>
+	<string name="prefs_storage_dir_summary">A sub-directory will be created for each tracklog</string>
+	<string name="prefs_voicerec">Voice recording</string>
+	<string name="prefs_voicerec_duration">Voice record duration</string>
+	<string-array name="prefs_voicerec_durations">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+	</string-array>
+	<string name="prefs_voicerec_playafter">Play after voice record</string>
+	
+	<!-- Menu -->
+	<string name="menu_settings">Settings</string>
+	
+	<!-- Errors -->
+	<string name="error_externalstorage_not_writable">Unable to write to external storage</string>
+	<string name="error_voicerec_failed">Voice recording has failed</string>
+	
+	<!-- GPX -->
+	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
+	
+	<!-- Notification -->
+	<string name="notification_still_running">OSMTracker is still tracking</string>
+	<string name="notification_display_ui">Click to display OSMTracker</string>
+	
+</resources>

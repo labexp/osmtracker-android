@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.guillaumin.android.osmtracker.layout.DisablableTableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:id="@+id/tracklogger_tblTourism">
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_car_btnTrack"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnTrack"></Button>
+		<Button android:id="@+id/tracklogger_car_btnCycleway"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnCycleway"></Button>
+		<Button android:id="@+id/tracklogger_car_btnFootway"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="@string/tracklogger_car_btnFootway"></Button>
+	</TableRow>
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_car_btnBridleway"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnBridleway"></Button>
+		<Button android:id="@+id/tracklogger_car_btnSteps"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnSteps"></Button>
+		<Button android:id="@+id/tracklogger_car_btnLivingStreet"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="@string/tracklogger_car_btnAllotments"></Button>
+	</TableRow>
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_car_btnPedestrian"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnPedestrian"></Button>
+		<Button android:id="@+id/tracklogger_car_btnTrack1"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnTrack1"></Button>
+		<Button android:id="@+id/tracklogger_car_btnTrack2"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnTrack2"></Button>
+	</TableRow>
+	
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_car_btnTrack3"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnTrack3"></Button>
+		<Button android:id="@+id/tracklogger_car_btnTrack4"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnTrack4"></Button>
+		<Button android:id="@+id/tracklogger_car_btnTrack5"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnTrack5"></Button>
+	</TableRow>
+</me.guillaumin.android.osmtracker.layout.DisablableTableLayout>

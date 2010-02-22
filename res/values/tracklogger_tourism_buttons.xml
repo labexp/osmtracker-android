@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tracklogger_car_btnViewPoint">View point</string>
+    <string name="tracklogger_car_btnInformation">Information</string>
+    <string name="tracklogger_car_btnPicnic">Picnic site</string>
+    <string name="tracklogger_car_btnAttraction">Attraction</string>
+    <string name="tracklogger_car_btnThemePark">Theme park</string>
+    <string name="tracklogger_car_btnCastle">Castle</string>
+    <string name="tracklogger_car_btnMonument">Monument</string>
+    <string name="tracklogger_car_btnMuseum">Museum</string>
+    <string name="tracklogger_car_btnCinema">Cinema</string>
+</resources>

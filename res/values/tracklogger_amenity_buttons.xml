@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="tracklogger_amenity_btnBench">Bench</string>
+	<string name="tracklogger_amenity_btnWater">Water</string>
+	<string name="tracklogger_amenity_btnPharmacy">Pharmacy</string>
+	<string name="tracklogger_amenity_btnShop">Shop</string>
+	<string name="tracklogger_amenity_btnMarina">Marina</string>
+	<string name="tracklogger_amenity_btnSport">Sport</string>
+	<string name="tracklogger_amenity_btnTaxi">Taxi</string>
+	<string name="tracklogger_amenity_btnDoctors">Hospital,\nDoctors</string>
+	
+	<string name="tracklogger_amenity_btnRecycling">Recycling</string>
+	<string name="tracklogger_amenity_btnWorship">Place of\nworship</string>
+	<string name="tracklogger_amenity_btnPostOffice">Post office</string>
+	<string name="tracklogger_amenity_btnLibrary">Library</string>
+	
+	<string name="tracklogger_amenity_btnSchool">School</string>
+	<string name="tracklogger_amenity_btnPolice">Police</string>
+	<string name="tracklogger_amenity_btnFireStation">Fire station</string>
+	<string name="tracklogger_amenity_btnBank">Bank</string>
+	<string name="tracklogger_amenity_btnPlayground">Playground</string>
+
+	<string name="tracklogger_amenity_btnPub">Pub</string>
+	<string name="tracklogger_amenity_btnHotel">Hotel</string>
+	<string name="tracklogger_amenity_btnMotel">Motel</string>
+	<string name="tracklogger_amenity_btnHostell">Hostell</string>
+	<string name="tracklogger_amenity_btnRestaurant">Restaurant</string>
+	<string name="tracklogger_amenity_btnFastFood">Fast food</string>
+	<string name="tracklogger_amenity_btnCampSite">Camp site</string>
+	
+</resources>

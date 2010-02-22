@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<CheckBoxPreference android:summary="@string/prefs_autostart_logging_summary"
+		android:key="logging.autostart" android:title="@string/prefs_autostart_logging"
+		android:defaultValue="false"></CheckBoxPreference>
+	<EditTextPreference android:summary="@string/prefs_storage_dir_summary"
+		android:key="logging.storage.dir" android:defaultValue="/osmtracker"
+		android:title="@string/prefs_storage_dir"></EditTextPreference>
+	<PreferenceCategory android:title="@string/prefs_voicerec">
+		<ListPreference android:title="@string/prefs_voicerec_duration"
+			android:key="voicerec.duration" android:entryValues="@array/prefs_voicerec_durations"
+			android:defaultValue="2" android:entries="@array/prefs_voicerec_durations"></ListPreference>
+		<CheckBoxPreference android:key="voicerec.playafter"
+			android:defaultValue="false" android:title="@string/prefs_voicerec_playafter"></CheckBoxPreference>
+	</PreferenceCategory>
+</PreferenceScreen>

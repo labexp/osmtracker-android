@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tracklogger_restriction_btnSpeed30">Max 30</string>
+	<string name="tracklogger_restriction_btnSpeed50">Max 50</string>
+   	<string name="tracklogger_restriction_btnSpeed80">Max 80</string>
+   	<string name="tracklogger_restriction_btnSpeed100">Max 100</string>
+   	<string name="tracklogger_restriction_btnSpeed110">Max 110</string>
+   	<string name="tracklogger_restriction_btnSpeed120">Max 120</string>
+   	<string name="tracklogger_restriction_btnNoExit">No exit</string>
+   	<string name="tracklogger_restriction_btnTrafficLight">Traffic Light</string>
+   	<string name="tracklogger_restriction_btnOneWay">One way</string>
+</resources>

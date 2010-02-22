@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.guillaumin.android.osmtracker.layout.DisablableTableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent" android:id="@+id/tracklogger_tblRestriction">
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed30"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnSpeed30"></Button>
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed50"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnSpeed50"></Button>
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed80"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="@string/tracklogger_restriction_btnSpeed80"></Button>
+	</TableRow>
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed100"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnSpeed100"></Button>
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed110"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnSpeed110"></Button>
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed120"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="@string/tracklogger_restriction_btnSpeed120"></Button>
+	</TableRow>
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_restriction_btnNoExit"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnNoExit"></Button>
+		<Button android:id="@+id/tracklogger_restriction_btnTrafficLight"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnTrafficLight"></Button>
+		<Button android:id="@+id/tracklogger_restriction_btnOneWay"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="@string/tracklogger_restriction_btnOneWay"></Button>
+	</TableRow>
+
+
+</me.guillaumin.android.osmtracker.layout.DisablableTableLayout>

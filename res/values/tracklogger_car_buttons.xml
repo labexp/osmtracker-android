@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tracklogger_car_btnFuelStation">Fuel station</string>
+    <string name="tracklogger_car_btnParking">Parking</string>
+    <string name="tracklogger_car_btnEmergencyPhone">Emergency Phone</string>
+    <string name="tracklogger_car_btnTurningCircle">Turning circle</string>
+    <string name="tracklogger_car_btnSpeedCamera">Speed camera</string>
+</resources>

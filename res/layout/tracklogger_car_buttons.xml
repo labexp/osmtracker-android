@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.guillaumin.android.osmtracker.layout.DisablableTableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:id="@+id/tracklogger_tblCar">
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_car_btnFuelStation"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnFuelStation"></Button>
+		<Button android:id="@+id/tracklogger_car_btnParking"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnParking"></Button>
+		<Button android:id="@+id/tracklogger_car_btnEmergencyPhone"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_weight="1" android:text="@string/tracklogger_car_btnEmergencyPhone"></Button>
+	</TableRow>
+	<TableRow android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<Button android:id="@+id/tracklogger_car_btnTurningCircle"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnTurningCircle"></Button>
+		<Button android:id="@+id/tracklogger_car_btnSpeedCamera"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnSpeedCamera"></Button>
+	</TableRow>
+	
+</me.guillaumin.android.osmtracker.layout.DisablableTableLayout>
