@@ -109,6 +109,11 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 		tbl.setOnClickListenerForAllChild(this);
 		rootViewGroup.addView(tbl);
 		activity.setButtonTable(tbl);
+		if (activity.getGpsLogger().isTracking() ) {
+			tbl.setEnabled(true);
+		} else {
+			tbl.setEnabled(false);
+		}
 		backButton.setEnabled(enableBackButton);
 	}
 	

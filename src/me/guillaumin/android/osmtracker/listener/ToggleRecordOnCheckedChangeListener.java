@@ -43,7 +43,7 @@ public class ToggleRecordOnCheckedChangeListener implements OnCheckedChangeListe
 			activity.setEnabledActionButtons(false);
 			
 			// If GPS is unavailable, grey toggle too
-			if (activity.getGpsLogger().getGpsListener().getGpsStatus().isEnabled() == false) {
+			if (activity.getGpsLogger().isGpsEnabled() == false) {
 				buttonView.setEnabled(false);
 			}
 			

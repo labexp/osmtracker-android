@@ -6,25 +6,19 @@ import me.guillaumin.android.osmtracker.listener.ToggleRecordOnCheckedChangeList
 import me.guillaumin.android.osmtracker.listener.VoiceRecOnClickListener;
 import me.guillaumin.android.osmtracker.listener.WaypointButtonOnClickListener;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
-import me.guillaumin.android.osmtracker.service.gps.GPSStatus;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.res.Configuration;
-import android.location.GpsStatus;
-import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -119,72 +113,33 @@ public class TrackLogger extends Activity {
 	}
 
 	/**
-	 * Called when some config. changes occurs, in this case
-	 * we're bypassing the screen orientation change.
+	 * Called when GPS is disabled
 	 */
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		Log.v(TAG, "Configuration has changed");
+	public void onGpsDisabled() {
+		// GPS disabled. Grey all.
+		setEnabledActionButtons(false);
+		
+		// If we are currently tracking, don't grey the track toggle,
+		// allowing the user to stop tracking
+		ToggleButton toggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
+		if (! toggle.isChecked() ) {
+			toggle.setEnabled(false);
+		}
 	}
 	
 	/**
-	 * Updates the UI (buttons, images) according to GPS status
-	 * @param gpsStatus The GPSStatus concerning the update
+	 * Called when GPS is enabled
 	 */
-	public void updateUIAccordingtoGPS(GPSStatus gpsStatus) {
+	public void onGpsEnabled() {
+		// Buttons can be enabled
 		ToggleButton toggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
-		ImageView imgGpsStatus = (ImageView) findViewById(R.id.gpsstatus_record_imgGpsStatus);
-		ImageView imgProviderStatus = (ImageView) findViewById(R.id.gpsstatus_record_imgLocationStatus);
+		toggle.setEnabled(true);
 		
-		if (! gpsStatus.isEnabled() ) {
-			// GPS disabled. Grey all.
-			setEnabledActionButtons(false);
-			
-			// If we are currently tracking, don't grey the track toggle,
-			// allowing the user to stop tracking
-			if (! toggle.isChecked() ) {
-				toggle.setEnabled(false);
-			}
-		} else {
-			// GPS is enabled. Look for other info
-			if (gpsStatus.isFirstLocationReceived() ) {
-				// First location received, buttons can be enabled
-				toggle.setEnabled(true);
-				if (toggle.isChecked()) {
-					// Currently tracking, activate buttons
-					setEnabledActionButtons(true);
-				}
-				
-				// Update GPS image status to green led
-				imgGpsStatus.setImageResource(R.drawable.ledgreen_32x32);
-			}
-		}
-	
-		// Update image for gps status
-		switch (gpsStatus.getLastGpsStatus()) {
-		case GpsStatus.GPS_EVENT_FIRST_FIX:
-			imgGpsStatus.setImageResource(R.drawable.ledgreen_32x32);
-			break;
-		case GpsStatus.GPS_EVENT_STARTED:
-			imgGpsStatus.setImageResource(R.drawable.ledorange_32x32);
-			break;
-		case GpsStatus.GPS_EVENT_STOPPED:
-			imgGpsStatus.setImageResource(R.drawable.ledred_32x32);
-			break;
+		if (toggle.isChecked()) {
+			// Currently tracking, activate buttons
+			setEnabledActionButtons(true);
 		}
 		
-		// Update image for provider status
-		switch (gpsStatus.getLastProviderStatus()) {
-		case LocationProvider.AVAILABLE:
-			imgProviderStatus.setImageResource(R.drawable.satellite);
-			break;
-		case LocationProvider.OUT_OF_SERVICE:
-			imgProviderStatus.setImageResource(R.drawable.satellite_off);
-			break;
-		case LocationProvider.TEMPORARILY_UNAVAILABLE:
-			imgProviderStatus.setImageResource(R.drawable.satellite_unknown);
-			break;
-		}
 	}
 	
 	/**
@@ -193,8 +148,6 @@ public class TrackLogger extends Activity {
 	public void setEnabledActionButtons(boolean enabled) {
 		buttonTable.setEnabled(enabled);	
 		((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setEnabled(enabled);
-		((Button) findViewById(R.id.tracklogger_btnBack)).setEnabled(enabled);
-		
 	}
 
 	// Create options menu
@@ -214,7 +167,6 @@ public class TrackLogger extends Activity {
 			startActivity(new Intent(this, Preferences.class));
 			break;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 	
@@ -225,4 +177,6 @@ public class TrackLogger extends Activity {
 	public void setButtonTable(DisablableTableLayout buttonTable) {
 		this.buttonTable = buttonTable;
 	}
+	
+	
 }
