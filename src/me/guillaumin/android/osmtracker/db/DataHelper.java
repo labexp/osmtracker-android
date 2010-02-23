@@ -29,7 +29,7 @@ import android.util.Log;
  */
 public class DataHelper {
 
-	private static final String TAG = DataHelper.class.getName();
+	private static final String TAG = DataHelper.class.getSimpleName();
 	
 	/**
 	 * GPX file extension.
@@ -112,8 +112,8 @@ public class DataHelper {
 		File sdRoot = Environment.getExternalStorageDirectory();
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
-		String storageDir = prefs.getString(OSMTracker.PREF_STORAGE_DIR,
-				OSMTracker.class.getSimpleName());
+		String storageDir = prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR,
+				OSMTracker.Preferences.VAL_STORAGE_DIR);
 		if (sdRoot.canWrite()) {
 			// Create base OSMTracker directory on SD Card
 			File osmTrackerDir = new File(sdRoot + storageDir);
@@ -138,6 +138,7 @@ public class DataHelper {
 	 *            The Location to track
 	 */
 	public void track(Location location) {
+		Log.v(TAG, "Tracking location: " + location);
 		ContentValues values = new ContentValues();
 		values.put(Schema.COL_LATITUDE, location.getLatitude());
 		values.put(Schema.COL_LONGITUDE, location.getLongitude());
@@ -181,7 +182,6 @@ public class DataHelper {
 	 * Exports current database to a GPX file.
 	 */
 	public void exportTrackAsGpx() {
-		PreferenceManager.getDefaultSharedPreferences(context);
 
 		if (trackDir != null) {
 			File trackFile = new File(trackDir, fileNameFormatter

@@ -37,17 +37,17 @@ public class TrackLogger extends Activity {
 	 * GPS Logger service, to receive events and be able to update UI.
 	 */
 	private GPSLogger gpsLogger;
-	
+
 	/**
 	 * View handling the button grid.
 	 */
 	private DisablableTableLayout buttonTable;
-	
+
 	/**
 	 * Listener managing the waypoint buttons.
 	 */
 	WaypointButtonOnClickListener listener;
-	
+
 	/**
 	 * Handles the bind to the GPS Logger service
 	 */
@@ -60,10 +60,8 @@ public class TrackLogger extends Activity {
 
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
-			gpsLogger = ((GPSLogger.GPSLoggerBinder) service)
-					.getService(TrackLogger.this);
-			listener.setGpsLogger(gpsLogger);
-			
+			gpsLogger = ((GPSLogger.GPSLoggerBinder) service).getService();
+
 		}
 	};
 
@@ -79,20 +77,21 @@ public class TrackLogger extends Activity {
 		// Disable buttons until user clicks record
 		buttonTable = (DisablableTableLayout) findViewById(R.id.tracklogger_tblMain);
 		buttonTable.setEnabled(false);
-		
+
 		// Handler for buttons
 		listener = new WaypointButtonOnClickListener((ViewGroup) findViewById(R.id.tracklogger_root), this);
 		buttonTable.setOnClickListenerForAllChild(listener);
 		((Button) findViewById(R.id.tracklogger_btnBack)).setOnClickListener(listener);
-		
+
 		// Inform user why buttons are disabled
-		Toast.makeText(this, R.string.tracklogger_waiting_gps,
-				Toast.LENGTH_LONG).show();
+		Toast.makeText(this, R.string.tracklogger_waiting_gps, Toast.LENGTH_LONG).show();
 
 		// Register listeners
-		((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack)).setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(this));
-		((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setOnClickListener(new VoiceRecOnClickListener(this));
-		
+		((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack))
+				.setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(this));
+		((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setOnClickListener(new VoiceRecOnClickListener(
+				this));
+
 		// Populate default preference values
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 	}
@@ -100,8 +99,7 @@ public class TrackLogger extends Activity {
 	@Override
 	protected void onResume() {
 		// Bind to GPS service
-		bindService(new Intent(this, GPSLogger.class), gpsLoggerConnection,
-				BIND_AUTO_CREATE);
+		bindService(new Intent(this, GPSLogger.class), gpsLoggerConnection, BIND_AUTO_CREATE);
 		super.onResume();
 	}
 
@@ -118,15 +116,15 @@ public class TrackLogger extends Activity {
 	public void onGpsDisabled() {
 		// GPS disabled. Grey all.
 		setEnabledActionButtons(false);
-		
+
 		// If we are currently tracking, don't grey the track toggle,
 		// allowing the user to stop tracking
 		ToggleButton toggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
-		if (! toggle.isChecked() ) {
+		if (!toggle.isChecked()) {
 			toggle.setEnabled(false);
 		}
 	}
-	
+
 	/**
 	 * Called when GPS is enabled
 	 */
@@ -134,19 +132,19 @@ public class TrackLogger extends Activity {
 		// Buttons can be enabled
 		ToggleButton toggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
 		toggle.setEnabled(true);
-		
+
 		if (toggle.isChecked()) {
 			// Currently tracking, activate buttons
 			setEnabledActionButtons(true);
 		}
-		
+
 	}
-	
+
 	/**
 	 * Enable buttons associated to tracking
 	 */
 	public void setEnabledActionButtons(boolean enabled) {
-		buttonTable.setEnabled(enabled);	
+		buttonTable.setEnabled(enabled);
 		((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setEnabled(enabled);
 	}
 
@@ -169,14 +167,13 @@ public class TrackLogger extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public GPSLogger getGpsLogger() {
 		return gpsLogger;
 	}
-	
+
 	public void setButtonTable(DisablableTableLayout buttonTable) {
 		this.buttonTable = buttonTable;
 	}
-	
-	
+
 }

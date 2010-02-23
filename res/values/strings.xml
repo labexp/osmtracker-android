@@ -17,8 +17,8 @@
 	<string name="gpsstatus_record_voicerec">Voice record</string>
 
 	<!-- Preferences -->
-	<string name="prefs_storage_dir">Storage dir on SD card</string>
-	<string name="prefs_storage_dir_summary">A sub-directory will be created for each tracklog</string>
+	<string name="prefs_storage_dir">External (SD) storage dir</string>
+	<string name="prefs_storage_dir_summary"></string>
 	<string name="prefs_voicerec">Voice recording</string>
 	<string name="prefs_voicerec_duration">Voice record duration</string>
 	<string-array name="prefs_voicerec_durations">

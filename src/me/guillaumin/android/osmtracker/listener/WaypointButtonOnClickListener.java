@@ -1,9 +1,10 @@
 package me.guillaumin.android.osmtracker.listener;
 
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.activity.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.layout.DisablableTableLayout;
-import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,11 +38,6 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 	 */
 	private TrackLogger activity;
 	
-	/**
-	 * GPS Logger instance, to track waypoints.
-	 */
-	private GPSLogger gpsLogger;
-	
 	public WaypointButtonOnClickListener(ViewGroup vg, TrackLogger tl) {
 		rootViewGroup = vg;
 		activity = tl;
@@ -51,7 +47,7 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		Log.v(TAG, "Entering the BIG switch with view " + v);
-		
+				
 		// Ugly switch to manage multiple buttons
 		switch (v.getId()) {
 		case R.id.tracklogger_main_btnMisc:
@@ -90,10 +86,11 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 			// Get the label for the button
 			Button wayPointButton = (Button) v;
 			String label = wayPointButton.getText().toString();
-			if (gpsLogger != null) {			
-				gpsLogger.trackWayPoint(label);
-			}
-			
+
+			// Send an intent to inform service to track the waypoint.
+			Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+			intent.putExtra(OSMTracker.INTENT_KEY_NAME, label);
+			activity.sendBroadcast(new Intent(intent));			
 		}
 
 	}
@@ -115,10 +112,6 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 			tbl.setEnabled(false);
 		}
 		backButton.setEnabled(enableBackButton);
-	}
-	
-	public void setGpsLogger(GPSLogger logger) {
-		this.gpsLogger = logger;
 	}
 
 }

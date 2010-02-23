@@ -1,10 +1,9 @@
 package me.guillaumin.android.osmtracker.listener;
 
-import java.io.IOException;
-
+import me.guillaumin.android.osmtracker.activity.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
+import android.content.Intent;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 /**
@@ -27,17 +26,12 @@ public class ToggleRecordOnCheckedChangeListener implements OnCheckedChangeListe
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		if(isChecked) {
-			try {
-				// Start track logging
-				activity.getGpsLogger().startTracking();
-				// Enable button grid
-				activity.setEnabledActionButtons(true);
-				
-			} catch (IOException ioe) {
-				// Exception occured in DataHelper
-				Toast.makeText(activity, ioe.getMessage(), Toast.LENGTH_LONG).show();
-				buttonView.setChecked(false);	
-			}
+			// Start track logging
+			Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
+			activity.sendBroadcast(intent);
+			// Enable button grid
+			activity.setEnabledActionButtons(true);
+
 		} else {
 			// Disable button grid
 			activity.setEnabledActionButtons(false);
@@ -48,7 +42,8 @@ public class ToggleRecordOnCheckedChangeListener implements OnCheckedChangeListe
 			}
 			
 			// Stop tracking
-			activity.getGpsLogger().stopTracking();			
+			Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
+			activity.sendBroadcast(intent);		
 		}
 	}
 

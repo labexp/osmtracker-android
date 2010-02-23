@@ -6,6 +6,7 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaRecorder;
 import android.media.MediaRecorder.OnInfoListener;
@@ -53,7 +54,7 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 			isRecording = true;
 		
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(v.getContext());
-			String duration = prefs.getString(OSMTracker.PREF_VOICEREC_DURATION, "2");
+			String duration = prefs.getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION, OSMTracker.Preferences.VAL_VOICEREC_DURATION);
 			
 			// Get a new audio filename
 			File audioFile = activity.getGpsLogger().getDataHelper().getNewAudioFile();
@@ -98,7 +99,10 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 			}
 			
 			// Still record waypoint, could be usefull even without the voice file.
-			activity.getGpsLogger().trackWayPoint(v.getResources().getString(R.string.wpt_voicerec), audioFile.getName());
+			Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+			intent.putExtra(OSMTracker.INTENT_KEY_NAME, v.getResources().getString(R.string.wpt_voicerec));
+			intent.putExtra(OSMTracker.INTENT_KEY_LINK, audioFile.getName());
+			activity.sendBroadcast(intent);
 		}
 	}
 

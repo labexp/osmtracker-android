@@ -2,11 +2,14 @@ package me.guillaumin.android.osmtracker.service.gps;
 
 import java.io.IOException;
 
+import me.guillaumin.android.osmtracker.activity.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -23,7 +26,7 @@ import android.util.Log;
  */
 public class GPSLogger extends Service implements LocationListener {
 
-	private static final String TAG = Service.class.getSimpleName();
+	private static final String TAG = GPSLogger.class.getSimpleName();
 
 	/**
 	 * Data helper.
@@ -45,21 +48,42 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private Location lastLocation;
 
+	/**
+	 * Receives Intent for way point tracking, and stop/start logging.
+	 */
+	private BroadcastReceiver receiver = new BroadcastReceiver() {
+		
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if (OSMTracker.INTENT_TRACK_WP.equals(intent.getAction())) {
+				// Track a way point
+				Bundle extras = intent.getExtras();
+				if (extras != null) {
+					String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
+					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
+					if (link != null) {
+						dataHelper.wayPoint(lastLocation, name, link);
+					} else {
+						dataHelper.wayPoint(lastLocation, name);
+					}
+				}
+			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction()) ) {
+				startTracking();
+			} else if (OSMTracker.INTENT_STOP_TRACKING.equals(intent.getAction()) ) {
+				stopTrackingAndSave();
+			}
+		}
+	};
 	
-	@Override
-	public IBinder onBind(Intent intent) {
-		return binder;
-	}
-
-	@Override
-	public boolean onUnbind(Intent intent) {
-		return super.onUnbind(intent);
-	}
-
 	/**
 	 * Binder for service interaction
 	 */
 	private final IBinder binder = new GPSLoggerBinder();
+
+	@Override
+	public IBinder onBind(Intent intent) {
+		return binder;
+	}
 
 	/**
 	 * Bind interface for service interaction
@@ -69,10 +93,9 @@ public class GPSLogger extends Service implements LocationListener {
 		/**
 		 * Called by the activity when binding.
 		 * Returns itself, and register the location listener.
-		 * @param a The TrackLogger activity, for UI updates.
 		 * @return the GPS Logger service
 		 */
-		public GPSLogger getService(TrackLogger a) {
+		public GPSLogger getService() {
 			// Register ourselves for location updates
 			LocationManager lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, GPSLogger.this);
@@ -80,17 +103,33 @@ public class GPSLogger extends Service implements LocationListener {
 			return GPSLogger.this;
 		}
 	}
+	
+	@Override
+	public void onCreate() {
+		
+		// Register our broadcast receiver
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(OSMTracker.INTENT_TRACK_WP);
+		filter.addAction(OSMTracker.INTENT_START_TRACKING);
+		filter.addAction(OSMTracker.INTENT_STOP_TRACKING);
+		registerReceiver(receiver, filter);
+		
+		super.onCreate();
+	}
 
 	@Override
 	public void onDestroy() {
 		if (isTracking) {
-			isTracking = false;
-			dataHelper.exportTrackAsGpx();
+			// If we're currently tracking, save user data.
+			stopTrackingAndSave();
 		}
 
 		// Unregister listener
 		LocationManager lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		lmgr.removeUpdates(this);
+		
+		// Unregister broadcast receiver
+		unregisterReceiver(receiver);
 
 		super.onDestroy();
 	}
@@ -98,43 +137,24 @@ public class GPSLogger extends Service implements LocationListener {
 	/**
 	 * Start GPS tracking.
 	 */
-	public void startTracking() throws IOException {
+	private void startTracking() {
 		Log.v(TAG, "Starting track logging");
 
-		dataHelper.createNewTrack();
-		isTracking = true;
+		try {
+			dataHelper.createNewTrack();
+			isTracking = true;
+		} catch (IOException ioe ) {
+			// TODO Manage exception, display a Toast to inform user
+			throw new RuntimeException("Unmanaged Exception", ioe);
+		}
 	}
 
 	/**
 	 * Stops GPS Logging and save GPX file.
 	 */
-	public void stopTracking() {
+	private void stopTrackingAndSave() {
 		isTracking = false;
 		dataHelper.exportTrackAsGpx();
-	}
-
-	/**
-	 * Track a way point.
-	 * 
-	 * @param name
-	 *            Name of waypoint.
-	 */
-	public void trackWayPoint(String name) {
-		Log.v(TAG, "Tracking waypoint with name: " + name);
-		dataHelper.wayPoint(lastLocation, name);
-	}
-
-	/**
-	 * Track a way point with an associated link.
-	 * 
-	 * @param name
-	 *            Name of waypoint.
-	 * @param link
-	 *            Associated link
-	 */
-	public void trackWayPoint(String name, String link) {
-		Log.v(TAG, "Tracking waypoint with name: " + name + ", link: " + link);
-		dataHelper.wayPoint(lastLocation, name, link);
 	}
 
 	public DataHelper getDataHelper() {
