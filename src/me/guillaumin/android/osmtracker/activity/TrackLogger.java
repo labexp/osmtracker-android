@@ -13,6 +13,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,9 +35,24 @@ public class TrackLogger extends Activity {
 	private static final String TAG = TrackLogger.class.getSimpleName();
 
 	/**
+	 * Bundle state key for tracking flag.
+	 */
+	private static final String STATE_IS_TRACKING = "isTracking";
+
+	/**
+	 * Bundle state key for current displayed button page.
+	 */
+	private static final String STATE_BUTTON_PAGE = "buttonPage";
+
+	/**
 	 * GPS Logger service, to receive events and be able to update UI.
 	 */
 	private GPSLogger gpsLogger;
+
+	/**
+	 * Toggle for start/stop tracking
+	 */
+	ToggleButton trackToggle = null;
 
 	/**
 	 * View handling the button grid.
@@ -62,6 +78,21 @@ public class TrackLogger extends Activity {
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			gpsLogger = ((GPSLogger.GPSLoggerBinder) service).getService();
 
+			// Restore UI state according to tracking state
+			if (gpsLogger.isTracking()) {
+				trackToggle.setEnabled(true);
+				trackToggle.setChecked(true);
+				if (gpsLogger.isGpsEnabled()) {
+					setEnabledActionButtons(true);
+				}
+
+			} else {
+				setEnabledActionButtons(false);
+				trackToggle.setChecked(false);
+				// We don't manage the enabled state of the toggle here
+				// as it must be set according to GPS status, and not
+				// tracking status
+			}
 		}
 	};
 
@@ -70,44 +101,74 @@ public class TrackLogger extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tracklogger);
 
-		// Display main buttons
-		LayoutInflater.from(this).inflate(R.layout.tracklogger_main_buttons,
-				(ViewGroup) findViewById(R.id.tracklogger_root), true);
+		// Try to restore previous state
+		boolean previousStateIsTracking = false;
+		int previousStateButtonTableId = R.layout.tracklogger_main_buttons;
+		if (savedInstanceState != null) {
+			Log.d(TAG, "Restoring previous state: " + savedInstanceState);
+			previousStateIsTracking = savedInstanceState.getBoolean(STATE_IS_TRACKING, false);
+			previousStateButtonTableId = savedInstanceState
+					.getInt(STATE_BUTTON_PAGE, R.layout.tracklogger_main_buttons);
+		}
 
-		// Disable buttons until user clicks record
-		buttonTable = (DisablableTableLayout) findViewById(R.id.tracklogger_tblMain);
-		buttonTable.setEnabled(false);
+		// Display main buttons
+		buttonTable = (DisablableTableLayout) LayoutInflater.from(this).inflate(previousStateButtonTableId,
+				(ViewGroup) findViewById(R.id.tracklogger_root), false);
+		((ViewGroup) findViewById(R.id.tracklogger_root)).addView(buttonTable);
 
 		// Handler for buttons
 		listener = new WaypointButtonOnClickListener((ViewGroup) findViewById(R.id.tracklogger_root), this);
 		buttonTable.setOnClickListenerForAllChild(listener);
 		((Button) findViewById(R.id.tracklogger_btnBack)).setOnClickListener(listener);
 
-		// Inform user why buttons are disabled
-		Toast.makeText(this, R.string.tracklogger_waiting_gps, Toast.LENGTH_LONG).show();
-
 		// Register listeners
-		((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack))
-				.setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(this));
+		trackToggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
+		trackToggle.setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(this));
 		((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setOnClickListener(new VoiceRecOnClickListener(
 				this));
 
 		// Populate default preference values
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+		// Restore previous UI state
+		if (previousStateIsTracking) {
+			setEnabledActionButtons(true);
+		} else {
+			// Disable buttons until user starts tracking
+			setEnabledActionButtons(false);
+			// Inform user why buttons are disabled
+			Toast.makeText(this, R.string.tracklogger_waiting_gps, Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
 	protected void onResume() {
-		// Bind to GPS service
-		bindService(new Intent(this, GPSLogger.class), gpsLoggerConnection, BIND_AUTO_CREATE);
+		// Start GPS Logger service
+		startService(new Intent(this, GPSLogger.class));
+		
+		// Bind to GPS service.
+		// We can't use BIND_AUTO_CREATE here, because when we'll ubound
+		// later, we want to keep the service alive in background
+		bindService(new Intent(this, GPSLogger.class), gpsLoggerConnection, 0);
 		super.onResume();
 	}
 
 	@Override
 	protected void onPause() {
+		Log.v(TAG, "Activity pausing");
 		// Ubind GPS service
 		unbindService(gpsLoggerConnection);
 		super.onPause();
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		Log.v(TAG, "Saving instance state");
+		// Save the fact that we are currently tracking or not
+		outState.putBoolean(STATE_IS_TRACKING, gpsLogger.isTracking());
+		// Save the current displayed button page
+		outState.putInt(STATE_BUTTON_PAGE, buttonTable.getId());
+		super.onSaveInstanceState(outState);
 	}
 
 	/**

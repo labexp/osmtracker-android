@@ -84,6 +84,18 @@ public class GPSLogger extends Service implements LocationListener {
 	public IBinder onBind(Intent intent) {
 		return binder;
 	}
+	
+	@Override
+	public boolean onUnbind(Intent intent) {
+		// If we aren't currently tracking we can
+		// stop ourself
+		if (! isTracking ) {
+			Log.v(TAG, "Service self-stopping");
+			stopSelf();
+		}
+		
+		return super.onUnbind(intent);
+	}
 
 	/**
 	 * Bind interface for service interaction
@@ -106,6 +118,7 @@ public class GPSLogger extends Service implements LocationListener {
 	
 	@Override
 	public void onCreate() {
+		Log.v(TAG, "Service creating");
 		
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
@@ -119,6 +132,7 @@ public class GPSLogger extends Service implements LocationListener {
 
 	@Override
 	public void onDestroy() {
+		Log.v(TAG, "Service destroying");
 		if (isTracking) {
 			// If we're currently tracking, save user data.
 			stopTrackingAndSave();
@@ -196,6 +210,5 @@ public class GPSLogger extends Service implements LocationListener {
 	public boolean isTracking() {
 		return isTracking;
 	}	
-
 
 }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 
 /**
@@ -21,20 +20,31 @@ public class Preferences extends PreferenceActivity {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		
-		// Set summary of preference "storage dir" to the effective storage dir
+		// Set summary of some preferences to their actual values
+		// and register a change listener to set again the summary in case of change
+		
+		// External storage directory
 		Preference pref = findPreference(OSMTracker.Preferences.KEY_STORAGE_DIR);
 		pref.setSummary(PreferenceManager.getDefaultSharedPreferences(this).getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR));
-		
-		// Register a change listener to set again the summary in case of change
 		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				preference.setSummary((String) newValue);
-				return false;
+				return true;
 			}
 		});
+
+		// Voice record duration
+		pref = findPreference(OSMTracker.Preferences.KEY_VOICEREC_DURATION);
+		pref.setSummary(PreferenceManager.getDefaultSharedPreferences(this).getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION, OSMTracker.Preferences.VAL_VOICEREC_DURATION) + " " + getResources().getString(R.string.prefs_voicerec_duration_seconds));
+		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				preference.setSummary(newValue + " " + getResources().getString(R.string.prefs_voicerec_duration_seconds));
+				return true;
+			}
+		});		
 		
-		}
+	}
 	
 }
