@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="tracklogger_car_btnFarm">Farm</string>
-    <string name="tracklogger_car_btnLandfill">Landfill</string>
-    <string name="tracklogger_car_btnBasin">Basin</string>
-    <string name="tracklogger_car_btnReservoir">Reservoir</string>
-    <string name="tracklogger_car_btnForest">Forest</string>
-    <string name="tracklogger_car_btnAllotments">Allotments</string>
-    <string name="tracklogger_car_btnCemetery">Cemetery</string>
-    <string name="tracklogger_car_btnRecreationGround">Recreation\nground</string>
+    <string name="tracklogger_landuse_btnFarm">Farm</string>
+    <string name="tracklogger_landuse_btnLandfill">Landfill</string>
+    <string name="tracklogger_landuse_btnBasin">Basin</string>
+    <string name="tracklogger_landuse_btnReservoir">Reservoir</string>
+    <string name="tracklogger_landuse_btnForest">Forest</string>
+    <string name="tracklogger_landuse_btnAllotments">Allotments</string>
+    <string name="tracklogger_landuse_btnCemetery">Cemetery</string>
+    <string name="tracklogger_landuse_btnRecreationGround">Recreation\nground</string>
 </resources>

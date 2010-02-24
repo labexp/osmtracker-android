@@ -43,14 +43,15 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		// Disable by default the 2 buttons
 		setButtonsEnabled(false);
 	
-		// Request location updates and gps status updates
+		// Request location updates and gps status updates		
 		LocationManager lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 		lmgr.addGpsStatusListener(this);
-		
+			
 		if ( context instanceof TrackLogger) {
 			activity = (TrackLogger) context;
 		}
+
 	}
 
 	/**

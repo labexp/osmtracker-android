@@ -5,39 +5,39 @@
 	android:id="@+id/tracklogger_tblTourism">
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_car_btnBridge"
+		<Button android:id="@+id/tracklogger_way_btnBridge" android:drawableTop="@drawable/button_way_bridge"
 			android:layout_width="fill_parent" android:layout_weight="1"
-			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnBridge"></Button>
-		<Button android:id="@+id/tracklogger_car_btnCrossing"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_way_btnBridge"></Button>
+		<Button android:id="@+id/tracklogger_way_btnCrossing" android:drawableTop="@drawable/button_way_zebra_crossing"
 			android:layout_weight="1" android:layout_width="fill_parent"
-			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnCrossing"></Button>
-		<Button android:id="@+id/tracklogger_car_btnMotorway"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_way_btnCrossing"></Button>
+		<Button android:id="@+id/tracklogger_way_btnMotorway" android:drawableTop="@drawable/button_way_motorway"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
-			android:layout_weight="1" android:text="@string/tracklogger_car_btnMotorway"></Button>
+			android:layout_weight="1" android:text="@string/tracklogger_way_btnMotorway"></Button>
 	</TableRow>
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_car_btnTrunk"
+		<Button android:id="@+id/tracklogger_way_btnTrunk" android:drawableTop="@drawable/button_way_trunk"
 			android:layout_width="fill_parent" android:layout_weight="1"
-			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnTrunk"></Button>
-		<Button android:id="@+id/tracklogger_car_btniPrimary"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_way_btnTrunk"></Button>
+		<Button android:id="@+id/tracklogger_way_btniPrimary" android:drawableTop="@drawable/button_way_primary"
 			android:layout_weight="1" android:layout_width="fill_parent"
-			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btniPrimary"></Button>
-		<Button android:id="@+id/tracklogger_car_btnSecondary"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_way_btniPrimary"></Button>
+		<Button android:id="@+id/tracklogger_way_btnSecondary" android:drawableTop="@drawable/button_way_secondary"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
-			android:layout_weight="1" android:text="@string/tracklogger_car_btnSecondary"></Button>
+			android:layout_weight="1" android:text="@string/tracklogger_way_btnSecondary"></Button>
 	</TableRow>
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_car_btnTertiary"
+		<Button android:id="@+id/tracklogger_way_btnTertiary" android:drawableTop="@drawable/button_way_tertiary"
 			android:layout_width="fill_parent" android:layout_weight="1"
-			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnTertiary"></Button>
-		<Button android:id="@+id/tracklogger_car_btnResidential"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_way_btnTertiary"></Button>
+		<Button android:id="@+id/tracklogger_way_btnResidential" android:drawableTop="@drawable/button_way_residential"
 			android:layout_weight="1" android:layout_width="fill_parent"
-			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnResidential"></Button>
-		<Button android:id="@+id/tracklogger_car_btnService"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_way_btnResidential"></Button>
+		<Button android:id="@+id/tracklogger_way_btnService" android:drawableTop="@drawable/button_way_service"
 			android:layout_weight="1" android:layout_width="fill_parent"
-			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnService"></Button>
+			android:layout_height="fill_parent" android:text="@string/tracklogger_way_btnService"></Button>
 	</TableRow>
 
 </me.guillaumin.android.osmtracker.layout.DisablableTableLayout>
