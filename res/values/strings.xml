@@ -33,7 +33,8 @@
 	<string name="menu_settings">Settings</string>
 	
 	<!-- Errors -->
-	<string name="error_externalstorage_not_writable">Unable to write to external storage</string>
+	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>
+	<string name="error_externalstorage_not_writable_hint">Please check ext. storage is correctly inserted and mounted.</string>
 	<string name="error_voicerec_failed">Voice recording has failed</string>
 	
 	<!-- GPX -->

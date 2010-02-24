@@ -2,6 +2,7 @@ package me.guillaumin.android.osmtracker.service.gps;
 
 import java.io.IOException;
 
+import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
@@ -17,6 +18,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * GPS logging service. Dialogs with {@link TrackLogger} activity
@@ -158,8 +160,9 @@ public class GPSLogger extends Service implements LocationListener {
 			dataHelper.createNewTrack();
 			isTracking = true;
 		} catch (IOException ioe ) {
-			// TODO Manage exception, display a Toast to inform user
-			throw new RuntimeException("Unmanaged Exception", ioe);
+			// Should not occur, as we check external storage
+			// state before starting tracking.
+			Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.error_externalstorage_not_writable), Toast.LENGTH_LONG).show();
 		}
 	}
 
