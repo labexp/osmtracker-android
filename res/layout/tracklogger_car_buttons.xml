@@ -5,22 +5,22 @@
 	android:id="@+id/tracklogger_tblCar">
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_car_btnFuelStation"
+		<Button android:id="@+id/tracklogger_car_btnFuelStation" android:drawableTop="@drawable/button_car_fuel_station"
 			android:layout_width="fill_parent" android:layout_weight="1"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnFuelStation"></Button>
-		<Button android:id="@+id/tracklogger_car_btnParking"
+		<Button android:id="@+id/tracklogger_car_btnParking" android:drawableTop="@drawable/button_car_parking"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnParking"></Button>
-		<Button android:id="@+id/tracklogger_car_btnEmergencyPhone"
+		<Button android:id="@+id/tracklogger_car_btnEmergencyPhone" android:drawableTop="@drawable/button_car_emergency_phone"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:layout_weight="1" android:text="@string/tracklogger_car_btnEmergencyPhone"></Button>
 	</TableRow>
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_car_btnTurningCircle"
+		<Button android:id="@+id/tracklogger_car_btnTurningCircle" android:drawableTop="@drawable/button_car_turning_circle"
 			android:layout_width="fill_parent" android:layout_weight="1"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnTurningCircle"></Button>
-		<Button android:id="@+id/tracklogger_car_btnSpeedCamera"
+		<Button android:id="@+id/tracklogger_car_btnSpeedCamera" android:drawableTop="@drawable/button_car_speed_camera"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnSpeedCamera"></Button>
 	</TableRow>

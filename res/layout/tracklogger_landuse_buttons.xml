@@ -5,34 +5,34 @@
 	android:id="@+id/tracklogger_tblTourism">
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_car_btnFarm"
+		<Button android:id="@+id/tracklogger_car_btnFarm" android:drawableTop="@drawable/button_landuse_farm"
 			android:layout_width="fill_parent" android:layout_weight="1"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnFarm"></Button>
-		<Button android:id="@+id/tracklogger_car_btnLandfill"
+		<Button android:id="@+id/tracklogger_car_btnLandfill" android:drawableTop="@drawable/button_landuse_landfill"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnLandfill"></Button>
-		<Button android:id="@+id/tracklogger_car_btnBasin"
+		<Button android:id="@+id/tracklogger_car_btnBasin" android:drawableTop="@drawable/button_landuse_basin"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:layout_weight="1" android:text="@string/tracklogger_car_btnBasin"></Button>
 	</TableRow>
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_car_btnReservoir"
+		<Button android:id="@+id/tracklogger_car_btnReservoir" android:drawableTop="@drawable/button_landuse_reservoir"
 			android:layout_width="fill_parent" android:layout_weight="1"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnReservoir"></Button>
-		<Button android:id="@+id/tracklogger_car_btnForest"
+		<Button android:id="@+id/tracklogger_car_btnForest" android:drawableTop="@drawable/button_landuse_forest"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnForest"></Button>
-		<Button android:id="@+id/tracklogger_car_btnAllotments"
+		<Button android:id="@+id/tracklogger_car_btnAllotments" android:drawableTop="@drawable/button_landuse_allotments"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:layout_weight="1" android:text="@string/tracklogger_car_btnAllotments"></Button>
 	</TableRow>
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_car_btnCemetary"
+		<Button android:id="@+id/tracklogger_car_btnCemetery" android:drawableTop="@drawable/button_landuse_cemetery"
 			android:layout_width="fill_parent" android:layout_weight="1"
-			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnCemetary"></Button>
-		<Button android:id="@+id/tracklogger_car_btnRecreationGround"
+			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnCemetery"></Button>
+		<Button android:id="@+id/tracklogger_car_btnRecreationGround" android:drawableTop="@drawable/button_landuse_recreation_ground"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnRecreationGround"></Button>
 	</TableRow>

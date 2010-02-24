@@ -23,7 +23,7 @@
 	<string name="tracklogger_amenity_btnPub">Pub</string>
 	<string name="tracklogger_amenity_btnHotel">Hotel</string>
 	<string name="tracklogger_amenity_btnMotel">Motel</string>
-	<string name="tracklogger_amenity_btnHostell">Hostell</string>
+	<string name="tracklogger_amenity_btnHostel">Hostel</string>
 	<string name="tracklogger_amenity_btnRestaurant">Restaurant</string>
 	<string name="tracklogger_amenity_btnFastFood">Fast food</string>
 	<string name="tracklogger_amenity_btnCampSite">Camp site</string>

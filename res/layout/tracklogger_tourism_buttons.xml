@@ -5,37 +5,37 @@
 	android:id="@+id/tracklogger_tblTourism">
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_misc_btnViewPoint"
+		<Button android:id="@+id/tracklogger_misc_btnViewPoint" android:drawableTop="@drawable/button_tourism_view_point"
 			android:layout_width="fill_parent" android:layout_weight="1"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnViewPoint"></Button>
-		<Button android:id="@+id/tracklogger_car_btnInformation"
+		<Button android:id="@+id/tracklogger_car_btnInformation" android:drawableTop="@drawable/button_tourism_information"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnInformation"></Button>
-		<Button android:id="@+id/tracklogger_car_btnPicnic"
+		<Button android:id="@+id/tracklogger_car_btnPicnic" android:drawableTop="@drawable/button_tourism_picnic"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:layout_weight="1" android:text="@string/tracklogger_car_btnPicnic"></Button>
 	</TableRow>
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_car_btnAttraction"
+		<Button android:id="@+id/tracklogger_car_btnAttraction" android:drawableTop="@drawable/button_tourism_attraction"
 			android:layout_width="fill_parent" android:layout_weight="1"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnAttraction"></Button>
-		<Button android:id="@+id/tracklogger_car_btnThemePark"
+		<Button android:id="@+id/tracklogger_car_btnThemePark" android:drawableTop="@drawable/button_tourism_theme_park"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnThemePark"></Button>
-		<Button android:id="@+id/tracklogger_car_btnCastle"
+		<Button android:id="@+id/tracklogger_car_btnCastle" android:drawableTop="@drawable/button_tourism_castle"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:layout_weight="1" android:text="@string/tracklogger_car_btnCastle"></Button>
 	</TableRow>
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_car_btnMonument"
+		<Button android:id="@+id/tracklogger_car_btnMonument" android:drawableTop="@drawable/button_tourism_monument"
 			android:layout_width="fill_parent" android:layout_weight="1"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnMonument"></Button>
-		<Button android:id="@+id/tracklogger_car_btnMuseum"
+		<Button android:id="@+id/tracklogger_car_btnMuseum" android:drawableTop="@drawable/button_tourism_museum"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_car_btnMuseum"></Button>
-		<Button android:id="@+id/tracklogger_car_btnCinema"
+		<Button android:id="@+id/tracklogger_car_btnCinema" android:drawableTop="@drawable/button_tourism_cinema"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:layout_weight="1" android:text="@string/tracklogger_car_btnCinema"></Button>
 	</TableRow>

@@ -6,6 +6,6 @@
     <string name="tracklogger_car_btnReservoir">Reservoir</string>
     <string name="tracklogger_car_btnForest">Forest</string>
     <string name="tracklogger_car_btnAllotments">Allotments</string>
-    <string name="tracklogger_car_btnCemetary">Cemetary</string>
+    <string name="tracklogger_car_btnCemetery">Cemetery</string>
     <string name="tracklogger_car_btnRecreationGround">Recreation\nground</string>
 </resources>

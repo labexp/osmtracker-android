@@ -4,37 +4,37 @@
 	android:layout_width="fill_parent" android:layout_height="fill_parent" android:id="@+id/tracklogger_tblRestriction">
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_restriction_btnSpeed30"
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed30" android:drawableTop="@drawable/button_restriction"
 			android:layout_width="fill_parent" android:layout_weight="1"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnSpeed30"></Button>
-		<Button android:id="@+id/tracklogger_restriction_btnSpeed50"
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed50" android:drawableTop="@drawable/button_restriction"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnSpeed50"></Button>
-		<Button android:id="@+id/tracklogger_restriction_btnSpeed80"
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed80" android:drawableTop="@drawable/button_restriction"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:layout_weight="1" android:text="@string/tracklogger_restriction_btnSpeed80"></Button>
 	</TableRow>
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_restriction_btnSpeed100"
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed100" android:drawableTop="@drawable/button_restriction"
 			android:layout_width="fill_parent" android:layout_weight="1"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnSpeed100"></Button>
-		<Button android:id="@+id/tracklogger_restriction_btnSpeed110"
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed110" android:drawableTop="@drawable/button_restriction"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnSpeed110"></Button>
-		<Button android:id="@+id/tracklogger_restriction_btnSpeed120"
+		<Button android:id="@+id/tracklogger_restriction_btnSpeed120" android:drawableTop="@drawable/button_restriction"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:layout_weight="1" android:text="@string/tracklogger_restriction_btnSpeed120"></Button>
 	</TableRow>
 	<TableRow android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
-		<Button android:id="@+id/tracklogger_restriction_btnNoExit"
+		<Button android:id="@+id/tracklogger_restriction_btnNoExit" android:drawableTop="@drawable/button_restriction_no_exit"
 			android:layout_width="fill_parent" android:layout_weight="1"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnNoExit"></Button>
-		<Button android:id="@+id/tracklogger_restriction_btnTrafficLight"
+		<Button android:id="@+id/tracklogger_restriction_btnTrafficLight" android:drawableTop="@drawable/button_restriction_traffic_light"
 			android:layout_weight="1" android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:text="@string/tracklogger_restriction_btnTrafficLight"></Button>
-		<Button android:id="@+id/tracklogger_restriction_btnOneWay"
+		<Button android:id="@+id/tracklogger_restriction_btnOneWay" android:drawableTop="@drawable/button_restriction_one_way"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:layout_weight="1" android:text="@string/tracklogger_restriction_btnOneWay"></Button>
 	</TableRow>
