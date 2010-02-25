@@ -225,6 +225,10 @@ public class TrackLogger extends Activity {
 			// Start settings activity
 			startActivity(new Intent(this, Preferences.class));
 			break;
+		case R.id.tracklogger_menu_waypointlist:
+			// Start Waypoint list activity
+			startActivity(new Intent(this, WaypointList.class));
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

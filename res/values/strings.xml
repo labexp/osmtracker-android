@@ -10,6 +10,12 @@
 	<string name="tracklogger_voicerec_title">Voice recording</string>
 	<string name="tracklogger_voicerec_text">Recording a {0}s audio clip.</string>
 	<string name="tracklogger_btnBack">Back</string>
+
+	<!-- Waypoint List -->
+	<string name="wplist">Waypoint List</string>
+	<string name="wplist_latitude">Lat: </string>
+	<string name="wplist_longitude">Long: </string>
+	<string name="wplist_elevation">Ele: </string>
 	
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Start tracking.</string>
@@ -31,6 +37,7 @@
 	
 	<!-- Menu -->
 	<string name="menu_settings">Settings</string>
+	<string name="menu_waypointlist">Waypoints</string>
 	
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>

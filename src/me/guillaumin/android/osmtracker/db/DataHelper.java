@@ -51,7 +51,7 @@ public class DataHelper {
 	 */
 	private static final String SQL_CREATE_TABLE_TRACKPOINT = ""
 			+ "create table trackpoint ("
-			+ " id integer primary key autoincrement," + Schema.COL_LATITUDE
+			+ Schema.COL_ID + " integer primary key autoincrement," + Schema.COL_LATITUDE
 			+ " double not null," + Schema.COL_LONGITUDE + " double not null,"
 			+ Schema.COL_ELEVATION + " double not null," + Schema.COL_TIMESTAMP
 			+ " long not null" + ")";
@@ -61,7 +61,7 @@ public class DataHelper {
 	 */
 	private static final String SQL_CREATE_TABLE_WAYPOINT = ""
 			+ "create table waypoint ("
-			+ " id integer primary key autoincrement," + Schema.COL_LATITUDE
+			+ Schema.COL_ID + " integer primary key autoincrement," + Schema.COL_LATITUDE
 			+ " double not null," + Schema.COL_LONGITUDE + " double not null,"
 			+ Schema.COL_ELEVATION + " double not null," + Schema.COL_TIMESTAMP
 			+ " long not null," + Schema.COL_NAME + " text," + Schema.COL_LINK
@@ -179,6 +179,34 @@ public class DataHelper {
 	}
 	
 	/**
+	 * @return A {@link Cursor} to the waypoints in db.
+	 */
+	public Cursor getWaypointsCursor() {
+		// Query for way points
+		Cursor cWayPoints = database.query(Schema.TBL_WAYPOINT, new String[] {
+				Schema.COL_ID, Schema.COL_LONGITUDE, Schema.COL_LATITUDE, Schema.COL_LINK,
+				Schema.COL_ELEVATION, Schema. COL_TIMESTAMP, Schema.COL_NAME }, null, null,
+				null, null, Schema.COL_TIMESTAMP + " asc");
+		cWayPoints.moveToFirst();
+		
+		return cWayPoints;
+	}
+	
+	/**
+	 * @return A {@link Cursor} to the trackpoints in db.
+	 */
+	public Cursor getTrackpointsCursor() {
+		// Query for track points
+		Cursor cTrackPoints = database.query(Schema.TBL_TRACKPOINT, new String[] {
+				Schema.COL_ID, Schema.COL_LONGITUDE, Schema.COL_LATITUDE,
+				Schema.COL_ELEVATION, Schema.COL_TIMESTAMP }, null, null,
+				null, null, Schema.COL_TIMESTAMP + " asc");
+		cTrackPoints.moveToFirst();
+		
+		return cTrackPoints;
+	}
+	
+	/**
 	 * Exports current database to a GPX file.
 	 */
 	public void exportTrackAsGpx() {
@@ -188,20 +216,9 @@ public class DataHelper {
 					.format(new Date())
 					+ EXTENSION_GPX);
 
-			// Query for track points
-			Cursor cTrackPoints = database.query(Schema.TBL_TRACKPOINT, new String[] {
-					Schema.COL_LONGITUDE, Schema.COL_LATITUDE,
-					Schema.COL_ELEVATION, Schema.COL_TIMESTAMP }, null, null,
-					null, null, Schema.COL_TIMESTAMP + " asc");
-			cTrackPoints.moveToFirst();
+			Cursor cTrackPoints = getTrackpointsCursor();
+			Cursor cWayPoints = getWaypointsCursor();
 			
-			// Query for way points
-			Cursor cWayPoints = database.query(Schema.TBL_WAYPOINT, new String[] {
-					Schema.COL_LONGITUDE, Schema.COL_LATITUDE, Schema.COL_LINK,
-					Schema.COL_ELEVATION, Schema. COL_TIMESTAMP, Schema.COL_NAME }, null, null,
-					null, null, Schema.COL_TIMESTAMP + " asc");
-			cWayPoints.moveToFirst();
-
 			try {
 				GPXFileWriter.writeGpxFile(context.getResources().getString(R.string.gpx_track_name), cTrackPoints, cWayPoints, trackFile);
 			} catch (IOException ioe) {
@@ -230,6 +247,7 @@ public class DataHelper {
 	public static final class Schema {
 		public static final String TBL_TRACKPOINT = "trackpoint";
 		public static final String TBL_WAYPOINT = "waypoint";
+		public static final String COL_ID = "_id";
 		public static final String COL_LONGITUDE = "longitude";
 		public static final String COL_LATITUDE = "latitude";
 		public static final String COL_ELEVATION = "elevation";

@@ -109,11 +109,7 @@ public class GPSLogger extends Service implements LocationListener {
 		 * Returns itself, and register the location listener.
 		 * @return the GPS Logger service
 		 */
-		public GPSLogger getService() {
-			// Register ourselves for location updates
-			LocationManager lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, GPSLogger.this);
-			
+		public GPSLogger getService() {			
 			return GPSLogger.this;
 		}
 	}
@@ -128,7 +124,11 @@ public class GPSLogger extends Service implements LocationListener {
 		filter.addAction(OSMTracker.INTENT_START_TRACKING);
 		filter.addAction(OSMTracker.INTENT_STOP_TRACKING);
 		registerReceiver(receiver, filter);
-		
+
+		// Register ourselves for location updates
+		LocationManager lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, GPSLogger.this);
+
 		super.onCreate();
 	}
 

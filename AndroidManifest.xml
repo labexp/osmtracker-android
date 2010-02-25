@@ -12,9 +12,8 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".activity.Preferences" android:label="@string/app_name" android:screenOrientation="portrait">
-
-		</activity>
+		<activity android:name=".activity.Preferences" android:label="@string/app_name" />
+		<activity android:name=".activity.WaypointList" android:label="@string/wplist" />
 
 		<service android:name=".service.gps.GPSLogger">
 			<intent-filter>

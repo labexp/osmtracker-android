@@ -3,4 +3,7 @@
 	<item android:id="@+id/tracklogger_menu_settings"
 		android:titleCondensed="@string/menu_settings" android:title="@string/menu_settings"
 		android:icon="@android:drawable/ic_menu_preferences"></item>
+	<item android:id="@+id/tracklogger_menu_waypointlist"
+		android:titleCondensed="@string/menu_waypointlist" android:title="@string/menu_waypointlist"
+		android:icon="@android:drawable/ic_menu_directions" ></item>
 </menu>

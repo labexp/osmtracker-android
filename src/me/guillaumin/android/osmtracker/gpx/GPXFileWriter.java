@@ -34,7 +34,7 @@ public class GPXFileWriter {
 	/**
 	 * Date format for a point timestamp.
 	 */
-	private static final SimpleDateFormat pointDateFormatter = new SimpleDateFormat("yyyy-MM-DD'T'HH:mm:ss'Z'");
+	private static final SimpleDateFormat POINT_DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-DD'T'HH:mm:ss'Z'");
 	
 	/**
 	 * Writes the GPX file
@@ -77,7 +77,7 @@ public class GPXFileWriter {
 					+ c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LATITUDE)) + "\" "
 					+ "lon=\"" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LONGITUDE)) + "\">");
 	        out.append("<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>");
-	        out.append("<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>");
+	        out.append("<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>");
 	        
 	       
 	        out.append("</trkpt>" + "\n");
@@ -103,7 +103,7 @@ public class GPXFileWriter {
 					+ c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LATITUDE)) + "\" "
 					+ "lon=\"" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LONGITUDE)) + "\">" + "\n");
 			out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>" + "\n");
-		    out.append("\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
+		    out.append("\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 			out.append("\t\t" + "<name>" + c.getString(c.getColumnIndex(DataHelper.Schema.COL_NAME)) + "</name>" + "\n");
 			String link = c.getString(c.getColumnIndex(DataHelper.Schema.COL_LINK));
 		    if (link != null) {
