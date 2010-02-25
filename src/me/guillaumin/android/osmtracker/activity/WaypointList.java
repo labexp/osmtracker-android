@@ -38,7 +38,9 @@ public class WaypointList extends ListActivity {
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			gpsLogger = ((GPSLogger.GPSLoggerBinder) service).getService();
 			Cursor wpCursor = gpsLogger.getDataHelper().getWaypointsCursor();
-			setListAdapter(new WaypointListAdapter(WaypointList.this, wpCursor));
+			if (wpCursor != null) {
+				setListAdapter(new WaypointListAdapter(WaypointList.this, wpCursor));
+			}
 		}
 	};
 

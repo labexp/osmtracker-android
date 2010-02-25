@@ -179,31 +179,39 @@ public class DataHelper {
 	}
 	
 	/**
-	 * @return A {@link Cursor} to the waypoints in db.
+	 * @return A {@link Cursor} to the waypoints in db or null if db is closed
 	 */
 	public Cursor getWaypointsCursor() {
-		// Query for way points
-		Cursor cWayPoints = database.query(Schema.TBL_WAYPOINT, new String[] {
-				Schema.COL_ID, Schema.COL_LONGITUDE, Schema.COL_LATITUDE, Schema.COL_LINK,
-				Schema.COL_ELEVATION, Schema. COL_TIMESTAMP, Schema.COL_NAME }, null, null,
-				null, null, Schema.COL_TIMESTAMP + " asc");
-		cWayPoints.moveToFirst();
-		
-		return cWayPoints;
+		if (database != null && database.isOpen() ) {
+			// Query for way points
+			Cursor cWayPoints = database.query(Schema.TBL_WAYPOINT, new String[] {
+					Schema.COL_ID, Schema.COL_LONGITUDE, Schema.COL_LATITUDE, Schema.COL_LINK,
+					Schema.COL_ELEVATION, Schema. COL_TIMESTAMP, Schema.COL_NAME }, null, null,
+					null, null, Schema.COL_TIMESTAMP + " asc");
+			cWayPoints.moveToFirst();
+			
+			return cWayPoints;
+		} else {
+			return null;
+		}
 	}
 	
 	/**
-	 * @return A {@link Cursor} to the trackpoints in db.
+	 * @return A {@link Cursor} to the trackpoints in db, or null if db is closed
 	 */
 	public Cursor getTrackpointsCursor() {
-		// Query for track points
-		Cursor cTrackPoints = database.query(Schema.TBL_TRACKPOINT, new String[] {
-				Schema.COL_ID, Schema.COL_LONGITUDE, Schema.COL_LATITUDE,
-				Schema.COL_ELEVATION, Schema.COL_TIMESTAMP }, null, null,
-				null, null, Schema.COL_TIMESTAMP + " asc");
-		cTrackPoints.moveToFirst();
-		
-		return cTrackPoints;
+		if (database != null && database.isOpen() ) {
+			// Query for track points
+			Cursor cTrackPoints = database.query(Schema.TBL_TRACKPOINT, new String[] {
+					Schema.COL_ID, Schema.COL_LONGITUDE, Schema.COL_LATITUDE,
+					Schema.COL_ELEVATION, Schema.COL_TIMESTAMP }, null, null,
+					null, null, Schema.COL_TIMESTAMP + " asc");
+			cTrackPoints.moveToFirst();
+			
+			return cTrackPoints;
+		} else {
+			return null;
+		}
 	}
 	
 	/**
