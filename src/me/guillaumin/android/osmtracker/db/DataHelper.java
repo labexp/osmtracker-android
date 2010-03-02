@@ -156,17 +156,22 @@ public class DataHelper {
 	 */
 	public void wayPoint(Location location, String name, String link) {
 		Log.v(TAG, "Tracking waypoing '" + name + "', link='" + link + "', location=" + location);
-		ContentValues values = new ContentValues();
-		values.put(Schema.COL_LATITUDE, location.getLatitude());
-		values.put(Schema.COL_LONGITUDE, location.getLongitude());
-		values.put(Schema.COL_ELEVATION, location.getAltitude());
-		values.put(Schema.COL_TIMESTAMP, location.getTime());
-		values.put(Schema.COL_NAME, name);
-		if (link != null ) {
-			values.put(Schema.COL_LINK, link);
-		}
 		
-		database.insert(Schema.TBL_WAYPOINT, null, values);
+		// location should not be null, but sometime is.
+		// TODO investigate this issue.
+		if (location != null ) {
+			ContentValues values = new ContentValues();
+			values.put(Schema.COL_LATITUDE, location.getLatitude());
+			values.put(Schema.COL_LONGITUDE, location.getLongitude());
+			values.put(Schema.COL_ELEVATION, location.getAltitude());
+			values.put(Schema.COL_TIMESTAMP, location.getTime());
+			values.put(Schema.COL_NAME, name);
+			if (link != null ) {
+				values.put(Schema.COL_LINK, link);
+			}
+			
+			database.insert(Schema.TBL_WAYPOINT, null, values);
+		}
 	}
 	
 	/**
