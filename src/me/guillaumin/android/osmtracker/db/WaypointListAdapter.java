@@ -2,6 +2,7 @@ package me.guillaumin.android.osmtracker.db;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import me.guillaumin.android.osmtracker.R;
 import android.content.Context;
@@ -25,7 +26,7 @@ public class WaypointListAdapter extends CursorAdapter {
 	/**
 	 * Date formatter
 	 */
-	public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("HH:mm:ss");
+	public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("HH:mm:ss 'UTC'");
 	
 	public WaypointListAdapter(Context context, Cursor c) {
 		super(context, c);
@@ -58,7 +59,7 @@ public class WaypointListAdapter extends CursorAdapter {
 		// Bind name
 		String name = cursor.getString(cursor.getColumnIndex(DataHelper.Schema.COL_NAME));
 		// Strip \n like in "Place of\nworship"
-		vName.setText(name.replaceAll("\n", " "));
+		vName.setText(name);
 		
 		// Bind location
 		StringBuffer locationAsString = new StringBuffer();
@@ -73,5 +74,5 @@ public class WaypointListAdapter extends CursorAdapter {
 		
 		return rl;
 	}
-
+	
 }

@@ -9,6 +9,7 @@ import android.content.ServiceConnection;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.widget.CursorAdapter;
 
 /**
  * Activity that list the previous waypoints tracked
@@ -53,8 +54,13 @@ public class WaypointList extends ListActivity {
 	@Override
 	protected void onPause() {
 		unbindService(gpsLoggerConnection);
-		setListAdapter(null);
+		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		if (adapter != null) {
+			adapter.getCursor().close();
+			setListAdapter(null);
+		}
 		
 		super.onPause();
 	}
+	
 }
