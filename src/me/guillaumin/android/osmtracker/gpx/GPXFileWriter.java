@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import android.database.Cursor;
@@ -34,7 +35,7 @@ public class GPXFileWriter {
 	/**
 	 * Date format for a point timestamp.
 	 */
-	private static final SimpleDateFormat POINT_DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-DD'T'HH:mm:ss'Z'");
+	private static final SimpleDateFormat POINT_DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	
 	/**
 	 * Writes the GPX file
