@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * Manages clicks on way point buttons.
@@ -85,12 +86,15 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 			// User clicked on a waypoint button
 			// Get the label for the button
 			Button wayPointButton = (Button) v;
-			String label = wayPointButton.getText().toString();
+			String label = wayPointButton.getText().toString().replaceAll("\n", " ");
 
 			// Send an intent to inform service to track the waypoint.
 			Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 			intent.putExtra(OSMTracker.INTENT_KEY_NAME, label);
-			activity.sendBroadcast(new Intent(intent));			
+			activity.sendBroadcast(new Intent(intent));
+			
+			// Inform user that the waypoint was tracked
+			Toast.makeText(activity, activity.getResources().getString(R.string.tracklogger_tracked) + " " + label, Toast.LENGTH_SHORT).show();
 		}
 
 	}
