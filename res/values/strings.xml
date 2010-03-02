@@ -10,6 +10,7 @@
 	<string name="tracklogger_voicerec_title">Voice recording</string>
 	<string name="tracklogger_voicerec_text">Recording a {0}s audio clip.</string>
 	<string name="tracklogger_btnBack">Back</string>
+	<string name="tracklogger_tracked">Tracked: </string>
 
 	<!-- Waypoint List -->
 	<string name="wplist">Waypoint List</string>
