@@ -21,6 +21,7 @@ public class OSMTracker extends Activity {
 		public final static String KEY_STORAGE_DIR = "logging.storage.dir";
 		public final static String KEY_VOICEREC_DURATION = "voicerec.duration";
 		public final static String KEY_UI_LEGACYBACK = "ui.legacyback";
+		public final static String KEY_UI_THEME = "ui.theme";
 
 		/**
 		 * Default values
@@ -28,6 +29,7 @@ public class OSMTracker extends Activity {
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
 		public final static String VAL_VOICEREC_DURATION = "2";
 		public final static boolean VAL_UI_LEGACYBACK = false;
+		public final static String VAL_UI_THEME = "@android:style/Theme";
 	};
 
 	/**

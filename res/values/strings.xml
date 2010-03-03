@@ -39,6 +39,18 @@
 		<item>4</item>
 		<item>5</item>
 	</string-array>
+	<string name="prefs_theme">Main screen graphic theme</string>
+	<string name="prefs_theme_summary">Application restart required to take effect</string>
+	<string-array name="prefs_theme_keys">
+		<item>OS Default</item>
+		<item>OS Default (Dark)</item>
+		<item>OS Default (Light)</item>
+	</string-array>
+	<string-array name="prefs_theme_values">
+		<item>android:style/Theme</item>
+		<item>android:style/Theme.Black</item>
+		<item>android:style/Theme.Light</item>
+	</string-array>
 	
 	<!-- Menu -->
 	<string name="menu_settings">Settings</string>

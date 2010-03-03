@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -111,12 +112,16 @@ public class TrackLogger extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.tracklogger);
-
 		// Populate default preference values
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
+		String theme = PreferenceManager.getDefaultSharedPreferences(this).getString(
+				OSMTracker.Preferences.KEY_UI_THEME, OSMTracker.Preferences.VAL_UI_THEME);
+		setTheme(getResources().getIdentifier(theme, null, null));
+		
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.tracklogger);
+		
 		// Try to restore previous state
 		boolean previousStateIsTracking = false;
 		if (savedInstanceState != null) {

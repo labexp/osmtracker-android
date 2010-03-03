@@ -45,7 +45,7 @@ public class Preferences extends PreferenceActivity {
 				preference.setSummary(newValue + " " + getResources().getString(R.string.prefs_voicerec_duration_seconds));
 				return true;
 			}
-		});		
+		});
 		
 	}
 	
