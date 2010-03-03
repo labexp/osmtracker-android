@@ -23,7 +23,7 @@
 	<string name="gpsstatus_record_trackoff">Start tracking.</string>
 	<string name="gpsstatus_record_trackon">Stop tracking</string>
 	<string name="gpsstatus_record_voicerec">Voice record</string>
-	<string name="gpsstatus_record_stillimage">Still image</string>
+	<string name="gpsstatus_record_stillimage">Take picture</string>
 
 	<!-- Preferences -->
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
@@ -42,9 +42,10 @@
 	<string name="prefs_theme">Main screen graphic theme</string>
 	<string name="prefs_theme_summary">Application restart required to take effect</string>
 	<string-array name="prefs_theme_keys">
-		<item>OS Default</item>
-		<item>OS Default (Dark)</item>
-		<item>OS Default (Light)</item>
+		<item>OS default</item>
+		<item>OS default (Dark)</item>
+		<item>OS default (Light)</item>
+		<item>High contrast</item>
 	</string-array>
 	<string-array name="prefs_theme_values">
 		<item>android:style/Theme</item>
