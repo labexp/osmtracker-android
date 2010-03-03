@@ -3,7 +3,7 @@
     <!-- Generic strings -->
     <string name="app_name">OSMTracker for Android™</string>
 	<string name="app_short_name">OSMTracker</string>
-	<string name="app_version">0.2.3</string>
+	<string name="app_version">0.3.0</string>
 	<string name="app_description">Inspired by OSMTracker on Windows Mobile, it allows you to track your journeys, mark significant way points (Voice recording available), export them in GPX format for later use with Open Street Map tools like JOSM.</string>
 	
 	<!-- TrackLogger -->
