@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="HighContrast" parent="@android:style/Theme">
+		<!-- item name="android:background">#ffffff</item -->
+		<item name="android:buttonStyle">@style/Widget.Button</item>
+		<item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
+	</style>
+
+	<style name="Widget.Button" parent="@android:style/Widget.Button">
+		<item name="android:background">@drawable/theme_highcontrast_btn</item>
+		<item name="android:textColor">#ffffff</item>
+	</style>
+
+	<style name="Widget.Button.Toggle" parent="@android:style/Widget.Button.Toggle">
+			<item name="android:textColor">#ffffff</item>
+	</style>
+
+</resources>

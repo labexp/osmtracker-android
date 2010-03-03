@@ -51,6 +51,7 @@
 		<item>android:style/Theme</item>
 		<item>android:style/Theme.Black</item>
 		<item>android:style/Theme.Light</item>
+		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
 	
 	<!-- Menu -->
