@@ -3,6 +3,7 @@
     <!-- Generic strings -->
     <string name="app_name">OSMTracker for Android™</string>
 	<string name="app_short_name">OSMTracker</string>
+	<string name="app_version">0.2.3</string>
 	<string name="app_description">Inspired by OSMTracker on Windows Mobile, it allows you to track your journeys, mark significant way points (Voice recording available), export them in GPX format for later use with Open Street Map tools like JOSM.</string>
 	
 	<!-- TrackLogger -->
@@ -41,6 +42,7 @@
 	<!-- Menu -->
 	<string name="menu_settings">Settings</string>
 	<string name="menu_waypointlist">Waypoints</string>
+	<string name="menu_about">About</string>
 	
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>
@@ -53,5 +55,10 @@
 	<!-- Notification -->
 	<string name="notification_still_running">OSMTracker is still tracking</string>
 	<string name="notification_display_ui">Click to display OSMTracker</string>
+	
+	<!-- About screen -->
+	<string name="about">About</string>
+	<string name="about_text">For more information and issue report, please visite the project homepage:</string>
+	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
 	
 </resources>

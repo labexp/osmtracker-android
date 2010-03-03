@@ -108,16 +108,13 @@ public class TrackLogger extends Activity {
 
 		// Try to restore previous state
 		boolean previousStateIsTracking = false;
-		int previousStateButtonTableId = R.layout.tracklogger_main_buttons;
 		if (savedInstanceState != null) {
 			Log.d(TAG, "Restoring previous state: " + savedInstanceState);
 			previousStateIsTracking = savedInstanceState.getBoolean(STATE_IS_TRACKING, false);
-			previousStateButtonTableId = savedInstanceState
-					.getInt(STATE_BUTTON_PAGE, R.layout.tracklogger_main_buttons);
 		}
 
 		// Display main buttons
-		buttonTable = (DisablableTableLayout) LayoutInflater.from(this).inflate(previousStateButtonTableId,
+		buttonTable = (DisablableTableLayout) LayoutInflater.from(this).inflate(R.layout.tracklogger_main_buttons,
 				(ViewGroup) findViewById(R.id.tracklogger_root), false);
 		((ViewGroup) findViewById(R.id.tracklogger_root)).addView(buttonTable);
 
@@ -195,8 +192,6 @@ public class TrackLogger extends Activity {
 		Log.v(TAG, "Saving instance state");
 		// Save the fact that we are currently tracking or not
 		outState.putBoolean(STATE_IS_TRACKING, gpsLogger.isTracking());
-		// Save the current displayed button page
-		outState.putInt(STATE_BUTTON_PAGE, buttonTable.getId());
 		super.onSaveInstanceState(outState);
 	}
 
@@ -257,6 +252,10 @@ public class TrackLogger extends Activity {
 		case R.id.tracklogger_menu_waypointlist:
 			// Start Waypoint list activity
 			startActivity(new Intent(this, WaypointList.class));
+			break;
+		case R.id.tracklogger_menu_about:
+			// Start About activity
+			startActivity(new Intent(this, About.class));
 			break;
 		}
 		return super.onOptionsItemSelected(item);
