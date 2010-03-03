@@ -40,7 +40,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		super(context, attrs);
 		LayoutInflater.from(context).inflate(R.layout.gpsstatus_record, this, true);
 
-		// Disable by default the 2 buttons
+		// Disable by default the buttons
 		setButtonsEnabled(false);
 	
 		// Request location updates and gps status updates		
@@ -55,13 +55,14 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	}
 
 	/**
-	 * Enables or disable the 2 buttons.
+	 * Enables or disable the buttons.
 	 * 
 	 * @param enabled
 	 *            If true, enable the 2 buttons, otherwise disable them.
 	 */
 	public void setButtonsEnabled(boolean enabled) {
 		findViewById(R.id.gpsstatus_record_btnVoiceRecord).setEnabled(enabled);
+		findViewById(R.id.gpsstatus_record_btnStillImage).setEnabled(enabled);
 		findViewById(R.id.gpsstatus_record_toggleTrack).setEnabled(enabled);
 	}
 

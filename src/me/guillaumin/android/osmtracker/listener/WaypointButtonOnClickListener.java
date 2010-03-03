@@ -91,7 +91,7 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 			// Send an intent to inform service to track the waypoint.
 			Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 			intent.putExtra(OSMTracker.INTENT_KEY_NAME, label);
-			activity.sendBroadcast(new Intent(intent));
+			activity.sendBroadcast(intent);
 			
 			// Inform user that the waypoint was tracked
 			Toast.makeText(activity, activity.getResources().getString(R.string.tracklogger_tracked) + " " + label, Toast.LENGTH_SHORT).show();

@@ -42,9 +42,20 @@ public class DataHelper {
 	private static final String EXTENSION_3GPP = ".3gpp";
 
 	/**
+	 * JPG file extension
+	 */
+	private static final String EXTENSION_JPG = ".jpg";
+	
+	/**
 	 * Database name.
 	 */
 	private static final String DB_NAME = OSMTracker.class.getSimpleName();
+	
+	/**
+	 * Current File for recording a still picture.
+	 * Behaves as a dirty 1 level stack.
+	 */
+	private File currentImageFile;
 
 	/**
 	 * SQL for creating table TRACKPOINT
@@ -255,6 +266,23 @@ public class DataHelper {
 	 */
 	public File getNewAudioFile() {
 		return new File(trackDir + File.separator + fileNameFormatter.format(new Date()) + EXTENSION_3GPP);
+	}
+	
+	/**
+	 * @returns A new File to record a still image, inside the track directory.
+	 */
+	public File pushImageFile() {
+		currentImageFile = new File(trackDir + File.separator + fileNameFormatter.format(new Date()) + EXTENSION_JPG);
+		return currentImageFile;
+	}
+	
+	/**
+	 * @return The current image file, and removes it.
+	 */
+	public File popImageFile() {
+		File imageFile = new File(currentImageFile.getAbsolutePath());
+		currentImageFile = null;
+		return imageFile;
 	}
 	
 	public static final class Schema {

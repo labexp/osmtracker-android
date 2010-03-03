@@ -23,6 +23,7 @@
 	<string name="gpsstatus_record_trackoff">Start tracking.</string>
 	<string name="gpsstatus_record_trackon">Stop tracking</string>
 	<string name="gpsstatus_record_voicerec">Voice record</string>
+	<string name="gpsstatus_record_stillimage">Still image</string>
 
 	<!-- Preferences -->
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
