@@ -102,9 +102,9 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 	/**
 	 * Changes the button grid attached to the main view.
 	 * @param buttonResId ID of the new button layout.
-	 * @param enableBackButton Whenever to enable or not the back navigation button.
+	 * @param enableBackButton Whenever to enable or not the soft-key back navigation button.
 	 */
-	private void changeButtons(int buttonResId, boolean enableBackButton) {
+	public void changeButtons(int buttonResId, boolean enableBackButton) {
 		rootViewGroup.removeViewAt(1);
 		DisablableTableLayout tbl = (DisablableTableLayout) LayoutInflater.from(rootViewGroup.getContext()).inflate(buttonResId, rootViewGroup, false);
 		tbl.setOnClickListenerForAllChild(this);
@@ -115,7 +115,15 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 		} else {
 			tbl.setEnabled(false);
 		}
-		backButton.setEnabled(enableBackButton);
+		
+		if (backButton != null) {
+			// Soft-key legacy backbutton enabled, manage it
+			backButton.setEnabled(enableBackButton);
+		}
+	}
+	
+	public void setBackButton(Button backButton) {
+		this.backButton = backButton;
 	}
 
 }

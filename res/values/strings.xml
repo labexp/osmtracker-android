@@ -26,6 +26,8 @@
 	<!-- Preferences -->
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
 	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_ui_legacyback">Use legacy back soft-key</string>
+	<string name="prefs_ui_legacyback_summary">Use a back soft-button instead of the device back button</string>
 	<string name="prefs_voicerec">Voice recording</string>
 	<string name="prefs_voicerec_duration">Voice record duration</string>
 	<string name="prefs_voicerec_duration_seconds">seconds</string>

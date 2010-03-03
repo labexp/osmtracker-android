@@ -29,6 +29,7 @@ public class Preferences extends PreferenceActivity {
 		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				// Set summary with the directory value
 				preference.setSummary((String) newValue);
 				return true;
 			}
@@ -40,6 +41,7 @@ public class Preferences extends PreferenceActivity {
 		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				// Set summary with the number of seconds, following by "s"
 				preference.setSummary(newValue + " " + getResources().getString(R.string.prefs_voicerec_duration_seconds));
 				return true;
 			}

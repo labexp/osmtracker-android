@@ -14,12 +14,14 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -101,6 +103,9 @@ public class TrackLogger extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tracklogger);
 
+		// Populate default preference values
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
 		// Try to restore previous state
 		boolean previousStateIsTracking = false;
 		int previousStateButtonTableId = R.layout.tracklogger_main_buttons;
@@ -118,17 +123,13 @@ public class TrackLogger extends Activity {
 
 		// Handler for buttons
 		listener = new WaypointButtonOnClickListener((ViewGroup) findViewById(R.id.tracklogger_root), this);
-		buttonTable.setOnClickListenerForAllChild(listener);
-		((Button) findViewById(R.id.tracklogger_btnBack)).setOnClickListener(listener);
+		buttonTable.setOnClickListenerForAllChild(listener);		
 
 		// Register listeners
 		trackToggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
 		trackToggle.setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(this));
 		((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setOnClickListener(new VoiceRecOnClickListener(
 				this));
-
-		// Populate default preference values
-		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
 		// Restore previous UI state
 		if (previousStateIsTracking) {
@@ -143,6 +144,34 @@ public class TrackLogger extends Activity {
 
 	@Override
 	protected void onResume() {
+		
+		// The user could come from the settings screen and change the Legacy Back button option.
+		boolean useLegacyBackButton = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(OSMTracker.Preferences.KEY_UI_LEGACYBACK, OSMTracker.Preferences.VAL_UI_LEGACYBACK);
+		Button backButton = (Button) findViewById(R.id.tracklogger_btnBack);
+		if (useLegacyBackButton) {
+			if (backButton == null) {
+				// Add soft button "back" to the upper bar
+				LinearLayout upperLayout = (LinearLayout) findViewById(R.id.tracklogger_upperLayout);
+				backButton = (Button) LayoutInflater.from(this).inflate(R.layout.tracklogger_back_button, upperLayout, false);
+				upperLayout.addView(backButton);
+				backButton.setOnClickListener(listener);
+				listener.setBackButton(backButton);
+				
+				// Enable button if we're on a subpage
+				if (buttonTable != null && R.id.tracklogger_tblMain != buttonTable.getId()) {
+					backButton.setEnabled(true);
+				}	
+			}
+		} else {
+			// Be sure to remove button if present
+			if (backButton != null) {
+				LinearLayout upperLayout = (LinearLayout) findViewById(R.id.tracklogger_upperLayout);
+				upperLayout.removeView(backButton);
+				backButton.setOnClickListener(null);
+				listener.setBackButton(null);
+			}
+		}
+		
 		// Start GPS Logger service
 		startService(new Intent(this, GPSLogger.class));
 		
@@ -233,6 +262,24 @@ public class TrackLogger extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// Manage back button if we are on a sub-page
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0 ) {
+			// Check if user is using legacy soft button or not
+			boolean useLegacyBackButton = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(OSMTracker.Preferences.KEY_UI_LEGACYBACK, OSMTracker.Preferences.VAL_UI_LEGACYBACK);
+			if (! useLegacyBackButton) {
+				// User is not using legacy back button, so we override the default device
+				// backbutton behaviour.
+				if (buttonTable != null && R.id.tracklogger_tblMain != buttonTable.getId()) {
+					listener.changeButtons(R.layout.tracklogger_main_buttons, false);
+					return true;
+				}
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
 	public GPSLogger getGpsLogger() {
 		return gpsLogger;
 	}

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:orientation="vertical" android:layout_height="fill_parent" android:keepScreenOn="true" android:id="@+id/tracklogger_root">
-	<LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:layout_width="fill_parent"><me.guillaumin.android.osmtracker.layout.GpsStatusRecord android:id="@+id/gpsStatus" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1"/><Button android:id="@+id/tracklogger_btnBack" android:text="@string/tracklogger_btnBack" android:layout_height="fill_parent" android:drawableTop="@drawable/back_32x32" android:layout_width="fill_parent" android:layout_weight="4" android:enabled="false"></Button></LinearLayout>
-
-
-
-
-
-
-
+	android:layout_width="fill_parent" android:orientation="vertical"
+	android:layout_height="fill_parent" android:keepScreenOn="true"
+	android:id="@+id/tracklogger_root">
+	<LinearLayout android:layout_height="wrap_content"
+		android:orientation="horizontal" android:layout_width="fill_parent"
+		android:id="@+id/tracklogger_upperLayout">
+		<me.guillaumin.android.osmtracker.layout.GpsStatusRecord
+			android:id="@+id/gpsStatus" android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:layout_weight="1" />
+	</LinearLayout>
 </LinearLayout>

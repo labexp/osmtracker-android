@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/tracklogger_menu_settings"
-		android:titleCondensed="@string/menu_settings" android:title="@string/menu_settings"
-		android:icon="@android:drawable/ic_menu_preferences"></item>
 	<item android:id="@+id/tracklogger_menu_waypointlist"
 		android:titleCondensed="@string/menu_waypointlist" android:title="@string/menu_waypointlist"
 		android:icon="@android:drawable/ic_menu_directions" ></item>
+	<item android:id="@+id/tracklogger_menu_settings"
+		android:titleCondensed="@string/menu_settings" android:title="@string/menu_settings"
+		android:icon="@android:drawable/ic_menu_preferences"></item>
 </menu>

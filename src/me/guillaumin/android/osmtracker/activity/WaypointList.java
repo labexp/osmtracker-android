@@ -47,15 +47,18 @@ public class WaypointList extends ListActivity {
 
 	@Override
 	protected void onResume() {
+		// Bind on service, to be able to get data.
 		bindService(new Intent(this, GPSLogger.class), gpsLoggerConnection, 0);
 		super.onResume();
 	}
 
 	@Override
 	protected void onPause() {
+		// Unbind to service
 		unbindService(gpsLoggerConnection);
 		CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null) {
+			// Properly close the adapter cursor
 			adapter.getCursor().close();
 			setListAdapter(null);
 		}
