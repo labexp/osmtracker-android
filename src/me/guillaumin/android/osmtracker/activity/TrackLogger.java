@@ -62,7 +62,12 @@ public class TrackLogger extends Activity {
 	 * GPS Logger service, to receive events and be able to update UI.
 	 */
 	private GPSLogger gpsLogger;
-
+	
+	/**
+	 * GPS Logger service intent, to be used in start/stopService();
+	 */
+	private Intent gpsLoggerServiceIntent;
+	
 	/**
 	 * Toggle for start/stop tracking
 	 */
@@ -85,12 +90,15 @@ public class TrackLogger extends Activity {
 
 		@Override
 		public void onServiceDisconnected(ComponentName name) {
+			Log.v(TAG, "onServiceDisconnected");
 			gpsLogger = null;
 		}
 
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
+			Log.v(TAG, "onServiceConnected");
 			gpsLogger = ((GPSLogger.GPSLoggerBinder) service).getService();
+			gpsLogger.setNotifying(false);
 
 			// Restore UI state according to tracking state
 			if (gpsLogger.isTracking()) {
@@ -112,6 +120,8 @@ public class TrackLogger extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		gpsLoggerServiceIntent = new Intent(this, GPSLogger.class); 
+
 		// Populate default preference values
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
@@ -191,12 +201,12 @@ public class TrackLogger extends Activity {
 		}
 
 		// Start GPS Logger service
-		startService(new Intent(this, GPSLogger.class));
+		startService(gpsLoggerServiceIntent);
 
 		// Bind to GPS service.
 		// We can't use BIND_AUTO_CREATE here, because when we'll ubound
 		// later, we want to keep the service alive in background
-		bindService(new Intent(this, GPSLogger.class), gpsLoggerConnection, 0);
+		bindService(gpsLoggerServiceIntent, gpsLoggerConnection, 0);
 		super.onResume();
 	}
 
@@ -204,7 +214,17 @@ public class TrackLogger extends Activity {
 	protected void onPause() {
 		Log.v(TAG, "Activity pausing");
 		// Ubind GPS service
-		unbindService(gpsLoggerConnection);
+		
+		
+		if (!gpsLogger.isTracking()) {
+			Log.v(TAG, "Service is not tracking, trying to stopService()");
+			unbindService(gpsLoggerConnection);
+			stopService(gpsLoggerServiceIntent);
+		} else {
+			gpsLogger.setNotifying(true);
+			unbindService(gpsLoggerConnection);
+		}
+		
 		super.onPause();
 	}
 

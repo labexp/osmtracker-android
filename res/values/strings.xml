@@ -76,4 +76,8 @@
 	<string name="about_text">For more information and issue report, please visite the project homepage:</string>
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
 	
+	<!-- Notification -->
+	<string name="notification_ticker_text">OSMTracker is still running</string>
+	<string name="notification_title">OSMTracker is still running</string>
+	<string name="notification_text">Tap here to display main screen</string>
 </resources>

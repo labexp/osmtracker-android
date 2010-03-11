@@ -48,6 +48,11 @@ public class OSMTracker extends Activity {
 	public final static String INTENT_STOP_TRACKING = "me.guillaumin.android.osmtracker.intent.STOP_TRACKING";
 
 	/**
+	 * Intent to notify user of background service, if still tracking
+	 */
+	public final static String INTENT_NOTIFY_BACKGROUND = "me.guillaumin.android.osmtracker.intent.NOTIFY_BACKGROUND";
+	
+	/**
 	 * Key for extra data "waypoint name" in Intent
 	 */
 	public final static String INTENT_KEY_NAME = "name";
