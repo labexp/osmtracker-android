@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import android.database.Cursor;

@@ -1,11 +1,14 @@
 package me.guillaumin.android.osmtracker.activity;
 
 import me.guillaumin.android.osmtracker.R;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference.OnPreferenceClickListener;
+import android.provider.Settings;
 
 /**
  * Manages preferences screen.
@@ -47,6 +50,29 @@ public class Preferences extends PreferenceActivity {
 			}
 		});
 		
+		pref = findPreference(OSMTracker.Preferences.KEY_GPS_OSSETTINGS);
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+				return true;
+			}
+		});
+		
+	}
+	
+	@Override
+	protected void onResume() {
+		// Tell service to notify user of background activity
+		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		// Tell service to notify user of background activity
+		sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
+		super.onPause();
 	}
 	
 }

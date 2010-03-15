@@ -122,6 +122,10 @@ public class WaypointButtonOnClickListener implements OnClickListener {
 		}
 	}
 	
+	/**
+	 * Setter for backButton
+	 * @param backButton The {@link Button} to set as back button.
+	 */
 	public void setBackButton(Button backButton) {
 		this.backButton = backButton;
 	}

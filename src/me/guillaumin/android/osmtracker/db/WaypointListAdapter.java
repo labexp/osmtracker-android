@@ -2,7 +2,6 @@ package me.guillaumin.android.osmtracker.db;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import me.guillaumin.android.osmtracker.R;
 import android.content.Context;
@@ -28,6 +27,11 @@ public class WaypointListAdapter extends CursorAdapter {
 	 */
 	public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("HH:mm:ss 'UTC'");
 	
+	/**
+	 * Constructor.
+	 * @param context Applcation context
+	 * @param c {@link Cursor} to data
+	 */
 	public WaypointListAdapter(Context context, Cursor c) {
 		super(context, c);
 	}

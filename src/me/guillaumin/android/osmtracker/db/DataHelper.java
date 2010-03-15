@@ -96,6 +96,10 @@ public class DataHelper {
 	 */
 	private File trackDir;
 
+	/**
+	 * Constructor.
+	 * @param c Application context.
+	 */
 	public DataHelper(Context c) {
 		Log.v(TAG, "Creating a new " + DataHelper.class.getSimpleName());
 		context = c;
@@ -257,6 +261,10 @@ public class DataHelper {
 	}
 
 
+	/**
+	 * Getter for trackDir
+	 * @return the tracking directory on external storage.
+	 */
 	public File getTrackDir() {
 		return trackDir;
 	}
@@ -269,7 +277,7 @@ public class DataHelper {
 	}
 	
 	/**
-	 * @returns A new File to record a still image, inside the track directory.
+	 * @return A new File to record a still image, inside the track directory.
 	 */
 	public File pushImageFile() {
 		currentImageFile = new File(trackDir + File.separator + fileNameFormatter.format(new Date()) + EXTENSION_JPG);
@@ -285,6 +293,9 @@ public class DataHelper {
 		return imageFile;
 	}
 	
+	/**
+	 * Represents XML Schema.
+	 */
 	public static final class Schema {
 		public static final String TBL_TRACKPOINT = "trackpoint";
 		public static final String TBL_WAYPOINT = "waypoint";

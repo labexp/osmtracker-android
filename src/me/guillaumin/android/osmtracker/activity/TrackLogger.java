@@ -9,14 +9,12 @@ import me.guillaumin.android.osmtracker.listener.ToggleRecordOnCheckedChangeList
 import me.guillaumin.android.osmtracker.listener.VoiceRecOnClickListener;
 import me.guillaumin.android.osmtracker.listener.WaypointButtonOnClickListener;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
+import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -54,24 +52,14 @@ public class TrackLogger extends Activity {
 	private static final String STATE_IS_TRACKING = "isTracking";
 
 	/**
-	 * Bundle state key for current displayed button page.
-	 */
-	private static final String STATE_BUTTON_PAGE = "buttonPage";
-
-	/**
 	 * GPS Logger service, to receive events and be able to update UI.
 	 */
 	private GPSLogger gpsLogger;
-	
+
 	/**
 	 * GPS Logger service intent, to be used in start/stopService();
 	 */
 	private Intent gpsLoggerServiceIntent;
-	
-	/**
-	 * Toggle for start/stop tracking
-	 */
-	ToggleButton trackToggle = null;
 
 	/**
 	 * View handling the button grid.
@@ -86,56 +74,26 @@ public class TrackLogger extends Activity {
 	/**
 	 * Handles the bind to the GPS Logger service
 	 */
-	private ServiceConnection gpsLoggerConnection = new ServiceConnection() {
-
-		@Override
-		public void onServiceDisconnected(ComponentName name) {
-			Log.v(TAG, "onServiceDisconnected");
-			gpsLogger = null;
-		}
-
-		@Override
-		public void onServiceConnected(ComponentName name, IBinder service) {
-			Log.v(TAG, "onServiceConnected");
-			gpsLogger = ((GPSLogger.GPSLoggerBinder) service).getService();
-			gpsLogger.setNotifying(false);
-
-			// Restore UI state according to tracking state
-			if (gpsLogger.isTracking()) {
-				trackToggle.setEnabled(true);
-				trackToggle.setChecked(true);
-				if (gpsLogger.isGpsEnabled()) {
-					setEnabledActionButtons(true);
-				}
-
-			} else {
-				setEnabledActionButtons(false);
-				trackToggle.setChecked(false);
-				// We don't manage the enabled state of the toggle here
-				// as it must be set according to GPS status, and not
-				// tracking status
-			}
-		}
-	};
+	private ServiceConnection gpsLoggerConnection = new GPSLoggerServiceConnection(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		gpsLoggerServiceIntent = new Intent(this, GPSLogger.class); 
+		gpsLoggerServiceIntent = new Intent(this, GPSLogger.class);
 
 		// Populate default preference values
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
+		// Set application theme according to user settings
 		String theme = PreferenceManager.getDefaultSharedPreferences(this).getString(
 				OSMTracker.Preferences.KEY_UI_THEME, OSMTracker.Preferences.VAL_UI_THEME);
 		setTheme(getResources().getIdentifier(theme, null, null));
-		
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tracklogger);
-		
+
 		// Try to restore previous state
 		boolean previousStateIsTracking = false;
 		if (savedInstanceState != null) {
-			Log.d(TAG, "Restoring previous state: " + savedInstanceState);
 			previousStateIsTracking = savedInstanceState.getBoolean(STATE_IS_TRACKING, false);
 		}
 
@@ -144,18 +102,8 @@ public class TrackLogger extends Activity {
 				(ViewGroup) findViewById(R.id.tracklogger_root), false);
 		((ViewGroup) findViewById(R.id.tracklogger_root)).addView(buttonTable);
 
-		// Handler for buttons
-		listener = new WaypointButtonOnClickListener((ViewGroup) findViewById(R.id.tracklogger_root), this);
-		buttonTable.setOnClickListenerForAllChild(listener);
-
-		// Register listeners
-		trackToggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
-		trackToggle.setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(this));
-		((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setOnClickListener(new VoiceRecOnClickListener(
-				this));
-		((Button) findViewById(R.id.gpsstatus_record_btnStillImage)).setOnClickListener(new StillImageOnClickListener(
-				this));
-
+		registerListeners();
+		
 		// Restore previous UI state
 		if (previousStateIsTracking) {
 			setEnabledActionButtons(true);
@@ -167,6 +115,20 @@ public class TrackLogger extends Activity {
 		}
 	}
 
+	/**
+	 * Registers various button listeners
+	 */
+	private void registerListeners() {
+		listener = new WaypointButtonOnClickListener((ViewGroup) findViewById(R.id.tracklogger_root), this);
+		buttonTable.setOnClickListenerForAllChild(listener);
+
+		((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack)).setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(this));;
+		((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setOnClickListener(new VoiceRecOnClickListener(
+				this));
+		((Button) findViewById(R.id.gpsstatus_record_btnStillImage)).setOnClickListener(new StillImageOnClickListener(
+				this));
+	}
+
 	@Override
 	protected void onResume() {
 
@@ -175,7 +137,7 @@ public class TrackLogger extends Activity {
 		boolean useLegacyBackButton = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 				OSMTracker.Preferences.KEY_UI_LEGACYBACK, OSMTracker.Preferences.VAL_UI_LEGACYBACK);
 		Button backButton = (Button) findViewById(R.id.tracklogger_btnBack);
-		if (useLegacyBackButton) {
+		if (useLegacyBackButton && backButton == null) {
 			if (backButton == null) {
 				// Add soft button "back" to the upper bar
 				LinearLayout upperLayout = (LinearLayout) findViewById(R.id.tracklogger_upperLayout);
@@ -212,25 +174,23 @@ public class TrackLogger extends Activity {
 
 	@Override
 	protected void onPause() {
-		Log.v(TAG, "Activity pausing");
 		// Ubind GPS service
-		
-		
+
 		if (!gpsLogger.isTracking()) {
 			Log.v(TAG, "Service is not tracking, trying to stopService()");
 			unbindService(gpsLoggerConnection);
 			stopService(gpsLoggerServiceIntent);
 		} else {
-			gpsLogger.setNotifying(true);
+			// Tell service to notify user of background activity
+			sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
 			unbindService(gpsLoggerConnection);
 		}
-		
+
 		super.onPause();
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		Log.v(TAG, "Saving instance state");
 		// Save the fact that we are currently tracking or not
 		outState.putBoolean(STATE_IS_TRACKING, gpsLogger.isTracking());
 		super.onSaveInstanceState(outState);
@@ -268,6 +228,7 @@ public class TrackLogger extends Activity {
 
 	/**
 	 * Enable buttons associated to tracking
+	 * @param enabled true to enable, false to disable
 	 */
 	public void setEnabledActionButtons(boolean enabled) {
 		buttonTable.setEnabled(enabled);
@@ -353,7 +314,8 @@ public class TrackLogger extends Activity {
 		switch (requestCode) {
 		case REQCODE_IMAGE_CAPTURE:
 			if (resultCode == RESULT_OK) {
-				// A still image has been captured, track the corresponding waypoint
+				// A still image has been captured, track the corresponding
+				// waypoint
 				// Send an intent to inform service to track the waypoint.
 				File imageFile = gpsLogger.getDataHelper().popImageFile();
 				Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
@@ -367,10 +329,26 @@ public class TrackLogger extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
+	/**
+	 * Getter for gpsLogger
+	 * @return Activity {@link GPSLogger}
+	 */
 	public GPSLogger getGpsLogger() {
 		return gpsLogger;
 	}
+	
+	/**
+	 * Setter for gpsLogger
+	 * @param l {@link GPSLogger} to set.
+	 */
+	public void setGpsLogger(GPSLogger l) {
+		this.gpsLogger = l;
+	}
 
+	/**
+	 * Setter for buttonTable
+	 * @param buttonTable The {@link DisablableTableLayout} to set.
+	 */
 	public void setButtonTable(DisablableTableLayout buttonTable) {
 		this.buttonTable = buttonTable;
 	}

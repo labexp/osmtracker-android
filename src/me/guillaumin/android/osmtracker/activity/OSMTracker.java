@@ -3,8 +3,7 @@ package me.guillaumin.android.osmtracker.activity;
 import android.app.Activity;
 
 /**
- * Main activity. It is not used for the moment, but will be in future releases
- * as a general menu.
+ * Main activity. Not used for the moment.
  * 
  * @author Nicolas Guillaumn
  * 
@@ -22,6 +21,7 @@ public class OSMTracker extends Activity {
 		public final static String KEY_VOICEREC_DURATION = "voicerec.duration";
 		public final static String KEY_UI_LEGACYBACK = "ui.legacyback";
 		public final static String KEY_UI_THEME = "ui.theme";
+		public final static String KEY_GPS_OSSETTINGS = "gps.ossettings";
 
 		/**
 		 * Default values
@@ -48,9 +48,19 @@ public class OSMTracker extends Activity {
 	public final static String INTENT_STOP_TRACKING = "me.guillaumin.android.osmtracker.intent.STOP_TRACKING";
 
 	/**
-	 * Intent to notify user of background service, if still tracking
+	 * Intent fired when the service go to background and should start to notify user. 
 	 */
-	public final static String INTENT_NOTIFY_BACKGROUND = "me.guillaumin.android.osmtracker.intent.NOTIFY_BACKGROUND";
+	public final static String INTENT_START_NOTIFY_BACKGROUND = "me.guillaumin.android.osmtracker.intent.START_NOTIFY_BACKGROUND";
+	
+	/**
+	 * Intent fired when the UI got back and the service should stop notifying the user of background job.
+	 */
+	public final static String INTENT_STOP_NOTIFY_BACKGROUND = "me.guillaumin.android.osmtracker.intent.STOP_NOTIFY_BACKGROUND";
+	
+	/**
+	 * Intent fired when the notification are cleared by the user.
+	 */
+	public final static String INTENT_NOTIFICATION_CLEARED = "me.guillaumin.android.osmtracker.intent.NOTIFICATION_CLEARED";
 	
 	/**
 	 * Key for extra data "waypoint name" in Intent

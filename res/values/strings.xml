@@ -26,6 +26,8 @@
 	<string name="gpsstatus_record_stillimage">Take picture</string>
 
 	<!-- Preferences -->
+	<string name="prefs_gps_os_settings">GPS settings</string>
+	<string name="prefs_gps_os_settings_summary">Display system GPS settings screen</string>
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
 	<string name="prefs_storage_dir_summary"></string>
 	<string name="prefs_ui_legacyback">Use legacy back soft-key</string>

@@ -7,7 +7,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.database.Cursor;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.CursorAdapter;
 
@@ -49,12 +48,17 @@ public class WaypointList extends ListActivity {
 	protected void onResume() {
 		// Bind on service, to be able to get data.
 		bindService(new Intent(this, GPSLogger.class), gpsLoggerConnection, 0);
+		// Tell service to notify user of background activity
+		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
 		super.onResume();
 	}
 
 	@Override
 	protected void onPause() {
 		// Unbind to service
+		// Tell service to notify user of background activity
+		sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
+		
 		unbindService(gpsLoggerConnection);
 		CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null) {

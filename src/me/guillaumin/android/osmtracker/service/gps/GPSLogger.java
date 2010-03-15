@@ -14,20 +14,20 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Resources.NotFoundException;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
 
 /**
- * GPS logging service. Dialogs with {@link TrackLogger} activity
- * for UI, and with the {@link GPSAndLocationListener} for location.
- * @author nicolas
+ * GPS logging service.
+ * 
+ * @author Nicolas Guillaumin
  *
  */
 public class GPSLogger extends Service implements LocationListener {
@@ -61,6 +61,16 @@ public class GPSLogger extends Service implements LocationListener {
 	private int notificationId = 0;
 	
 	/**
+	 * Keeps track of time when asked to notify.
+	 */
+	private long notificationTimer = 0;
+	
+	/**
+	 * Amount of time to wait before starting notifying the user of background activity.
+	 */
+	private final static int NOTIFICATION_WAIT_TIME_MS = 5000;
+	
+	/**
 	 * Last known location
 	 */
 	private Location lastLocation;
@@ -72,6 +82,8 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		@Override
 		public void onReceive(Context context, Intent intent) {
+			Log.v(TAG, "Received intent " + intent.getAction());
+			
 			if (OSMTracker.INTENT_TRACK_WP.equals(intent.getAction())) {
 				// Track a way point
 				Bundle extras = intent.getExtras();
@@ -88,7 +100,12 @@ public class GPSLogger extends Service implements LocationListener {
 				startTracking();
 			} else if (OSMTracker.INTENT_STOP_TRACKING.equals(intent.getAction()) ) {
 				stopTrackingAndSave();
-			} else if (OSMTracker.INTENT_NOTIFY_BACKGROUND.equals(intent.getAction()) ) {
+			} else if (OSMTracker.INTENT_START_NOTIFY_BACKGROUND.equals(intent.getAction()) ) {
+				isNotifying = true;
+				notificationTimer = SystemClock.elapsedRealtime();
+			} else if (OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND.equals(intent.getAction()) ) {
+				isNotifying = false;
+			} else if (OSMTracker.INTENT_NOTIFICATION_CLEARED.equals(intent.getAction()) ) {
 				// User has cleared all the notification. Increments notification Id
 				// in order to launch new notification next time
 				notificationId++;
@@ -115,9 +132,6 @@ public class GPSLogger extends Service implements LocationListener {
 		if (! isTracking ) {
 			Log.v(TAG, "Service self-stopping");
 			stopSelf();
-		} else {
-			// Notify user that we're in background
-			notifyBackgroundService();
 		}
 		
 		// We don't want onRebind() to be called, so return false.
@@ -148,7 +162,9 @@ public class GPSLogger extends Service implements LocationListener {
 		filter.addAction(OSMTracker.INTENT_TRACK_WP);
 		filter.addAction(OSMTracker.INTENT_START_TRACKING);
 		filter.addAction(OSMTracker.INTENT_STOP_TRACKING);
-		filter.addAction(OSMTracker.INTENT_NOTIFY_BACKGROUND);
+		filter.addAction(OSMTracker.INTENT_NOTIFICATION_CLEARED);
+		filter.addAction(OSMTracker.INTENT_START_NOTIFY_BACKGROUND);
+		filter.addAction(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND);
 		registerReceiver(receiver, filter);
 
 		// Register ourselves for location updates
@@ -200,6 +216,10 @@ public class GPSLogger extends Service implements LocationListener {
 		dataHelper.exportTrackAsGpx();
 	}
 
+	/**
+	 * Getter for dataHelper
+	 * @return the {@link DataHelper}
+	 */
 	public DataHelper getDataHelper() {
 		return dataHelper;
 	}
@@ -225,17 +245,20 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Notifies the user that we're still tracking in background.
 	 */
 	private void notifyBackgroundService() {
-		NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		Notification n = new Notification(R.drawable.icon_greyed_25x25, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
-		
-		Intent startTrackLogger = new Intent(this, TrackLogger.class);
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, 0);
-		PendingIntent deleteIntent = PendingIntent.getBroadcast(this, 0, new Intent(OSMTracker.INTENT_NOTIFY_BACKGROUND), 0);
-		n.deleteIntent = deleteIntent;
-		n.flags = Notification.FLAG_AUTO_CANCEL;
-		n.setLatestEventInfo(getApplicationContext(), getResources().getString(R.string.notification_title), getResources().getString(R.string.notification_text), contentIntent);
-		
-		nmgr.notify(notificationId, n);
+		Log.v(TAG, "SystemClock is: " + SystemClock.elapsedRealtime() + ", timer is: " + notificationTimer);
+		if (SystemClock.elapsedRealtime() - notificationTimer > NOTIFICATION_WAIT_TIME_MS) {
+			NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+			Notification n = new Notification(R.drawable.icon_greyed_25x25, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
+			
+			Intent startTrackLogger = new Intent(this, TrackLogger.class);
+			PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, 0);
+			PendingIntent deleteIntent = PendingIntent.getBroadcast(this, 0, new Intent(OSMTracker.INTENT_NOTIFICATION_CLEARED), 0);
+			n.deleteIntent = deleteIntent;
+			n.flags = Notification.FLAG_AUTO_CANCEL;
+			n.setLatestEventInfo(getApplicationContext(), getResources().getString(R.string.notification_title), getResources().getString(R.string.notification_text), contentIntent);
+			
+			nmgr.notify(notificationId, n);
+		}
 		
 	}
 	
@@ -260,16 +283,20 @@ public class GPSLogger extends Service implements LocationListener {
 		// Not interested in provider status			
 	}
 
+	/**
+	 * Getter for gpsEnabled
+	 * @return true if GPS is enabled, otherwise false.
+	 */
 	public boolean isGpsEnabled() {
 		return isGpsEnabled;
 	}
 	
+	/**
+	 * Setter for isTracking
+	 * @return true if we're currently tracking, otherwise false.
+	 */
 	public boolean isTracking() {
 		return isTracking;
-	}
-	
-	public void setNotifying(boolean isNotifying) {
-		this.isNotifying = isNotifying;
 	}
 
 }
