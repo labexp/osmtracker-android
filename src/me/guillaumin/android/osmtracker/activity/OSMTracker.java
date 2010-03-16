@@ -22,6 +22,7 @@ public class OSMTracker extends Activity {
 		public final static String KEY_UI_LEGACYBACK = "ui.legacyback";
 		public final static String KEY_UI_THEME = "ui.theme";
 		public final static String KEY_GPS_OSSETTINGS = "gps.ossettings";
+		public final static String KEY_GPS_CHECKSTARTUP = "gps.checkstartup";
 
 		/**
 		 * Default values
@@ -30,6 +31,7 @@ public class OSMTracker extends Activity {
 		public final static String VAL_VOICEREC_DURATION = "2";
 		public final static boolean VAL_UI_LEGACYBACK = false;
 		public final static String VAL_UI_THEME = "@android:style/Theme";
+		public final static boolean VAL_GPS_CHECKSTARTUP = true;
 	};
 
 	/**

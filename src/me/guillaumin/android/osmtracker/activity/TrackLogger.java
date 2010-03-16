@@ -11,12 +11,17 @@ import me.guillaumin.android.osmtracker.listener.WaypointButtonOnClickListener;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -69,7 +74,14 @@ public class TrackLogger extends Activity {
 	/**
 	 * Listener managing the waypoint buttons.
 	 */
-	WaypointButtonOnClickListener listener;
+	private WaypointButtonOnClickListener listener;
+	
+	/**
+	 * Flag to check GPS status at startup.
+	 * Is cleared after the first displaying of GPS status dialog,
+	 * to prevent the dialog to display if user goes to settings/about/other screen.
+	 */
+	private boolean checkGPSFlag = true;
 
 	/**
 	 * Handles the bind to the GPS Logger service
@@ -132,9 +144,16 @@ public class TrackLogger extends Activity {
 	@Override
 	protected void onResume() {
 
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		// Check GPS status
+		if (checkGPSFlag && prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_CHECKSTARTUP, OSMTracker.Preferences.VAL_GPS_CHECKSTARTUP == true)) {
+			checkGPSProvider();
+		}
+		
 		// The user could come from the settings screen and change the Legacy
 		// Back button option.
-		boolean useLegacyBackButton = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+		boolean useLegacyBackButton = prefs.getBoolean(
 				OSMTracker.Preferences.KEY_UI_LEGACYBACK, OSMTracker.Preferences.VAL_UI_LEGACYBACK);
 		Button backButton = (Button) findViewById(R.id.tracklogger_btnBack);
 		if (useLegacyBackButton && backButton == null) {
@@ -172,6 +191,29 @@ public class TrackLogger extends Activity {
 		super.onResume();
 	}
 
+	private void checkGPSProvider() {
+		LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
+		if (! lm.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
+			// GPS isn't enabled. Offer user to go enable it
+			new AlertDialog.Builder(this)
+				.setMessage(getResources().getString(R.string.tracklogger_gps_disabled))
+				.setCancelable(true)
+				.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+					}
+				})
+				.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				}).create().show();
+			checkGPSFlag = false;
+		}
+	}
+	
 	@Override
 	protected void onPause() {
 		// Ubind GPS service

@@ -3,7 +3,7 @@
     <!-- Generic strings -->
     <string name="app_name">OSMTracker for Android™</string>
 	<string name="app_short_name">OSMTracker</string>
-	<string name="app_version">0.3.0</string>
+	<string name="app_version">0.3.1</string>
 	<string name="app_description">Inspired by OSMTracker on Windows Mobile, it allows you to track your journeys, mark significant way points (Voice recording available), export them in GPX format for later use with Open Street Map tools like JOSM.</string>
 	
 	<!-- TrackLogger -->
@@ -12,6 +12,7 @@
 	<string name="tracklogger_voicerec_text">Recording a {0}s audio clip.</string>
 	<string name="tracklogger_btnBack">Back</string>
 	<string name="tracklogger_tracked">Tracked: </string>
+	<string name="tracklogger_gps_disabled">GPS is disabled. Do you want to enable it ?</string>
 
 	<!-- Waypoint List -->
 	<string name="wplist">Waypoint List</string>
@@ -30,9 +31,11 @@
 	<string name="prefs_gps_os_settings_summary">Display system GPS settings screen</string>
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
 	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_check_gps_startup">Check GPS at startup</string>
+	<string name="prefs_check_gps_startup_summary">Check if GPS is disabled at startup, and offer to enable it.</string>
+	<string name="prefs_ui">User interface</string>
 	<string name="prefs_ui_legacyback">Use legacy back soft-key</string>
 	<string name="prefs_ui_legacyback_summary">Use a back soft-button instead of the device back button</string>
-	<string name="prefs_voicerec">Voice recording</string>
 	<string name="prefs_voicerec_duration">Voice record duration</string>
 	<string name="prefs_voicerec_duration_seconds">seconds</string>
 	<string-array name="prefs_voicerec_durations">

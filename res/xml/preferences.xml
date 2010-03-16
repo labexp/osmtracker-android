@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<Preference android:summary="@string/prefs_gps_os_settings_summary" android:title="@string/prefs_gps_os_settings" android:key="gps.ossettings"></Preference><EditTextPreference android:summary="@string/prefs_storage_dir_summary"
+	<Preference android:summary="@string/prefs_gps_os_settings_summary" android:title="@string/prefs_gps_os_settings" android:key="gps.ossettings"></Preference><CheckBoxPreference android:key="gps.checkstartup" android:title="@string/prefs_check_gps_startup" android:summary="@string/prefs_check_gps_startup_summary" android:defaultValue="true"></CheckBoxPreference><EditTextPreference android:summary="@string/prefs_storage_dir_summary"
 		android:key="logging.storage.dir" android:defaultValue="/osmtracker"
 		android:title="@string/prefs_storage_dir" />
-	<CheckBoxPreference android:key="ui.legacyback" android:summary="@string/prefs_ui_legacyback_summary" android:title="@string/prefs_ui_legacyback" android:defaultValue="false"></CheckBoxPreference><ListPreference android:entries="@array/prefs_theme_keys" android:title="@string/prefs_theme" android:entryValues="@array/prefs_theme_values" android:key="ui.theme" android:summary="@string/prefs_theme_summary"></ListPreference><PreferenceCategory android:title="@string/prefs_voicerec">
-		<ListPreference android:title="@string/prefs_voicerec_duration"
-			android:key="voicerec.duration" android:entryValues="@array/prefs_voicerec_durations"
-			android:defaultValue="2" android:entries="@array/prefs_voicerec_durations"></ListPreference>
-		</PreferenceCategory>
+	<ListPreference android:title="@string/prefs_voicerec_duration" android:key="voicerec.duration" android:entryValues="@array/prefs_voicerec_durations" android:defaultValue="2" android:entries="@array/prefs_voicerec_durations"></ListPreference><PreferenceCategory android:title="@string/prefs_ui"><ListPreference android:entries="@array/prefs_theme_keys" android:title="@string/prefs_theme" android:entryValues="@array/prefs_theme_values" android:key="ui.theme" android:summary="@string/prefs_theme_summary"></ListPreference><CheckBoxPreference android:key="ui.legacyback" android:summary="@string/prefs_ui_legacyback_summary" android:title="@string/prefs_ui_legacyback" android:defaultValue="false"></CheckBoxPreference>
+</PreferenceCategory>
 
 
 
