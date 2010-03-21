@@ -32,6 +32,11 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	private TrackLogger activity;
 	
 	/**
+	 * Reference to LocationManager
+	 */
+	private LocationManager lmgr;
+	
+	/**
 	 * Is GPS active ?
 	 */
 	private boolean gpsActive = false;
@@ -42,16 +47,23 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 
 		// Disable by default the buttons
 		setButtonsEnabled(false);
-	
-		// Request location updates and gps status updates		
-		LocationManager lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-		lmgr.addGpsStatusListener(this);
-			
+		
+		lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+		
 		if ( context instanceof TrackLogger) {
 			activity = (TrackLogger) context;
 		}
 
+	}
+	
+	public void requestLocationUpdates(boolean request) {
+		if (request) {
+			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+			lmgr.addGpsStatusListener(this);
+		} else {
+			lmgr.removeUpdates(this);
+			lmgr.removeGpsStatusListener(this);
+		}
 	}
 
 	/**

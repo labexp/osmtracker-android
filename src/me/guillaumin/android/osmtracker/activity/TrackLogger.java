@@ -4,6 +4,7 @@ import java.io.File;
 
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.layout.DisablableTableLayout;
+import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import me.guillaumin.android.osmtracker.listener.StillImageOnClickListener;
 import me.guillaumin.android.osmtracker.listener.ToggleRecordOnCheckedChangeListener;
 import me.guillaumin.android.osmtracker.listener.VoiceRecOnClickListener;
@@ -181,6 +182,9 @@ public class TrackLogger extends Activity {
 			}
 		}
 
+		// Register GPS status update for upper controls
+		((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(true);
+		
 		// Start GPS Logger service
 		startService(gpsLoggerServiceIntent);
 
@@ -216,7 +220,10 @@ public class TrackLogger extends Activity {
 	
 	@Override
 	protected void onPause() {
-		// Ubind GPS service
+		
+		// Un-register GPS status update for upper controls
+		((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(false);
+
 
 		if (!gpsLogger.isTracking()) {
 			Log.v(TAG, "Service is not tracking, trying to stopService()");
