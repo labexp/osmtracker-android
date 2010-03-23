@@ -26,5 +26,8 @@
 	<Button android:id="@+id/gpsstatus_record_btnStillImage" android:text="@string/gpsstatus_record_stillimage" android:drawableTop="@drawable/camera_32x32"
 		android:layout_weight="1" android:layout_height="fill_parent"
 		android:layout_width="fill_parent" android:state_enabled="false"></Button>
+	<Button android:id="@+id/gpsstatus_record_btnTextNote" android:text="@string/gpsstatus_record_textnote" android:drawableTop="@drawable/text_32x32"
+		android:layout_weight="1" android:layout_height="fill_parent"
+		android:layout_width="fill_parent" android:state_enabled="false"></Button>
 
 </LinearLayout>

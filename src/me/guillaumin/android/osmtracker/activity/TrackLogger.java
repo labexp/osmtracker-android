@@ -5,9 +5,6 @@ import java.io.File;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.layout.DisablableTableLayout;
 import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
-import me.guillaumin.android.osmtracker.listener.StillImageOnClickListener;
-import me.guillaumin.android.osmtracker.listener.ToggleRecordOnCheckedChangeListener;
-import me.guillaumin.android.osmtracker.listener.VoiceRecOnClickListener;
 import me.guillaumin.android.osmtracker.listener.WaypointButtonOnClickListener;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
@@ -134,12 +131,6 @@ public class TrackLogger extends Activity {
 	private void registerListeners() {
 		listener = new WaypointButtonOnClickListener((ViewGroup) findViewById(R.id.tracklogger_root), this);
 		buttonTable.setOnClickListenerForAllChild(listener);
-
-		((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack)).setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(this));;
-		((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setOnClickListener(new VoiceRecOnClickListener(
-				this));
-		((Button) findViewById(R.id.gpsstatus_record_btnStillImage)).setOnClickListener(new StillImageOnClickListener(
-				this));
 	}
 
 	@Override
@@ -281,8 +272,7 @@ public class TrackLogger extends Activity {
 	 */
 	public void setEnabledActionButtons(boolean enabled) {
 		buttonTable.setEnabled(enabled);
-		((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setEnabled(enabled);
-		((Button) findViewById(R.id.gpsstatus_record_btnStillImage)).setEnabled(enabled);
+		((GpsStatusRecord) findViewById(R.id.gpsStatus)).setButtonsEnabled(enabled);
 	}
 
 	// Create options menu

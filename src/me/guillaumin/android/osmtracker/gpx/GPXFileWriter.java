@@ -104,7 +104,8 @@ public class GPXFileWriter {
 					+ "lon=\"" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LONGITUDE)) + "\">" + "\n");
 			out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>" + "\n");
 		    out.append("\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
-			out.append("\t\t" + "<name>" + c.getString(c.getColumnIndex(DataHelper.Schema.COL_NAME)) + "</name>" + "\n");
+			// Transform "&" as "&amp;" to avoid XML entities problems.
+		    out.append("\t\t" + "<name>" + c.getString(c.getColumnIndex(DataHelper.Schema.COL_NAME)).replaceAll("&", "&amp;") + "</name>" + "\n");
 			String link = c.getString(c.getColumnIndex(DataHelper.Schema.COL_LINK));
 		    if (link != null) {
 		       	out.append("\t\t" + "<link>" + link + "</link>" + "\n");

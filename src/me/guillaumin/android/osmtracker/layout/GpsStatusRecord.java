@@ -2,6 +2,10 @@ package me.guillaumin.android.osmtracker.layout;
 
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
+import me.guillaumin.android.osmtracker.listener.StillImageOnClickListener;
+import me.guillaumin.android.osmtracker.listener.TextNoteOnClickListener;
+import me.guillaumin.android.osmtracker.listener.ToggleRecordOnCheckedChangeListener;
+import me.guillaumin.android.osmtracker.listener.VoiceRecOnClickListener;
 import android.content.Context;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -13,11 +17,14 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ToggleButton;
 
 /**
- * Layout for the GPS Status image, Location status image and record button.
+ * Layout for the GPS Status image and misc
+ * action buttons.
  * 
  * @author Nicolas Guillaumin
  * 
@@ -45,14 +52,21 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		super(context, attrs);
 		LayoutInflater.from(context).inflate(R.layout.gpsstatus_record, this, true);
 
+		if (context instanceof TrackLogger) {
+			activity = (TrackLogger) context;
+			// Register listeners
+			((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack)).setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(activity));;
+			((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setOnClickListener(new VoiceRecOnClickListener(activity));
+			((Button) findViewById(R.id.gpsstatus_record_btnStillImage)).setOnClickListener(new StillImageOnClickListener(activity));
+			((Button) findViewById(R.id.gpsstatus_record_btnTextNote)).setOnClickListener(new TextNoteOnClickListener(activity));
+			
+		}
+		
 		// Disable by default the buttons
+		findViewById(R.id.gpsstatus_record_toggleTrack).setEnabled(false);
 		setButtonsEnabled(false);
 		
 		lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-		
-		if ( context instanceof TrackLogger) {
-			activity = (TrackLogger) context;
-		}
 
 	}
 	
@@ -70,12 +84,13 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	 * Enables or disable the buttons.
 	 * 
 	 * @param enabled
-	 *            If true, enable the 2 buttons, otherwise disable them.
+	 *            If true, enable the buttons, otherwise disable them.
 	 */
 	public void setButtonsEnabled(boolean enabled) {
 		findViewById(R.id.gpsstatus_record_btnVoiceRecord).setEnabled(enabled);
 		findViewById(R.id.gpsstatus_record_btnStillImage).setEnabled(enabled);
-		findViewById(R.id.gpsstatus_record_toggleTrack).setEnabled(enabled);
+		findViewById(R.id.gpsstatus_record_btnTextNote).setEnabled(enabled);
+		
 	}
 
 	@Override
@@ -108,8 +123,9 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	@Override
 	public void onProviderDisabled(String provider) {
 		Log.d(TAG, "Location provider " + provider + " disabled");
-		ImageView imgProviderStatus = (ImageView) findViewById(R.id.gpsstatus_record_imgLocationStatus);
-		imgProviderStatus.setImageResource(R.drawable.satellite_off);
+		gpsActive = false;
+		((ImageView) findViewById(R.id.gpsstatus_record_imgLocationStatus)).setImageResource(R.drawable.satellite_off);
+		((ImageView) findViewById(R.id.gpsstatus_record_imgGpsStatus)).setImageResource(R.drawable.ledgrey_32x32);
 		activity.onGpsDisabled();
 	}
 
@@ -132,10 +148,12 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			break;
 		case LocationProvider.OUT_OF_SERVICE:
 			imgProviderStatus.setImageResource(R.drawable.satellite_off);
+			gpsActive = false;
 			activity.onGpsDisabled();
 			break;
 		case LocationProvider.TEMPORARILY_UNAVAILABLE:
 			imgProviderStatus.setImageResource(R.drawable.satellite_unknown);
+			gpsActive = false;
 			break;
 		}
 

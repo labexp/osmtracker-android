@@ -25,6 +25,7 @@
 	<string name="gpsstatus_record_trackon">Stop tracking</string>
 	<string name="gpsstatus_record_voicerec">Voice record</string>
 	<string name="gpsstatus_record_stillimage">Take picture</string>
+	<string name="gpsstatus_record_textnote">Text note</string>
 
 	<!-- Preferences -->
 	<string name="prefs_gps_os_settings">GPS settings</string>
