@@ -28,6 +28,7 @@ public class GPXFileWriter {
 	private static final String TAG_GPX = "<gpx"
 		+ " xmlns=\"http://www.topografix.com/GPX/1/1\""
 		+ " version=\"1.1\""
+		+ " creator=\"osmtracker-android\""		// TODO: Get name in resources ?
 		+ " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
 		+ " xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd \">";
 	

@@ -299,6 +299,10 @@ public class TrackLogger extends Activity {
 			// Start About activity
 			startActivity(new Intent(this, About.class));
 			break;
+		case R.id.tracklogger_menu_displaytrack:
+			// Start display track activity
+			startActivity(new Intent(this, DisplayTrack.class));
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

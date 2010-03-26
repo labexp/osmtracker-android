@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="me.guillaumin.android.osmtracker" android:versionCode="7" android:versionName="0.3.2">
+	package="me.guillaumin.android.osmtracker" android:versionCode="8" android:versionName="0.3.3">
 	<application android:label="@string/app_name"
 		android:description="@string/app_description" android:icon="@drawable/icon_48x48">
 		<activity android:name=".activity.OSMTracker" android:label="@string/app_name" />
@@ -15,6 +15,7 @@
 		<activity android:name=".activity.Preferences" android:label="@string/app_name" />
 		<activity android:name=".activity.WaypointList" android:label="@string/wplist" />
 		<activity android:name=".activity.About" android:label="@string/about" />
+		<activity android:name=".activity.DisplayTrack" android:label="@string/displaytrack" android:screenOrientation="portrait" />
 		
 		<service android:name=".service.gps.GPSLogger">
 			<intent-filter>

@@ -120,13 +120,11 @@ public class GPSLogger extends Service implements LocationListener {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		Log.v(TAG, "onBind()");
 		return binder;
 	}
 	
 	@Override
 	public boolean onUnbind(Intent intent) {
-		Log.v(TAG, "onUnBind()");
 		// If we aren't currently tracking we can
 		// stop ourself
 		if (! isTracking ) {
@@ -154,9 +152,7 @@ public class GPSLogger extends Service implements LocationListener {
 	}
 	
 	@Override
-	public void onCreate() {
-		Log.v(TAG, "Service creating");
-		
+	public void onCreate() {	
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(OSMTracker.INTENT_TRACK_WP);
@@ -169,14 +165,13 @@ public class GPSLogger extends Service implements LocationListener {
 
 		// Register ourselves for location updates
 		LocationManager lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, GPSLogger.this);
+		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
 		super.onCreate();
 	}
 
 	@Override
 	public void onDestroy() {
-		Log.v(TAG, "Service destroying");
 		if (isTracking) {
 			// If we're currently tracking, save user data.
 			stopTrackingAndSave();
@@ -226,7 +221,6 @@ public class GPSLogger extends Service implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {
-		Log.v(TAG, "Location changed: " + location);	
 		// We're receiving location, so GPS is enabled
 		isGpsEnabled = true;
 		
@@ -245,7 +239,6 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Notifies the user that we're still tracking in background.
 	 */
 	private void notifyBackgroundService() {
-		Log.v(TAG, "SystemClock is: " + SystemClock.elapsedRealtime() + ", timer is: " + notificationTimer);
 		if (SystemClock.elapsedRealtime() - notificationTimer > NOTIFICATION_WAIT_TIME_MS) {
 			NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 			Notification n = new Notification(R.drawable.icon_greyed_25x25, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());

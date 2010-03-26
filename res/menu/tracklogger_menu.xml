@@ -3,6 +3,9 @@
 	<item android:id="@+id/tracklogger_menu_waypointlist"
 		android:titleCondensed="@string/menu_waypointlist" android:title="@string/menu_waypointlist"
 		android:icon="@android:drawable/ic_menu_directions"></item>
+	<item android:id="@+id/tracklogger_menu_displaytrack"
+		android:titleCondensed="@string/menu_displaytrack" android:title="@string/menu_displaytrack"
+		android:icon="@android:drawable/ic_menu_compass"></item>
 	<item android:id="@+id/tracklogger_menu_settings"
 		android:titleCondensed="@string/menu_settings" android:title="@string/menu_settings"
 		android:icon="@android:drawable/ic_menu_preferences"></item>
