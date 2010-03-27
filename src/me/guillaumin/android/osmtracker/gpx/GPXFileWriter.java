@@ -76,12 +76,17 @@ public class GPXFileWriter {
 			StringBuffer out = new StringBuffer();
 			out.append("\t\t\t" + "<trkpt lat=\"" 
 					+ c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LATITUDE)) + "\" "
-					+ "lon=\"" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LONGITUDE)) + "\">");
-	        out.append("<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>");
-	        out.append("<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>");
+					+ "lon=\"" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LONGITUDE)) + "\">" + "\n");
+	        if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION))) {
+	        	out.append("\t\t\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>" + "\n");
+	        }
+	        if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
+	        	out.append("\t\t\t\t" + "<!-- Accuracy: " + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))  + "m -->" + "\n");
+	        }
+	        out.append("\t\t\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 	        
 	       
-	        out.append("</trkpt>" + "\n");
+	        out.append("\t\t\t" + "</trkpt>" + "\n");
 	        fw.write(out.toString());
 	        
 	        c.moveToNext();
@@ -103,7 +108,12 @@ public class GPXFileWriter {
 			out.append("\t" + "<wpt lat=\""
 					+ c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LATITUDE)) + "\" "
 					+ "lon=\"" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LONGITUDE)) + "\">" + "\n");
-			out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>" + "\n");
+	        if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION))) {
+	        	out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>" + "\n");
+	        }
+	        if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
+	        	out.append("\t\t" + "<!-- Accuracy: " + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))  + "m -->" + "\n");
+	        }
 		    out.append("\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 			// Transform "&" as "&amp;" to avoid XML entities problems.
 		    out.append("\t\t" + "<name>" + c.getString(c.getColumnIndex(DataHelper.Schema.COL_NAME)).replaceAll("&", "&amp;") + "</name>" + "\n");

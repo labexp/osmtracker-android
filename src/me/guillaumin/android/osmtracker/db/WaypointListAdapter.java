@@ -69,7 +69,12 @@ public class WaypointListAdapter extends CursorAdapter {
 		StringBuffer locationAsString = new StringBuffer();
 		locationAsString.append(context.getResources().getString(R.string.wplist_latitude) + cursor.getString(cursor.getColumnIndex(DataHelper.Schema.COL_LATITUDE)));
 		locationAsString.append(", " + context.getResources().getString(R.string.wplist_longitude) + cursor.getString(cursor.getColumnIndex(DataHelper.Schema.COL_LONGITUDE)));
-		locationAsString.append(", " + context.getResources().getString(R.string.wplist_elevation) + cursor.getString(cursor.getColumnIndex(DataHelper.Schema.COL_ELEVATION)));
+		if (! cursor.isNull(cursor.getColumnIndex(DataHelper.Schema.COL_ELEVATION))) {
+			locationAsString.append(", " + context.getResources().getString(R.string.wplist_elevation) + cursor.getString(cursor.getColumnIndex(DataHelper.Schema.COL_ELEVATION)));
+		}
+		if (! cursor.isNull(cursor.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
+			locationAsString.append(", " + context.getResources().getString(R.string.wplist_accuracy) + cursor.getString(cursor.getColumnIndex(DataHelper.Schema.COL_ACCURACY)));
+		}
 		vLocation.setText(locationAsString.toString());
 		
 		// Bind timestamp

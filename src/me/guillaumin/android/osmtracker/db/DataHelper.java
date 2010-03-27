@@ -62,21 +62,26 @@ public class DataHelper {
 	 */
 	private static final String SQL_CREATE_TABLE_TRACKPOINT = ""
 			+ "create table trackpoint ("
-			+ Schema.COL_ID + " integer primary key autoincrement," + Schema.COL_LATITUDE
-			+ " double not null," + Schema.COL_LONGITUDE + " double not null,"
-			+ Schema.COL_ELEVATION + " double not null," + Schema.COL_TIMESTAMP
-			+ " long not null" + ")";
+			+ Schema.COL_ID + " integer primary key autoincrement,"
+			+ Schema.COL_LATITUDE + " double not null,"
+			+ Schema.COL_LONGITUDE + " double not null,"
+			+ Schema.COL_ELEVATION + " double null,"
+			+ Schema.COL_ACCURACY + " double null,"
+			+ Schema.COL_TIMESTAMP + " long not null" + ")";
 
 	/**
 	 * SQL for creating table WAYPOINT
 	 */
 	private static final String SQL_CREATE_TABLE_WAYPOINT = ""
 			+ "create table waypoint ("
-			+ Schema.COL_ID + " integer primary key autoincrement," + Schema.COL_LATITUDE
-			+ " double not null," + Schema.COL_LONGITUDE + " double not null,"
-			+ Schema.COL_ELEVATION + " double not null," + Schema.COL_TIMESTAMP
-			+ " long not null," + Schema.COL_NAME + " text," + Schema.COL_LINK
-			+ " text" + ")";
+			+ Schema.COL_ID + " integer primary key autoincrement,"
+			+ Schema.COL_LATITUDE + " double not null,"
+			+ Schema.COL_LONGITUDE + " double not null,"
+			+ Schema.COL_ELEVATION + " double null,"
+			+ Schema.COL_ACCURACY + " double null,"
+			+ Schema.COL_TIMESTAMP + " long not null,"
+			+ Schema.COL_NAME + " text," 
+			+ Schema.COL_LINK + " text" + ")";
 
 	private static final SimpleDateFormat fileNameFormatter = new SimpleDateFormat(
 			"yyyy-MM-dd_HH-mm-ss");
@@ -157,8 +162,13 @@ public class DataHelper {
 		ContentValues values = new ContentValues();
 		values.put(Schema.COL_LATITUDE, location.getLatitude());
 		values.put(Schema.COL_LONGITUDE, location.getLongitude());
-		values.put(Schema.COL_ELEVATION, location.getAltitude());
 		values.put(Schema.COL_TIMESTAMP, location.getTime());
+		if (location.hasAltitude()) {
+			values.put(Schema.COL_ELEVATION, location.getAltitude());
+		}
+		if (location.hasAccuracy()) {
+			values.put(Schema.COL_ACCURACY, location.getAccuracy());
+		}
 
 		database.insert(Schema.TBL_TRACKPOINT, null, values);
 	}
@@ -178,8 +188,13 @@ public class DataHelper {
 			ContentValues values = new ContentValues();
 			values.put(Schema.COL_LATITUDE, location.getLatitude());
 			values.put(Schema.COL_LONGITUDE, location.getLongitude());
-			values.put(Schema.COL_ELEVATION, location.getAltitude());
 			values.put(Schema.COL_TIMESTAMP, location.getTime());
+			if (location.hasAltitude()) {
+				values.put(Schema.COL_ELEVATION, location.getAltitude());
+			}
+			if (location.hasAccuracy()) {
+				values.put(Schema.COL_ACCURACY, location.getAccuracy());
+			}
 			values.put(Schema.COL_NAME, name);
 			if (link != null ) {
 				values.put(Schema.COL_LINK, link);
@@ -206,7 +221,7 @@ public class DataHelper {
 			// Query for way points
 			Cursor cWayPoints = database.query(Schema.TBL_WAYPOINT, new String[] {
 					Schema.COL_ID, Schema.COL_LONGITUDE, Schema.COL_LATITUDE, Schema.COL_LINK,
-					Schema.COL_ELEVATION, Schema. COL_TIMESTAMP, Schema.COL_NAME }, null, null,
+					Schema.COL_ELEVATION, Schema.COL_ACCURACY, Schema. COL_TIMESTAMP, Schema.COL_NAME }, null, null,
 					null, null, Schema.COL_TIMESTAMP + " asc");
 			cWayPoints.moveToFirst();
 			
@@ -224,7 +239,7 @@ public class DataHelper {
 			// Query for track points
 			Cursor cTrackPoints = database.query(Schema.TBL_TRACKPOINT, new String[] {
 					Schema.COL_ID, Schema.COL_LONGITUDE, Schema.COL_LATITUDE,
-					Schema.COL_ELEVATION, Schema.COL_TIMESTAMP }, null, null,
+					Schema.COL_ELEVATION, Schema.COL_ACCURACY, Schema.COL_TIMESTAMP }, null, null,
 					null, null, Schema.COL_TIMESTAMP + " asc");
 			cTrackPoints.moveToFirst();
 			
@@ -257,6 +272,7 @@ public class DataHelper {
 			cWayPoints.close();
 			
 			database.close();
+			context.deleteDatabase(DB_NAME);
 		}
 	}
 
@@ -303,6 +319,7 @@ public class DataHelper {
 		public static final String COL_LONGITUDE = "longitude";
 		public static final String COL_LATITUDE = "latitude";
 		public static final String COL_ELEVATION = "elevation";
+		public static final String COL_ACCURACY = "accuracy";
 		public static final String COL_TIMESTAMP = "point_timestamp";
 		public static final String COL_NAME = "name";
 		public static final String COL_LINK = "link";

@@ -166,7 +166,7 @@ public class GPSLogger extends Service implements LocationListener {
 		// Register ourselves for location updates
 		LocationManager lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
+		
 		super.onCreate();
 	}
 
@@ -220,10 +220,10 @@ public class GPSLogger extends Service implements LocationListener {
 	}
 
 	@Override
-	public void onLocationChanged(Location location) {
+	public void onLocationChanged(Location location) {		
 		// We're receiving location, so GPS is enabled
 		isGpsEnabled = true;
-		
+				
 		lastLocation = location;
 		if (isTracking) {
 			dataHelper.track(location);

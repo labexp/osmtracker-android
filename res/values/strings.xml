@@ -19,6 +19,7 @@
 	<string name="wplist_latitude">Lat: </string>
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Ele: </string>
+	<string name="wplist_accuracy">Accur: </string>
 	
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Start tracking.</string>
