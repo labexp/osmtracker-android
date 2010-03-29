@@ -19,23 +19,21 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 /**
- * Data helper for storing track in DB and
- * exporting in GPX.
- * For the moment only 1 database is used, and deleted
- * once done.
+ * Data helper for storing track in DB and exporting in GPX. For the moment only
+ * 1 database is used, and deleted once done.
  * 
  * @author Nicolas Guillaumin
- *
+ * 
  */
 public class DataHelper {
 
 	private static final String TAG = DataHelper.class.getSimpleName();
-	
+
 	/**
 	 * GPX file extension.
 	 */
 	private static final String EXTENSION_GPX = ".gpx";
-	
+
 	/**
 	 * 3GPP extension
 	 */
@@ -45,46 +43,35 @@ public class DataHelper {
 	 * JPG file extension
 	 */
 	private static final String EXTENSION_JPG = ".jpg";
-	
+
 	/**
 	 * Database name.
 	 */
 	private static final String DB_NAME = OSMTracker.class.getSimpleName();
-	
+
 	/**
-	 * Current File for recording a still picture.
-	 * Behaves as a dirty 1 level stack.
+	 * Current File for recording a still picture. Behaves as a dirty 1 level
+	 * stack.
 	 */
 	private File currentImageFile;
 
 	/**
 	 * SQL for creating table TRACKPOINT
 	 */
-	private static final String SQL_CREATE_TABLE_TRACKPOINT = ""
-			+ "create table trackpoint ("
-			+ Schema.COL_ID + " integer primary key autoincrement,"
-			+ Schema.COL_LATITUDE + " double not null,"
-			+ Schema.COL_LONGITUDE + " double not null,"
-			+ Schema.COL_ELEVATION + " double null,"
-			+ Schema.COL_ACCURACY + " double null,"
+	private static final String SQL_CREATE_TABLE_TRACKPOINT = "" + "create table trackpoint (" + Schema.COL_ID
+			+ " integer primary key autoincrement," + Schema.COL_LATITUDE + " double not null," + Schema.COL_LONGITUDE
+			+ " double not null," + Schema.COL_ELEVATION + " double null," + Schema.COL_ACCURACY + " double null,"
 			+ Schema.COL_TIMESTAMP + " long not null" + ")";
 
 	/**
 	 * SQL for creating table WAYPOINT
 	 */
-	private static final String SQL_CREATE_TABLE_WAYPOINT = ""
-			+ "create table waypoint ("
-			+ Schema.COL_ID + " integer primary key autoincrement,"
-			+ Schema.COL_LATITUDE + " double not null,"
-			+ Schema.COL_LONGITUDE + " double not null,"
-			+ Schema.COL_ELEVATION + " double null,"
-			+ Schema.COL_ACCURACY + " double null,"
-			+ Schema.COL_TIMESTAMP + " long not null,"
-			+ Schema.COL_NAME + " text," 
-			+ Schema.COL_LINK + " text" + ")";
+	private static final String SQL_CREATE_TABLE_WAYPOINT = "" + "create table waypoint (" + Schema.COL_ID
+			+ " integer primary key autoincrement," + Schema.COL_LATITUDE + " double not null," + Schema.COL_LONGITUDE
+			+ " double not null," + Schema.COL_ELEVATION + " double null," + Schema.COL_ACCURACY + " double null,"
+			+ Schema.COL_TIMESTAMP + " long not null," + Schema.COL_NAME + " text," + Schema.COL_LINK + " text" + ")";
 
-	private static final SimpleDateFormat fileNameFormatter = new SimpleDateFormat(
-			"yyyy-MM-dd_HH-mm-ss");
+	private static final SimpleDateFormat fileNameFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 
 	/**
 	 * Context required to interact with DBs.
@@ -103,7 +90,9 @@ public class DataHelper {
 
 	/**
 	 * Constructor.
-	 * @param c Application context.
+	 * 
+	 * @param c
+	 *            Application context.
 	 */
 	public DataHelper(Context c) {
 		Log.v(TAG, "Creating a new " + DataHelper.class.getSimpleName());
@@ -113,14 +102,14 @@ public class DataHelper {
 	/**
 	 * Create a new track:<br />
 	 * <ul>
-	 * 	<li>Creates a DB</li>
-	 *  <il>Create a directory for track files</li>
+	 * <li>Creates a DB</li>
+	 * <il>Create a directory for track files</li>
 	 * </ul>
+	 * 
 	 * @throws IOException
 	 */
 	public void createNewTrack() throws IOException {
-		database = context.openOrCreateDatabase(DB_NAME, Context.MODE_PRIVATE,
-				null);
+		database = context.openOrCreateDatabase(DB_NAME, Context.MODE_PRIVATE, null);
 
 		// Creatae database and tables
 		database.execSQL("drop table if exists " + Schema.TBL_TRACKPOINT);
@@ -130,8 +119,7 @@ public class DataHelper {
 
 		// Create directory for track
 		File sdRoot = Environment.getExternalStorageDirectory();
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String storageDir = prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR,
 				OSMTracker.Preferences.VAL_STORAGE_DIR);
 		if (sdRoot.canWrite()) {
@@ -142,8 +130,7 @@ public class DataHelper {
 			}
 
 			// Create track directory
-			trackDir = new File(osmTrackerDir + File.separator
-					+ fileNameFormatter.format(new Date()));
+			trackDir = new File(osmTrackerDir + File.separator + fileNameFormatter.format(new Date()));
 			trackDir.mkdir();
 		} else {
 			throw new IOException(context.getResources().getString(R.string.error_externalstorage_not_writable));
@@ -175,16 +162,20 @@ public class DataHelper {
 
 	/**
 	 * Tracks a way point with link
-	 * @param location Location of waypoint
-	 * @param name Name of waypoint
-	 * @param link Link of waypoint
+	 * 
+	 * @param location
+	 *            Location of waypoint
+	 * @param name
+	 *            Name of waypoint
+	 * @param link
+	 *            Link of waypoint
 	 */
 	public void wayPoint(Location location, String name, String link) {
 		Log.v(TAG, "Tracking waypoing '" + name + "', link='" + link + "', location=" + location);
-		
+
 		// location should not be null, but sometime is.
 		// TODO investigate this issue.
-		if (location != null ) {
+		if (location != null) {
 			ContentValues values = new ContentValues();
 			values.put(Schema.COL_LATITUDE, location.getLatitude());
 			values.put(Schema.COL_LONGITUDE, location.getLongitude());
@@ -196,102 +187,108 @@ public class DataHelper {
 				values.put(Schema.COL_ACCURACY, location.getAccuracy());
 			}
 			values.put(Schema.COL_NAME, name);
-			if (link != null ) {
+			if (link != null) {
 				values.put(Schema.COL_LINK, link);
 			}
-			
+
 			database.insert(Schema.TBL_WAYPOINT, null, values);
 		}
 	}
-	
+
 	/**
 	 * Tracks a waypoint.
-	 * @param location Location of waypoint
-	 * @param name Name of waypoint.
+	 * 
+	 * @param location
+	 *            Location of waypoint
+	 * @param name
+	 *            Name of waypoint.
 	 */
 	public void wayPoint(Location location, String name) {
 		wayPoint(location, name, null);
 	}
-	
+
 	/**
 	 * @return A {@link Cursor} to the waypoints in db or null if db is closed
 	 */
 	public Cursor getWaypointsCursor() {
-		if (database != null && database.isOpen() ) {
+		if (database != null && database.isOpen()) {
 			// Query for way points
-			Cursor cWayPoints = database.query(Schema.TBL_WAYPOINT, new String[] {
-					Schema.COL_ID, Schema.COL_LONGITUDE, Schema.COL_LATITUDE, Schema.COL_LINK,
-					Schema.COL_ELEVATION, Schema.COL_ACCURACY, Schema. COL_TIMESTAMP, Schema.COL_NAME }, null, null,
-					null, null, Schema.COL_TIMESTAMP + " asc");
+			Cursor cWayPoints = database.query(Schema.TBL_WAYPOINT, new String[] { Schema.COL_ID, Schema.COL_LONGITUDE,
+					Schema.COL_LATITUDE, Schema.COL_LINK, Schema.COL_ELEVATION, Schema.COL_ACCURACY,
+					Schema.COL_TIMESTAMP, Schema.COL_NAME }, null, null, null, null, Schema.COL_TIMESTAMP + " asc");
 			cWayPoints.moveToFirst();
-			
+
 			return cWayPoints;
 		} else {
 			return null;
 		}
 	}
-	
+
 	/**
-	 * @return A {@link Cursor} to the trackpoints in db, or null if db is closed
+	 * @return A {@link Cursor} to the trackpoints in db, or null if db is
+	 *         closed
 	 */
 	public Cursor getTrackpointsCursor() {
-		if (database != null && database.isOpen() ) {
+		if (database != null && database.isOpen()) {
 			// Query for track points
-			Cursor cTrackPoints = database.query(Schema.TBL_TRACKPOINT, new String[] {
-					Schema.COL_ID, Schema.COL_LONGITUDE, Schema.COL_LATITUDE,
-					Schema.COL_ELEVATION, Schema.COL_ACCURACY, Schema.COL_TIMESTAMP }, null, null,
-					null, null, Schema.COL_TIMESTAMP + " asc");
+			Cursor cTrackPoints = database.query(Schema.TBL_TRACKPOINT, new String[] { Schema.COL_ID,
+					Schema.COL_LONGITUDE, Schema.COL_LATITUDE, Schema.COL_ELEVATION, Schema.COL_ACCURACY,
+					Schema.COL_TIMESTAMP }, null, null, null, null, Schema.COL_TIMESTAMP + " asc");
 			cTrackPoints.moveToFirst();
-			
+
 			return cTrackPoints;
 		} else {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Exports current database to a GPX file.
 	 */
 	public void exportTrackAsGpx() {
 
 		if (trackDir != null) {
-			File trackFile = new File(trackDir, fileNameFormatter
-					.format(new Date())
-					+ EXTENSION_GPX);
+
+			File trackFile = new File(trackDir, fileNameFormatter.format(new Date()) + EXTENSION_GPX);
 
 			Cursor cTrackPoints = getTrackpointsCursor();
 			Cursor cWayPoints = getWaypointsCursor();
-			
+
 			try {
-				GPXFileWriter.writeGpxFile(context.getResources().getString(R.string.gpx_track_name), cTrackPoints, cWayPoints, trackFile);
+				GPXFileWriter
+						.writeGpxFile(context.getResources(), cTrackPoints, cWayPoints, trackFile, PreferenceManager
+								.getDefaultSharedPreferences(context).getString(
+										OSMTracker.Preferences.KEY_ACCURACY_OUTPUT,
+										OSMTracker.Preferences.VAL_ACCURACY_OUTPUT));
 			} catch (IOException ioe) {
 				Log.e(TAG, "Unable to export track: " + ioe.getMessage());
 			}
-			
+
 			cTrackPoints.close();
 			cWayPoints.close();
-			
+
 			database.close();
 			context.deleteDatabase(DB_NAME);
 		}
 	}
 
-
 	/**
 	 * Getter for trackDir
+	 * 
 	 * @return the tracking directory on external storage.
 	 */
 	public File getTrackDir() {
 		return trackDir;
 	}
-	
+
 	/**
-	 * @return A new File to record an audio way point, inside the track directory.
+	 * @return A new File to record an audio way point, inside the track
+	 *         directory.
 	 */
 	public File getNewAudioFile() {
 		return new File(trackDir + File.separator + fileNameFormatter.format(new Date()) + EXTENSION_3GPP);
 	}
-	
+
 	/**
 	 * @return A new File to record a still image, inside the track directory.
 	 */
@@ -299,7 +296,7 @@ public class DataHelper {
 		currentImageFile = new File(trackDir + File.separator + fileNameFormatter.format(new Date()) + EXTENSION_JPG);
 		return currentImageFile;
 	}
-	
+
 	/**
 	 * @return The current image file, and removes it.
 	 */
@@ -308,7 +305,7 @@ public class DataHelper {
 		currentImageFile = null;
 		return imageFile;
 	}
-	
+
 	/**
 	 * Represents XML Schema.
 	 */
@@ -324,6 +321,5 @@ public class DataHelper {
 		public static final String COL_NAME = "name";
 		public static final String COL_LINK = "link";
 	}
-	
 
 }

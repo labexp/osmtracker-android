@@ -6,7 +6,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
+import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.DataHelper;
+import android.content.res.Resources;
 import android.database.Cursor;
 
 /**
@@ -21,6 +24,9 @@ public class GPXFileWriter {
 	 * XML header.
 	 */
 	private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
+	
+	private static final String CDATA_START = "<![CDATA[";
+	private static final String CDATA_END = "]]>";
 	
 	/**
 	 * GPX opening tag
@@ -39,20 +45,22 @@ public class GPXFileWriter {
 	
 	/**
 	 * Writes the GPX file
-	 * @param trackName Name of the GPX track (metadata)
+	 * @param resources Access to application resources
 	 * @param cTrackPoints Cursor to track points.
 	 * @param cWayPoints Cursor to way points.
 	 * @param target Target GPX file
+	 * @param accuracyOutput Constant describing how to include (or not) accuracy info for way points.
 	 * @throws IOException 
 	 */
-	public static void writeGpxFile(String trackName, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
+	public static void writeGpxFile(Resources resources, Cursor cTrackPoints, Cursor cWayPoints, File target, String accuracyOutput) throws IOException {
+		
 		FileWriter fw = new FileWriter(target);
 		
 		fw.write(XML_HEADER + "\n");
 		fw.write(TAG_GPX + "\n");
 		
-		writeTrackPoints(trackName, fw, cTrackPoints);
-		writeWayPoints(fw, cWayPoints);
+		writeTrackPoints(resources.getString(R.string.gpx_track_name), fw, cTrackPoints);
+		writeWayPoints(fw, cWayPoints, accuracyOutput, resources);
 		
 		fw.write("</gpx>");
 		
@@ -80,9 +88,6 @@ public class GPXFileWriter {
 	        if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION))) {
 	        	out.append("\t\t\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>" + "\n");
 	        }
-	        if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
-	        	out.append("\t\t\t\t" + "<!-- Accuracy: " + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))  + "m -->" + "\n");
-	        }
 	        out.append("\t\t\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 	        
 	       
@@ -100,9 +105,16 @@ public class GPXFileWriter {
 	 * Iterates on way points and write them.
 	 * @param fw Writer to the target file.
 	 * @param c Cursor to way points.
+	 * @param accuracyOutput Constant describing how to include (or not) accuracy info for way points.
+	 * @param resourcse To access string resources
 	 * @throws IOException
 	 */
-	public static void writeWayPoints(FileWriter fw, Cursor c) throws IOException {
+	public static void writeWayPoints(FileWriter fw, Cursor c, String accuracyInfo, Resources resources) throws IOException {
+		// Label for meter unit
+		String meterUnit = resources.getString(R.string.various_unit_meters);
+		// Word "accuracy"
+		String accuracy = resources.getString(R.string.various_accuracy);
+		
 		while(! c.isAfterLast() ) {
 			StringBuffer out = new StringBuffer();
 			out.append("\t" + "<wpt lat=\""
@@ -111,13 +123,31 @@ public class GPXFileWriter {
 	        if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION))) {
 	        	out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>" + "\n");
 	        }
-	        if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
-	        	out.append("\t\t" + "<!-- Accuracy: " + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))  + "m -->" + "\n");
-	        }
 		    out.append("\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
-			// Transform "&" as "&amp;" to avoid XML entities problems.
-		    out.append("\t\t" + "<name>" + c.getString(c.getColumnIndex(DataHelper.Schema.COL_NAME)).replaceAll("&", "&amp;") + "</name>" + "\n");
-			String link = c.getString(c.getColumnIndex(DataHelper.Schema.COL_LINK));
+
+		    String name = c.getString(c.getColumnIndex(DataHelper.Schema.COL_NAME));
+		    
+		    if (! OSMTracker.Preferences.VAL_ACCURACY_OUPUT_NONE.equals(accuracyInfo) && ! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
+		    	// Outputs accuracy info for way point
+		    	if (OSMTracker.Preferences.VAL_ACCURACY_OUTPUT_WPT_NAME.equals(accuracyInfo)) {
+		    		// Output accuracy with name
+		    		out.append("\t\t" + "<name>"
+		    				+ CDATA_START 
+		    				+ name
+		    				+ " (" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY)) + meterUnit + ")"
+		    				+ CDATA_END
+		    				+ "</name>" + "\n");
+		    	} else if (OSMTracker.Preferences.VAL_ACCURACY_OUTPUT_WPT_CMT.equals(accuracyInfo)) {
+		    		// Output accuracy in separate tag
+		    		out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
+		    		out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
+		    	}
+		    } else {
+		    	// No accuracy info requested, or available
+		    	out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
+		    }
+			
+		    String link = c.getString(c.getColumnIndex(DataHelper.Schema.COL_LINK));
 		    if (link != null) {
 		       	out.append("\t\t" + "<link>" + link + "</link>" + "\n");
 		    }

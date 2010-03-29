@@ -23,6 +23,7 @@ public class OSMTracker {
 		public final static String KEY_UI_THEME = "ui.theme";
 		public final static String KEY_GPS_OSSETTINGS = "gps.ossettings";
 		public final static String KEY_GPS_CHECKSTARTUP = "gps.checkstartup";
+		public final static String KEY_ACCURACY_OUTPUT = "gpx.accuracy";
 
 		/**
 		 * Default values
@@ -32,6 +33,11 @@ public class OSMTracker {
 		public final static boolean VAL_UI_LEGACYBACK = false;
 		public final static String VAL_UI_THEME = "@android:style/Theme";
 		public final static boolean VAL_GPS_CHECKSTARTUP = true;
+		
+		public final static String VAL_ACCURACY_OUPUT_NONE = "none";
+		public final static String VAL_ACCURACY_OUTPUT_WPT_NAME = "wpt_name";
+		public final static String VAL_ACCURACY_OUTPUT_WPT_CMT = "wpt_cmt";
+		public final static String VAL_ACCURACY_OUTPUT = VAL_ACCURACY_OUPUT_NONE;
 	};
 
 	/**

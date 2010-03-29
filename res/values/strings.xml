@@ -60,6 +60,18 @@
 		<item>android:style/Theme.Light</item>
 		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
+	<string name="prefs_accuracy_output">Accuracy in GPX file</string>
+	<string name="prefs_accuracy_output_summary">Allow accuracy info in GPX file, with waypoint name or in a separate tag</string>
+	<string-array name="prefs_accuracy_output_keys">
+		<item>None</item>
+		<item>With waypoint name</item>
+		<item>In waypoint comment</item>
+	</string-array>
+	<string-array name="prefs_accuracy_output_values">
+		<item>none</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
 	
 	<!-- Menu -->
 	<string name="menu_settings">Settings</string>
@@ -95,5 +107,6 @@
 	
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
+	<string name="various_accuracy">Accuracy</string>
 	
 </resources>
