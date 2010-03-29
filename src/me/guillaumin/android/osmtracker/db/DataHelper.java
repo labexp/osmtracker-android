@@ -69,7 +69,8 @@ public class DataHelper {
 	private static final String SQL_CREATE_TABLE_WAYPOINT = "" + "create table waypoint (" + Schema.COL_ID
 			+ " integer primary key autoincrement," + Schema.COL_LATITUDE + " double not null," + Schema.COL_LONGITUDE
 			+ " double not null," + Schema.COL_ELEVATION + " double null," + Schema.COL_ACCURACY + " double null,"
-			+ Schema.COL_TIMESTAMP + " long not null," + Schema.COL_NAME + " text," + Schema.COL_LINK + " text" + ")";
+			+ Schema.COL_TIMESTAMP + " long not null," + Schema.COL_NAME + " text," + Schema.COL_LINK + " text,"
+			+ Schema.COL_NBSATELLITES + " integer not null" + ")";
 
 	private static final SimpleDateFormat fileNameFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 
@@ -165,12 +166,14 @@ public class DataHelper {
 	 * 
 	 * @param location
 	 *            Location of waypoint
+	 * @param nbSatellites
+	 * 			  Number of satellites used for the location
 	 * @param name
 	 *            Name of waypoint
 	 * @param link
 	 *            Link of waypoint
 	 */
-	public void wayPoint(Location location, String name, String link) {
+	public void wayPoint(Location location, int nbSatellites, String name, String link) {
 		Log.v(TAG, "Tracking waypoing '" + name + "', link='" + link + "', location=" + location);
 
 		// location should not be null, but sometime is.
@@ -180,6 +183,7 @@ public class DataHelper {
 			values.put(Schema.COL_LATITUDE, location.getLatitude());
 			values.put(Schema.COL_LONGITUDE, location.getLongitude());
 			values.put(Schema.COL_TIMESTAMP, location.getTime());
+			values.put(Schema.COL_NBSATELLITES, nbSatellites);
 			if (location.hasAltitude()) {
 				values.put(Schema.COL_ELEVATION, location.getAltitude());
 			}
@@ -200,11 +204,13 @@ public class DataHelper {
 	 * 
 	 * @param location
 	 *            Location of waypoint
+	 * @param nbSatellites
+	 * 			  Number of satellites used for the location
 	 * @param name
 	 *            Name of waypoint.
 	 */
-	public void wayPoint(Location location, String name) {
-		wayPoint(location, name, null);
+	public void wayPoint(Location location, int nbSatellites, String name) {
+		wayPoint(location, nbSatellites, name, null);
 	}
 
 	/**
@@ -215,7 +221,7 @@ public class DataHelper {
 			// Query for way points
 			Cursor cWayPoints = database.query(Schema.TBL_WAYPOINT, new String[] { Schema.COL_ID, Schema.COL_LONGITUDE,
 					Schema.COL_LATITUDE, Schema.COL_LINK, Schema.COL_ELEVATION, Schema.COL_ACCURACY,
-					Schema.COL_TIMESTAMP, Schema.COL_NAME }, null, null, null, null, Schema.COL_TIMESTAMP + " asc");
+					Schema.COL_TIMESTAMP, Schema.COL_NAME, Schema.COL_NBSATELLITES}, null, null, null, null, Schema.COL_TIMESTAMP + " asc");
 			cWayPoints.moveToFirst();
 
 			return cWayPoints;
@@ -317,6 +323,7 @@ public class DataHelper {
 		public static final String COL_LATITUDE = "latitude";
 		public static final String COL_ELEVATION = "elevation";
 		public static final String COL_ACCURACY = "accuracy";
+		public static final String COL_NBSATELLITES = "nb_satellites";
 		public static final String COL_TIMESTAMP = "point_timestamp";
 		public static final String COL_NAME = "name";
 		public static final String COL_LINK = "link";

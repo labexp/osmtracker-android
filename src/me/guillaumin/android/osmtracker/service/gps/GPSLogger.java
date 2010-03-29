@@ -14,6 +14,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.location.GpsSatellite;
+import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -74,6 +76,16 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Last known location
 	 */
 	private Location lastLocation;
+	
+	/**
+	 * Last number of satellites used in fix.
+	 */
+	private int lastNbSatellites;
+	
+	/**
+	 * LocationManager
+	 */
+	private LocationManager lmgr;
 
 	/**
 	 * Receives Intent for way point tracking, and stop/start logging.
@@ -91,9 +103,9 @@ public class GPSLogger extends Service implements LocationListener {
 					String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
 					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
 					if (link != null) {
-						dataHelper.wayPoint(lastLocation, name, link);
+						dataHelper.wayPoint(lastLocation, lastNbSatellites, name, link);
 					} else {
-						dataHelper.wayPoint(lastLocation, name);
+						dataHelper.wayPoint(lastLocation, lastNbSatellites, name);
 					}
 				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction()) ) {
@@ -164,7 +176,7 @@ public class GPSLogger extends Service implements LocationListener {
 		registerReceiver(receiver, filter);
 
 		// Register ourselves for location updates
-		LocationManager lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 		
 		super.onCreate();
@@ -178,7 +190,6 @@ public class GPSLogger extends Service implements LocationListener {
 		}
 
 		// Unregister listener
-		LocationManager lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		lmgr.removeUpdates(this);
 		
 		// Unregister broadcast receiver
@@ -225,6 +236,8 @@ public class GPSLogger extends Service implements LocationListener {
 		isGpsEnabled = true;
 				
 		lastLocation = location;
+		lastNbSatellites = countSatellites();
+		
 		if (isTracking) {
 			dataHelper.track(location);
 			if (isNotifying) {
@@ -235,6 +248,22 @@ public class GPSLogger extends Service implements LocationListener {
 		
 	}
 
+	/**
+	 * Counts number of satellites used in last fix.
+	 * @return The number of satellites
+	 */
+	private int countSatellites() {
+		int count = 0;
+		GpsStatus status = lmgr.getGpsStatus(null);
+		for(GpsSatellite sat:status.getSatellites()) {
+			if (sat.usedInFix()) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
+	
 	/**
 	 * Notifies the user that we're still tracking in background.
 	 */

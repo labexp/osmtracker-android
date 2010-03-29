@@ -151,6 +151,9 @@ public class GPXFileWriter {
 		    if (link != null) {
 		       	out.append("\t\t" + "<link>" + link + "</link>" + "\n");
 		    }
+		    
+		    out.append("\t\t" + "<sat>" + c.getInt(c.getColumnIndex(DataHelper.Schema.COL_NBSATELLITES)) + "</sat>" + "\n");
+		    
 		    out.append("\t" + "</wpt>" + "\n");
 		    
 		    fw.write(out.toString());
