@@ -29,6 +29,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -233,7 +234,10 @@ public class TrackLogger extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		// Save the fact that we are currently tracking or not
-		outState.putBoolean(STATE_IS_TRACKING, gpsLogger.isTracking());
+		if (gpsLogger != null) {
+			outState.putBoolean(STATE_IS_TRACKING, gpsLogger.isTracking());
+		}
+		
 		super.onSaveInstanceState(outState);
 	}
 

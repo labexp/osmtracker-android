@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical" android:layout_height="fill_parent" android:layout_width="fill_parent" android:padding="10dp">
-<RelativeLayout android:id="@+id/RelativeLayout01" android:layout_width="fill_parent" android:layout_height="wrap_content"><ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_100x100" android:id="@+id/about_logo"></ImageView>
-<TextView android:id="@+id/about_appname" android:text="@string/app_name" android:layout_toRightOf="@+id/about_logo" android:textColor="#ffffffff" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="22dp"></TextView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_height="fill_parent"
+	android:layout_width="fill_parent" android:padding="10dp">
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<ImageView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/icon_100x100"
+			android:id="@+id/about_logo"></ImageView>
+		<TextView android:id="@+id/about_appname" android:text="@string/app_name"
+			android:layout_toRightOf="@+id/about_logo" android:textColor="#ffffffff"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:textSize="22dp"></TextView>
 
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/about_logo" android:id="@+id/about_version_label" android:text="v" android:layout_below="@+id/about_appname"></TextView><TextView android:layout_below="@id/about_appname" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/about_version" android:text="@string/app_version" android:layout_toRightOf="@id/about_version_label"></TextView>
-</RelativeLayout>
-<TextView android:id="@+id/about_text" android:text="@string/about_text" android:layout_height="wrap_content" android:layout_margin="10dp" android:layout_width="wrap_content" android:layout_gravity="center_horizontal" android:gravity="center_horizontal"></TextView>
-<TextView android:id="@+id/about_link" android:text="@string/about_link" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginTop="10dp" android:gravity="center_horizontal" android:autoLink="all"></TextView>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_toRightOf="@id/about_logo"
+			android:id="@+id/about_version_label" android:text="v"
+			android:layout_below="@+id/about_appname"></TextView>
+		<TextView android:layout_below="@id/about_appname"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/about_version" android:text="{versionName}"
+			android:layout_toRightOf="@id/about_version_label"></TextView>
+	</RelativeLayout>
+	<TextView android:id="@+id/about_text" android:text="@string/about_text"
+		android:layout_height="wrap_content" android:layout_margin="10dp"
+		android:layout_width="wrap_content" android:layout_gravity="center_horizontal"
+		android:gravity="center_horizontal"></TextView>
+	<TextView android:id="@+id/about_link" android:text="@string/about_link"
+		android:layout_height="wrap_content" android:layout_width="wrap_content"
+		android:layout_gravity="center_horizontal" android:layout_marginTop="10dp"
+		android:gravity="center_horizontal" android:autoLink="all"></TextView>
 </LinearLayout>

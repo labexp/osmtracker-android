@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="me.guillaumin.android.osmtracker" android:versionCode="8" android:versionName="0.3.3">
+	package="me.guillaumin.android.osmtracker" android:versionName="0.3.4" android:versionCode="9">
 	<application android:label="@string/app_name"
 		android:description="@string/app_description" android:icon="@drawable/icon_48x48">
 
-		<activity android:name=".activity.TrackLogger" android:label="@string/app_short_name" android:screenOrientation="portrait">
+		<activity android:name=".activity.TrackLogger" android:label="@string/app_name" android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".activity.Preferences" android:label="@string/app_name" />
+		<activity android:name=".activity.Preferences" android:label="@string/prefs" />
 		<activity android:name=".activity.WaypointList" android:label="@string/wplist" />
 		<activity android:name=".activity.About" android:label="@string/about" />
-		<activity android:name=".activity.DisplayTrack" android:label="@string/displaytrack" android:screenOrientation="portrait" />
+		<activity android:name=".activity.DisplayTrack" android:label="@string/displaytrack"/>
 		
 		<service android:name=".service.gps.GPSLogger">
 			<intent-filter>
