@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
@@ -41,7 +42,10 @@ public class GPXFileWriter {
 	/**
 	 * Date format for a point timestamp.
 	 */
-	private static final SimpleDateFormat POINT_DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+	private static SimpleDateFormat POINT_DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+	static {
+		POINT_DATE_FORMATTER.setTimeZone(TimeZone.getTimeZone("UTC"));
+	}
 	
 	/**
 	 * Writes the GPX file
@@ -75,7 +79,7 @@ public class GPXFileWriter {
 	 * @throws IOException
 	 */
 	public static void writeTrackPoints(String trackName, FileWriter fw, Cursor c) throws IOException {
-		fw.write("\t" + "<trk>");
+		fw.write("\t" + "<trk>" + "\n");
 		fw.write("\t\t" + "<name>" + trackName + "</name>" + "\n");
 		
 		fw.write("\t\t" + "<trkseg>" + "\n");
