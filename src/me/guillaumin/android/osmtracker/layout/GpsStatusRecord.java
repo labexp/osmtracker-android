@@ -76,13 +76,12 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			((Button) findViewById(R.id.gpsstatus_record_btnStillImage)).setOnClickListener(new StillImageOnClickListener(activity));
 			((Button) findViewById(R.id.gpsstatus_record_btnTextNote)).setOnClickListener(new TextNoteOnClickListener(activity));
 			
-		}
-		
-		// Disable by default the buttons
-		findViewById(R.id.gpsstatus_record_toggleTrack).setEnabled(false);
-		setButtonsEnabled(false);
-		
-		lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+			// Disable by default the buttons
+			findViewById(R.id.gpsstatus_record_toggleTrack).setEnabled(false);
+			setButtonsEnabled(false);
+			
+			lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+		}		
 
 	}
 	

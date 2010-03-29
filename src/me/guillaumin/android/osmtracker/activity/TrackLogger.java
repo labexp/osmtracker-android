@@ -218,14 +218,16 @@ public class TrackLogger extends Activity {
 		((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(false);
 
 
-		if (!gpsLogger.isTracking()) {
-			Log.v(TAG, "Service is not tracking, trying to stopService()");
-			unbindService(gpsLoggerConnection);
-			stopService(gpsLoggerServiceIntent);
-		} else {
-			// Tell service to notify user of background activity
-			sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
-			unbindService(gpsLoggerConnection);
+		if (gpsLogger != null) {
+			if (!gpsLogger.isTracking()) {
+				Log.v(TAG, "Service is not tracking, trying to stopService()");
+				unbindService(gpsLoggerConnection);
+				stopService(gpsLoggerServiceIntent);
+			} else {
+				// Tell service to notify user of background activity
+				sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
+				unbindService(gpsLoggerConnection);
+			}
 		}
 
 		super.onPause();
