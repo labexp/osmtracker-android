@@ -155,7 +155,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			activity.onGpsEnabled();
 		}
 		
-		TextView tvAccuracy = ((TextView) findViewById(R.id.gpsstatus_record_tvAccuracy));
+		TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
 		if (location.hasAccuracy()) {
 			tvAccuracy.setText(ACCURACY_FORMAT.format(location.getAccuracy()) + getResources().getString(R.string.various_unit_meters));
 		} else {
@@ -169,6 +169,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		Log.d(TAG, "Location provider " + provider + " disabled");
 		gpsActive = false;
 		((ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator)).setImageResource(R.drawable.sat_indicator_off);
+		((TextView) findViewById(R.id.gpsstatus_record_tvAccuracy)).setText("");
 		activity.onGpsDisabled();
 	}
 
@@ -183,17 +184,20 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		// Update provider status image according to status
 		Log.d(TAG, "Location provider " + provider + " status changed to: " + status);
 		ImageView imgSatIndicator = (ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator);
+		TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
 		
 		switch (status) {
 		// Don't do anything for status AVAILABLE, as this event occurs frequently,
 		// changing the graphics cause flickering .
 		case LocationProvider.OUT_OF_SERVICE:
 			imgSatIndicator.setImageResource(R.drawable.sat_indicator_off);
+			tvAccuracy.setText("");
 			gpsActive = false;
 			activity.onGpsDisabled();
 			break;
 		case LocationProvider.TEMPORARILY_UNAVAILABLE:
 			imgSatIndicator.setImageResource(R.drawable.sat_indicator_unknown);
+			tvAccuracy.setText("");
 			gpsActive = false;
 			break;
 		}
