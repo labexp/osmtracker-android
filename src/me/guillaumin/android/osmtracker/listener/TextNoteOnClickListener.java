@@ -1,7 +1,7 @@
 package me.guillaumin.android.osmtracker.listener;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
-import me.guillaumin.android.osmtracker.activity.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import android.app.AlertDialog;
 import android.content.DialogInterface;

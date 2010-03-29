@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
-import me.guillaumin.android.osmtracker.activity.OSMTracker;
 import me.guillaumin.android.osmtracker.gpx.GPXFileWriter;
 import android.content.ContentValues;
 import android.content.Context;

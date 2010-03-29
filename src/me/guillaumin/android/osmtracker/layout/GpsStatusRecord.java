@@ -1,5 +1,8 @@
 package me.guillaumin.android.osmtracker.layout;
 
+import java.text.DecimalFormat;
+
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.listener.StillImageOnClickListener;
@@ -7,6 +10,7 @@ import me.guillaumin.android.osmtracker.listener.TextNoteOnClickListener;
 import me.guillaumin.android.osmtracker.listener.ToggleRecordOnCheckedChangeListener;
 import me.guillaumin.android.osmtracker.listener.VoiceRecOnClickListener;
 import android.content.Context;
+import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
@@ -20,6 +24,7 @@ import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 /**
@@ -32,6 +37,17 @@ import android.widget.ToggleButton;
 public class GpsStatusRecord extends LinearLayout implements Listener, LocationListener {
 	
 	private final static String TAG = GpsStatusRecord.class.getSimpleName();
+	
+	/**
+	 * Formatter for accuracy display.
+	 */
+	private final static DecimalFormat ACCURACY_FORMAT = new DecimalFormat("0");
+	
+	/**
+	 * Keeps matching between satellite indicator bars to draw, and numbers
+	 * of satellites for each bars;
+	 */
+	private final static int[] SAT_INDICATOR_TRESHOLD = {2, 3, 4, 6, 8};
 	
 	/**
 	 * Containing activity
@@ -96,63 +112,88 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	@Override
 	public void onGpsStatusChanged(int event) {
 		// Update GPS Status image according to event
-		ImageView imgGpsStatus = (ImageView) findViewById(R.id.gpsstatus_record_imgGpsStatus);
+		ImageView imgSatIndicator = (ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator);
 
 		switch (event) {
 		case GpsStatus.GPS_EVENT_FIRST_FIX:
-			imgGpsStatus.setImageResource(R.drawable.ledgreen_32x32);
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_0);
 			break;
 		case GpsStatus.GPS_EVENT_STARTED:
-			imgGpsStatus.setImageResource(R.drawable.ledorange_32x32);
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_unknown);
 			break;
 		case GpsStatus.GPS_EVENT_STOPPED:
-			imgGpsStatus.setImageResource(R.drawable.ledred_32x32);
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_off);
+			break;
+		case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+			GpsStatus status = lmgr.getGpsStatus(null);
+
+			// Count active satellites
+			int satCount = 0;
+			for (GpsSatellite sat:status.getSatellites()) {
+				satCount++;
+			}
+			
+			// Count how many bars should we draw
+			int nbBars = 0;
+			for (int i=0; i<SAT_INDICATOR_TRESHOLD.length; i++) {
+				if (satCount >= SAT_INDICATOR_TRESHOLD[i]) {
+					nbBars = i;
+				}
+			}
+			Log.v(TAG, "Found " + satCount + " satellites. Will draw " + nbBars + " bars.");			
+			imgSatIndicator.setImageResource(getResources().getIdentifier("drawable/sat_indicator_" + nbBars, null, OSMTracker.class.getPackage().getName()));
 			break;
 		}
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
+		Log.v(TAG, "Location received " + location);
 		if (! gpsActive) {
 			gpsActive = true;
 			// GPS activated, activate UI
 			activity.onGpsEnabled();
 		}
+		
+		TextView tvAccuracy = ((TextView) findViewById(R.id.gpsstatus_record_tvAccuracy));
+		if (location.hasAccuracy()) {
+			tvAccuracy.setText(ACCURACY_FORMAT.format(location.getAccuracy()) + getResources().getString(R.string.various_unit_meters));
+		} else {
+			tvAccuracy.setText("");
+		}
+		
 	}
 
 	@Override
 	public void onProviderDisabled(String provider) {
 		Log.d(TAG, "Location provider " + provider + " disabled");
 		gpsActive = false;
-		((ImageView) findViewById(R.id.gpsstatus_record_imgLocationStatus)).setImageResource(R.drawable.satellite_off);
-		((ImageView) findViewById(R.id.gpsstatus_record_imgGpsStatus)).setImageResource(R.drawable.ledgrey_32x32);
+		((ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator)).setImageResource(R.drawable.sat_indicator_off);
 		activity.onGpsDisabled();
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
 		Log.d(TAG, "Location provider " + provider + " enabled");
-		ImageView imgProviderStatus = (ImageView) findViewById(R.id.gpsstatus_record_imgLocationStatus);
-		imgProviderStatus.setImageResource(R.drawable.satellite);
+		((ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator)).setImageResource(R.drawable.sat_indicator_unknown);
 	}
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// Update provider status image according to status
 		Log.d(TAG, "Location provider " + provider + " status changed to: " + status);
-		ImageView imgProviderStatus = (ImageView) findViewById(R.id.gpsstatus_record_imgLocationStatus);
+		ImageView imgSatIndicator = (ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator);
 		
 		switch (status) {
-		case LocationProvider.AVAILABLE:
-			imgProviderStatus.setImageResource(R.drawable.satellite);
-			break;
+		// Don't do anything for status AVAILABLE, as this event occurs frequently,
+		// changing the graphics cause flickering .
 		case LocationProvider.OUT_OF_SERVICE:
-			imgProviderStatus.setImageResource(R.drawable.satellite_off);
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_off);
 			gpsActive = false;
 			activity.onGpsDisabled();
 			break;
 		case LocationProvider.TEMPORARILY_UNAVAILABLE:
-			imgProviderStatus.setImageResource(R.drawable.satellite_unknown);
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_unknown);
 			gpsActive = false;
 			break;
 		}

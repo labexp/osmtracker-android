@@ -2,8 +2,8 @@ package me.guillaumin.android.osmtracker.listener;
 
 import java.io.File;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
-import me.guillaumin.android.osmtracker.activity.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import android.app.ProgressDialog;
 import android.content.Context;

@@ -2,8 +2,8 @@ package me.guillaumin.android.osmtracker.service.gps;
 
 import java.io.IOException;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
-import me.guillaumin.android.osmtracker.activity.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import android.app.Notification;

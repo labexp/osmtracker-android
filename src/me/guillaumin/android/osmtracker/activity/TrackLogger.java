@@ -2,6 +2,7 @@ package me.guillaumin.android.osmtracker.activity;
 
 import java.io.File;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.layout.DisablableTableLayout;
 import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;

@@ -1,5 +1,6 @@
 package me.guillaumin.android.osmtracker.activity;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.util.MercatorProjection;

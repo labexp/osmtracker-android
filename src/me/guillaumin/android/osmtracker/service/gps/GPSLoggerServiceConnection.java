@@ -1,7 +1,7 @@
 package me.guillaumin.android.osmtracker.service.gps;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
-import me.guillaumin.android.osmtracker.activity.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import android.content.ComponentName;
 import android.content.Intent;

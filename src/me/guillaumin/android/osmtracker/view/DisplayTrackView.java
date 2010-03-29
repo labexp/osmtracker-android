@@ -94,7 +94,7 @@ public class DisplayTrackView extends TextView {
 		trackPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 		
 		// Retrieve some resources that will be used in drawing
-		meterLabel = getResources().getString(R.string.displaytrack_unit_meters);
+		meterLabel = getResources().getString(R.string.various_unit_meters);
 		northLabel = getResources().getString(R.string.displaytrack_north);
 		marker = BitmapFactory.decodeResource(getResources(), R.drawable.marker);
 		compass = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_compass);

@@ -1,5 +1,6 @@
 package me.guillaumin.android.osmtracker.activity;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.db.WaypointListAdapter;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import android.app.ListActivity;

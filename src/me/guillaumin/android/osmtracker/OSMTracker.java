@@ -1,14 +1,14 @@
-package me.guillaumin.android.osmtracker.activity;
+package me.guillaumin.android.osmtracker;
 
 import android.app.Activity;
 
 /**
- * Main activity. Not used for the moment.
+ * Constants & app-wide variables.
  * 
  * @author Nicolas Guillaumn
  * 
  */
-public class OSMTracker extends Activity {
+public class OSMTracker {
 
 	/**
 	 * Stores settings keys and default values.
@@ -37,32 +37,32 @@ public class OSMTracker extends Activity {
 	/**
 	 * Intent for tracking a waypoint
 	 */
-	public final static String INTENT_TRACK_WP = "me.guillaumin.android.osmtracker.intent.TRACK_WP";
+	public final static String INTENT_TRACK_WP = OSMTracker.class.getPackage().getName() + ".intent.TRACK_WP";
 
 	/**
 	 * Intent to start tracking
 	 */
-	public final static String INTENT_START_TRACKING = "me.guillaumin.android.osmtracker.intent.START_TRACKING";
+	public final static String INTENT_START_TRACKING = OSMTracker.class.getPackage().getName() + ".intent.START_TRACKING";
 
 	/**
 	 * Intent to stop tracking
 	 */
-	public final static String INTENT_STOP_TRACKING = "me.guillaumin.android.osmtracker.intent.STOP_TRACKING";
+	public final static String INTENT_STOP_TRACKING = OSMTracker.class.getPackage().getName() + ".intent.STOP_TRACKING";
 
 	/**
 	 * Intent fired when the service go to background and should start to notify user. 
 	 */
-	public final static String INTENT_START_NOTIFY_BACKGROUND = "me.guillaumin.android.osmtracker.intent.START_NOTIFY_BACKGROUND";
+	public final static String INTENT_START_NOTIFY_BACKGROUND = OSMTracker.class.getPackage().getName() + ".intent.START_NOTIFY_BACKGROUND";
 	
 	/**
 	 * Intent fired when the UI got back and the service should stop notifying the user of background job.
 	 */
-	public final static String INTENT_STOP_NOTIFY_BACKGROUND = "me.guillaumin.android.osmtracker.intent.STOP_NOTIFY_BACKGROUND";
+	public final static String INTENT_STOP_NOTIFY_BACKGROUND = OSMTracker.class.getPackage().getName() + ".intent.STOP_NOTIFY_BACKGROUND";
 	
 	/**
 	 * Intent fired when the notification are cleared by the user.
 	 */
-	public final static String INTENT_NOTIFICATION_CLEARED = "me.guillaumin.android.osmtracker.intent.NOTIFICATION_CLEARED";
+	public final static String INTENT_NOTIFICATION_CLEARED = OSMTracker.class.getPackage().getName() + ".intent.NOTIFICATION_CLEARED";
 	
 	/**
 	 * Key for extra data "waypoint name" in Intent
