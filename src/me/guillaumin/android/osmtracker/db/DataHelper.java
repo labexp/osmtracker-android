@@ -45,6 +45,12 @@ public class DataHelper {
 	private static final String EXTENSION_JPG = ".jpg";
 
 	/**
+	 * Number of tries to rename a media file for the current track
+	 * if there are already a media file of this name.
+	 */
+	private static final int MAX_RENAME_ATTEMPTS = 20;
+	
+	/**
 	 * Database name.
 	 */
 	private static final String DB_NAME = OSMTracker.class.getSimpleName();
@@ -191,8 +197,10 @@ public class DataHelper {
 				values.put(Schema.COL_ACCURACY, location.getAccuracy());
 			}
 			values.put(Schema.COL_NAME, name);
+			
 			if (link != null) {
-				values.put(Schema.COL_LINK, link);
+				// Rename file to match location timestamp
+				values.put(Schema.COL_LINK, renameFile(link, fileNameFormatter.format(location.getTime())));
 			}
 
 			database.insert(Schema.TBL_WAYPOINT, null, values);
@@ -308,6 +316,25 @@ public class DataHelper {
 		File imageFile = new File(currentImageFile.getAbsolutePath());
 		currentImageFile = null;
 		return imageFile;
+	}
+	
+	/**
+	 * Renames a file inside track directory, keeping the extension
+	 * @param from File to rename (Ex: "abc.png")
+	 * @param to Filename to use for new name (Ex: "def")
+	 * @return Renamed filename (Ex: "def.png")
+	 */
+	private String renameFile(String from, String to) {
+		String ext = from.substring(from.lastIndexOf(".")+1, from.length());
+		File origin = new File(trackDir + File.separator + from);
+		File target = new File(trackDir + File.separator + to + "." + ext);
+		// Check & manages if there is already a file with this name
+		for (int i=0; i<MAX_RENAME_ATTEMPTS && target.exists(); i++) {
+			target = new File(trackDir + File.separator + to + i + "." + ext);
+		}
+		origin.renameTo(target);
+		return target.getName();
+
 	}
 
 	/**

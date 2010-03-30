@@ -36,12 +36,12 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 	/**
 	 * Dialog shown while recording
 	 */
-	ProgressDialog progressDialog;
+	private ProgressDialog progressDialog;
 
 	/**
 	 * Parent activity
 	 */
-	TrackLogger activity;
+	private TrackLogger activity;
 	
 	/**
 	 * AudioManager, to unmute microphone
@@ -133,7 +133,17 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 
 			// Dismiss dialog
 			Log.d(TAG, "Dismissing record dialog");
-			progressDialog.dismiss();
+			
+			try {
+				progressDialog.dismiss();
+			} catch (IllegalArgumentException iae) {
+				// View is not attached to window manager. Can occurs
+				// if users rotates the phone while recording.
+
+				// TODO This actually leads to Activity leaking the window (see logs
+				// while recording & rotating phone. Find a better way to handle
+				// that, see View.onDetachedFromWindow();
+			}
 
 			isRecording = false;
 		}
