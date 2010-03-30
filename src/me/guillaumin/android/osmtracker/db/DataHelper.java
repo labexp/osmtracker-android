@@ -263,9 +263,7 @@ public class DataHelper {
 			try {
 				GPXFileWriter
 						.writeGpxFile(context.getResources(), cTrackPoints, cWayPoints, trackFile, PreferenceManager
-								.getDefaultSharedPreferences(context).getString(
-										OSMTracker.Preferences.KEY_ACCURACY_OUTPUT,
-										OSMTracker.Preferences.VAL_ACCURACY_OUTPUT));
+								.getDefaultSharedPreferences(context));
 			} catch (IOException ioe) {
 				Log.e(TAG, "Unable to export track: " + ioe.getMessage());
 			}

@@ -26,52 +26,6 @@
 	<string name="gpsstatus_record_voicerec">Voice record</string>
 	<string name="gpsstatus_record_stillimage">Take picture</string>
 	<string name="gpsstatus_record_textnote">Text note</string>
-
-	<!-- Preferences -->
-	<string name="prefs">Settings</string>
-	<string name="prefs_gps_os_settings">GPS settings</string>
-	<string name="prefs_gps_os_settings_summary">Display system GPS settings screen</string>
-	<string name="prefs_storage_dir">External storage (SD) directory</string>
-	<string name="prefs_storage_dir_summary"></string>
-	<string name="prefs_check_gps_startup">Check GPS at startup</string>
-	<string name="prefs_check_gps_startup_summary">Check if GPS is disabled at startup, and offer to enable it.</string>
-	<string name="prefs_ui">User interface</string>
-	<string name="prefs_ui_legacyback">Use legacy back soft-key</string>
-	<string name="prefs_ui_legacyback_summary">Use a back soft-button instead of the device back button</string>
-	<string name="prefs_voicerec_duration">Voice record duration</string>
-	<string name="prefs_voicerec_duration_seconds">seconds</string>
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-	</string-array>
-	<string name="prefs_theme">Main screen graphic theme</string>
-	<string name="prefs_theme_summary">Application restart required to take effect</string>
-	<string-array name="prefs_theme_keys">
-		<item>OS default</item>
-		<item>OS default (Dark)</item>
-		<item>OS default (Light)</item>
-		<item>High contrast</item>
-	</string-array>
-	<string-array name="prefs_theme_values">
-		<item>android:style/Theme</item>
-		<item>android:style/Theme.Black</item>
-		<item>android:style/Theme.Light</item>
-		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
-	</string-array>
-	<string name="prefs_accuracy_output">Accuracy in GPX file</string>
-	<string name="prefs_accuracy_output_summary">Allow accuracy info in GPX file, with waypoint name or in a separate tag</string>
-	<string-array name="prefs_accuracy_output_keys">
-		<item>None</item>
-		<item>With waypoint name</item>
-		<item>In waypoint comment</item>
-	</string-array>
-	<string-array name="prefs_accuracy_output_values">
-		<item>none</item>
-		<item>wpt_name</item>
-		<item>wpt_cmt</item>
-	</string-array>
 	
 	<!-- Menu -->
 	<string name="menu_settings">Settings</string>
@@ -86,6 +40,7 @@
 	
 	<!-- GPX -->
 	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
+	<string name="gpx_hdop_approximation_cmt">Warning: HDOP values aren\'t the HDOP returned by GPS device. They\'re approximated for location accuracy in meters, and should not be taken into account.</string>
 	
 	<!-- Notification -->
 	<string name="notification_still_running">OSMTracker is still tracking</string>

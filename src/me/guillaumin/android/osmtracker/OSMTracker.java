@@ -23,7 +23,8 @@ public class OSMTracker {
 		public final static String KEY_UI_THEME = "ui.theme";
 		public final static String KEY_GPS_OSSETTINGS = "gps.ossettings";
 		public final static String KEY_GPS_CHECKSTARTUP = "gps.checkstartup";
-		public final static String KEY_ACCURACY_OUTPUT = "gpx.accuracy";
+		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
+		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
 
 		/**
 		 * Default values
@@ -34,10 +35,12 @@ public class OSMTracker {
 		public final static String VAL_UI_THEME = "@android:style/Theme";
 		public final static boolean VAL_GPS_CHECKSTARTUP = true;
 		
-		public final static String VAL_ACCURACY_OUPUT_NONE = "none";
-		public final static String VAL_ACCURACY_OUTPUT_WPT_NAME = "wpt_name";
-		public final static String VAL_ACCURACY_OUTPUT_WPT_CMT = "wpt_cmt";
-		public final static String VAL_ACCURACY_OUTPUT = VAL_ACCURACY_OUPUT_NONE;
+		public final static String VAL_OUTPUT_ACCURACY_NONE = "none";
+		public final static String VAL_OUTPUT_ACCURACY_WPT_NAME = "wpt_name";
+		public final static String VAL_OUTPUT_ACCURACY_WPT_CMT = "wpt_cmt";
+		public final static String VAL_OUTPUT_ACCURACY = VAL_OUTPUT_ACCURACY_NONE;
+		
+		public final static boolean VAL_OUTPUT_GPX_HDOP_APPROXIMATION = false;
 	};
 
 	/**
@@ -79,5 +82,15 @@ public class OSMTracker {
 	 * Key for extra data "link" in Intent
 	 */
 	public final static String INTENT_KEY_LINK = "link";
+	
+	/**
+	 * Approximation factor for calculating Horizontal Dilution of Precision
+	 * from location.getAccuracy(). location.getAccuracy() returns an accuracy measured
+	 * in meters, and HDOP is obtained by dividing accuracy by this factor.
+	 * The value is totally false (!), but is still useful for certain use case like
+	 * track display in JOSM.
+	 * See: http://code.google.com/p/osmtracker-android/issues/detail?id=15 
+	 */
+	public final static int HDOP_APPROXIMATION_FACTOR = 4;
 
 }

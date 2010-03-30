@@ -10,6 +10,7 @@ import java.util.TimeZone;
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.DataHelper;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 
@@ -53,18 +54,23 @@ public class GPXFileWriter {
 	 * @param cTrackPoints Cursor to track points.
 	 * @param cWayPoints Cursor to way points.
 	 * @param target Target GPX file
-	 * @param accuracyOutput Constant describing how to include (or not) accuracy info for way points.
+	 * @param preferences App preferences to access output settings
 	 * @throws IOException 
 	 */
-	public static void writeGpxFile(Resources resources, Cursor cTrackPoints, Cursor cWayPoints, File target, String accuracyOutput) throws IOException {
+	public static void writeGpxFile(Resources resources, Cursor cTrackPoints, Cursor cWayPoints, File target, SharedPreferences preferences) throws IOException {
+		
+		String accuracyOutput = preferences.getString(
+				OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
+				OSMTracker.Preferences.VAL_OUTPUT_ACCURACY);
+		boolean fillHDOP = preferences.getBoolean(OSMTracker.Preferences.KEY_OUTPUT_GPX_HDOP_APPROXIMATION, OSMTracker.Preferences.VAL_OUTPUT_GPX_HDOP_APPROXIMATION);
 		
 		FileWriter fw = new FileWriter(target);
 		
 		fw.write(XML_HEADER + "\n");
 		fw.write(TAG_GPX + "\n");
 		
-		writeTrackPoints(resources.getString(R.string.gpx_track_name), fw, cTrackPoints);
-		writeWayPoints(fw, cWayPoints, accuracyOutput, resources);
+		writeTrackPoints(resources.getString(R.string.gpx_track_name), fw, cTrackPoints, resources, fillHDOP);
+		writeWayPoints(fw, cWayPoints, accuracyOutput, resources, fillHDOP);
 		
 		fw.write("</gpx>");
 		
@@ -76,11 +82,16 @@ public class GPXFileWriter {
 	 * @param trackName Name of the track (metadata).
 	 * @param fw Writer to the target file.
 	 * @param c Cursor to track points.
+	 * @param resourcse To access string resources
+	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
 	 * @throws IOException
 	 */
-	public static void writeTrackPoints(String trackName, FileWriter fw, Cursor c) throws IOException {
+	public static void writeTrackPoints(String trackName, FileWriter fw, Cursor c, Resources resources, boolean fillHDOP) throws IOException {
 		fw.write("\t" + "<trk>" + "\n");
-		fw.write("\t\t" + "<name>" + trackName + "</name>" + "\n");
+		fw.write("\t\t" + "<name>" + CDATA_START + trackName + CDATA_END + "</name>" + "\n");
+		if (fillHDOP) {
+			fw.write("\t\t" + "<cmt>" + CDATA_START + resources.getString(R.string.gpx_hdop_approximation_cmt) + CDATA_END + "</cmt>" + "\n");
+		}
 		
 		fw.write("\t\t" + "<trkseg>" + "\n");
 		
@@ -94,6 +105,9 @@ public class GPXFileWriter {
 	        }
 	        out.append("\t\t\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 	        
+	        if(fillHDOP && ! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
+	        	out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
+	        }
 	       
 	        out.append("\t\t\t" + "</trkpt>" + "\n");
 	        fw.write(out.toString());
@@ -111,9 +125,10 @@ public class GPXFileWriter {
 	 * @param c Cursor to way points.
 	 * @param accuracyOutput Constant describing how to include (or not) accuracy info for way points.
 	 * @param resourcse To access string resources
+	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
 	 * @throws IOException
 	 */
-	public static void writeWayPoints(FileWriter fw, Cursor c, String accuracyInfo, Resources resources) throws IOException {
+	public static void writeWayPoints(FileWriter fw, Cursor c, String accuracyInfo, Resources resources, boolean fillHDOP) throws IOException {
 		// Label for meter unit
 		String meterUnit = resources.getString(R.string.various_unit_meters);
 		// Word "accuracy"
@@ -129,11 +144,15 @@ public class GPXFileWriter {
 	        }
 		    out.append("\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 
+		    if(fillHDOP && ! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
+	        	out.append("\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
+	        }
+		    
 		    String name = c.getString(c.getColumnIndex(DataHelper.Schema.COL_NAME));
 		    
-		    if (! OSMTracker.Preferences.VAL_ACCURACY_OUPUT_NONE.equals(accuracyInfo) && ! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
+		    if (! OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_NONE.equals(accuracyInfo) && ! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
 		    	// Outputs accuracy info for way point
-		    	if (OSMTracker.Preferences.VAL_ACCURACY_OUTPUT_WPT_NAME.equals(accuracyInfo)) {
+		    	if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_NAME.equals(accuracyInfo)) {
 		    		// Output accuracy with name
 		    		out.append("\t\t" + "<name>"
 		    				+ CDATA_START 
@@ -141,7 +160,7 @@ public class GPXFileWriter {
 		    				+ " (" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY)) + meterUnit + ")"
 		    				+ CDATA_END
 		    				+ "</name>" + "\n");
-		    	} else if (OSMTracker.Preferences.VAL_ACCURACY_OUTPUT_WPT_CMT.equals(accuracyInfo)) {
+		    	} else if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_CMT.equals(accuracyInfo)) {
 		    		// Output accuracy in separate tag
 		    		out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
 		    		out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
