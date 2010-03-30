@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!-- Preferences -->
+	<string name="prefs">Impostazioni</string>
+	
+	<string name="prefs_gps_os_settings">Impostazioni GPS</string>
+	<string name="prefs_gps_os_settings_summary">Mostra la schermata impostazioni del sistema GPS</string>
+
+	<string name="prefs_check_gps_startup">Verifica GPS all\'avvio</string>
+	<string name="prefs_check_gps_startup_summary">Verifica se il GPS è disabilitato all\'avvio e chiede di abilitarlo.</string>
+
+	<string name="prefs_ui">Interfaccia utente</string>
+	<string name="prefs_ui_legacyback">Usa tasto indietro integrato</string>
+	<string name="prefs_ui_legacyback_summary">Usa il tasto indietro integrato invece del tasto fisico del dispositivo</string>
+
+	<string name="prefs_voicerec_duration">Durata registrazione vocale</string>
+	<string name="prefs_voicerec_duration_seconds">secondi</string>
+	<string-array name="prefs_voicerec_durations">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+	</string-array>
+	<string name="prefs_theme">Tema schermata principale</string>
+	<string name="prefs_theme_summary">Riavviare l\'applicazione per applicare le modifiche</string>
+	<string-array name="prefs_theme_keys">
+		<item>OS predefinito</item>
+		<item>OS predefinito (Oscuro)</item>
+		<item>OS predefinito (Chiaro)</item>
+		<item>Contrasto elevato</item>
+	</string-array>
+	<string-array name="prefs_theme_values">
+		<item>android:style/Theme</item>
+		<item>android:style/Theme.Black</item>
+		<item>android:style/Theme.Light</item>
+		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+	</string-array>
+
+	<string name="prefs_output">Salvataggio file GPX</string>
+	<string name="prefs_storage_dir">Directory memoria esterna (SD)</string>
+	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_output_accuracy">Precisione nel file GPX</string>
+	<string name="prefs_output_accuracy_summary">Inserisce le info di precisione nel file GPX con il nome del POI o in una scheda separata</string>
+	<string-array name="prefs_output_accuracy_keys">
+		<item>Nessuna</item>
+		<item>Con nome POI</item>
+		<item>Nel commento del POI</item>
+	</string-array>
+	<string-array name="prefs_output_accuracy_values">
+		<item>none</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
+	<string name="prefs_output_gpx_hdop_approximation">Usa approssimazione HDOP</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Inserisci HDOP nel GPX con un valore di approssimazione per la precisione</string>
+</resources>

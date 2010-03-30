@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="tracklogger_main_btnMisc">Generici</string>
+   	<string name="tracklogger_main_btnRestriction">Limitazioni</string>
+   	<string name="tracklogger_main_btnCar">Auto</string>
+   	<string name="tracklogger_main_btnAmenity">Attrazioni</string>
+   	<string name="tracklogger_main_btnAmenityMore">Attrazioni (+)</string>
+   	<string name="tracklogger_main_btnTourism">Turismo</string>
+   	<string name="tracklogger_main_btnWay">Percorso</string>
+   	<string name="tracklogger_main_btnTrack">Pista</string>
+	<string name="tracklogger_main_btnLandUse">Uso orizzontale</string>
+</resources>

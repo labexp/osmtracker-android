@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tracklogger_way_btnBridge">Ponte</string>
+    <string name="tracklogger_way_btnCrossing">Strisce pedonali</string>
+    <string name="tracklogger_way_btnMotorway">Autostrada</string>
+    <string name="tracklogger_way_btnTrunk">Principale</string>
+    <string name="tracklogger_way_btniPrimary">Primaria</string>
+    <string name="tracklogger_way_btnSecondary">Secondaria</string>
+    <string name="tracklogger_way_btnTertiary">Terziaria</string>
+    <string name="tracklogger_way_btnResidential">Residenziale</string>
+    <string name="tracklogger_way_btnService">Servizio</string>
+</resources>

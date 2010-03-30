@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tracklogger_misc_btnBusStop">Fermata bus</string>
+	<string name="tracklogger_misc_btnRailway">Ferrovia</string>
+   	<string name="tracklogger_misc_btnTelephone">Telefono</string>
+   	<string name="tracklogger_misc_btnPostBox">Ufficio postale</string>
+   	<string name="tracklogger_misc_btnATM">Bancomat</string>
+   	<string name="tracklogger_misc_btnBollard">Colonnine</string>
+   	<string name="tracklogger_misc_btnToilets">Toilette</string>
+   	<string name="tracklogger_misc_btnShelter">Rifugio</string>
+   	<string name="tracklogger_misc_btnSurveillance">Vigilanza</string>
+</resources>
