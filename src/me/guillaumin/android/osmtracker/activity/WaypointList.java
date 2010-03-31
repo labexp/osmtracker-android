@@ -1,14 +1,11 @@
 package me.guillaumin.android.osmtracker.activity;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.WaypointListAdapter;
-import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import android.app.ListActivity;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.database.Cursor;
-import android.os.IBinder;
 import android.widget.CursorAdapter;
 
 /**
@@ -19,36 +16,15 @@ import android.widget.CursorAdapter;
  *
  */
 public class WaypointList extends ListActivity {
-
-	/**
-	 * GPS Logger service.
-	 */
-	private GPSLogger gpsLogger;
 	
-	/**
-	 * Service connection to the GPS logger service.
-	 */
-	private ServiceConnection gpsLoggerConnection = new ServiceConnection() {
-		
-		@Override
-		public void onServiceDisconnected(ComponentName name) {
-			gpsLogger = null;
-		}
-		
-		@Override
-		public void onServiceConnected(ComponentName name, IBinder service) {
-			gpsLogger = ((GPSLogger.GPSLoggerBinder) service).getService();
-			Cursor wpCursor = gpsLogger.getDataHelper().getWaypointsCursor();
-			if (wpCursor != null) {
-				setListAdapter(new WaypointListAdapter(WaypointList.this, wpCursor));
-			}
-		}
+	@Override
+	protected void onCreate(android.os.Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setListAdapter(new WaypointListAdapter(WaypointList.this, getContentResolver().query(TrackContentProvider.CONTENT_URI_WAYPOINT, null, null, null, Schema.COL_TIMESTAMP + " asc")));
 	};
-
+	
 	@Override
 	protected void onResume() {
-		// Bind on service, to be able to get data.
-		bindService(new Intent(this, GPSLogger.class), gpsLoggerConnection, 0);
 		// Tell service to notify user of background activity
 		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
 		super.onResume();
@@ -56,11 +32,9 @@ public class WaypointList extends ListActivity {
 
 	@Override
 	protected void onPause() {
-		// Unbind to service
 		// Tell service to notify user of background activity
 		sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
 		
-		unbindService(gpsLoggerConnection);
 		CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null) {
 			// Properly close the adapter cursor

@@ -3,8 +3,11 @@ package me.guillaumin.android.osmtracker.view;
 import java.text.DecimalFormat;
 
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.util.MercatorProjection;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -98,23 +101,17 @@ public class DisplayTrackView extends TextView {
 		northLabel = getResources().getString(R.string.displaytrack_north);
 		marker = BitmapFactory.decodeResource(getResources(), R.drawable.marker);
 		compass = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_compass);
-	}
-
-	/**
-	 * Prepares track display. Projects each trackpoint into 2D view.
-	 * 
-	 * @param coords
-	 *            Coordinates of each track point.
-	 */
-	public void setCoords(double[][] c) {
-		coords = c;
+		
+		// Populate data from content provider
+		Cursor trackpointsCursor = context.getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+		coords = populateCoords(trackpointsCursor);
 	}
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		Log.v(TAG, "onSizeChanged: " + w + "," + h + ". Old: " + oldw + "," + oldh);
-
-		// We got a size. If we got coordinates too, start projecting.
+		
+		// If we got coordinates, start projecting.
 		if (coords != null && coords.length > 0) {
 			projection = new MercatorProjection(findMin(coords, MercatorProjection.LATITUDE), findMin(coords,
 					MercatorProjection.LONGITUDE), findMax(coords, MercatorProjection.LATITUDE), findMax(coords,
@@ -228,6 +225,27 @@ public class DisplayTrackView extends TextView {
 				out = in[i][offset];
 			}
 		}
+		return out;
+	}
+	
+	/**
+	 * Populate coordinates from a cursor to current track Database
+	 * @param c Cursor on trackpoint table
+	 * @return An array of double[lon, lat]
+	 */
+	public double[][] populateCoords(Cursor c) {
+		double[][] out = new double[c.getCount()][2];
+		int i=0;
+		
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+			out[i][MercatorProjection.LONGITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE));
+			out[i][MercatorProjection.LATITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE));
+			i++;
+		}
+		c.close();
+		
+		Log.v(TAG, "Extracted " + out.length + " points from DB.");
+		
 		return out;
 	}
 

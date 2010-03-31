@@ -9,7 +9,7 @@ import java.util.TimeZone;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
-import me.guillaumin.android.osmtracker.db.DataHelper;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -95,24 +95,22 @@ public class GPXFileWriter {
 		
 		fw.write("\t\t" + "<trkseg>" + "\n");
 		
-		while (!c.isAfterLast() ) {
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 			StringBuffer out = new StringBuffer();
 			out.append("\t\t\t" + "<trkpt lat=\"" 
-					+ c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LATITUDE)) + "\" "
-					+ "lon=\"" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LONGITUDE)) + "\">" + "\n");
-	        if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION))) {
-	        	out.append("\t\t\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>" + "\n");
+					+ c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE)) + "\" "
+					+ "lon=\"" + c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE)) + "\">" + "\n");
+	        if (! c.isNull(c.getColumnIndex(Schema.COL_ELEVATION))) {
+	        	out.append("\t\t\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(Schema.COL_ELEVATION)) + "</ele>" + "\n");
 	        }
-	        out.append("\t\t\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
+	        out.append("\t\t\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 	        
-	        if(fillHDOP && ! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
-	        	out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
+	        if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
+	        	out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
 	        }
 	       
 	        out.append("\t\t\t" + "</trkpt>" + "\n");
 	        fw.write(out.toString());
-	        
-	        c.moveToNext();
 		}
 		
 		fw.write("\t\t" + "</trkseg>" + "\n");
@@ -134,56 +132,54 @@ public class GPXFileWriter {
 		// Word "accuracy"
 		String accuracy = resources.getString(R.string.various_accuracy);
 		
-		while(! c.isAfterLast() ) {
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 			StringBuffer out = new StringBuffer();
 			out.append("\t" + "<wpt lat=\""
-					+ c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LATITUDE)) + "\" "
-					+ "lon=\"" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_LONGITUDE)) + "\">" + "\n");
-	        if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION))) {
-	        	out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ELEVATION)) + "</ele>" + "\n");
+					+ c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE)) + "\" "
+					+ "lon=\"" + c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE)) + "\">" + "\n");
+	        if (! c.isNull(c.getColumnIndex(Schema.COL_ELEVATION))) {
+	        	out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(Schema.COL_ELEVATION)) + "</ele>" + "\n");
 	        }
-		    out.append("\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(DataHelper.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
+		    out.append("\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 
-		    if(fillHDOP && ! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
-	        	out.append("\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
+		    if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
+	        	out.append("\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
 	        }
 		    
-		    String name = c.getString(c.getColumnIndex(DataHelper.Schema.COL_NAME));
+		    String name = c.getString(c.getColumnIndex(Schema.COL_NAME));
 		    
-		    if (! OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_NONE.equals(accuracyInfo) && ! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY))) {
+		    if (! OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_NONE.equals(accuracyInfo) && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
 		    	// Outputs accuracy info for way point
 		    	if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_NAME.equals(accuracyInfo)) {
 		    		// Output accuracy with name
 		    		out.append("\t\t" + "<name>"
 		    				+ CDATA_START 
 		    				+ name
-		    				+ " (" + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY)) + meterUnit + ")"
+		    				+ " (" + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + ")"
 		    				+ CDATA_END
 		    				+ "</name>" + "\n");
 		    	} else if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_CMT.equals(accuracyInfo)) {
 		    		// Output accuracy in separate tag
 		    		out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
-		    		out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(DataHelper.Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
+		    		out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
 		    	}
 		    } else {
 		    	// No accuracy info requested, or available
 		    	out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
 		    }
 			
-		    String link = c.getString(c.getColumnIndex(DataHelper.Schema.COL_LINK));
+		    String link = c.getString(c.getColumnIndex(Schema.COL_LINK));
 		    if (link != null) {
 		       	out.append("\t\t" + "<link>" + link + "</link>" + "\n");
 		    }
 		    
-		    if (! c.isNull(c.getColumnIndex(DataHelper.Schema.COL_NBSATELLITES))) {
-		    	out.append("\t\t" + "<sat>" + c.getInt(c.getColumnIndex(DataHelper.Schema.COL_NBSATELLITES)) + "</sat>" + "\n");
+		    if (! c.isNull(c.getColumnIndex(Schema.COL_NBSATELLITES))) {
+		    	out.append("\t\t" + "<sat>" + c.getInt(c.getColumnIndex(Schema.COL_NBSATELLITES)) + "</sat>" + "\n");
 		    }
 		    
 		    out.append("\t" + "</wpt>" + "\n");
 		    
 		    fw.write(out.toString());
-		    
-		    c.moveToNext();
 		}
 	}
 }

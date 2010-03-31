@@ -39,7 +39,7 @@ public class GPSLogger extends Service implements LocationListener {
 	/**
 	 * Data helper.
 	 */
-	private DataHelper dataHelper = new DataHelper(this);
+	private DataHelper dataHelper;
 
 	/**
 	 * Are we currently tracking ?
@@ -165,6 +165,8 @@ public class GPSLogger extends Service implements LocationListener {
 	
 	@Override
 	public void onCreate() {	
+		dataHelper = new DataHelper(this);
+		
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(OSMTracker.INTENT_TRACK_WP);

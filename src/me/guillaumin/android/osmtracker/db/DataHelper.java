@@ -7,20 +7,20 @@ import java.util.Date;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.gpx.GPXFileWriter;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 /**
- * Data helper for storing track in DB and exporting in GPX. For the moment only
- * 1 database is used, and deleted once done.
+ * Data helper for dialoging with content resolver and filesystem.
  * 
  * @author Nicolas Guillaumin
  * 
@@ -45,15 +45,10 @@ public class DataHelper {
 	private static final String EXTENSION_JPG = ".jpg";
 
 	/**
-	 * Number of tries to rename a media file for the current track
-	 * if there are already a media file of this name.
+	 * Number of tries to rename a media file for the current track if there are
+	 * already a media file of this name.
 	 */
 	private static final int MAX_RENAME_ATTEMPTS = 20;
-	
-	/**
-	 * Database name.
-	 */
-	private static final String DB_NAME = OSMTracker.class.getSimpleName();
 
 	/**
 	 * Current File for recording a still picture. Behaves as a dirty 1 level
@@ -62,33 +57,19 @@ public class DataHelper {
 	private File currentImageFile;
 
 	/**
-	 * SQL for creating table TRACKPOINT
+	 * Formatter for various files (GPX, media)
 	 */
-	private static final String SQL_CREATE_TABLE_TRACKPOINT = "" + "create table trackpoint (" + Schema.COL_ID
-			+ " integer primary key autoincrement," + Schema.COL_LATITUDE + " double not null," + Schema.COL_LONGITUDE
-			+ " double not null," + Schema.COL_ELEVATION + " double null," + Schema.COL_ACCURACY + " double null,"
-			+ Schema.COL_TIMESTAMP + " long not null" + ")";
-
-	/**
-	 * SQL for creating table WAYPOINT
-	 */
-	private static final String SQL_CREATE_TABLE_WAYPOINT = "" + "create table waypoint (" + Schema.COL_ID
-			+ " integer primary key autoincrement," + Schema.COL_LATITUDE + " double not null," + Schema.COL_LONGITUDE
-			+ " double not null," + Schema.COL_ELEVATION + " double null," + Schema.COL_ACCURACY + " double null,"
-			+ Schema.COL_TIMESTAMP + " long not null," + Schema.COL_NAME + " text," + Schema.COL_LINK + " text,"
-			+ Schema.COL_NBSATELLITES + " integer not null" + ")";
-
 	private static final SimpleDateFormat fileNameFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 
 	/**
-	 * Context required to interact with DBs.
+	 * Context
 	 */
 	private Context context;
 
 	/**
-	 * Database.
+	 * ContentResolver to interact with content provider
 	 */
-	private SQLiteDatabase database;
+	private ContentResolver contentResolver;
 
 	/**
 	 * Directory for storing track.
@@ -102,27 +83,20 @@ public class DataHelper {
 	 *            Application context.
 	 */
 	public DataHelper(Context c) {
-		Log.v(TAG, "Creating a new " + DataHelper.class.getSimpleName());
 		context = c;
+		contentResolver = c.getContentResolver();
 	}
 
 	/**
-	 * Create a new track:<br />
-	 * <ul>
-	 * <li>Creates a DB</li>
-	 * <il>Create a directory for track files</li>
-	 * </ul>
+	 * Create a new track: Erase all db data, and creates a track dir.
 	 * 
 	 * @throws IOException
 	 */
 	public void createNewTrack() throws IOException {
-		database = context.openOrCreateDatabase(DB_NAME, Context.MODE_PRIVATE, null);
 
-		// Creatae database and tables
-		database.execSQL("drop table if exists " + Schema.TBL_TRACKPOINT);
-		database.execSQL(SQL_CREATE_TABLE_TRACKPOINT);
-		database.execSQL("drop table if exists " + Schema.TBL_WAYPOINT);
-		database.execSQL(SQL_CREATE_TABLE_WAYPOINT);
+		// Delete all previous trackpoint & waypoint
+		contentResolver.delete(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null);
+		contentResolver.delete(TrackContentProvider.CONTENT_URI_WAYPOINT, null, null);
 
 		// Create directory for track
 		File sdRoot = Environment.getExternalStorageDirectory();
@@ -164,7 +138,7 @@ public class DataHelper {
 			values.put(Schema.COL_ACCURACY, location.getAccuracy());
 		}
 
-		database.insert(Schema.TBL_TRACKPOINT, null, values);
+		contentResolver.insert(TrackContentProvider.CONTENT_URI_TRACKPOINT, values);
 	}
 
 	/**
@@ -173,7 +147,7 @@ public class DataHelper {
 	 * @param location
 	 *            Location of waypoint
 	 * @param nbSatellites
-	 * 			  Number of satellites used for the location
+	 *            Number of satellites used for the location
 	 * @param name
 	 *            Name of waypoint
 	 * @param link
@@ -189,21 +163,21 @@ public class DataHelper {
 			values.put(Schema.COL_LATITUDE, location.getLatitude());
 			values.put(Schema.COL_LONGITUDE, location.getLongitude());
 			values.put(Schema.COL_TIMESTAMP, location.getTime());
+			values.put(Schema.COL_NAME, name);
 			values.put(Schema.COL_NBSATELLITES, nbSatellites);
+
 			if (location.hasAltitude()) {
 				values.put(Schema.COL_ELEVATION, location.getAltitude());
 			}
 			if (location.hasAccuracy()) {
 				values.put(Schema.COL_ACCURACY, location.getAccuracy());
 			}
-			values.put(Schema.COL_NAME, name);
-			
 			if (link != null) {
 				// Rename file to match location timestamp
 				values.put(Schema.COL_LINK, renameFile(link, fileNameFormatter.format(location.getTime())));
 			}
 
-			database.insert(Schema.TBL_WAYPOINT, null, values);
+			contentResolver.insert(TrackContentProvider.CONTENT_URI_WAYPOINT, values);
 		}
 	}
 
@@ -213,47 +187,12 @@ public class DataHelper {
 	 * @param location
 	 *            Location of waypoint
 	 * @param nbSatellites
-	 * 			  Number of satellites used for the location
+	 *            Number of satellites used for the location
 	 * @param name
 	 *            Name of waypoint.
 	 */
 	public void wayPoint(Location location, int nbSatellites, String name) {
 		wayPoint(location, nbSatellites, name, null);
-	}
-
-	/**
-	 * @return A {@link Cursor} to the waypoints in db or null if db is closed
-	 */
-	public Cursor getWaypointsCursor() {
-		if (database != null && database.isOpen()) {
-			// Query for way points
-			Cursor cWayPoints = database.query(Schema.TBL_WAYPOINT, new String[] { Schema.COL_ID, Schema.COL_LONGITUDE,
-					Schema.COL_LATITUDE, Schema.COL_LINK, Schema.COL_ELEVATION, Schema.COL_ACCURACY,
-					Schema.COL_TIMESTAMP, Schema.COL_NAME, Schema.COL_NBSATELLITES}, null, null, null, null, Schema.COL_TIMESTAMP + " asc");
-			cWayPoints.moveToFirst();
-
-			return cWayPoints;
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * @return A {@link Cursor} to the trackpoints in db, or null if db is
-	 *         closed
-	 */
-	public Cursor getTrackpointsCursor() {
-		if (database != null && database.isOpen()) {
-			// Query for track points
-			Cursor cTrackPoints = database.query(Schema.TBL_TRACKPOINT, new String[] { Schema.COL_ID,
-					Schema.COL_LONGITUDE, Schema.COL_LATITUDE, Schema.COL_ELEVATION, Schema.COL_ACCURACY,
-					Schema.COL_TIMESTAMP }, null, null, null, null, Schema.COL_TIMESTAMP + " asc");
-			cTrackPoints.moveToFirst();
-
-			return cTrackPoints;
-		} else {
-			return null;
-		}
 	}
 
 	/**
@@ -265,13 +204,14 @@ public class DataHelper {
 
 			File trackFile = new File(trackDir, fileNameFormatter.format(new Date()) + EXTENSION_GPX);
 
-			Cursor cTrackPoints = getTrackpointsCursor();
-			Cursor cWayPoints = getWaypointsCursor();
+			Cursor cTrackPoints = contentResolver.query(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null, null,
+					Schema.COL_TIMESTAMP + " asc");
+			Cursor cWayPoints = contentResolver.query(TrackContentProvider.CONTENT_URI_WAYPOINT, null, null, null,
+					Schema.COL_TIMESTAMP + " asc");
 
 			try {
-				GPXFileWriter
-						.writeGpxFile(context.getResources(), cTrackPoints, cWayPoints, trackFile, PreferenceManager
-								.getDefaultSharedPreferences(context));
+				GPXFileWriter.writeGpxFile(context.getResources(), cTrackPoints, cWayPoints, trackFile,
+						PreferenceManager.getDefaultSharedPreferences(context));
 			} catch (IOException ioe) {
 				Log.e(TAG, "Unable to export track: " + ioe.getMessage());
 			}
@@ -279,8 +219,6 @@ public class DataHelper {
 			cTrackPoints.close();
 			cWayPoints.close();
 
-			database.close();
-			context.deleteDatabase(DB_NAME);
 		}
 	}
 
@@ -317,41 +255,27 @@ public class DataHelper {
 		currentImageFile = null;
 		return imageFile;
 	}
-	
+
 	/**
 	 * Renames a file inside track directory, keeping the extension
-	 * @param from File to rename (Ex: "abc.png")
-	 * @param to Filename to use for new name (Ex: "def")
+	 * 
+	 * @param from
+	 *            File to rename (Ex: "abc.png")
+	 * @param to
+	 *            Filename to use for new name (Ex: "def")
 	 * @return Renamed filename (Ex: "def.png")
 	 */
 	private String renameFile(String from, String to) {
-		String ext = from.substring(from.lastIndexOf(".")+1, from.length());
+		String ext = from.substring(from.lastIndexOf(".") + 1, from.length());
 		File origin = new File(trackDir + File.separator + from);
 		File target = new File(trackDir + File.separator + to + "." + ext);
 		// Check & manages if there is already a file with this name
-		for (int i=0; i<MAX_RENAME_ATTEMPTS && target.exists(); i++) {
+		for (int i = 0; i < MAX_RENAME_ATTEMPTS && target.exists(); i++) {
 			target = new File(trackDir + File.separator + to + i + "." + ext);
 		}
 		origin.renameTo(target);
 		return target.getName();
 
-	}
-
-	/**
-	 * Represents XML Schema.
-	 */
-	public static final class Schema {
-		public static final String TBL_TRACKPOINT = "trackpoint";
-		public static final String TBL_WAYPOINT = "waypoint";
-		public static final String COL_ID = "_id";
-		public static final String COL_LONGITUDE = "longitude";
-		public static final String COL_LATITUDE = "latitude";
-		public static final String COL_ELEVATION = "elevation";
-		public static final String COL_ACCURACY = "accuracy";
-		public static final String COL_NBSATELLITES = "nb_satellites";
-		public static final String COL_TIMESTAMP = "point_timestamp";
-		public static final String COL_NAME = "name";
-		public static final String COL_LINK = "link";
 	}
 
 }

@@ -1,6 +1,5 @@
 package me.guillaumin.android.osmtracker;
 
-import android.app.Activity;
 
 /**
  * Constants & app-wide variables.
