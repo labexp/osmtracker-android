@@ -95,8 +95,7 @@ public class DataHelper {
 	public void createNewTrack() throws IOException {
 
 		// Delete all previous trackpoint & waypoint
-		contentResolver.delete(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null);
-		contentResolver.delete(TrackContentProvider.CONTENT_URI_WAYPOINT, null, null);
+		deleteAllData();
 
 		// Create directory for track
 		File sdRoot = Environment.getExternalStorageDirectory();
@@ -218,6 +217,8 @@ public class DataHelper {
 
 			cTrackPoints.close();
 			cWayPoints.close();
+			
+			deleteAllData();
 
 		}
 	}
@@ -256,6 +257,14 @@ public class DataHelper {
 		return imageFile;
 	}
 
+	/**
+	 * Delete all data in ContentProvider
+	 */
+	private void deleteAllData() {
+		contentResolver.delete(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null);
+		contentResolver.delete(TrackContentProvider.CONTENT_URI_WAYPOINT, null, null);
+	}
+	
 	/**
 	 * Renames a file inside track directory, keeping the extension
 	 * 
