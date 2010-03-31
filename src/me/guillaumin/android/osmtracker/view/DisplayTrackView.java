@@ -5,14 +5,17 @@ import java.text.DecimalFormat;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.util.ArrayUtils;
 import me.guillaumin.android.osmtracker.util.MercatorProjection;
 import android.content.Context;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -79,12 +82,42 @@ public class DisplayTrackView extends TextView {
 	 * Letter to use for indicating North (taken from resources)
 	 */
 	private String northLabel;
-
+	
 	/**
-	 * Indicates if we are ready to draw (coordinates have been projected into
-	 * pixels).
+	 * Handler for content change observation
 	 */
-	boolean readyToDraw = false;
+	private Handler handler = new Handler();
+	
+	/**
+	 * ContentObserver to be notified about any new trackpoint and
+	 * redraw screen
+	 */
+	private class TrackPointContentObserver extends ContentObserver {
+
+		public TrackPointContentObserver(Handler handler) {
+			super(handler);
+		}
+		
+		@Override
+		public void onChange(boolean selfChange) {
+			// width & height could be = 0 if the view had
+			// not been attached to window & measured when onChange()
+			// is fired.
+			if (getWidth() > 0 && getHeight() > 0) {
+				// Populate new data, and recompute projection
+				populateCoords();
+				projectData(getWidth(), getHeight());
+				// Force view redraw
+				invalidate();
+			}
+		}
+		
+	}
+	
+	/**
+	 * Instance of TrackpointContentObserver
+	 */
+	private TrackPointContentObserver trackpointContentObserver;
 
 	public DisplayTrackView(Context context) {
 		super(context);
@@ -102,40 +135,35 @@ public class DisplayTrackView extends TextView {
 		marker = BitmapFactory.decodeResource(getResources(), R.drawable.marker);
 		compass = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_compass);
 		
-		// Populate data from content provider
-		Cursor trackpointsCursor = context.getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
-		coords = populateCoords(trackpointsCursor);
+		trackpointContentObserver = new TrackPointContentObserver(handler);
+		context.getContentResolver().registerContentObserver(TrackContentProvider.CONTENT_URI_TRACKPOINT, true, trackpointContentObserver);
 	}
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		Log.v(TAG, "onSizeChanged: " + w + "," + h + ". Old: " + oldw + "," + oldh);
 		
-		// If we got coordinates, start projecting.
-		if (coords != null && coords.length > 0) {
-			projection = new MercatorProjection(findMin(coords, MercatorProjection.LATITUDE), findMin(coords,
-					MercatorProjection.LONGITUDE), findMax(coords, MercatorProjection.LATITUDE), findMax(coords,
-					MercatorProjection.LONGITUDE), w - PADDING * 2, h - PADDING * 2);
-
-			// Project each coordinate into pixels.
-			pixels = new int[coords.length][2];
-			for (int i = 0; i < coords.length; i++) {
-				pixels[i] = projection.project(coords[i][MercatorProjection.LONGITUDE],
-						coords[i][MercatorProjection.LATITUDE]);
-			}
-
-			readyToDraw = true;
-		}
-
+		// Populate data from content provider
+		populateCoords();
+		// Project coordinates into 2D screen
+		projectData(w, h);
+	
 		super.onSizeChanged(w, h, oldw, oldh);
 	}
 
+	@Override
+	protected void onDetachedFromWindow() {
+		// Unregister content observer
+		getContext().getContentResolver().unregisterContentObserver(trackpointContentObserver);
+		super.onDetachedFromWindow();
+	}
+	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 
 		// If we have data to paint
-		if (readyToDraw) {
+		if (pixels != null && pixels.length > 0) {
 			for (int i = 1; i < pixels.length; i++) {
 				// Draw a line between each point
 				canvas.drawLine(PADDING + pixels[i - 1][MercatorProjection.X], PADDING
@@ -189,64 +217,44 @@ public class DisplayTrackView extends TextView {
 		canvas.drawText(northLabel, PADDING + compass.getWidth() / 2, getHeight() - PADDING - compass.getHeight() - 5,
 				this.getPaint());
 	}
-
-	/**
-	 * Finds minimum value of an 2-dim array
-	 * 
-	 * @param in
-	 *            Input array
-	 * @param offset
-	 *            Offset to use for second dimension
-	 * @return minimum value of the offset column for this array
-	 */
-	private double findMin(double[][] in, int offset) {
-		double out = in[0][offset];
-		for (int i = 0; i < in.length; i++) {
-			if (in[i][offset] < out) {
-				out = in[i][offset];
-			}
-		}
-		return out;
-	}
-
-	/**
-	 * Finds maximum value of an 2-dim array
-	 * 
-	 * @param in
-	 *            Input array
-	 * @param offset
-	 *            Offset to use for second dimension
-	 * @return maximum value of the offset column for this array
-	 */
-	private double findMax(double[][] in, int offset) {
-		double out = in[0][offset];
-		for (int i = 0; i < in.length; i++) {
-			if (in[i][offset] > out) {
-				out = in[i][offset];
-			}
-		}
-		return out;
-	}
 	
 	/**
 	 * Populate coordinates from a cursor to current track Database
-	 * @param c Cursor on trackpoint table
-	 * @return An array of double[lon, lat]
 	 */
-	public double[][] populateCoords(Cursor c) {
-		double[][] out = new double[c.getCount()][2];
+	public void populateCoords() {		
+		Cursor c = getContext().getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+		coords = new double[c.getCount()][2];
 		int i=0;
 		
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-			out[i][MercatorProjection.LONGITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE));
-			out[i][MercatorProjection.LATITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE));
+			coords[i][MercatorProjection.LONGITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE));
+			coords[i][MercatorProjection.LATITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE));
 			i++;
 		}
 		c.close();
 		
-		Log.v(TAG, "Extracted " + out.length + " points from DB.");
-		
-		return out;
+		Log.v(TAG, "Extracted " + coords.length + " points from DB.");
+	}
+	
+	/**
+	 * Project current coordinates into a 2D screen
+	 * @param width Width of the display screen
+	 * @param height Height of the display screen
+	 */
+	public void projectData(int width, int height) {
+		// If we got coordinates, start projecting.
+		if (coords != null && coords.length > 0) {
+			projection = new MercatorProjection(ArrayUtils.findMin(coords, MercatorProjection.LATITUDE), ArrayUtils.findMin(coords,
+					MercatorProjection.LONGITUDE), ArrayUtils.findMax(coords, MercatorProjection.LATITUDE), ArrayUtils.findMax(coords,
+					MercatorProjection.LONGITUDE), width - PADDING * 2, height - PADDING * 2);
+
+			// Project each coordinate into pixels.
+			pixels = new int[coords.length][2];
+			for (int i = 0; i < coords.length; i++) {
+				pixels[i] = projection.project(coords[i][MercatorProjection.LONGITUDE],
+						coords[i][MercatorProjection.LATITUDE]);
+			}
+		}
 	}
 
 }
