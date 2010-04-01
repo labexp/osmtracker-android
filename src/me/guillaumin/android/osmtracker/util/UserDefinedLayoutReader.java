@@ -52,11 +52,6 @@ public class UserDefinedLayoutReader {
 	private Context context;
 
 	/**
-	 * Tracklogger
-	 */
-	private TrackLogger tracklogger;
-
-	/**
 	 * The user defined Layout
 	 */
 	private UserDefinedLayout userDefinedLayout;
@@ -66,6 +61,10 @@ public class UserDefinedLayoutReader {
 	 */
 	private IconResolver iconResolver;
 
+	private TextNoteOnClickListener textNoteOnClickListener;
+	private VoiceRecOnClickListener voiceRecordOnClickListener;
+	private StillImageOnClickListener stillImageOnClickListener;
+	
 	/**
 	 * Constructor
 	 * 
@@ -81,9 +80,13 @@ public class UserDefinedLayoutReader {
 	public UserDefinedLayoutReader(UserDefinedLayout udl, Context c, TrackLogger tl, XmlPullParser input, IconResolver ir) {
 		parser = input;
 		context = c;
-		tracklogger = tl;
 		userDefinedLayout = udl;
 		iconResolver = ir;
+		
+		// Initialize listeners which will be bound to buttons
+		textNoteOnClickListener = new TextNoteOnClickListener();
+		voiceRecordOnClickListener = new VoiceRecOnClickListener(tl);
+		stillImageOnClickListener = new StillImageOnClickListener(tl);
 	}
 
 	/**
@@ -223,19 +226,19 @@ public class UserDefinedLayoutReader {
 			button.setText(context.getResources().getString(R.string.gpsstatus_record_voicerec));
 			button.setCompoundDrawablesWithIntrinsicBounds(null, context.getResources().getDrawable(
 					R.drawable.voice_32x32), null, null);
-			button.setOnClickListener(new VoiceRecOnClickListener(tracklogger));
+			button.setOnClickListener(voiceRecordOnClickListener);
 		} else if (XmlSchema.ATTR_VAL_TEXTNOTE.equals(buttonType)) {
 			// Text note button
 			button.setText(context.getResources().getString(R.string.gpsstatus_record_textnote));
 			button.setCompoundDrawablesWithIntrinsicBounds(null, context.getResources().getDrawable(
 					R.drawable.text_32x32), null, null);
-			button.setOnClickListener(new TextNoteOnClickListener());
+			button.setOnClickListener(textNoteOnClickListener);
 		} else if (XmlSchema.ATTR_VAL_PICTURE.equals(buttonType)) {
 			// Picture button
 			button.setText(context.getResources().getString(R.string.gpsstatus_record_stillimage));
 			button.setCompoundDrawablesWithIntrinsicBounds(null, context.getResources().getDrawable(
 					R.drawable.camera_32x32), null, null);
-			button.setOnClickListener(new StillImageOnClickListener(tracklogger));
+			button.setOnClickListener(stillImageOnClickListener);
 		}
 
 		row.addView(button);
