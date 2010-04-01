@@ -26,6 +26,11 @@
 
 	<layout name="misc">
 		<row>
+			<button type="voicerec" label="Voice record" icon="voice_32x32" />
+			<button type="picture" label="Take picture" icon="camera_32x32" />
+			<button type="textnote" label="Text note" icon="text_32x32" />
+		</row>
+		<row>
 			<button type="tag" label="Bus stop" icon="button_misc_bus_stop" />
 			<button type="tag" label="Railway" icon="button_misc_railway" />
 			<button type="tag" label="Telephone" icon="button_misc_telephone" />
@@ -43,6 +48,11 @@
 	</layout>
 
 	<layout name="restriction">
+		<row>
+			<button type="voicerec" label="Voice record" icon="voice_32x32" />
+			<button type="picture" label="Take picture" icon="camera_32x32" />
+			<button type="textnote" label="Text note" icon="text_32x32" />
+		</row>
 		<row>
 			<button type="tag" label="Max 30" icon="button_restriction" />
 			<button type="tag" label="Max 50" icon="button_restriction" />
@@ -62,6 +72,11 @@
 
 	<layout name="car">
 		<row>
+			<button type="voicerec" label="Voice record" icon="voice_32x32" />
+			<button type="picture" label="Take picture" icon="camera_32x32" />
+			<button type="textnote" label="Text note" icon="text_32x32" />
+		</row>
+		<row>
 			<button type="tag" label="Fuel station" icon="button_car_fuel_station" />
 			<button type="tag" label="Parking" icon="button_car_parking" />
 			<button type="tag" label="Emergency Phone" icon="button_car_emergency_phone" />
@@ -73,6 +88,11 @@
 	</layout>
 
 	<layout name="tourism">
+		<row>
+			<button type="voicerec" label="Voice record" icon="voice_32x32" />
+			<button type="picture" label="Take picture" icon="camera_32x32" />
+			<button type="textnote" label="Text note" icon="text_32x32" />
+		</row>
 		<row>
 			<button type="tag" label="View point" icon="button_tourism_view_point" />
 			<button type="tag" label="Information" icon="button_tourism_information" />
@@ -91,6 +111,11 @@
 	</layout>
 
 	<layout name="amenity">
+		<row>
+			<button type="voicerec" label="Voice record" icon="voice_32x32" />
+			<button type="picture" label="Take picture" icon="camera_32x32" />
+			<button type="textnote" label="Text note" icon="text_32x32" />
+		</row>
 		<row>
 			<button type="tag" label="Bench" icon="button_amenity_bench" />
 			<button type="tag" label="Water" icon="button_amenity_water" />
@@ -115,6 +140,11 @@
 
 	<layout name="amenity_more">
 		<row>
+			<button type="voicerec" label="Voice record" icon="voice_32x32" />
+			<button type="picture" label="Take picture" icon="camera_32x32" />
+			<button type="textnote" label="Text note" icon="text_32x32" />
+		</row>
+		<row>
 			<button type="tag" label="School" icon="button_amenitymore_school" />
 			<button type="tag" label="Police" icon="button_amenitymore_police" />
 			<button type="tag" label="Fire station" icon="button_amenitymore_fire_station" />
@@ -138,6 +168,11 @@
 
 	<layout name="way">
 		<row>
+			<button type="voicerec" label="Voice record" icon="voice_32x32" />
+			<button type="picture" label="Take picture" icon="camera_32x32" />
+			<button type="textnote" label="Text note" icon="text_32x32" />
+		</row>
+		<row>
 			<button type="tag" label="Bridge" icon="button_way_bridge" />
 			<button type="tag" label="Zebra crossing" icon="button_way_zebra_crossing" />
 			<button type="tag" label="Motorway" icon="button_way_motorway" />
@@ -155,6 +190,11 @@
 	</layout>
 
 	<layout name="track">
+		<row>
+			<button type="voicerec" label="Voice record" icon="voice_32x32" />
+			<button type="picture" label="Take picture" icon="camera_32x32" />
+			<button type="textnote" label="Text note" icon="text_32x32" />
+		</row>
 		<row>
 			<button type="tag" label="Track" icon="button_track_track" />
 			<button type="tag" label="Cycleway" icon="button_track_cycleway" />
@@ -178,6 +218,11 @@
 	</layout>
 
 	<layout name="landuse">
+		<row>
+			<button type="voicerec" label="Voice record" icon="voice_32x32" />
+			<button type="picture" label="Take picture" icon="camera_32x32" />
+			<button type="textnote" label="Text note" icon="text_32x32" />
+		</row>
 		<row>
 			<button type="tag" label="Farm" icon="button_landuse_farm" />
 			<button type="tag" label="Landfill" icon="button_landuse_landfill" />
