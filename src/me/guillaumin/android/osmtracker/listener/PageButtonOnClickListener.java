@@ -1,16 +1,12 @@
 package me.guillaumin.android.osmtracker.listener;
 
-import java.util.HashMap;
-import java.util.Stack;
-
 import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
-
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 
 /**
- * Listener for page-type buttons
+ * Listener for page-type buttons. Provokes a navigation
+ * to the target page.
  * 
  * @author Nicolas Guillaumin
  *

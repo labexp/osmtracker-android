@@ -1,10 +1,9 @@
 package me.guillaumin.android.osmtracker.service.resources;
 
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
 /**
- * Resolver for finding button icons
+ * Resolver for finding button icons.
  * 
  * @author Nicolas Guillaumin
  *

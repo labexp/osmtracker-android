@@ -5,10 +5,6 @@ import java.text.DecimalFormat;
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
-import me.guillaumin.android.osmtracker.listener.StillImageOnClickListener;
-import me.guillaumin.android.osmtracker.listener.TextNoteOnClickListener;
-import me.guillaumin.android.osmtracker.listener.ToggleRecordOnCheckedChangeListener;
-import me.guillaumin.android.osmtracker.listener.VoiceRecOnClickListener;
 import android.content.Context;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
@@ -21,11 +17,9 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 /**
  * Layout for the GPS Status image and misc

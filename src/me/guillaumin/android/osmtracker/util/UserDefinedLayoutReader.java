@@ -27,7 +27,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 /**
- * Reads an user defined layout, using a pull parser.
+ * Reads an user defined layout, using a pull parser,
+ * and instantiate corresponding objects (Layouts, Buttons)
  * 
  * @author Nicolas Guillaumin
  * 
@@ -37,7 +38,7 @@ public class UserDefinedLayoutReader {
 	private static final String TAG = UserDefinedLayoutReader.class.getSimpleName();
 
 	/**
-	 * Hashmap containing parsed layouts
+	 * Map containing parsed layouts
 	 */
 	private HashMap<String, ViewGroup> layouts = new HashMap<String, ViewGroup>();
 
@@ -61,8 +62,19 @@ public class UserDefinedLayoutReader {
 	 */
 	private IconResolver iconResolver;
 
+	/**
+	 * Listener bound to text note buttons
+	 */
 	private TextNoteOnClickListener textNoteOnClickListener;
+	
+	/**
+	 * Listener bound to voice record buttons
+	 */
 	private VoiceRecOnClickListener voiceRecordOnClickListener;
+	
+	/**
+	 * Lister bound to picture buttons
+	 */
 	private StillImageOnClickListener stillImageOnClickListener;
 	
 	/**

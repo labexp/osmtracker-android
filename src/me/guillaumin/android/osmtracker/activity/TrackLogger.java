@@ -22,18 +22,11 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 /**
  * Main track logger activity. Communicate with the GPS service to display GPS
@@ -73,9 +66,9 @@ public class TrackLogger extends Activity {
 	private UserDefinedLayout mainLayout;
 
 	/**
-	 * Flag to check GPS status at startup.
-	 * Is cleared after the first displaying of GPS status dialog,
-	 * to prevent the dialog to display if user goes to settings/about/other screen.
+	 * Flag to check GPS status at startup. Is cleared after the first
+	 * displaying of GPS status dialog, to prevent the dialog to display if user
+	 * goes to settings/about/other screen.
 	 */
 	private boolean checkGPSFlag = true;
 
@@ -98,8 +91,7 @@ public class TrackLogger extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tracklogger);
-		
-		
+
 		// Try to restore previous state
 		boolean previousStateIsTracking = false;
 		if (savedInstanceState != null) {
@@ -113,7 +105,7 @@ public class TrackLogger extends Activity {
 			Log.e(TAG, "Error while inflating UserDefinedLayout", e);
 			Toast.makeText(this, R.string.error_userlayout_parsing, Toast.LENGTH_SHORT).show();
 		}
-		
+
 		// Restore previous UI state
 		if (previousStateIsTracking) {
 			setEnabledActionButtons(true);
@@ -129,15 +121,17 @@ public class TrackLogger extends Activity {
 	protected void onResume() {
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
+
 		// Check GPS status
-		if (checkGPSFlag && prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_CHECKSTARTUP, OSMTracker.Preferences.VAL_GPS_CHECKSTARTUP == true)) {
+		if (checkGPSFlag
+				&& prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_CHECKSTARTUP,
+						OSMTracker.Preferences.VAL_GPS_CHECKSTARTUP == true)) {
 			checkGPSProvider();
 		}
 
 		// Register GPS status update for upper controls
 		((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(true);
-		
+
 		// Start GPS Logger service
 		startService(gpsLoggerServiceIntent);
 
@@ -150,33 +144,29 @@ public class TrackLogger extends Activity {
 
 	private void checkGPSProvider() {
 		LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
-		if (! lm.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
+		if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			// GPS isn't enabled. Offer user to go enable it
-			new AlertDialog.Builder(this)
-				.setMessage(getResources().getString(R.string.tracklogger_gps_disabled))
-				.setCancelable(true)
-				.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-					}
-				})
-				.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				}).create().show();
+			new AlertDialog.Builder(this).setMessage(getResources().getString(R.string.tracklogger_gps_disabled))
+					.setCancelable(true).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+						}
+					}).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+						}
+					}).create().show();
 			checkGPSFlag = false;
 		}
 	}
-	
+
 	@Override
 	protected void onPause() {
-		
+
 		// Un-register GPS status update for upper controls
 		((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(false);
-
 
 		if (gpsLogger != null) {
 			if (!gpsLogger.isTracking()) {
@@ -199,7 +189,7 @@ public class TrackLogger extends Activity {
 		if (gpsLogger != null) {
 			outState.putBoolean(STATE_IS_TRACKING, gpsLogger.isTracking());
 		}
-		
+
 		super.onSaveInstanceState(outState);
 	}
 
@@ -219,12 +209,13 @@ public class TrackLogger extends Activity {
 		if (gpsLogger != null && gpsLogger.isTracking()) {
 			setEnabledActionButtons(true);
 		}
-
 	}
 
 	/**
 	 * Enable buttons associated to tracking
-	 * @param enabled true to enable, false to disable
+	 * 
+	 * @param enabled
+	 *            true to enable, false to disable
 	 */
 	public void setEnabledActionButtons(boolean enabled) {
 		if (mainLayout != null) {
@@ -239,7 +230,8 @@ public class TrackLogger extends Activity {
 		inflater.inflate(R.menu.tracklogger_menu, menu);
 		return true;
 	}
-	
+
+	// Display options menu
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		MenuItem item = menu.findItem(R.id.tracklogger_menu_startstoptracking);
@@ -265,6 +257,7 @@ public class TrackLogger extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.tracklogger_menu_startstoptracking:
+			// Start / Stop tracking
 			if (gpsLogger.isTracking()) {
 				Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
 				sendBroadcast(intent);
@@ -354,28 +347,21 @@ public class TrackLogger extends Activity {
 
 	/**
 	 * Getter for gpsLogger
+	 * 
 	 * @return Activity {@link GPSLogger}
 	 */
 	public GPSLogger getGpsLogger() {
 		return gpsLogger;
 	}
-	
+
 	/**
 	 * Setter for gpsLogger
-	 * @param l {@link GPSLogger} to set.
+	 * 
+	 * @param l
+	 *            {@link GPSLogger} to set.
 	 */
 	public void setGpsLogger(GPSLogger l) {
 		this.gpsLogger = l;
 	}
-
-	/**
-	 * Setter for buttonTable
-	 * @param buttonTable The {@link DisablableTableLayout} to set.
-	 */
-	/*
-	public void setButtonTable(DisablableTableLayout buttonTable) {
-		this.buttonTable = buttonTable;
-	}
-	*/
 
 }
