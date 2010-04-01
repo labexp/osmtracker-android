@@ -219,7 +219,6 @@ public class UserDefinedLayoutReader {
 			Drawable icon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
 			button.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
 			button.setOnClickListener(new TagButtonOnClickListener());
-			// TODO Manage background drawable
 		} else if (XmlSchema.ATTR_VAL_VOICEREC.equals(buttonType)) {
 			button.setText(context.getResources().getString(R.string.gpsstatus_record_voicerec));
 			button.setCompoundDrawablesWithIntrinsicBounds(null, context.getResources().getDrawable(
@@ -230,7 +229,7 @@ public class UserDefinedLayoutReader {
 			button.setText(context.getResources().getString(R.string.gpsstatus_record_textnote));
 			button.setCompoundDrawablesWithIntrinsicBounds(null, context.getResources().getDrawable(
 					R.drawable.text_32x32), null, null);
-			button.setOnClickListener(new TextNoteOnClickListener(tracklogger));
+			button.setOnClickListener(new TextNoteOnClickListener());
 		} else if (XmlSchema.ATTR_VAL_PICTURE.equals(buttonType)) {
 			// Picture button
 			button.setText(context.getResources().getString(R.string.gpsstatus_record_stillimage));
