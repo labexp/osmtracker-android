@@ -32,6 +32,8 @@
 	<string name="menu_waypointlist">Waypoints</string>
 	<string name="menu_about">About</string>
 	<string name="menu_displaytrack">Display track</string>
+	<string name="menu_starttracking">Start tracking</string>
+	<string name="menu_stoptracking">Stop &amp; save</string>
 	
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>

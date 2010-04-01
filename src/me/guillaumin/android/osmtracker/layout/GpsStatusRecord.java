@@ -70,16 +70,6 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 
 		if (context instanceof TrackLogger) {
 			activity = (TrackLogger) context;
-			// Register listeners
-			((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack)).setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(activity));;
-			((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setOnClickListener(new VoiceRecOnClickListener(activity));
-			((Button) findViewById(R.id.gpsstatus_record_btnStillImage)).setOnClickListener(new StillImageOnClickListener(activity));
-			((Button) findViewById(R.id.gpsstatus_record_btnTextNote)).setOnClickListener(new TextNoteOnClickListener(activity));
-			
-			// Disable by default the buttons
-			findViewById(R.id.gpsstatus_record_toggleTrack).setEnabled(false);
-			setButtonsEnabled(false);
-			
 			lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		}		
 
@@ -93,19 +83,6 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			lmgr.removeUpdates(this);
 			lmgr.removeGpsStatusListener(this);
 		}
-	}
-
-	/**
-	 * Enables or disable the buttons.
-	 * 
-	 * @param enabled
-	 *            If true, enable the buttons, otherwise disable them.
-	 */
-	public void setButtonsEnabled(boolean enabled) {
-		findViewById(R.id.gpsstatus_record_btnVoiceRecord).setEnabled(enabled);
-		findViewById(R.id.gpsstatus_record_btnStillImage).setEnabled(enabled);
-		findViewById(R.id.gpsstatus_record_btnTextNote).setEnabled(enabled);
-		
 	}
 
 	@Override
@@ -156,7 +133,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		
 		TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
 		if (location.hasAccuracy()) {
-			tvAccuracy.setText(ACCURACY_FORMAT.format(location.getAccuracy()) + getResources().getString(R.string.various_unit_meters));
+			tvAccuracy.setText(getResources().getString(R.string.various_accuracy) + ": " + ACCURACY_FORMAT.format(location.getAccuracy()) + getResources().getString(R.string.various_unit_meters));
 		} else {
 			tvAccuracy.setText("");
 		}

@@ -28,6 +28,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -97,22 +98,14 @@ public class TrackLogger extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tracklogger);
-
+		
+		
 		// Try to restore previous state
 		boolean previousStateIsTracking = false;
 		if (savedInstanceState != null) {
 			previousStateIsTracking = savedInstanceState.getBoolean(STATE_IS_TRACKING, false);
 		}
 
-		// Display main buttons
-		/*
-		buttonTable = (DisablableTableLayout) LayoutInflater.from(this).inflate(R.layout.tracklogger_main_buttons,
-				(ViewGroup) findViewById(R.id.tracklogger_root), false);
-		((ViewGroup) findViewById(R.id.tracklogger_root)).addView(buttonTable);
-
-		registerListeners();
-		*/
-		
 		try {
 			mainLayout = new UserDefinedLayout(this, null);
 			((ViewGroup) findViewById(R.id.tracklogger_root)).addView(mainLayout);
@@ -216,13 +209,6 @@ public class TrackLogger extends Activity {
 	public void onGpsDisabled() {
 		// GPS disabled. Grey all.
 		setEnabledActionButtons(false);
-
-		// If we are currently tracking, don't grey the track toggle,
-		// allowing the user to stop tracking
-		ToggleButton toggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
-		if (!toggle.isChecked()) {
-			toggle.setEnabled(false);
-		}
 	}
 
 	/**
@@ -230,11 +216,7 @@ public class TrackLogger extends Activity {
 	 */
 	public void onGpsEnabled() {
 		// Buttons can be enabled
-		ToggleButton toggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
-		toggle.setEnabled(true);
-
-		if (toggle.isChecked()) {
-			// Currently tracking, activate buttons
+		if (gpsLogger != null && gpsLogger.isTracking()) {
 			setEnabledActionButtons(true);
 		}
 
@@ -248,15 +230,6 @@ public class TrackLogger extends Activity {
 		if (mainLayout != null) {
 			mainLayout.setEnabled(enabled);
 		}
-		
-		/*
-		if (buttonTable != null) {
-			buttonTable.setEnabled(enabled);
-			
-		}
-		*/
-		
-		((GpsStatusRecord) findViewById(R.id.gpsStatus)).setButtonsEnabled(enabled);
 	}
 
 	// Create options menu
@@ -266,11 +239,42 @@ public class TrackLogger extends Activity {
 		inflater.inflate(R.menu.tracklogger_menu, menu);
 		return true;
 	}
+	
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		MenuItem item = menu.findItem(R.id.tracklogger_menu_startstoptracking);
+
+		// Change first item according to current tracking status
+		if (gpsLogger.isTracking()) {
+			// We're tracking, item = "stop & save"
+			item.setIcon(android.R.drawable.ic_menu_save);
+			item.setTitle(getResources().getString(R.string.menu_stoptracking));
+			item.setTitleCondensed(getResources().getString(R.string.menu_stoptracking));
+		} else {
+			// We're note tracking, item = "start tracking"
+			item.setIcon(android.R.drawable.ic_menu_edit);
+			item.setTitle(getResources().getString(R.string.menu_starttracking));
+			item.setTitleCondensed(getResources().getString(R.string.menu_starttracking));
+			item.setEnabled(gpsLogger.isGpsEnabled());
+		}
+		return super.onPrepareOptionsMenu(menu);
+	}
 
 	// Manage options menu selections
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case R.id.tracklogger_menu_startstoptracking:
+			if (gpsLogger.isTracking()) {
+				Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
+				sendBroadcast(intent);
+				setEnabledActionButtons(false);
+			} else {
+				Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
+				sendBroadcast(intent);
+				setEnabledActionButtons(true);
+			}
+			break;
 		case R.id.tracklogger_menu_settings:
 			// Start settings activity
 			startActivity(new Intent(this, Preferences.class));

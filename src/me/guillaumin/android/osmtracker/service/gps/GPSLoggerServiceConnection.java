@@ -38,6 +38,14 @@ public class GPSLoggerServiceConnection implements ServiceConnection {
 		// Prevent service from notifying user
 		activity.sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
 
+		if (activity.getGpsLogger().isTracking()) {
+			if (activity.getGpsLogger().isGpsEnabled()) {
+				activity.setEnabledActionButtons(true);
+			}
+		} else {
+			activity.setEnabledActionButtons(false);
+		}
+/*
 		ToggleButton trackToggle = ((ToggleButton) activity.findViewById(R.id.gpsstatus_record_toggleTrack));
 		
 		// Restore UI state according to tracking state
@@ -55,6 +63,7 @@ public class GPSLoggerServiceConnection implements ServiceConnection {
 			// as it must be set according to GPS status, and not
 			// tracking status
 		}
+*/
 	}
 
 }
