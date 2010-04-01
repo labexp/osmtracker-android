@@ -11,8 +11,6 @@
 	<string name="prefs_check_gps_startup_summary">Check if GPS is disabled at startup, and offer to enable it.</string>
 
 	<string name="prefs_ui">User interface</string>
-	<string name="prefs_ui_legacyback">Use legacy back soft-key</string>
-	<string name="prefs_ui_legacyback_summary">Use a back soft-button instead of the device back button</string>
 
 	<string name="prefs_voicerec_duration">Voice record duration</string>
 	<string name="prefs_voicerec_duration_seconds">seconds</string>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layouts>
+	<layout name="root">
+		<row>
+			<button type="page" label="Misc" icon="button_misc" targetlayout="misc"/>
+			<button type="page" label="Restriction" icon="button_restriction" targetlayout="restriction" />
+			<button type="page" label="Car" icon="button_car" targetlayout="car"/>
+		</row>
+		<row>
+			<button type="page" label="Tourism" icon="button_tourism" targetlayout="tourism"/>
+			<button type="page" label="Amenity" icon="button_amenity" targetlayout="amenity" />
+			<button type="page" label="Amenity(+)" icon="button_amenity" targetlayout="amenity_more"/>
+		</row>
+		<row>
+			<button type="page" label="Way" icon="button_way" targetlayout="way"/>
+			<button type="page" label="Track" icon="button_track" targetlayout="track" />
+			<button type="page" label="Landuse" icon="button_landuse" targetlayout="landuse"/>
+		</row>
+	</layout>
+	
+	<layout name="misc">
+		<row>
+			<button type="tag" label="Bus stop" icon="button_misc_bus_stop" />
+			<button type="tag" label="Railway" icon="button_misc_railway" />
+			<button type="tag" label="Telephone" icon="button_misc_telephone" />		
+		</row>
+		<row>
+			<button type="tag" label="Post box" icon="button_misc_post_box" />
+			<button type="tag" label="ATM" icon="button_misc_atm" />
+			<button type="tag" label="Bollard" icon="button_misc_bollard" />		
+		</row>
+		<row>
+			<button type="tag" label="Toilets" icon="button_misc_toilets" />
+			<button type="tag" label="Shelter" icon="button_misc_shelter" />
+			<button type="tag" label="Surveillance" icon="button_misc_surveillance" />		
+		</row>
+	</layout>
+
+</layouts>
+
+

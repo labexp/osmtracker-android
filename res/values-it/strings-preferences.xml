@@ -11,8 +11,6 @@
 	<string name="prefs_check_gps_startup_summary">Verifica se il GPS è disabilitato all\'avvio e chiede di abilitarlo.</string>
 
 	<string name="prefs_ui">Interfaccia utente</string>
-	<string name="prefs_ui_legacyback">Usa tasto indietro integrato</string>
-	<string name="prefs_ui_legacyback_summary">Usa il tasto indietro integrato invece del tasto fisico del dispositivo</string>
 
 	<string name="prefs_voicerec_duration">Durata registrazione vocale</string>
 	<string name="prefs_voicerec_duration_seconds">secondi</string>

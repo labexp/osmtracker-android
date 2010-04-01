@@ -16,8 +16,8 @@ import android.widget.TableLayout;
  */
 public class DisablableTableLayout extends TableLayout {
 
-	public DisablableTableLayout(Context context, AttributeSet attrs) {
-		super(context, attrs);
+	public DisablableTableLayout(Context context) {
+		super(context);
 	}
 	
 	/**

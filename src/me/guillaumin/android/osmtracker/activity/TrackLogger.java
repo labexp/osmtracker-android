@@ -4,9 +4,8 @@ import java.io.File;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
-import me.guillaumin.android.osmtracker.layout.DisablableTableLayout;
 import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
-import me.guillaumin.android.osmtracker.listener.WaypointButtonOnClickListener;
+import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
 import android.app.Activity;
@@ -27,7 +26,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -66,15 +67,10 @@ public class TrackLogger extends Activity {
 	private Intent gpsLoggerServiceIntent;
 
 	/**
-	 * View handling the button grid.
+	 * Main button layout
 	 */
-	private DisablableTableLayout buttonTable;
+	private UserDefinedLayout mainLayout;
 
-	/**
-	 * Listener managing the waypoint buttons.
-	 */
-	private WaypointButtonOnClickListener listener;
-	
 	/**
 	 * Flag to check GPS status at startup.
 	 * Is cleared after the first displaying of GPS status dialog,
@@ -109,11 +105,21 @@ public class TrackLogger extends Activity {
 		}
 
 		// Display main buttons
+		/*
 		buttonTable = (DisablableTableLayout) LayoutInflater.from(this).inflate(R.layout.tracklogger_main_buttons,
 				(ViewGroup) findViewById(R.id.tracklogger_root), false);
 		((ViewGroup) findViewById(R.id.tracklogger_root)).addView(buttonTable);
 
 		registerListeners();
+		*/
+		
+		try {
+			mainLayout = new UserDefinedLayout(this, null);
+			((ViewGroup) findViewById(R.id.tracklogger_root)).addView(mainLayout);
+		} catch (Exception e) {
+			Log.e(TAG, "Error while inflating UserDefinedLayout", e);
+			Toast.makeText(this, R.string.error_userlayout_parsing, Toast.LENGTH_SHORT).show();
+		}
 		
 		// Restore previous UI state
 		if (previousStateIsTracking) {
@@ -126,14 +132,6 @@ public class TrackLogger extends Activity {
 		}
 	}
 
-	/**
-	 * Registers various button listeners
-	 */
-	private void registerListeners() {
-		listener = new WaypointButtonOnClickListener((ViewGroup) findViewById(R.id.tracklogger_root), this);
-		buttonTable.setOnClickListenerForAllChild(listener);
-	}
-
 	@Override
 	protected void onResume() {
 
@@ -142,36 +140,6 @@ public class TrackLogger extends Activity {
 		// Check GPS status
 		if (checkGPSFlag && prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_CHECKSTARTUP, OSMTracker.Preferences.VAL_GPS_CHECKSTARTUP == true)) {
 			checkGPSProvider();
-		}
-		
-		// The user could come from the settings screen and change the Legacy
-		// Back button option.
-		boolean useLegacyBackButton = prefs.getBoolean(
-				OSMTracker.Preferences.KEY_UI_LEGACYBACK, OSMTracker.Preferences.VAL_UI_LEGACYBACK);
-		Button backButton = (Button) findViewById(R.id.tracklogger_btnBack);
-		if (useLegacyBackButton && backButton == null) {
-			if (backButton == null) {
-				// Add soft button "back" to the upper bar
-				LinearLayout upperLayout = (LinearLayout) findViewById(R.id.tracklogger_upperLayout);
-				backButton = (Button) LayoutInflater.from(this).inflate(R.layout.tracklogger_back_button, upperLayout,
-						false);
-				upperLayout.addView(backButton);
-				backButton.setOnClickListener(listener);
-				listener.setBackButton(backButton);
-
-				// Enable button if we're on a subpage
-				if (buttonTable != null && R.id.tracklogger_tblMain != buttonTable.getId()) {
-					backButton.setEnabled(true);
-				}
-			}
-		} else {
-			// Be sure to remove button if present
-			if (backButton != null) {
-				LinearLayout upperLayout = (LinearLayout) findViewById(R.id.tracklogger_upperLayout);
-				upperLayout.removeView(backButton);
-				backButton.setOnClickListener(null);
-				listener.setBackButton(null);
-			}
 		}
 
 		// Register GPS status update for upper controls
@@ -277,7 +245,17 @@ public class TrackLogger extends Activity {
 	 * @param enabled true to enable, false to disable
 	 */
 	public void setEnabledActionButtons(boolean enabled) {
-		buttonTable.setEnabled(enabled);
+		if (mainLayout != null) {
+			mainLayout.setEnabled(enabled);
+		}
+		
+		/*
+		if (buttonTable != null) {
+			buttonTable.setEnabled(enabled);
+			
+		}
+		*/
+		
 		((GpsStatusRecord) findViewById(R.id.gpsStatus)).setButtonsEnabled(enabled);
 	}
 
@@ -319,17 +297,9 @@ public class TrackLogger extends Activity {
 		case KeyEvent.KEYCODE_BACK:
 			// Manage back button if we are on a sub-page
 			if (event.getRepeatCount() == 0) {
-				// Check if user is using legacy soft button or not
-				boolean useLegacyBackButton = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
-						OSMTracker.Preferences.KEY_UI_LEGACYBACK, OSMTracker.Preferences.VAL_UI_LEGACYBACK);
-				if (!useLegacyBackButton) {
-					// User is not using legacy back button, so we override the
-					// default device
-					// backbutton behaviour.
-					if (buttonTable != null && R.id.tracklogger_tblMain != buttonTable.getId()) {
-						listener.changeButtons(R.layout.tracklogger_main_buttons, false);
-						return true;
-					}
+				if (mainLayout != null && mainLayout.getStackSize() > 1) {
+					mainLayout.pop();
+					return true;
 				}
 			}
 			break;
@@ -337,7 +307,7 @@ public class TrackLogger extends Activity {
 			if (gpsLogger.isTracking()) {
 				requestStillImage();
 				return true;
-			} // else standard behavior
+			}
 			break;
 		}
 
@@ -398,8 +368,10 @@ public class TrackLogger extends Activity {
 	 * Setter for buttonTable
 	 * @param buttonTable The {@link DisablableTableLayout} to set.
 	 */
+	/*
 	public void setButtonTable(DisablableTableLayout buttonTable) {
 		this.buttonTable = buttonTable;
 	}
+	*/
 
 }

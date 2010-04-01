@@ -16,9 +16,7 @@
 		<ListPreference android:entries="@array/prefs_theme_keys"
 			android:title="@string/prefs_theme" android:entryValues="@array/prefs_theme_values"
 			android:key="ui.theme" android:summary="@string/prefs_theme_summary"></ListPreference>
-		<CheckBoxPreference android:key="ui.legacyback"
-			android:summary="@string/prefs_ui_legacyback_summary" android:title="@string/prefs_ui_legacyback"
-			android:defaultValue="false"></CheckBoxPreference>
+		
 	</PreferenceCategory>
 
 
