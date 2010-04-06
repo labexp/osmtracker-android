@@ -3,11 +3,11 @@ package me.guillaumin.android.osmtracker.service.gps;
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
+import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.widget.ToggleButton;
 /**
  * Handles the bind to the GPS Logger service
  * 
@@ -38,22 +38,18 @@ public class GPSLoggerServiceConnection implements ServiceConnection {
 		// Prevent service from notifying user
 		activity.sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
 
-		ToggleButton trackToggle = ((ToggleButton) activity.findViewById(R.id.gpsstatus_record_toggleTrack));
+		// Update record status regarding of current tracking state
+		GpsStatusRecord gpsStatusRecord = (GpsStatusRecord) activity.findViewById(R.id.gpsStatus);
+		if (gpsStatusRecord != null) {
+			gpsStatusRecord.manageRecordingIndicator(activity.getGpsLogger().isTracking());
+		}
 		
-		// Restore UI state according to tracking state
 		if (activity.getGpsLogger().isTracking()) {
-			trackToggle.setEnabled(true);
-			trackToggle.setChecked(true);
 			if (activity.getGpsLogger().isGpsEnabled()) {
 				activity.setEnabledActionButtons(true);
 			}
-
 		} else {
 			activity.setEnabledActionButtons(false);
-			trackToggle.setChecked(false);
-			// We don't manage the enabled state of the toggle here
-			// as it must be set according to GPS status, and not
-			// tracking status
 		}
 	}
 

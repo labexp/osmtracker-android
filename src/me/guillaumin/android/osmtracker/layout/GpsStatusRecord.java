@@ -5,11 +5,8 @@ import java.text.DecimalFormat;
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
-import me.guillaumin.android.osmtracker.listener.StillImageOnClickListener;
-import me.guillaumin.android.osmtracker.listener.TextNoteOnClickListener;
-import me.guillaumin.android.osmtracker.listener.ToggleRecordOnCheckedChangeListener;
-import me.guillaumin.android.osmtracker.listener.VoiceRecOnClickListener;
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -21,11 +18,9 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 /**
  * Layout for the GPS Status image and misc
@@ -70,16 +65,6 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 
 		if (context instanceof TrackLogger) {
 			activity = (TrackLogger) context;
-			// Register listeners
-			((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack)).setOnCheckedChangeListener(new ToggleRecordOnCheckedChangeListener(activity));;
-			((Button) findViewById(R.id.gpsstatus_record_btnVoiceRecord)).setOnClickListener(new VoiceRecOnClickListener(activity));
-			((Button) findViewById(R.id.gpsstatus_record_btnStillImage)).setOnClickListener(new StillImageOnClickListener(activity));
-			((Button) findViewById(R.id.gpsstatus_record_btnTextNote)).setOnClickListener(new TextNoteOnClickListener(activity));
-			
-			// Disable by default the buttons
-			findViewById(R.id.gpsstatus_record_toggleTrack).setEnabled(false);
-			setButtonsEnabled(false);
-			
 			lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		}		
 
@@ -93,19 +78,6 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			lmgr.removeUpdates(this);
 			lmgr.removeGpsStatusListener(this);
 		}
-	}
-
-	/**
-	 * Enables or disable the buttons.
-	 * 
-	 * @param enabled
-	 *            If true, enable the buttons, otherwise disable them.
-	 */
-	public void setButtonsEnabled(boolean enabled) {
-		findViewById(R.id.gpsstatus_record_btnVoiceRecord).setEnabled(enabled);
-		findViewById(R.id.gpsstatus_record_btnStillImage).setEnabled(enabled);
-		findViewById(R.id.gpsstatus_record_btnTextNote).setEnabled(enabled);
-		
 	}
 
 	@Override
@@ -156,7 +128,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		
 		TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
 		if (location.hasAccuracy()) {
-			tvAccuracy.setText(ACCURACY_FORMAT.format(location.getAccuracy()) + getResources().getString(R.string.various_unit_meters));
+			tvAccuracy.setText(getResources().getString(R.string.various_accuracy) + ": " + ACCURACY_FORMAT.format(location.getAccuracy()) + getResources().getString(R.string.various_unit_meters));
 		} else {
 			tvAccuracy.setText("");
 		}
@@ -201,6 +173,19 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			break;
 		}
 
+	}
+	
+	/**
+	 * Manages the state of the recording indicator, depending if we're tracking or not.
+	 * @param isTracking true if the indicator must show that we're tracking, otherwise false
+	 */
+	public void manageRecordingIndicator(boolean isTracking) {
+		ImageView recordStatus = (ImageView) findViewById(R.id.gpsstatus_record_animRec);
+		if (isTracking) {
+			recordStatus.setImageResource(R.drawable.record_red);
+		} else {
+			recordStatus.setImageResource(R.drawable.record_grey);
+		}
 	}
 
 }

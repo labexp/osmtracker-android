@@ -32,11 +32,14 @@
 	<string name="menu_waypointlist">Waypoints</string>
 	<string name="menu_about">About</string>
 	<string name="menu_displaytrack">Display track</string>
+	<string name="menu_starttracking">Start tracking</string>
+	<string name="menu_stoptracking">Stop &amp; save</string>
 	
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>
 	<string name="error_externalstorage_not_writable_hint">Please check ext. storage is correctly inserted and mounted.</string>
 	<string name="error_voicerec_failed">Voice recording has failed</string>
+	<string name="error_userlayout_parsing">Error while parsing XML layout file. Please revert to default layout.</string>
 	
 	<!-- GPX -->
 	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
@@ -48,7 +51,7 @@
 	
 	<!-- About screen -->
 	<string name="about">About</string>
-	<string name="about_text">For more information and issue report, please visite the project homepage:</string>
+	<string name="about_text">For more information, docs and issue report, please visit the project home page:</string>
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
 	
 	<!-- Notification -->

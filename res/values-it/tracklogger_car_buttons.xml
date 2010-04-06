@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="tracklogger_car_btnFuelStation">Benzinaio</string>
-    <string name="tracklogger_car_btnParking">Parcheggio</string>
-    <string name="tracklogger_car_btnEmergencyPhone">Area SOS</string>
-    <string name="tracklogger_car_btnTurningCircle">Rotatoria</string>
-    <string name="tracklogger_car_btnSpeedCamera">Autovelox</string>
-</resources>

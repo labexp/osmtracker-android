@@ -142,7 +142,7 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 
 				// TODO This actually leads to Activity leaking the window (see logs
 				// while recording & rotating phone. Find a better way to handle
-				// that, see View.onDetachedFromWindow();
+				// that, see View.onDetachedFromWindow() ?
 			}
 
 			isRecording = false;

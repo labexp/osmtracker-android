@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/tracklogger_btnBack" android:text="@string/tracklogger_btnBack"
-	android:layout_height="fill_parent" android:drawableTop="@drawable/back_32x32"
-	android:layout_width="fill_parent" android:layout_weight="4"
-	android:enabled="false"></Button>

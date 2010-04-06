@@ -4,9 +4,8 @@ import java.io.File;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
-import me.guillaumin.android.osmtracker.layout.DisablableTableLayout;
 import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
-import me.guillaumin.android.osmtracker.listener.WaypointButtonOnClickListener;
+import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
 import android.app.Activity;
@@ -15,23 +14,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 /**
  * Main track logger activity. Communicate with the GPS service to display GPS
@@ -66,19 +64,14 @@ public class TrackLogger extends Activity {
 	private Intent gpsLoggerServiceIntent;
 
 	/**
-	 * View handling the button grid.
+	 * Main button layout
 	 */
-	private DisablableTableLayout buttonTable;
+	private UserDefinedLayout mainLayout;
 
 	/**
-	 * Listener managing the waypoint buttons.
-	 */
-	private WaypointButtonOnClickListener listener;
-	
-	/**
-	 * Flag to check GPS status at startup.
-	 * Is cleared after the first displaying of GPS status dialog,
-	 * to prevent the dialog to display if user goes to settings/about/other screen.
+	 * Flag to check GPS status at startup. Is cleared after the first
+	 * displaying of GPS status dialog, to prevent the dialog to display if user
+	 * goes to settings/about/other screen.
 	 */
 	private boolean checkGPSFlag = true;
 
@@ -108,13 +101,6 @@ public class TrackLogger extends Activity {
 			previousStateIsTracking = savedInstanceState.getBoolean(STATE_IS_TRACKING, false);
 		}
 
-		// Display main buttons
-		buttonTable = (DisablableTableLayout) LayoutInflater.from(this).inflate(R.layout.tracklogger_main_buttons,
-				(ViewGroup) findViewById(R.id.tracklogger_root), false);
-		((ViewGroup) findViewById(R.id.tracklogger_root)).addView(buttonTable);
-
-		registerListeners();
-		
 		// Restore previous UI state
 		if (previousStateIsTracking) {
 			setEnabledActionButtons(true);
@@ -126,57 +112,48 @@ public class TrackLogger extends Activity {
 		}
 	}
 
-	/**
-	 * Registers various button listeners
-	 */
-	private void registerListeners() {
-		listener = new WaypointButtonOnClickListener((ViewGroup) findViewById(R.id.tracklogger_root), this);
-		buttonTable.setOnClickListenerForAllChild(listener);
-	}
-
 	@Override
 	protected void onResume() {
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
-		// Check GPS status
-		if (checkGPSFlag && prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_CHECKSTARTUP, OSMTracker.Preferences.VAL_GPS_CHECKSTARTUP == true)) {
-			checkGPSProvider();
+
+		// Try to inflate the buttons layout
+		try {
+			String userLayout = prefs.getString(
+					OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+			if (OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT.equals(userLayout)) {
+				// Using default buttons layout
+				mainLayout = new UserDefinedLayout(this, null);
+			} else {
+				// Using user buttons layout
+				File layoutFile = new File(
+						Environment.getExternalStorageDirectory().getPath()
+						+ prefs.getString(
+								OSMTracker.Preferences.KEY_STORAGE_DIR,
+								OSMTracker.Preferences.VAL_STORAGE_DIR)
+						+ File.separator + Preferences.LAYOUTS_SUBDIR
+						+ File.separator + userLayout);
+				mainLayout = new UserDefinedLayout(this, layoutFile);
+			}
+			
+			((ViewGroup) findViewById(R.id.tracklogger_root)).removeAllViews();
+			((ViewGroup) findViewById(R.id.tracklogger_root)).addView(mainLayout);
+			
+		} catch (Exception e) {
+			Log.e(TAG, "Error while inflating UserDefinedLayout", e);
+			Toast.makeText(this, R.string.error_userlayout_parsing, Toast.LENGTH_SHORT).show();
 		}
 		
-		// The user could come from the settings screen and change the Legacy
-		// Back button option.
-		boolean useLegacyBackButton = prefs.getBoolean(
-				OSMTracker.Preferences.KEY_UI_LEGACYBACK, OSMTracker.Preferences.VAL_UI_LEGACYBACK);
-		Button backButton = (Button) findViewById(R.id.tracklogger_btnBack);
-		if (useLegacyBackButton && backButton == null) {
-			if (backButton == null) {
-				// Add soft button "back" to the upper bar
-				LinearLayout upperLayout = (LinearLayout) findViewById(R.id.tracklogger_upperLayout);
-				backButton = (Button) LayoutInflater.from(this).inflate(R.layout.tracklogger_back_button, upperLayout,
-						false);
-				upperLayout.addView(backButton);
-				backButton.setOnClickListener(listener);
-				listener.setBackButton(backButton);
-
-				// Enable button if we're on a subpage
-				if (buttonTable != null && R.id.tracklogger_tblMain != buttonTable.getId()) {
-					backButton.setEnabled(true);
-				}
-			}
-		} else {
-			// Be sure to remove button if present
-			if (backButton != null) {
-				LinearLayout upperLayout = (LinearLayout) findViewById(R.id.tracklogger_upperLayout);
-				upperLayout.removeView(backButton);
-				backButton.setOnClickListener(null);
-				listener.setBackButton(null);
-			}
+		// Check GPS status
+		if (checkGPSFlag
+				&& prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_CHECKSTARTUP,
+						OSMTracker.Preferences.VAL_GPS_CHECKSTARTUP == true)) {
+			checkGPSProvider();
 		}
 
 		// Register GPS status update for upper controls
 		((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(true);
-		
+
 		// Start GPS Logger service
 		startService(gpsLoggerServiceIntent);
 
@@ -189,33 +166,29 @@ public class TrackLogger extends Activity {
 
 	private void checkGPSProvider() {
 		LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
-		if (! lm.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
+		if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			// GPS isn't enabled. Offer user to go enable it
-			new AlertDialog.Builder(this)
-				.setMessage(getResources().getString(R.string.tracklogger_gps_disabled))
-				.setCancelable(true)
-				.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-					}
-				})
-				.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				}).create().show();
+			new AlertDialog.Builder(this).setMessage(getResources().getString(R.string.tracklogger_gps_disabled))
+					.setCancelable(true).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+						}
+					}).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+						}
+					}).create().show();
 			checkGPSFlag = false;
 		}
 	}
-	
+
 	@Override
 	protected void onPause() {
 		
 		// Un-register GPS status update for upper controls
 		((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(false);
-
 
 		if (gpsLogger != null) {
 			if (!gpsLogger.isTracking()) {
@@ -238,7 +211,7 @@ public class TrackLogger extends Activity {
 		if (gpsLogger != null) {
 			outState.putBoolean(STATE_IS_TRACKING, gpsLogger.isTracking());
 		}
-		
+
 		super.onSaveInstanceState(outState);
 	}
 
@@ -248,13 +221,6 @@ public class TrackLogger extends Activity {
 	public void onGpsDisabled() {
 		// GPS disabled. Grey all.
 		setEnabledActionButtons(false);
-
-		// If we are currently tracking, don't grey the track toggle,
-		// allowing the user to stop tracking
-		ToggleButton toggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
-		if (!toggle.isChecked()) {
-			toggle.setEnabled(false);
-		}
 	}
 
 	/**
@@ -262,23 +228,21 @@ public class TrackLogger extends Activity {
 	 */
 	public void onGpsEnabled() {
 		// Buttons can be enabled
-		ToggleButton toggle = ((ToggleButton) findViewById(R.id.gpsstatus_record_toggleTrack));
-		toggle.setEnabled(true);
-
-		if (toggle.isChecked()) {
-			// Currently tracking, activate buttons
+		if (gpsLogger != null && gpsLogger.isTracking()) {
 			setEnabledActionButtons(true);
 		}
-
 	}
 
 	/**
 	 * Enable buttons associated to tracking
-	 * @param enabled true to enable, false to disable
+	 * 
+	 * @param enabled
+	 *            true to enable, false to disable
 	 */
 	public void setEnabledActionButtons(boolean enabled) {
-		buttonTable.setEnabled(enabled);
-		((GpsStatusRecord) findViewById(R.id.gpsStatus)).setButtonsEnabled(enabled);
+		if (mainLayout != null) {
+			mainLayout.setEnabled(enabled);
+		}
 	}
 
 	// Create options menu
@@ -289,10 +253,45 @@ public class TrackLogger extends Activity {
 		return true;
 	}
 
+	// Display options menu
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		MenuItem item = menu.findItem(R.id.tracklogger_menu_startstoptracking);
+
+		// Change first item according to current tracking status
+		if (gpsLogger.isTracking()) {
+			// We're tracking, item = "stop & save"
+			item.setIcon(android.R.drawable.ic_menu_save);
+			item.setTitle(getResources().getString(R.string.menu_stoptracking));
+			item.setTitleCondensed(getResources().getString(R.string.menu_stoptracking));
+		} else {
+			// We're not tracking, item = "start tracking"
+			item.setIcon(android.R.drawable.ic_menu_edit);
+			item.setTitle(getResources().getString(R.string.menu_starttracking));
+			item.setTitleCondensed(getResources().getString(R.string.menu_starttracking));
+			item.setEnabled(gpsLogger.isGpsEnabled());
+		}
+		return super.onPrepareOptionsMenu(menu);
+	}
+
 	// Manage options menu selections
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case R.id.tracklogger_menu_startstoptracking:
+			// Start / Stop tracking	
+			if (gpsLogger.isTracking()) {
+				Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
+				sendBroadcast(intent);
+				setEnabledActionButtons(false);
+				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(false);
+			} else {
+				Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
+				sendBroadcast(intent);
+				setEnabledActionButtons(true);
+				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(true);
+			}			
+			break;
 		case R.id.tracklogger_menu_settings:
 			// Start settings activity
 			startActivity(new Intent(this, Preferences.class));
@@ -312,24 +311,16 @@ public class TrackLogger extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_BACK:
 			// Manage back button if we are on a sub-page
 			if (event.getRepeatCount() == 0) {
-				// Check if user is using legacy soft button or not
-				boolean useLegacyBackButton = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
-						OSMTracker.Preferences.KEY_UI_LEGACYBACK, OSMTracker.Preferences.VAL_UI_LEGACYBACK);
-				if (!useLegacyBackButton) {
-					// User is not using legacy back button, so we override the
-					// default device
-					// backbutton behaviour.
-					if (buttonTable != null && R.id.tracklogger_tblMain != buttonTable.getId()) {
-						listener.changeButtons(R.layout.tracklogger_main_buttons, false);
-						return true;
-					}
+				if (mainLayout != null && mainLayout.getStackSize() > 1) {
+					mainLayout.pop();
+					return true;
 				}
 			}
 			break;
@@ -337,7 +328,7 @@ public class TrackLogger extends Activity {
 			if (gpsLogger.isTracking()) {
 				requestStillImage();
 				return true;
-			} // else standard behavior
+			}
 			break;
 		}
 
@@ -380,26 +371,21 @@ public class TrackLogger extends Activity {
 
 	/**
 	 * Getter for gpsLogger
+	 * 
 	 * @return Activity {@link GPSLogger}
 	 */
 	public GPSLogger getGpsLogger() {
 		return gpsLogger;
 	}
-	
+
 	/**
 	 * Setter for gpsLogger
-	 * @param l {@link GPSLogger} to set.
+	 * 
+	 * @param l
+	 *            {@link GPSLogger} to set.
 	 */
 	public void setGpsLogger(GPSLogger l) {
 		this.gpsLogger = l;
-	}
-
-	/**
-	 * Setter for buttonTable
-	 * @param buttonTable The {@link DisablableTableLayout} to set.
-	 */
-	public void setButtonTable(DisablableTableLayout buttonTable) {
-		this.buttonTable = buttonTable;
 	}
 
 }

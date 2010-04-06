@@ -1,7 +1,6 @@
 package me.guillaumin.android.osmtracker.layout;
 
 import android.content.Context;
-import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
@@ -9,15 +8,15 @@ import android.widget.TableLayout;
 /**
  * TableLayout allowing disabling of child components.
  * This layout is hard-coded for level 2 childs, ie. childs
- * that are into a TableRow directly attaced to the TableLayout.
+ * that are into a TableRow directly attached to the TableLayout.
  * 
  * @author Nicolas Guillaumin
  *
  */
 public class DisablableTableLayout extends TableLayout {
 
-	public DisablableTableLayout(Context context, AttributeSet attrs) {
-		super(context, attrs);
+	public DisablableTableLayout(Context context) {
+		super(context);
 	}
 	
 	/**

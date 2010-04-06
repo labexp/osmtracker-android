@@ -2,7 +2,6 @@ package me.guillaumin.android.osmtracker.listener;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
-import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,23 +17,14 @@ import android.widget.EditText;
  */
 public class TextNoteOnClickListener implements OnClickListener {
 
-	/**
-	 * Reference to main activity
-	 */
-	private TrackLogger activity;
-	
-	public TextNoteOnClickListener(TrackLogger tl) {
-		activity = tl;
-	}
-	
 	@Override
-	public void onClick(View arg0) {
+	public void onClick(final View v) {
 		// Text edit control for user input
-		final EditText input = new EditText(activity);
+		final EditText input = new EditText(v.getContext());
 	
 		// Create a dialog for text input
-		new AlertDialog.Builder(activity)
-		.setTitle(activity.getResources().getString(R.string.gpsstatus_record_textnote))
+		new AlertDialog.Builder(v.getContext())
+		.setTitle(v.getResources().getString(R.string.gpsstatus_record_textnote))
 		.setCancelable(true)
 		.setView(input)
 		.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -44,7 +34,7 @@ public class TextNoteOnClickListener implements OnClickListener {
 				String value = input.getText().toString();
 				Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 				intent.putExtra(OSMTracker.INTENT_KEY_NAME, value);
-				activity.sendBroadcast(intent);
+				v.getContext().sendBroadcast(intent);
 			}
 		}).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 			@Override

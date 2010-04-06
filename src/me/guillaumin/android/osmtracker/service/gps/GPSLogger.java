@@ -138,7 +138,7 @@ public class GPSLogger extends Service implements LocationListener {
 	@Override
 	public boolean onUnbind(Intent intent) {
 		// If we aren't currently tracking we can
-		// stop ourself
+		// stop ourselves
 		if (! isTracking ) {
 			Log.v(TAG, "Service self-stopping");
 			stopSelf();

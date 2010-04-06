@@ -18,19 +18,18 @@ public class OSMTracker {
 		 */
 		public final static String KEY_STORAGE_DIR = "logging.storage.dir";
 		public final static String KEY_VOICEREC_DURATION = "voicerec.duration";
-		public final static String KEY_UI_LEGACYBACK = "ui.legacyback";
 		public final static String KEY_UI_THEME = "ui.theme";
 		public final static String KEY_GPS_OSSETTINGS = "gps.ossettings";
 		public final static String KEY_GPS_CHECKSTARTUP = "gps.checkstartup";
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
+		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
 
 		/**
 		 * Default values
 		 */
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
 		public final static String VAL_VOICEREC_DURATION = "2";
-		public final static boolean VAL_UI_LEGACYBACK = false;
 		public final static String VAL_UI_THEME = "@android:style/Theme";
 		public final static boolean VAL_GPS_CHECKSTARTUP = true;
 		
@@ -40,6 +39,7 @@ public class OSMTracker {
 		public final static String VAL_OUTPUT_ACCURACY = VAL_OUTPUT_ACCURACY_NONE;
 		
 		public final static boolean VAL_OUTPUT_GPX_HDOP_APPROXIMATION = false;
+		public final static String VAL_UI_BUTTONS_LAYOUT = "default";
 	};
 
 	/**
