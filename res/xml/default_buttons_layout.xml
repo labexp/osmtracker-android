@@ -15,7 +15,7 @@
 		<row>
 			<button type="page" label="Tourism" icon="button_tourism" targetlayout="tourism" />
 			<button type="page" label="Amenity" icon="button_amenity" targetlayout="amenity" />
-			<button type="page" label="Amenity(+)" icon="button_amenity" targetlayout="amenity_more" />
+			<button type="page" label="Amenity (+)" icon="button_amenity" targetlayout="amenity_more" />
 		</row>
 		<row>
 			<button type="page" label="Way" icon="button_way" targetlayout="way" />
