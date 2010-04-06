@@ -114,7 +114,6 @@ public class UserDefinedLayoutReader {
 			switch (eventType) {
 			case XmlPullParser.START_TAG:
 				String tagName = parser.getName();
-				Log.v(TAG, "start tag <" + tagName + ">");
 				if (XmlSchema.TAG_LAYOUT.equals(tagName)) {
 					// <layout> tag has been encountered. Inflate this layout
 					inflateLayout();
@@ -122,7 +121,6 @@ public class UserDefinedLayoutReader {
 				break;
 			case XmlPullParser.END_TAG:
 				String name = parser.getName();
-				Log.v(TAG, "end tag <" + name + ">");
 				break;
 			}
 			eventType = parser.next();
@@ -152,7 +150,6 @@ public class UserDefinedLayoutReader {
 			switch (eventType) {
 			case XmlPullParser.START_TAG:
 				String name = parser.getName();
-				Log.v(TAG, "start tag <" + name + ">");
 				if (XmlSchema.TAG_ROW.equals(name)) {
 					// <row> tag has been encountered, inflates it
 					inflateRow(tblLayout);
@@ -160,7 +157,6 @@ public class UserDefinedLayoutReader {
 				break;
 			case XmlPullParser.END_TAG:
 				currentTagName = parser.getName();
-				Log.v(TAG, "end tag <" + currentTagName + ">");
 				break;
 			}
 		}
@@ -189,7 +185,6 @@ public class UserDefinedLayoutReader {
 			switch (eventType) {
 			case XmlPullParser.START_TAG:
 				String name = parser.getName();
-				Log.v(TAG, "start tag <" + name + ">");
 				if (XmlSchema.TAG_BUTTON.equals(name)) {
 					// <button> tag has been encountered, inflates it.
 					inflateButton(tblRow);
@@ -197,7 +192,6 @@ public class UserDefinedLayoutReader {
 				break;
 			case XmlPullParser.END_TAG:
 				currentTagName = parser.getName();
-				Log.v(TAG, "end tag <" + currentTagName + ">");
 				break;
 			}
 

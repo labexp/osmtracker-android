@@ -51,7 +51,7 @@
 	
 	<!-- About screen -->
 	<string name="about">About</string>
-	<string name="about_text">For more information and issue report, please visite the project homepage:</string>
+	<string name="about_text">For more information, docs and issue report, please visit the project home page:</string>
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
 	
 	<!-- Notification -->

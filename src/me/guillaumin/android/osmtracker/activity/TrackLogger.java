@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 /**
@@ -263,7 +265,7 @@ public class TrackLogger extends Activity {
 			item.setTitle(getResources().getString(R.string.menu_stoptracking));
 			item.setTitleCondensed(getResources().getString(R.string.menu_stoptracking));
 		} else {
-			// We're note tracking, item = "start tracking"
+			// We're not tracking, item = "start tracking"
 			item.setIcon(android.R.drawable.ic_menu_edit);
 			item.setTitle(getResources().getString(R.string.menu_starttracking));
 			item.setTitleCondensed(getResources().getString(R.string.menu_starttracking));
@@ -277,16 +279,18 @@ public class TrackLogger extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.tracklogger_menu_startstoptracking:
-			// Start / Stop tracking
+			// Start / Stop tracking	
 			if (gpsLogger.isTracking()) {
 				Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
 				sendBroadcast(intent);
 				setEnabledActionButtons(false);
+				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(false);
 			} else {
 				Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
 				sendBroadcast(intent);
 				setEnabledActionButtons(true);
-			}
+				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(true);
+			}			
 			break;
 		case R.id.tracklogger_menu_settings:
 			// Start settings activity
@@ -307,7 +311,7 @@ public class TrackLogger extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {

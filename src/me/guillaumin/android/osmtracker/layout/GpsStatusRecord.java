@@ -6,6 +6,7 @@ import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -172,6 +173,19 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			break;
 		}
 
+	}
+	
+	/**
+	 * Manages the state of the recording indicator, depending if we're tracking or not.
+	 * @param isTracking true if the indicator must show that we're tracking, otherwise false
+	 */
+	public void manageRecordingIndicator(boolean isTracking) {
+		ImageView recordStatus = (ImageView) findViewById(R.id.gpsstatus_record_animRec);
+		if (isTracking) {
+			recordStatus.setImageResource(R.drawable.record_red);
+		} else {
+			recordStatus.setImageResource(R.drawable.record_grey);
+		}
 	}
 
 }
