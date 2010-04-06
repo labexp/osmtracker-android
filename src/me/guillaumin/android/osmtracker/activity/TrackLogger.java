@@ -17,6 +17,7 @@ import android.content.SharedPreferences;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -98,14 +99,6 @@ public class TrackLogger extends Activity {
 			previousStateIsTracking = savedInstanceState.getBoolean(STATE_IS_TRACKING, false);
 		}
 
-		try {
-			mainLayout = new UserDefinedLayout(this, null);
-			((ViewGroup) findViewById(R.id.tracklogger_root)).addView(mainLayout);
-		} catch (Exception e) {
-			Log.e(TAG, "Error while inflating UserDefinedLayout", e);
-			Toast.makeText(this, R.string.error_userlayout_parsing, Toast.LENGTH_SHORT).show();
-		}
-
 		// Restore previous UI state
 		if (previousStateIsTracking) {
 			setEnabledActionButtons(true);
@@ -122,6 +115,33 @@ public class TrackLogger extends Activity {
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+		// Try to inflate the buttons layout
+		try {
+			String userLayout = prefs.getString(
+					OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+			if (OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT.equals(userLayout)) {
+				// Using default buttons layout
+				mainLayout = new UserDefinedLayout(this, null);
+			} else {
+				// Using user buttons layout
+				File layoutFile = new File(
+						Environment.getExternalStorageDirectory().getPath()
+						+ prefs.getString(
+								OSMTracker.Preferences.KEY_STORAGE_DIR,
+								OSMTracker.Preferences.VAL_STORAGE_DIR)
+						+ File.separator + Preferences.LAYOUTS_SUBDIR
+						+ File.separator + userLayout);
+				mainLayout = new UserDefinedLayout(this, layoutFile);
+			}
+			
+			((ViewGroup) findViewById(R.id.tracklogger_root)).removeAllViews();
+			((ViewGroup) findViewById(R.id.tracklogger_root)).addView(mainLayout);
+			
+		} catch (Exception e) {
+			Log.e(TAG, "Error while inflating UserDefinedLayout", e);
+			Toast.makeText(this, R.string.error_userlayout_parsing, Toast.LENGTH_SHORT).show();
+		}
+		
 		// Check GPS status
 		if (checkGPSFlag
 				&& prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_CHECKSTARTUP,
@@ -164,7 +184,7 @@ public class TrackLogger extends Activity {
 
 	@Override
 	protected void onPause() {
-
+		
 		// Un-register GPS status update for upper controls
 		((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(false);
 

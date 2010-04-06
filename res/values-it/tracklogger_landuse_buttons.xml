@@ -3,9 +3,9 @@
     <string name="tracklogger_landuse_btnFarm">Fattoria</string>
     <string name="tracklogger_landuse_btnLandfill">Discarica</string>
     <string name="tracklogger_landuse_btnBasin">Bacino</string>
-    <string name="tracklogger_landuse_btnReservoir">Bacino idrico</string>
+    <string name="tracklogger_landuse_btnReservoir">Serbatoio</string>
     <string name="tracklogger_landuse_btnForest">Foresta</string>
-    <string name="tracklogger_landuse_btnAllotments">Lotto di terreno</string>
+    <string name="tracklogger_landuse_btnAllotments">Orti pubblici</string>
     <string name="tracklogger_landuse_btnCemetery">Cimitero</string>
-    <string name="tracklogger_landuse_btnRecreationGround">Parco gioci</string>
+    <string name="tracklogger_landuse_btnRecreationGround">Area di svago</string>
 </resources>

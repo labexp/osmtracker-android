@@ -15,23 +15,13 @@ import android.graphics.drawable.Drawable;
  *
  */
 public class ExternalDirectoryIconResolver implements IconResolver {
-
-	/**
-	 * PNG file extension
-	 */
-	public static final String EXTENSION_PNG = "png";
 	
 	/**
 	 * Base directory to read icon files.
 	 */
 	private File directory;
-	
-	/**
-	 * File extension for icon files.
-	 */
-	private String extension;
-	
-	public ExternalDirectoryIconResolver(File baseDir, String iconExtension) {
+		
+	public ExternalDirectoryIconResolver(File baseDir) {
 		if (!baseDir.isDirectory()) {
 			throw new IllegalArgumentException("baseDir must be a directory. " + baseDir + " is not.");
 		}
@@ -41,13 +31,17 @@ public class ExternalDirectoryIconResolver implements IconResolver {
 	
 	@Override
 	public Drawable getIcon(String key) {
-		File iconFile = new File(directory, key + "." + extension);
-		if (iconFile.exists() && iconFile.canRead()) {
-			Bitmap iconBitmap = BitmapFactory.decodeFile(iconFile.getAbsolutePath());
-			BitmapDrawable iconDrawable = new BitmapDrawable(iconBitmap);
-			return iconDrawable;
-		} else {
+		if (key == null) {
 			return null;
+		} else {
+			File iconFile = new File(directory, key);
+			if (iconFile.exists() && iconFile.canRead()) {
+				Bitmap iconBitmap = BitmapFactory.decodeFile(iconFile.getAbsolutePath());
+				BitmapDrawable iconDrawable = new BitmapDrawable(iconBitmap);
+				return iconDrawable;
+			} else {
+				return null;
+			}
 		}
 	}
 

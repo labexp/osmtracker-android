@@ -2,8 +2,8 @@
 <resources>
     <string name="tracklogger_way_btnBridge">Ponte</string>
     <string name="tracklogger_way_btnCrossing">Strisce pedonali</string>
-    <string name="tracklogger_way_btnMotorway">Autostrada</string>
-    <string name="tracklogger_way_btnTrunk">Principale</string>
+    <string name="tracklogger_way_btnMotorway">Autostrada/tangenziale</string>
+    <string name="tracklogger_way_btnTrunk">Trunk</string>
     <string name="tracklogger_way_btniPrimary">Primaria</string>
     <string name="tracklogger_way_btnSecondary">Secondaria</string>
     <string name="tracklogger_way_btnTertiary">Terziaria</string>

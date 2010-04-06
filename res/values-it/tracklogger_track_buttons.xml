@@ -2,14 +2,14 @@
 <resources>
     <string name="tracklogger_track_btnTrack">Pista</string>
     <string name="tracklogger_track_btnCycleway">Pista ciclabile</string>
-    <string name="tracklogger_track_btnFootway">Marciapiedi</string>
-    <string name="tracklogger_track_btnBridleway">Sentiero</string>
-    <string name="tracklogger_track_btnSteps">Gradinata</string>
-    <string name="tracklogger_track_btnLivingStreet">Sterrato</string>
-    <string name="tracklogger_track_btnPedestrian">Pedonale</string>
-    <string name="tracklogger_track_btnTrack1">Livello 1</string>
-    <string name="tracklogger_track_btnTrack2">Livello 2</string>
-    <string name="tracklogger_track_btnTrack3">Livello 3</string>
-    <string name="tracklogger_track_btnTrack4">Livello 4</string>
-    <string name="tracklogger_track_btnTrack5">Livello 5</string>
+    <string name="tracklogger_track_btnFootway">Marciapiede</string>
+    <string name="tracklogger_track_btnBridleway">Sentiero equitazione</string>
+    <string name="tracklogger_track_btnSteps">Rampa di scale</string>
+    <string name="tracklogger_track_btnLivingStreet">Living street</string>
+    <string name="tracklogger_track_btnPedestrian">Area pedonale</string>
+    <string name="tracklogger_track_btnTrack1">Grado 1</string>
+    <string name="tracklogger_track_btnTrack2">Grado 2</string>
+    <string name="tracklogger_track_btnTrack3">Grado 3</string>
+    <string name="tracklogger_track_btnTrack4">Grado 4</string>
+    <string name="tracklogger_track_btnTrack5">Grado 5</string>
 </resources>

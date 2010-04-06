@@ -23,6 +23,7 @@ public class OSMTracker {
 		public final static String KEY_GPS_CHECKSTARTUP = "gps.checkstartup";
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
+		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
 
 		/**
 		 * Default values
@@ -38,6 +39,7 @@ public class OSMTracker {
 		public final static String VAL_OUTPUT_ACCURACY = VAL_OUTPUT_ACCURACY_NONE;
 		
 		public final static boolean VAL_OUTPUT_GPX_HDOP_APPROXIMATION = false;
+		public final static String VAL_UI_BUTTONS_LAYOUT = "default";
 	};
 
 	/**
