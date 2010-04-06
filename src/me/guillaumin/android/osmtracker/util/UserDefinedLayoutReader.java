@@ -212,7 +212,7 @@ public class UserDefinedLayoutReader {
 		button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,
 				TableRow.LayoutParams.FILL_PARENT, 1));
 
-		// TODO Do not instantiate a new listener each time, but reuse them
+		// TODO Use kind of ButtonFactory here
 
 		String buttonType = parser.getAttributeValue(null, XmlSchema.ATTR_TYPE);
 		if (XmlSchema.ATTR_VAL_PAGE.equals(buttonType)) {
