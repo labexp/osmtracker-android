@@ -357,13 +357,17 @@ public class TrackLogger extends Activity {
 				// A still image has been captured, track the corresponding
 				// waypoint
 				// Send an intent to inform service to track the waypoint.
-				File imageFile = gpsLogger.getDataHelper().popImageFile();
-				Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
-				intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
-				intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
-				sendBroadcast(intent);
-				break;
+				if (gpsLogger != null) {
+					File imageFile = gpsLogger.getDataHelper().popImageFile();
+					if (imageFile != null) {
+						Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+						intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
+						intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
+						sendBroadcast(intent);
+					}
+				}			
 			}
+			break;
 		}
 
 		super.onActivityResult(requestCode, resultCode, data);
