@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layouts>
+	<layout name="root">
+		<row>
+			<button type="voicerec" label="Sprachaufnahme" icon="voice_32x32" />
+			<button type="picture" label="Fotografieren" icon="camera_32x32" />
+			<button type="textnote" label="Textnotiz" icon="text_32x32" />
+		</row>
+	       
+		<row>
+			<button type="page" label="Verschiedenes" icon="button_misc" targetlayout="misc" />
+			<button type="page" label="Barrieren" icon="button_restriction" targetlayout="restriction" />
+			<button type="page" label="Auto" icon="button_car" targetlayout="car" />
+		</row>
+		<row>
+			<button type="page" label="Tourismus" icon="button_tourism" targetlayout="tourism" />
+			<button type="page" label="Einrichtungen" icon="button_amenity" targetlayout="amenity" />
+			<button type="page" label="Einrichtungen (+)" icon="button_amenity" targetlayout="amenity_more" />
+		</row>
+		<row>
+			<button type="page" label="Wege" icon="button_way" targetlayout="way" />
+			<button type="page" label="Pfade" icon="button_track" targetlayout="track" />
+			<button type="page" label="Landnutzung" icon="button_landuse" targetlayout="landuse" />
+		</row>
+	</layout>
+
+	<layout name="misc">
+		<row>
+			<button type="voicerec" label="Sprachaufnahme" icon="voice_32x32" />
+			<button type="picture" label="Fotografieren" icon="camera_32x32" />
+			<button type="textnote" label="Textnotiz" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Bushaltestelle" icon="button_misc_bus_stop" />
+			<button type="tag" label="Eisenbahn" icon="button_misc_railway" />
+			<button type="tag" label="Telefon" icon="button_misc_telephone" />
+		</row>
+		<row>
+			<button type="tag" label="Briefkasten" icon="button_misc_post_box" />
+			<button type="tag" label="Bankautomat" icon="button_misc_atm" />
+			<button type="tag" label="Poller" icon="button_misc_bollard" />
+		</row>
+		<row>
+			<button type="tag" label="Toiletten" icon="button_misc_toilets" />
+			<button type="tag" label="Wartehalle" icon="button_misc_shelter" />
+			<button type="tag" label="Überwachung" icon="button_misc_surveillance" />
+		</row>
+	</layout>
+
+	<layout name="restriction">
+		<row>
+			<button type="voicerec" label="Sprachaufnahme" icon="voice_32x32" />
+			<button type="picture" label="Fotografieren" icon="camera_32x32" />
+			<button type="textnote" label="Textnotiz" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Max 30" icon="button_restriction" />
+			<button type="tag" label="Max 50" icon="button_restriction" />
+			<button type="tag" label="Max 80" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="Max 100" icon="button_restriction" />
+			<button type="tag" label="Max 110" icon="button_restriction" />
+			<button type="tag" label="Max 120" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="Sackgasse" icon="button_restriction_no_exit" />
+			<button type="tag" label="Ampel" icon="button_restriction_traffic_light" />
+			<button type="tag" label="Einbahnstraße" icon="button_restriction_one_way" />
+		</row>
+	</layout>
+
+	<layout name="car">
+		<row>
+			<button type="voicerec" label="Sprachaufnahme" icon="voice_32x32" />
+			<button type="picture" label="Fotografieren" icon="camera_32x32" />
+			<button type="textnote" label="Textnotiz" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Tankstelle" icon="button_car_fuel_station" />
+			<button type="tag" label="Parkplatz" icon="button_car_parking" />
+			<button type="tag" label="Notruf" icon="button_car_emergency_phone" />
+		</row>
+		<row>
+			<button type="tag" label="Kreisverkehr" icon="button_car_turning_circle" />
+			<button type="tag" label="Radargerät" icon="button_car_speed_camera" />
+		</row>
+	</layout>
+
+	<layout name="tourism">
+		<row>
+			<button type="voicerec" label="Sprachaufnahme" icon="voice_32x32" />
+			<button type="picture" label="Fotografieren" icon="camera_32x32" />
+			<button type="textnote" label="Textnotiz" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Aussichtspunkt" icon="button_tourism_view_point" />
+			<button type="tag" label="Information" icon="button_tourism_information" />
+			<button type="tag" label="Rastplatz" icon="button_tourism_picnic" />
+		</row>
+		<row>
+			<button type="tag" label="Attraktion" icon="button_tourism_attraction" />
+			<button type="tag" label="Freizeitpark" icon="button_tourism_theme_park" />
+			<button type="tag" label="Burg/Schloß" icon="button_tourism_castle" />
+		</row>
+		<row>
+			<button type="tag" label="Monument" icon="button_tourism_monument" />
+			<button type="tag" label="Museum" icon="button_tourism_museum" />
+			<button type="tag" label="Kino" icon="button_tourism_cinema" />
+		</row>
+	</layout>
+
+	<layout name="amenity">
+		<row>
+			<button type="voicerec" label="Sprachaufnahme" icon="voice_32x32" />
+			<button type="picture" label="Fotografieren" icon="camera_32x32" />
+			<button type="textnote" label="Textnotiz" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Parkbank" icon="button_amenity_bench" />
+			<button type="tag" label="Wasser" icon="button_amenity_water" />
+			<button type="tag" label="Apotheke" icon="button_amenity_pharmacy" />
+		</row>
+		<row>
+			<button type="tag" label="Geschäft" icon="button_amenity_shop" />
+			<button type="tag" label="Hafen" icon="button_amenity_marina" />
+			<button type="tag" label="Sport" icon="button_amenity_sport" />
+		</row>
+		<row>
+			<button type="tag" label="Taxi" icon="button_amenity_taxi" />
+			<button type="tag" label="Krankenhaus,\nDoktor" icon="button_amenity_doctors" />
+			<button type="tag" label="Recycling" icon="button_amenity_recycling" />
+		</row>
+		<row>
+			<button type="tag" label="Gebetsstätte" icon="button_amenity_place_of_worship" />
+			<button type="tag" label="Postamt" icon="button_amenity_post_office" />
+			<button type="tag" label="Bibliothek" icon="button_amenity_library" />
+		</row>
+	</layout>
+
+	<layout name="amenity_more">
+		<row>
+			<button type="voicerec" label="Sprachaufnahme" icon="voice_32x32" />
+			<button type="picture" label="Fotografieren" icon="camera_32x32" />
+			<button type="textnote" label="Textnotiz" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Schule" icon="button_amenitymore_school" />
+			<button type="tag" label="Polizei" icon="button_amenitymore_police" />
+			<button type="tag" label="Feuerwache" icon="button_amenitymore_fire_station" />
+		</row>
+		<row>
+			<button type="tag" label="Bank" icon="button_amenitymore_bank" />
+			<button type="tag" label="Spielplatz" icon="button_amenitymore_playground" />
+			<button type="tag" label="Kneipe" icon="button_amenitymore_pub" />
+		</row>
+		<row>
+			<button type="tag" label="Hotel" icon="button_amenitymore_hotel" />
+			<button type="tag" label="Motel" icon="button_amenitymore_motel" />
+			<button type="tag" label="Hostel" icon="button_amenitymore_hostel" />
+		</row>
+		<row>
+			<button type="tag" label="Restaurant" icon="button_amenitymore_restaurant" />
+			<button type="tag" label="Fast food" icon="button_amenitymore_fastfood" />
+			<button type="tag" label="Campingplatz" icon="button_amenitymore_camp_site" />
+		</row>
+	</layout>
+
+	<layout name="way">
+		<row>
+			<button type="voicerec" label="Sprachaufnahme" icon="voice_32x32" />
+			<button type="picture" label="Fotografieren" icon="camera_32x32" />
+			<button type="textnote" label="Textnotiz" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Brücke" icon="button_way_bridge" />
+			<button type="tag" label="Zebrastreifen" icon="button_way_zebra_crossing" />
+			<button type="tag" label="Autobahn" icon="button_way_motorway" />
+		</row>
+		<row>
+			<button type="tag" label="Schnellstraße" icon="button_way_trunk" />
+			<button type="tag" label="Bundesstraße" icon="button_way_primary" />
+			<button type="tag" label="Landstraße" icon="button_way_secondary" />
+		</row>
+		<row>
+			<button type="tag" label="Kreisstraße" icon="button_way_tertiary" />
+			<button type="tag" label="Straße an/in \nWohngebieten" icon="button_way_residential" />
+			<button type="tag" label="Erschließungsweg" icon="button_way_service" />
+		</row>
+	</layout>
+
+	<layout name="track">
+		<row>
+			<button type="voicerec" label="Sprachaufnahme" icon="voice_32x32" />
+			<button type="picture" label="Fotografieren" icon="camera_32x32" />
+			<button type="textnote" label="Textnotiz" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Feldweg" icon="button_track_track" />
+			<button type="tag" label="Fahrradweg" icon="button_track_cycleway" />
+			<button type="tag" label="Fußweg" icon="button_track_footway" />
+		</row>
+		<row>
+			<button type="tag" label="Reitweg" icon="button_track_bridleway" />
+			<button type="tag" label="Treppen" icon="button_track_steps" />
+			<button type="tag" label="Verkehrsberuhigter \nBereich" icon="button_track_living_street" />
+		</row>
+		<row>
+			<button type="tag" label="Fußgängerweg" icon="button_track_pedestrian" />
+			<button type="tag" label="Befestigter Weg \n(Grade 1)" icon="button_track_grade1" />
+			<button type="tag" label="Unbefestigter Weg \n(Grade 2)" icon="button_track_grade2" />
+		</row>
+		<row>
+			<button type="tag" label="Unbefestigter Weg \n(Grade 3)" icon="button_track_grade3" />
+			<button type="tag" label="Unbefestigter Weg \n(Grade 4)" icon="button_track_grade4" />
+			<button type="tag" label="Unbefestigter Weg \n(Grade 5)" icon="button_track_grade5" />
+		</row>
+	</layout>
+
+
+	<layout name="landuse">
+		<row>
+			<button type="voicerec" label="Sprachaufnahme" icon="voice_32x32" />
+			<button type="picture" label="Fotografieren" icon="camera_32x32" />
+			<button type="textnote" label="Textnotiz" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Lanwirtschaftlich \ngenutzte Fläche" icon="button_landuse_farm" />
+			<button type="tag" label="Deponie" icon="button_landuse_landfill" />
+			<button type="tag" label="Wasserbecken" icon="button_landuse_basin" />
+		</row>
+		<row>
+			<button type="tag" label="Speicherbecken" icon="button_landuse_reservoir" />
+			<button type="tag" label="Forstwirtschaft" icon="button_landuse_forest" />
+			<button type="tag" label="Kleingarten" icon="button_landuse_allotments" />
+		</row>
+		<row>
+			<button type="tag" label="Friedhof" icon="button_landuse_cemetery" />
+			<button type="tag" label="Erholungsgebiet" icon="button_landuse_recreation_ground" />
+		</row>
+	</layout>
+</layouts>

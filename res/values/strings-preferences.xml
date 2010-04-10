@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<!-- Preferences -->
+	<!-- Preferences -->
 	<string name="prefs">Settings</string>
 	
 	<string name="prefs_gps_os_settings">GPS settings</string>

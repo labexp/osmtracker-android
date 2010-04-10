@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Preferences -->
+	<string name="prefs">Einstellungen</string>
+       
+	<string name="prefs_gps_os_settings">GPS Einstellungen</string>
+	<string name="prefs_gps_os_settings_summary">Zeige GPS-Einstellungen des Systems</string>
+
+	<string name="prefs_check_gps_startup">Prüfe GPS beim Start</string>
+	<string name="prefs_check_gps_startup_summary">Prüfen ob GPS beim Start deaktiviert ist und biete an es zu aktivieren.</string>
+
+	<string name="prefs_ui">Benutzeroberfläche</string>
+       
+	<string name="prefs_ui_buttons_layout">Tastenlayout</string>
+	<string name="prefs_ui_buttons_layout_summary">Erlaube benutzerdefiniertes Tastenlayout (Siehe Dokumentation).</string>
+	<string name="prefs_ui_buttons_layout_defaut">Standard</string>
+       
+
+	<string name="prefs_voicerec_duration">Dauer Sprachaufnahme</string>
+	<string name="prefs_voicerec_duration_seconds">Sekunden</string>
+	<string-array name="prefs_voicerec_durations">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+	</string-array>
+	<string name="prefs_theme">Motiv Hauptbildschirm</string>
+	<string name="prefs_theme_summary">Applikationsneustart notwendig, damit Einstellungen wirksam werden</string>
+	<string-array name="prefs_theme_keys">
+		<item>OS Standard</item>
+		<item>OS Standard (Dunkel)</item>
+		<item>OS Standard (Hell)</item>
+		<item>Hoher Kontrast</item>
+	</string-array>
+	<string-array name="prefs_theme_values">
+		<item>android:style/Theme</item>
+		<item>android:style/Theme.Black</item>
+		<item>android:style/Theme.Light</item>
+		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+	</string-array>
+
+	<string name="prefs_output">GPX Dateiausgabe</string>
+	<string name="prefs_storage_dir">Externes Speicherverzeichnis (SD)</string>
+	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_output_accuracy">Genauigkeit in der GPX-Datei</string>
+	<string name="prefs_output_accuracy_summary">Erlaube Genauigkeitsanzeige in der GPX-Datei mit waypoint-Name oder in einem separaten Tag</string>
+	<string-array name="prefs_output_accuracy_keys">
+		<item>Kein</item>
+		<item>Mit waypoint-Name</item>
+		<item>Im waypoint-Kommentar</item>
+	</string-array>
+	<string-array name="prefs_output_accuracy_values">
+		<item>kein</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
+	<string name="prefs_output_gpx_hdop_approximation">Benutze HDOP-Annäherung</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Fülle HDOP (im GPX) mit Näherungswerten der Genauigkeitsmessung</string>
+</resources>
+

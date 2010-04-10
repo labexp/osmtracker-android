@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- Generic strings -->
-	<string name="app_name">OSMTracker til Android</string>
+	<string name="app_name">OSMTracker til Android™</string>
 	<string name="app_short_name">OSMTracker</string>
 	<string name="app_description">Inspireret af OSMTracker p Windows Mobile. Programmet gør det muligt at spore og tracke dine rejser, markere waypoints undervejs (taleoptagelse tilgængelig) og eksportere dem i GPX format til senere brug med Open Street Map værktøjer som JOSM.</string>
 
