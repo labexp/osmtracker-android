@@ -56,12 +56,12 @@
 		<row>
 			<button type="tag" label="30" icon="button_restriction" />
 			<button type="tag" label="50" icon="button_restriction" />
-			<button type="tag" label="80" icon="button_restriction" />
+			<button type="tag" label="70" icon="button_restriction" />
 		</row>
 		<row>
-			<button type="tag" label="100" icon="button_restriction" />
+			<button type="tag" label="90" icon="button_restriction" />
 			<button type="tag" label="110" icon="button_restriction" />
-			<button type="tag" label="120" icon="button_restriction" />
+			<button type="tag" label="130" icon="button_restriction" />
 		</row>
 		<row>
 			<button type="tag" label="Senza uscita" icon="button_restriction_no_exit" />

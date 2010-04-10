@@ -10,7 +10,7 @@
 	<string name="tracklogger_voicerec_title">Registrazione vocale</string>
 	<string name="tracklogger_voicerec_text">Registrazione audio di {0}s.</string>
 	<string name="tracklogger_btnBack">Indietro</string>
-	<string name="tracklogger_tracked">Rilevata: </string>
+	<string name="tracklogger_tracked">Tracciato: </string>
 	<string name="tracklogger_gps_disabled">Il GPS è disabilitato. Vuoi abilitarlo?</string>
 
 	<!-- Waypoint List -->
@@ -32,18 +32,21 @@
 	<string name="menu_waypointlist">POI</string>
 	<string name="menu_about">Info</string>
 	<string name="menu_displaytrack">Mostra traccia</string>
-	
+	<string name="menu_starttracking">Avvia traccia</string>
+	<string name="menu_stoptracking">Ferma &amp; Salva</string>
+
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Impossibile scrivere nella memoria esterna.</string>
 	<string name="error_externalstorage_not_writable_hint">Verifica che la memoria esterna sia inserita e montata correttamente.</string>
 	<string name="error_voicerec_failed">Registrazione vocale fallita</string>
+	<string name="error_userlayout_parsing">Errore durante l\'elaborazione del formato file XML. Ripristina il formato predefinito.</string>
 	
 	<!-- GPX -->
-	<string name="gpx_track_name">Rilevata con OSMTracker per Android™</string>
+	<string name="gpx_track_name">Tracciato con OSMTracker per Android™</string>
 	<string name="gpx_hdop_approximation_cmt">Attenzione: i valori HDOP non corrispondono agli HDOP restituiti dal dispositivo GPS. La precisione della posizione è approssimata in metri e non dovrebbe essere tenuta in conto.</string>
 	
 	<!-- Notification -->
-	<string name="notification_still_running">OSMTracker sta ancora rilevando</string>
+	<string name="notification_still_running">OSMTracker sta ancora tracciando</string>
 	<string name="notification_display_ui">Clicca per mostrare OSMTracker</string>
 	
 	<!-- About screen -->

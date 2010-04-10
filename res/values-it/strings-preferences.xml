@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<!-- Preferences -->
+	<!-- Preferences -->
 	<string name="prefs">Impostazioni</string>
 	
 	<string name="prefs_gps_os_settings">Impostazioni GPS</string>
@@ -11,6 +11,11 @@
 	<string name="prefs_check_gps_startup_summary">Verifica se il GPS è disabilitato all\'avvio e chiede di abilitarlo.</string>
 
 	<string name="prefs_ui">Interfaccia utente</string>
+	
+	<string name="prefs_ui_buttons_layout">Formato tasti</string>
+	<string name="prefs_ui_buttons_layout_summary">Permette di definire un formato dei tasti personalizzato (vedi manuale).</string>
+	<string name="prefs_ui_buttons_layout_defaut">Predefinito</string>
+    
 
 	<string name="prefs_voicerec_duration">Durata registrazione vocale</string>
 	<string name="prefs_voicerec_duration_seconds">secondi</string>
