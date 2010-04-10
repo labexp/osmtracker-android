@@ -6,7 +6,6 @@ import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import android.content.Context;
-import android.graphics.drawable.AnimationDrawable;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;

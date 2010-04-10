@@ -19,7 +19,6 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;

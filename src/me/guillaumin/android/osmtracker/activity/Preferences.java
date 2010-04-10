@@ -16,7 +16,6 @@ import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.provider.Settings;
-import android.util.Log;
 
 /**
  * Manages preferences screen.
