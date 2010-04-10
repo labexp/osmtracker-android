@@ -3,11 +3,10 @@
 	<!-- Generic strings -->
 	<string name="app_name">OSMTracker til Android</string>
 	<string name="app_short_name">OSMTracker</string>
-	<string name="app_description">Inspireret af OSMTracker p Windows Mobile. Programmet gør det muligt at spore og tracke dine rejser, markere punkter (waypoints) undervejs (taleoptagelse tilgængelig) og eksportere dem i GPX format til senere	brug med Open Street Map værktjer som JOSM.</string>
+	<string name="app_description">Inspireret af OSMTracker p Windows Mobile. Programmet gør det muligt at spore og tracke dine rejser, markere waypoints undervejs (taleoptagelse tilgængelig) og eksportere dem i GPX format til senere brug med Open Street Map værktøjer som JOSM.</string>
 
 	<!-- TrackLogger -->
 	<string name="tracklogger_waiting_gps">Venter på GPS signal før knapper aktiveres...</string>
-
 	<string name="tracklogger_voicerec_title">Tale optagelse</string>
 	<string name="tracklogger_voicerec_text">Optager et {0}sek lydklip.</string>
 	<string name="tracklogger_btnBack">Tilbage</string>
@@ -15,7 +14,6 @@
 	<string name="tracklogger_gps_disabled">GPS er inaktiveret. Vil du aktivere den ?</string>
 
 	<!-- Waypoint List -->
-
 	<string name="wplist">Waypoint liste</string>
 	<string name="wplist_latitude">Breddegr: </string>
 	<string name="wplist_longitude">Lngdegr: </string>
@@ -23,22 +21,19 @@
 	<string name="wplist_accuracy">Prcision: </string>
 
 	<!-- GPS Status & record bar -->
-
-	<string name="gpsstatus_record_trackoff">Start sporing.</string>
-	<string name="gpsstatus_record_trackon">Stop sporing</string>
+	<string name="gpsstatus_record_trackoff">Start tracking.</string>
+	<string name="gpsstatus_record_trackon">Stop tracking</string>
 	<string name="gpsstatus_record_voicerec">Tale optagelse</string>
 	<string name="gpsstatus_record_stillimage">Tag billede</string>
 	<string name="gpsstatus_record_textnote">Tekst note</string>
 
 	<!-- Menu -->
-
 	<string name="menu_settings">Indstillinger</string>
 	<string name="menu_waypointlist">Waypoints</string>
 	<string name="menu_about">Om</string>
-	<string name="menu_displaytrack">Vis spor</string>
-	<string name="menu_starttracking">Start sporing</string>
+	<string name="menu_displaytrack">Vis track</string>
+	<string name="menu_starttracking">Start tracking</string>
 	<string name="menu_stoptracking">Stop &amp; gem</string>
-
 
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Kan ikke skrive til eksternt lager.</string>
@@ -47,21 +42,17 @@
 	<string name="error_userlayout_parsing">Fejl ved parsing af XML layout fil. Brug venligst standard layout.</string>
 
 	<!-- GPX -->
-	<string name="gpx_track_name">Sporet med OSMTracker til Android</string>
-
+	<string name="gpx_track_name">Tracket med OSMTracker til Android</string>
 	<string name="gpx_hdop_approximation_cmt">Advarsel: HDOP værdier er ikke de HDOP der returneres af GPSen. De er approksimeret for lokalisationspræcision i meter og skal ikke tages for pålydende.</string>
 
 	<!-- Notification -->
-	<string name="notification_still_running">OSMTracker sporer fortsat</string>
+	<string name="notification_still_running">OSMTracker tracker fortsat</string>
 	<string name="notification_display_ui">Klik for at vise OSMTracker</string>
 
 	<!-- About screen -->
 	<string name="about">Om</string>
 	<string name="about_text">For mere information, dokumenter, bugs m.m. besøg venligst projektets hjemmeside:</string>
-
-	<string name="about_link">
-		<a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a>
-	</string>
+	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
 
 	<!-- Notification -->
 	<string name="notification_ticker_text">OSMTracker kører fortsat</string>
@@ -69,9 +60,8 @@
 	<string name="notification_text">Tryk her for at vise hovedskærmen</string>
 
 	<!-- Display track -->
-	<string name="displaytrack">Vis spor</string>
+	<string name="displaytrack">Vis track</string>      
 	<string name="displaytrack_north">N</string>
-
 
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
