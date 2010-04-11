@@ -1,14 +1,18 @@
 package me.guillaumin.android.osmtracker.listener;
 
 import java.io.File;
+import java.util.Date;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
+import me.guillaumin.android.osmtracker.db.DataHelper;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaRecorder;
 import android.media.MediaRecorder.OnInfoListener;
@@ -67,60 +71,62 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 					OSMTracker.Preferences.VAL_VOICEREC_DURATION);
 
 			// Get a new audio filename
-			File audioFile = activity.getGpsLogger().getDataHelper().getNewAudioFile();
+			File audioFile = getAudioFile();
 
-			// Show a progress dialog while recording
-			progressDialog = new ProgressDialog(v.getContext());
-			progressDialog.setTitle(v.getResources().getString(R.string.tracklogger_voicerec_title));
-			progressDialog.setMessage(v.getResources().getString(R.string.tracklogger_voicerec_text).replaceAll(
-					"\\{0\\}", duration));
-			progressDialog.show();
-
-			// Some workaround for record problems
-			unMuteMicrophone();
-			// The onInfo event is not raised when a GC occurs while recording
-			System.gc();
-			
-			MediaRecorder mediaRecorder = new MediaRecorder();
-
-			try {
-				// MediaRecorder configuration
-
-				mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-				mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-				mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-				mediaRecorder.setOutputFile(audioFile.getAbsolutePath());
-				mediaRecorder.setMaxDuration(Integer.parseInt(duration) * 1000);
-				mediaRecorder.setOnInfoListener(this);
-
-				Log.d(TAG, "Starting voice rec");
-				mediaRecorder.prepare();
-				mediaRecorder.start();
-
-			} catch (Exception ioe) {
-				Log.w("Voice recording has failed", ioe);
+			if (audioFile != null) {
+				// Show a progress dialog while recording
+				progressDialog = new ProgressDialog(v.getContext());
+				progressDialog.setTitle(v.getResources().getString(R.string.tracklogger_voicerec_title));
+				progressDialog.setMessage(v.getResources().getString(R.string.tracklogger_voicerec_text).replaceAll(
+						"\\{0\\}", duration));
+				progressDialog.show();
+	
+				// Some workaround for record problems
+				unMuteMicrophone();
+				// The onInfo event is not raised when a GC occurs while recording
+				System.gc();
+				
+				MediaRecorder mediaRecorder = new MediaRecorder();
+	
 				try {
-					mediaRecorder.stop();
-				} catch (Exception e) {
-					Log.w(TAG, "Recording has failed, and MediaPlayer.stop() too");
-				} finally {
-					mediaRecorder.reset();
-					mediaRecorder.release();
+					// MediaRecorder configuration
+	
+					mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+					mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+					mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+					mediaRecorder.setOutputFile(audioFile.getAbsolutePath());
+					mediaRecorder.setMaxDuration(Integer.parseInt(duration) * 1000);
+					mediaRecorder.setOnInfoListener(this);
+	
+					Log.d(TAG, "Starting voice rec");
+					mediaRecorder.prepare();
+					mediaRecorder.start();
+	
+				} catch (Exception ioe) {
+					Log.w("Voice recording has failed", ioe);
+					try {
+						mediaRecorder.stop();
+					} catch (Exception e) {
+						Log.w(TAG, "Recording has failed, and MediaPlayer.stop() too");
+					} finally {
+						mediaRecorder.reset();
+						mediaRecorder.release();
+					}
+	
+					progressDialog.dismiss();
+					Toast.makeText(v.getContext(), v.getResources().getString(R.string.error_voicerec_failed),
+							Toast.LENGTH_SHORT).show();
+	
+					isRecording = false;
 				}
-
-				progressDialog.dismiss();
-				Toast.makeText(v.getContext(), v.getResources().getString(R.string.error_voicerec_failed),
-						Toast.LENGTH_SHORT).show();
-
-				isRecording = false;
+	
+				// Still record waypoint, could be usefull even without the voice
+				// file.
+				Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+				intent.putExtra(OSMTracker.INTENT_KEY_NAME, v.getResources().getString(R.string.wpt_voicerec));
+				intent.putExtra(OSMTracker.INTENT_KEY_LINK, audioFile.getName());
+				activity.sendBroadcast(intent);
 			}
-
-			// Still record waypoint, could be usefull even without the voice
-			// file.
-			Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
-			intent.putExtra(OSMTracker.INTENT_KEY_NAME, v.getResources().getString(R.string.wpt_voicerec));
-			intent.putExtra(OSMTracker.INTENT_KEY_LINK, audioFile.getName());
-			activity.sendBroadcast(intent);
 		}
 	}
 
@@ -158,6 +164,21 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 		Log.v(TAG, "Unmuting microphone");
 		if (audioManager.isMicrophoneMute()) {
 			audioManager.setMicrophoneMute(false);
+		}
+	}
+	
+	/**
+	 * @return a new File in the current track directory.
+	 */
+	public File getAudioFile() {
+		// Query for current track directory
+		Cursor trackDirCursor = activity.getContentResolver().query(TrackContentProvider.CONTENT_URI_CONFIG, null, TrackContentProvider.Schema.COL_KEY + " = ?", new String[]{TrackContentProvider.Schema.KEY_CONFIG_TRACKDIR}, null);
+		if (trackDirCursor != null && trackDirCursor.getCount() > 0) {
+			trackDirCursor.moveToFirst();
+			File trackDir = new File(trackDirCursor.getString(trackDirCursor.getColumnIndex(TrackContentProvider.Schema.COL_VALUE)));
+			return new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_3GPP);
+		} else {
+			return null;
 		}
 	}
 	

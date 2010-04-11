@@ -37,12 +37,12 @@ public class DataHelper {
 	/**
 	 * 3GPP extension
 	 */
-	private static final String EXTENSION_3GPP = ".3gpp";
+	public static final String EXTENSION_3GPP = ".3gpp";
 
 	/**
 	 * JPG file extension
 	 */
-	private static final String EXTENSION_JPG = ".jpg";
+	public static final String EXTENSION_JPG = ".jpg";
 
 	/**
 	 * Number of tries to rename a media file for the current track if there are
@@ -59,7 +59,7 @@ public class DataHelper {
 	/**
 	 * Formatter for various files (GPX, media)
 	 */
-	private static final SimpleDateFormat fileNameFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+	public static final SimpleDateFormat FILENAME_FORMATTER = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 
 	/**
 	 * Context
@@ -110,8 +110,14 @@ public class DataHelper {
 			}
 
 			// Create track directory
-			trackDir = new File(osmTrackerDir + File.separator + fileNameFormatter.format(new Date()));
+			trackDir = new File(osmTrackerDir + File.separator + FILENAME_FORMATTER.format(new Date()));
 			trackDir.mkdir();
+			
+			// Insert current trackdir in DB for uses by other components
+			ContentValues values = new ContentValues();
+			values.put(Schema.COL_KEY, Schema.KEY_CONFIG_TRACKDIR);
+			values.put(Schema.COL_VALUE, trackDir.getAbsolutePath());
+			contentResolver.insert(TrackContentProvider.CONTENT_URI_CONFIG, values);
 		} else {
 			throw new IOException(context.getResources().getString(R.string.error_externalstorage_not_writable));
 		}
@@ -173,7 +179,7 @@ public class DataHelper {
 			}
 			if (link != null) {
 				// Rename file to match location timestamp
-				values.put(Schema.COL_LINK, renameFile(link, fileNameFormatter.format(location.getTime())));
+				values.put(Schema.COL_LINK, renameFile(link, FILENAME_FORMATTER.format(location.getTime())));
 			}
 
 			contentResolver.insert(TrackContentProvider.CONTENT_URI_WAYPOINT, values);
@@ -201,7 +207,7 @@ public class DataHelper {
 
 		if (trackDir != null) {
 
-			File trackFile = new File(trackDir, fileNameFormatter.format(new Date()) + EXTENSION_GPX);
+			File trackFile = new File(trackDir, FILENAME_FORMATTER.format(new Date()) + EXTENSION_GPX);
 
 			Cursor cTrackPoints = contentResolver.query(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null, null,
 					Schema.COL_TIMESTAMP + " asc");
@@ -237,14 +243,14 @@ public class DataHelper {
 	 *         directory.
 	 */
 	public File getNewAudioFile() {
-		return new File(trackDir + File.separator + fileNameFormatter.format(new Date()) + EXTENSION_3GPP);
+		return new File(trackDir + File.separator + FILENAME_FORMATTER.format(new Date()) + EXTENSION_3GPP);
 	}
 
 	/**
 	 * @return A new File to record a still image, inside the track directory.
 	 */
 	public File pushImageFile() {
-		currentImageFile = new File(trackDir + File.separator + fileNameFormatter.format(new Date()) + EXTENSION_JPG);
+		currentImageFile = new File(trackDir + File.separator + FILENAME_FORMATTER.format(new Date()) + EXTENSION_JPG);
 		return currentImageFile;
 	}
 
@@ -263,6 +269,7 @@ public class DataHelper {
 	private void deleteAllData() {
 		contentResolver.delete(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null);
 		contentResolver.delete(TrackContentProvider.CONTENT_URI_WAYPOINT, null, null);
+		contentResolver.delete(TrackContentProvider.CONTENT_URI_CONFIG, null, null);
 	}
 	
 	/**

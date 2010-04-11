@@ -224,14 +224,6 @@ public class GPSLogger extends Service implements LocationListener {
 		dataHelper.exportTrackAsGpx();
 	}
 
-	/**
-	 * Getter for dataHelper
-	 * @return the {@link DataHelper}
-	 */
-	public DataHelper getDataHelper() {
-		return dataHelper;
-	}
-
 	@Override
 	public void onLocationChanged(Location location) {		
 		// We're receiving location, so GPS is enabled

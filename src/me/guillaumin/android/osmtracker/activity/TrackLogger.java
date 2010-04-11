@@ -1,9 +1,12 @@
 package me.guillaumin.android.osmtracker.activity;
 
 import java.io.File;
+import java.util.Date;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.db.DataHelper;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
@@ -14,6 +17,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -72,6 +76,11 @@ public class TrackLogger extends Activity {
 	 * goes to settings/about/other screen.
 	 */
 	private boolean checkGPSFlag = true;
+	
+	/**
+	 * Keeps track of the image file when taking a picture.
+	 */
+	private File currentImageFile;
 
 	/**
 	 * Handles the bind to the GPS Logger service
@@ -339,7 +348,7 @@ public class TrackLogger extends Activity {
 	 */
 	public void requestStillImage() {
 		if (gpsLogger.isTracking()) {
-			File imageFile = gpsLogger.getDataHelper().pushImageFile();
+			File imageFile = pushImageFile();
 			Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
 			startActivityForResult(cameraIntent, TrackLogger.REQCODE_IMAGE_CAPTURE);
@@ -352,17 +361,14 @@ public class TrackLogger extends Activity {
 		switch (requestCode) {
 		case REQCODE_IMAGE_CAPTURE:
 			if (resultCode == RESULT_OK) {
-				// A still image has been captured, track the corresponding
-				// waypoint
+				// A still image has been captured, track the corresponding waypoint
 				// Send an intent to inform service to track the waypoint.
-				if (gpsLogger != null) {
-					File imageFile = gpsLogger.getDataHelper().popImageFile();
-					if (imageFile != null) {
-						Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
-						intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
-						intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
-						sendBroadcast(intent);
-					}
+				File imageFile = popImageFile();
+				if (imageFile != null) {
+					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
+					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
+					sendBroadcast(intent);
 				}			
 			}
 			break;
@@ -388,6 +394,34 @@ public class TrackLogger extends Activity {
 	 */
 	public void setGpsLogger(GPSLogger l) {
 		this.gpsLogger = l;
+	}
+	
+	/**
+	 * Gets a File for storing an image in the current track dir
+	 * and stores it in a class variable.
+	 * 
+	 * @return A File pointing to an image file inside the current track directory
+	 */
+	public File pushImageFile() {
+		currentImageFile = null;
+		
+		// Query for current track directory
+		Cursor trackDirCursor = getContentResolver().query(TrackContentProvider.CONTENT_URI_CONFIG, null, TrackContentProvider.Schema.COL_KEY + " = ?", new String[]{TrackContentProvider.Schema.KEY_CONFIG_TRACKDIR}, null);
+		if (trackDirCursor != null && trackDirCursor.getCount() > 0) {
+			trackDirCursor.moveToFirst();
+			File trackDir = new File(trackDirCursor.getString(trackDirCursor.getColumnIndex(TrackContentProvider.Schema.COL_VALUE)));
+			currentImageFile = new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_JPG);
+		}
+		return currentImageFile;
+	}
+	
+	/**
+	 * @return The current image file, and clear the internal variable.
+	 */
+	public File popImageFile() {
+		File imageFile = currentImageFile;
+		currentImageFile = null;
+		return imageFile;
 	}
 
 }
