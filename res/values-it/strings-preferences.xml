@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<!-- Preferences -->
+<!-- Preferences -->
 	<string name="prefs">Impostazioni</string>
 	
 	<string name="prefs_gps_os_settings">Impostazioni GPS</string>
@@ -13,7 +13,7 @@
 	<string name="prefs_ui">Interfaccia utente</string>
 	
 	<string name="prefs_ui_buttons_layout">Formato tasti</string>
-	<string name="prefs_ui_buttons_layout_summary">Permette di definire un formato dei tasti personalizzato (vedi manuale).</string>
+	<string name="prefs_ui_buttons_layout_summary">Permette di definire un formato personalizzato dei tasti (vedi manuale).</string>
 	<string name="prefs_ui_buttons_layout_defaut">Predefinito</string>
     
 

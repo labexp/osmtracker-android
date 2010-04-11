@@ -6,7 +6,7 @@
 	<string name="app_description">Inspirato a OSMTracker di Windows Mobile, permette di tracciare i propri viaggi, segnare i punti di interesse importanti (disponibile la registrazione vocale), esportarli in formato GPX per un uso successivo con strumenti di Open Street Map come JOSM.</string>
 	
 	<!-- TrackLogger -->
-	<string name="tracklogger_waiting_gps">In attesa del GPS per abilitare i pulsanti...</string>
+	<string name="tracklogger_waiting_gps">Attesa del GPS per abilitare i pulsanti...</string>
 	<string name="tracklogger_voicerec_title">Registrazione vocale</string>
 	<string name="tracklogger_voicerec_text">Registrazione audio di {0}s.</string>
 	<string name="tracklogger_btnBack">Indietro</string>
@@ -21,8 +21,8 @@
 	<string name="wplist_accuracy">Prec: </string>
 	
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Avvia traccia</string>
-	<string name="gpsstatus_record_trackon">Ferma traccia</string>
+	<string name="gpsstatus_record_trackoff">Registra traccia</string>
+	<string name="gpsstatus_record_trackon">Ferma registrazione</string>
 	<string name="gpsstatus_record_voicerec">Registra voce</string>
 	<string name="gpsstatus_record_stillimage">Cattura immagine</string>
 	<string name="gpsstatus_record_textnote">Scrivi nota</string>
@@ -32,7 +32,7 @@
 	<string name="menu_waypointlist">POI</string>
 	<string name="menu_about">Info</string>
 	<string name="menu_displaytrack">Mostra traccia</string>
-	<string name="menu_starttracking">Avvia traccia</string>
+	<string name="menu_starttracking">Registra traccia</string>
 	<string name="menu_stoptracking">Ferma &amp; Salva</string>
 
 	<!-- Errors -->
