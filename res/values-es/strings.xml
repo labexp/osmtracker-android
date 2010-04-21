@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic strings -->
+    <string name="app_name">OSMTracker para Android™</string>
+	<string name="app_short_name">OSMTracker</string>
+	<string name="app_description">Inspirado en OSMTracker para Windows Mobile, le permite trazar sus viajes, marcar puntos de interés (disponible grabación de voz) y exportarlos a formato GPX para un uso posterior con herramientas de Open Street Map como JOSM.</string>
+	
+	<!-- TrackLogger -->
+	<string name="tracklogger_waiting_gps">Esperando a la señal GPS para activar botones…</string>
+	<string name="tracklogger_voicerec_title">Grabación de voz</string>
+	<string name="tracklogger_voicerec_text">Grabando un sonido de {0} s.</string>
+	<string name="tracklogger_btnBack">Atrás</string>
+	<string name="tracklogger_tracked">Trazado: </string>
+	<string name="tracklogger_gps_disabled">El GPS está desactivado, ¿desea activarlo?</string>
+
+	<!-- Waypoint List -->
+	<string name="wplist">Lista de puntos</string>
+	<string name="wplist_latitude">Lat.: </string>
+	<string name="wplist_longitude">Long.: </string>
+	<string name="wplist_elevation">Elev.: </string>
+	<string name="wplist_accuracy">Prec.: </string>
+	
+	<!-- GPS Status & record bar -->
+	<string name="gpsstatus_record_trackoff">Iniciar trazado.</string>
+	<string name="gpsstatus_record_trackon">Para trazado</string>
+	<string name="gpsstatus_record_voicerec">Grabar voz</string>
+	<string name="gpsstatus_record_stillimage">Echar foto</string>
+	<string name="gpsstatus_record_textnote">Nota de texto</string>
+	
+	<!-- Menu -->
+	<string name="menu_settings">Configuración</string>
+	<string name="menu_waypointlist">Puntos</string>
+	<string name="menu_about">Acerca de</string>
+	<string name="menu_displaytrack">Mostrar trazado</string>
+	<string name="menu_starttracking">Iniciar trazado</string>
+	<string name="menu_stoptracking">Parar &amp; guardar</string>
+	
+	<!-- Errors -->
+	<string name="error_externalstorage_not_writable">No se puede escribir en el almacenamiento externo.</string>
+	<string name="error_externalstorage_not_writable_hint">Compruebe que el almacenamiento externo está correctamente insertado y montado.</string>
+	<string name="error_voicerec_failed">La grabación de voz ha fallado</string>
+	<string name="error_userlayout_parsing">Error al analizar el archivo XML de disposición. Por favor, vuelva a la disposición predeterminada.</string>
+	
+	<!-- GPX -->
+	<string name="gpx_track_name">Trazado con OSMTracker para Android™</string>
+	<string name="gpx_hdop_approximation_cmt">Atención: Los valores HDOP no son devueltos por el dispositivo GPS. Son aproximados por la precisión de la ubicación en metros, y no deberían tenerse en cuenta.</string>
+	
+	<!-- Notification -->
+	<string name="notification_still_running">OSMTracker está trazando todavía</string>
+	<string name="notification_display_ui">Pulse para mostrar OSMTracker</string>
+	
+	<!-- About screen -->
+	<string name="about">Acerca de</string>
+	<string name="about_text">Para más información, documentos e informe de incidencias, visite la web del proyecto:</string>
+	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+	
+	<!-- Notification -->
+	<string name="notification_ticker_text">OSMTracker está ejecutándose todavía</string>
+	<string name="notification_title">OSMTracker está ejecutándose todavía</string>
+	<string name="notification_text">Pulse aquí para mostrar la pantalla principal</string>
+	
+	<!-- Display track -->
+	<string name="displaytrack">Mostrar traza</string>	
+	<string name="displaytrack_north">N</string>
+	
+	<!-- Various -->
+	<string name="various_unit_meters">m</string>
+	<string name="various_accuracy">Precisión</string>
+	
+</resources>
