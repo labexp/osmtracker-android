@@ -35,7 +35,7 @@ public class DisplayTrack extends Activity {
 	
 	@Override
 	protected void onResume() {
-		// Tell service to notify user of background activity
+		// Tell service to stop notifying user of background activity
 		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
 		super.onResume();
 	}

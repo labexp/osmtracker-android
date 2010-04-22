@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+	android:layout_height="wrap_content" android:id="@+id/displaytrackmapRoot">
+
+	<org.andnav.osm.views.OpenStreetMapView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:id="@+id/displaytrackmap_osmView" />
+
+	<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/zoom_in"
+		android:layout_alignParentRight="true" android:id="@+id/displaytrackmap_imgZoomIn"></ImageView>
+	<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/zoom_out"
+		android:id="@+id/displaytrackmap_imgZoomOut"></ImageView>
+</RelativeLayout>

@@ -33,6 +33,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+
 /**
  * Main track logger activity. Communicate with the GPS service to display GPS
  * status, and allow user to record waypoints.
@@ -313,7 +314,8 @@ public class TrackLogger extends Activity {
 			break;
 		case R.id.tracklogger_menu_displaytrack:
 			// Start display track activity
-			startActivity(new Intent(this, DisplayTrack.class));
+			//startActivity(new Intent(this, DisplayTrack.class));
+			startActivity(new Intent(this, DisplayTrackMap.class));
 			break;
 		}
 		return super.onOptionsItemSelected(item);

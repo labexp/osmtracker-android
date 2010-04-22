@@ -84,11 +84,6 @@ public class DisplayTrackView extends TextView {
 	private String northLabel;
 	
 	/**
-	 * Handler for content change observation
-	 */
-	private Handler handler = new Handler();
-	
-	/**
 	 * ContentObserver to be notified about any new trackpoint and
 	 * redraw screen
 	 */
@@ -135,7 +130,7 @@ public class DisplayTrackView extends TextView {
 		marker = BitmapFactory.decodeResource(getResources(), R.drawable.marker);
 		compass = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_compass);
 		
-		trackpointContentObserver = new TrackPointContentObserver(handler);
+		trackpointContentObserver = new TrackPointContentObserver(new Handler());
 		context.getContentResolver().registerContentObserver(TrackContentProvider.CONTENT_URI_TRACKPOINT, true, trackpointContentObserver);
 	}
 

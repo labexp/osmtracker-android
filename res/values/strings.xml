@@ -66,5 +66,8 @@
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Accuracy</string>
-	
+
+    <!-- OSM map view -->     
+	<string name="displaytrackmap">OpenStreetMap track display</string> 
+
 </resources>
