@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <layouts>
 	<layout name="root">
 		<row>
-			<button type="voicerec" label="Taleoptagelse" icon="voice_32x32" />
+			<button type="voicerec" label="Tale optagelse" icon="voice_32x32" />
 			<button type="picture" label="Tag billede" icon="camera_32x32" />
 			<button type="textnote" label="Tekst note" icon="text_32x32" />
 		</row>
@@ -19,37 +19,37 @@
 		</row>
 		<row>
 			<button type="page" label="Vej" icon="button_way" targetlayout="way" />
-			<button type="page" label="Sti" icon="button_track" targetlayout="track" />
+			<button type="page" label="Spor" icon="button_track" targetlayout="track" />
 			<button type="page" label="Brug af område" icon="button_landuse" targetlayout="landuse" />
 		</row>
 	</layout>
 
 	<layout name="misc">
 		<row>
-			<button type="voicerec" label="Taleoptagelse" icon="voice_32x32" />
+			<button type="voicerec" label="Tale optagelse" icon="voice_32x32" />
 			<button type="picture" label="Tag billede" icon="camera_32x32" />
 			<button type="textnote" label="Tekst note" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Bus-stoppested" icon="button_misc_bus_stop" />
+			<button type="tag" label="Bus stoppested" icon="button_misc_bus_stop" />
 			<button type="tag" label="Jernbane" icon="button_misc_railway" />
 			<button type="tag" label="Telefon" icon="button_misc_telephone" />
 		</row>
 		<row>
 			<button type="tag" label="Postkasse" icon="button_misc_post_box" />
 			<button type="tag" label="Pengeautomat" icon="button_misc_atm" />
-			<button type="tag" label="Pullert,\nSpærringsstolpe" icon="button_misc_bollard" />
+			<button type="tag" label="Bollard,\nVejblokade" icon="button_misc_bollard" />
 		</row>
 		<row>
 			<button type="tag" label="Toilet" icon="button_misc_toilets" />
-			<button type="tag" label="Vejrly,\nSkur" icon="button_misc_shelter" />
+			<button type="tag" label="Skur,\nLy" icon="button_misc_shelter" />
 			<button type="tag" label="Overvågning" icon="button_misc_surveillance" />
 		</row>
 	</layout>
 
 	<layout name="restriction">
 		<row>
-			<button type="voicerec" label="Taleoptagelse" icon="voice_32x32" />
+			<button type="voicerec" label="Tale optagelse" icon="voice_32x32" />
 			<button type="picture" label="Tag billede" icon="camera_32x32" />
 			<button type="textnote" label="Tekst note" icon="text_32x32" />
 		</row>
@@ -72,7 +72,7 @@
 
 	<layout name="car">
 		<row>
-			<button type="voicerec" label="Taleoptagelse" icon="voice_32x32" />
+			<button type="voicerec" label="Tale optagelse" icon="voice_32x32" />
 			<button type="picture" label="Tag billede" icon="camera_32x32" />
 			<button type="textnote" label="Tekst note" icon="text_32x32" />
 		</row>
@@ -83,13 +83,13 @@
 		</row>
 		<row>
 			<button type="tag" label="Vendeplads" icon="button_car_turning_circle" />
-			<button type="tag" label="Fartkamera" icon="button_car_speed_camera" />
+			<button type="tag" label="Fart kamera" icon="button_car_speed_camera" />
 		</row>
 	</layout>
 
 	<layout name="tourism">
 		<row>
-			<button type="voicerec" label="Taleoptagelse" icon="voice_32x32" />
+			<button type="voicerec" label="Tale optagelse" icon="voice_32x32" />
 			<button type="picture" label="Tag billede" icon="camera_32x32" />
 			<button type="textnote" label="Tekst note" icon="text_32x32" />
 		</row>
@@ -112,7 +112,7 @@
 
 	<layout name="amenity">
 		<row>
-			<button type="voicerec" label="Taleoptagelse" icon="voice_32x32" />
+			<button type="voicerec" label="Tale optagelse" icon="voice_32x32" />
 			<button type="picture" label="Tag billede" icon="camera_32x32" />
 			<button type="textnote" label="Tekst note" icon="text_32x32" />
 		</row>
@@ -123,7 +123,7 @@
 		</row>
 		<row>
 			<button type="tag" label="Butik" icon="button_amenity_shop" />
-			<button type="tag" label="Lystbådehavn" icon="button_amenity_marina" />
+			<button type="tag" label="Marina" icon="button_amenity_marina" />
 			<button type="tag" label="Sport" icon="button_amenity_sport" />
 		</row>
 		<row>
@@ -140,7 +140,7 @@
 
 	<layout name="amenity_more">
 		<row>
-			<button type="voicerec" label="Taleoptagelse" icon="voice_32x32" />
+			<button type="voicerec" label="Tale optagelse" icon="voice_32x32" />
 			<button type="picture" label="Tag billede" icon="camera_32x32" />
 			<button type="textnote" label="Tekst note" icon="text_32x32" />
 		</row>
@@ -157,7 +157,7 @@
 		<row>
 			<button type="tag" label="Hotel" icon="button_amenitymore_hotel" />
 			<button type="tag" label="Motel" icon="button_amenitymore_motel" />
-			<button type="tag" label="Hostel" icon="button_amenitymore_hostel" />
+			<button type="tag" label="Vandrehjem,\nHerberg" icon="button_amenitymore_hostel" />
 		</row>
 		<row>
 			<button type="tag" label="Restaurant" icon="button_amenitymore_restaurant" />
@@ -168,7 +168,7 @@
 
 	<layout name="way">
 		<row>
-			<button type="voicerec" label="Taleoptagelse" icon="voice_32x32" />
+			<button type="voicerec" label="Tale optagelse" icon="voice_32x32" />
 			<button type="picture" label="Tag billede" icon="camera_32x32" />
 			<button type="textnote" label="Tekst note" icon="text_32x32" />
 		</row>
@@ -178,9 +178,9 @@
 			<button type="tag" label="Motorvej" icon="button_way_motorway" />
 		</row>
 		<row>
-			<button type="tag" label="Trunk" icon="button_way_trunk" />
-			<button type="tag" label="Primær" icon="button_way_primary" />
-			<button type="tag" label="Sekundær" icon="button_way_secondary" />
+			<button type="tag" label="Motortrafikvej" icon="button_way_trunk" />
+			<button type="tag" label="Primær rute" icon="button_way_primary" />
+			<button type="tag" label="Sekundær rute" icon="button_way_secondary" />
 		</row>
 		<row>
 			<button type="tag" label="Tertiær" icon="button_way_tertiary" />
@@ -191,12 +191,12 @@
 
 	<layout name="track">
 		<row>
-			<button type="voicerec" label="Taleoptagelse" icon="voice_32x32" />
+			<button type="voicerec" label="Tale optagelse" icon="voice_32x32" />
 			<button type="picture" label="Tag billede" icon="camera_32x32" />
 			<button type="textnote" label="Tekst note" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Stier" icon="button_track_track" />
+			<button type="tag" label="Grusvej,\nSkovvej" icon="button_track_track" />
 			<button type="tag" label="Cykelsti" icon="button_track_cycleway" />
 			<button type="tag" label="Gangsti" icon="button_track_footway" />
 		</row>
@@ -220,19 +220,19 @@
 
 	<layout name="landuse">
 		<row>
-			<button type="voicerec" label="Taleoptagelse" icon="voice_32x32" />
+			<button type="voicerec" label="Tale optagelse" icon="voice_32x32" />
 			<button type="picture" label="Tag billede" icon="camera_32x32" />
 			<button type="textnote" label="Tekst note" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Gård" icon="button_landuse_farm" />
+			<button type="tag" label="Landbrug" icon="button_landuse_farm" />
 			<button type="tag" label="Losseplads" icon="button_landuse_landfill" />
 			<button type="tag" label="Bassin" icon="button_landuse_basin" />
 		</row>
 		<row>
 			<button type="tag" label="Reservoir" icon="button_landuse_reservoir" />
 			<button type="tag" label="Skov" icon="button_landuse_forest" />
-			<button type="tag" label="Haver" icon="button_landuse_allotments" />
+			<button type="tag" label="Kolonihaver" icon="button_landuse_allotments" />
 		</row>
 		<row>
 			<button type="tag" label="Kirkegård" icon="button_landuse_cemetery" />
