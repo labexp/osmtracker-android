@@ -40,6 +40,9 @@
 		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
 
+	<string name="prefs_displaytrack_osm">OSM background</string>
+	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap under track. Needs a data connection.</string>
+
 	<string name="prefs_output">GPX file output</string>
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
 	<string name="prefs_storage_dir_summary"></string>

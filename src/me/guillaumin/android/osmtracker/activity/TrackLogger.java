@@ -313,9 +313,14 @@ public class TrackLogger extends Activity {
 			startActivity(new Intent(this, About.class));
 			break;
 		case R.id.tracklogger_menu_displaytrack:
-			// Start display track activity
-			//startActivity(new Intent(this, DisplayTrack.class));
-			startActivity(new Intent(this, DisplayTrackMap.class));
+			// Start display track activity, with or without OSM background
+			boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+					OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
+			if (useOpenStreetMapBackground) {
+				startActivity(new Intent(this, DisplayTrackMap.class));
+			} else {
+				startActivity(new Intent(this, DisplayTrack.class));
+			}
 			break;
 		}
 		return super.onOptionsItemSelected(item);

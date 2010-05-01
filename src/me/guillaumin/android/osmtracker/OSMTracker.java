@@ -24,6 +24,7 @@ public class OSMTracker {
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
 		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
+		public final static String KEY_UI_DISPLAYTRACK_OSM = "ui.displaytrack.osm";
 
 		/**
 		 * Default values
@@ -40,6 +41,8 @@ public class OSMTracker {
 		
 		public final static boolean VAL_OUTPUT_GPX_HDOP_APPROXIMATION = false;
 		public final static String VAL_UI_BUTTONS_LAYOUT = "default";
+		
+		public final static boolean VAL_UI_DISPLAYTRACK_OSM = false;
 	};
 
 	/**

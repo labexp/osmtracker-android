@@ -11,7 +11,6 @@ import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapViewController;
 import org.andnav.osm.views.overlay.OpenStreetMapViewPathOverlay;
 import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
-import org.andnav.osm.views.util.OpenStreetMapRendererInfo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,14 +20,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.os.Handler.Callback;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 
 /**
  * Display current track over an OSM map.
