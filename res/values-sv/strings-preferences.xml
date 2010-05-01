@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Preferences -->
+	<string name="prefs">Inställningar</string>
+	
+	<string name="prefs_gps_os_settings">GPS-inställningar</string>
+	<string name="prefs_gps_os_settings_summary">Visa systemets GPS-inställningar.</string>
+
+	<string name="prefs_check_gps_startup">Kontrollera GPS vid start</string>
+	<string name="prefs_check_gps_startup_summary">Kontrollera om GPS:en är inaktiv vid start, och erbjud att aktivera den.</string>
+
+	<string name="prefs_ui">Användargränssnitt</string>
+	
+	<string name="prefs_ui_buttons_layout">Knapplayout</string>
+	<string name="prefs_ui_buttons_layout_summary">Tillåt egendefinierade knapplayouter (se dokumentationen).</string>
+	<string name="prefs_ui_buttons_layout_defaut">Standard</string>
+	
+
+	<string name="prefs_voicerec_duration">Längd på röstnoteringar</string>
+	<string name="prefs_voicerec_duration_seconds">sekunder</string>
+	<string-array name="prefs_voicerec_durations">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+	</string-array>
+	<string name="prefs_theme">Huvudskärmens utseende</string>
+	<string name="prefs_theme_summary">Applikationen måste startas om innan ändringar syns.</string>
+	<string-array name="prefs_theme_keys">
+		<item>Systemstandard</item>
+		<item>Systemstandard (mörk)</item>
+		<item>Systemstandard (ljus)</item>
+		<item>Hög kontrast</item>
+	</string-array>
+	<string-array name="prefs_theme_values">
+		<item>android:style/Theme</item>
+		<item>android:style/Theme.Black</item>
+		<item>android:style/Theme.Light</item>
+		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+	</string-array>
+
+	<string name="prefs_output">GPX-fil</string>
+  <string name="prefs_storage_dir">Lagringsmapp (SD)</string>
+	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_output_accuracy">Noggrannhet i GPX-filen</string>
+	<string name="prefs_output_accuracy_summary">Tillåt noggrannhetsinformation i GPX-filen, i vägpunktsnamnet eller i en egen tagg.</string>
+	<string-array name="prefs_output_accuracy_keys">
+		<item>Nej</item>
+		<item>I vägpunktsnamnet</item>
+		<item>I vägpunktskommentaren</item>
+	</string-array>
+	<string-array name="prefs_output_accuracy_values">
+		<item>none</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
+	<string name="prefs_output_gpx_hdop_approximation">Använd uppskattade HDOP-värden</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Använd uppskattade noggrannhetsvärden som HDOP-värden i GPX-filen.</string>
+</resources>

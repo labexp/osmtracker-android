@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Generic strings -->
+	<string name="app_name">OSMTracker för Android™</string>
+	<string name="app_short_name">OSMTracker</string>
+	<string name="app_description">Inspirerad av OSMTracker för Windows Mobile. Låter dig spara din färdväg, notera intressanta	punkter (det går även att skapa röstnoteringar) och exportera dem i GPX-format för att sedan kunna använda dem i OpenStreetMap-verktyg som t ex JOSM.</string>
+
+	<!-- TrackLogger -->
+	<string name="tracklogger_waiting_gps">Vissa knappar aktiveras när GPS-låsning har erhållits.</string>
+	<string name="tracklogger_voicerec_title">Röstnotering</string>
+	<string name="tracklogger_voicerec_text">Spelar in en {0}s röstnotering.</string>
+	<string name="tracklogger_btnBack">Tillbaka</string>
+	<string name="tracklogger_tracked">Noterad: </string>
+	<string name="tracklogger_gps_disabled">GPS:en är inaktiverad. Vill du aktivera den?</string>
+
+	<!-- Waypoint List -->
+	<string name="wplist">Vägpunktslista</string>
+	<string name="wplist_latitude">Lat: </string>
+	<string name="wplist_longitude">Long: </string>
+	<string name="wplist_elevation">Höjd: </string>
+	<string name="wplist_accuracy">Noggr.: </string>
+
+	<!-- GPS Status & record bar -->
+	<string name="gpsstatus_record_trackoff">Starta spår</string>
+	<string name="gpsstatus_record_trackon">Stoppa spår</string>
+	<string name="gpsstatus_record_voicerec">Röstnotering</string>
+	<string name="gpsstatus_record_stillimage">Bildnotering</string>
+	<string name="gpsstatus_record_textnote">Textnotering</string>
+
+	<!-- Menu -->
+	<string name="menu_settings">Inställningar</string>
+	<string name="menu_waypointlist">Vägpunkter</string>
+	<string name="menu_about">Om</string>
+	<string name="menu_displaytrack">Visa spår</string>
+	<string name="menu_starttracking">Starta spår</string>
+	<string name="menu_stoptracking">Stoppa &amp; spara</string>
+
+	<!-- Errors -->
+	<string name="error_externalstorage_not_writable">Det gick inte att skriva till lagringsutrymmet.</string>
+	<string name="error_externalstorage_not_writable_hint">Kontrollera att minneskortet är korrekt isatt och fungerar.</string>
+	<string name="error_voicerec_failed">Röstinspelningen misslyckades</string>
+	<string name="error_userlayout_parsing">Ett fel inträffade när layoutfilen lästes in. Återställ orginalfilen.</string>
+
+	<!-- GPX -->
+	<string name="gpx_track_name">Skapad med OSMTracker för Android™</string>
+	<string name="gpx_hdop_approximation_cmt">Varning: HDOP-värdena är inte riktiga HDOP-värden från GPS-enheten. De är uppskattade värden,	angivna i hela metrar, och bör inte användas.</string>
+
+	<!-- Notification -->
+	<string name="notification_still_running">OSMTracker körs fortfarande</string>
+	<string name="notification_display_ui">Tryck för att visa OSMTracker</string>
+
+	<!-- About screen -->
+	<string name="about">Om</string>
+	<string name="about_text">För mer information, dokumentation och felrapportering, besök projektets hemsida:</string>
+	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+
+	<!-- Notification -->
+	<string name="notification_ticker_text">OSMTracker körs fortfarande</string>
+	<string name="notification_title">OSMTracker körs fortfarande</string>
+	<string name="notification_text">Tryck för att visa startskärmen</string>
+
+	<!-- Display track -->
+	<string name="displaytrack">Visa spår</string>
+	<string name="displaytrack_north">N</string>
+
+	<!-- Various -->
+	<string name="various_unit_meters">m</string>
+	<string name="various_accuracy">Noggrannhet</string>
+
+	<!-- OSM map view -->
+	<string name="displaytrackmap">Spårvisning med OpenStreetMap</string>
+</resources>

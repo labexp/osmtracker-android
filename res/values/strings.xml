@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Generic strings -->
-    <string name="app_name">OSMTracker for Android™</string>
+	<!-- Generic strings -->
+	<string name="app_name">OSMTracker for Android™</string>
 	<string name="app_short_name">OSMTracker</string>
 	<string name="app_description">Inspired by OSMTracker on Windows Mobile, it allows you to track your journeys, mark significant way points (Voice recording available), export them in GPX format for later use with Open Street Map tools like JOSM.</string>
-	
+
 	<!-- TrackLogger -->
 	<string name="tracklogger_waiting_gps">Waiting for GPS fix to enable buttons...</string>
 	<string name="tracklogger_voicerec_title">Voice recording</string>
@@ -19,14 +19,14 @@
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Ele: </string>
 	<string name="wplist_accuracy">Accur: </string>
-	
+
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Start tracking.</string>
 	<string name="gpsstatus_record_trackon">Stop tracking</string>
 	<string name="gpsstatus_record_voicerec">Voice record</string>
 	<string name="gpsstatus_record_stillimage">Take picture</string>
 	<string name="gpsstatus_record_textnote">Text note</string>
-	
+
 	<!-- Menu -->
 	<string name="menu_settings">Settings</string>
 	<string name="menu_waypointlist">Waypoints</string>
@@ -34,31 +34,31 @@
 	<string name="menu_displaytrack">Display track</string>
 	<string name="menu_starttracking">Start tracking</string>
 	<string name="menu_stoptracking">Stop &amp; save</string>
-	
+
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>
 	<string name="error_externalstorage_not_writable_hint">Please check ext. storage is correctly inserted and mounted.</string>
 	<string name="error_voicerec_failed">Voice recording has failed</string>
 	<string name="error_userlayout_parsing">Error while parsing XML layout file. Please revert to default layout.</string>
-	
+
 	<!-- GPX -->
 	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
 	<string name="gpx_hdop_approximation_cmt">Warning: HDOP values aren\'t the HDOP returned by GPS device. They\'re approximated for location accuracy in meters, and should not be taken into account.</string>
-	
+
 	<!-- Notification -->
 	<string name="notification_still_running">OSMTracker is still tracking</string>
 	<string name="notification_display_ui">Click to display OSMTracker</string>
-	
+
 	<!-- About screen -->
 	<string name="about">About</string>
 	<string name="about_text">For more information, docs and issue report, please visit the project home page:</string>
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
-	
+
 	<!-- Notification -->
 	<string name="notification_ticker_text">OSMTracker is still running</string>
 	<string name="notification_title">OSMTracker is still running</string>
 	<string name="notification_text">Tap here to display main screen</string>
-	
+
 	<!-- Display track -->
 	<string name="displaytrack">Display track</string>	
 	<string name="displaytrack_north">N</string>
@@ -67,7 +67,7 @@
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Accuracy</string>
 
-    <!-- OSM map view -->     
+	<!-- OSM map view -->
 	<string name="displaytrackmap">OpenStreetMap track display</string> 
 
 </resources>
