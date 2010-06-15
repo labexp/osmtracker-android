@@ -135,12 +135,20 @@ public class DataHelper {
 		ContentValues values = new ContentValues();
 		values.put(Schema.COL_LATITUDE, location.getLatitude());
 		values.put(Schema.COL_LONGITUDE, location.getLongitude());
-		values.put(Schema.COL_TIMESTAMP, location.getTime());
 		if (location.hasAltitude()) {
 			values.put(Schema.COL_ELEVATION, location.getAltitude());
 		}
 		if (location.hasAccuracy()) {
 			values.put(Schema.COL_ACCURACY, location.getAccuracy());
+		}
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		if (prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_IGNORE_CLOCK, OSMTracker.Preferences.VAL_GPS_IGNORE_CLOCK)) {
+			// Use OS clock
+			values.put(Schema.COL_TIMESTAMP, System.currentTimeMillis());
+		} else {
+			// Use GPS clock
+			values.put(Schema.COL_TIMESTAMP, location.getTime());
 		}
 
 		contentResolver.insert(TrackContentProvider.CONTENT_URI_TRACKPOINT, values);
@@ -167,7 +175,6 @@ public class DataHelper {
 			ContentValues values = new ContentValues();
 			values.put(Schema.COL_LATITUDE, location.getLatitude());
 			values.put(Schema.COL_LONGITUDE, location.getLongitude());
-			values.put(Schema.COL_TIMESTAMP, location.getTime());
 			values.put(Schema.COL_NAME, name);
 			values.put(Schema.COL_NBSATELLITES, nbSatellites);
 
@@ -181,6 +188,16 @@ public class DataHelper {
 				// Rename file to match location timestamp
 				values.put(Schema.COL_LINK, renameFile(link, FILENAME_FORMATTER.format(location.getTime())));
 			}
+			
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+			if (prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_IGNORE_CLOCK, OSMTracker.Preferences.VAL_GPS_IGNORE_CLOCK)) {
+				// Use OS clock
+				values.put(Schema.COL_TIMESTAMP, System.currentTimeMillis());
+			} else {
+				// Use GPS clock
+				values.put(Schema.COL_TIMESTAMP, location.getTime());
+			}
+
 
 			contentResolver.insert(TrackContentProvider.CONTENT_URI_WAYPOINT, values);
 		}

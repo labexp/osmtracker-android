@@ -4,6 +4,8 @@
 		android:key="gps.ossettings"></Preference>
 	<CheckBoxPreference android:key="gps.checkstartup" android:title="@string/prefs_check_gps_startup"
 		android:summary="@string/prefs_check_gps_startup_summary" android:defaultValue="true"></CheckBoxPreference>
+	<CheckBoxPreference android:key="gps.ignoreclock" android:title="@string/prefs_gps_ignore_clock"
+		android:summary="@string/prefs_gps_ignore_clock_summary" android:defaultValue="false"></CheckBoxPreference>
 
 	<ListPreference android:title="@string/prefs_voicerec_duration" android:key="voicerec.duration"
 		android:entryValues="@array/prefs_voicerec_durations" android:defaultValue="2" android:entries="@array/prefs_voicerec_durations"></ListPreference>
@@ -21,9 +23,11 @@
 		<ListPreference android:entries="@array/prefs_theme_keys" android:title="@string/prefs_theme"
 			android:entryValues="@array/prefs_theme_values" android:key="ui.theme" android:summary="@string/prefs_theme_summary"></ListPreference>
 
-		<ListPreference android:defaultValue="default" android:key="ui.buttons.layout" android:title="@string/prefs_ui_buttons_layout" android:summary="@string/prefs_ui_buttons_layout_summary"></ListPreference>
-	<CheckBoxPreference android:key="ui.displaytrack.osm" android:title="@string/prefs_displaytrack_osm" android:summary="@string/prefs_displaytrack_osm_summary" android:defaultValue="false"></CheckBoxPreference>
-</PreferenceCategory>
+		<ListPreference android:defaultValue="default" android:key="ui.buttons.layout" android:title="@string/prefs_ui_buttons_layout"
+			android:summary="@string/prefs_ui_buttons_layout_summary"></ListPreference>
+		<CheckBoxPreference android:key="ui.displaytrack.osm" android:title="@string/prefs_displaytrack_osm"
+			android:summary="@string/prefs_displaytrack_osm_summary" android:defaultValue="false"></CheckBoxPreference>
+	</PreferenceCategory>
 
 
 </PreferenceScreen>

@@ -10,6 +10,9 @@
 	<string name="prefs_check_gps_startup">Check GPS at startup</string>
 	<string name="prefs_check_gps_startup_summary">Check if GPS is disabled at startup, and offer to enable it.</string>
 
+	<string name="prefs_gps_ignore_clock">Ignore GPS clock</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignore GPS clock and use Android clock for timestamps.</string>
+
 	<string name="prefs_ui">User interface</string>
 	
 	<string name="prefs_ui_buttons_layout">Buttons layout</string>
