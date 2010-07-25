@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layouts>
+	<layout name="root">
+		<row>
+			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
+			<button type="picture" label="Фото" icon="camera_32x32" />
+			<button type="textnote" label="Запись текста" icon="text_32x32" />
+		</row>
+		
+		<row>
+			<button type="page" label="Разное" icon="button_misc" targetlayout="misc" />
+			<button type="page" label="Запреты" icon="button_restriction" targetlayout="restriction" />
+			<button type="page" label="Авто" icon="button_car" targetlayout="car" />
+		</row>
+		<row>
+			<button type="page" label="Туризм" icon="button_tourism" targetlayout="tourism" />
+			<button type="page" label="Инфраструктура" icon="button_amenity" targetlayout="amenity" />
+			<button type="page" label="Инфраструктура (+)" icon="button_amenity" targetlayout="amenity_more" />
+		</row>
+		<row>
+			<button type="page" label="Дорога" icon="button_way" targetlayout="way" />
+			<button type="page" label="Трэк" icon="button_track" targetlayout="track" />
+			<button type="page" label="Землепользование" icon="button_landuse" targetlayout="landuse" />
+		</row>
+	</layout>
+
+	<layout name="misc">
+		<row>
+			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
+			<button type="picture" label="Фото" icon="camera_32x32" />
+			<button type="textnote" label="Запись текста" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Остановка" icon="button_misc_bus_stop" />
+			<button type="tag" label="Ж/Д" icon="button_misc_railway" />
+			<button type="tag" label="Телефон" icon="button_misc_telephone" />
+		</row>
+		<row>
+			<button type="tag" label="Почта" icon="button_misc_post_box" />
+			<button type="tag" label="Банкомат" icon="button_misc_atm" />
+			<button type="tag" label="Преграда" icon="button_misc_bollard" />
+		</row>
+		<row>
+			<button type="tag" label="Туалет" icon="button_misc_toilets" />
+			<button type="tag" label="Навес" icon="button_misc_shelter" />
+			<button type="tag" label="Камера наблюдения" icon="button_misc_surveillance" />
+		</row>
+	</layout>
+
+	<layout name="restriction">
+		<row>
+			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
+			<button type="picture" label="Фото" icon="camera_32x32" />
+			<button type="textnote" label="Запись текста" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Max 30" icon="button_restriction" />
+			<button type="tag" label="Max 50" icon="button_restriction" />
+			<button type="tag" label="Max 80" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="Max 100" icon="button_restriction" />
+			<button type="tag" label="Max 110" icon="button_restriction" />
+			<button type="tag" label="Max 120" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="Нет выезда" icon="button_restriction_no_exit" />
+			<button type="tag" label="Светофор" icon="button_restriction_traffic_light" />
+			<button type="tag" label="Одностороннее" icon="button_restriction_one_way" />
+		</row>
+	</layout>
+
+	<layout name="car">
+		<row>
+			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
+			<button type="picture" label="Фото" icon="camera_32x32" />
+			<button type="textnote" label="Запись текста" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="АЗС" icon="button_car_fuel_station" />
+			<button type="tag" label="Парковка" icon="button_car_parking" />
+			<button type="tag" label="Экстренный телефон" icon="button_car_emergency_phone" />
+		</row>
+		<row>
+			<button type="tag" label="Круг для разворота" icon="button_car_turning_circle" />
+			<button type="tag" label="Камера скорости" icon="button_car_speed_camera" />
+		</row>
+	</layout>
+
+	<layout name="tourism">
+		<row>
+			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
+			<button type="picture" label="Фото" icon="camera_32x32" />
+			<button type="textnote" label="Запись текста" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Смотровая площадка" icon="button_tourism_view_point" />
+			<button type="tag" label="Информация" icon="button_tourism_information" />
+			<button type="tag" label="Место для пикника" icon="button_tourism_picnic" />
+		</row>
+		<row>
+			<button type="tag" label="Достопримечательность" icon="button_tourism_attraction" />
+			<button type="tag" label="Аттракционы" icon="button_tourism_theme_park" />
+			<button type="tag" label="Замок" icon="button_tourism_castle" />
+		</row>
+		<row>
+			<button type="tag" label="Памятник" icon="button_tourism_monument" />
+			<button type="tag" label="Музей" icon="button_tourism_museum" />
+			<button type="tag" label="Кино" icon="button_tourism_cinema" />
+		</row>
+	</layout>
+
+	<layout name="amenity">
+		<row>
+			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
+			<button type="picture" label="Фото" icon="camera_32x32" />
+			<button type="textnote" label="Запись текста" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Скамейка" icon="button_amenity_bench" />
+			<button type="tag" label="Вода" icon="button_amenity_water" />
+			<button type="tag" label="Аптека" icon="button_amenity_pharmacy" />
+		</row>
+		<row>
+			<button type="tag" label="Магазин" icon="button_amenity_shop" />
+			<button type="tag" label="Пристань" icon="button_amenity_marina" />
+			<button type="tag" label="Спорт" icon="button_amenity_sport" />
+		</row>
+		<row>
+			<button type="tag" label="Такси" icon="button_amenity_taxi" />
+			<button type="tag" label="Больница" icon="button_amenity_doctors" />
+			<button type="tag" label="Мусорка" icon="button_amenity_recycling" />
+		</row>
+		<row>
+			<button type="tag" label="Религиозное" icon="button_amenity_place_of_worship" />
+			<button type="tag" label="Почта" icon="button_amenity_post_office" />
+			<button type="tag" label="Библиотека" icon="button_amenity_library" />
+		</row>
+	</layout>
+
+	<layout name="amenity_more">
+		<row>
+			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
+			<button type="picture" label="Фото" icon="camera_32x32" />
+			<button type="textnote" label="Запись текста" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Школа" icon="button_amenitymore_school" />
+			<button type="tag" label="Милиция" icon="button_amenitymore_police" />
+			<button type="tag" label="Пожарная часть" icon="button_amenitymore_fire_station" />
+		</row>
+		<row>
+			<button type="tag" label="Банк" icon="button_amenitymore_bank" />
+			<button type="tag" label="Игровая площадка" icon="button_amenitymore_playground" />
+			<button type="tag" label="Бар" icon="button_amenitymore_pub" />
+		</row>
+		<row>
+			<button type="tag" label="Отель" icon="button_amenitymore_hotel" />
+			<button type="tag" label="Мотель" icon="button_amenitymore_motel" />
+			<button type="tag" label="Хостел" icon="button_amenitymore_hostel" />
+		</row>
+		<row>
+			<button type="tag" label="Ресторан" icon="button_amenitymore_restaurant" />
+			<button type="tag" label="Бистро" icon="button_amenitymore_fastfood" />
+			<button type="tag" label="Кемпинг" icon="button_amenitymore_camp_site" />
+		</row>
+	</layout>
+
+	<layout name="way">
+		<row>
+			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
+			<button type="picture" label="Фото" icon="camera_32x32" />
+			<button type="textnote" label="Запись текста" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Мост" icon="button_way_bridge" />
+			<button type="tag" label="Пешеходный переход" icon="button_way_zebra_crossing" />
+			<button type="tag" label="Motorway" icon="button_way_motorway" />
+		</row>
+		<row>
+			<button type="tag" label="Trunk" icon="button_way_trunk" />
+			<button type="tag" label="Primary" icon="button_way_primary" />
+			<button type="tag" label="Secondary" icon="button_way_secondary" />
+		</row>
+		<row>
+			<button type="tag" label="Tertiary" icon="button_way_tertiary" />
+			<button type="tag" label="Residential" icon="button_way_residential" />
+			<button type="tag" label="Service" icon="button_way_service" />
+		</row>
+	</layout>
+
+	<layout name="track">
+		<row>
+			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
+			<button type="picture" label="Фото" icon="camera_32x32" />
+			<button type="textnote" label="Запись текста" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Track" icon="button_track_track" />
+			<button type="tag" label="Cycleway" icon="button_track_cycleway" />
+			<button type="tag" label="Footway" icon="button_track_footway" />
+		</row>
+		<row>
+			<button type="tag" label="Bridleway" icon="button_track_bridleway" />
+			<button type="tag" label="Steps" icon="button_track_steps" />
+			<button type="tag" label="Living street" icon="button_track_living_street" />
+		</row>
+		<row>
+			<button type="tag" label="Pedestrian" icon="button_track_pedestrian" />
+			<button type="tag" label="Grade 1" icon="button_track_grade1" />
+			<button type="tag" label="Grade 2" icon="button_track_grade2" />
+		</row>
+		<row>
+			<button type="tag" label="Grade 3" icon="button_track_grade3" />
+			<button type="tag" label="Grade 4" icon="button_track_grade4" />
+			<button type="tag" label="Grade 5" icon="button_track_grade5" />
+		</row>
+	</layout>
+
+	<layout name="landuse">
+		<row>
+			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
+			<button type="picture" label="Фото" icon="camera_32x32" />
+			<button type="textnote" label="Запись текста" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Ферма" icon="button_landuse_farm" />
+			<button type="tag" label="Свалка" icon="button_landuse_landfill" />
+			<button type="tag" label="Бассейн стока" icon="button_landuse_basin" />
+		</row>
+		<row>
+			<button type="tag" label="Резервуар" icon="button_landuse_reservoir" />
+			<button type="tag" label="Лес" icon="button_landuse_forest" />
+			<button type="tag" label="Дачи" icon="button_landuse_allotments" />
+		</row>
+		<row>
+			<button type="tag" label="Кладбище" icon="button_landuse_cemetery" />
+			<button type="tag" label="Зона отдыха" icon="button_landuse_recreation_ground" />
+		</row>
+	</layout>
+</layouts>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Preferences -->
+	<string name="prefs">Настройки</string>
+	
+	<string name="prefs_gps_os_settings">Настройки GPS</string>
+	<string name="prefs_gps_os_settings_summary">Открыть системные настройки GPS</string>
+
+	<string name="prefs_check_gps_startup">Проверять GPS при запуске</string>
+	<string name="prefs_check_gps_startup_summary">Проверять статус GPS при запуске, предлагать включить.</string>
+
+	<string name="prefs_gps_ignore_clock">Игнорировать время GPS</string>
+	<string name="prefs_gps_ignore_clock_summary">Игнорировать время GPS и использовать время телефона для временных меток.</string>
+
+	<string name="prefs_ui">Интерфейс</string>
+	
+	<string name="prefs_ui_buttons_layout">Расположение кнопок</string>
+	<string name="prefs_ui_buttons_layout_summary">Выбрать вариант расположения кнопок (См. документацию).</string>
+	<string name="prefs_ui_buttons_layout_defaut">По умолчанию</string>
+	
+
+	<string name="prefs_voicerec_duration">Длительность записи аудио</string>
+	<string name="prefs_voicerec_duration_seconds">секунд(ы)</string>
+	<string-array name="prefs_voicerec_durations">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+	</string-array>
+	<string name="prefs_theme">Основная тема оформления</string>
+	<string name="prefs_theme_summary">Изменения будут действовать после перезагрузки программы</string>
+	<string-array name="prefs_theme_keys">
+		<item>По умолчанию</item>
+		<item>Темная</item>
+		<item>Светлая</item>
+		<item>Высокий контраст</item>
+	</string-array>
+	<string-array name="prefs_theme_values">
+		<item>android:style/Theme</item>
+		<item>android:style/Theme.Black</item>
+		<item>android:style/Theme.Light</item>
+		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+	</string-array>
+
+	<string name="prefs_displaytrack_osm">Картооснова OSM</string>
+	<string name="prefs_displaytrack_osm_summary">Отображать картооснову OpenStreetMap при отображении трека. Требует интернет-соединения.</string>
+
+	<string name="prefs_output">Настройки GPX файлов</string>
+	<string name="prefs_storage_dir">Сохранять в каталоге</string>
+	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_output_accuracy">Записывать показатель точности в файл</string>
+	<string name="prefs_output_accuracy_summary">Записывать информацию о точности в GPX файл, в название точки, или отдельным тэгом</string>
+	<string-array name="prefs_output_accuracy_keys">
+		<item>Нет</item>
+		<item>В имя точки</item>
+		<item>В комментарий точки</item>
+	</string-array>
+	<string-array name="prefs_output_accuracy_values">
+		<item>none</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
+	<string name="prefs_output_gpx_hdop_approximation">Заполнять аппроксимацию HDOP</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Заполнять тэг HDOP в GPX файле аппроксимированным значением точности</string>
+</resources>
