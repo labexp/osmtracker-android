@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Preferences -->
+	<string name="prefs">Paramètres</string>
+
+	<string name="prefs_gps_os_settings">Paramètres GPS</string>
+	<string name="prefs_gps_os_settings_summary">Affiche l'écran de paramètrage GPS Android</string>
+
+	<string name="prefs_check_gps_startup">Vérifier le GPS au démarrage</string>
+	<string name="prefs_check_gps_startup_summary">Vérifie si le GPS est désactivé au démarrage, et propose de l'activer.</string>
+
+	<string name="prefs_gps_ignore_clock">Ignorer l'horloge du GPS</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignore l'horloge du GPS et utilise celle d'Android pour l'horodatage.</string>
+
+	<string name="prefs_ui">Interface utilisateur</string>
+
+	<string name="prefs_ui_buttons_layout">Boutons</string>
+	<string name="prefs_ui_buttons_layout_summary">Permet de définir des boutons personalisés (Voir la doc).</string>
+	<string name="prefs_ui_buttons_layout_defaut">Par défaut</string>
+
+
+	<string name="prefs_voicerec_duration">Durée du mémo vocal</string>
+	<string name="prefs_voicerec_duration_seconds">secondes</string>
+	<string-array name="prefs_voicerec_durations">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+	</string-array>
+	<string name="prefs_theme">Thème graphique</string>
+	<string name="prefs_theme_summary">Redémarrage de l'application nécessaire pour prendre effet</string>
+	<string-array name="prefs_theme_keys">
+		<item>OS par défaut</item>
+		<item>OS par défaut (Noir)</item>
+		<item>OS par défaut (Lumineux)</item>
+		<item>Contraste élevé</item>
+	</string-array>
+	<string-array name="prefs_theme_values">
+		<item>android:style/Theme</item>
+		<item>android:style/Theme.Black</item>
+		<item>android:style/Theme.Light</item>
+		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+	</string-array>
+
+	<string name="prefs_displaytrack_osm">OSM en arrière plan</string>
+	<string name="prefs_displaytrack_osm_summary">Affiche OpenStreetMap sous la trace. Nécessite une connexion de données.</string>
+
+	<string name="prefs_output">Ficher d'enregistrement GPX</string>
+	<string name="prefs_storage_dir">Répertoire de stockage externe (SD)</string>
+	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_output_accuracy">Contenu du fichier GPX</string>
+	<string name="prefs_output_accuracy_summary">Intègre la précision au fichier GPX, dans le nom des waypoint ou dans un tag séparé</string>
+	<string-array name="prefs_output_accuracy_keys">
+		<item>Aucun</item>
+		<item>Dans le nom des waypoint</item>
+		<item>Dans le tag commantaire des waypoints</item>
+	</string-array>
+	<string-array name="prefs_output_accuracy_values">
+		<item>none</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
+	<string name="prefs_output_gpx_hdop_approximation">Approximation HDOP</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Ajout du HDOP dans le GPX (issu d'une approximation à partir de la précision)</string>
+</resources>

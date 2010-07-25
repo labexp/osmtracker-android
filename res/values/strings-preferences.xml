@@ -3,7 +3,7 @@
 
 	<!-- Preferences -->
 	<string name="prefs">Settings</string>
-	
+
 	<string name="prefs_gps_os_settings">GPS settings</string>
 	<string name="prefs_gps_os_settings_summary">Display system GPS settings screen</string>
 
