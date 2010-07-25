@@ -32,6 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String SQL_CREATE_TABLE_WAYPOINT = ""
 		+ "create table " + Schema.TBL_WAYPOINT + " ("
 		+ Schema.COL_ID + " integer primary key autoincrement,"
+		+ Schema.COL_UUID + " text,"
 		+ Schema.COL_LATITUDE + " double not null,"
 		+ Schema.COL_LONGITUDE + " double not null,"
 		+ Schema.COL_ELEVATION + " double null,"
@@ -56,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * Database version.
 	 */
-	private static final int DB_VERSION = 2;
+	private static final int DB_VERSION = 3;
 
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);

@@ -53,6 +53,11 @@ public class OSMTracker {
 	public final static String INTENT_TRACK_WP = OSMTracker.class.getPackage().getName() + ".intent.TRACK_WP";
 
 	/**
+	 * Intent for updating a previously tracked waypoint
+	 */
+	public final static String INTENT_UPDATE_WP = OSMTracker.class.getPackage().getName() + ".intent.UPDATE_WP";
+	
+	/**
 	 * Intent to start tracking
 	 */
 	public final static String INTENT_START_TRACKING = OSMTracker.class.getPackage().getName() + ".intent.START_TRACKING";
@@ -86,6 +91,11 @@ public class OSMTracker {
 	 * Key for extra data "link" in Intent
 	 */
 	public final static String INTENT_KEY_LINK = "link";
+	
+	/**
+	 * Key for extra data "uuid" in Intent
+	 */
+	public final static String INTENT_KEY_UUID = "uuid";
 	
 	/**
 	 * Approximation factor for calculating Horizontal Dilution of Precision

@@ -2,6 +2,7 @@ package me.guillaumin.android.osmtracker.listener;
 
 import java.io.File;
 import java.util.Date;
+import java.util.UUID;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
@@ -61,7 +62,13 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 
 	@Override
 	public void onClick(View v) {
-
+		// Track waypoint immediately when user clicks on the button
+		final String uuid = UUID.randomUUID().toString();
+		Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+		intent.putExtra(OSMTracker.INTENT_KEY_UUID, uuid);
+		intent.putExtra(OSMTracker.INTENT_KEY_NAME, v.getResources().getString(R.string.wpt_voicerec));
+		v.getContext().sendBroadcast(intent);
+		
 		if (!isRecording) {
 
 			isRecording = true;
@@ -120,10 +127,10 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 					isRecording = false;
 				}
 	
-				// Still record waypoint, could be usefull even without the voice
-				// file.
-				Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
-				intent.putExtra(OSMTracker.INTENT_KEY_NAME, v.getResources().getString(R.string.wpt_voicerec));
+				// Still update waypoint, could be useful even without
+				// the voice file.
+				intent = new Intent(OSMTracker.INTENT_UPDATE_WP);
+				intent.putExtra(OSMTracker.INTENT_KEY_UUID, uuid);
 				intent.putExtra(OSMTracker.INTENT_KEY_LINK, audioFile.getName());
 				activity.sendBroadcast(intent);
 			}

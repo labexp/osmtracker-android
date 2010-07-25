@@ -166,8 +166,8 @@ public class DataHelper {
 	 * @param link
 	 *            Link of waypoint
 	 */
-	public void wayPoint(Location location, int nbSatellites, String name, String link) {
-		Log.v(TAG, "Tracking waypoing '" + name + "', link='" + link + "', location=" + location);
+	public void wayPoint(Location location, int nbSatellites, String name, String link, String uuid) {
+		Log.v(TAG, "Tracking waypoint '" + name + "', uuid=" + uuid + ", link='" + link + "', location=" + location);
 
 		// location should not be null, but sometime is.
 		// TODO investigate this issue.
@@ -178,6 +178,10 @@ public class DataHelper {
 			values.put(Schema.COL_NAME, name);
 			values.put(Schema.COL_NBSATELLITES, nbSatellites);
 
+			if (uuid != null) {
+				values.put(Schema.COL_UUID, uuid);
+			}
+			
 			if (location.hasAltitude()) {
 				values.put(Schema.COL_ELEVATION, location.getAltitude());
 			}
@@ -202,19 +206,30 @@ public class DataHelper {
 			contentResolver.insert(TrackContentProvider.CONTENT_URI_WAYPOINT, values);
 		}
 	}
-
+	
 	/**
-	 * Tracks a waypoint.
+	 * Updates a waypoint
 	 * 
-	 * @param location
-	 *            Location of waypoint
-	 * @param nbSatellites
-	 *            Number of satellites used for the location
+	 * @param uuid
+	 *            Unique ID of the target waypoint
 	 * @param name
-	 *            Name of waypoint.
+	 *            New name
+	 * @param link
+	 *            New link
 	 */
-	public void wayPoint(Location location, int nbSatellites, String name) {
-		wayPoint(location, nbSatellites, name, null);
+	public void updateWayPoint(String uuid, String name, String link) {
+		Log.v(TAG, "Updating waypoint with uuid '" + uuid + "'. New values: name='" + name + "', link='" + link + "'");
+		if (uuid != null) {
+			ContentValues values = new ContentValues();
+			if (name != null) {
+				values.put(Schema.COL_NAME, name);
+			}
+			if (link != null) {
+				values.put(Schema.COL_LINK, link);
+			}
+			contentResolver
+					.update(TrackContentProvider.CONTENT_URI_WAYPOINT, values, "uuid = ?", new String[] { uuid });
+		}
 	}
 
 	/**

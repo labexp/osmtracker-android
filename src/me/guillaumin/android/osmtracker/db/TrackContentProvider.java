@@ -131,7 +131,7 @@ public class TrackContentProvider extends ContentProvider {
 		case Schema.URI_CODE_WAYPOINT:
 			// Check that mandatory columns are present.
 			if (values.containsKey(Schema.COL_LONGITUDE) && values.containsKey(Schema.COL_LATITUDE)
-					&& values.containsKey(Schema.COL_TIMESTAMP) && values.containsKey(Schema.COL_NAME)) {
+					&& values.containsKey(Schema.COL_TIMESTAMP) ) {
 
 				long rowId = dbHelper.getWritableDatabase().insert(Schema.TBL_WAYPOINT, null, values);
 				if (rowId > 0) {
@@ -141,7 +141,7 @@ public class TrackContentProvider extends ContentProvider {
 				}
 			} else {
 				throw new IllegalArgumentException("values should provide " + Schema.COL_LONGITUDE + ", "
-						+ Schema.COL_LATITUDE + ", " + Schema.COL_TIMESTAMP + ", " + Schema.COL_NAME);
+						+ Schema.COL_LATITUDE + ", " + Schema.COL_TIMESTAMP);
 			}
 			break;
 		case Schema.URI_CODE_CONFIG:
@@ -192,7 +192,16 @@ public class TrackContentProvider extends ContentProvider {
 
 	@Override
 	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-		throw new IllegalArgumentException("Update operation is not supported");
+		Log.v(TAG, "update(), uri=" + uri);
+		
+		switch (uriMatcher.match(uri)) {
+		case Schema.URI_CODE_WAYPOINT:
+			int rows =  dbHelper.getWritableDatabase().update(Schema.TBL_WAYPOINT, values, selection, selectionArgs);
+			getContext().getContentResolver().notifyChange(uri, null);
+			return rows;
+		default:
+			throw new IllegalArgumentException("Unknown URI: " + uri);
+		}
 	}
 
 	/**
@@ -204,6 +213,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String TBL_CONFIG = "config";
 		
 		public static final String COL_ID = "_id";
+		public static final String COL_UUID = "uuid";
 		public static final String COL_LONGITUDE = "longitude";
 		public static final String COL_LATITUDE = "latitude";
 		public static final String COL_ELEVATION = "elevation";

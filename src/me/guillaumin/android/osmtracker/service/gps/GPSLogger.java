@@ -100,13 +100,19 @@ public class GPSLogger extends Service implements LocationListener {
 				// Track a way point
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
+					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
 					String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
 					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
-					if (link != null) {
-						dataHelper.wayPoint(lastLocation, lastNbSatellites, name, link);
-					} else {
-						dataHelper.wayPoint(lastLocation, lastNbSatellites, name);
-					}
+					dataHelper.wayPoint(lastLocation, lastNbSatellites, name, link, uuid);
+				}
+			} else if (OSMTracker.INTENT_UPDATE_WP.equals(intent.getAction())) {
+				// Update an existing waypoint
+				Bundle extras = intent.getExtras();
+				if (extras != null && extras.containsKey(OSMTracker.INTENT_KEY_UUID)) {
+					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
+					String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
+					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
+					dataHelper.updateWayPoint(uuid, name, link);
 				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction()) ) {
 				startTracking();
@@ -170,6 +176,7 @@ public class GPSLogger extends Service implements LocationListener {
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(OSMTracker.INTENT_TRACK_WP);
+		filter.addAction(OSMTracker.INTENT_UPDATE_WP);
 		filter.addAction(OSMTracker.INTENT_START_TRACKING);
 		filter.addAction(OSMTracker.INTENT_STOP_TRACKING);
 		filter.addAction(OSMTracker.INTENT_NOTIFICATION_CLEARED);
