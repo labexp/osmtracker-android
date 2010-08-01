@@ -2,9 +2,9 @@
 <layouts>
 	<layout name="root">
 		<row>
-			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
-			<button type="picture" label="Фото" icon="camera_32x32" />
-			<button type="textnote" label="Запись текста" icon="text_32x32" />
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
 		</row>
 		
 		<row>
@@ -26,9 +26,9 @@
 
 	<layout name="misc">
 		<row>
-			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
-			<button type="picture" label="Фото" icon="camera_32x32" />
-			<button type="textnote" label="Запись текста" icon="text_32x32" />
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
 			<button type="tag" label="Остановка" icon="button_misc_bus_stop" />
@@ -49,9 +49,9 @@
 
 	<layout name="restriction">
 		<row>
-			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
-			<button type="picture" label="Фото" icon="camera_32x32" />
-			<button type="textnote" label="Запись текста" icon="text_32x32" />
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
 			<button type="tag" label="Max 30" icon="button_restriction" />
@@ -72,9 +72,9 @@
 
 	<layout name="car">
 		<row>
-			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
-			<button type="picture" label="Фото" icon="camera_32x32" />
-			<button type="textnote" label="Запись текста" icon="text_32x32" />
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
 			<button type="tag" label="АЗС" icon="button_car_fuel_station" />
@@ -89,9 +89,9 @@
 
 	<layout name="tourism">
 		<row>
-			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
-			<button type="picture" label="Фото" icon="camera_32x32" />
-			<button type="textnote" label="Запись текста" icon="text_32x32" />
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
 			<button type="tag" label="Смотровая площадка" icon="button_tourism_view_point" />
@@ -112,9 +112,9 @@
 
 	<layout name="amenity">
 		<row>
-			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
-			<button type="picture" label="Фото" icon="camera_32x32" />
-			<button type="textnote" label="Запись текста" icon="text_32x32" />
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
 			<button type="tag" label="Скамейка" icon="button_amenity_bench" />
@@ -140,9 +140,9 @@
 
 	<layout name="amenity_more">
 		<row>
-			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
-			<button type="picture" label="Фото" icon="camera_32x32" />
-			<button type="textnote" label="Запись текста" icon="text_32x32" />
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
 			<button type="tag" label="Школа" icon="button_amenitymore_school" />
@@ -168,9 +168,9 @@
 
 	<layout name="way">
 		<row>
-			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
-			<button type="picture" label="Фото" icon="camera_32x32" />
-			<button type="textnote" label="Запись текста" icon="text_32x32" />
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
 			<button type="tag" label="Мост" icon="button_way_bridge" />
@@ -191,9 +191,9 @@
 
 	<layout name="track">
 		<row>
-			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
-			<button type="picture" label="Фото" icon="camera_32x32" />
-			<button type="textnote" label="Запись текста" icon="text_32x32" />
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
 			<button type="tag" label="Track" icon="button_track_track" />
@@ -219,9 +219,9 @@
 
 	<layout name="landuse">
 		<row>
-			<button type="voicerec" label="Запись аудио" icon="voice_32x32" />
-			<button type="picture" label="Фото" icon="camera_32x32" />
-			<button type="textnote" label="Запись текста" icon="text_32x32" />
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
 			<button type="tag" label="Ферма" icon="button_landuse_farm" />
