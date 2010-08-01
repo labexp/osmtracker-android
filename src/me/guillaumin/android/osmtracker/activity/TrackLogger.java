@@ -267,7 +267,7 @@ public class TrackLogger extends Activity {
 		MenuItem item = menu.findItem(R.id.tracklogger_menu_startstoptracking);
 
 		// Change first item according to current tracking status
-		if (gpsLogger.isTracking()) {
+		if (gpsLogger != null && gpsLogger.isTracking()) {
 			// We're tracking, item = "stop & save"
 			item.setIcon(android.R.drawable.ic_menu_save);
 			item.setTitle(getResources().getString(R.string.menu_stoptracking));
@@ -277,7 +277,11 @@ public class TrackLogger extends Activity {
 			item.setIcon(android.R.drawable.ic_menu_edit);
 			item.setTitle(getResources().getString(R.string.menu_starttracking));
 			item.setTitleCondensed(getResources().getString(R.string.menu_starttracking));
-			item.setEnabled(gpsLogger.isGpsEnabled());
+			if (gpsLogger == null) {
+				item.setEnabled(false);
+			} else {
+				item.setEnabled(gpsLogger.isGpsEnabled());
+			}
 		}
 		return super.onPrepareOptionsMenu(menu);
 	}
