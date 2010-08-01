@@ -3,6 +3,7 @@ package me.guillaumin.android.osmtracker.util;
 import java.io.IOException;
 import java.util.HashMap;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.layout.DisablableTableLayout;
@@ -18,6 +19,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -77,6 +79,11 @@ public class UserDefinedLayoutReader {
 	private StillImageOnClickListener stillImageOnClickListener;
 	
 	/**
+	 * {@link Resources} to retrieve String resources
+	 */
+	private Resources resources;
+	
+	/**
 	 * Constructor
 	 * 
 	 * @param udl
@@ -91,6 +98,7 @@ public class UserDefinedLayoutReader {
 	public UserDefinedLayoutReader(UserDefinedLayout udl, Context c, TrackLogger tl, XmlPullParser input, IconResolver ir) {
 		parser = input;
 		context = c;
+		resources = context.getResources();
 		userDefinedLayout = udl;
 		iconResolver = ir;
 		
@@ -216,38 +224,56 @@ public class UserDefinedLayoutReader {
 		String buttonType = parser.getAttributeValue(null, XmlSchema.ATTR_TYPE);
 		if (XmlSchema.ATTR_VAL_PAGE.equals(buttonType)) {
 			// Page button
-			button.setText(parser.getAttributeValue(null, XmlSchema.ATTR_LABEL));
+			button.setText(findLabel(parser.getAttributeValue(null, XmlSchema.ATTR_LABEL), resources));				
 			Drawable icon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
 			button.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
 			button.setOnClickListener(new PageButtonOnClickListener(userDefinedLayout, parser.getAttributeValue(null,
 					XmlSchema.ATTR_TARGETLAYOUT)));
 		} else if (XmlSchema.ATTR_VAL_TAG.equals(buttonType)) {
 			// Standard tag button
-			button.setText(parser.getAttributeValue(null, XmlSchema.ATTR_LABEL));
+			button.setText(findLabel(parser.getAttributeValue(null, XmlSchema.ATTR_LABEL), resources));			
 			Drawable icon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
 			button.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
 			button.setOnClickListener(new TagButtonOnClickListener());
 		} else if (XmlSchema.ATTR_VAL_VOICEREC.equals(buttonType)) {
-			button.setText(context.getResources().getString(R.string.gpsstatus_record_voicerec));
-			button.setCompoundDrawablesWithIntrinsicBounds(null, context.getResources().getDrawable(
+			button.setText(resources.getString(R.string.gpsstatus_record_voicerec));
+			button.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(
 					R.drawable.voice_32x32), null, null);
 			button.setOnClickListener(voiceRecordOnClickListener);
 		} else if (XmlSchema.ATTR_VAL_TEXTNOTE.equals(buttonType)) {
 			// Text note button
-			button.setText(context.getResources().getString(R.string.gpsstatus_record_textnote));
-			button.setCompoundDrawablesWithIntrinsicBounds(null, context.getResources().getDrawable(
+			button.setText(resources.getString(R.string.gpsstatus_record_textnote));
+			button.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(
 					R.drawable.text_32x32), null, null);
 			button.setOnClickListener(textNoteOnClickListener);
 		} else if (XmlSchema.ATTR_VAL_PICTURE.equals(buttonType)) {
 			// Picture button
-			button.setText(context.getResources().getString(R.string.gpsstatus_record_stillimage));
-			button.setCompoundDrawablesWithIntrinsicBounds(null, context.getResources().getDrawable(
+			button.setText(resources.getString(R.string.gpsstatus_record_stillimage));
+			button.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(
 					R.drawable.camera_32x32), null, null);
 			button.setOnClickListener(stillImageOnClickListener);
 		}
 
 		row.addView(button);
-
+	}
+	
+	/**
+	 * Finds a label if it's a reference to an internal resource (@string/label) 
+	 * @param text Resource reference or plain label
+	 * @param r {@link Resources} to lookup from
+	 * @return Plain label, or corresponding text extracted from {@link Resources}
+	 */
+	private String findLabel(String text, Resources r) {
+		if (text != null) {
+			if (text.startsWith("@")) {
+				// Check if it's a resource identifier
+				int resId = resources.getIdentifier(text.replace("@", ""), null, OSMTracker.class.getPackage().getName());
+				if (resId != 0) {
+					return resources.getString(resId);
+				}
+			}
+		}
+		return text;
 	}
 
 	/**
