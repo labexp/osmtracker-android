@@ -41,6 +41,11 @@ public class TrackContentProvider extends ContentProvider {
 	 * Uri for config
 	 */
 	public static final Uri CONTENT_URI_CONFIG = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_CONFIG);
+	
+	/**
+	 * Uri for track
+	 */
+	public static final Uri CONTENT_URI_TRACK = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACK);
 
 	/**
 	 * Uri Matcher
@@ -50,6 +55,7 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT, Schema.URI_CODE_WAYPOINT);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACKPOINT, Schema.URI_CODE_TRACKPOINT);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_CONFIG, Schema.URI_CODE_CONFIG);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK, Schema.URI_CODE_TRACK);
 	}
 
 	/**
@@ -79,6 +85,13 @@ public class TrackContentProvider extends ContentProvider {
 		case Schema.URI_CODE_CONFIG:
 			count = dbHelper.getWritableDatabase().delete(Schema.TBL_CONFIG, selection, selectionArgs);
 			break;
+		case Schema.URI_CODE_TRACK:
+			// Delete all related entities
+			String trackId = Long.toString(ContentUris.parseId(uri));
+			dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
+			dbHelper.getWritableDatabase().delete(Schema.TBL_TRACKPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
+			count = dbHelper.getWritableDatabase().delete(Schema.TBL_TRACK, selection, selectionArgs);
+			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
@@ -102,6 +115,9 @@ public class TrackContentProvider extends ContentProvider {
 		case Schema.URI_CODE_CONFIG:
 			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
 					+ Schema.TBL_CONFIG;
+		case Schema.URI_CODE_TRACK:
+			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
+					+ Schema.TBL_TRACK;
 		}
 		return null;
 	}
@@ -114,8 +130,8 @@ public class TrackContentProvider extends ContentProvider {
 		switch (uriMatcher.match(uri)) {
 		case Schema.URI_CODE_TRACKPOINT:
 			// Check that mandatory columns are present.
-			if (values.containsKey(Schema.COL_LONGITUDE) && values.containsKey(Schema.COL_LATITUDE)
-					&& values.containsKey(Schema.COL_TIMESTAMP)) {
+			if (values.containsKey(Schema.COL_TRACK_ID) && values.containsKey(Schema.COL_LONGITUDE)
+					&& values.containsKey(Schema.COL_LATITUDE) && values.containsKey(Schema.COL_TIMESTAMP)) {
 
 				long rowId = dbHelper.getWritableDatabase().insert(Schema.TBL_TRACKPOINT, null, values);
 				if (rowId > 0) {
@@ -130,8 +146,8 @@ public class TrackContentProvider extends ContentProvider {
 			break;
 		case Schema.URI_CODE_WAYPOINT:
 			// Check that mandatory columns are present.
-			if (values.containsKey(Schema.COL_LONGITUDE) && values.containsKey(Schema.COL_LATITUDE)
-					&& values.containsKey(Schema.COL_TIMESTAMP) ) {
+			if (values.containsKey(Schema.COL_TRACK_ID) && values.containsKey(Schema.COL_LONGITUDE)
+					&& values.containsKey(Schema.COL_LATITUDE) && values.containsKey(Schema.COL_TIMESTAMP) ) {
 
 				long rowId = dbHelper.getWritableDatabase().insert(Schema.TBL_WAYPOINT, null, values);
 				if (rowId > 0) {
@@ -157,6 +173,18 @@ public class TrackContentProvider extends ContentProvider {
 				throw new IllegalArgumentException("values should provide " + Schema.COL_KEY);
 			}
 			break;
+		case Schema.URI_CODE_TRACK:
+			if (values.containsKey(Schema.COL_START_DATE)) {
+				long rowId = dbHelper.getWritableDatabase().insert(Schema.TBL_TRACK, null, values);
+				if (rowId > 0) {
+					Uri trackUri = ContentUris.withAppendedId(CONTENT_URI_TRACK, rowId);
+					getContext().getContentResolver().notifyChange(trackUri, null);
+					return trackUri;
+				}
+			} else {
+				throw new IllegalArgumentException("values should provide " + Schema.COL_START_DATE);
+			}
+			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
@@ -180,6 +208,9 @@ public class TrackContentProvider extends ContentProvider {
 			break;
 		case Schema.URI_CODE_CONFIG:
 			qb.setTables(Schema.TBL_CONFIG);
+			break;
+		case Schema.URI_CODE_TRACK:
+			qb.setTables(Schema.TBL_TRACK);
 			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -211,8 +242,10 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String TBL_TRACKPOINT = "trackpoint";
 		public static final String TBL_WAYPOINT = "waypoint";
 		public static final String TBL_CONFIG = "config";
+		public static final String TBL_TRACK = "track";
 		
 		public static final String COL_ID = "_id";
+		public static final String COL_TRACK_ID = "track_id";
 		public static final String COL_UUID = "uuid";
 		public static final String COL_LONGITUDE = "longitude";
 		public static final String COL_LATITUDE = "latitude";
@@ -224,11 +257,13 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_LINK = "link";
 		public static final String COL_KEY = "key";
 		public static final String COL_VALUE = "value";
-
+		public static final String COL_START_DATE = "start_date";
+		
 		// Codes for UriMatcher
 		public static final int URI_CODE_TRACKPOINT = 0;
 		public static final int URI_CODE_WAYPOINT = 1;
 		public static final int URI_CODE_CONFIG = 2;
+		public static final int URI_CODE_TRACK = 3;
 		
 		/**
 		 * Key for config value "track dir"

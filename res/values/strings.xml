@@ -19,6 +19,12 @@
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Ele: </string>
 	<string name="wplist_accuracy">Accur: </string>
+	
+	<!-- Track List -->
+	<string name="tracklist">Track list</string>
+	<string name="menu_newtrack">New track</string>
+	<string name="waypoints_count">Waypoints: </string>
+	<string name="trackpoints_count">Trackpoints: </string>
 
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Start tracking.</string>

@@ -20,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String SQL_CREATE_TABLE_TRACKPOINT = ""
 		+ "create table " + Schema.TBL_TRACKPOINT + " ("
 		+ Schema.COL_ID	+ " integer primary key autoincrement,"
+		+ Schema.COL_TRACK_ID + " integer not null,"
 		+ Schema.COL_LATITUDE + " double not null,"
 		+ Schema.COL_LONGITUDE + " double not null,"
 		+ Schema.COL_ELEVATION + " double null,"
@@ -32,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String SQL_CREATE_TABLE_WAYPOINT = ""
 		+ "create table " + Schema.TBL_WAYPOINT + " ("
 		+ Schema.COL_ID + " integer primary key autoincrement,"
+		+ Schema.COL_TRACK_ID + " integer not null,"
 		+ Schema.COL_UUID + " text,"
 		+ Schema.COL_LATITUDE + " double not null,"
 		+ Schema.COL_LONGITUDE + " double not null,"
@@ -42,11 +44,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ Schema.COL_LINK + " text,"
 		+ Schema.COL_NBSATELLITES + " integer not null" + ")";
 
+	/**
+	 * SQL for creating table CONFIG
+	 */
 	private static final String SQL_CREATE_TABLE_CONFIG = ""
 		+ "create table " + Schema.TBL_CONFIG + " ("
 		+ Schema.COL_ID + " integer primary key autoincrement,"
 		+ Schema.COL_KEY + " text,"
 		+ Schema.COL_VALUE + " text" + ")";
+	
+	/**
+	 * SQL for creating table TRACK
+	 */
+	private static final String SQL_CREATE_TABLE_TRACK = ""
+		+ "create table " + Schema.TBL_TRACK + " ("
+		+ Schema.COL_ID + " integer primary key autoincrement,"
+		+ Schema.COL_NAME + " text,"
+		+ Schema.COL_START_DATE + " long not null" + ")";
 			
 	
 	/**
@@ -57,7 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * Database version.
 	 */
-	private static final int DB_VERSION = 3;
+	private static final int DB_VERSION = 5;
 
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -71,6 +85,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_CREATE_TABLE_WAYPOINT);
 		db.execSQL("drop table if exists " + Schema.TBL_CONFIG);
 		db.execSQL(SQL_CREATE_TABLE_CONFIG);
+		db.execSQL("drop table if exists " + Schema.TBL_TRACK);
+		db.execSQL(SQL_CREATE_TABLE_TRACK);
 	}
 
 	@Override

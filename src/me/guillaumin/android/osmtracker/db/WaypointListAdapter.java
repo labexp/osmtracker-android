@@ -31,7 +31,7 @@ public class WaypointListAdapter extends CursorAdapter {
 	 * Constructor.
 	 * 
 	 * @param context
-	 *            Applcation context
+	 *            Application context
 	 * @param c
 	 *            {@link Cursor} to data
 	 */

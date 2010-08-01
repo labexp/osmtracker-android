@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="fill_parent"
+	android:layout_width="fill_parent" android:paddingBottom="3dp">
+	<TextView android:layout_height="wrap_content" android:id="@+id/tracklist_item_startdate" android:text="{start_date}"
+		android:textColor="#ffffffff" android:textSize="21dp" android:layout_width="wrap_content"></TextView>
+	<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginRight="10dp" android:id="@+id/tracklist_item_waypoints" android:text="{waypoints}" android:layout_below="@+id/tracklist_item_startdate"></TextView>
+	<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginRight="10dp" android:id="@+id/tracklist_item_trackpoints" android:text="{trackpoints}" android:layout_below="@+id/tracklist_item_startdate" android:layout_toRightOf="@+id/tracklist_item_waypoints"></TextView>
+</RelativeLayout>

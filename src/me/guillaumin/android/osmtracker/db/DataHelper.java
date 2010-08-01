@@ -10,11 +10,13 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.gpx.GPXFileWriter;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -75,6 +77,11 @@ public class DataHelper {
 	 * Directory for storing track.
 	 */
 	private File trackDir;
+	
+	/**
+	 * Current track id
+	 */
+	private long trackId;
 
 	/**
 	 * Constructor.
@@ -95,7 +102,7 @@ public class DataHelper {
 	public void createNewTrack() throws IOException {
 
 		// Delete all previous trackpoint & waypoint
-		deleteAllData();
+		// deleteAllData();
 
 		// Create directory for track
 		File sdRoot = Environment.getExternalStorageDirectory();
@@ -110,7 +117,8 @@ public class DataHelper {
 			}
 
 			// Create track directory
-			trackDir = new File(osmTrackerDir + File.separator + FILENAME_FORMATTER.format(new Date()));
+			Date startDate = new Date();
+			trackDir = new File(osmTrackerDir + File.separator + FILENAME_FORMATTER.format(startDate));
 			trackDir.mkdir();
 			
 			// Insert current trackdir in DB for uses by other components
@@ -118,6 +126,13 @@ public class DataHelper {
 			values.put(Schema.COL_KEY, Schema.KEY_CONFIG_TRACKDIR);
 			values.put(Schema.COL_VALUE, trackDir.getAbsolutePath());
 			contentResolver.insert(TrackContentProvider.CONTENT_URI_CONFIG, values);
+			
+			// Create entry in TRACK table
+			values.clear();
+			values.put(Schema.COL_NAME, "");
+			values.put(Schema.COL_START_DATE, startDate.getTime());
+			Uri trackUri = contentResolver.insert(TrackContentProvider.CONTENT_URI_TRACK, values);
+			trackId = ContentUris.parseId(trackUri);
 		} else {
 			throw new IOException(context.getResources().getString(R.string.error_externalstorage_not_writable));
 		}
@@ -133,6 +148,7 @@ public class DataHelper {
 	public void track(Location location) {
 		Log.v(TAG, "Tracking location: " + location);
 		ContentValues values = new ContentValues();
+		values.put(Schema.COL_TRACK_ID, trackId);
 		values.put(Schema.COL_LATITUDE, location.getLatitude());
 		values.put(Schema.COL_LONGITUDE, location.getLongitude());
 		if (location.hasAltitude()) {
@@ -173,6 +189,7 @@ public class DataHelper {
 		// TODO investigate this issue.
 		if (location != null) {
 			ContentValues values = new ContentValues();
+			values.put(Schema.COL_TRACK_ID, trackId);
 			values.put(Schema.COL_LATITUDE, location.getLatitude());
 			values.put(Schema.COL_LONGITUDE, location.getLongitude());
 			values.put(Schema.COL_NAME, name);
@@ -241,9 +258,11 @@ public class DataHelper {
 
 			File trackFile = new File(trackDir, FILENAME_FORMATTER.format(new Date()) + EXTENSION_GPX);
 
-			Cursor cTrackPoints = contentResolver.query(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null, null,
+			Cursor cTrackPoints = contentResolver.query(TrackContentProvider.CONTENT_URI_TRACKPOINT,
+					null, Schema.COL_TRACK_ID + " = ?", new String[]{Long.toString(trackId)},
 					Schema.COL_TIMESTAMP + " asc");
-			Cursor cWayPoints = contentResolver.query(TrackContentProvider.CONTENT_URI_WAYPOINT, null, null, null,
+			Cursor cWayPoints = contentResolver.query(TrackContentProvider.CONTENT_URI_WAYPOINT,
+					null, Schema.COL_TRACK_ID + " = ?", new String[]{Long.toString(trackId)},
 					Schema.COL_TIMESTAMP + " asc");
 
 			try {
@@ -256,7 +275,7 @@ public class DataHelper {
 			cTrackPoints.close();
 			cWayPoints.close();
 			
-			deleteAllData();
+			// deleteAllData();
 
 		}
 	}
