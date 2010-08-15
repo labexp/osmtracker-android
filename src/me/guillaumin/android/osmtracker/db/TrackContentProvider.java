@@ -56,6 +56,8 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACKPOINT, Schema.URI_CODE_TRACKPOINT);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_CONFIG, Schema.URI_CODE_CONFIG);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK, Schema.URI_CODE_TRACK);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#", Schema.URI_CODE_TRACK_ID);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_WAYPOINT + "s", Schema.URI_CODE_TRACK_WAYPOINTS);
 	}
 
 	/**
@@ -86,11 +88,14 @@ public class TrackContentProvider extends ContentProvider {
 			count = dbHelper.getWritableDatabase().delete(Schema.TBL_CONFIG, selection, selectionArgs);
 			break;
 		case Schema.URI_CODE_TRACK:
-			// Delete all related entities
-			String trackId = Long.toString(ContentUris.parseId(uri));
-			dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
-			dbHelper.getWritableDatabase().delete(Schema.TBL_TRACKPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
 			count = dbHelper.getWritableDatabase().delete(Schema.TBL_TRACK, selection, selectionArgs);
+			break;
+		case Schema.URI_CODE_TRACK_ID:
+				// the URI matches a specific track, delete all related entities
+				String trackId = Long.toString(ContentUris.parseId(uri));
+				dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
+				dbHelper.getWritableDatabase().delete(Schema.TBL_TRACKPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
+				count = dbHelper.getWritableDatabase().delete(Schema.TBL_TRACK, Schema.COL_ID + " = ?", new String[] {trackId});
 			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -264,6 +269,8 @@ public class TrackContentProvider extends ContentProvider {
 		public static final int URI_CODE_WAYPOINT = 1;
 		public static final int URI_CODE_CONFIG = 2;
 		public static final int URI_CODE_TRACK = 3;
+		public static final int URI_CODE_TRACK_ID = 4;
+		public static final int URI_CODE_TRACK_WAYPOINTS = 5;
 		
 		/**
 		 * Key for config value "track dir"

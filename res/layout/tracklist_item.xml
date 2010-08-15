@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="fill_parent"
-	android:layout_width="fill_parent" android:paddingBottom="3dp">
-	<TextView android:layout_height="wrap_content" android:id="@+id/tracklist_item_startdate" android:text="{start_date}"
-		android:textColor="#ffffffff" android:textSize="21dp" android:layout_width="wrap_content"></TextView>
-	<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginRight="10dp" android:id="@+id/tracklist_item_waypoints" android:text="{waypoints}" android:layout_below="@+id/tracklist_item_startdate"></TextView>
-	<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginRight="10dp" android:id="@+id/tracklist_item_trackpoints" android:text="{trackpoints}" android:layout_below="@+id/tracklist_item_startdate" android:layout_toRightOf="@+id/tracklist_item_waypoints"></TextView>
-</RelativeLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" android:layout_width="fill_parent" android:orientation="horizontal" android:paddingLeft="3dp" android:paddingRight="3dp" android:paddingTop="5dp" android:paddingBottom="5dp">
+	<TextView android:id="@+id/trackmgr_item_id" android:text="{id}" android:layout_height="fill_parent" android:layout_width="wrap_content" style="@android:style/TextAppearance.Medium" android:layout_weight="1" android:gravity="left|center_vertical"></TextView>
+
+	<RelativeLayout android:layout_height="fill_parent"
+		android:gravity="left|center_vertical" android:layout_width="wrap_content" android:layout_weight="1">
+		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_startdate"
+			android:text="{start_date}" android:layout_width="wrap_content" style="@android:style/TextAppearance.Large" android:layout_toRightOf="@id/trackmgr_item_id"></TextView>
+
+
+		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_waypoints" android:layout_below="@+id/trackmgr_item_startdate"
+			android:textStyle="bold" android:layout_marginRight="5dp" style="@android:style/TextAppearance.Small" android:text="@string/trackmgr_waypoints_count"
+			android:layout_toLeftOf="@+id/trackmgr_item_id" android:layout_width="wrap_content"></TextView>
+
+		<TextView android:layout_height="wrap_content"
+			android:layout_below="@id/trackmgr_item_startdate" android:id="@+id/trackmgr_item_wps"
+			android:layout_toRightOf="@id/trackmgr_item_waypoints" android:text="{x}"
+			style="@android:style/TextAppearance.Small" android:layout_width="wrap_content"></TextView>
+		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_trackpoints" android:layout_toRightOf="@id/trackmgr_item_wps"
+			android:layout_below="@id/trackmgr_item_startdate" android:layout_marginLeft="20dp"
+			android:textStyle="bold" android:layout_marginRight="5dp" style="@android:style/TextAppearance.Small"
+			android:text="@string/trackmgr_trackpoints_count" android:layout_width="wrap_content"></TextView>
+		<TextView android:layout_height="wrap_content"
+			android:text="{y}" android:id="@+id/trackmgr_item_tps" android:layout_below="@id/trackmgr_item_startdate"
+			android:layout_toRightOf="@id/trackmgr_item_trackpoints" style="@android:style/TextAppearance.Small" android:layout_width="wrap_content"></TextView>
+
+	</RelativeLayout>
+</LinearLayout>

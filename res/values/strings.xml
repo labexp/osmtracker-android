@@ -6,6 +6,7 @@
 	<string name="app_description">Inspired by OSMTracker on Windows Mobile, it allows you to track your journeys, mark significant way points (Voice recording, picture), export them in GPX format for later use with Open Street Map tools like JOSM.</string>
 
 	<!-- TrackLogger -->
+	<string name="tracklogger">Track logger</string>
 	<string name="tracklogger_waiting_gps">Waiting for GPS fix to enable buttons...</string>
 	<string name="tracklogger_voicerec_title">Voice recording</string>
 	<string name="tracklogger_voicerec_text">Recording a {0}s audio clip.</string>
@@ -20,11 +21,16 @@
 	<string name="wplist_elevation">Ele: </string>
 	<string name="wplist_accuracy">Accur: </string>
 	
-	<!-- Track List -->
-	<string name="tracklist">Track list</string>
-	<string name="menu_newtrack">New track</string>
-	<string name="waypoints_count">Waypoints: </string>
-	<string name="trackpoints_count">Trackpoints: </string>
+	<!-- Track Manager -->
+	<string name="trackmgr">Track manager</string>
+	<string name="trackmgr_waypoints_count">Waypoints: </string>
+	<string name="trackmgr_trackpoints_count">Trackpoints: </string>
+	<string name="trackmgr_empty">You don't have any tracks.</string>
+	<string name="trackmgr_newtrack_hint">To record a track,\npress <b>Menu</b> then <b>New track</b>.</string>
+	<string name="trackmgr_contextmenu_delete">Delete</string>
+	<string name="trackmgr_contextmenu_export">Export as GPX</string>
+	<string name="trackmgr_contextmenu_title">Track operations</string>
+	<string name="trackmgr_delete_confirm">Are you sure you want to delete this track ?</string>
 
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Start tracking.</string>
@@ -40,6 +46,7 @@
 	<string name="menu_displaytrack">Display track</string>
 	<string name="menu_starttracking">Start tracking</string>
 	<string name="menu_stoptracking">Stop &amp; save</string>
+	<string name="menu_newtrack">New track</string>
 
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>

@@ -4,7 +4,7 @@
 	android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
 	<TextView android:layout_height="wrap_content"
 		android:id="@+id/wplist_item_name" android:text="{name}"
-		android:textColor="#ffffffff" android:textSize="21dp" android:layout_width="wrap_content"></TextView>
+		android:layout_width="wrap_content" style="@android:style/TextAppearance.Large"></TextView>
 	<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="{timestamp}" android:id="@+id/wplist_item_timestamp" android:layout_below="@+id/wplist_item_location" android:layout_alignBaseline="@+id/wplist_item_name" android:layout_alignParentRight="true" android:layout_alignRight="@+id/wplist_item_name" android:layout_marginRight="10dp"></TextView><TextView android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:id="@+id/wplist_item_location"

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_height="fill_parent" android:layout_width="fill_parent">
+	<FrameLayout android:layout_weight="1" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:id="@+id/trackmanager_list" android:padding="3dp">
+
+		<ListView android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:id="@id/android:list"></ListView>
+
+		<TextView android:text="@string/trackmgr_empty" android:padding="5dp"
+			android:id="@+id/trackmgr_empty" android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:gravity="center" style="@android:style/TextAppearance.Large" />
+
+
+</FrameLayout>
+<TextView android:id="@+id/TextView01" android:layout_height="fill_parent" android:layout_width="fill_parent" android:text="@string/trackmgr_newtrack_hint" android:layout_weight="7" android:gravity="bottom|center_horizontal"></TextView>
+</LinearLayout>
