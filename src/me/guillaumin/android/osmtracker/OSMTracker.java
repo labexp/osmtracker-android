@@ -4,7 +4,7 @@ package me.guillaumin.android.osmtracker;
 /**
  * Constants & app-wide variables.
  * 
- * @author Nicolas Guillaumn
+ * @author Nicolas Guillaumin
  * 
  */
 public class OSMTracker {
@@ -13,9 +13,7 @@ public class OSMTracker {
 	 * Stores settings keys and default values.
 	 */
 	public static final class Preferences {
-		/**
-		 * Property names
-		 */
+		// Property names
 		public final static String KEY_STORAGE_DIR = "logging.storage.dir";
 		public final static String KEY_VOICEREC_DURATION = "voicerec.duration";
 		public final static String KEY_UI_THEME = "ui.theme";
@@ -27,9 +25,7 @@ public class OSMTracker {
 		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
 		public final static String KEY_UI_DISPLAYTRACK_OSM = "ui.displaytrack.osm";
 
-		/**
-		 * Default values
-		 */
+		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
 		public final static String VAL_VOICEREC_DURATION = "2";
 		public final static String VAL_UI_THEME = "@android:style/Theme";

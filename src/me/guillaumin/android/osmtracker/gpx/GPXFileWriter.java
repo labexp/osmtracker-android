@@ -82,7 +82,7 @@ public class GPXFileWriter {
 	 * @param trackName Name of the track (metadata).
 	 * @param fw Writer to the target file.
 	 * @param c Cursor to track points.
-	 * @param resourcse To access string resources
+	 * @param resources To access string resources
 	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
 	 * @throws IOException
 	 */
@@ -121,8 +121,8 @@ public class GPXFileWriter {
 	 * Iterates on way points and write them.
 	 * @param fw Writer to the target file.
 	 * @param c Cursor to way points.
-	 * @param accuracyOutput Constant describing how to include (or not) accuracy info for way points.
-	 * @param resourcse To access string resources
+	 * @param accuracyInfo Constant describing how to include (or not) accuracy info for way points.
+	 * @param resources To access string resources
 	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
 	 * @throws IOException
 	 */

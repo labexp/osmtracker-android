@@ -1,6 +1,7 @@
 package me.guillaumin.android.osmtracker.activity;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.view.DisplayTrackView;
 import android.app.Activity;
 import android.content.Intent;
@@ -28,7 +29,7 @@ public class DisplayTrack extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		// Create special view and displays it
-		DisplayTrackView dtv = new DisplayTrackView(this);
+		DisplayTrackView dtv = new DisplayTrackView(this, getIntent().getExtras().getLong(Schema.COL_TRACK_ID));
 		dtv.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		setContentView(dtv);		
 	}	

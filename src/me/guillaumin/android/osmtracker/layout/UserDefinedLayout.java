@@ -46,7 +46,7 @@ public class UserDefinedLayout extends LinearLayout {
 	 */
 	private Stack<String> layoutStack = new Stack<String>();
 	
-	public UserDefinedLayout(TrackLogger activity, File xmlLayout) throws XmlPullParserException, IOException {
+	public UserDefinedLayout(TrackLogger activity, long trackId, File xmlLayout) throws XmlPullParserException, IOException {
 		super(activity);
 		
 		// Set default presentation parameters
@@ -57,13 +57,13 @@ public class UserDefinedLayout extends LinearLayout {
 		if (xmlLayout == null) {
 			// No user file, use default file
 			parser = getResources().getXml(R.xml.default_buttons_layout);
-			udlr = new UserDefinedLayoutReader(this, getContext(), activity, parser, new AppResourceIconResolver(getResources(), OSMTracker.class.getPackage().getName()));
+			udlr = new UserDefinedLayoutReader(this, getContext(), activity, trackId, parser, new AppResourceIconResolver(getResources(), OSMTracker.class.getPackage().getName()));
 		} else {
 			// User file specified, parse it
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 			parser = factory.newPullParser();
 			parser.setInput(new FileReader(xmlLayout));
-			udlr = new UserDefinedLayoutReader(this, getContext(), activity, parser, new ExternalDirectoryIconResolver(xmlLayout.getParentFile()));
+			udlr = new UserDefinedLayoutReader(this, getContext(), activity, trackId, parser, new ExternalDirectoryIconResolver(xmlLayout.getParentFile()));
 		}
 		
 		layouts = udlr.parseLayout();

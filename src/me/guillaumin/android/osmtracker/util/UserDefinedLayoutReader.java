@@ -84,6 +84,11 @@ public class UserDefinedLayoutReader {
 	private Resources resources;
 	
 	/**
+	 * Current track id
+	 */
+	private long currentTrackId;
+	
+	/**
 	 * Constructor
 	 * 
 	 * @param udl
@@ -92,19 +97,22 @@ public class UserDefinedLayoutReader {
 	 *            Context for accessing resources
 	 * @param tl
 	 *            TrackLogger activity
+	 * @param trackId
+	 * 			  Current track id
 	 * @param input
 	 *            Parser for reading layout
 	 */
-	public UserDefinedLayoutReader(UserDefinedLayout udl, Context c, TrackLogger tl, XmlPullParser input, IconResolver ir) {
+	public UserDefinedLayoutReader(UserDefinedLayout udl, Context c, TrackLogger tl, long trackId, XmlPullParser input, IconResolver ir) {
 		parser = input;
 		context = c;
 		resources = context.getResources();
 		userDefinedLayout = udl;
 		iconResolver = ir;
+		currentTrackId = trackId;
 		
 		// Initialize listeners which will be bound to buttons
-		textNoteOnClickListener = new TextNoteOnClickListener();
-		voiceRecordOnClickListener = new VoiceRecOnClickListener(tl);
+		textNoteOnClickListener = new TextNoteOnClickListener(currentTrackId);
+		voiceRecordOnClickListener = new VoiceRecOnClickListener(tl, currentTrackId);
 		stillImageOnClickListener = new StillImageOnClickListener(tl);
 	}
 
@@ -234,7 +242,7 @@ public class UserDefinedLayoutReader {
 			button.setText(findLabel(parser.getAttributeValue(null, XmlSchema.ATTR_LABEL), resources));			
 			Drawable icon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
 			button.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
-			button.setOnClickListener(new TagButtonOnClickListener());
+			button.setOnClickListener(new TagButtonOnClickListener(currentTrackId));
 		} else if (XmlSchema.ATTR_VAL_VOICEREC.equals(buttonType)) {
 			button.setText(resources.getString(R.string.gpsstatus_record_voicerec));
 			button.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(

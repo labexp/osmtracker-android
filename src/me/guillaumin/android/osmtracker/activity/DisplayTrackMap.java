@@ -58,6 +58,11 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 	 * OSM view overlay that displays current path
 	 */
 	private OpenStreetMapViewPathOverlay pathOverlay;
+	
+	/**
+	 * Current track id
+	 */
+	private long currentTrackId;
 
 	/**
 	 * Observes changes on trackpoints
@@ -68,6 +73,8 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.displaytrackmap);
+        
+        currentTrackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
         
         // Initialize OSM view
         osmView = (OpenStreetMapView) findViewById(R.id.displaytrackmap_osmView);
@@ -105,7 +112,9 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
 		
 		// Register content observer for any trackpoint changes
-		getContentResolver().registerContentObserver(TrackContentProvider.CONTENT_URI_TRACKPOINT, true, trackpointContentObserver);
+		getContentResolver().registerContentObserver(
+				TrackContentProvider.trackPointsUri(currentTrackId),
+				true, trackpointContentObserver);
 		
         // Reload path
         pathChanged();
@@ -149,7 +158,9 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 		}
 		
 		// Update only the new points
-		Cursor c = getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+		Cursor c = getContentResolver().query(
+				TrackContentProvider.trackPointsUri(currentTrackId),
+				null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
 		int existingPoints = pathOverlay.getNumberOfPoints();
 		
 		// Process only if we have data, and new data only

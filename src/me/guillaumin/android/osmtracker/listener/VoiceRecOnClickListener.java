@@ -8,12 +8,11 @@ import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
-import me.guillaumin.android.osmtracker.db.TrackContentProvider;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaRecorder;
 import android.media.MediaRecorder.OnInfoListener;
@@ -51,10 +50,13 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 	/**
 	 * AudioManager, to unmute microphone
 	 */
-	AudioManager audioManager;
-
-	public VoiceRecOnClickListener(TrackLogger a) {
+	private AudioManager audioManager;
+	
+	private long currentTrackId;
+	
+	public VoiceRecOnClickListener(TrackLogger a, long trackId) {
 		activity = a;
+		currentTrackId = trackId;
 
 		// Try to un-mute microphone, just in case
 		audioManager = (AudioManager) a.getSystemService(Context.AUDIO_SERVICE);
@@ -65,6 +67,7 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 		// Track waypoint immediately when user clicks on the button
 		final String uuid = UUID.randomUUID().toString();
 		Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+		intent.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 		intent.putExtra(OSMTracker.INTENT_KEY_UUID, uuid);
 		intent.putExtra(OSMTracker.INTENT_KEY_NAME, v.getResources().getString(R.string.wpt_voicerec));
 		v.getContext().sendBroadcast(intent);
@@ -84,8 +87,9 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 				// Show a progress dialog while recording
 				progressDialog = new ProgressDialog(v.getContext());
 				progressDialog.setTitle(v.getResources().getString(R.string.tracklogger_voicerec_title));
-				progressDialog.setMessage(v.getResources().getString(R.string.tracklogger_voicerec_text).replaceAll(
-						"\\{0\\}", duration));
+				progressDialog.setMessage(
+						v.getResources().getString(R.string.tracklogger_voicerec_text)
+						.replace("{0}", duration));
 				progressDialog.show();
 	
 				// Some workaround for record problems
@@ -130,6 +134,7 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 				// Still update waypoint, could be useful even without
 				// the voice file.
 				intent = new Intent(OSMTracker.INTENT_UPDATE_WP);
+				intent.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 				intent.putExtra(OSMTracker.INTENT_KEY_UUID, uuid);
 				intent.putExtra(OSMTracker.INTENT_KEY_LINK, audioFile.getName());
 				activity.sendBroadcast(intent);
@@ -179,14 +184,8 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 	 */
 	public File getAudioFile() {
 		// Query for current track directory
-		Cursor trackDirCursor = activity.getContentResolver().query(TrackContentProvider.CONTENT_URI_CONFIG, null, TrackContentProvider.Schema.COL_KEY + " = ?", new String[]{TrackContentProvider.Schema.KEY_CONFIG_TRACKDIR}, null);
-		if (trackDirCursor != null && trackDirCursor.getCount() > 0) {
-			trackDirCursor.moveToFirst();
-			File trackDir = new File(trackDirCursor.getString(trackDirCursor.getColumnIndex(TrackContentProvider.Schema.COL_VALUE)));
-			return new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_3GPP);
-		} else {
-			return null;
-		}
+		File trackDir = DataHelper.getTrackDir(activity.getContentResolver(), currentTrackId);
+		return new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_3GPP);
 	}
 	
 }

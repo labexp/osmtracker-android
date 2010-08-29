@@ -1,14 +1,10 @@
 package me.guillaumin.android.osmtracker.db;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
-import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
-import me.guillaumin.android.osmtracker.gpx.GPXFileWriter;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -17,7 +13,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.location.Location;
 import android.net.Uri;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -34,7 +29,7 @@ public class DataHelper {
 	/**
 	 * GPX file extension.
 	 */
-	private static final String EXTENSION_GPX = ".gpx";
+	public static final String EXTENSION_GPX = ".gpx";
 
 	/**
 	 * 3GPP extension
@@ -53,12 +48,6 @@ public class DataHelper {
 	private static final int MAX_RENAME_ATTEMPTS = 20;
 
 	/**
-	 * Current File for recording a still picture. Behaves as a dirty 1 level
-	 * stack.
-	 */
-	private File currentImageFile;
-
-	/**
 	 * Formatter for various files (GPX, media)
 	 */
 	public static final SimpleDateFormat FILENAME_FORMATTER = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
@@ -74,16 +63,6 @@ public class DataHelper {
 	private ContentResolver contentResolver;
 
 	/**
-	 * Directory for storing track.
-	 */
-	private File trackDir;
-	
-	/**
-	 * Current track id
-	 */
-	private long trackId;
-
-	/**
 	 * Constructor.
 	 * 
 	 * @param c
@@ -95,58 +74,15 @@ public class DataHelper {
 	}
 
 	/**
-	 * Create a new track: Erase all db data, and creates a track dir.
-	 * 
-	 * @throws IOException
-	 */
-	public void createNewTrack() throws IOException {
-
-		// Delete all previous trackpoint & waypoint
-		// deleteAllData();
-
-		// Create directory for track
-		File sdRoot = Environment.getExternalStorageDirectory();
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		String storageDir = prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR,
-				OSMTracker.Preferences.VAL_STORAGE_DIR);
-		if (sdRoot.canWrite()) {
-			// Create base OSMTracker directory on SD Card
-			File osmTrackerDir = new File(sdRoot + storageDir);
-			if (!osmTrackerDir.exists()) {
-				osmTrackerDir.mkdir();
-			}
-
-			// Create track directory
-			Date startDate = new Date();
-			trackDir = new File(osmTrackerDir + File.separator + FILENAME_FORMATTER.format(startDate));
-			trackDir.mkdir();
-			
-			// Insert current trackdir in DB for uses by other components
-			ContentValues values = new ContentValues();
-			values.put(Schema.COL_KEY, Schema.KEY_CONFIG_TRACKDIR);
-			values.put(Schema.COL_VALUE, trackDir.getAbsolutePath());
-			contentResolver.insert(TrackContentProvider.CONTENT_URI_CONFIG, values);
-			
-			// Create entry in TRACK table
-			values.clear();
-			values.put(Schema.COL_NAME, "");
-			values.put(Schema.COL_START_DATE, startDate.getTime());
-			Uri trackUri = contentResolver.insert(TrackContentProvider.CONTENT_URI_TRACK, values);
-			trackId = ContentUris.parseId(trackUri);
-		} else {
-			throw new IOException(context.getResources().getString(R.string.error_externalstorage_not_writable));
-		}
-
-	}
-
-	/**
 	 * Track a point into DB.
 	 * 
+	 * @param trackId
+	 *            Id of the track
 	 * @param location
 	 *            The Location to track
 	 */
-	public void track(Location location) {
-		Log.v(TAG, "Tracking location: " + location);
+	public void track(long trackId, Location location) {
+		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location);
 		ContentValues values = new ContentValues();
 		values.put(Schema.COL_TRACK_ID, trackId);
 		values.put(Schema.COL_LATITUDE, location.getLatitude());
@@ -167,12 +103,15 @@ public class DataHelper {
 			values.put(Schema.COL_TIMESTAMP, location.getTime());
 		}
 
-		contentResolver.insert(TrackContentProvider.CONTENT_URI_TRACKPOINT, values);
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+		contentResolver.insert(Uri.withAppendedPath(trackUri, Schema.TBL_TRACKPOINT + "s"), values);
 	}
 
 	/**
 	 * Tracks a way point with link
 	 * 
+	 * @param trackId
+	 *            Id of the track
 	 * @param location
 	 *            Location of waypoint
 	 * @param nbSatellites
@@ -181,9 +120,11 @@ public class DataHelper {
 	 *            Name of waypoint
 	 * @param link
 	 *            Link of waypoint
+	 * @param uuid 
+	 * 			  Unique id of the waypoint
 	 */
-	public void wayPoint(Location location, int nbSatellites, String name, String link, String uuid) {
-		Log.v(TAG, "Tracking waypoint '" + name + "', uuid=" + uuid + ", link='" + link + "', location=" + location);
+	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid) {
+		Log.v(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid + ", link='" + link + "', location=" + location);
 
 		// location should not be null, but sometime is.
 		// TODO investigate this issue.
@@ -207,7 +148,7 @@ public class DataHelper {
 			}
 			if (link != null) {
 				// Rename file to match location timestamp
-				values.put(Schema.COL_LINK, renameFile(link, FILENAME_FORMATTER.format(location.getTime())));
+				values.put(Schema.COL_LINK, renameFile(trackId, link, FILENAME_FORMATTER.format(location.getTime())));
 			}
 			
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -219,14 +160,16 @@ public class DataHelper {
 				values.put(Schema.COL_TIMESTAMP, location.getTime());
 			}
 
-
-			contentResolver.insert(TrackContentProvider.CONTENT_URI_WAYPOINT, values);
+			Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+			contentResolver.insert(Uri.withAppendedPath(trackUri, Schema.TBL_WAYPOINT + "s"), values);
 		}
 	}
 	
 	/**
 	 * Updates a waypoint
 	 * 
+	 * @param trackId
+	 *            Id of the track
 	 * @param uuid
 	 *            Unique ID of the target waypoint
 	 * @param name
@@ -234,7 +177,7 @@ public class DataHelper {
 	 * @param link
 	 *            New link
 	 */
-	public void updateWayPoint(String uuid, String name, String link) {
+	public void updateWayPoint(long trackId, String uuid, String name, String link) {
 		Log.v(TAG, "Updating waypoint with uuid '" + uuid + "'. New values: name='" + name + "', link='" + link + "'");
 		if (uuid != null) {
 			ContentValues values = new ContentValues();
@@ -244,84 +187,21 @@ public class DataHelper {
 			if (link != null) {
 				values.put(Schema.COL_LINK, link);
 			}
-			contentResolver
-					.update(TrackContentProvider.CONTENT_URI_WAYPOINT, values, "uuid = ?", new String[] { uuid });
-		}
-	}
-
-	/**
-	 * Exports current database to a GPX file.
-	 */
-	public void exportTrackAsGpx() {
-
-		if (trackDir != null) {
-
-			File trackFile = new File(trackDir, FILENAME_FORMATTER.format(new Date()) + EXTENSION_GPX);
-
-			Cursor cTrackPoints = contentResolver.query(TrackContentProvider.CONTENT_URI_TRACKPOINT,
-					null, Schema.COL_TRACK_ID + " = ?", new String[]{Long.toString(trackId)},
-					Schema.COL_TIMESTAMP + " asc");
-			Cursor cWayPoints = contentResolver.query(TrackContentProvider.CONTENT_URI_WAYPOINT,
-					null, Schema.COL_TRACK_ID + " = ?", new String[]{Long.toString(trackId)},
-					Schema.COL_TIMESTAMP + " asc");
-
-			try {
-				GPXFileWriter.writeGpxFile(context.getResources(), cTrackPoints, cWayPoints, trackFile,
-						PreferenceManager.getDefaultSharedPreferences(context));
-			} catch (IOException ioe) {
-				Log.e(TAG, "Unable to export track: " + ioe.getMessage());
-			}
-
-			cTrackPoints.close();
-			cWayPoints.close();
 			
-			// deleteAllData();
-
+			Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+			contentResolver.update(Uri.withAppendedPath(trackUri, Schema.TBL_WAYPOINT + "s"), values,
+					"uuid = ?", new String[] { uuid });
 		}
-	}
-
-	/**
-	 * Getter for trackDir
-	 * 
-	 * @return the tracking directory on external storage.
-	 */
-	public File getTrackDir() {
-		return trackDir;
-	}
-
-	/**
-	 * @return A new File to record an audio way point, inside the track
-	 *         directory.
-	 */
-	public File getNewAudioFile() {
-		return new File(trackDir + File.separator + FILENAME_FORMATTER.format(new Date()) + EXTENSION_3GPP);
-	}
-
-	/**
-	 * @return A new File to record a still image, inside the track directory.
-	 */
-	public File pushImageFile() {
-		currentImageFile = new File(trackDir + File.separator + FILENAME_FORMATTER.format(new Date()) + EXTENSION_JPG);
-		return currentImageFile;
-	}
-
-	/**
-	 * @return The current image file, and removes it.
-	 */
-	public File popImageFile() {
-		File imageFile = new File(currentImageFile.getAbsolutePath());
-		currentImageFile = null;
-		return imageFile;
 	}
 
 	/**
 	 * Delete all data in ContentProvider
-	 */
+	 
 	private void deleteAllData() {
 		contentResolver.delete(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null);
 		contentResolver.delete(TrackContentProvider.CONTENT_URI_WAYPOINT, null, null);
 		contentResolver.delete(TrackContentProvider.CONTENT_URI_CONFIG, null, null);
-	}
+	} */
 	
 	/**
 	 * Renames a file inside track directory, keeping the extension
@@ -332,7 +212,9 @@ public class DataHelper {
 	 *            Filename to use for new name (Ex: "def")
 	 * @return Renamed filename (Ex: "def.png")
 	 */
-	private String renameFile(String from, String to) {
+	private String renameFile(Long trackId, String from, String to) {
+		File trackDir = DataHelper.getTrackDir(contentResolver, trackId);
+		
 		String ext = from.substring(from.lastIndexOf(".") + 1, from.length());
 		File origin = new File(trackDir + File.separator + from);
 		File target = new File(trackDir + File.separator + to + "." + ext);
@@ -345,4 +227,20 @@ public class DataHelper {
 
 	}
 
+	/**
+	 * @param cr Content Resoliver to use
+	 * @param trackId Track id
+	 * @return A File to the track directory for the target track id.
+	 */
+	public static File getTrackDir(ContentResolver cr, long trackId) {
+		Cursor c = cr.query(
+			ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
+			null, null, null, null);
+	
+		c.moveToFirst();
+		File trackDir = new File(c.getString(c.getColumnIndex(Schema.COL_DIR)));
+		c.close();
+		
+		return trackDir;
+	}	
 }

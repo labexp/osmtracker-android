@@ -1,11 +1,10 @@
 package me.guillaumin.android.osmtracker.service.gps;
 
-import java.io.IOException;
-
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -24,7 +23,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.util.Log;
-import android.widget.Toast;
 
 /**
  * GPS logging service.
@@ -86,6 +84,11 @@ public class GPSLogger extends Service implements LocationListener {
 	 * LocationManager
 	 */
 	private LocationManager lmgr;
+	
+	/**
+	 * Current Track ID
+	 */
+	private long currentTrackId;
 
 	/**
 	 * Receives Intent for way point tracking, and stop/start logging.
@@ -100,19 +103,21 @@ public class GPSLogger extends Service implements LocationListener {
 				// Track a way point
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
+					Long trackId = extras.getLong(Schema.COL_TRACK_ID);
 					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
 					String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
 					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
-					dataHelper.wayPoint(lastLocation, lastNbSatellites, name, link, uuid);
+					dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid);
 				}
 			} else if (OSMTracker.INTENT_UPDATE_WP.equals(intent.getAction())) {
 				// Update an existing waypoint
 				Bundle extras = intent.getExtras();
-				if (extras != null && extras.containsKey(OSMTracker.INTENT_KEY_UUID)) {
+				if (extras != null) {
+					Long trackId = extras.getLong(Schema.COL_TRACK_ID);
 					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
 					String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
 					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
-					dataHelper.updateWayPoint(uuid, name, link);
+					dataHelper.updateWayPoint(trackId, uuid, name, link);
 				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction()) ) {
 				startTracking();
@@ -190,6 +195,12 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		super.onCreate();
 	}
+	
+	@Override
+	public void onStart(Intent intent, int startId) {
+		currentTrackId = intent.getExtras().getLong(Schema.COL_TRACK_ID);
+		super.onStart(intent, startId);
+	}
 
 	@Override
 	public void onDestroy() {
@@ -212,23 +223,14 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private void startTracking() {
 		Log.v(TAG, "Starting track logging");
-
-		try {
-			dataHelper.createNewTrack();
-			isTracking = true;
-		} catch (IOException ioe ) {
-			// Should not occur, as we check external storage
-			// state before starting tracking.
-			Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.error_externalstorage_not_writable), Toast.LENGTH_LONG).show();
-		}
+		isTracking = true;
 	}
 
 	/**
-	 * Stops GPS Logging and save GPX file.
+	 * Stops GPS Logging
 	 */
 	private void stopTrackingAndSave() {
 		isTracking = false;
-		dataHelper.exportTrackAsGpx();
 	}
 
 	@Override
@@ -240,7 +242,7 @@ public class GPSLogger extends Service implements LocationListener {
 		lastNbSatellites = countSatellites();
 		
 		if (isTracking) {
-			dataHelper.track(location);
+			dataHelper.track(currentTrackId, location);
 			if (isNotifying) {
 				// Notify user that we're in background
 				notifyBackgroundService();

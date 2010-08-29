@@ -6,7 +6,7 @@ import java.util.Date;
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.DataHelper;
-import me.guillaumin.android.osmtracker.db.TrackContentProvider;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
@@ -17,7 +17,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -82,6 +81,11 @@ public class TrackLogger extends Activity {
 	 * Keeps track of the image file when taking a picture.
 	 */
 	private File currentImageFile;
+	
+	/**
+	 * Keeps track of the current track id.
+	 */
+	private long currentTrackId;
 
 	/**
 	 * Handles the bind to the GPS Logger service
@@ -90,7 +94,13 @@ public class TrackLogger extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		// Get the track id to work with
+		currentTrackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
+		Log.v(TAG, "Starting for track id " + currentTrackId);
+		
 		gpsLoggerServiceIntent = new Intent(this, GPSLogger.class);
+		gpsLoggerServiceIntent.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 
 		// Populate default preference values
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -131,7 +141,7 @@ public class TrackLogger extends Activity {
 					OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
 			if (OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT.equals(userLayout)) {
 				// Using default buttons layout
-				mainLayout = new UserDefinedLayout(this, null);
+				mainLayout = new UserDefinedLayout(this, currentTrackId, null);
 			} else {
 				// Using user buttons layout
 				File layoutFile = new File(
@@ -141,7 +151,7 @@ public class TrackLogger extends Activity {
 								OSMTracker.Preferences.VAL_STORAGE_DIR)
 						+ File.separator + Preferences.LAYOUTS_SUBDIR
 						+ File.separator + userLayout);
-				mainLayout = new UserDefinedLayout(this, layoutFile);
+				mainLayout = new UserDefinedLayout(this, currentTrackId, layoutFile);
 			}
 			
 			((ViewGroup) findViewById(R.id.tracklogger_root)).removeAllViews();
@@ -169,6 +179,7 @@ public class TrackLogger extends Activity {
 		// We can't use BIND_AUTO_CREATE here, because when we'll ubound
 		// later, we want to keep the service alive in background
 		bindService(gpsLoggerServiceIntent, gpsLoggerConnection, 0);
+		
 		super.onResume();
 	}
 
@@ -289,6 +300,7 @@ public class TrackLogger extends Activity {
 	// Manage options menu selections
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
 		switch (item.getItemId()) {
 		case R.id.tracklogger_menu_startstoptracking:
 			// Start / Stop tracking	
@@ -297,6 +309,7 @@ public class TrackLogger extends Activity {
 				sendBroadcast(intent);
 				setEnabledActionButtons(false);
 				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(false);
+				finish();
 			} else {
 				Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
 				sendBroadcast(intent);
@@ -310,7 +323,9 @@ public class TrackLogger extends Activity {
 			break;
 		case R.id.tracklogger_menu_waypointlist:
 			// Start Waypoint list activity
-			startActivity(new Intent(this, WaypointList.class));
+			i = new Intent(this, WaypointList.class);
+			i.putExtra(Schema.COL_TRACK_ID, currentTrackId);
+			startActivity(i);
 			break;
 		case R.id.tracklogger_menu_about:
 			// Start About activity
@@ -321,10 +336,12 @@ public class TrackLogger extends Activity {
 			boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 					OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
 			if (useOpenStreetMapBackground) {
-				startActivity(new Intent(this, DisplayTrackMap.class));
+				i = new Intent(this, DisplayTrackMap.class);
 			} else {
-				startActivity(new Intent(this, DisplayTrack.class));
+				i = new Intent(this, DisplayTrack.class);
 			}
+			i.putExtra(Schema.COL_TRACK_ID, currentTrackId);
+			startActivity(i);
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -377,6 +394,7 @@ public class TrackLogger extends Activity {
 				File imageFile = popImageFile();
 				if (imageFile != null) {
 					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+					intent.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
 					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
 					sendBroadcast(intent);
@@ -415,14 +433,11 @@ public class TrackLogger extends Activity {
 	 */
 	public File pushImageFile() {
 		currentImageFile = null;
-		
+
 		// Query for current track directory
-		Cursor trackDirCursor = getContentResolver().query(TrackContentProvider.CONTENT_URI_CONFIG, null, TrackContentProvider.Schema.COL_KEY + " = ?", new String[]{TrackContentProvider.Schema.KEY_CONFIG_TRACKDIR}, null);
-		if (trackDirCursor != null && trackDirCursor.getCount() > 0) {
-			trackDirCursor.moveToFirst();
-			File trackDir = new File(trackDirCursor.getString(trackDirCursor.getColumnIndex(TrackContentProvider.Schema.COL_VALUE)));
-			currentImageFile = new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_JPG);
-		}
+		File trackDir = DataHelper.getTrackDir(getContentResolver(), currentTrackId);
+		currentImageFile = new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_JPG);
+
 		return currentImageFile;
 	}
 	

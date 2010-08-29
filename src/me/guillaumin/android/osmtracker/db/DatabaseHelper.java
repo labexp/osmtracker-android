@@ -43,15 +43,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ Schema.COL_NAME + " text,"
 		+ Schema.COL_LINK + " text,"
 		+ Schema.COL_NBSATELLITES + " integer not null" + ")";
-
-	/**
-	 * SQL for creating table CONFIG
-	 */
-	private static final String SQL_CREATE_TABLE_CONFIG = ""
-		+ "create table " + Schema.TBL_CONFIG + " ("
-		+ Schema.COL_ID + " integer primary key autoincrement,"
-		+ Schema.COL_KEY + " text,"
-		+ Schema.COL_VALUE + " text" + ")";
 	
 	/**
 	 * SQL for creating table TRACK
@@ -60,7 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ "create table " + Schema.TBL_TRACK + " ("
 		+ Schema.COL_ID + " integer primary key autoincrement,"
 		+ Schema.COL_NAME + " text,"
-		+ Schema.COL_START_DATE + " long not null" + ")";
+		+ Schema.COL_START_DATE + " long not null,"
+		+ Schema.COL_DIR + " text" + ")";
 			
 	
 	/**
@@ -71,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * Database version.
 	 */
-	private static final int DB_VERSION = 5;
+	private static final int DB_VERSION = 7;
 
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -83,8 +75,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_CREATE_TABLE_TRACKPOINT);
 		db.execSQL("drop table if exists " + Schema.TBL_WAYPOINT);
 		db.execSQL(SQL_CREATE_TABLE_WAYPOINT);
-		db.execSQL("drop table if exists " + Schema.TBL_CONFIG);
-		db.execSQL(SQL_CREATE_TABLE_CONFIG);
 		db.execSQL("drop table if exists " + Schema.TBL_TRACK);
 		db.execSQL(SQL_CREATE_TABLE_TRACK);
 	}

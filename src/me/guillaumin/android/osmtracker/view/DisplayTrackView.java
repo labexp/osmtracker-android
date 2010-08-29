@@ -84,6 +84,11 @@ public class DisplayTrackView extends TextView {
 	private String northLabel;
 	
 	/**
+	 * Current track id
+	 */
+	private long currentTrackId;
+	
+	/**
 	 * ContentObserver to be notified about any new trackpoint and
 	 * redraw screen
 	 */
@@ -114,9 +119,11 @@ public class DisplayTrackView extends TextView {
 	 */
 	private TrackPointContentObserver trackpointContentObserver;
 
-	public DisplayTrackView(Context context) {
+	public DisplayTrackView(Context context, long trackId) {
 		super(context);
 
+		currentTrackId = trackId;
+		
 		// Set text align to centre
 		getPaint().setTextAlign(Align.CENTER);
 		
@@ -131,7 +138,9 @@ public class DisplayTrackView extends TextView {
 		compass = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_compass);
 		
 		trackpointContentObserver = new TrackPointContentObserver(new Handler());
-		context.getContentResolver().registerContentObserver(TrackContentProvider.CONTENT_URI_TRACKPOINT, true, trackpointContentObserver);
+		context.getContentResolver().registerContentObserver(
+				TrackContentProvider.trackPointsUri(currentTrackId),
+				true, trackpointContentObserver);
 	}
 
 	@Override
@@ -217,7 +226,9 @@ public class DisplayTrackView extends TextView {
 	 * Populate coordinates from a cursor to current track Database
 	 */
 	public void populateCoords() {		
-		Cursor c = getContext().getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+		Cursor c = getContext().getContentResolver().query(
+				TrackContentProvider.trackPointsUri(currentTrackId),
+				null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
 		coords = new double[c.getCount()][2];
 		int i=0;
 		

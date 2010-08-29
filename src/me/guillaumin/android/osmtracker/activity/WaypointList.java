@@ -5,10 +5,8 @@ import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.WaypointListAdapter;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import android.app.ListActivity;
-import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.widget.CursorAdapter;
 
 /**
@@ -25,11 +23,9 @@ public class WaypointList extends ListActivity {
 		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
 	
 		Long trackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
-		Uri waypointsUri = Uri.withAppendedPath(
-			ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
-			"/" + Schema.TBL_WAYPOINT + "s");
 		
-		Cursor cursor = getContentResolver().query(waypointsUri, null, null, null, Schema.COL_TIMESTAMP + " asc");
+		Cursor cursor = getContentResolver().query(TrackContentProvider.waypointsUri(trackId),
+				null, null, null, Schema.COL_TIMESTAMP + " asc");
 		startManagingCursor(cursor);
 		setListAdapter(new WaypointListAdapter(WaypointList.this, cursor));
 		

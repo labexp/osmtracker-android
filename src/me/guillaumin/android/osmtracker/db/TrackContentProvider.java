@@ -12,8 +12,8 @@ import android.net.Uri;
 import android.util.Log;
 
 /**
- * Content provider for track data, using Android {@link ContentProvider}
- * mechanism.
+ * Content provider for track data, using Android
+ * {@link ContentProvider} mechanism.
  * 
  * @author Nicolas Guillaumin
  * 
@@ -28,21 +28,6 @@ public class TrackContentProvider extends ContentProvider {
 	public static final String AUTHORITY = OSMTracker.class.getPackage().getName() + ".provider";
 
 	/**
-	 * Uri for trackpoint
-	 */
-	public static final Uri CONTENT_URI_TRACKPOINT = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACKPOINT);
-
-	/**
-	 * Uri for waypoint
-	 */
-	public static final Uri CONTENT_URI_WAYPOINT = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_WAYPOINT);
-	
-	/**
-	 * Uri for config
-	 */
-	public static final Uri CONTENT_URI_CONFIG = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_CONFIG);
-	
-	/**
 	 * Uri for track
 	 */
 	public static final Uri CONTENT_URI_TRACK = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACK);
@@ -52,12 +37,30 @@ public class TrackContentProvider extends ContentProvider {
 	 */
 	private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	static {
-		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT, Schema.URI_CODE_WAYPOINT);
-		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACKPOINT, Schema.URI_CODE_TRACKPOINT);
-		uriMatcher.addURI(AUTHORITY, Schema.TBL_CONFIG, Schema.URI_CODE_CONFIG);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK, Schema.URI_CODE_TRACK);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#", Schema.URI_CODE_TRACK_ID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_WAYPOINT + "s", Schema.URI_CODE_TRACK_WAYPOINTS);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_TRACKPOINT + "s", Schema.URI_CODE_TRACK_TRACKPOINTS);
+	}
+	
+	/**
+	 * @param trackId target track id
+	 * @return Uri for the waypoints of the track 
+	 */
+	public static final Uri waypointsUri(long trackId) {
+		return Uri.withAppendedPath(
+				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
+				Schema.TBL_WAYPOINT + "s" );
+	}
+	
+	/**
+	 * @param trackId target track id
+	 * @return Uri for the trackpoints of the track 
+	 */
+	public static final Uri trackPointsUri(long trackId) {
+		return Uri.withAppendedPath(
+				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
+				Schema.TBL_TRACKPOINT + "s" );		
 	}
 
 	/**
@@ -76,17 +79,8 @@ public class TrackContentProvider extends ContentProvider {
 		Log.v(TAG, "delete(), uri=" + uri);
 
 		int count;
-		// Select which datatype to delete
+		// Select which data type to delete
 		switch (uriMatcher.match(uri)) {
-		case Schema.URI_CODE_TRACKPOINT:
-			count = dbHelper.getWritableDatabase().delete(Schema.TBL_TRACKPOINT, selection, selectionArgs);
-			break;
-		case Schema.URI_CODE_WAYPOINT:
-			count = dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, selection, selectionArgs);
-			break;
-		case Schema.URI_CODE_CONFIG:
-			count = dbHelper.getWritableDatabase().delete(Schema.TBL_CONFIG, selection, selectionArgs);
-			break;
 		case Schema.URI_CODE_TRACK:
 			count = dbHelper.getWritableDatabase().delete(Schema.TBL_TRACK, selection, selectionArgs);
 			break;
@@ -111,15 +105,12 @@ public class TrackContentProvider extends ContentProvider {
 
 		// Select wich type to return
 		switch (uriMatcher.match(uri)) {
-		case Schema.URI_CODE_TRACKPOINT:
+		case Schema.URI_CODE_TRACK_TRACKPOINTS:
 			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
 					+ Schema.TBL_TRACKPOINT;
-		case Schema.URI_CODE_WAYPOINT:
+		case Schema.URI_CODE_TRACK_WAYPOINTS:
 			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
 					+ Schema.TBL_WAYPOINT;
-		case Schema.URI_CODE_CONFIG:
-			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
-					+ Schema.TBL_CONFIG;
 		case Schema.URI_CODE_TRACK:
 			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
 					+ Schema.TBL_TRACK;
@@ -131,16 +122,16 @@ public class TrackContentProvider extends ContentProvider {
 	public Uri insert(Uri uri, ContentValues values) {
 		Log.v(TAG, "insert(), uri=" + uri + ", values=" + values.toString());
 
-		// Select which datatype to insert
+		// Select which data type to insert
 		switch (uriMatcher.match(uri)) {
-		case Schema.URI_CODE_TRACKPOINT:
+		case Schema.URI_CODE_TRACK_TRACKPOINTS:
 			// Check that mandatory columns are present.
 			if (values.containsKey(Schema.COL_TRACK_ID) && values.containsKey(Schema.COL_LONGITUDE)
 					&& values.containsKey(Schema.COL_LATITUDE) && values.containsKey(Schema.COL_TIMESTAMP)) {
 
 				long rowId = dbHelper.getWritableDatabase().insert(Schema.TBL_TRACKPOINT, null, values);
 				if (rowId > 0) {
-					Uri trackpointUri = ContentUris.withAppendedId(CONTENT_URI_TRACKPOINT, rowId);
+					Uri trackpointUri = ContentUris.withAppendedId(uri, rowId);
 					getContext().getContentResolver().notifyChange(trackpointUri, null);
 					return trackpointUri;
 				}
@@ -149,33 +140,20 @@ public class TrackContentProvider extends ContentProvider {
 						+ Schema.COL_LATITUDE + ", " + Schema.COL_TIMESTAMP);
 			}
 			break;
-		case Schema.URI_CODE_WAYPOINT:
+		case Schema.URI_CODE_TRACK_WAYPOINTS:
 			// Check that mandatory columns are present.
 			if (values.containsKey(Schema.COL_TRACK_ID) && values.containsKey(Schema.COL_LONGITUDE)
 					&& values.containsKey(Schema.COL_LATITUDE) && values.containsKey(Schema.COL_TIMESTAMP) ) {
 
 				long rowId = dbHelper.getWritableDatabase().insert(Schema.TBL_WAYPOINT, null, values);
 				if (rowId > 0) {
-					Uri waypointUri = ContentUris.withAppendedId(CONTENT_URI_WAYPOINT, rowId);
+					Uri waypointUri = ContentUris.withAppendedId(uri, rowId);
 					getContext().getContentResolver().notifyChange(waypointUri, null);
 					return waypointUri;
 				}
 			} else {
 				throw new IllegalArgumentException("values should provide " + Schema.COL_LONGITUDE + ", "
 						+ Schema.COL_LATITUDE + ", " + Schema.COL_TIMESTAMP);
-			}
-			break;
-		case Schema.URI_CODE_CONFIG:
-			// Check that mandatory columns are present.
-			if (values.containsKey(Schema.COL_KEY)) {
-				long rowId = dbHelper.getWritableDatabase().insert(Schema.TBL_CONFIG, null, values);
-				if (rowId > 0) {
-					Uri configUri = ContentUris.withAppendedId(CONTENT_URI_CONFIG, rowId);
-					getContext().getContentResolver().notifyChange(configUri, null);
-					return configUri;
-				}
-			} else {
-				throw new IllegalArgumentException("values should provide " + Schema.COL_KEY);
 			}
 			break;
 		case Schema.URI_CODE_TRACK:
@@ -198,24 +176,47 @@ public class TrackContentProvider extends ContentProvider {
 	}
 
 	@Override
-	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+	public Cursor query(Uri uri, String[] projection, String selectionIn, String[] selectionArgsIn, String sortOrder) {
 		Log.v(TAG, "query(), uri=" + uri);
 
 		SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-
+		String selection = selectionIn;
+		String[] selectionArgs = selectionArgsIn;
+		
 		// Select which datatype was requested
 		switch (uriMatcher.match(uri)) {
-		case Schema.URI_CODE_TRACKPOINT:
+		case Schema.URI_CODE_TRACK_TRACKPOINTS:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			String trackId = uri.getPathSegments().get(1);
 			qb.setTables(Schema.TBL_TRACKPOINT);
+			selection = Schema.COL_TRACK_ID + " = ?";
+			selectionArgs = new String[] {trackId};
 			break;
-		case Schema.URI_CODE_WAYPOINT:
+		case Schema.URI_CODE_TRACK_WAYPOINTS:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			trackId = uri.getPathSegments().get(1);
 			qb.setTables(Schema.TBL_WAYPOINT);
-			break;
-		case Schema.URI_CODE_CONFIG:
-			qb.setTables(Schema.TBL_CONFIG);
+			selection = Schema.COL_TRACK_ID + " = ?";
+			selectionArgs = new String[] {trackId};
 			break;
 		case Schema.URI_CODE_TRACK:
 			qb.setTables(Schema.TBL_TRACK);
+			break;
+		case Schema.URI_CODE_TRACK_ID:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			trackId = uri.getLastPathSegment();
+			qb.setTables(Schema.TBL_TRACK);
+			selection = Schema.COL_ID + " = ?";
+			selectionArgs = new String[] {trackId};			
 			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -231,7 +232,7 @@ public class TrackContentProvider extends ContentProvider {
 		Log.v(TAG, "update(), uri=" + uri);
 		
 		switch (uriMatcher.match(uri)) {
-		case Schema.URI_CODE_WAYPOINT:
+		case Schema.URI_CODE_TRACK_WAYPOINTS:
 			int rows =  dbHelper.getWritableDatabase().update(Schema.TBL_WAYPOINT, values, selection, selectionArgs);
 			getContext().getContentResolver().notifyChange(uri, null);
 			return rows;
@@ -246,7 +247,6 @@ public class TrackContentProvider extends ContentProvider {
 	public static final class Schema {
 		public static final String TBL_TRACKPOINT = "trackpoint";
 		public static final String TBL_WAYPOINT = "waypoint";
-		public static final String TBL_CONFIG = "config";
 		public static final String TBL_TRACK = "track";
 		
 		public static final String COL_ID = "_id";
@@ -260,22 +260,15 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_TIMESTAMP = "point_timestamp";
 		public static final String COL_NAME = "name";
 		public static final String COL_LINK = "link";
-		public static final String COL_KEY = "key";
-		public static final String COL_VALUE = "value";
 		public static final String COL_START_DATE = "start_date";
+		public static final String COL_DIR = "directory";
 		
 		// Codes for UriMatcher
-		public static final int URI_CODE_TRACKPOINT = 0;
-		public static final int URI_CODE_WAYPOINT = 1;
-		public static final int URI_CODE_CONFIG = 2;
 		public static final int URI_CODE_TRACK = 3;
 		public static final int URI_CODE_TRACK_ID = 4;
 		public static final int URI_CODE_TRACK_WAYPOINTS = 5;
+		public static final int URI_CODE_TRACK_TRACKPOINTS = 6;
 		
-		/**
-		 * Key for config value "track dir"
-		 */
-		public static final String KEY_CONFIG_TRACKDIR = "trackdir";
 	}
 
 }
