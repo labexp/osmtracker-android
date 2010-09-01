@@ -101,6 +101,8 @@ public class UserDefinedLayoutReader {
 	 * 			  Current track id
 	 * @param input
 	 *            Parser for reading layout
+	 * @param ir
+	 * 			  Icon resolver to use to fetch icons 
 	 */
 	public UserDefinedLayoutReader(UserDefinedLayout udl, Context c, TrackLogger tl, long trackId, XmlPullParser input, IconResolver ir) {
 		parser = input;
@@ -135,7 +137,6 @@ public class UserDefinedLayoutReader {
 				}
 				break;
 			case XmlPullParser.END_TAG:
-				String name = parser.getName();
 				break;
 			}
 			eventType = parser.next();

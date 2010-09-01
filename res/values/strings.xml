@@ -12,7 +12,8 @@
 	<string name="tracklogger_voicerec_text">Recording a {0}s audio clip.</string>
 	<string name="tracklogger_btnBack">Back</string>
 	<string name="tracklogger_tracked">Tracked: </string>
-	<string name="tracklogger_gps_disabled">GPS is disabled. Do you want to enable it ?</string>
+	<string name="tracklogger_gps_disabled">GPS disabled</string>
+	<string name="tracklogger_gps_disabled_hint">GPS is disabled. Do you want to enable it ?</string>
 
 	<!-- Waypoint List -->
 	<string name="wplist">Waypoint List</string>
@@ -23,6 +24,7 @@
 	
 	<!-- Track Manager -->
 	<string name="trackmgr">Track manager</string>
+	<string name="trackmgr_tracklist">Track list:</string>
 	<string name="trackmgr_waypoints_count">Waypoints: </string>
 	<string name="trackmgr_trackpoints_count">Trackpoints: </string>
 	<string name="trackmgr_empty">You don't have any tracks.</string>
@@ -31,8 +33,8 @@
 	<string name="trackmgr_contextmenu_delete">Delete</string>
 	<string name="trackmgr_contextmenu_export">Export as GPX</string>
 	<string name="trackmgr_contextmenu_title">Track operations</string>
-	<string name="trackmgr_delete_confirm">Are you sure you want to delete this track ?</string>
-	<string name="trackmgr_export_done">Exported track #{0}</string>
+	<string name="trackmgr_delete_confirm">Track #{0} will be deleted</string>
+	<string name="trackmgr_exporting">Exporting track #{0}...</string>
 	<string name="trackmgr_export_error">Unable to export track: {0}</string>
 
 	<!-- GPS Status & record bar -->

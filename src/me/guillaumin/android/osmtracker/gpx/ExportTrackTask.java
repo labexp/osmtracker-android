@@ -9,10 +9,18 @@ import java.util.TimeZone;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.db.DataHelper;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
+import me.guillaumin.android.osmtracker.exception.ExportTrackException;
+import android.app.ProgressDialog;
+import android.content.ContentUris;
+import android.content.Context;
 import android.database.Cursor;
+import android.os.AsyncTask;
+import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 /**
  * Writes a GPX file.
@@ -20,7 +28,7 @@ import android.database.Cursor;
  * @author Nicolas Guillaumin
  *
  */
-public class GPXFileWriter {
+public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 
 	/**
 	 * XML header.
@@ -49,28 +57,136 @@ public class GPXFileWriter {
 	}
 	
 	/**
+	 * {@link Context} to get resources
+	 */
+	private Context context;
+	
+	/**
+	 * Track ID to export
+	 */
+	private long trackId;
+	
+	/**
+	 * Dialog to display while exporting
+	 */
+	private ProgressDialog dialog;
+
+	/**
+	 * Message in case of an error
+	 */
+	private String errorMsg = null;
+	
+	public ExportTrackTask(Context context, long trackId) {
+		this.context = context;
+		this.trackId = trackId;
+	}
+
+	
+	@Override
+	protected void onPreExecute() {
+		// Display dialog
+		dialog = new ProgressDialog(context);
+		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		dialog.setIndeterminate(true);
+		dialog.setTitle(
+				context.getResources().getString(R.string.trackmgr_exporting)
+				.replace("{0}", Long.toString(trackId)));
+		dialog.setCancelable(false);
+		dialog.show();
+	}
+	
+	
+	@Override
+	protected Boolean doInBackground(Void... params) {
+		try {
+			exportTrackAsGpx(trackId);
+		} catch (ExportTrackException ete) {
+			errorMsg = ete.getMessage();
+			return false;
+		}
+		return true;
+	}
+	
+	
+	@Override
+	protected void onProgressUpdate(Integer... values) {
+		dialog.setProgress(values[0]);
+	}
+
+	@Override
+	protected void onPostExecute(Boolean success) {
+		dialog.dismiss();
+		if (!success) {
+			Toast.makeText(context, context.getResources()
+					.getString(R.string.trackmgr_export_error)
+					.replace("{0}", errorMsg),
+				Toast.LENGTH_LONG).show();
+		}
+	}
+
+	private void exportTrackAsGpx(long trackId) throws ExportTrackException {
+		File sdRoot = Environment.getExternalStorageDirectory();
+		if (sdRoot.canWrite()) {
+			Cursor c = context.getContentResolver()
+					.query(ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
+							null, null);
+
+			c.moveToFirst();
+			File trackDir = new File(c.getString(c.getColumnIndex(Schema.COL_DIR)));
+			long startDate = c.getLong(c.getColumnIndex(Schema.COL_START_DATE));
+			c.close();
+
+			if (trackDir != null) {
+
+				File trackFile = new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date(startDate))
+						+ DataHelper.EXTENSION_GPX);
+
+				Cursor cTrackPoints = context.getContentResolver().query(TrackContentProvider.trackPointsUri(trackId), null,
+						null, null, Schema.COL_TIMESTAMP + " asc");
+				Cursor cWayPoints = context.getContentResolver().query(TrackContentProvider.waypointsUri(trackId), null, null,
+						null, Schema.COL_TIMESTAMP + " asc");
+
+				dialog.setIndeterminate(false);
+				dialog.setProgress(0);
+				dialog.setMax(cTrackPoints.getCount() + cWayPoints.getCount());
+				
+				try {
+					writeGpxFile(cTrackPoints, cWayPoints, trackFile);
+				} catch (IOException ioe) {
+					throw new ExportTrackException(ioe.getMessage());
+				} finally {
+					cTrackPoints.close();
+					cWayPoints.close();
+				}
+			}
+		} else {
+			throw new ExportTrackException(context.getResources().getString(R.string.error_externalstorage_not_writable));
+		}
+	}
+	
+	/**
 	 * Writes the GPX file
-	 * @param resources Access to application resources
 	 * @param cTrackPoints Cursor to track points.
 	 * @param cWayPoints Cursor to way points.
 	 * @param target Target GPX file
-	 * @param preferences App preferences to access output settings
 	 * @throws IOException 
 	 */
-	public static void writeGpxFile(Resources resources, Cursor cTrackPoints, Cursor cWayPoints, File target, SharedPreferences preferences) throws IOException {
+	private void writeGpxFile(Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
 		
-		String accuracyOutput = preferences.getString(
+		String accuracyOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
 				OSMTracker.Preferences.VAL_OUTPUT_ACCURACY);
-		boolean fillHDOP = preferences.getBoolean(OSMTracker.Preferences.KEY_OUTPUT_GPX_HDOP_APPROXIMATION, OSMTracker.Preferences.VAL_OUTPUT_GPX_HDOP_APPROXIMATION);
+		boolean fillHDOP = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+				OSMTracker.Preferences.KEY_OUTPUT_GPX_HDOP_APPROXIMATION,
+				OSMTracker.Preferences.VAL_OUTPUT_GPX_HDOP_APPROXIMATION);
 		
 		FileWriter fw = new FileWriter(target);
 		
 		fw.write(XML_HEADER + "\n");
 		fw.write(TAG_GPX + "\n");
 		
-		writeTrackPoints(resources.getString(R.string.gpx_track_name), fw, cTrackPoints, resources, fillHDOP);
-		writeWayPoints(fw, cWayPoints, accuracyOutput, resources, fillHDOP);
+		writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), fw, cTrackPoints, fillHDOP);
+		writeWayPoints(fw, cWayPoints, accuracyOutput, fillHDOP);
 		
 		fw.write("</gpx>");
 		
@@ -82,15 +198,18 @@ public class GPXFileWriter {
 	 * @param trackName Name of the track (metadata).
 	 * @param fw Writer to the target file.
 	 * @param c Cursor to track points.
-	 * @param resources To access string resources
 	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
 	 * @throws IOException
 	 */
-	public static void writeTrackPoints(String trackName, FileWriter fw, Cursor c, Resources resources, boolean fillHDOP) throws IOException {
+	private void writeTrackPoints(String trackName, FileWriter fw, Cursor c, boolean fillHDOP) throws IOException {
 		fw.write("\t" + "<trk>" + "\n");
 		fw.write("\t\t" + "<name>" + CDATA_START + trackName + CDATA_END + "</name>" + "\n");
 		if (fillHDOP) {
-			fw.write("\t\t" + "<cmt>" + CDATA_START + resources.getString(R.string.gpx_hdop_approximation_cmt) + CDATA_END + "</cmt>" + "\n");
+			fw.write("\t\t" + "<cmt>"
+					+ CDATA_START
+					+ context.getResources().getString(R.string.gpx_hdop_approximation_cmt)
+					+ CDATA_END
+					+ "</cmt>" + "\n");
 		}
 		
 		fw.write("\t\t" + "<trkseg>" + "\n");
@@ -111,6 +230,7 @@ public class GPXFileWriter {
 	       
 	        out.append("\t\t\t" + "</trkpt>" + "\n");
 	        fw.write(out.toString());
+	        publishProgress(dialog.getProgress() + 1);
 		}
 		
 		fw.write("\t\t" + "</trkseg>" + "\n");
@@ -122,15 +242,14 @@ public class GPXFileWriter {
 	 * @param fw Writer to the target file.
 	 * @param c Cursor to way points.
 	 * @param accuracyInfo Constant describing how to include (or not) accuracy info for way points.
-	 * @param resources To access string resources
 	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
 	 * @throws IOException
 	 */
-	public static void writeWayPoints(FileWriter fw, Cursor c, String accuracyInfo, Resources resources, boolean fillHDOP) throws IOException {
+	private void writeWayPoints(FileWriter fw, Cursor c, String accuracyInfo, boolean fillHDOP) throws IOException {
 		// Label for meter unit
-		String meterUnit = resources.getString(R.string.various_unit_meters);
+		String meterUnit = context.getResources().getString(R.string.various_unit_meters);
 		// Word "accuracy"
-		String accuracy = resources.getString(R.string.various_accuracy);
+		String accuracy = context.getResources().getString(R.string.various_accuracy);
 		
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 			StringBuffer out = new StringBuffer();
@@ -180,6 +299,7 @@ public class GPXFileWriter {
 		    out.append("\t" + "</wpt>" + "\n");
 		    
 		    fw.write(out.toString());
+		    publishProgress(dialog.getProgress() + 1);
 		}
 	}
 }

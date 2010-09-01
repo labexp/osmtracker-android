@@ -187,7 +187,10 @@ public class TrackLogger extends Activity {
 		LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
 		if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			// GPS isn't enabled. Offer user to go enable it
-			new AlertDialog.Builder(this).setMessage(getResources().getString(R.string.tracklogger_gps_disabled))
+			new AlertDialog.Builder(this)
+					.setTitle(R.string.tracklogger_gps_disabled)
+					.setIcon(android.R.drawable.ic_dialog_alert)
+					.setMessage(getResources().getString(R.string.tracklogger_gps_disabled_hint))
 					.setCancelable(true).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {

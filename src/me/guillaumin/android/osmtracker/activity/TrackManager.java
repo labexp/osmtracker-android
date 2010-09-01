@@ -1,7 +1,6 @@
 package me.guillaumin.android.osmtracker.activity;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
@@ -11,20 +10,16 @@ import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.exception.CreateTrackException;
-import me.guillaumin.android.osmtracker.exception.ExportTrackException;
-import me.guillaumin.android.osmtracker.gpx.GPXFileWriter;
+import me.guillaumin.android.osmtracker.gpx.ExportTrackTask;
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -137,9 +132,11 @@ public class TrackManager extends ListActivity {
 			
 			// Confirm and delete selected track
 			new AlertDialog.Builder(this)
-				.setMessage(R.string.trackmgr_delete_confirm)
+				.setTitle(R.string.trackmgr_contextmenu_delete)
+				.setMessage(getResources().getString(R.string.trackmgr_delete_confirm).replace("{0}", Long.toString(info.id)))
 				.setCancelable(true)
-				.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						
@@ -150,7 +147,7 @@ public class TrackManager extends ListActivity {
 						dialog.dismiss();
 					}
 				})
-				.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+				.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.cancel();				
@@ -159,21 +156,7 @@ public class TrackManager extends ListActivity {
 			
 			break;
 		case R.id.trackmgr_contextemenu_export:	
-			// ProgressDialog dialog = ProgressDialog.show(this, null, "Exporting...");
-			try {
-				exportTrackAsGpx(info.id);
-				Toast.makeText(this, getResources().getString(
-					R.string.trackmgr_export_done).replace("{0}", Long.toString(info.id)),
-					Toast.LENGTH_LONG)
-					.show();
-				// dialog.dismiss();
-			} catch (ExportTrackException ete) {
-				// dialog.dismiss();
-				Toast.makeText(this,
-						getResources().getString(R.string.trackmgr_export_error).replace("{0}", ete.getMessage()),
-						Toast.LENGTH_LONG)
-						.show(); 
-			}
+			new ExportTrackTask(this, info.id).execute();
 			break;
 		}
 		return super.onContextItemSelected(item);
@@ -211,50 +194,6 @@ public class TrackManager extends ListActivity {
 			return ContentUris.parseId(trackUri);
 		} else {
 			throw new CreateTrackException(getResources().getString(R.string.error_externalstorage_not_writable));
-		}
-	}
-	
-	/**
-	 * Exports a track to a GPX file.
-	 * @param trackId Id of the track to export
-	 */
-	private void exportTrackAsGpx(long trackId) throws ExportTrackException {
-
-		File sdRoot = Environment.getExternalStorageDirectory();
-		if (sdRoot.canWrite()) {
-			Cursor c = getContentResolver().query(
-					ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
-					null, null, null, null);
-			
-			c.moveToFirst();
-			File trackDir = new File(c.getString(c.getColumnIndex(Schema.COL_DIR)));
-			long startDate = c.getLong(c.getColumnIndex(Schema.COL_START_DATE));
-			c.close();
-			
-			if (trackDir != null) {
-	
-				File trackFile = new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date(startDate)) + DataHelper.EXTENSION_GPX);
-
-				Cursor cTrackPoints = getContentResolver().query(
-						TrackContentProvider.trackPointsUri(trackId),
-						null, null, null, Schema.COL_TIMESTAMP + " asc");
-				Cursor cWayPoints = getContentResolver().query(
-						TrackContentProvider.waypointsUri(trackId),
-						null, null, null,
-						Schema.COL_TIMESTAMP + " asc");
-	
-				try {
-					GPXFileWriter.writeGpxFile(getResources(), cTrackPoints, cWayPoints, trackFile,
-							PreferenceManager.getDefaultSharedPreferences(this));
-				} catch (IOException ioe) {
-					throw new ExportTrackException(ioe.getMessage());
-				} finally {
-					cTrackPoints.close();
-					cWayPoints.close();
-				}
-			}
-		} else {
-			throw new ExportTrackException(getResources().getString(R.string.error_externalstorage_not_writable));
 		}
 	}
 	
