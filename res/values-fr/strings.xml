@@ -38,7 +38,7 @@
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Impossible d\'écrire dans le stockage externe.</string>
 	<string name="error_externalstorage_not_writable_hint">Veuillez vérifier que le stockage est correctement inséré et monté.</string>
-	<string name="error_voicerec_failed">L'enregistrement vocal a échoué.</string>
+	<string name="error_voicerec_failed">L\'enregistrement vocal a échoué.</string>
 	<string name="error_userlayout_parsing">Error dans la définition des boutons. Veuillez revenir au boutons par défaut.</string>
 
 	<!-- GPX -->
