@@ -1,5 +1,7 @@
 package me.guillaumin.android.osmtracker.db;
 
+import java.nio.channels.UnsupportedAddressTypeException;
+
 import me.guillaumin.android.osmtracker.OSMTracker;
 import android.content.ContentProvider;
 import android.content.ContentResolver;
@@ -228,17 +230,44 @@ public class TrackContentProvider extends ContentProvider {
 	}
 
 	@Override
-	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+	public int update(Uri uri, ContentValues values, String selectionIn, String[] selectionArgsIn) {
 		Log.v(TAG, "update(), uri=" + uri);
+		
+		String table;
+		String selection = selectionIn;
+		String[] selectionArgs = selectionArgsIn;
 		
 		switch (uriMatcher.match(uri)) {
 		case Schema.URI_CODE_TRACK_WAYPOINTS:
-			int rows =  dbHelper.getWritableDatabase().update(Schema.TBL_WAYPOINT, values, selection, selectionArgs);
-			getContext().getContentResolver().notifyChange(uri, null);
-			return rows;
+			if (selectionIn == null || selectionArgsIn != null) {
+				// Caller must narrow to a specific waypoint
+				throw new IllegalArgumentException();
+			}
+			table = Schema.TBL_WAYPOINT;
+			break;
+		case Schema.URI_CODE_TRACK_ID:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			table = Schema.TBL_TRACK;
+			String trackId = uri.getLastPathSegment();
+			selection = Schema.COL_ID + " = ?";
+			selectionArgs = new String[] {trackId};			
+			break;
+		case Schema.URI_CODE_TRACK:
+			// Dangerous: Will update all the tracks, but necessary for example
+			// to switch all the tracks to inactive
+			table = Schema.TBL_TRACK;
+			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
+		
+		int rows = dbHelper.getWritableDatabase().update(Schema.TBL_TRACK, values, selection, selectionArgs);
+		getContext().getContentResolver().notifyChange(uri, null);
+		return rows;
+
 	}
 
 	/**
@@ -262,12 +291,16 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_LINK = "link";
 		public static final String COL_START_DATE = "start_date";
 		public static final String COL_DIR = "directory";
+		public static final String COL_ACTIVE = "active";
 		
 		// Codes for UriMatcher
 		public static final int URI_CODE_TRACK = 3;
 		public static final int URI_CODE_TRACK_ID = 4;
 		public static final int URI_CODE_TRACK_WAYPOINTS = 5;
 		public static final int URI_CODE_TRACK_TRACKPOINTS = 6;
+		
+		public static final int VAL_TRACK_ACTIVE = 1;
+		public static final int VAL_TRACK_INACTIVE = 0;
 		
 	}
 

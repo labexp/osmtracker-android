@@ -4,6 +4,7 @@ import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -231,6 +232,7 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private void stopTrackingAndSave() {
 		isTracking = false;
+		dataHelper.stopTracking(currentTrackId);
 	}
 
 	@Override
@@ -276,6 +278,7 @@ public class GPSLogger extends Service implements LocationListener {
 			Notification n = new Notification(R.drawable.icon_greyed_25x25, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
 			
 			Intent startTrackLogger = new Intent(this, TrackLogger.class);
+			startTrackLogger.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 			PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, 0);
 			PendingIntent deleteIntent = PendingIntent.getBroadcast(this, 0, new Intent(OSMTracker.INTENT_NOTIFICATION_CLEARED), 0);
 			n.deleteIntent = deleteIntent;

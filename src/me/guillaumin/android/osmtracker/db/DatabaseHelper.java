@@ -52,7 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ Schema.COL_ID + " integer primary key autoincrement,"
 		+ Schema.COL_NAME + " text,"
 		+ Schema.COL_START_DATE + " long not null,"
-		+ Schema.COL_DIR + " text" + ")";
+		+ Schema.COL_DIR + " text,"
+		+ Schema.COL_ACTIVE + " integer not null default 0" + ")";
 			
 	
 	/**
@@ -63,7 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * Database version.
 	 */
-	private static final int DB_VERSION = 7;
+	private static final int DB_VERSION = 9;
 
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);

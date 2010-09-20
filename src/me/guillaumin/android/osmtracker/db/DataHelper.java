@@ -193,6 +193,17 @@ public class DataHelper {
 					"uuid = ?", new String[] { uuid });
 		}
 	}
+	
+	/**
+	 * Stop tracking by making the track inactive
+	 * @param trackId Id of the track
+	 */
+	public void stopTracking(long trackId) {
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+		ContentValues values = new ContentValues();
+		values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_INACTIVE);
+		contentResolver.update(trackUri, values, null, null);
+	}
 
 	/**
 	 * Delete all data in ContentProvider

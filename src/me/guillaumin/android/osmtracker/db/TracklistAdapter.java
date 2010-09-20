@@ -6,8 +6,10 @@ import java.text.SimpleDateFormat;
 
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import android.R.color;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +59,13 @@ public class TracklistAdapter extends CursorAdapter {
 		TextView vWps = (TextView) v.findViewById(R.id.trackmgr_item_wps);
 		TextView vTps = (TextView) v.findViewById(R.id.trackmgr_item_tps);
 
+		// Is track active ?
+		int active = cursor.getInt(cursor.getColumnIndex(Schema.COL_ACTIVE));
+		if (Schema.VAL_TRACK_ACTIVE == active) {
+			// TODO: Change hardcoded color by something else
+			v.setBackgroundColor(Color.argb(64, 196, 0, 0));
+		}
+		
 		// Bind id
 		long trackId = cursor.getLong(cursor.getColumnIndex(Schema.COL_ID));
 		String strTrackId = Long.toString(trackId);

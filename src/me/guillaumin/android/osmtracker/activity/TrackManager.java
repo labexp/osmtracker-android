@@ -190,8 +190,16 @@ public class TrackManager extends ListActivity {
 			values.put(Schema.COL_NAME, "");
 			values.put(Schema.COL_START_DATE, startDate.getTime());
 			values.put(Schema.COL_DIR, trackDir.getAbsolutePath());
+			values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_ACTIVE);
 			Uri trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI_TRACK, values);
-			return ContentUris.parseId(trackUri);
+			long trackId = ContentUris.parseId(trackUri);
+
+			// Only one track active at a time, as a safety measure
+			values.clear();
+			values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_INACTIVE);
+			getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values, Schema.COL_ID + "<> ?", new String[] {Long.toString(trackId)});
+			
+			return trackId;
 		} else {
 			throw new CreateTrackException(getResources().getString(R.string.error_externalstorage_not_writable));
 		}
