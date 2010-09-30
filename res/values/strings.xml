@@ -28,8 +28,9 @@
 	<string name="trackmgr_waypoints_count">Waypoints: </string>
 	<string name="trackmgr_trackpoints_count">Trackpoints: </string>
 	<string name="trackmgr_empty">You don\'t have any tracks.</string>
-	<string name="trackmgr_newtrack_hint">To record a track,\npress <b>Menu</b> then <b>New track</b>.</string>
+	<string name="trackmgr_newtrack_hint">To record a track,\npress <b>Menu</b> then <b>New track</b></string>
 	<string name="trackmgr_newtrack_error">Unable to create a new track: {0}</string>
+	<string name="trackmgr_continuetrack_hint">You are currently recording <b>track #{0}</b>\nChoose it in the list to continue</string>
 	<string name="trackmgr_contextmenu_delete">Delete</string>
 	<string name="trackmgr_contextmenu_export">Export as GPX</string>
 	<string name="trackmgr_contextmenu_title">Track operations</string>
@@ -52,6 +53,7 @@
 	<string name="menu_starttracking">Start tracking</string>
 	<string name="menu_stoptracking">Stop &amp; save</string>
 	<string name="menu_newtrack">New track</string>
+	<string name="menu_continue">Continue track</string>
 
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>

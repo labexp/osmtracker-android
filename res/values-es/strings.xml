@@ -19,7 +19,23 @@
 	<string name="wplist_longitude">Long.: </string>
 	<string name="wplist_elevation">Elev.: </string>
 	<string name="wplist_accuracy">Prec.: </string>
-	
+
+	<!-- Track Manager -->
+	<string name="trackmgr">Administrator de Trazas</string>
+	<string name="trackmgr_tracklist">Lista de trazas:</string>
+	<string name="trackmgr_waypoints_count">Puntos de ref.:</string>
+	<string name="trackmgr_trackpoints_count">P. de traza:</string>
+	<string name="trackmgr_empty">Usted no tiene ningún rastro.</string>
+	<string name="trackmgr_newtrack_hint">Para recordar una traza,\npulse el botón <b>Menú</b> y pulse <b>Nueva traza</b>.</string>
+	<string name="trackmgr_newtrack_error">No se puede crear una nueva traza: {0}</string>
+	<string name="trackmgr_continuetrack_hint">Está <b>trazando #{0}</b> ahora.\nElijalo en la lista para continuar.</string>
+	<string name="trackmgr_contextmenu_delete">Borrar</string>
+	<string name="trackmgr_contextmenu_export">Exportar como GPX</string>
+	<string name="trackmgr_contextmenu_title">Operaciones de traza</string>
+	<string name="trackmgr_delete_confirm">La traza #{0} se borrará.</string>
+	<string name="trackmgr_exporting">Exportando traza #{0}...</string>
+	<string name="trackmgr_export_error">No se puede exportar la traza: {0}</string>
+
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Iniciar trazado.</string>
 	<string name="gpsstatus_record_trackon">Para trazado</string>
@@ -34,6 +50,8 @@
 	<string name="menu_displaytrack">Mostrar trazado</string>
 	<string name="menu_starttracking">Iniciar trazado</string>
 	<string name="menu_stoptracking">Parar &amp; guardar</string>
+	<string name="menu_newtrack">Nueva traza</string>
+	<string name="menu_continue">Continar</string>
 	
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">No se puede escribir en el almacenamiento externo.</string>

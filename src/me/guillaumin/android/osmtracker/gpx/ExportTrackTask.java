@@ -152,6 +152,7 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 				
 				try {
 					writeGpxFile(cTrackPoints, cWayPoints, trackFile);
+					DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), context.getContentResolver());
 				} catch (IOException ioe) {
 					throw new ExportTrackException(ioe.getMessage());
 				} finally {

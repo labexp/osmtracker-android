@@ -6,18 +6,18 @@ import java.text.SimpleDateFormat;
 
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
-import android.R.color;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Adapter for track list in Track Manager
+ * Adapter for track list in {@link me.guillaumin.android.osmtracker.activity.TrackManager Track Manager}.
+ * For each row's contents, see <tt>tracklist_item.xml</tt>.
  * 
  * @author Nicolas Guillaumin
  *
@@ -58,12 +58,21 @@ public class TracklistAdapter extends CursorAdapter {
 		TextView vStartDate = (TextView) v.findViewById(R.id.trackmgr_item_startdate);
 		TextView vWps = (TextView) v.findViewById(R.id.trackmgr_item_wps);
 		TextView vTps = (TextView) v.findViewById(R.id.trackmgr_item_tps);
+		ImageView vStatus = (ImageView) v.findViewById(R.id.trackmgr_item_statusicon);
 
 		// Is track active ?
 		int active = cursor.getInt(cursor.getColumnIndex(Schema.COL_ACTIVE));
 		if (Schema.VAL_TRACK_ACTIVE == active) {
-			// TODO: Change hardcoded color by something else
-			v.setBackgroundColor(Color.argb(64, 196, 0, 0));
+			// Yellow clock icon for Active
+			vStatus.setImageResource(android.R.drawable.presence_away);
+			vStatus.setVisibility(View.VISIBLE);
+		} else if (cursor.isNull(cursor.getColumnIndex(Schema.COL_EXPORT_DATE))) {
+			// Hide green circle icon: Track not yet exported
+			vStatus.setVisibility(View.INVISIBLE);
+		} else {
+			// Show green circle icon (don't assume already visible with this drawable; may be a re-query)
+			vStatus.setImageResource(android.R.drawable.presence_online);
+			vStatus.setVisibility(View.VISIBLE);
 		}
 		
 		// Bind id

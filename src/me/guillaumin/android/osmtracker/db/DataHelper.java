@@ -206,14 +206,33 @@ public class DataHelper {
 	}
 
 	/**
-	 * Delete all data in ContentProvider
-	 
-	private void deleteAllData() {
-		contentResolver.delete(TrackContentProvider.CONTENT_URI_TRACKPOINT, null, null);
-		contentResolver.delete(TrackContentProvider.CONTENT_URI_WAYPOINT, null, null);
-		contentResolver.delete(TrackContentProvider.CONTENT_URI_CONFIG, null, null);
-	} */
-	
+	 * Find the active track ID, if any.
+	 * @param cr  {@link ContentResolver} for query
+	 * @return  the active track ID, or -1
+	 */
+	public static long getActiveTrackId(ContentResolver cr) {
+		long currentTrackId = -1;
+		Cursor ca = cr.query(TrackContentProvider.CONTENT_URI_TRACK_ACTIVE, null, null, null, null);
+		if (ca.moveToFirst()) {
+			currentTrackId = ca.getLong(ca.getColumnIndex(Schema.COL_ID));
+		}
+		ca.close();
+		return currentTrackId;
+	}
+
+	/**
+	 * Mark the export date/time of this track.
+	 * @param trackId Id of the track
+	 * @param exportTime Time of export, from {@link System#currentTimeMillis()}
+	 * @param cr {@link ContentResolver} for query
+	 */
+	public static void setTrackExportDate(long trackId, long exportTime, ContentResolver cr) {
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+		ContentValues values = new ContentValues();
+		values.put(Schema.COL_EXPORT_DATE, exportTime);
+		cr.update(trackUri, values, null, null);		
+	}
+
 	/**
 	 * Renames a file inside track directory, keeping the extension
 	 * 

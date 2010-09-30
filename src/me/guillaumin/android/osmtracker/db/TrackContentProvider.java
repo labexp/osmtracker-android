@@ -1,7 +1,5 @@
 package me.guillaumin.android.osmtracker.db;
 
-import java.nio.channels.UnsupportedAddressTypeException;
-
 import me.guillaumin.android.osmtracker.OSMTracker;
 import android.content.ContentProvider;
 import android.content.ContentResolver;
@@ -35,11 +33,17 @@ public class TrackContentProvider extends ContentProvider {
 	public static final Uri CONTENT_URI_TRACK = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACK);
 
 	/**
+	 * Uri for the active track
+	 */
+	public static final Uri CONTENT_URI_TRACK_ACTIVE = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACK + "/active");
+
+	/**
 	 * Uri Matcher
 	 */
 	private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	static {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK, Schema.URI_CODE_TRACK);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/active", Schema.URI_CODE_TRACK_ACTIVE);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#", Schema.URI_CODE_TRACK_ID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_WAYPOINT + "s", Schema.URI_CODE_TRACK_WAYPOINTS);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_TRACKPOINT + "s", Schema.URI_CODE_TRACK_TRACKPOINTS);
@@ -220,6 +224,15 @@ public class TrackContentProvider extends ContentProvider {
 			selection = Schema.COL_ID + " = ?";
 			selectionArgs = new String[] {trackId};			
 			break;
+		case Schema.URI_CODE_TRACK_ACTIVE:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			qb.setTables(Schema.TBL_TRACK);
+			selection = Schema.COL_ACTIVE + " = ?";
+			selectionArgs = new String[] {Integer.toString(Schema.VAL_TRACK_ACTIVE)};			
+			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
@@ -239,7 +252,7 @@ public class TrackContentProvider extends ContentProvider {
 		
 		switch (uriMatcher.match(uri)) {
 		case Schema.URI_CODE_TRACK_WAYPOINTS:
-			if (selectionIn == null || selectionArgsIn != null) {
+			if (selectionIn == null || selectionArgsIn == null) {
 				// Caller must narrow to a specific waypoint
 				throw new IllegalArgumentException();
 			}
@@ -255,8 +268,17 @@ public class TrackContentProvider extends ContentProvider {
 			selection = Schema.COL_ID + " = ?";
 			selectionArgs = new String[] {trackId};			
 			break;
+		case Schema.URI_CODE_TRACK_ACTIVE:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			table = Schema.TBL_TRACK;
+			selection = Schema.COL_ACTIVE + " = ?";
+			selectionArgs = new String[] {Integer.toString(Schema.VAL_TRACK_ACTIVE)};			
+			break;
 		case Schema.URI_CODE_TRACK:
-			// Dangerous: Will update all the tracks, but necessary for example
+			// Dangerous: Will update all the tracks, but necessary for instance
 			// to switch all the tracks to inactive
 			table = Schema.TBL_TRACK;
 			break;
@@ -264,7 +286,7 @@ public class TrackContentProvider extends ContentProvider {
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
 		
-		int rows = dbHelper.getWritableDatabase().update(Schema.TBL_TRACK, values, selection, selectionArgs);
+		int rows = dbHelper.getWritableDatabase().update(table, values, selection, selectionArgs);
 		getContext().getContentResolver().notifyChange(uri, null);
 		return rows;
 
@@ -292,16 +314,17 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_START_DATE = "start_date";
 		public static final String COL_DIR = "directory";
 		public static final String COL_ACTIVE = "active";
+		public static final String COL_EXPORT_DATE = "export_date";
 		
 		// Codes for UriMatcher
 		public static final int URI_CODE_TRACK = 3;
 		public static final int URI_CODE_TRACK_ID = 4;
 		public static final int URI_CODE_TRACK_WAYPOINTS = 5;
 		public static final int URI_CODE_TRACK_TRACKPOINTS = 6;
-		
+		public static final int URI_CODE_TRACK_ACTIVE = 7;
+
 		public static final int VAL_TRACK_ACTIVE = 1;
 		public static final int VAL_TRACK_INACTIVE = 0;
-		
 	}
 
 }

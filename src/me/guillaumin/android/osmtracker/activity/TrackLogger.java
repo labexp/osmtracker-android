@@ -53,7 +53,7 @@ public class TrackLogger extends Activity {
 	/**
 	 * Bundle state key for tracking flag.
 	 */
-	private static final String STATE_IS_TRACKING = "isTracking";
+	public static final String STATE_IS_TRACKING = "isTracking";
 
 	/**
 	 * GPS Logger service, to receive events and be able to update UI.

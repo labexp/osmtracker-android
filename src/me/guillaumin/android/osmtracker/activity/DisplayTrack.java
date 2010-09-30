@@ -31,6 +31,7 @@ public class DisplayTrack extends Activity {
 		// Create special view and displays it
 		DisplayTrackView dtv = new DisplayTrackView(this, getIntent().getExtras().getLong(Schema.COL_TRACK_ID));
 		dtv.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		setTitle(getTitle() + ": #" + getIntent().getExtras().getLong(Schema.COL_TRACK_ID));
 		setContentView(dtv);		
 	}	
 	

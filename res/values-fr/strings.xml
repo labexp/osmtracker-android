@@ -20,6 +20,22 @@
 	<string name="wplist_elevation">Alt: </string>
 	<string name="wplist_accuracy">Préci: </string>
 
+	<!-- Track Manager -->
+	<string name="trackmgr">Gestionnaire de traces</string>
+	<string name="trackmgr_tracklist">Liste des traces:</string>
+	<string name="trackmgr_waypoints_count">Points d\'interêt:</string>
+	<string name="trackmgr_trackpoints_count">Pts. de trace:</string>
+	<string name="trackmgr_empty">Vous n\'avez pas de traces.</string>
+	<string name="trackmgr_newtrack_hint">Pour enregistrer une trace,\nchoisissez <b>Menu</b>, puis <b>Nouvelle trace</b>.</string>
+	<string name="trackmgr_newtrack_error">Impossible de créer une nouvelle trace: {0}</string>
+	<string name="trackmgr_continetrack_hint">La <b>trace #{0}</b> est en cours d\'enregistrement.\nChoisissez la dans la liste pour continuer.</string>
+	<string name="trackmgr_contextmenu_delete">Supprimer</string>
+	<string name="trackmgr_contextmenu_export">Exporter (GPX)</string>
+	<string name="trackmgr_contextmenu_title">Opérations sur la trace</string>
+	<string name="trackmgr_delete_confirm">La trace #{0} sera supprimée.</string>
+	<string name="trackmgr_exporting">Export de la trace #{0} en cours...</string>
+	<string name="trackmgr_export_error">Impossible d\'exporter la trace: {0}</string>
+
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Démarrer tracking.</string>
 	<string name="gpsstatus_record_trackon">Arrêter tracking</string>
@@ -34,6 +50,8 @@
 	<string name="menu_displaytrack">Afficher la trace</string>
 	<string name="menu_starttracking">Démarrer l\'enregistrement</string>
 	<string name="menu_stoptracking">Arrêter &amp; Enregistrer</string>
+	<string name="menu_newtrack">Nouveau trace</string>
+	<string name="menu_continue">Continer la trace</string>
 
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Impossible d\'écrire dans le stockage externe.</string>

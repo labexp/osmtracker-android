@@ -75,6 +75,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
         setContentView(R.layout.displaytrackmap);
         
         currentTrackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
+        setTitle(getTitle() + ": #" + currentTrackId);
         
         // Initialize OSM view
         osmView = (OpenStreetMapView) findViewById(R.id.displaytrackmap_osmView);

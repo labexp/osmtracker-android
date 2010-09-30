@@ -29,11 +29,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 /**
  * Lists existing tracks.
+ * Each track is displayed using {@link TracklistAdapter}.
  * 
  * @author Nicolas Guillaumin
  * 
@@ -41,13 +44,25 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 public class TrackManager extends ListActivity {
 	
 	private static final String TAG = TrackManager.class.getSimpleName();
-	
+
+	/** Bundle key for {@link #prevItemVisible} */
+	private static final String PREV_VISIBLE = "prev_visible";
+
+	/** The active track being recorded, if any, or -1; value is updated in {@link #onResume()} */
+	private long currentTrackId = -1;
+
+	/** The previous item visible, or -1; for scrolling back to its position in {@link #onResume()} */
+	private int prevItemVisible = -1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.trackmanager);	
 		getListView().setEmptyView(findViewById(R.id.trackmgr_empty));
 		registerForContextMenu(getListView());
+		if (savedInstanceState != null) {
+			prevItemVisible = savedInstanceState.getInt(PREV_VISIBLE, -1);
+		}
 	}
 
 	@Override
@@ -60,17 +75,48 @@ public class TrackManager extends ListActivity {
 				Schema.COL_START_DATE + " asc");
 		startManagingCursor(cursor);
 		setListAdapter(new TracklistAdapter(TrackManager.this, cursor));
+		getListView().setEmptyView(findViewById(R.id.trackmgr_empty));  // undo change from onPause
+
+		// Is any track active?
+		currentTrackId = DataHelper.getActiveTrackId(getContentResolver());
+		if (currentTrackId != -1) {
+			((TextView) findViewById(R.id.trackmgr_hint)).setText(
+					getResources().getString(R.string.trackmgr_continuetrack_hint)
+						.replace("{0}", Long.toString(currentTrackId)));
+
+			// Scroll to the bottom of the list, assumes the active will be down there.
+			// TODO This should be changed if we decide to support pause/resume for any tracks.
+			// (It's much easier than finding the position of the active track ID.)
+			getListView().setSelection(getListView().getCount() - 1);
+		} else {
+			((TextView) findViewById(R.id.trackmgr_hint)).setText(R.string.trackmgr_newtrack_hint);
+
+			// Scroll to the previous listview position,
+			// now that we're bound to data again
+			if (prevItemVisible != -1) {
+				final int cmax = getListView().getCount() - 1;
+				if (prevItemVisible > cmax) {
+					prevItemVisible = cmax;
+				}
+				getListView().setSelection(prevItemVisible);
+			}
+		}
 
 		super.onResume();
 	}
 
 	@Override
 	protected void onPause() {
+		// Remember position in listview (before any adapter change)
+		prevItemVisible = getListView().getFirstVisiblePosition();
+
 		// Tell service to notify user of background activity
 		sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
 
 		CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null) {
+			// Prevents on-screen 'no tracks' message
+			getListView().setEmptyView(findViewById(android.R.id.empty));
 			// Properly close the adapter cursor
 			Cursor cursor = adapter.getCursor();
 			stopManagingCursor(cursor);
@@ -82,9 +128,46 @@ public class TrackManager extends ListActivity {
 	}
 
 	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt(PREV_VISIBLE, prevItemVisible);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle state) {
+		super.onRestoreInstanceState(state);
+		prevItemVisible = state.getInt(PREV_VISIBLE, -1);
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.trackmgr_menu, menu);
+		if (currentTrackId != -1) {
+			MenuItem mi = menu.findItem(R.id.trackmgr_menu_newtrack);
+			if (mi != null) {
+				mi.setTitle(R.string.menu_continue);
+				mi.setTitleCondensed(getResources().getString(R.string.menu_continue));
+				mi.setIcon(android.R.drawable.ic_menu_edit);
+			}
+		}
 		return true;
+	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		MenuItem mi = menu.findItem(R.id.trackmgr_menu_newtrack);
+		if (currentTrackId != -1) {
+			// Currently tracking. Set menu entry to "Continue"
+			mi.setTitle(R.string.menu_continue);
+			mi.setTitleCondensed(getResources().getString(R.string.menu_continue));
+			mi.setIcon(android.R.drawable.ic_menu_edit);
+		} else {
+			// Not currently tracking. Set menu entry to "New"
+			mi.setTitle(R.string.menu_newtrack);
+			mi.setTitleCondensed(getResources().getString(R.string.menu_newtrack));
+			mi.setIcon(android.R.drawable.ic_menu_add);
+		}
+		return super.onPrepareOptionsMenu(menu);
 	}
 
 	@Override
@@ -93,9 +176,14 @@ public class TrackManager extends ListActivity {
 		case R.id.trackmgr_menu_newtrack:
 			// Start track logger activity
 			try {
-				long trackId = createNewTrack();
 				Intent i = new Intent(this, TrackLogger.class);
-				i.putExtra(Schema.COL_TRACK_ID, trackId);
+				if (currentTrackId == -1) {
+					// New track
+					currentTrackId = createNewTrack();
+				} else {
+					i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
+				}
+				i.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 				startActivity(i);
 			} catch (CreateTrackException cte) {
 				Toast.makeText(this,
@@ -161,7 +249,18 @@ public class TrackManager extends ListActivity {
 		}
 		return super.onContextItemSelected(item);
 	}
-	
+
+	@Override
+	protected void onListItemClick(ListView lv, View iv, final int position, final long id) {
+		if (id == currentTrackId) {
+			// continue recording the current track
+			Intent i = new Intent(this, TrackLogger.class);
+			i.putExtra(Schema.COL_TRACK_ID, currentTrackId);
+			i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
+			startActivity(i);
+		}		
+	}
+
 	/**
 	 * Create a new track, in DB and on SD card
 	 * @returns The ID of the new track
