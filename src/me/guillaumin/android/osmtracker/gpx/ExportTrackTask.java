@@ -231,7 +231,7 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	       
 	        out.append("\t\t\t" + "</trkpt>" + "\n");
 	        fw.write(out.toString());
-	        publishProgress(dialog.getProgress() + 1);
+	        dialog.incrementProgressBy(1);
 		}
 		
 		fw.write("\t\t" + "</trkseg>" + "\n");
@@ -300,7 +300,7 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 		    out.append("\t" + "</wpt>" + "\n");
 		    
 		    fw.write(out.toString());
-		    publishProgress(dialog.getProgress() + 1);
+		    dialog.incrementProgressBy(1);
 		}
 	}
 }
