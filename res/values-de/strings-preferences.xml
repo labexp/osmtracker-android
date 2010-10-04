@@ -10,6 +10,9 @@
 	<string name="prefs_check_gps_startup">Prüfe GPS beim Start</string>
 	<string name="prefs_check_gps_startup_summary">Prüfen ob GPS beim Start deaktiviert ist und biete an es zu aktivieren.</string>
 
+	<string name="prefs_gps_ignore_clock">GPS Zeit ignorieren</string>
+	<string name="prefs_gps_ignore_clock_summary">Android Zeit anstelle der GPS Zeit für Zeitstempel verwenden.</string>
+
 	<string name="prefs_ui">Benutzeroberfläche</string>
        
 	<string name="prefs_ui_buttons_layout">Tastenlayout</string>
@@ -40,6 +43,9 @@
 		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
 
+	<string name="prefs_displaytrack_osm">OSM Hintergrund</string>
+	<string name="prefs_displaytrack_osm_summary">OpenStreetMap als Track-Hintergrund. Benötigt Datenverbindung.</string>
+
 	<string name="prefs_output">GPX Dateiausgabe</string>
 	<string name="prefs_storage_dir">Externes Speicherverzeichnis (SD)</string>
 	<string name="prefs_storage_dir_summary"></string>
@@ -58,4 +64,3 @@
 	<string name="prefs_output_gpx_hdop_approximation">Benutze HDOP-Annäherung</string>
 	<string name="prefs_output_gpx_hdop_approximation_summary">Fülle HDOP (im GPX) mit Näherungswerten der Genauigkeitsmessung</string>
 </resources>
-

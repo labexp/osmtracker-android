@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- Generic strings -->
-	<string name="app_name">OSMTracker für Android™</string>
+	<string name="app_name">OSMTracker für Android™</string>
 	<string name="app_short_name">OSMTracker</string>
 	<string name="app_description">Inspiriert durch OSMTracker auf Windows Mobile. Es erlaubt die Aufzeichnung von Routen, Markierung signifikanter Wegepunkte (Sprachaufnahme verfügbar) und dessen Export in eine GPX-Datei zur weiteren Bearbeitung mit Open Street Map Tools, wie z.B. JOSM.</string>
        
 	<!-- TrackLogger -->
+	<string name="tracklogger">Track Logger</string>
 	<string name="tracklogger_waiting_gps">Warte auf GPS-fix bevor Tasten verfügbar sind...</string>
 	<string name="tracklogger_voicerec_title">Sprachaufnahme</string>
 	<string name="tracklogger_voicerec_text">Aufnahme eines {0}s Audio-Clips.</string>
 	<string name="tracklogger_btnBack">Zurück</string>
 	<string name="tracklogger_tracked">Tracked: </string>
-	<string name="tracklogger_gps_disabled">GPS ist deaktiviert. Wollen Sie es aktivieren?</string>
+	<string name="tracklogger_gps_disabled">GPS ist deaktiviert</string>
+	<string name="tracklogger_gps_disabled_hint">GPS ist deaktiviert. Möchten Sie es aktivieren?</string>
 
 	<!-- Waypoint List -->
 	<string name="wplist">Waypoint Liste</string>
@@ -19,9 +21,25 @@
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Ele: </string>
 	<string name="wplist_accuracy">Accur: </string>
-       
+
+	<!-- Track Manager -->
+	<string name="trackmgr">Track Verwaltung</string>
+	<string name="trackmgr_tracklist">Track Liste:</string>
+	<string name="trackmgr_waypoints_count">Waypoints: </string>
+	<string name="trackmgr_trackpoints_count">Trackpoints: </string>
+	<string name="trackmgr_empty">Bisher sind keine Tracks vorhanden.</string>
+	<string name="trackmgr_newtrack_hint">Drücken Sie <b>Menü</b> und dann <b>Neuer Track</b> um einen Track aufzuzeichnen.</string>
+	<string name="trackmgr_newtrack_error">Neuer Track kann nicht angelegt werden: {0}</string>
+	<string name="trackmgr_continuetrack_hint">Aktuell wird <b>Track #{0}</b> aufgezeichnet.\nWählen Sie diesen aus der Liste aus um fortzufahren.</string>
+	<string name="trackmgr_contextmenu_delete">Löschen</string>
+	<string name="trackmgr_contextmenu_export">Als GPX exportieren</string>
+	<string name="trackmgr_contextmenu_title">Track bearbeiten</string>
+	<string name="trackmgr_delete_confirm">Track #{0} wird gelöscht</string>
+	<string name="trackmgr_exporting">Track #{0} wird exportiert...</string>
+	<string name="trackmgr_export_error">Track kann nicht exportiert werden: {0}</string>
+
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Starte tracking.</string>
+	<string name="gpsstatus_record_trackoff">Starte tracking</string>
 	<string name="gpsstatus_record_trackon">Stoppe tracking</string>
 	<string name="gpsstatus_record_voicerec">Sprachaufnahme</string>
 	<string name="gpsstatus_record_stillimage">Fotografieren</string>
@@ -31,9 +49,11 @@
 	<string name="menu_settings">Einstellungen</string>
 	<string name="menu_waypointlist">Waypoints</string>
 	<string name="menu_about">Über</string>
-	<string name="menu_displaytrack">Zeige track</string>
+	<string name="menu_displaytrack">Zeige Track</string>
 	<string name="menu_starttracking">Starte tracking</string>
 	<string name="menu_stoptracking">Stoppen &amp; Speichern</string>
+	<string name="menu_newtrack">Neuer Track</string>
+	<string name="menu_continue">Track weiterbearbeiten</string>
        
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Schreiben auf externen Speicher nicht möglich.</string>
@@ -42,7 +62,7 @@
 	<string name="error_userlayout_parsing">Fehler während parsen der XML-Datei. Bitte auf Standardlayout wechseln.</string>
        
 	<!-- GPX -->
-	<string name="gpx_track_name">Aufgezeichnet mit OSMTracker für Android</string>
+	<string name="gpx_track_name">Aufgezeichnet mit OSMTracker für Android™</string>
 	<string name="gpx_hdop_approximation_cmt">Warnung: HDOP-Werte sind nicht vom GPS. Es sind geschätzte Meter-Werte zur Ortsbestimmung, die nicht berücksichtigt werden sollten.</string>
        
 	<!-- Notification -->
@@ -60,12 +80,14 @@
 	<string name="notification_text">Hier tippen um den Hauptbildschirm aufzurufen</string>
        
 	<!-- Display track -->
-	<string name="displaytrack">Zeige track</string>      
+	<string name="displaytrack">Zeige Track</string>      
 	<string name="displaytrack_north">N</string>
        
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Genauigkeit</string>
+
+	<!-- OSM map view -->
+	<string name="displaytrackmap">OpenStreetMap Track Anzeige</string> 
        
 </resources>
-
