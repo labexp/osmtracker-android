@@ -33,6 +33,7 @@
 	<string name="trackmgr_continuetrack_hint">You are currently recording <b>track #{0}</b>\nChoose it in the list to continue</string>
 	<string name="trackmgr_contextmenu_delete">Delete</string>
 	<string name="trackmgr_contextmenu_export">Export as GPX</string>
+	<string name="trackmgr_contextmenu_display">Display</string>
 	<string name="trackmgr_contextmenu_title">Track #{0}</string>
 	<string name="trackmgr_delete_confirm">Track #{0} will be deleted</string>
 	<string name="trackmgr_exporting">Exporting track #{0}...</string>

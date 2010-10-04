@@ -213,7 +213,7 @@ public class TrackManager extends ListActivity {
 		menu.setHeaderTitle(getResources().getString(R.string.trackmgr_contextmenu_title).replace("{0}", Long.toString(selectedId)));
 		if ( currentTrackId ==  selectedId) {
 			// User has pressed the active track, hide the delete option
-			menu.removeItem(R.id.trackmgr_contextemenu_delete);
+			menu.removeItem(R.id.trackmgr_contextmenu_delete);
 		}
 	}
 
@@ -222,7 +222,7 @@ public class TrackManager extends ListActivity {
 		final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		
 		switch(item.getItemId()) {
-		case R.id.trackmgr_contextemenu_delete:
+		case R.id.trackmgr_contextmenu_delete:
 			
 			// Confirm and delete selected track
 			new AlertDialog.Builder(this)
@@ -249,8 +249,21 @@ public class TrackManager extends ListActivity {
 				}).create().show();
 			
 			break;
-		case R.id.trackmgr_contextemenu_export:	
+		case R.id.trackmgr_contextmenu_export:	
 			new ExportTrackTask(this, info.id).execute();
+			break;
+		case R.id.trackmgr_contextmenu_display:
+			// Start display track activity, with or without OSM background
+			Intent i;
+			boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+					OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
+			if (useOpenStreetMapBackground) {
+				i = new Intent(this, DisplayTrackMap.class);
+			} else {
+				i = new Intent(this, DisplayTrack.class);
+			}
+			i.putExtra(Schema.COL_TRACK_ID, info.id);
+			startActivity(i);
 			break;
 		}
 		return super.onContextItemSelected(item);
