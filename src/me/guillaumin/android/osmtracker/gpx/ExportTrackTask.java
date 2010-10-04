@@ -13,14 +13,16 @@ import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.exception.ExportTrackException;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.widget.Toast;
 
 /**
  * Writes a GPX file.
@@ -117,10 +119,19 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	protected void onPostExecute(Boolean success) {
 		dialog.dismiss();
 		if (!success) {
-			Toast.makeText(context, context.getResources()
-					.getString(R.string.trackmgr_export_error)
-					.replace("{0}", errorMsg),
-				Toast.LENGTH_LONG).show();
+			new AlertDialog.Builder(context)
+				.setTitle(android.R.string.dialog_alert_title)
+				.setMessage(context.getResources()
+						.getString(R.string.trackmgr_export_error)
+						.replace("{0}", errorMsg))
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setNeutralButton(android.R.string.ok, new OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();						
+					}
+				})
+				.show();
 		}
 	}
 
@@ -187,6 +198,7 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 		fw.write(TAG_GPX + "\n");
 		
 		writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), fw, cTrackPoints, fillHDOP);
+		fw.flush();
 		writeWayPoints(fw, cWayPoints, accuracyOutput, fillHDOP);
 		
 		fw.write("</gpx>");
@@ -231,6 +243,7 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	       
 	        out.append("\t\t\t" + "</trkpt>" + "\n");
 	        fw.write(out.toString());
+	        fw.flush();
 	        dialog.incrementProgressBy(1);
 		}
 		
@@ -304,6 +317,7 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 		    out.append("\t" + "</wpt>" + "\n");
 		    
 		    fw.write(out.toString());
+		    fw.flush();
 		    dialog.incrementProgressBy(1);
 		}
 	}
