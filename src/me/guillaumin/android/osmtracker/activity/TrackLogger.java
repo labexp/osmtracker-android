@@ -165,7 +165,7 @@ public class TrackLogger extends Activity {
 		// Check GPS status
 		if (checkGPSFlag
 				&& prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_CHECKSTARTUP,
-						OSMTracker.Preferences.VAL_GPS_CHECKSTARTUP == true)) {
+						OSMTracker.Preferences.VAL_GPS_CHECKSTARTUP)) {
 			checkGPSProvider();
 		}
 
