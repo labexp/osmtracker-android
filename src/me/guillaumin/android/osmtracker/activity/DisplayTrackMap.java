@@ -35,6 +35,11 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 	private static final String TAG = DisplayTrackMap.class.getSimpleName();
 	
 	/**
+	 * Key for keeping the zoom level in the saved instance bundle
+	 */
+	private static final String CURRENT_ZOOM = "currentZoom";
+	
+	/**
 	 * Default zoom level
 	 */
 	private static final int DEFAULT_ZOOM  = 16;
@@ -80,7 +85,14 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
         // Initialize OSM view
         osmView = (OpenStreetMapView) findViewById(R.id.displaytrackmap_osmView);
         osmViewController = osmView.getController();
-		osmViewController.setZoom(DEFAULT_ZOOM);
+        
+        // Check if there is a saved zoom level
+        if(savedInstanceState != null) {
+        	osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
+        } else {
+        	osmViewController.setZoom(DEFAULT_ZOOM);
+        }
+        
         createOverlays();
 
         // Create content observer for trackpoints
@@ -107,6 +119,13 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
    }
     
     
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putInt(CURRENT_ZOOM, osmView.getZoomLevel());
+		super.onSaveInstanceState(outState);
+	}
+
+
 	@Override
 	protected void onResume() {
 		// Tell service to notify user of background activity
