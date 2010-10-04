@@ -282,6 +282,10 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 		    		// Output accuracy in separate tag
 		    		out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
 		    		out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
+		    	} else {
+		    		// Unknown value for accuracy info, shouldn't occur but who knows ?
+		    		// See issue #68. Output at least the name just in case.
+		    		out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
 		    	}
 		    } else {
 		    	// No accuracy info requested, or available
