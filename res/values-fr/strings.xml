@@ -31,7 +31,7 @@
 	<string name="trackmgr_continetrack_hint">La <b>trace #{0}</b> est en cours d\'enregistrement.\nChoisissez la dans la liste pour continuer.</string>
 	<string name="trackmgr_contextmenu_delete">Supprimer</string>
 	<string name="trackmgr_contextmenu_export">Exporter (GPX)</string>
-	<string name="trackmgr_contextmenu_title">Opérations sur la trace</string>
+	<string name="trackmgr_contextmenu_title">Trace #{0}</string>
 	<string name="trackmgr_delete_confirm">La trace #{0} sera supprimée.</string>
 	<string name="trackmgr_exporting">Export de la trace #{0} en cours...</string>
 	<string name="trackmgr_export_error">Impossible d\'exporter la trace: {0}</string>

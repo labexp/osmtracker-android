@@ -208,7 +208,13 @@ public class TrackManager extends ListActivity {
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		getMenuInflater().inflate(R.menu.trackmgr_contextmenu, menu);
-		menu.setHeaderTitle(R.string.trackmgr_contextmenu_title);
+		
+		long selectedId = ((AdapterContextMenuInfo) menuInfo).id;
+		menu.setHeaderTitle(getResources().getString(R.string.trackmgr_contextmenu_title).replace("{0}", Long.toString(selectedId)));
+		if ( currentTrackId ==  selectedId) {
+			// User has pressed the active track, hide the delete option
+			menu.removeItem(R.id.trackmgr_contextemenu_delete);
+		}
 	}
 
 	@Override
