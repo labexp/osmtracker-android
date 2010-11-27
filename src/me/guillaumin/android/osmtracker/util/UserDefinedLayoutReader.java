@@ -19,6 +19,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
@@ -83,6 +84,23 @@ public class UserDefinedLayoutReader {
 	 */
 	private Resources resources;
 	
+	/** 
+	 * representing ScreenOrientation
+	 * see {@link Configuration.orientation}
+	 */
+	private int orientation;
+	
+	private static final int ICON_POS_AUTO = 0;
+	private static final int ICON_POS_TOP = 1;
+	private static final int ICON_POS_RIGHT = 2;
+	private static final int ICON_POS_BOTTOM = 3;
+	private static final int ICON_POS_LEFT = 4;
+	
+	/**
+	 * the icon position for the current layout
+	 */
+	private int currentLayoutIconPos = UserDefinedLayoutReader.ICON_POS_AUTO;
+
 	/**
 	 * Current track id
 	 */
@@ -111,6 +129,7 @@ public class UserDefinedLayoutReader {
 		userDefinedLayout = udl;
 		iconResolver = ir;
 		currentTrackId = trackId;
+		orientation = resources.getConfiguration().orientation;
 		
 		// Initialize listeners which will be bound to buttons
 		textNoteOnClickListener = new TextNoteOnClickListener(currentTrackId);
@@ -154,6 +173,26 @@ public class UserDefinedLayoutReader {
 	 */
 	private void inflateLayout() throws IOException, XmlPullParserException {
 		String layoutName = parser.getAttributeValue(null, XmlSchema.ATTR_NAME);
+		String layoutIconPosValue = parser.getAttributeValue(null, XmlSchema.ATTR_ICONPOS);
+
+		// find out the correct icon position for this layout
+		if(XmlSchema.ATTR_VAL_ICONPOS_TOP.equals(layoutIconPosValue)){
+			// TOP position
+			this.currentLayoutIconPos = UserDefinedLayoutReader.ICON_POS_TOP;
+		} else if (XmlSchema.ATTR_VAL_ICONPOS_RIGHT.equals(layoutIconPosValue)){
+			// RIGHT position
+			this.currentLayoutIconPos = UserDefinedLayoutReader.ICON_POS_RIGHT;
+		} else if (XmlSchema.ATTR_VAL_ICONPOS_BOTTOM.equals(layoutIconPosValue)){
+			// BOTTOM position
+			this.currentLayoutIconPos = UserDefinedLayoutReader.ICON_POS_BOTTOM;
+		} else if (XmlSchema.ATTR_VAL_ICONPOS_LEFT.equals(layoutIconPosValue)){
+			// LEFT position
+			this.currentLayoutIconPos = UserDefinedLayoutReader.ICON_POS_LEFT;
+		} else {
+			// if no or an undefined value is given for the current layout
+			// AUTO position depending on screen orientation
+			this.currentLayoutIconPos = UserDefinedLayoutReader.ICON_POS_AUTO;
+		}
 
 		// Create a new table layout and set default parameters
 		DisablableTableLayout tblLayout = new DisablableTableLayout(context);
@@ -231,37 +270,67 @@ public class UserDefinedLayoutReader {
 		// TODO Use kind of ButtonFactory here
 
 		String buttonType = parser.getAttributeValue(null, XmlSchema.ATTR_TYPE);
+		Drawable buttonIcon = null;
 		if (XmlSchema.ATTR_VAL_PAGE.equals(buttonType)) {
 			// Page button
 			button.setText(findLabel(parser.getAttributeValue(null, XmlSchema.ATTR_LABEL), resources));				
-			Drawable icon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
-			button.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
+			buttonIcon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
 			button.setOnClickListener(new PageButtonOnClickListener(userDefinedLayout, parser.getAttributeValue(null,
 					XmlSchema.ATTR_TARGETLAYOUT)));
 		} else if (XmlSchema.ATTR_VAL_TAG.equals(buttonType)) {
 			// Standard tag button
 			button.setText(findLabel(parser.getAttributeValue(null, XmlSchema.ATTR_LABEL), resources));			
-			Drawable icon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
-			button.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
+			buttonIcon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
 			button.setOnClickListener(new TagButtonOnClickListener(currentTrackId));
 		} else if (XmlSchema.ATTR_VAL_VOICEREC.equals(buttonType)) {
+			// Voice record button
 			button.setText(resources.getString(R.string.gpsstatus_record_voicerec));
-			button.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(
-					R.drawable.voice_32x32), null, null);
+			buttonIcon = resources.getDrawable(R.drawable.voice_32x32);
 			button.setOnClickListener(voiceRecordOnClickListener);
 		} else if (XmlSchema.ATTR_VAL_TEXTNOTE.equals(buttonType)) {
 			// Text note button
 			button.setText(resources.getString(R.string.gpsstatus_record_textnote));
-			button.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(
-					R.drawable.text_32x32), null, null);
+			buttonIcon = resources.getDrawable(R.drawable.text_32x32);
 			button.setOnClickListener(textNoteOnClickListener);
 		} else if (XmlSchema.ATTR_VAL_PICTURE.equals(buttonType)) {
 			// Picture button
 			button.setText(resources.getString(R.string.gpsstatus_record_stillimage));
-			button.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(
-					R.drawable.camera_32x32), null, null);
+			buttonIcon = resources.getDrawable(R.drawable.camera_32x32);
 			button.setOnClickListener(stillImageOnClickListener);
 		}
+		
+		// Where to draw the button's icon (depending on the current layout)
+		switch(this.currentLayoutIconPos){
+		case UserDefinedLayoutReader.ICON_POS_TOP:
+			// TOP position
+			button.setCompoundDrawablesWithIntrinsicBounds(null, buttonIcon, null, null);
+			break;
+		case UserDefinedLayoutReader.ICON_POS_RIGHT:
+			// RIGHT position
+			button.setCompoundDrawablesWithIntrinsicBounds(null, null, buttonIcon, null);
+			break;
+		case UserDefinedLayoutReader.ICON_POS_BOTTOM:
+			// BOTTOM position
+			button.setCompoundDrawablesWithIntrinsicBounds(null, null, null, buttonIcon);
+			break;
+		case UserDefinedLayoutReader.ICON_POS_LEFT:
+			// LEFT position
+			button.setCompoundDrawablesWithIntrinsicBounds(buttonIcon, null, null, null);
+			break;
+		case UserDefinedLayoutReader.ICON_POS_AUTO:
+		default:
+			// if no or an undefined value is given for the current layout
+			// AUTO position depending on screen orientation
+			if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+				// in landscape mode draw icon to the LEFT
+				button.setCompoundDrawablesWithIntrinsicBounds(buttonIcon, null, null,null);
+			}else{
+				// in portrait mode draw icon to the TOP
+				button.setCompoundDrawablesWithIntrinsicBounds(null, buttonIcon, null, null);
+			}
+			break;
+		}
+
 
 		row.addView(button);
 	}
@@ -276,7 +345,7 @@ public class UserDefinedLayoutReader {
 		if (text != null) {
 			if (text.startsWith("@")) {
 				// Check if it's a resource identifier
-				int resId = resources.getIdentifier(text.replace("@", ""), null, OSMTracker.class.getPackage().getName());
+				int resId = resources.getIdentifier(text.replace("@", ""), null, OSMTracker.PACKAGE_NAME);
 				if (resId != 0) {
 					return resources.getString(resId);
 				}
@@ -298,12 +367,19 @@ public class UserDefinedLayoutReader {
 		public static final String ATTR_LABEL = "label";
 		public static final String ATTR_TARGETLAYOUT = "targetlayout";
 		public static final String ATTR_ICON = "icon";
+		public static final String ATTR_ICONPOS = "iconpos";
 
 		public static final String ATTR_VAL_TAG = "tag";
 		public static final String ATTR_VAL_PAGE = "page";
 		public static final String ATTR_VAL_VOICEREC = "voicerec";
 		public static final String ATTR_VAL_TEXTNOTE = "textnote";
 		public static final String ATTR_VAL_PICTURE = "picture";
+		
+		public static final String ATTR_VAL_ICONPOS_AUTO = "auto";
+		public static final String ATTR_VAL_ICONPOS_TOP = "top";
+		public static final String ATTR_VAL_ICONPOS_RIGHT = "right";
+		public static final String ATTR_VAL_ICONPOS_BOTTOM = "bottom";
+		public static final String ATTR_VAL_ICONPOS_LEFT = "left";
 	}
 
 }

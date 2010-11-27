@@ -42,41 +42,47 @@ public class OSMTracker {
 		
 		public final static boolean VAL_UI_DISPLAYTRACK_OSM = false;
 	};
+	
+	/**
+	 * The full Package name of OSMTracker returned by calling
+	 * OSMTracker.class.getPackage().getName()
+	 */
+	public final static String PACKAGE_NAME = OSMTracker.class.getPackage().getName();
 
 	/**
 	 * Intent for tracking a waypoint
 	 */
-	public final static String INTENT_TRACK_WP = OSMTracker.class.getPackage().getName() + ".intent.TRACK_WP";
+	public final static String INTENT_TRACK_WP = OSMTracker.PACKAGE_NAME + ".intent.TRACK_WP";
 
 	/**
 	 * Intent for updating a previously tracked waypoint
 	 */
-	public final static String INTENT_UPDATE_WP = OSMTracker.class.getPackage().getName() + ".intent.UPDATE_WP";
+	public final static String INTENT_UPDATE_WP = OSMTracker.PACKAGE_NAME + ".intent.UPDATE_WP";
 	
 	/**
 	 * Intent to start tracking
 	 */
-	public final static String INTENT_START_TRACKING = OSMTracker.class.getPackage().getName() + ".intent.START_TRACKING";
+	public final static String INTENT_START_TRACKING = OSMTracker.PACKAGE_NAME + ".intent.START_TRACKING";
 
 	/**
 	 * Intent to stop tracking
 	 */
-	public final static String INTENT_STOP_TRACKING = OSMTracker.class.getPackage().getName() + ".intent.STOP_TRACKING";
+	public final static String INTENT_STOP_TRACKING = OSMTracker.PACKAGE_NAME + ".intent.STOP_TRACKING";
 
 	/**
 	 * Intent fired when the service go to background and should start to notify user. 
 	 */
-	public final static String INTENT_START_NOTIFY_BACKGROUND = OSMTracker.class.getPackage().getName() + ".intent.START_NOTIFY_BACKGROUND";
+	public final static String INTENT_START_NOTIFY_BACKGROUND = OSMTracker.PACKAGE_NAME + ".intent.START_NOTIFY_BACKGROUND";
 	
 	/**
 	 * Intent fired when the UI got back and the service should stop notifying the user of background job.
 	 */
-	public final static String INTENT_STOP_NOTIFY_BACKGROUND = OSMTracker.class.getPackage().getName() + ".intent.STOP_NOTIFY_BACKGROUND";
+	public final static String INTENT_STOP_NOTIFY_BACKGROUND = OSMTracker.PACKAGE_NAME + ".intent.STOP_NOTIFY_BACKGROUND";
 	
 	/**
 	 * Intent fired when the notification are cleared by the user.
 	 */
-	public final static String INTENT_NOTIFICATION_CLEARED = OSMTracker.class.getPackage().getName() + ".intent.NOTIFICATION_CLEARED";
+	public final static String INTENT_NOTIFICATION_CLEARED = OSMTracker.PACKAGE_NAME + ".intent.NOTIFICATION_CLEARED";
 	
 	/**
 	 * Key for extra data "waypoint name" in Intent
