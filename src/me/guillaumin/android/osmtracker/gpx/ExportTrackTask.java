@@ -3,6 +3,7 @@ package me.guillaumin.android.osmtracker.gpx;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -307,7 +308,9 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 			
 		    String link = c.getString(c.getColumnIndex(Schema.COL_LINK));
 		    if (link != null) {
-		       	out.append("\t\t" + "<link>" + link + "</link>" + "\n");
+		       	out.append("\t\t" + "<link href=\"" + URLEncoder.encode(link) + "\">" + "\n");
+		       	out.append("\t\t\t" + "<text>" + link +"</text>\n");
+		       	out.append("\t\t" + "</link>" + "\n");
 		    }
 		    
 		    if (! c.isNull(c.getColumnIndex(Schema.COL_NBSATELLITES))) {
