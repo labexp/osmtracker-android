@@ -1,6 +1,8 @@
 package me.guillaumin.android.osmtracker.db;
 
 import java.io.File;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
@@ -221,6 +223,19 @@ public class DataHelper {
 	}
 
 	/**
+	 * Change the name of this track.
+	 * @param trackId Id of the track
+	 * @param name  New name of track, or null to clear it
+	 * @param cr  Database connection for query
+	 */
+	public static void setTrackName(long trackId, String name, ContentResolver cr) {
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+		ContentValues values = new ContentValues();
+		values.put(Schema.COL_NAME, name);
+		cr.update(trackUri, values, null, null);		
+	}
+
+	/**
 	 * Mark the export date/time of this track.
 	 * @param trackId Id of the track
 	 * @param exportTime Time of export, from {@link System#currentTimeMillis()}
@@ -231,6 +246,131 @@ public class DataHelper {
 		ContentValues values = new ContentValues();
 		values.put(Schema.COL_EXPORT_DATE, exportTime);
 		cr.update(trackUri, values, null, null);		
+	}
+
+	/**
+	 * Given a float degree value (latitude or longitude), format it to Degrees/Minutes/Seconds.
+	 * @param degrees  The value, such as 43.0438
+	 * @param isLatitude  Is this latitude, not longitude?
+	 * @return  The Degrees,Minutes,Seconds, such as: 43� 2' 38" N
+	 */
+	public static String formatDegreesAsDMS(float degrees, final boolean isLatitude) {
+		final boolean neg;
+		if (degrees > 0) {
+			neg = false;
+		} else {
+			neg = true;
+			degrees = -degrees;
+		}
+		StringBuffer dms = new StringBuffer();
+
+		int n = (int) degrees;
+		dms.append(n);
+		dms.append("\u00B0 ");
+
+		degrees = (degrees - n) * 60.0f;
+		n = (int) degrees;
+		dms.append(n);
+		dms.append("' ");
+
+		degrees = (degrees - n) * 60.0f;
+		n = (int) degrees;
+		dms.append(n);
+		dms.append("\" ");
+
+		if (isLatitude)
+			dms.append(neg ? 'S' : 'N');
+		else
+			dms.append(neg ? 'W' : 'E');
+
+		return dms.toString();
+	}
+
+	/**
+	 * For this track, count the waypoints/trackpoints, and format the start time, to strings.
+	 * Optionally also format the stop time and the start/stop latitude/longitude.
+	 * Used by TracklistAdapter and TrackDetail.
+	 * @param trackId Id of the track
+	 * @param moreInfo  If true, return the 8-element array instead of the 3-element.
+	 * @param tc  Cursor pointing to <tt>trackId</tt>'s row in the Track table
+	 * @param cr  Database connection for querying WP, TP counts
+	 * @return  String[] with 3 or 9 elements: { trackpoints, waypoints, name-or-starttime },
+	 *     or { trackpoints, waypoints, name-or-starttime, starttime, endtime, startlat, startlong, endlat, endlong }.
+	 *    <BR> 
+	 *     starttime uses the default date/time format: {@link java.text.DateFormat#getDateTimeInstance()}.
+	 *    <BR>
+	 *     endtime is based on the last recorded trackpoint, so it will still be defined
+	 *     even if the track is still actively recording.
+	 *    <BR>
+	 *     If the track has 0 points, endtime will be starttime, and the latitudes/longitudes
+	 *     will be empty strings. 
+	 */
+	public static String[] getTrackInfo(final long trackId, final boolean moreInfo, Cursor tc, ContentResolver cr) {
+		String[] ret = new String[moreInfo ? 9 : 3];
+		String startdate = null;
+
+		// Name or Start date
+		startdate = tc.getString(tc.getColumnIndex(Schema.COL_NAME));
+		if ((startdate != null) && (startdate.length() > 0))
+		{
+			ret[2] = startdate;
+			startdate = null;  // clear field in case of detail view
+		} else {
+			long startDate = tc.getLong(tc.getColumnIndex(Schema.COL_START_DATE));
+			startdate = DateFormat.getDateTimeInstance().format(new Date(startDate));
+			ret[2] = startdate;
+		}
+
+		// TP count and info
+		Cursor tpCursor = cr.query(
+				TrackContentProvider.trackPointsUri(trackId),
+				null, null, null, (moreInfo ? Schema.COL_ID : null));
+		ret[0] = Integer.toString(tpCursor.getCount());
+		if (moreInfo)
+		{
+			// Start time
+			if (startdate == null)
+			{
+				long startDate = tc.getLong(tc.getColumnIndex(Schema.COL_START_DATE));
+				startdate = DateFormat.getDateTimeInstance().format(new Date(startDate));				
+			}
+			ret[3] = startdate;
+
+			// locations, stop time
+			final int ciLat = tpCursor.getColumnIndex(Schema.COL_LATITUDE),
+			          ciLong = tpCursor.getColumnIndex(Schema.COL_LONGITUDE);
+			if (tpCursor.moveToFirst())
+			{
+				// start
+				ret[5] = formatDegreesAsDMS(tpCursor.getFloat(ciLat), true);
+				ret[6] = formatDegreesAsDMS(tpCursor.getFloat(ciLong), false);
+				// stop
+				tpCursor.moveToLast();
+				ret[7] = formatDegreesAsDMS(tpCursor.getFloat(ciLat), true);
+				ret[8] = formatDegreesAsDMS(tpCursor.getFloat(ciLong), false);
+				ret[4] = DateFormat.getDateTimeInstance().format
+					(tpCursor.getLong(tpCursor.getColumnIndex(Schema.COL_TIMESTAMP)));
+			} else {
+				// No trackpoints in the track yet.
+				// Copy start time to end time,
+				// give empty strings for latitudes/longitudes.
+				ret[5] = "";
+				ret[6] = "";
+				ret[7] = "";
+				ret[8] = "";
+				ret[4] = ret[3];
+			}
+		}
+		tpCursor.close();
+
+		// WP count
+		Cursor wpCursor = cr.query(
+				TrackContentProvider.waypointsUri(trackId),
+				null, null,	null, null);
+		ret[1] = Integer.toString(wpCursor.getCount());
+		wpCursor.close();
+
+		return ret;
 	}
 
 	/**

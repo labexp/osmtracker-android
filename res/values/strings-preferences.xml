@@ -49,6 +49,18 @@
 	<string name="prefs_output">GPX file output</string>
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
 	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_output_filename">Filename for named tracks</string>
+	<string name="prefs_output_filename_summary">Pattern for filename if the track has a name</string>
+	<string-array name="prefs_output_filename_keys">
+		<item>Track name</item>
+		<item>Name, start date and time</item>
+		<item>Start date and time</item>
+	</string-array>
+	<string-array name="prefs_output_filename_values">
+		<item>name</item>
+		<item>name_date</item>
+		<item>date</item>
+	</string-array>
 	<string name="prefs_output_accuracy">Accuracy in GPX file</string>
 	<string name="prefs_output_accuracy_summary">Allow accuracy info in GPX file, with waypoint name or in a separate tag</string>
 	<string-array name="prefs_output_accuracy_keys">

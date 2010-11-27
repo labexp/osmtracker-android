@@ -1,9 +1,5 @@
 package me.guillaumin.android.osmtracker.db;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import android.content.Context;
@@ -24,8 +20,6 @@ import android.widget.TextView;
  */
 public class TracklistAdapter extends CursorAdapter {
 
-	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("EEE dd/MM/yyyy, HH:mm:ss");
-	
 	public TracklistAdapter(Context context, Cursor c) {
 		super(context, c);
 	}
@@ -55,7 +49,7 @@ public class TracklistAdapter extends CursorAdapter {
 	 */
 	private View bind(Cursor cursor, View v, Context context) {
 		TextView vId = (TextView) v.findViewById(R.id.trackmgr_item_id);
-		TextView vStartDate = (TextView) v.findViewById(R.id.trackmgr_item_startdate);
+		TextView vNameOrStartDate = (TextView) v.findViewById(R.id.trackmgr_item_nameordate);
 		TextView vWps = (TextView) v.findViewById(R.id.trackmgr_item_wps);
 		TextView vTps = (TextView) v.findViewById(R.id.trackmgr_item_tps);
 		ImageView vStatus = (ImageView) v.findViewById(R.id.trackmgr_item_statusicon);
@@ -80,23 +74,12 @@ public class TracklistAdapter extends CursorAdapter {
 		String strTrackId = Long.toString(trackId);
 		vId.setText("#" + strTrackId);
 
-		// Bind start date
-		long startDate = cursor.getLong(cursor.getColumnIndex(Schema.COL_START_DATE));
-		vStartDate.setText(DateFormat.getDateTimeInstance().format(new Date(startDate)));
-		
-		// Bind WP count
-		Cursor wpCursor = context.getContentResolver().query(
-				TrackContentProvider.trackPointsUri(trackId),
-				null, null,	null, null);
-		vWps.setText(Integer.toString(wpCursor.getCount()));
-		wpCursor.close();
-
-		// Bind TP count
-		Cursor tpCursor = context.getContentResolver().query(
-				TrackContentProvider.waypointsUri(trackId),
-				null, null,	null, null);
-		vTps.setText(Integer.toString(tpCursor.getCount()));
-		tpCursor.close();
+		// Bind WP count, TP count, title or start date
+		final String[] trackInfo = DataHelper.getTrackInfo
+		    (trackId, false, cursor, context.getContentResolver());
+		vTps.setText(trackInfo[0]);
+		vWps.setText(trackInfo[1]);
+		vNameOrStartDate.setText(trackInfo[2]);
 
 		return v;
 	}

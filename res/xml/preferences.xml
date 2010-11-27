@@ -12,6 +12,9 @@
 	<PreferenceCategory android:title="@string/prefs_output">
 		<EditTextPreference android:summary="@string/prefs_storage_dir_summary" android:key="logging.storage.dir"
 			android:defaultValue="/osmtracker" android:title="@string/prefs_storage_dir" />
+		<ListPreference android:key="gpx.filename" android:defaultValue="name_date" android:summary="@string/prefs_output_filename_summary"
+			android:title="@string/prefs_output_filename" android:entryValues="@array/prefs_output_filename_values"
+			android:entries="@array/prefs_output_filename_keys" />
 		<ListPreference android:key="gpx.accuracy" android:defaultValue="none" android:summary="@string/prefs_output_accuracy_summary"
 			android:title="@string/prefs_output_accuracy" android:entryValues="@array/prefs_output_accuracy_values"
 			android:entries="@array/prefs_output_accuracy_keys"></ListPreference>

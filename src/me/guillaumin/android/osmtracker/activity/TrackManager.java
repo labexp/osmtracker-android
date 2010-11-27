@@ -265,19 +265,36 @@ public class TrackManager extends ListActivity {
 			i.putExtra(Schema.COL_TRACK_ID, info.id);
 			startActivity(i);
 			break;
+		case R.id.trackmgr_contextmenu_details:
+			i = new Intent(this, TrackDetail.class);
+			i.putExtra(Schema.COL_TRACK_ID, info.id);
+			startActivity(i);
+			break;
 		}
 		return super.onContextItemSelected(item);
 	}
 
+	/**
+	 * User has clicked the active track or a previous track.
+	 * @param lv listview; this
+	 * @param iv item clicked
+	 * @param position position within list
+	 * @param id  track ID
+	 */
 	@Override
 	protected void onListItemClick(ListView lv, View iv, final int position, final long id) {
+		Intent i;
 		if (id == currentTrackId) {
 			// continue recording the current track
-			Intent i = new Intent(this, TrackLogger.class);
+			i = new Intent(this, TrackLogger.class);
 			i.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 			i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
-			startActivity(i);
-		}		
+		} else {
+			// show track info
+			i = new Intent(this, TrackDetail.class);
+			i.putExtra(Schema.COL_TRACK_ID, id);
+		}
+		startActivity(i);
 	}
 
 	/**

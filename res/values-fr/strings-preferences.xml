@@ -49,6 +49,18 @@
 	<string name="prefs_output">Fichier d\'enregistrement GPX</string>
 	<string name="prefs_storage_dir">Répertoire de stockage externe (SD)</string>
 	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_output_filename">Nom du fichier pour traces nommées</string>
+	<string name="prefs_output_filename_summary">Modèle pour le nom du fichier, si la trace a un nom</string>
+	<string-array name="prefs_output_filename_keys">
+		<item>Nom de la trace</item>
+		<item>Nom, date et temps de commencer</item>
+		<item>Date et temps de commencer</item>
+	</string-array>
+	<string-array name="prefs_output_filename_values">
+		<item>name</item>
+		<item>name_date</item>
+		<item>date</item>
+	</string-array>
 	<string name="prefs_output_accuracy">Contenu du fichier GPX</string>
 	<string name="prefs_output_accuracy_summary">Intègre la précision au fichier GPX, dans le nom des waypoint ou dans un tag séparé</string>
 	<string-array name="prefs_output_accuracy_keys">

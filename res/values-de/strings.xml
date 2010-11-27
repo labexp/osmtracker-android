@@ -38,6 +38,18 @@
 	<string name="trackmgr_exporting">Track #{0} wird exportiert...</string>
 	<string name="trackmgr_export_error">Track kann nicht exportiert werden: {0}</string>
 
+	<!-- Track Detail -->
+	<string name="trackdetail">Track Details</string>
+	<string name="trackdetail_name">Name: </string>
+	<string name="trackdetail_startdate">Startzeit: </string>
+	<string name="trackdetail_enddate">Endzeit: </string>
+	<string name="trackdetail_startloc">Startet bei: </string>
+	<string name="trackdetail_endloc">Endet bei: </string>
+	<string name="trackdetail_exportdate">Exportiert: </string>
+	<string name="trackdetail_btn_export">Als GPX exportieren</string>
+	<string name="trackdetail_export_notyet">(bisher nicht exportiert)</string>
+	<string name="trackdetail_export_display">Anzeigen</string>
+
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Starte tracking</string>
 	<string name="gpsstatus_record_trackon">Stoppe tracking</string>

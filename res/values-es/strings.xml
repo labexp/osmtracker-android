@@ -31,10 +31,23 @@
 	<string name="trackmgr_continuetrack_hint">Está <b>trazando #{0}</b> ahora.\nElijalo en la lista para continuar.</string>
 	<string name="trackmgr_contextmenu_delete">Borrar</string>
 	<string name="trackmgr_contextmenu_export">Exportar como GPX</string>
+	<string name="trackmgr_contextmenu_display">Mostrar</string>
+	<string name="trackmgr_contextmenu_details">Detailles</string>
 	<string name="trackmgr_contextmenu_title">Traza #{0}</string>
 	<string name="trackmgr_delete_confirm">La traza #{0} se borrará.</string>
 	<string name="trackmgr_exporting">Exportando traza #{0}...</string>
 	<string name="trackmgr_export_error">No se puede exportar la traza: {0}</string>
+
+	<!-- Track Detail -->
+	<string name="trackdetail">Detailles de traza</string>
+	<string name="trackdetail_name">Nombre: </string>
+	<string name="trackdetail_startdate">Tiempo inicio: </string>
+	<string name="trackdetail_enddate">Tiempo paré: </string>
+	<string name="trackdetail_startloc">Se inicia en: </string>
+	<string name="trackdetail_endloc">Termina en: </string>
+	<string name="trackdetail_exportdate">Se exportó a: </string>
+	<string name="trackdetail_export_notyet">(No es ya exportados)</string>
+	<string name="trackdetail_export_display">Mostrar</string>
 
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Iniciar trazado.</string>

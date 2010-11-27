@@ -11,6 +11,7 @@ public class OSMTracker {
 
 	/**
 	 * Stores settings keys and default values.
+	 * See preferences.xml for layout, strings-preferences.xml for text.
 	 */
 	public static final class Preferences {
 		// Property names
@@ -20,6 +21,7 @@ public class OSMTracker {
 		public final static String KEY_GPS_OSSETTINGS = "gps.ossettings";
 		public final static String KEY_GPS_CHECKSTARTUP = "gps.checkstartup";
 		public final static String KEY_GPS_IGNORE_CLOCK = "gps.ignoreclock";
+		public final static String KEY_OUTPUT_FILENAME = "gpx.filename";
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
 		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
@@ -32,6 +34,11 @@ public class OSMTracker {
 		public final static boolean VAL_GPS_CHECKSTARTUP = true;
 		public final static boolean VAL_GPS_IGNORE_CLOCK = false;
 		
+		public final static String VAL_OUTPUT_FILENAME_NAME = "name";
+		public final static String VAL_OUTPUT_FILENAME_NAME_DATE = "name_date";
+		public final static String VAL_OUTPUT_FILENAME_DATE = "date";
+		public final static String VAL_OUTPUT_FILENAME = VAL_OUTPUT_FILENAME_NAME_DATE;
+
 		public final static String VAL_OUTPUT_ACCURACY_NONE = "none";
 		public final static String VAL_OUTPUT_ACCURACY_WPT_NAME = "wpt_name";
 		public final static String VAL_OUTPUT_ACCURACY_WPT_CMT = "wpt_cmt";

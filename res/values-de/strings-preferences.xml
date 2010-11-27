@@ -49,6 +49,18 @@
 	<string name="prefs_output">GPX Dateiausgabe</string>
 	<string name="prefs_storage_dir">Externes Speicherverzeichnis (SD)</string>
 	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_output_filename">Dateiname für Tracks</string>
+	<string name="prefs_output_filename_summary">Form des Dateinamens, wenn ein Track einen Namen hat</string>
+	<string-array name="prefs_output_filename_keys">
+		<item>Track Name</item>
+		<item>Name, Startdatum und -zeit</item>
+		<item>Startdatum und -zeit</item>
+	</string-array>
+	<string-array name="prefs_output_filename_values">
+		<item>name</item>
+		<item>name_date</item>
+		<item>date</item>
+	</string-array>
 	<string name="prefs_output_accuracy">Genauigkeit in der GPX-Datei</string>
 	<string name="prefs_output_accuracy_summary">Erlaube Genauigkeitsanzeige in der GPX-Datei mit waypoint-Name oder in einem separaten Tag</string>
 	<string-array name="prefs_output_accuracy_keys">
@@ -57,7 +69,7 @@
 		<item>Im waypoint-Kommentar</item>
 	</string-array>
 	<string-array name="prefs_output_accuracy_values">
-		<item>kein</item>
+		<item>none</item>
 		<item>wpt_name</item>
 		<item>wpt_cmt</item>
 	</string-array>

@@ -15,24 +15,24 @@
 	<RelativeLayout android:layout_height="fill_parent"
 		android:gravity="left|center_vertical" android:layout_width="wrap_content" android:layout_weight="1">
 
-		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_startdate"
+		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_nameordate"
 			android:text="{start_date}" android:layout_width="wrap_content" style="@android:style/TextAppearance.Large"
 			android:layout_weight="1" />
 
-		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_waypoints" android:layout_below="@+id/trackmgr_item_startdate"
+		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_waypoints" android:layout_below="@+id/trackmgr_item_nameordate"
 			android:textStyle="bold" android:layout_marginRight="3dp" style="@android:style/TextAppearance.Small" android:text="@string/trackmgr_waypoints_count"
 			android:layout_toLeftOf="@+id/trackmgr_item_id" android:layout_width="wrap_content"></TextView>
 
 		<TextView android:layout_height="wrap_content"
-			android:layout_below="@id/trackmgr_item_startdate" android:id="@+id/trackmgr_item_wps"
+			android:layout_below="@id/trackmgr_item_nameordate" android:id="@+id/trackmgr_item_wps"
 			android:layout_toRightOf="@id/trackmgr_item_waypoints" android:text="{x}"
 			style="@android:style/TextAppearance.Small" android:layout_width="wrap_content"></TextView>
 		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_trackpoints" android:layout_toRightOf="@id/trackmgr_item_wps"
-			android:layout_below="@id/trackmgr_item_startdate" android:layout_marginLeft="8dp"
+			android:layout_below="@id/trackmgr_item_nameordate" android:layout_marginLeft="8dp"
 			android:textStyle="bold" android:layout_marginRight="3dp" style="@android:style/TextAppearance.Small"
 			android:text="@string/trackmgr_trackpoints_count" android:layout_width="wrap_content"></TextView>
 		<TextView android:layout_height="wrap_content"
-			android:text="{y}" android:id="@+id/trackmgr_item_tps" android:layout_below="@id/trackmgr_item_startdate"
+			android:text="{y}" android:id="@+id/trackmgr_item_tps" android:layout_below="@id/trackmgr_item_nameordate"
 			android:layout_toRightOf="@id/trackmgr_item_trackpoints" style="@android:style/TextAppearance.Small" android:layout_width="wrap_content"></TextView>
 				
 	</RelativeLayout>

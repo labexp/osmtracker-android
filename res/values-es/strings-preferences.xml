@@ -43,6 +43,18 @@
 	<string name="prefs_output">Salida del archivo GPX</string>
 	<string name="prefs_storage_dir">Carpeta de almacenamiento externo (SD)</string>
 	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_output_filename">Nombre del archivo de trazas llamadas</string>
+	<string name="prefs_output_filename_summary">Modelo para el nombre del archivo, si la traza tiene un nombre</string>
+	<string-array name="prefs_output_filename_keys">
+		<item>Nombre de la traza</item>
+		<item>Nombre, fecha y hora de inicio</item>
+		<item>Fecha y hora de inicio</item>
+	</string-array>
+	<string-array name="prefs_output_filename_values">
+		<item>name</item>
+		<item>name_date</item>
+		<item>date</item>
+	</string-array>
 	<string name="prefs_output_accuracy">Precisión en el archivo GPX</string>
 	<string name="prefs_output_accuracy_summary">Permite información de precisión en el archivo GPX, con el nombre del punto o en una etiqueta separada.</string>
 	<string-array name="prefs_output_accuracy_keys">

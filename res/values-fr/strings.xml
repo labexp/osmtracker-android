@@ -28,13 +28,26 @@
 	<string name="trackmgr_empty">Vous n\'avez pas de traces.</string>
 	<string name="trackmgr_newtrack_hint">Pour enregistrer une trace,\nchoisissez <b>Menu</b>, puis <b>Nouvelle trace</b>.</string>
 	<string name="trackmgr_newtrack_error">Impossible de créer une nouvelle trace: {0}</string>
-	<string name="trackmgr_continetrack_hint">La <b>trace #{0}</b> est en cours d\'enregistrement.\nChoisissez la dans la liste pour continuer.</string>
+	<string name="trackmgr_continuetrack_hint">La <b>trace #{0}</b> est en cours d\'enregistrement.\nChoisissez la dans la liste pour continuer.</string>
 	<string name="trackmgr_contextmenu_delete">Supprimer</string>
 	<string name="trackmgr_contextmenu_export">Exporter (GPX)</string>
+	<string name="trackmgr_contextmenu_display">Afficher</string>
+	<string name="trackmgr_contextmenu_details">Details</string>
 	<string name="trackmgr_contextmenu_title">Trace #{0}</string>
 	<string name="trackmgr_delete_confirm">La trace #{0} sera supprimée.</string>
 	<string name="trackmgr_exporting">Export de la trace #{0} en cours...</string>
 	<string name="trackmgr_export_error">Impossible d\'exporter la trace: {0}</string>
+
+	<!-- Track Detail -->
+	<string name="trackdetail">Details de la trace</string>
+	<string name="trackdetail_name">Nom: </string>
+	<string name="trackdetail_startdate">Temps de commencer: </string>
+	<string name="trackdetail_enddate">Temps d\'arrêter: </string>
+	<string name="trackdetail_startloc">Commence à: </string>
+	<string name="trackdetail_endloc">Se termine à: </string>
+	<string name="trackdetail_exportdate">Temps d\'export: </string>
+	<string name="trackdetail_export_notyet">(Pas encore exporté)</string>
+	<string name="trackdetail_export_display">Afficher</string>
 
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Démarrer tracking.</string>

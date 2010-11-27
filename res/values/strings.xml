@@ -34,10 +34,23 @@
 	<string name="trackmgr_contextmenu_delete">Delete</string>
 	<string name="trackmgr_contextmenu_export">Export as GPX</string>
 	<string name="trackmgr_contextmenu_display">Display</string>
+	<string name="trackmgr_contextmenu_details">Details</string>
 	<string name="trackmgr_contextmenu_title">Track #{0}</string>
 	<string name="trackmgr_delete_confirm">Track #{0} will be deleted</string>
 	<string name="trackmgr_exporting">Exporting track #{0}...</string>
 	<string name="trackmgr_export_error">Unable to export track: {0}</string>
+
+	<!-- Track Detail -->
+	<string name="trackdetail">Track Details</string>
+	<string name="trackdetail_name">Name: </string>
+	<string name="trackdetail_startdate">Start time: </string>
+	<string name="trackdetail_enddate">End time: </string>
+	<string name="trackdetail_startloc">Starts at: </string>
+	<string name="trackdetail_endloc">Ends at: </string>
+	<string name="trackdetail_exportdate">Exported at: </string>
+	<string name="trackdetail_btn_export">Export as GPX</string>
+	<string name="trackdetail_export_notyet">(Not exported yet)</string>
+	<string name="trackdetail_export_display">Display</string>
 
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Start tracking.</string>
