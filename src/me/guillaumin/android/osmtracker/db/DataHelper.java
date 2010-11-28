@@ -252,7 +252,7 @@ public class DataHelper {
 	 * Given a float degree value (latitude or longitude), format it to Degrees/Minutes/Seconds.
 	 * @param degrees  The value, such as 43.0438
 	 * @param isLatitude  Is this latitude, not longitude?
-	 * @return  The Degrees,Minutes,Seconds, such as: 43� 2' 38" N
+	 * @return  The Degrees,Minutes,Seconds, such as: 43° 2' 38" N
 	 */
 	public static String formatDegreesAsDMS(float degrees, final boolean isLatitude) {
 		final boolean neg;
