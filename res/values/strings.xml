@@ -97,6 +97,9 @@
 	<string name="displaytrack">Display track</string>	
 	<string name="displaytrack_north">N</string>
 	
+	<!-- Track detail -->
+	<string name="trackdetail_save">Save</string>
+	
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Accuracy</string>

@@ -8,7 +8,9 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.db.model.Track;
 import me.guillaumin.android.osmtracker.gpx.ExportTrackTask;
+import me.guillaumin.android.osmtracker.util.MercatorProjection;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -16,8 +18,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -67,7 +71,7 @@ public class TrackDetail extends Activity {
 		vEndLoc = (TextView) findViewById(R.id.trackdetail_item_endloc);
 		vExportDate = (TextView) findViewById(R.id.trackdetail_item_exportdate);
 		
-		Button btnOk = (Button) findViewById(R.id.trackdetail_btn_ok);
+		final Button btnOk = (Button) findViewById(R.id.trackdetail_btn_ok);
 		btnOk.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -76,8 +80,7 @@ public class TrackDetail extends Activity {
 				// Save name field, if changed, to db.
 				// String class required for equals to work, and for trim().
 				String enteredName = etName.getText().toString().trim();
-				if ((enteredName.length() > 0) && (! enteredName.equals(trackNameInDB)))
-				{
+				if ((enteredName.length() > 0) && (! enteredName.equals(trackNameInDB))) {
 					DataHelper.setTrackName(trackId, enteredName, getContentResolver());
 				}
 
@@ -86,11 +89,22 @@ public class TrackDetail extends Activity {
 			}
 		});
 		
+		// Change "ok" for "Save" if the user has changed the name
+		etName.setOnKeyListener(new OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if (keyCode != KeyEvent.KEYCODE_BACK) {
+					btnOk.setText(R.string.trackdetail_save);
+				}
+				return false;
+			}
+		});
+		
 		Button btnDisplay = (Button) findViewById(R.id.trackdetail_btn_display);
 		btnDisplay.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				/** Display the track. */
+				// Display the track.
 				// Start display track activity, with or without OSM background
 				Intent i;
 				boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(v.getContext()).getBoolean(
@@ -109,7 +123,7 @@ public class TrackDetail extends Activity {
 		btnExport.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				/** export the track. */
+				// Export the track.
 				ExportTrackTask ett = new ExportTrackTask(v.getContext(), trackId);
 				ett.execute();
 				vExportDate.setText(DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
@@ -140,20 +154,17 @@ public class TrackDetail extends Activity {
 
 		// Bind WP count, TP count, start date, etc.
 		// Fill name-field only if empty (in case changed by user/restored by onRestoreInstanceState) 
-		// If no name, use start-time via getTrackInfo[2] (same as TracklistAdapter).
-		final String[] trackInfo = DataHelper.getTrackInfo
-		    (trackId, true, cursor, cr);
-		vTps.setText(trackInfo[0]);
-		vWps.setText(trackInfo[1]);
-		if (etName.length() == 0)
-		{
-			trackNameInDB = trackInfo[2];
+		Track t = Track.build(trackId, cursor, cr);
+		vTps.setText(Integer.toString(t.getTpCount()));
+		vWps.setText(Integer.toString(t.getWpCount()));
+		if (etName.length() == 0) {
+			trackNameInDB = t.getName();
 			etName.setText(trackNameInDB);
 		}
-		vStartDate.setText(trackInfo[3]);
-		vEndDate.setText(trackInfo[4]);
-		vStartLoc.setText(trackInfo[5] + "  " + trackInfo[6]);
-		vEndLoc.setText(trackInfo[7] + "  " + trackInfo[8]);
+		vStartDate.setText(t.getStartDateAsString());
+		vEndDate.setText(t.getEndDateAsString());
+		vStartLoc.setText(MercatorProjection.formatDegreesAsDMS(t.getStartLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getStartLong(), false));
+		vEndLoc.setText(MercatorProjection.formatDegreesAsDMS(t.getEndLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getEndLong(), false));
 		final int exportCol = cursor.getColumnIndex(Schema.COL_EXPORT_DATE);
 		if (cursor.isNull(exportCol))
 			vExportDate.setText(R.string.trackdetail_export_notyet);

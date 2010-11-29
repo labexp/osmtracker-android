@@ -7,8 +7,8 @@ import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
-import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.exception.CreateTrackException;
 import me.guillaumin.android.osmtracker.gpx.ExportTrackTask;
 import android.app.AlertDialog;
@@ -24,15 +24,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 
 /**
  * Lists existing tracks.
@@ -43,6 +43,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
  */
 public class TrackManager extends ListActivity {
 	
+	@SuppressWarnings("unused")
 	private static final String TAG = TrackManager.class.getSimpleName();
 
 	/** Bundle key for {@link #prevItemVisible} */
