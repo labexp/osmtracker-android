@@ -33,12 +33,18 @@ import android.view.View.OnClickListener;
  */
 public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 
+	@SuppressWarnings("unused")
 	private static final String TAG = DisplayTrackMap.class.getSimpleName();
 	
 	/**
 	 * Key for keeping the zoom level in the saved instance bundle
 	 */
 	private static final String CURRENT_ZOOM = "currentZoom";
+	
+	/**
+	 * Key for keeping the last zoom level across app. restart
+	 */
+	private static final String LAST_ZOOM = "lastZoomLevel";
 	
 	/**
 	 * Default zoom level
@@ -91,9 +97,9 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
         if(savedInstanceState != null) {
         	osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
         } else {
-        	// Try to get lastZoomLevel from Shared Preferences
+        	// Try to get last zoom Level from Shared Preferences
         	SharedPreferences settings = getPreferences(MODE_PRIVATE);
-        	osmViewController.setZoom(settings.getInt("lastZoomLevel", DEFAULT_ZOOM));
+        	osmViewController.setZoom(settings.getInt(LAST_ZOOM, DEFAULT_ZOOM));
         }
         
         createOverlays();
@@ -163,10 +169,10 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 	protected void onStop() {
 		super.onStop();
 		
-		// save zoom level in shared preferences as "lastZoomLevel"
+		// Save zoom level in shared preferences
 		SharedPreferences settings = getPreferences(MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
-		editor.putInt("lastZoomLevel", osmView.getZoomLevel());
+		editor.putInt(LAST_ZOOM, osmView.getZoomLevel());
 		editor.commit();
 		
 	}
