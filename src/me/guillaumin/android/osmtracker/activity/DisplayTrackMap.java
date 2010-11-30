@@ -14,6 +14,7 @@ import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -90,7 +91,9 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
         if(savedInstanceState != null) {
         	osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
         } else {
-        	osmViewController.setZoom(DEFAULT_ZOOM);
+        	// Try to get lastZoomLevel from Shared Preferences
+        	SharedPreferences settings = getPreferences(MODE_PRIVATE);
+        	osmViewController.setZoom(settings.getInt("lastZoomLevel", DEFAULT_ZOOM));
         }
         
         createOverlays();
@@ -155,6 +158,18 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 		
 		super.onPause();
 	}	
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		
+		// save zoom level in shared preferences as "lastZoomLevel"
+		SharedPreferences settings = getPreferences(MODE_PRIVATE);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putInt("lastZoomLevel", osmView.getZoomLevel());
+		editor.commit();
+		
+	}
 
 	/**
 	 * Creates overlays over the OSM view
