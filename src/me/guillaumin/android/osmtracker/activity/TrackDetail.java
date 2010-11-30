@@ -136,7 +136,7 @@ public class TrackDetail extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-
+		
 		// Query the track values
 		ContentResolver cr = getContentResolver();
 		Cursor cursor = cr.query(
@@ -166,14 +166,27 @@ public class TrackDetail extends Activity {
 		vStartLoc.setText(MercatorProjection.formatDegreesAsDMS(t.getStartLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getStartLong(), false));
 		vEndLoc.setText(MercatorProjection.formatDegreesAsDMS(t.getEndLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getEndLong(), false));
 		final int exportCol = cursor.getColumnIndex(Schema.COL_EXPORT_DATE);
-		if (cursor.isNull(exportCol))
+		if (cursor.isNull(exportCol)) {
 			vExportDate.setText(R.string.trackdetail_export_notyet);
-		else
+		} else {
 			vExportDate.setText
 			    (DateFormat.getDateTimeInstance().format
 			        (new Date(cursor.getLong(exportCol))));
+		}
 
 		cursor.close();
+		
+		// Tell service to stop notifying user of background activity
+		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
+
 	}
+	
+	@Override
+	protected void onPause() {
+		// Tell service to notify user of background activity
+		sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
+		super.onPause();
+	}
+
 
 }  // public class TrackDetail
