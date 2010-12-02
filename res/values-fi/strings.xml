@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Generic strings -->
+	<string name="app_name">OSMTracker Android™-laitteille</string>
+	<string name="app_short_name">OSMTracker</string>
+	<string name="app_description">OSMTrackerin (Windows Mobile) innoittama. Tallenna reittisi, merkitse tärkeät kohteet (äänitallenne, kuva), tallenna GPX-muodossa OpenStreetMap/JOSM-käyttöä varten.</string>
+
+	<!-- TrackLogger -->
+	<string name="tracklogger">Reittilokikirja</string>
+	<string name="tracklogger_waiting_gps">Odotetaan GPS-sijaintia...</string>
+	<string name="tracklogger_voicerec_title">Äänitallennus</string>
+	<string name="tracklogger_voicerec_text">Tallennetaan {0}s äänitiedosto.</string>
+	<string name="tracklogger_btnBack">Takaisin</string>
+	<string name="tracklogger_tracked">Reitti: </string>
+	<string name="tracklogger_gps_disabled">GPS pois päältä</string>
+	<string name="tracklogger_gps_disabled_hint">GPS on pois päältä. Haluatko sen päälle?</string>
+
+	<!-- Waypoint List -->
+	<string name="wplist">Etappilista</string>
+	<string name="wplist_latitude">Lat: </string>
+	<string name="wplist_longitude">Long: </string>
+	<string name="wplist_elevation">Ele: </string>
+	<string name="wplist_accuracy">Accur: </string>
+	
+	<!-- Track Manager -->
+	<string name="trackmgr">Reittimanageri</string>
+	<string name="trackmgr_tracklist">Reittilista:</string>
+	<string name="trackmgr_waypoints_count">Etapit: </string>
+	<string name="trackmgr_trackpoints_count">Reittipisteet: </string>
+	<string name="trackmgr_empty">Ei reittejä.</string>
+	<string name="trackmgr_newtrack_hint">Reitin tallennus: <b>Menu, Uusi reitti</b></string>
+	<string name="trackmgr_newtrack_error">Uuden reitin luonti ei onnistu: {0}</string>
+	<string name="trackmgr_continuetrack_hint">Tallennat reittiä <b> #{0}</b>\nValitse se listasta jatkaaksesi</string>
+	<string name="trackmgr_contextmenu_delete">Poista</string>
+	<string name="trackmgr_contextmenu_export">Tallenna GPX</string>
+	<string name="trackmgr_contextmenu_display">Näytä</string>
+	<string name="trackmgr_contextmenu_title">Reitti #{0}</string>
+	<string name="trackmgr_delete_confirm">Reitti #{0} poistetaan</string>
+	<string name="trackmgr_exporting">Tallennetaan reitti #{0}...</string>
+	<string name="trackmgr_export_error">Reittiä ei voitu tallentaa: {0}</string>
+
+	<!-- GPS Status & record bar -->
+	<string name="gpsstatus_record_trackoff">Aloita reititys.</string>
+	<string name="gpsstatus_record_trackon">Lopeta reititys</string>
+	<string name="gpsstatus_record_voicerec">Äänitallenne</string>
+	<string name="gpsstatus_record_stillimage">Ota valokuva</string>
+	<string name="gpsstatus_record_textnote">Tekstitieto</string>
+
+	<!-- Menu -->
+	<string name="menu_settings">Asetukset</string>
+	<string name="menu_waypointlist">Etapit</string>
+	<string name="menu_about">Tietoja</string>
+	<string name="menu_displaytrack">Näytä reitti</string>
+	<string name="menu_starttracking">Aloita reititys</string>
+	<string name="menu_stoptracking">Lopeta &amp; talleta</string>
+	<string name="menu_newtrack">Uusi reitti</string>
+	<string name="menu_continue">Jatka reittiä</string>
+
+	<!-- Errors -->
+	<string name="error_externalstorage_not_writable">Ulkoiselle muistikortille ei voitu kirjoittaa.</string>
+	<string name="error_externalstorage_not_writable_hint">Tarkista ulkoinen muisti.</string>
+	<string name="error_voicerec_failed">Äänitallennus epäonnistui</string>
+	<string name="error_userlayout_parsing">Virhe XML-layoutissa. Valitse oletuslayout.</string>
+
+	<!-- GPX -->
+	<string name="gpx_track_name">Reititys: OSMTracker Android™-laitteille</string>
+	<string name="gpx_hdop_approximation_cmt">Varoitus: HDOP-arvot eivät ole GPS-laitteelta. Ne ovat arvioituja sijainnin tarkkuuksia (m), eikä niihin pidä luottaa.</string>
+
+	<!-- Notification -->
+	<string name="notification_still_running">OSMTracker reitittää edelleen</string>
+	<string name="notification_display_ui">Klikkaa näyttääksesi OSMTracker</string>
+
+	<!-- About screen -->
+	<string name="about">Tietoja</string>
+	<string name="about_text">Lisätiedot kuten dokumentit ja raportointi projektin kotisivuilla:</string>
+	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+
+	<!-- Notification -->
+	<string name="notification_ticker_text">OSMTracker on edelleen päällä</string>
+	<string name="notification_title">OSMTracker on edelleen päällä</string>
+	<string name="notification_text">Kosketa tähän näyttääksesi pääikkunan</string>
+
+	<!-- Display track -->
+	<string name="displaytrack">Näytä reitti</string>	
+	<string name="displaytrack_north">N</string>
+	
+	<!-- Various -->
+	<string name="various_unit_meters">m</string>
+	<string name="various_accuracy">Tarkkuus</string>
+
+	<!-- OSM map view -->
+	<string name="displaytrackmap">OpenStreetMap reittinäyttö</string> 
+
+</resources>

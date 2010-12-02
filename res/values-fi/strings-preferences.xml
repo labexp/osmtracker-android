@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Preferences -->
+	<string name="prefs">Asetukset</string>
+
+	<string name="prefs_gps_os_settings">GPS-asetukset</string>
+	<string name="prefs_gps_os_settings_summary">Näytä GPS-asetukset ikkuna</string>
+
+	<string name="prefs_check_gps_startup">Tarkista GPS käynnistettäessä</string>
+	<string name="prefs_check_gps_startup_summary">Tarkista jos GPS ei ole päällä käynnistettäessä ja kysy tarvittaessa.</string>
+
+	<string name="prefs_gps_ignore_clock">Älä käytä GPS-aikaa</string>
+	<string name="prefs_gps_ignore_clock_summary">Käytä Androidin kelloa aikamerkinnöille.</string>
+
+	<string name="prefs_ui">Käyttöliittymä</string>
+	
+	<string name="prefs_ui_buttons_layout">Painikelayout</string>
+	<string name="prefs_ui_buttons_layout_summary">Salli omat painikelayoutit (kts. dokumentit).</string>
+	<string name="prefs_ui_buttons_layout_defaut">Oletus</string>
+	
+
+	<string name="prefs_voicerec_duration">Äänitallenteen kesto</string>
+	<string name="prefs_voicerec_duration_seconds">sekuntia</string>
+	<string-array name="prefs_voicerec_durations">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+	</string-array>
+	<string name="prefs_theme">Pääikkunan teema</string>
+	<string name="prefs_theme_summary">Käynnistä sovellus uudelleen jotta asetukset tulevat voimaan</string>
+	<string-array name="prefs_theme_keys">
+		<item>OS oletus</item>
+		<item>OS oletus (Tumma)</item>
+		<item>OS oletus (Vaalea)</item>
+		<item>Korkea kontrasti</item>
+	</string-array>
+	<string-array name="prefs_theme_values">
+		<item>android:style/Theme</item>
+		<item>android:style/Theme.Black</item>
+		<item>android:style/Theme.Light</item>
+		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+	</string-array>
+
+	<string name="prefs_displaytrack_osm">OSM tausta</string>
+	<string name="prefs_displaytrack_osm_summary">Näytä OpenStreetMap reitin alla. Tarvitset datayhteyden.</string>
+
+	<string name="prefs_output">GPX-tiedoston tallennus</string>
+	<string name="prefs_storage_dir">Muistikortin (SD) kansio</string>
+	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_output_accuracy">Tarkkuus GPX-tiedostossa</string>
+	<string name="prefs_output_accuracy_summary">Salli tarkkuusinfo GPX-tiedostossa waypoint-nimellä tai erillisellä kommentilla</string>
+	<string-array name="prefs_output_accuracy_keys">
+		<item>Ei mitään</item>
+		<item>Waypoint-nimi</item>
+		<item>Waypoint-kommentti</item>
+	</string-array>
+	<string-array name="prefs_output_accuracy_values">
+		<item>none</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
+	<string name="prefs_output_gpx_hdop_approximation">Käytä HDOP-arviota</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Täytä HDOP GPX:ään tarkkuuden arviolla</string>
+</resources>
