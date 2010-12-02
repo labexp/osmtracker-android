@@ -1,143 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent">
-<LinearLayout
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  android:padding="10dp"
-  >
-<LinearLayout
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content" android:layout_marginBottom="10dp">
-	<TextView
-	    android:layout_width="wrap_content" 
-	    android:layout_height="wrap_content" 
-	    android:text="@string/trackdetail_name"
-	    android:textSize="18dp" android:layout_marginBottom="3dp"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
 	<EditText android:id="@+id/trackdetail_item_name"
-	  android:layout_width="fill_parent" android:layout_height="wrap_content"
-	  android:inputType="text"
-	  android:textSize="16dp"
-	  android:singleLine="true"
-	  android:layout_weight="1" />
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:inputType="text" android:singleLine="true" android:layout_margin="5dp"/>
+	<TableLayout android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" android:layout_margin="5dp"
+		android:stretchColumns="1">
+		<TableRow android:layout_marginBottom="8dp">
+			<!-- Node & Waypoint counts: same texts as tracklist_item.xml -->
+			<LinearLayout android:layout_span="2"
+				android:orientation="horizontal" android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				<TextView android:layout_height="wrap_content"
+					android:layout_width="wrap_content" android:textStyle="bold"
+					android:layout_marginRight="3dp" style="@android:style/TextAppearance.Small"
+					android:text="@string/trackmgr_waypoints_count" />
+				<TextView android:id="@+id/trackdetail_item_wps"
+					android:layout_height="wrap_content" android:layout_width="wrap_content"
+					android:text="{x}" style="@android:style/TextAppearance.Small" />
+				<TextView android:layout_height="wrap_content"
+					android:layout_width="wrap_content" android:layout_marginLeft="8dp"
+					android:textStyle="bold" android:layout_marginRight="3dp"
+					style="@android:style/TextAppearance.Small" android:text="@string/trackmgr_trackpoints_count" />
+				<TextView android:id="@+id/trackdetail_item_tps"
+					android:layout_height="wrap_content" android:layout_width="wrap_content"
+					android:text="{y}" style="@android:style/TextAppearance.Small" />
+			</LinearLayout>
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/trackdetail_startdate"
+				android:layout_marginRight="5dp" android:textSize="18dp" />
+			<TextView android:id="@+id/trackdetail_item_startdate"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layout_weight="1" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/trackdetail_enddate"
+				android:layout_marginRight="5dp" android:textSize="18dp" />
+			<TextView android:id="@+id/trackdetail_item_enddate"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layout_weight="1" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/trackdetail_startloc"
+				android:layout_marginRight="5dp" android:textSize="18dp" />
+			<TextView android:id="@+id/trackdetail_item_startloc"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layout_weight="1" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/trackdetail_endloc"
+				android:layout_marginRight="5dp" android:textSize="18dp" />
+			<TextView android:id="@+id/trackdetail_item_endloc"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layout_weight="1" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/trackdetail_exportdate"
+				android:layout_marginRight="5dp" android:textSize="18dp" />
+			<TextView android:id="@+id/trackdetail_item_exportdate"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layout_weight="1" />
+		</TableRow>
+	</TableLayout>
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:gravity="bottom">
+		
+		<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" android:padding="3dp"
+		android:background="@android:color/darker_gray" android:gravity="bottom">
+		
+		<Button android:id="@+id/trackdetail_btn_ok"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:text="@android:R/string/ok" android:layout_weight="1"/>
+
+		<Button android:id="@+id/trackdetail_btn_cancel"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:text="@android:R/string/cancel" android:layout_weight="1"/>
+
+	</LinearLayout>
+	</LinearLayout>
 </LinearLayout>
-<TableLayout
-	android:layout_height="wrap_content" android:layout_width="fill_parent"
-	android:stretchColumns="1"
-	>
-    <TableRow android:layout_marginBottom="8dp">
-    	<!-- Node & Waypoint counts: same texts as tracklist_item.xml -->
-	    <LinearLayout
-	    	android:layout_span="2"
-			android:orientation="horizontal"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-	    	>
-			<TextView
-				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:textStyle="bold" android:layout_marginRight="3dp" style="@android:style/TextAppearance.Small"
-				android:text="@string/trackmgr_waypoints_count" />	
-			<TextView android:id="@+id/trackdetail_item_wps"
-				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:text="{x}"
-				style="@android:style/TextAppearance.Small" />
-			<TextView
-				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:layout_marginLeft="8dp"
-				android:textStyle="bold" android:layout_marginRight="3dp" style="@android:style/TextAppearance.Small"
-				android:text="@string/trackmgr_trackpoints_count" />
-			<TextView android:id="@+id/trackdetail_item_tps" 
-				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:text="{y}"
-				style="@android:style/TextAppearance.Small" />
-	    </LinearLayout>
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content" 
-            android:layout_height="wrap_content" 
-            android:text="@string/trackdetail_startdate"
-			android:layout_marginRight="5dp"
-            android:textSize="18dp"
-            />
-        <TextView android:id="@+id/trackdetail_item_startdate"
-          android:layout_width="fill_parent" android:layout_height="wrap_content"
-          android:layout_weight="1" />
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content" 
-            android:layout_height="wrap_content" 
-            android:text="@string/trackdetail_enddate"
-			android:layout_marginRight="5dp"
-            android:textSize="18dp"
-            />
-        <TextView android:id="@+id/trackdetail_item_enddate"
-          android:layout_width="fill_parent" android:layout_height="wrap_content"
-          android:layout_weight="1" />
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content" 
-            android:layout_height="wrap_content" 
-            android:text="@string/trackdetail_startloc"
-			android:layout_marginRight="5dp"
-            android:textSize="18dp"
-            />
-        <TextView android:id="@+id/trackdetail_item_startloc"
-          android:layout_width="fill_parent" android:layout_height="wrap_content"
-          android:layout_weight="1" />
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content" 
-            android:layout_height="wrap_content" 
-            android:text="@string/trackdetail_endloc"
-			android:layout_marginRight="5dp"
-            android:textSize="18dp"
-            />
-        <TextView android:id="@+id/trackdetail_item_endloc"
-          android:layout_width="fill_parent" android:layout_height="wrap_content"
-          android:layout_weight="1" />
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content" 
-            android:layout_height="wrap_content" 
-            android:text="@string/trackdetail_exportdate"
-			android:layout_marginRight="5dp"
-            android:textSize="18dp"
-            />
-        <TextView android:id="@+id/trackdetail_item_exportdate"
-          android:layout_width="fill_parent" android:layout_height="wrap_content"
-          android:layout_weight="1" />
-    </TableRow>
-</TableLayout>
-<LinearLayout
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content"
-  >
-	<Button android:id="@+id/trackdetail_btn_ok"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@android:R/string/ok"
-	 		android:layout_marginTop="8dp"
-	        />
-	<Button android:id="@+id/trackdetail_btn_display"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_weight=".5"
-	        android:text="@string/trackdetail_export_display"
-	 		android:layout_marginTop="8dp"
-	        />
-	<Button android:layout_width="fill_parent" 
-			android:layout_height="wrap_content" 
-	 		android:layout_marginTop="8dp"
-			android:id="@+id/trackdetail_btn_export"
-			android:text="@string/trackdetail_btn_export"
-			/>
-</LinearLayout>
-</LinearLayout>
-</ScrollView>

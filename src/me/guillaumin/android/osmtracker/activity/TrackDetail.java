@@ -18,10 +18,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -88,48 +89,7 @@ public class TrackDetail extends Activity {
 				finish();				
 			}
 		});
-		
-		// Change "ok" for "Save" if the user has changed the name
-		etName.setOnKeyListener(new OnKeyListener() {
-			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				if (keyCode != KeyEvent.KEYCODE_BACK) {
-					btnOk.setText(R.string.trackdetail_save);
-				}
-				return false;
-			}
-		});
-		
-		Button btnDisplay = (Button) findViewById(R.id.trackdetail_btn_display);
-		btnDisplay.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// Display the track.
-				// Start display track activity, with or without OSM background
-				Intent i;
-				boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(v.getContext()).getBoolean(
-						OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
-				if (useOpenStreetMapBackground) {
-					i = new Intent(v.getContext(), DisplayTrackMap.class);
-				} else {
-					i = new Intent(v.getContext(), DisplayTrack.class);
-				}
-				i.putExtra(Schema.COL_TRACK_ID, trackId);
-				startActivity(i);	
-			}
-		});
-
-		Button btnExport = (Button) findViewById(R.id.trackdetail_btn_export);
-		btnExport.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// Export the track.
-				ExportTrackTask ett = new ExportTrackTask(v.getContext(), trackId);
-				ett.execute();
-				vExportDate.setText(DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
-			}
-		});
-
+				
 		// further work is done in onResume.
 	}
 
@@ -188,5 +148,47 @@ public class TrackDetail extends Activity {
 		super.onPause();
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.trackdetail_menu, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+		case R.id.trackdetail_menu_save:
+			String enteredName = etName.getText().toString().trim();
+			if ((enteredName.length() > 0) && (! enteredName.equals(trackNameInDB))) {
+				DataHelper.setTrackName(trackId, enteredName, getContentResolver());
+			}
+
+			// All done
+			finish();	
+			break;
+		case R.id.trackdetail_menu_cancel:
+			finish();
+			break;
+		case R.id.trackdetail_menu_display:
+			Intent i;
+			boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+					OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
+			if (useOpenStreetMapBackground) {
+				i = new Intent(this, DisplayTrackMap.class);
+			} else {
+				i = new Intent(this, DisplayTrack.class);
+			}
+			i.putExtra(Schema.COL_TRACK_ID, trackId);
+			startActivity(i);	
+			break;
+		case R.id.trackdetail_menu_export:
+			new ExportTrackTask(this, trackId).execute();
+			vExportDate.setText(DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
 
 }  // public class TrackDetail

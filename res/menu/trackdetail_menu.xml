@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/trackdetail_menu_save"
+		android:titleCondensed="@string/menu_save" android:icon="@android:drawable/ic_menu_save"
+		android:title="@string/menu_save"></item>
+	<item android:titleCondensed="@string/menu_cancel"
+		android:icon="@android:drawable/ic_menu_close_clear_cancel"
+		android:id="@+id/trackdetail_menu_cancel" android:title="@string/menu_cancel"></item>
+	<item android:id="@+id/trackdetail_menu_display"
+		android:icon="@android:drawable/ic_menu_compass" android:titleCondensed="@string/menu_displaytrack" android:title="@string/menu_displaytrack"></item>
+<item android:id="@+id/trackdetail_menu_export" android:titleCondensed="@string/menu_export" android:title="@string/menu_export" android:icon="@android:drawable/ic_menu_upload"></item>
+</menu>
