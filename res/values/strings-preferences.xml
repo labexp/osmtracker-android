@@ -4,6 +4,8 @@
 	<!-- Preferences -->
 	<string name="prefs">Settings</string>
 
+	<string name="prefs_gps">GPS</string>
+
 	<string name="prefs_gps_os_settings">GPS settings</string>
 	<string name="prefs_gps_os_settings_summary">Display system GPS settings screen</string>
 
@@ -12,6 +14,10 @@
 
 	<string name="prefs_gps_ignore_clock">Ignore GPS clock</string>
 	<string name="prefs_gps_ignore_clock_summary">Ignore GPS clock and use Android clock for timestamps.</string>
+
+	<string name="prefs_gps_logging_interval">GPS logging interval</string>
+	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (Affects battery life).</string>
+	<string name="prefs_gps_logging_interval_seconds">milliseconds</string>
 
 	<string name="prefs_ui">User interface</string>
 	

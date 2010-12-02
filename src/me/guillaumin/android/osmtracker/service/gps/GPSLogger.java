@@ -23,6 +23,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 /**
@@ -192,7 +193,11 @@ public class GPSLogger extends Service implements LocationListener {
 
 		// Register ourselves for location updates
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this).getString(
+						OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)),
+				0,
+				this);
 		
 		super.onCreate();
 	}

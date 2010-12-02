@@ -8,12 +8,13 @@ import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import android.content.Context;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
+import android.location.GpsStatus.Listener;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
-import android.location.GpsStatus.Listener;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -71,7 +72,11 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	
 	public void requestLocationUpdates(boolean request) {
 		if (request) {
-			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+					Long.parseLong(PreferenceManager.getDefaultSharedPreferences(activity).getString(
+							OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)),
+							0,
+							this);
 			lmgr.addGpsStatusListener(this);
 		} else {
 			lmgr.removeUpdates(this);

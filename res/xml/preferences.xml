@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<Preference android:summary="@string/prefs_gps_os_settings_summary" android:title="@string/prefs_gps_os_settings"
-		android:key="gps.ossettings"></Preference>
-	<CheckBoxPreference android:key="gps.checkstartup" android:title="@string/prefs_check_gps_startup"
-		android:summary="@string/prefs_check_gps_startup_summary" android:defaultValue="true"></CheckBoxPreference>
-	<CheckBoxPreference android:key="gps.ignoreclock" android:title="@string/prefs_gps_ignore_clock"
-		android:summary="@string/prefs_gps_ignore_clock_summary" android:defaultValue="false"></CheckBoxPreference>
+	<ListPreference android:title="@string/prefs_voicerec_duration"
+		android:key="voicerec.duration" android:entryValues="@array/prefs_voicerec_durations"
+		android:defaultValue="2" android:entries="@array/prefs_voicerec_durations"></ListPreference>
+	<PreferenceCategory android:title="@string/prefs_gps">
+		<Preference android:summary="@string/prefs_gps_os_settings_summary"
+			android:title="@string/prefs_gps_os_settings" android:key="gps.ossettings"></Preference>
+		<CheckBoxPreference android:key="gps.checkstartup"
+			android:title="@string/prefs_check_gps_startup" android:summary="@string/prefs_check_gps_startup_summary"
+			android:defaultValue="true"></CheckBoxPreference>
+		<CheckBoxPreference android:key="gps.ignoreclock"
+			android:title="@string/prefs_gps_ignore_clock" android:summary="@string/prefs_gps_ignore_clock_summary"
+			android:defaultValue="false"></CheckBoxPreference>
+		<EditTextPreference android:key="gps.logging.interval"
+			android:title="@string/prefs_gps_logging_interval" android:summary="@string/prefs_gps_logging_interval_summary"
+			android:defaultValue="0"></EditTextPreference>
+	</PreferenceCategory>
+	
+	
 
-	<ListPreference android:title="@string/prefs_voicerec_duration" android:key="voicerec.duration"
-		android:entryValues="@array/prefs_voicerec_durations" android:defaultValue="2" android:entries="@array/prefs_voicerec_durations"></ListPreference>
+	
 	<PreferenceCategory android:title="@string/prefs_output">
 		<EditTextPreference android:summary="@string/prefs_storage_dir_summary" android:key="logging.storage.dir"
 			android:defaultValue="/osmtracker" android:title="@string/prefs_storage_dir" />
@@ -31,6 +42,7 @@
 		<CheckBoxPreference android:key="ui.displaytrack.osm" android:title="@string/prefs_displaytrack_osm"
 			android:summary="@string/prefs_displaytrack_osm_summary" android:defaultValue="false"></CheckBoxPreference>
 	</PreferenceCategory>
+
 
 
 </PreferenceScreen>
