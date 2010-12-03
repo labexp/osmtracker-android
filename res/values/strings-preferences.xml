@@ -18,6 +18,7 @@
 	<string name="prefs_gps_logging_interval">GPS logging interval</string>
 	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (Affects battery life).</string>
 	<string name="prefs_gps_logging_interval_seconds">milliseconds</string>
+	<string name="prefs_gps_logging_interval_hint">Please enter the GPS logging interval in milliseconds. Use a low value for detailed tracks (0 for shortest possible), or a higher value to save battery.</string>
 
 	<string name="prefs_ui">User interface</string>
 	

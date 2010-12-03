@@ -16,7 +16,6 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.text.method.DigitsKeyListener;
 
 /**
  * Manages preferences screen.
@@ -78,9 +77,7 @@ public class Preferences extends PreferenceActivity {
 			}
 		});
 
-		// Restrict GPS logging interval to number input only
 		pref = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL);
-		((EditTextPreference)pref).getEditText().setKeyListener(DigitsKeyListener.getInstance(false, false));
 		pref.setSummary(
 				PreferenceManager.getDefaultSharedPreferences(this).getString(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)
 				+ " " + getResources().getString(R.string.prefs_gps_logging_interval_seconds)
