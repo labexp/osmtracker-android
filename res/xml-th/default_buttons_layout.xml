@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layouts>
+	<layout name="root">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		
+		<row>
+			<button type="page" label="อื่น ๆ" icon="button_misc" targetlayout="misc" />
+			<button type="page" label="ข้อจำกัด" icon="button_restriction" targetlayout="restriction" />
+			<button type="page" label="รถ" icon="button_car" targetlayout="car" />
+		</row>
+		<row>
+			<button type="page" label="ท่องเที่ยว" icon="button_tourism" targetlayout="tourism" />
+			<button type="page" label="แหล่งบริการ" icon="button_amenity" targetlayout="amenity" />
+			<button type="page" label="แหล่งบริการ (+)" icon="button_amenity" targetlayout="amenity_more" />
+		</row>
+		<row>
+			<button type="page" label="ถนน" icon="button_way" targetlayout="way" />
+			<button type="page" label="ทาง" icon="button_track" targetlayout="track" />
+			<button type="page" label="พื้นที่ใช้สอย" icon="button_landuse" targetlayout="landuse" />
+		</row>
+	</layout>
+
+	<layout name="misc">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="ป้ายรถประจำทาง" icon="button_misc_bus_stop" />
+			<button type="tag" label="รถไฟ" icon="button_misc_railway" />
+			<button type="tag" label="โทรศัพท์" icon="button_misc_telephone" />
+		</row>
+		<row>
+			<button type="tag" label="ตู้ไปรษณีย์" icon="button_misc_post_box" />
+			<button type="tag" label="ATM" icon="button_misc_atm" />
+			<button type="tag" label="เสากั้น" icon="button_misc_bollard" />
+		</row>
+		<row>
+			<button type="tag" label="ห้องน้ำ" icon="button_misc_toilets" />
+			<button type="tag" label="ศาลาพัก" icon="button_misc_shelter" />
+			<button type="tag" label="กล้องวงจรปิด" icon="button_misc_surveillance" />
+		</row>
+	</layout>
+
+	<layout name="restriction">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="สูงสุด 30" icon="button_restriction" />
+			<button type="tag" label="สูงสุด 50" icon="button_restriction" />
+			<button type="tag" label="สูงสุด 80" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="สูงสุด 100" icon="button_restriction" />
+			<button type="tag" label="สูงสุด 110" icon="button_restriction" />
+			<button type="tag" label="สูงสุด 120" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="ทางตัน" icon="button_restriction_no_exit" />
+			<button type="tag" label="ไฟจราจร" icon="button_restriction_traffic_light" />
+			<button type="tag" label="เดินรถทางเดียว" icon="button_restriction_one_way" />
+		</row>
+	</layout>
+
+	<layout name="car">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="สถานีเชื้อเพลิง" icon="button_car_fuel_station" />
+			<button type="tag" label="ลานจอดรถ" icon="button_car_parking" />
+			<button type="tag" label="โทรศัพท์ฉุกเฉิน" icon="button_car_emergency_phone" />
+		</row>
+		<row>
+			<button type="tag" label="วงเวียนกลับรถ" icon="button_car_turning_circle" />
+			<button type="tag" label="กล้องจับความเร็ว" icon="button_car_speed_camera" />
+		</row>
+	</layout>
+
+	<layout name="tourism">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="จุดชมวิว" icon="button_tourism_view_point" />
+			<button type="tag" label="ข้อมูลท่องเที่ยว" icon="button_tourism_information" />
+			<button type="tag" label="จุดปิกนิก" icon="button_tourism_picnic" />
+		</row>
+		<row>
+			<button type="tag" label="จุดน่าสนใจ" icon="button_tourism_attraction" />
+			<button type="tag" label="สวนสนุก" icon="button_tourism_theme_park" />
+			<button type="tag" label="ปราสาท" icon="button_tourism_castle" />
+		</row>
+		<row>
+			<button type="tag" label="อนุสาวรีย์" icon="button_tourism_monument" />
+			<button type="tag" label="พิพิธภัณฑ์" icon="button_tourism_museum" />
+			<button type="tag" label="โรงภาพยนตร์" icon="button_tourism_cinema" />
+		</row>
+	</layout>
+
+	<layout name="amenity">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="ที่นั่ง" icon="button_amenity_bench" />
+			<button type="tag" label="น้ำ" icon="button_amenity_water" />
+			<button type="tag" label="ร้านขายยา" icon="button_amenity_pharmacy" />
+		</row>
+		<row>
+			<button type="tag" label="ร้านค้า" icon="button_amenity_shop" />
+			<button type="tag" label="ท่าเรือเล็ก" icon="button_amenity_marina" />
+			<button type="tag" label="กีฬา" icon="button_amenity_sport" />
+		</row>
+		<row>
+			<button type="tag" label="แท็กซี่" icon="button_amenity_taxi" />
+			<button type="tag" label="แพทย์" icon="button_amenity_doctors" />
+			<button type="tag" label="รีไซเคิล" icon="button_amenity_recycling" />
+		</row>
+		<row>
+			<button type="tag" label="ที่สักการะ" icon="button_amenity_place_of_worship" />
+			<button type="tag" label="ที่ทำการไปรษณีย์" icon="button_amenity_post_office" />
+			<button type="tag" label="ห้องสมุด" icon="button_amenity_library" />
+		</row>
+	</layout>
+
+	<layout name="amenity_more">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="โรงเรียน" icon="button_amenitymore_school" />
+			<button type="tag" label="สถานีตำรวจ" icon="button_amenitymore_police" />
+			<button type="tag" label="สถานีดับเพลิง" icon="button_amenitymore_fire_station" />
+		</row>
+		<row>
+			<button type="tag" label="ธนาคาร" icon="button_amenitymore_bank" />
+			<button type="tag" label="สนามเล่น" icon="button_amenitymore_playground" />
+			<button type="tag" label="ผับ" icon="button_amenitymore_pub" />
+		</row>
+		<row>
+			<button type="tag" label="โรงแรม" icon="button_amenitymore_hotel" />
+			<button type="tag" label="โมเทล" icon="button_amenitymore_motel" />
+			<button type="tag" label="โฮสเทล" icon="button_amenitymore_hostel" />
+		</row>
+		<row>
+			<button type="tag" label="ร้านอาหาร" icon="button_amenitymore_restaurant" />
+			<button type="tag" label="จานด่วน" icon="button_amenitymore_fastfood" />
+			<button type="tag" label="จุดตั้งแคมป์" icon="button_amenitymore_camp_site" />
+		</row>
+	</layout>
+
+	<layout name="way">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="สะพาน" icon="button_way_bridge" />
+			<button type="tag" label="ทางม้าลาย" icon="button_way_zebra_crossing" />
+			<button type="tag" label="ทางหลวงพิเศษ" icon="button_way_motorway" />
+		</row>
+		<row>
+			<button type="tag" label="สายใหญ่" icon="button_way_trunk" />
+			<button type="tag" label="ทางหลวงแผ่นดิน 1 หลัก" icon="button_way_primary" />
+			<button type="tag" label="ทางหลวงแผ่นดิน 2 หลัก" icon="button_way_secondary" />
+		</row>
+		<row>
+			<button type="tag" label="ทางหลวงแผ่นดิน 3 หลัก" icon="button_way_tertiary" />
+			<button type="tag" label="ถนนที่พักอาศัย" icon="button_way_residential" />
+			<button type="tag" label="ทางบริการ" icon="button_way_service" />
+		</row>
+	</layout>
+
+	<layout name="track">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="ทาง" icon="button_track_track" />
+			<button type="tag" label="ทางจักรยาน" icon="button_track_cycleway" />
+			<button type="tag" label="ทางเดินเท้า" icon="button_track_footway" />
+		</row>
+		<row>
+			<button type="tag" label="ทางม้า" icon="button_track_bridleway" />
+			<button type="tag" label="ขั้นบันได" icon="button_track_steps" />
+			<button type="tag" label="ถนนคนอาศัย" icon="button_track_living_street" />
+		</row>
+		<row>
+			<button type="tag" label="ถนนคนเดิน" icon="button_track_pedestrian" />
+			<button type="tag" label="ระดับ 1" icon="button_track_grade1" />
+			<button type="tag" label="ระดับ 2" icon="button_track_grade2" />
+		</row>
+		<row>
+			<button type="tag" label="ระดับ 3" icon="button_track_grade3" />
+			<button type="tag" label="ระดับ 4" icon="button_track_grade4" />
+			<button type="tag" label="ระดับ 5" icon="button_track_grade5" />
+		</row>
+	</layout>
+
+	<layout name="landuse">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="เกษตร" icon="button_landuse_farm" />
+			<button type="tag" label="ที่ถมขยะ" icon="button_landuse_landfill" />
+			<button type="tag" label="แอ่งน้ำ" icon="button_landuse_basin" />
+		</row>
+		<row>
+			<button type="tag" label="แหล่งเก็บน้ำ" icon="button_landuse_reservoir" />
+			<button type="tag" label="ป่า" icon="button_landuse_forest" />
+			<button type="tag" label="ที่จัดสรร" icon="button_landuse_allotments" />
+		</row>
+		<row>
+			<button type="tag" label="สุสาน" icon="button_landuse_cemetery" />
+			<button type="tag" label="ลานสันทนาการ" icon="button_landuse_recreation_ground" />
+		</row>
+	</layout>
+</layouts>
