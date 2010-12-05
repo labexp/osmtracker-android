@@ -42,12 +42,11 @@
 
 	<!-- Track Detail -->
 	<string name="trackdetail">Track Details</string>
-	<string name="trackdetail_name">Name: </string>
-	<string name="trackdetail_startdate">Start time: </string>
-	<string name="trackdetail_enddate">End time: </string>
-	<string name="trackdetail_startloc">Starts at: </string>
-	<string name="trackdetail_endloc">Ends at: </string>
-	<string name="trackdetail_exportdate">Exported at: </string>
+	<string name="trackdetail_startdate">Start time:</string>
+	<string name="trackdetail_enddate">End time:</string>
+	<string name="trackdetail_startloc">Starts at:</string>
+	<string name="trackdetail_endloc">Ends at:</string>
+	<string name="trackdetail_exportdate">Exported:</string>
 	<string name="trackdetail_btn_export">Export as GPX</string>
 	<string name="trackdetail_export_notyet">(Not exported yet)</string>
 	<string name="trackdetail_export_display">Display</string>

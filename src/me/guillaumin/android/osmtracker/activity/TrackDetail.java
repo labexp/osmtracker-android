@@ -2,6 +2,10 @@ package me.guillaumin.android.osmtracker.activity;
 
 import java.sql.Date;
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
@@ -25,7 +29,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 
@@ -41,18 +46,30 @@ public class TrackDetail extends Activity {
 	@SuppressWarnings("unused")
 	private static final String TAG = TrackDetail.class.getSimpleName();
 
+	/**
+	 * Key to bind the "key" of each item using SimpleListAdapter
+	 */
+	private static final String ITEM_KEY = "key";
+	
+	/**
+	 * Key to bind the "value" of each item using SimpleListAdapter
+	 */
+	private static final String ITEM_VALUE = "value";
+	
 	/** Keeps track of our track id. */
 	private long trackId;
 
 	/** Name of the track, or starting date if none */
 	private String trackNameInDB = null;
 
+	/** Edit text for the track name */
 	private EditText etName;
-	private TextView vWps, vTps;
-	private TextView vStartDate, vEndDate;
-	private TextView vStartLoc, vEndLoc;
-	private TextView vExportDate;
-
+	
+	/**
+	 * List with track info
+	 */
+	private ListView lv;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,19 +81,13 @@ public class TrackDetail extends Activity {
         setTitle(getTitle() + ": #" + trackId);
 
 		etName = (EditText) findViewById(R.id.trackdetail_item_name);
-		vWps = (TextView) findViewById(R.id.trackdetail_item_wps);
-		vTps = (TextView) findViewById(R.id.trackdetail_item_tps);
-		vStartDate = (TextView) findViewById(R.id.trackdetail_item_startdate);
-		vEndDate = (TextView) findViewById(R.id.trackdetail_item_enddate);
-		vStartLoc = (TextView) findViewById(R.id.trackdetail_item_startloc);
-		vEndLoc = (TextView) findViewById(R.id.trackdetail_item_endloc);
-		vExportDate = (TextView) findViewById(R.id.trackdetail_item_exportdate);
+		lv = (ListView) findViewById(R.id.trackdetail_list);
 		
 		final Button btnOk = (Button) findViewById(R.id.trackdetail_btn_ok);
 		btnOk.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				/** Save changes to db (if any), then finish. */
+				// Save changes to db (if any), then finish.
 				
 				// Save name field, if changed, to db.
 				// String class required for equals to work, and for trim().
@@ -102,8 +113,8 @@ public class TrackDetail extends Activity {
 		Cursor cursor = cr.query(
 			ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
 			null, null, null, null);
-		if (! cursor.moveToFirst())
-		{
+		
+		if (! cursor.moveToFirst())	{
 			// This shouldn't occur, it's here just in case.
 			// So, don't make each language translate/localize it.
 			Toast.makeText(this, "Track ID not found.", Toast.LENGTH_SHORT).show();
@@ -115,26 +126,67 @@ public class TrackDetail extends Activity {
 		// Bind WP count, TP count, start date, etc.
 		// Fill name-field only if empty (in case changed by user/restored by onRestoreInstanceState) 
 		Track t = Track.build(trackId, cursor, cr);
-		vTps.setText(Integer.toString(t.getTpCount()));
-		vWps.setText(Integer.toString(t.getWpCount()));
+	
 		if (etName.length() == 0) {
 			trackNameInDB = t.getName();
 			etName.setText(trackNameInDB);
 		}
-		vStartDate.setText(t.getStartDateAsString());
-		vEndDate.setText(t.getEndDateAsString());
-		vStartLoc.setText(MercatorProjection.formatDegreesAsDMS(t.getStartLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getStartLong(), false));
-		vEndLoc.setText(MercatorProjection.formatDegreesAsDMS(t.getEndLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getEndLong(), false));
-		final int exportCol = cursor.getColumnIndex(Schema.COL_EXPORT_DATE);
-		if (cursor.isNull(exportCol)) {
-			vExportDate.setText(R.string.trackdetail_export_notyet);
-		} else {
-			vExportDate.setText
-			    (DateFormat.getDateTimeInstance().format
-			        (new Date(cursor.getLong(exportCol))));
-		}
+	
+		String from[] = new String[]{ITEM_KEY, ITEM_VALUE};
+		int[] to = new int[] {R.id.trackdetail_item_key, R.id.trackdetail_item_value};
+		
+		// Waypoint count
+		List<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_waypoints_count));
+		map.put(ITEM_VALUE, Integer.toString(t.getWpCount()));
+		data.add(map);
+		
+		// Trackpoint count
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_trackpoints_count));
+		map.put(ITEM_VALUE, Integer.toString(t.getTpCount()));
+		data.add(map);
 
+		// Start date
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_startdate));
+		map.put(ITEM_VALUE, t.getStartDateAsString());
+		data.add(map);
+
+		// End date
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_enddate));
+		map.put(ITEM_VALUE, t.getEndDateAsString());
+		data.add(map);
+
+		// Start point
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_startloc));
+		map.put(ITEM_VALUE, MercatorProjection.formatDegreesAsDMS(t.getStartLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getStartLong(), false));
+		data.add(map);
+
+		// End point
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_endloc));
+		map.put(ITEM_VALUE, MercatorProjection.formatDegreesAsDMS(t.getEndLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getEndLong(), false));
+		data.add(map);
+
+		// Exported date. Should be the last item in order to be refreshed
+		// if the user exports the track
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_exportdate));
+		if (cursor.isNull(cursor.getColumnIndex(Schema.COL_EXPORT_DATE))) {
+			map.put(ITEM_VALUE, getResources().getString(R.string.trackdetail_export_notyet));
+		} else {
+			map.put(ITEM_VALUE, (DateFormat.getDateTimeInstance().format(new Date(cursor.getLong(cursor.getColumnIndex(Schema.COL_EXPORT_DATE))))));
+		}
+		data.add(map);
+		
 		cursor.close();
+		
+		SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.trackdetail_item, from, to);
+		lv.setAdapter(adapter);
 		
 		// Tell service to stop notifying user of background activity
 		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
@@ -184,7 +236,12 @@ public class TrackDetail extends Activity {
 			break;
 		case R.id.trackdetail_menu_export:
 			new ExportTrackTask(this, trackId).execute();
-			vExportDate.setText(DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
+			// Pick last list item (Exported date) and update it
+			SimpleAdapter adapter = ((SimpleAdapter) lv.getAdapter());
+			@SuppressWarnings("unchecked")
+			Map<String, String> data = (Map<String, String>) adapter.getItem(adapter.getCount()-1);
+			data.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
+			adapter.notifyDataSetChanged();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
