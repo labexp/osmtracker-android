@@ -316,20 +316,24 @@ public class TrackManager extends ListActivity {
 				osmTrackerDir.mkdir();
 			}
 
-			// Create track directory
 			Date startDate = new Date();
-			File trackDir = new File(osmTrackerDir + File.separator + DataHelper.FILENAME_FORMATTER.format(startDate));
-			trackDir.mkdir();
 			
 			// Create entry in TRACK table
 			ContentValues values = new ContentValues();
 			values.put(Schema.COL_NAME, "");
 			values.put(Schema.COL_START_DATE, startDate.getTime());
-			values.put(Schema.COL_DIR, trackDir.getAbsolutePath());
+			
 			values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_ACTIVE);
 			Uri trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI_TRACK, values);
 			long trackId = ContentUris.parseId(trackUri);
 
+			// Create track directory
+			File trackDir = new File(osmTrackerDir + File.separator + "#" + trackId + "_" + DataHelper.FILENAME_FORMATTER.format(startDate));
+			trackDir.mkdir();
+			values.clear();
+			values.put(Schema.COL_DIR, trackDir.getAbsolutePath());
+			getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values, Schema.COL_ID + " = ?", new String[] {Long.toString(trackId)});
+			
 			// Only one track active at a time, as a safety measure
 			values.clear();
 			values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_INACTIVE);
