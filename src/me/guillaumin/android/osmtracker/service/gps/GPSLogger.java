@@ -195,7 +195,7 @@ public class GPSLogger extends Service implements LocationListener {
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this).getString(
-						OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)),
+						OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL))*OSMTracker.MS_IN_ONE_SECOND,
 				0,
 				this);
 		

@@ -118,4 +118,9 @@ public class OSMTracker {
 	 */
 	public final static int HDOP_APPROXIMATION_FACTOR = 4;
 
+	/**
+	 * How many milliseconds in one second ?
+	 */
+	public final static int MS_IN_ONE_SECOND = 1000;
+	
 }

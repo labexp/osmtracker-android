@@ -14,15 +14,12 @@
 			android:defaultValue="false"></CheckBoxPreference>
 		<EditTextPreference android:key="gps.logging.interval"
 			android:title="@string/prefs_gps_logging_interval" android:summary="@string/prefs_gps_logging_interval_summary"
-			android:defaultValue="0" android:inputType="number" android:dialogMessage="@string/prefs_gps_logging_interval_hint"></EditTextPreference>
+			android:defaultValue="0" android:inputType="number" android:dialogMessage="@string/prefs_gps_logging_interval_hint" />
 	</PreferenceCategory>
-	
-	
-
 	
 	<PreferenceCategory android:title="@string/prefs_output">
 		<EditTextPreference android:summary="@string/prefs_storage_dir_summary" android:key="logging.storage.dir"
-			android:defaultValue="/osmtracker" android:title="@string/prefs_storage_dir" />
+			android:defaultValue="/osmtracker" android:title="@string/prefs_storage_dir" android:dialogMessage="@string/prefs_storage_dir_hint"/>
 		<ListPreference android:key="gpx.filename" android:defaultValue="name_date" android:summary="@string/prefs_output_filename_summary"
 			android:title="@string/prefs_output_filename" android:entryValues="@array/prefs_output_filename_values"
 			android:entries="@array/prefs_output_filename_keys" />

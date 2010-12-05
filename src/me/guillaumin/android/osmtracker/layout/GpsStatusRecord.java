@@ -74,7 +74,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		if (request) {
 			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 					Long.parseLong(PreferenceManager.getDefaultSharedPreferences(activity).getString(
-							OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)),
+							OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL))*OSMTracker.MS_IN_ONE_SECOND,
 							0,
 							this);
 			lmgr.addGpsStatusListener(this);
