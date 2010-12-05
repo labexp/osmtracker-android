@@ -2,6 +2,7 @@ package me.guillaumin.android.osmtracker.db;
 
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.db.model.Track;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -74,12 +75,11 @@ public class TracklistAdapter extends CursorAdapter {
 		String strTrackId = Long.toString(trackId);
 		vId.setText("#" + strTrackId);
 
-		// Bind WP count, TP count, title or start date
-		final String[] trackInfo = DataHelper.getTrackInfo
-		    (trackId, false, cursor, context.getContentResolver());
-		vTps.setText(trackInfo[0]);
-		vWps.setText(trackInfo[1]);
-		vNameOrStartDate.setText(trackInfo[2]);
+		// Bind WP count, TP count, name
+		Track t = Track.build(trackId, cursor, context.getContentResolver());
+		vTps.setText(Integer.toString(t.getTpCount()));
+		vWps.setText(Integer.toString(t.getWpCount()));
+		vNameOrStartDate.setText(t.getName());
 
 		return v;
 	}

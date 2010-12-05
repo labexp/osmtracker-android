@@ -128,4 +128,45 @@ public class MercatorProjection {
 		return scale;
 	}
 	
+	/**
+	 * Given a float degree value (latitude or longitude), format it to Degrees/Minutes/Seconds.
+	 * @param degrees  The value, such as 43.0438
+	 * @param isLatitude  Is this latitude, not longitude?
+	 * @return  The Degrees,Minutes,Seconds, such as: 43° 2' 38" N
+	 */
+	public static String formatDegreesAsDMS(Float degrees, final boolean isLatitude) {		
+		if (degrees == null) {
+			return "";
+		}
+		
+		final boolean neg;
+		if (degrees > 0) {
+			neg = false;
+		} else {
+			neg = true;
+			degrees = -degrees;
+		}
+		StringBuffer dms = new StringBuffer();
+
+		int n = degrees.intValue();
+		dms.append(n);
+		dms.append("\u00B0 ");
+
+		degrees = (degrees - n) * 60.0f;
+		n = degrees.intValue();
+		dms.append(n);
+		dms.append("' ");
+
+		degrees = (degrees - n) * 60.0f;
+		n = degrees.intValue();
+		dms.append(n);
+		dms.append("\" ");
+
+		if (isLatitude)
+			dms.append(neg ? 'S' : 'N');
+		else
+			dms.append(neg ? 'W' : 'E');
+
+		return dms.toString();
+	}
 }

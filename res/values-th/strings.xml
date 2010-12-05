@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Generic strings -->
+	<string name="app_name">OSMTracker for Android™</string>
+	<string name="app_short_name">OSMTracker</string>
+	<string name="app_description">แรงบันดาลใจจาก OSMTracker บน Windows Mobile ซึ่งให้คุณตามรอยการเดินทางของคุณ บันทึกจุดสำคัญในเส้นทาง (เสียง ภาพ) ส่งออกมันเป็นรูปแบบ GPX สำหรับใช้ในภายหลังกับเครื่องมือ Open Street Map อย่าง JOSM</string>
+
+	<!-- TrackLogger -->
+	<string name="tracklogger">ปูมเส้นทาง</string>
+	<string name="tracklogger_waiting_gps">รอตรึงตำแหน่ง GPS เพื่อให้ปุ่มใช้งานได้...</string>
+	<string name="tracklogger_voicerec_title">บันทึกเสียง</string>
+	<string name="tracklogger_voicerec_text">บันทึกคลิปเสียง {0}วิ</string>
+	<string name="tracklogger_btnBack">กลับ</string>
+	<string name="tracklogger_tracked">ตาม: </string>
+	<string name="tracklogger_gps_disabled">GPS ปิดอยู่</string>
+	<string name="tracklogger_gps_disabled_hint">GPS ถูกปิดอยู่ ต้องการเปิดไหม?</string>
+
+	<!-- Waypoint List -->
+	<string name="wplist">รายการจุดแวะ</string>
+	<string name="wplist_latitude">Lat: </string>
+	<string name="wplist_longitude">Long: </string>
+	<string name="wplist_elevation">Ele: </string>
+	<string name="wplist_accuracy">Accur: </string>
+	
+	<!-- Track Manager -->
+	<string name="trackmgr">ตัวจัดการเส้นทาง</string>
+	<string name="trackmgr_tracklist">รายการเส้นทาง:</string>
+	<string name="trackmgr_waypoints_count">จุดแวะ: </string>
+	<string name="trackmgr_trackpoints_count">จุดในเส้นทาง: </string>
+	<string name="trackmgr_empty">คุณไม่มีเส้นทางใดเลย</string>
+	<string name="trackmgr_newtrack_hint">บันทึกเส้นทาง กด <b>Menu</b> แล้วกด <b>เส้นทางใหม่</b></string>
+	<string name="trackmgr_newtrack_error">ไม่สามารถสร้างเส้นทางใหม่: {0}</string>
+	<string name="trackmgr_continuetrack_hint">คุณกำลังบันทึก <b>เส้นทาง #{0}</b>\nเลือกมันในรายการเพื่อทำต่อ</string>
+	<string name="trackmgr_contextmenu_delete">ลบ</string>
+	<string name="trackmgr_contextmenu_export">ส่งออกเป็น GPX</string>
+	<string name="trackmgr_contextmenu_display">แสดง</string>
+	<string name="trackmgr_contextmenu_title">เส้นทาง #{0}</string>
+	<string name="trackmgr_delete_confirm">เส้นทาง #{0} จะถูกลบ</string>
+	<string name="trackmgr_exporting">ส่งออกเส่้นทาง #{0}...</string>
+	<string name="trackmgr_export_error">ไม่สามารถส่งเส้นทาง: {0}</string>
+
+	<!-- GPS Status & record bar -->
+	<string name="gpsstatus_record_trackoff">เริ่มบันทึกเส้นทาง</string>
+	<string name="gpsstatus_record_trackon">หยุดบันทึกเส้นทาง</string>
+	<string name="gpsstatus_record_voicerec">บันทึกเสียง</string>
+	<string name="gpsstatus_record_stillimage">ถ่ายภาพ</string>
+	<string name="gpsstatus_record_textnote">จดข้อความ</string>
+
+	<!-- Menu -->
+	<string name="menu_settings">ตั้งค่า</string>
+	<string name="menu_waypointlist">จุดแวะ</string>
+	<string name="menu_about"></string>
+	<string name="menu_displaytrack">แสดงเส้นทาง</string>
+	<string name="menu_starttracking">เริ่มบันทึกเส้นทาง</string>
+	<string name="menu_stoptracking">หยุด และ บันทึก</string>
+	<string name="menu_newtrack">เส้นทางใหม่</string>
+	<string name="menu_continue">ต่อเส้นทางเดิม</string>
+
+	<!-- Errors -->
+	<string name="error_externalstorage_not_writable">ไม่สามารถเขียนลงอุปกรณ์บันทึกภายนอกได้</string>
+	<string name="error_externalstorage_not_writable_hint">โปรดตรวจสอบว่าอุปกรณ์บันทึกภายนอกถูกใส่และติดตั้งอย่างถูกต้อง</string>
+	<string name="error_voicerec_failed">บันทึกเสียงไม่สำเร็จ</string>
+	<string name="error_userlayout_parsing">ผิดพลาดขณะวิเคราะห์ผังแฟ้ม XML  โปรดกลับไปใช้ผังปริยาย</string>
+
+	<!-- GPX -->
+	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
+	<string name="gpx_hdop_approximation_cmt">Warning: HDOP values aren\'t the HDOP returned by GPS device. They\'re approximated for location accuracy in meters, and should not be taken into account.</string>
+
+	<!-- Notification -->
+	<string name="notification_still_running">OSMTracker ยังบันทึกเส้นทางอยู่</string>
+	<string name="notification_display_ui">คลิกเพื่อแสดง OSMTracker</string>
+
+	<!-- About screen -->
+	<string name="about">เกี่ยวกับ</string>
+	<string name="about_text">ข้อมูลเพิ่มเติม เอกสาร และรายงานปัญหา โปรดไปที่หน้าเว็บโครงการ:</string>
+	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+
+	<!-- Notification -->
+	<string name="notification_ticker_text">OSMTracker ยังทำงานอยู่</string>
+	<string name="notification_title">OSMTracker ยังทำงานอยู่</string>
+	<string name="notification_text">กดที่นี่เพื่อแสดงหน้าจอหลัก</string>
+
+	<!-- Display track -->
+	<string name="displaytrack">แสดงเส้นทาง</string>	
+	<string name="displaytrack_north">N</string>
+	
+	<!-- Various -->
+	<string name="various_unit_meters">ม</string>
+	<string name="various_accuracy">ความแม่นยำ</string>
+
+	<!-- OSM map view -->
+	<string name="displaytrackmap">OpenStreetMap แสดงเส้นทาง</string> 
+
+</resources>

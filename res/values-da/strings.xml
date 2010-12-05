@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- Generic strings -->
-	<string name="app_name">OSMTracker til Android™</string>
+	<string name="app_name">OSMTracker til Android</string>
 	<string name="app_short_name">OSMTracker</string>
-	<string name="app_description">Inspireret af OSMTracker p Windows Mobile. Programmet gør det muligt at spore og tracke dine rejser, markere waypoints undervejs (taleoptagelse tilgængelig) og eksportere dem i GPX format til senere brug med Open Street Map værktøjer som JOSM.</string>
+	<string name="app_description">Inspireret af OSMTracker til Windows Mobile.
+		Programmet gør det muligt at spore og tracke dine rejser, markere
+		waypoints undervejs (taleoptagelse tilgængelig) og eksportere dem i
+		GPX format til senere brug med OpenStreetMap værktøjer som JOSM.
+	</string>
 
 	<!-- TrackLogger -->
-	<string name="tracklogger_waiting_gps">Venter på GPS signal før knapper aktiveres...</string>
+	<string name="tracklogger">Track logger</string>
+	<string name="tracklogger_waiting_gps">Venter på GPS signal før knapper aktiveres...
+	</string>
 	<string name="tracklogger_voicerec_title">Tale optagelse</string>
 	<string name="tracklogger_voicerec_text">Optager et {0}sek lydklip.</string>
 	<string name="tracklogger_btnBack">Tilbage</string>
-	<string name="tracklogger_tracked">Gemt: </string>
-	<string name="tracklogger_gps_disabled">GPS er inaktiveret. Vil du aktivere den ?</string>
+	<string name="tracklogger_tracked">Tracked: </string>
+	<string name="tracklogger_gps_disabled">GPS er slukket</string>
+	<string name="tracklogger_gps_disabled_hint">GPS er slukket. Vil du tænde den?</string>
 
 	<!-- Waypoint List -->
 	<string name="wplist">Waypoint liste</string>
@@ -19,6 +26,32 @@
 	<string name="wplist_longitude">Lngdegr: </string>
 	<string name="wplist_elevation">Elevation: </string>
 	<string name="wplist_accuracy">Prcision: </string>
+
+	<!-- Track Manager -->
+	<string name="trackmgr">Track manager</string>
+	<string name="trackmgr_tracklist">Track liste:</string>
+	<string name="trackmgr_waypoints_count">Waypoints: </string>
+	<string name="trackmgr_trackpoints_count">Trackpoints: </string>
+	<string name="trackmgr_empty">Du har ingen tracks.</string>
+	<string name="trackmgr_newtrack_hint">
+		Tryk
+		<b>Menu</b>
+		for at optage, og så
+		<b>Nyt track</b>
+	</string>
+	<string name="trackmgr_newtrack_error">Kunne ikke oprette nyt track: {0}</string>
+	<string name="trackmgr_continuetrack_hint">
+		Du optager i øjeblikket
+		<b>track #{0}</b>
+		\nVælg det på listen for at fortsætte
+	</string>
+	<string name="trackmgr_contextmenu_delete">Slet</string>
+	<string name="trackmgr_contextmenu_export">Eksportér til GPX</string>
+	<string name="trackmgr_contextmenu_display">Vis</string>
+	<string name="trackmgr_contextmenu_title">Track #{0}</string>
+	<string name="trackmgr_delete_confirm">Track #{0} bliver slettet</string>
+	<string name="trackmgr_exporting">Eksporterer track #{0}...</string>
+	<string name="trackmgr_export_error">Kunne ikke eksportere track: {0}</string>
 
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Start tracking.</string>
@@ -37,13 +70,17 @@
 
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Kan ikke skrive til eksternt lager.</string>
-	<string name="error_externalstorage_not_writable_hint">Check venligst om eksternt lager er korrekt sat i og monteret.</string>
+	<string name="error_externalstorage_not_writable_hint">Check venligst om eksternt lager er korrekt sat i
+		og monteret.</string>
 	<string name="error_voicerec_failed">Tale optagelse fejlede</string>
-	<string name="error_userlayout_parsing">Fejl ved parsing af XML layout fil. Brug venligst standard layout.</string>
+	<string name="error_userlayout_parsing">Fejl ved parsing af XML layout fil. Brug venligst
+		standard layout.</string>
 
 	<!-- GPX -->
 	<string name="gpx_track_name">Tracket med OSMTracker til Android</string>
-	<string name="gpx_hdop_approximation_cmt">Advarsel: HDOP værdier er ikke de HDOP der returneres af GPSen. De er approksimeret for lokalisationspræcision i meter og skal ikke tages for pålydende.</string>
+	<string name="gpx_hdop_approximation_cmt">Advarsel: HDOP værdier er ikke de HDOP der
+		returneres af GPSen. De er approksimeret for lokalisationspræcision i
+		meter og skal ikke tages for pålydende.</string>
 
 	<!-- Notification -->
 	<string name="notification_still_running">OSMTracker tracker fortsat</string>
@@ -51,8 +88,11 @@
 
 	<!-- About screen -->
 	<string name="about">Om</string>
-	<string name="about_text">For mere information, dokumenter, bugs m.m. besøg venligst projektets hjemmeside:</string>
-	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+	<string name="about_text">For mere information, dokumenter, bugs m.m. besøg
+		venligst projektets hjemmeside:</string>
+	<string name="about_link">
+		<a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a>
+	</string>
 
 	<!-- Notification -->
 	<string name="notification_ticker_text">OSMTracker kører fortsat</string>
@@ -60,11 +100,14 @@
 	<string name="notification_text">Tryk her for at vise hovedskærmen</string>
 
 	<!-- Display track -->
-	<string name="displaytrack">Vis track</string>      
+	<string name="displaytrack">Vis track</string>
 	<string name="displaytrack_north">N</string>
 
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Præcision</string>
+
+	<!-- OSM map view -->
+	<string name="displaytrackmap">OpenStreetMap track visning</string>
 
 </resources>

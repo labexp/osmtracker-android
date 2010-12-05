@@ -7,8 +7,8 @@ import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
-import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.exception.CreateTrackException;
 import me.guillaumin.android.osmtracker.gpx.ExportTrackTask;
 import android.app.AlertDialog;
@@ -24,15 +24,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 
 /**
  * Lists existing tracks.
@@ -43,6 +43,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
  */
 public class TrackManager extends ListActivity {
 	
+	@SuppressWarnings("unused")
 	private static final String TAG = TrackManager.class.getSimpleName();
 
 	/** Bundle key for {@link #prevItemVisible} */
@@ -315,20 +316,24 @@ public class TrackManager extends ListActivity {
 				osmTrackerDir.mkdir();
 			}
 
-			// Create track directory
 			Date startDate = new Date();
-			File trackDir = new File(osmTrackerDir + File.separator + DataHelper.FILENAME_FORMATTER.format(startDate));
-			trackDir.mkdir();
 			
 			// Create entry in TRACK table
 			ContentValues values = new ContentValues();
 			values.put(Schema.COL_NAME, "");
 			values.put(Schema.COL_START_DATE, startDate.getTime());
-			values.put(Schema.COL_DIR, trackDir.getAbsolutePath());
+			
 			values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_ACTIVE);
 			Uri trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI_TRACK, values);
 			long trackId = ContentUris.parseId(trackUri);
 
+			// Create track directory
+			File trackDir = new File(osmTrackerDir + File.separator + "#" + trackId + "_" + DataHelper.FILENAME_FORMATTER.format(startDate));
+			trackDir.mkdir();
+			values.clear();
+			values.put(Schema.COL_DIR, trackDir.getAbsolutePath());
+			getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values, Schema.COL_ID + " = ?", new String[] {Long.toString(trackId)});
+			
 			// Only one track active at a time, as a safety measure
 			values.clear();
 			values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_INACTIVE);

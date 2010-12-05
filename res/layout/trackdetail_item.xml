@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:orientation="vertical">
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" style="@android:style/TextAppearance.Large"
+		android:text="{key}" android:id="@+id/trackdetail_item_key" android:textColor="@android:color/secondary_text_dark"></TextView>
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/trackdetail_item_value"
+		android:text="{value}"></TextView>
+</LinearLayout>

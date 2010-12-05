@@ -8,12 +8,20 @@
 	<string name="prefs_gps_os_settings_summary">Vis system GPS indstillinger på skærmen</string>
 
 	<string name="prefs_check_gps_startup">Check GPS ved start</string>
-	<string name="prefs_check_gps_startup_summary">Check om GPS er aktiveret ved start og tilbud at aktivere den.</string>
+	<string name="prefs_check_gps_startup_summary">Check om GPS er aktiveret ved start og tilbud at
+		aktivere den.</string>
+
+	<string name="prefs_gps_ignore_clock">Ignorér GPS-ur</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignorér GPS-ur og brug Android-ur til tidsstempler.
+	</string>
 
 	<string name="prefs_ui">Brugerflade</string>
+
 	<string name="prefs_ui_buttons_layout">Knap layout</string>
-	<string name="prefs_ui_buttons_layout_summary">Tillad at definere at tilpasset knap layout (se dokumenter).</string>
+	<string name="prefs_ui_buttons_layout_summary">Tillad at definere at tilpasset knap layout (se
+		dokumenter).</string>
 	<string name="prefs_ui_buttons_layout_defaut">Standard</string>
+
 
 	<string name="prefs_voicerec_duration">Taleoptagelse varighed</string>
 	<string name="prefs_voicerec_duration_seconds">sekunder</string>
@@ -24,7 +32,8 @@
 		<item>5</item>
 	</string-array>
 	<string name="prefs_theme">Hovedskærm grafisk tema</string>
-	<string name="prefs_theme_summary">Program genstart krævet for at ændringer træder i kraft</string>
+	<string name="prefs_theme_summary">Program genstart krævet for at ændringer træder i
+		kraft</string>
 	<string-array name="prefs_theme_keys">
 		<item>OS standard</item>
 		<item>OS standard (Mørk)</item>
@@ -38,12 +47,16 @@
 		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
 
+	<string name="prefs_displaytrack_osm">OSM baggrund</string>
+	<string name="prefs_displaytrack_osm_summary">Vis OpenStreetMap under Track. Dataforbindelse er
+		nødvendig.</string>
+
 	<string name="prefs_output">GPX fil dannelse</string>
 	<string name="prefs_storage_dir">Ekstern lagring (SD) mappe</string>
 	<string name="prefs_storage_dir_summary"></string>
 	<string name="prefs_output_accuracy">Præcision i GPX fil</string>
-	<string name="prefs_output_accuracy_summary">Tillad præcision information i GPX fil, med waypoint navne eller i et seperat tag</string>
-
+	<string name="prefs_output_accuracy_summary">Tillad præcision information i GPX fil, med
+		waypoint navne eller i et seperat tag</string>
 	<string-array name="prefs_output_accuracy_keys">
 		<item>Ingen</item>
 		<item>Med waypoint navn</item>
@@ -55,5 +68,6 @@
 		<item>wpt_cmt</item>
 	</string-array>
 	<string name="prefs_output_gpx_hdop_approximation">Brug HDOP tilnærmning</string>
-	<string name="prefs_output_gpx_hdop_approximation_summary">Fyld HDOP i GPX med approksimeringsværdi fra præcision</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Fyld HDOP i GPX med approksimeringsværdi fra
+		præcision</string>
 </resources>
