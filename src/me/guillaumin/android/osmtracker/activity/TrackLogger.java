@@ -11,8 +11,10 @@ import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
+import me.guillaumin.android.osmtracker.view.TextNoteDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -91,6 +93,11 @@ public class TrackLogger extends Activity {
 	 * Handles the bind to the GPS Logger service
 	 */
 	private ServiceConnection gpsLoggerConnection = new GPSLoggerServiceConnection(this);
+	
+	/**
+	 * constant for text note dialog
+	 */
+	public static final int DIALOG_TEXT_NOTE = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -452,5 +459,32 @@ public class TrackLogger extends Activity {
 		currentImageFile = null;
 		return imageFile;
 	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		Log.d("MG", "Dialog create: " + id);
+		Dialog dialog = null;
+		switch(id){
+		case DIALOG_TEXT_NOTE:
+			// create a new TextNoteDialog
+			dialog = new TextNoteDialog(this, currentTrackId);
+			return dialog;
+		}
+		return super.onCreateDialog(id);
+	}
+
+	@Override
+	protected void onPrepareDialog(int id, Dialog dialog) {
+		switch(id){
+		case DIALOG_TEXT_NOTE:
+			// we need to reset Values like uuid of the dialog,
+			// otherwise we would overwrite an existing waypoint
+			((TextNoteDialog)dialog).resetValues();
+			break;
+		}
+		super.onPrepareDialog(id, dialog);
+	}
+	
+	
 
 }

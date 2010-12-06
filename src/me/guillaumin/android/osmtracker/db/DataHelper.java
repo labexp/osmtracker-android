@@ -195,6 +195,20 @@ public class DataHelper {
 	}
 	
 	/**
+	 * Deletes a waypoint
+	 * 
+	 * @param uuid
+	 *            Unique ID of the target waypoint
+	 */
+	public void deleteWayPoint(String uuid) {
+		Log.v(TAG, "Deleting waypoint with uuid '" + uuid);
+		if (uuid != null) {
+			contentResolver.delete(Uri.withAppendedPath(TrackContentProvider.CONTENT_URI_WAYPOINT_UUID, uuid), null, null);
+		}
+	}
+	
+	
+	/**
 	 * Stop tracking by making the track inactive
 	 * @param trackId Id of the track
 	 */

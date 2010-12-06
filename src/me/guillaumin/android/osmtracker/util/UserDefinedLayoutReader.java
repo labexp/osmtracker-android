@@ -132,7 +132,7 @@ public class UserDefinedLayoutReader {
 		orientation = resources.getConfiguration().orientation;
 		
 		// Initialize listeners which will be bound to buttons
-		textNoteOnClickListener = new TextNoteOnClickListener(currentTrackId);
+		textNoteOnClickListener = new TextNoteOnClickListener(tl);
 		voiceRecordOnClickListener = new VoiceRecOnClickListener(tl, currentTrackId);
 		stillImageOnClickListener = new StillImageOnClickListener(tl);
 	}

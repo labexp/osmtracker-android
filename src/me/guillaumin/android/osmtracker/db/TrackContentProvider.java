@@ -38,6 +38,11 @@ public class TrackContentProvider extends ContentProvider {
 	public static final Uri CONTENT_URI_TRACK_ACTIVE = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACK + "/active");
 
 	/**
+	 * Uri for the active track
+	 */
+	public static final Uri CONTENT_URI_WAYPOINT_UUID = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_WAYPOINT + "/uuid");
+	
+	/**
 	 * Uri Matcher
 	 */
 	private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -47,6 +52,8 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#", Schema.URI_CODE_TRACK_ID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_WAYPOINT + "s", Schema.URI_CODE_TRACK_WAYPOINTS);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_TRACKPOINT + "s", Schema.URI_CODE_TRACK_TRACKPOINTS);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/uuid/*", Schema.URI_CODE_WAYPOINT_UUID);
+		
 	}
 	
 	/**
@@ -91,11 +98,19 @@ public class TrackContentProvider extends ContentProvider {
 			count = dbHelper.getWritableDatabase().delete(Schema.TBL_TRACK, selection, selectionArgs);
 			break;
 		case Schema.URI_CODE_TRACK_ID:
-				// the URI matches a specific track, delete all related entities
-				String trackId = Long.toString(ContentUris.parseId(uri));
-				dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
-				dbHelper.getWritableDatabase().delete(Schema.TBL_TRACKPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
-				count = dbHelper.getWritableDatabase().delete(Schema.TBL_TRACK, Schema.COL_ID + " = ?", new String[] {trackId});
+			// the URI matches a specific track, delete all related entities
+			String trackId = Long.toString(ContentUris.parseId(uri));
+			dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
+			dbHelper.getWritableDatabase().delete(Schema.TBL_TRACKPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
+			count = dbHelper.getWritableDatabase().delete(Schema.TBL_TRACK, Schema.COL_ID + " = ?", new String[] {trackId});
+			break;
+		case Schema.URI_CODE_WAYPOINT_UUID:
+			String uuid = uri.getLastPathSegment();
+			if(uuid != null){
+				count = dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, Schema.COL_UUID + " = ?", new String[]{uuid});
+			}else{
+				count = 0;
+			}
 			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -322,6 +337,8 @@ public class TrackContentProvider extends ContentProvider {
 		public static final int URI_CODE_TRACK_WAYPOINTS = 5;
 		public static final int URI_CODE_TRACK_TRACKPOINTS = 6;
 		public static final int URI_CODE_TRACK_ACTIVE = 7;
+		public static final int URI_CODE_WAYPOINT_UUID = 8;
+		
 
 		public static final int VAL_TRACK_ACTIVE = 1;
 		public static final int VAL_TRACK_INACTIVE = 0;

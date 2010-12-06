@@ -69,6 +69,11 @@ public class OSMTracker {
 	public final static String INTENT_UPDATE_WP = OSMTracker.PACKAGE_NAME + ".intent.UPDATE_WP";
 	
 	/**
+	 * Intent for updating a previously tracked waypoint
+	 */
+	public final static String INTENT_DELETE_WP = OSMTracker.PACKAGE_NAME + ".intent.DELETE_WP";
+	
+	/**
 	 * Intent to start tracking
 	 */
 	public final static String INTENT_START_TRACKING = OSMTracker.PACKAGE_NAME + ".intent.START_TRACKING";

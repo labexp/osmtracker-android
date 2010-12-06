@@ -121,6 +121,13 @@ public class GPSLogger extends Service implements LocationListener {
 					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
 					dataHelper.updateWayPoint(trackId, uuid, name, link);
 				}
+			} else if (OSMTracker.INTENT_DELETE_WP.equals(intent.getAction())) {
+				// Update an existing waypoint
+				Bundle extras = intent.getExtras();
+				if (extras != null) {
+					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
+					dataHelper.deleteWayPoint(uuid);
+				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction()) ) {
 				startTracking();
 			} else if (OSMTracker.INTENT_STOP_TRACKING.equals(intent.getAction()) ) {
@@ -184,6 +191,7 @@ public class GPSLogger extends Service implements LocationListener {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(OSMTracker.INTENT_TRACK_WP);
 		filter.addAction(OSMTracker.INTENT_UPDATE_WP);
+		filter.addAction(OSMTracker.INTENT_DELETE_WP);
 		filter.addAction(OSMTracker.INTENT_START_TRACKING);
 		filter.addAction(OSMTracker.INTENT_STOP_TRACKING);
 		filter.addAction(OSMTracker.INTENT_NOTIFICATION_CLEARED);
