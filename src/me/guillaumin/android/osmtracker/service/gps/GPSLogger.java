@@ -122,7 +122,7 @@ public class GPSLogger extends Service implements LocationListener {
 					dataHelper.updateWayPoint(trackId, uuid, name, link);
 				}
 			} else if (OSMTracker.INTENT_DELETE_WP.equals(intent.getAction())) {
-				// Update an existing waypoint
+				// Delete an existing waypoint
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
 					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);

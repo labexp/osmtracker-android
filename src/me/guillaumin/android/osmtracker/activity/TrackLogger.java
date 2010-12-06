@@ -462,13 +462,10 @@ public class TrackLogger extends Activity {
 
 	@Override
 	protected Dialog onCreateDialog(int id) {
-		Log.d("MG", "Dialog create: " + id);
-		Dialog dialog = null;
 		switch(id){
 		case DIALOG_TEXT_NOTE:
 			// create a new TextNoteDialog
-			dialog = new TextNoteDialog(this, currentTrackId);
-			return dialog;
+			return new TextNoteDialog(this, currentTrackId);
 		}
 		return super.onCreateDialog(id);
 	}

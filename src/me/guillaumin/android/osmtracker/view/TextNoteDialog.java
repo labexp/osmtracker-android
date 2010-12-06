@@ -56,7 +56,7 @@ public class TextNoteDialog extends AlertDialog {
 		input = new EditText(context);
 
 		// default settings
-		this.setTitle(context.getResources().getString(R.string.gpsstatus_record_textnote));
+		this.setTitle(R.string.gpsstatus_record_textnote);
 		this.setCancelable(true);
 		this.setView(input);
 
@@ -64,10 +64,9 @@ public class TextNoteDialog extends AlertDialog {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// Track waypoint with user input text
-				String value = input.getText().toString();
 				Intent intent = new Intent(OSMTracker.INTENT_UPDATE_WP);
 				intent.putExtra(Schema.COL_TRACK_ID, TextNoteDialog.this.input.getText());
-				intent.putExtra(OSMTracker.INTENT_KEY_NAME, value);
+				intent.putExtra(OSMTracker.INTENT_KEY_NAME, input.getText().toString());
 				intent.putExtra(OSMTracker.INTENT_KEY_UUID, TextNoteDialog.this.wayPointUuid);
 				TextNoteDialog.this.context.sendBroadcast(intent);
 			}

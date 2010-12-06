@@ -38,7 +38,7 @@ public class TrackContentProvider extends ContentProvider {
 	public static final Uri CONTENT_URI_TRACK_ACTIVE = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACK + "/active");
 
 	/**
-	 * Uri for the active track
+	 * Uri for a specific waypoint
 	 */
 	public static final Uri CONTENT_URI_WAYPOINT_UUID = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_WAYPOINT + "/uuid");
 	
