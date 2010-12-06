@@ -75,13 +75,18 @@ public class TextNoteDialog extends AlertDialog {
 		this.setButton2(context.getResources().getString(android.R.string.cancel),  new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				// cancel the dialog
+				dialog.cancel();	
+			}
+		});
+		
+		this.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			@Override
+			public void onCancel(DialogInterface dialog) {
 				// delete the waypoint because user canceled this dialog
 				Intent intent = new Intent(OSMTracker.INTENT_DELETE_WP);
 				intent.putExtra(OSMTracker.INTENT_KEY_UUID, TextNoteDialog.this.wayPointUuid);
 				TextNoteDialog.this.context.sendBroadcast(intent);
-				
-				// dissmissing the dialog
-				dialog.dismiss();	
 			}
 		});
 		
