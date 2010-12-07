@@ -21,7 +21,6 @@ public class OSMTracker {
 		public final static String KEY_GPS_OSSETTINGS = "gps.ossettings";
 		public final static String KEY_GPS_CHECKSTARTUP = "gps.checkstartup";
 		public final static String KEY_GPS_IGNORE_CLOCK = "gps.ignoreclock";
-		public final static String KEY_GPS_LOGGING_INTERVAL = "gps.logging.interval";
 		public final static String KEY_OUTPUT_FILENAME = "gpx.filename";
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
@@ -34,7 +33,6 @@ public class OSMTracker {
 		public final static String VAL_UI_THEME = "@android:style/Theme";
 		public final static boolean VAL_GPS_CHECKSTARTUP = true;
 		public final static boolean VAL_GPS_IGNORE_CLOCK = false;
-		public final static String VAL_GPS_LOGGING_INTERVAL = "0";
 		
 		public final static String VAL_OUTPUT_FILENAME_NAME = "name";
 		public final static String VAL_OUTPUT_FILENAME_NAME_DATE = "name_date";
@@ -122,10 +120,5 @@ public class OSMTracker {
 	 * See: http://code.google.com/p/osmtracker-android/issues/detail?id=15 
 	 */
 	public final static int HDOP_APPROXIMATION_FACTOR = 4;
-
-	/**
-	 * How many milliseconds in one second ?
-	 */
-	public final static int MS_IN_ONE_SECOND = 1000;
 	
 }

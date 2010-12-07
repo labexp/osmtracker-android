@@ -15,11 +15,6 @@
 	<string name="prefs_gps_ignore_clock">Ignore GPS clock</string>
 	<string name="prefs_gps_ignore_clock_summary">Ignore GPS clock and use Android clock for timestamps.</string>
 
-	<string name="prefs_gps_logging_interval">GPS logging interval</string>
-	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (Affects battery life).</string>
-	<string name="prefs_gps_logging_interval_seconds">seconds</string>
-	<string name="prefs_gps_logging_interval_hint">Please enter the GPS logging interval in seconds. Use a low value for detailed tracks (0 for shortest possible), or a higher value to save battery.\n\nEffective for the next track (not the current one).</string>
-
 	<string name="prefs_ui">User interface</string>
 	
 	<string name="prefs_ui_buttons_layout">Buttons layout</string>
