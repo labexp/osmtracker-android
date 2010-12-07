@@ -77,10 +77,6 @@
 	<string name="gpx_track_name">Aufgezeichnet mit OSMTracker für Android™</string>
 	<string name="gpx_hdop_approximation_cmt">Warnung: HDOP-Werte sind nicht vom GPS. Es sind geschätzte Meter-Werte zur Ortsbestimmung, die nicht berücksichtigt werden sollten.</string>
        
-	<!-- Notification -->
-	<string name="notification_still_running">OSMTracker ist immer noch aktiv</string>
-	<string name="notification_display_ui">Klicke um OSMTracker aufzurufen</string>
-       
 	<!-- About screen -->
 	<string name="about">Über</string>
 	<string name="about_text">Für mehr Information, Dokumentation und Meldungen besuchen Sie bitte die Projekt-Homepage:</string>

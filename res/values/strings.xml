@@ -81,18 +81,14 @@
 	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
 	<string name="gpx_hdop_approximation_cmt">Warning: HDOP values aren\'t the HDOP returned by GPS device. They\'re approximated for location accuracy in meters, and should not be taken into account.</string>
 
-	<!-- Notification -->
-	<string name="notification_still_running">OSMTracker is still tracking</string>
-	<string name="notification_display_ui">Click to display OSMTracker</string>
-
 	<!-- About screen -->
 	<string name="about">About</string>
 	<string name="about_text">For more information, docs and issue report, please visit the project home page:</string>
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
 
 	<!-- Notification -->
-	<string name="notification_ticker_text">OSMTracker is still running</string>
-	<string name="notification_title">OSMTracker is still running</string>
+	<string name="notification_ticker_text">OSMTracker is tracking</string>
+	<string name="notification_title">OSMTracker is tracking (#{0})</string>
 	<string name="notification_text">Tap here to display main screen</string>
 
 	<!-- Display track -->

@@ -82,21 +82,6 @@ public class OSMTracker {
 	public final static String INTENT_STOP_TRACKING = OSMTracker.PACKAGE_NAME + ".intent.STOP_TRACKING";
 
 	/**
-	 * Intent fired when the service go to background and should start to notify user. 
-	 */
-	public final static String INTENT_START_NOTIFY_BACKGROUND = OSMTracker.PACKAGE_NAME + ".intent.START_NOTIFY_BACKGROUND";
-	
-	/**
-	 * Intent fired when the UI got back and the service should stop notifying the user of background job.
-	 */
-	public final static String INTENT_STOP_NOTIFY_BACKGROUND = OSMTracker.PACKAGE_NAME + ".intent.STOP_NOTIFY_BACKGROUND";
-	
-	/**
-	 * Intent fired when the notification are cleared by the user.
-	 */
-	public final static String INTENT_NOTIFICATION_CLEARED = OSMTracker.PACKAGE_NAME + ".intent.NOTIFICATION_CLEARED";
-	
-	/**
 	 * Key for extra data "waypoint name" in Intent
 	 */
 	public final static String INTENT_KEY_NAME = "name";

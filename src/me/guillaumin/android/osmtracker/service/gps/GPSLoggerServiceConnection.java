@@ -1,11 +1,9 @@
 package me.guillaumin.android.osmtracker.service.gps;
 
-import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import android.content.ComponentName;
-import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 /**
@@ -34,9 +32,6 @@ public class GPSLoggerServiceConnection implements ServiceConnection {
 	public void onServiceConnected(ComponentName name, IBinder service) {
 		
 		activity.setGpsLogger( ((GPSLogger.GPSLoggerBinder) service).getService());
-
-		// Prevent service from notifying user
-		activity.sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
 
 		// Update record status regarding of current tracking state
 		GpsStatusRecord gpsStatusRecord = (GpsStatusRecord) activity.findViewById(R.id.gpsStatus);

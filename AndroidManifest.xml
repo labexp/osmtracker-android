@@ -10,7 +10,7 @@
 			</intent-filter>
 		</activity>
 		
-		<activity android:name=".activity.TrackLogger" android:label="@string/tracklogger" />
+		<activity android:name=".activity.TrackLogger" android:label="@string/tracklogger" android:launchMode="singleTop"/>
 		<activity android:name=".activity.Preferences" android:label="@string/prefs" />
 		<activity android:name=".activity.WaypointList" android:label="@string/wplist" />
 		<activity android:name=".activity.TrackDetail" android:label="@string/trackdetail" />

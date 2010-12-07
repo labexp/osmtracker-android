@@ -45,10 +45,6 @@
 	<string name="gpx_track_name">Записано на OSMTracker for Android™</string>
 	<string name="gpx_hdop_approximation_cmt">Внимание: значения HDOP, записываемые в файл - это не значения HDOP, получаемые от устройства GPS. Они аппроксимируются из значений точности определения положения и не должны приниматься во внимание.</string>
 
-	<!-- Notification -->
-	<string name="notification_still_running">OSMTracker записывает</string>
-	<string name="notification_display_ui">Нажмите, чтобы открыть OSMTracker</string>
-
 	<!-- About screen -->
 	<string name="about">О программе</string>
 	<string name="about_text">Подробная информация, сообщения об ошибках находятся на официальном сайте проекта:</string>

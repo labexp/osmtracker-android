@@ -1,9 +1,7 @@
 package me.guillaumin.android.osmtracker.activity;
 
-import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
@@ -30,18 +28,5 @@ public class About extends Activity {
 			// Should not occur
 		}
 	}
-	
-	@Override
-	protected void onResume() {
-		// Tell service to stop notifying user of background activity
-		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
-		super.onResume();
-	}
-	
-	@Override
-	protected void onPause() {
-		// Tell service to notify user of background activity
-		sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
-		super.onPause();
-	}
+
 }

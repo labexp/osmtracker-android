@@ -105,7 +105,7 @@ public class TrackLogger extends Activity {
 		// Get the track id to work with
 		currentTrackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
 		Log.v(TAG, "Starting for track id " + currentTrackId);
-		
+			
 		gpsLoggerServiceIntent = new Intent(this, GPSLogger.class);
 		gpsLoggerServiceIntent.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 
@@ -140,6 +140,8 @@ public class TrackLogger extends Activity {
 	@Override
 	protected void onResume() {
 
+		setTitle(getResources().getString(R.string.tracklogger) + ": #" + currentTrackId);
+		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		// Try to inflate the buttons layout
@@ -225,8 +227,6 @@ public class TrackLogger extends Activity {
 				unbindService(gpsLoggerConnection);
 				stopService(gpsLoggerServiceIntent);
 			} else {
-				// Tell service to notify user of background activity
-				sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
 				unbindService(gpsLoggerConnection);
 			}
 		}
@@ -322,6 +322,7 @@ public class TrackLogger extends Activity {
 				finish();
 			} else {
 				Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
+				intent.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 				sendBroadcast(intent);
 				setEnabledActionButtons(true);
 				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(true);
@@ -482,6 +483,14 @@ public class TrackLogger extends Activity {
 		super.onPrepareDialog(id, dialog);
 	}
 	
+	@Override
+	protected void onNewIntent(Intent newIntent) {
+		if (newIntent.getExtras() != null && newIntent.getExtras().containsKey(Schema.COL_TRACK_ID)) {
+			currentTrackId = newIntent.getExtras().getLong(Schema.COL_TRACK_ID);
+			setIntent(newIntent);
+		}
+		super.onNewIntent(newIntent);
+	}
 	
 
 }

@@ -45,10 +45,6 @@
 	<string name="gpx_track_name">Skapad med OSMTracker för Android™</string>
 	<string name="gpx_hdop_approximation_cmt">Varning: HDOP-värdena är inte riktiga HDOP-värden från GPS-enheten. De är uppskattade värden,	angivna i hela metrar, och bör inte användas.</string>
 
-	<!-- Notification -->
-	<string name="notification_still_running">OSMTracker körs fortfarande</string>
-	<string name="notification_display_ui">Tryck för att visa OSMTracker</string>
-
 	<!-- About screen -->
 	<string name="about">Om</string>
 	<string name="about_text">För mer information, dokumentation och felrapportering, besök projektets hemsida:</string>

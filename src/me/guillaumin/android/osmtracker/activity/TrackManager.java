@@ -68,9 +68,6 @@ public class TrackManager extends ListActivity {
 
 	@Override
 	protected void onResume() {
-		// Tell service to stop notifying user of background activity
-		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
-
 		Cursor cursor = getContentResolver().query(
 				TrackContentProvider.CONTENT_URI_TRACK, null, null, null,
 				Schema.COL_START_DATE + " asc");
@@ -110,9 +107,6 @@ public class TrackManager extends ListActivity {
 	protected void onPause() {
 		// Remember position in listview (before any adapter change)
 		prevItemVisible = getListView().getFirstVisiblePosition();
-
-		// Tell service to notify user of background activity
-		sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
 
 		CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null) {

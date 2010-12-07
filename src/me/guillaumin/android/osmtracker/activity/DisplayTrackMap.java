@@ -1,6 +1,5 @@
 package me.guillaumin.android.osmtracker.activity;
 
-import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
@@ -13,7 +12,6 @@ import org.andnav.osm.views.overlay.OpenStreetMapViewPathOverlay;
 import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -137,9 +135,6 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 
 	@Override
 	protected void onResume() {
-		// Tell service to notify user of background activity
-		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
-		
 		// Register content observer for any trackpoint changes
 		getContentResolver().registerContentObserver(
 				TrackContentProvider.trackPointsUri(currentTrackId),
@@ -153,9 +148,6 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 	
 	@Override
 	protected void onPause() {
-		// Tell service to notify user of background activity
-		sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
-		
 		// Unregister content observer
 		getContentResolver().unregisterContentObserver(trackpointContentObserver);
 		

@@ -66,10 +66,6 @@
 	<string name="gpx_track_name">Reititys: OSMTracker Android™-laitteille</string>
 	<string name="gpx_hdop_approximation_cmt">Varoitus: HDOP-arvot eivät ole GPS-laitteelta. Ne ovat arvioituja sijainnin tarkkuuksia (m), eikä niihin pidä luottaa.</string>
 
-	<!-- Notification -->
-	<string name="notification_still_running">OSMTracker reitittää edelleen</string>
-	<string name="notification_display_ui">Klikkaa näyttääksesi OSMTracker</string>
-
 	<!-- About screen -->
 	<string name="about">Tietoja</string>
 	<string name="about_text">Lisätiedot kuten dokumentit ja raportointi projektin kotisivuilla:</string>

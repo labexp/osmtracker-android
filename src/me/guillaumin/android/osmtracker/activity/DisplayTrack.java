@@ -4,7 +4,6 @@ import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.view.DisplayTrackView;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.ViewGroup.LayoutParams;
@@ -17,6 +16,7 @@ import android.view.ViewGroup.LayoutParams;
  */
 public class DisplayTrack extends Activity {
 
+	@SuppressWarnings("unused")
 	private static final String TAG = DisplayTrack.class.getSimpleName();
 	
 	@Override
@@ -34,19 +34,5 @@ public class DisplayTrack extends Activity {
 		setTitle(getTitle() + ": #" + getIntent().getExtras().getLong(Schema.COL_TRACK_ID));
 		setContentView(dtv);		
 	}	
-	
-	@Override
-	protected void onResume() {
-		// Tell service to stop notifying user of background activity
-		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
-		super.onResume();
-	}
-	
-	@Override
-	protected void onPause() {
-		// Tell service to notify user of background activity
-		sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
-		super.onPause();
-	}
 	
 }

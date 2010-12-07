@@ -187,17 +187,6 @@ public class TrackDetail extends Activity {
 		
 		SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.trackdetail_item, from, to);
 		lv.setAdapter(adapter);
-		
-		// Tell service to stop notifying user of background activity
-		sendBroadcast(new Intent(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND));
-
-	}
-	
-	@Override
-	protected void onPause() {
-		// Tell service to notify user of background activity
-		sendBroadcast(new Intent(OSMTracker.INTENT_START_NOTIFY_BACKGROUND));
-		super.onPause();
 	}
 
 	@Override

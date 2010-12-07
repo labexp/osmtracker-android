@@ -22,7 +22,6 @@ import android.location.LocationManager;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.util.Log;
 
 /**
@@ -51,25 +50,9 @@ public class GPSLogger extends Service implements LocationListener {
 	private boolean isGpsEnabled = false;
 	
 	/**
-	 * Should we notify the user that we're working
-	 * in background ?
-	 */
-	private boolean isNotifying = false;
-
-	/**
 	 * System notification id.
 	 */
-	private int notificationId = 0;
-	
-	/**
-	 * Keeps track of time when asked to notify.
-	 */
-	private long notificationTimer = 0;
-	
-	/**
-	 * Amount of time to wait before starting notifying the user of background activity.
-	 */
-	private final static int NOTIFICATION_WAIT_TIME_MS = 5000;
+	private static final int NOTIFICATION_ID = 0;
 	
 	/**
 	 * Last known location
@@ -128,18 +111,13 @@ public class GPSLogger extends Service implements LocationListener {
 					dataHelper.deleteWayPoint(uuid);
 				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction()) ) {
-				startTracking();
+				Bundle extras = intent.getExtras();
+				if (extras != null) {
+					Long trackId = extras.getLong(Schema.COL_TRACK_ID);
+					startTracking(trackId);
+				}
 			} else if (OSMTracker.INTENT_STOP_TRACKING.equals(intent.getAction()) ) {
 				stopTrackingAndSave();
-			} else if (OSMTracker.INTENT_START_NOTIFY_BACKGROUND.equals(intent.getAction()) ) {
-				isNotifying = true;
-				notificationTimer = SystemClock.elapsedRealtime();
-			} else if (OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND.equals(intent.getAction()) ) {
-				isNotifying = false;
-			} else if (OSMTracker.INTENT_NOTIFICATION_CLEARED.equals(intent.getAction()) ) {
-				// User has cleared all the notification. Increments notification Id
-				// in order to launch new notification next time
-				notificationId++;
 			}
 		}
 	};
@@ -193,9 +171,6 @@ public class GPSLogger extends Service implements LocationListener {
 		filter.addAction(OSMTracker.INTENT_DELETE_WP);
 		filter.addAction(OSMTracker.INTENT_START_TRACKING);
 		filter.addAction(OSMTracker.INTENT_STOP_TRACKING);
-		filter.addAction(OSMTracker.INTENT_NOTIFICATION_CLEARED);
-		filter.addAction(OSMTracker.INTENT_START_NOTIFY_BACKGROUND);
-		filter.addAction(OSMTracker.INTENT_STOP_NOTIFY_BACKGROUND);
 		registerReceiver(receiver, filter);
 
 		// Register ourselves for location updates
@@ -205,12 +180,6 @@ public class GPSLogger extends Service implements LocationListener {
 		super.onCreate();
 	}
 	
-	@Override
-	public void onStart(Intent intent, int startId) {
-		currentTrackId = intent.getExtras().getLong(Schema.COL_TRACK_ID);
-		super.onStart(intent, startId);
-	}
-
 	@Override
 	public void onDestroy() {
 		if (isTracking) {
@@ -223,6 +192,9 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		// Unregister broadcast receiver
 		unregisterReceiver(receiver);
+		
+		// Cancel any existing notification
+		stopNotifyBackgroundService();
 
 		super.onDestroy();
 	}
@@ -230,9 +202,11 @@ public class GPSLogger extends Service implements LocationListener {
 	/**
 	 * Start GPS tracking.
 	 */
-	private void startTracking() {
-		Log.v(TAG, "Starting track logging");
+	private void startTracking(long trackId) {
+		currentTrackId = trackId;
+		Log.v(TAG, "Starting track logging for track #" + trackId);
 		isTracking = true;
+		notifyBackgroundService();
 	}
 
 	/**
@@ -241,6 +215,8 @@ public class GPSLogger extends Service implements LocationListener {
 	private void stopTrackingAndSave() {
 		isTracking = false;
 		dataHelper.stopTracking(currentTrackId);
+		stopNotifyBackgroundService();
+		currentTrackId = -1;
 	}
 
 	@Override
@@ -253,10 +229,6 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		if (isTracking) {
 			dataHelper.track(currentTrackId, location);
-			if (isNotifying) {
-				// Notify user that we're in background
-				notifyBackgroundService();
-			}
 		}
 		
 	}
@@ -281,37 +253,38 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Notifies the user that we're still tracking in background.
 	 */
 	private void notifyBackgroundService() {
-		if (SystemClock.elapsedRealtime() - notificationTimer > NOTIFICATION_WAIT_TIME_MS) {
-			NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-			Notification n = new Notification(R.drawable.icon_greyed_25x25, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
+		NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		Notification n = new Notification(R.drawable.icon_greyed_25x25, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
 			
-			Intent startTrackLogger = new Intent(this, TrackLogger.class);
-			startTrackLogger.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
-			PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, 0);
-			PendingIntent deleteIntent = PendingIntent.getBroadcast(this, 0, new Intent(OSMTracker.INTENT_NOTIFICATION_CLEARED), 0);
-			n.deleteIntent = deleteIntent;
-			n.flags = Notification.FLAG_AUTO_CANCEL;
-			n.setLatestEventInfo(getApplicationContext(), getResources().getString(R.string.notification_title), getResources().getString(R.string.notification_text), contentIntent);
+		Intent startTrackLogger = new Intent(this, TrackLogger.class);
+		startTrackLogger.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, PendingIntent.FLAG_UPDATE_CURRENT);
+		n.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
+		n.setLatestEventInfo(
+				getApplicationContext(),
+				getResources().getString(R.string.notification_title).replace("{0}", Long.toString(currentTrackId)),
+				getResources().getString(R.string.notification_text),
+				contentIntent);
 			
-			nmgr.notify(notificationId, n);
-		}
-		
+		nmgr.notify(NOTIFICATION_ID, n);
+	}
+	
+	/**
+	 * Stops notifying the user that we're tracking in the background
+	 */
+	private void stopNotifyBackgroundService() {
+		NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		nmgr.cancel(NOTIFICATION_ID);
 	}
 	
 	@Override
 	public void onProviderDisabled(String provider) {
 		isGpsEnabled = false;
-		if (isNotifying) {
-			notifyBackgroundService();
-		}
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
 		isGpsEnabled = true;
-		if (isNotifying) {
-			notifyBackgroundService();
-		}
 	}
 
 	@Override

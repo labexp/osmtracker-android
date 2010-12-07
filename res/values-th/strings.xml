@@ -66,10 +66,6 @@
 	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
 	<string name="gpx_hdop_approximation_cmt">Warning: HDOP values aren\'t the HDOP returned by GPS device. They\'re approximated for location accuracy in meters, and should not be taken into account.</string>
 
-	<!-- Notification -->
-	<string name="notification_still_running">OSMTracker ยังบันทึกเส้นทางอยู่</string>
-	<string name="notification_display_ui">คลิกเพื่อแสดง OSMTracker</string>
-
 	<!-- About screen -->
 	<string name="about">เกี่ยวกับ</string>
 	<string name="about_text">ข้อมูลเพิ่มเติม เอกสาร และรายงานปัญหา โปรดไปที่หน้าเว็บโครงการ:</string>

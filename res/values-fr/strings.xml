@@ -76,10 +76,6 @@
 	<string name="gpx_track_name">Traces enregistrées avec OSMTracker pour Android™</string>
 	<string name="gpx_hdop_approximation_cmt">Attention: Les valeurs HDOP ne sont pas celles retournées par le GPS, mais approximées a partir de la précision en mètres. Elle ne sont donc pas très fiables.</string>
 
-	<!-- Notification -->
-	<string name="notification_still_running">OSMTracker est en cours d\'enregistrement</string>
-	<string name="notification_display_ui">Cliquer pour afficher OSMTracker</string>
-
 	<!-- About screen -->
 	<string name="about">A propos</string>
 	<string name="about_text">Pour plus d\'informations, documentation et bugs, veuillez visiter la page du project:</string>

@@ -82,10 +82,6 @@
 		returneres af GPSen. De er approksimeret for lokalisationspræcision i
 		meter og skal ikke tages for pålydende.</string>
 
-	<!-- Notification -->
-	<string name="notification_still_running">OSMTracker tracker fortsat</string>
-	<string name="notification_display_ui">Klik for at vise OSMTracker</string>
-
 	<!-- About screen -->
 	<string name="about">Om</string>
 	<string name="about_text">For mere information, dokumenter, bugs m.m. besøg
