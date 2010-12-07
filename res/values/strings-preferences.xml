@@ -45,6 +45,9 @@
 		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
 
+	<string name="prefs_display_always_on">Screen always on</string>
+	<string name="prefs_display_always_on_summary">Screen will stay on while tracking. Disable to save battery.</string>
+
 	<string name="prefs_displaytrack_osm">OSM background</string>
 	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap under track. Needs a data connection.</string>
 

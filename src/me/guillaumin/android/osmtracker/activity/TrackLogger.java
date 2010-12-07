@@ -95,6 +95,11 @@ public class TrackLogger extends Activity {
 	private ServiceConnection gpsLoggerConnection = new GPSLoggerServiceConnection(this);
 	
 	/**
+	 * Keeps the SharedPreferences
+	 */
+	private SharedPreferences prefs = null;
+	
+	/**
 	 * constant for text note dialog
 	 */
 	public static final int DIALOG_TEXT_NOTE = 1;
@@ -112,13 +117,18 @@ public class TrackLogger extends Activity {
 		// Populate default preference values
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
+		// get shared preferences
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
 		// Set application theme according to user settings
-		String theme = PreferenceManager.getDefaultSharedPreferences(this).getString(
+		String theme = prefs.getString(
 				OSMTracker.Preferences.KEY_UI_THEME, OSMTracker.Preferences.VAL_UI_THEME);
 		setTheme(getResources().getIdentifier(theme, null, null));
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.tracklogger);
+		
+		// automatically decide which content view to show
+		autoSetContentView();
 
 		// Try to restore previous state
 		boolean previousStateIsTracking = false;
@@ -142,8 +152,9 @@ public class TrackLogger extends Activity {
 
 		setTitle(getResources().getString(R.string.tracklogger) + ": #" + currentTrackId);
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
+		// automatically decide which content view to show
+		autoSetContentView();
+		
 		// Try to inflate the buttons layout
 		try {
 			String userLayout = prefs.getString(
@@ -212,6 +223,19 @@ public class TrackLogger extends Activity {
 						}
 					}).create().show();
 			checkGPSFlag = false;
+		}
+	}
+	
+	/**
+	 * automatically sets the correct content view for the given user preferences
+	 */
+	private void autoSetContentView(){
+		if(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON)){
+			// screen on
+			setContentView(R.layout.tracklogger_screenon);
+		}else{
+			// screen off
+			setContentView(R.layout.tracklogger_screenoff);
 		}
 	}
 

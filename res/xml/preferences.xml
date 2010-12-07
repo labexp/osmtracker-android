@@ -28,6 +28,8 @@
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/prefs_ui">
+		<CheckBoxPreference android:key="ui.display_keep_on" android:title="@string/prefs_display_always_on"
+			android:summary="@string/prefs_display_always_on_summary" android:defaultValue="true"></CheckBoxPreference>
 		<ListPreference android:entries="@array/prefs_theme_keys" android:title="@string/prefs_theme"
 			android:entryValues="@array/prefs_theme_values" android:key="ui.theme" android:summary="@string/prefs_theme_summary"></ListPreference>
 

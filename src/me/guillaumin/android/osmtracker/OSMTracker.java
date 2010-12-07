@@ -26,6 +26,7 @@ public class OSMTracker {
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
 		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
 		public final static String KEY_UI_DISPLAYTRACK_OSM = "ui.displaytrack.osm";
+		public final static String KEY_UI_DISPLAY_KEEP_ON = "ui.display_keep_on";
 
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
@@ -48,6 +49,7 @@ public class OSMTracker {
 		public final static String VAL_UI_BUTTONS_LAYOUT = "default";
 		
 		public final static boolean VAL_UI_DISPLAYTRACK_OSM = false;
+		public final static boolean VAL_UI_DISPLAY_KEEP_ON = true;
 	};
 	
 	/**
