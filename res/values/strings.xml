@@ -70,6 +70,7 @@
 	<string name="menu_save">Save</string>
 	<string name="menu_cancel">Cancel</string>
 	<string name="menu_export">Export as GPX</string>
+	<string name="menu_center_to_gps">Center to GPS</string>
 	
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>

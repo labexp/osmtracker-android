@@ -1,4 +1,4 @@
-==== Files under src/org/andnav/* ====
+==== File lib/osmdroid-android-*.jar ====
 
 	osmtracker-android reuses code from osmdroid (http://osmdroid.googlecode.com/),
 	released under LGPL.
@@ -169,6 +169,12 @@
 	permanent authorization for you to choose that version for the
 	Library.
 	
+==== File lib/slf4-android-*.jar ====
+	
+	osmtracker-android uses a library from slf4j (http://www.slf4j.org/android/)
+	This library is published under the MIT license: http://www.slf4j.org/license.html
+	
+
 ==== OpenStreetMap data ====
 
 	Map tiles are provided by OpenStreetMap (http://www.openstreetmap.org/),

@@ -4,8 +4,8 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 
+import org.andnav.osm.contributor.util.constants.OpenStreetMapContributorConstants;
 import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.util.constants.OpenStreetMapConstants;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapViewController;
 import org.andnav.osm.views.overlay.OpenStreetMapViewPathOverlay;
@@ -15,10 +15,13 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -29,7 +32,7 @@ import android.view.View.OnClickListener;
  * @author Viesturs Zarins
  *
  */
-public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
+public class DisplayTrackMap extends Activity implements OpenStreetMapContributorConstants{
 
 	@SuppressWarnings("unused")
 	private static final String TAG = DisplayTrackMap.class.getSimpleName();
@@ -73,6 +76,16 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 	 * Current track id
 	 */
 	private long currentTrackId;
+	
+	/**
+	 * whether the map display should be centered to the gps location 
+	 */
+	private boolean centerToGpsPos = true;
+	
+	/**
+	 * the last position we know
+	 */
+	private GeoPoint currentPosition;
 
 	/**
 	 * Observes changes on trackpoints
@@ -168,17 +181,54 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 		editor.commit();
 		
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.displaytrackmap_menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		menu.findItem(R.id.displaytrackmap_menu_center_to_gps).setEnabled(!centerToGpsPos);
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case R.id.displaytrackmap_menu_center_to_gps:
+			centerToGpsPos = true;
+			osmViewController.setCenter(currentPosition);
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		switch(event.getAction()){
+			case MotionEvent.ACTION_MOVE:
+				centerToGpsPos = false;
+				break;
+		}
+		return super.onTouchEvent(event);
+	}
+
 
 	/**
 	 * Creates overlays over the OSM view
 	 */
 	private void createOverlays() {
-        pathOverlay = new OpenStreetMapViewPathOverlay(Color.BLUE);
+        pathOverlay = new OpenStreetMapViewPathOverlay(Color.BLUE, this);
         osmView.getOverlays().add(pathOverlay);
         
-        myLocationOverlay = new OpenStreetMapViewSimpleLocationOverlay(
-        		BitmapFactory.decodeResource(getResources(),R.drawable.marker), 
-        		8,8);
+        myLocationOverlay = new OpenStreetMapViewSimpleLocationOverlay(this);
         osmView.getOverlays().add(myLocationOverlay);
 	}
 	
@@ -211,9 +261,11 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapConstants{
 			}		
 		
 			// Last point is current position.
-			GeoPoint currentPosition = new GeoPoint(lastLat, lastLon); 
+			currentPosition = new GeoPoint(lastLat, lastLon); 
 			myLocationOverlay.setLocation(currentPosition);		
-			osmViewController.setCenter(currentPosition);
+			if(centerToGpsPos) {
+				osmViewController.setCenter(currentPosition);
+			}
 		
 			// Repaint
 			osmView.invalidate();

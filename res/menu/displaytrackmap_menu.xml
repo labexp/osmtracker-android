@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+	<item 
+		android:id="@+id/displaytrackmap_menu_center_to_gps" 
+		android:icon="@android:drawable/ic_menu_mylocation"
+		android:title="@string/menu_center_to_gps" />
+</menu>
