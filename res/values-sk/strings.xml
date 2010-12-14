@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Generic strings -->
+	<string name="app_name">OSMTracker pre Android™</string>
+	<string name="app_short_name">OSMTracker</string>
+	<string name="app_description">Inšpirovaný OSMTrackerom na Windows Mobile, vám umožňuje stopovať vaše výlety, označiť významné body (hlasovým záznamom, snímkou), exportovať ich do GPX formátu na neskoršie použitie s nástrojmi pre Open Street Map ako je JOSM.</string>
+
+	<!-- TrackLogger -->
+	<string name="tracklogger">Denník stôp</string>
+	<string name="tracklogger_waiting_gps">Čaká sa na GPS polohu pre povolenie tlačidiel...</string>
+	<string name="tracklogger_voicerec_title">Hlasové zaznamenávanie</string>
+	<string name="tracklogger_voicerec_text">Nahráva sa zvuková stopa pre {0}.</string>
+	<string name="tracklogger_btnBack">Späť</string>
+	<string name="tracklogger_tracked">Stopované: </string>
+	<string name="tracklogger_gps_disabled">GPS vypnuté</string>
+	<string name="tracklogger_gps_disabled_hint">GPS je vypnuté. Chcete ho zapnúť ?</string>
+
+	<!-- Waypoint List -->
+	<string name="wplist">Zoznam cestovných bodov</string>
+	<string name="wplist_latitude">Z. šírka: </string>
+	<string name="wplist_longitude">Z. dĺžka: </string>
+	<string name="wplist_elevation">Výška: </string>
+	<string name="wplist_accuracy">Presnosť: </string>
+	
+	<!-- Track Manager -->
+	<string name="trackmgr">Manažér stôp</string>
+	<string name="trackmgr_tracklist">Zoznam stôp:</string>
+	<string name="trackmgr_waypoints_count">Cestovné body: </string>
+	<string name="trackmgr_trackpoints_count">Trasové body: </string>
+	<string name="trackmgr_empty">Nemáte žiadne stopy.</string>
+	<string name="trackmgr_newtrack_hint">Na nahratie stopy,\nstlačte <b>Menu</b> potom <b>Nová stopa</b></string>
+	<string name="trackmgr_newtrack_error">Nedá sa vytvoriť nová stopa: {0}</string>
+	<string name="trackmgr_continuetrack_hint">Práve nahrávate <b>stopu č.{0}</b>\nNa pokračovanie ju vyberte v zozname</string>
+	<string name="trackmgr_contextmenu_delete">Vymazať</string>
+	<string name="trackmgr_contextmenu_export">Exportovať ako GPX</string>
+	<string name="trackmgr_contextmenu_display">Zobraziť</string>
+	<string name="trackmgr_contextmenu_details">Podrobnosti</string>
+	<string name="trackmgr_contextmenu_title">Stopa č.{0}</string>
+	<string name="trackmgr_delete_confirm">Stopa č.{0} bude vymazaná</string>
+	<string name="trackmgr_exporting">Exportuje sa sotpa č.{0}...</string>
+	<string name="trackmgr_export_error">Nedá sa exportovať stopa: {0}</string>
+
+	<!-- Track Detail -->
+	<string name="trackdetail">Podrobnosti o stope</string>
+	<string name="trackdetail_startdate">Čas začatia:</string>
+	<string name="trackdetail_enddate">Čas ukončenia:</string>
+	<string name="trackdetail_startloc">Začala v:</string>
+	<string name="trackdetail_endloc">Skončila v:</string>
+	<string name="trackdetail_exportdate">Exportovaná:</string>
+	<string name="trackdetail_btn_export">Exportovať ako GPX</string>
+	<string name="trackdetail_export_notyet">(Zatiaľ neexportovaná)</string>
+	<string name="trackdetail_export_display">Zobraziť</string>
+
+	<!-- GPS Status & record bar -->
+	<string name="gpsstatus_record_trackoff">Spustiť stopovanie.</string>
+	<string name="gpsstatus_record_trackon">Zastaviť stopovanie</string>
+	<string name="gpsstatus_record_voicerec">Hlasový záznam</string>
+	<string name="gpsstatus_record_stillimage">Odfotiť snímku</string>
+	<string name="gpsstatus_record_textnote">Písomná poznámka</string>
+
+	<!-- Menu -->
+	<string name="menu_settings">Nastavenia</string>
+	<string name="menu_waypointlist">Cestovné body</string>
+	<string name="menu_about">O aplikácii</string>
+	<string name="menu_displaytrack">Zobraziť stopu</string>
+	<string name="menu_starttracking">Spustiť stopovanie</string>
+	<string name="menu_stoptracking">Zastaviť a uložiť</string>
+	<string name="menu_newtrack">Nová stopa</string>
+	<string name="menu_continue">Pokračovať v stopovaní</string>
+	<string name="menu_save">Uložiť</string>
+	<string name="menu_cancel">Zrušiť</string>
+	<string name="menu_export">Exportovať ako GPX</string>
+	
+	<!-- Errors -->
+	<string name="error_externalstorage_not_writable">Nedá sa zapisovať do externého úložiska.</string>
+	<string name="error_externalstorage_not_writable_hint">Prosím, skontrolujte, či je ext. úložisko správne vložené a pripojené.</string>
+	<string name="error_voicerec_failed">Hlasový záznam zlyhal</string>
+	<string name="error_userlayout_parsing">Chyba počas analýzi XML súboru rozloženia. Prosím, vráťte sa k štandardnému rozloženiu.</string>
+
+	<!-- GPX -->
+	<string name="gpx_track_name">Stopované s OSMTracker-om pre Android™</string>
+	<string name="gpx_hdop_approximation_cmt">Varovanie: Hodnoty HDOP nie sú vrátené HDOP z GPS zariadenia. Sú odhadnuté pre presnosť umiestnenia v metroch, a nemali by byť vložené do účtu.</string>
+
+	<!-- About screen -->
+	<string name="about">O aplikácii</string>
+	<string name="about_text">Pre viac informácií, dokumentov a nahlásenie problému, navštívte domovskú stránku projektu:</string>
+	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+
+	<!-- Notification -->
+	<string name="notification_ticker_text">OSMTracker stopuje</string>
+	<string name="notification_title">OSMTracker stopuje (č.{0})</string>
+	<string name="notification_text">Ťuknite sem na zobrazenie hlavnej obrazovky</string>
+
+	<!-- Display track -->
+	<string name="displaytrack">Zobrazenie stopy</string>	
+	<string name="displaytrack_north">N</string>
+	
+	<!-- Track detail -->
+	<string name="trackdetail_save">Uložiť</string>
+	
+	<!-- Various -->
+	<string name="various_unit_meters">m</string>
+	<string name="various_accuracy">Presnosť</string>
+
+	<!-- OSM map view -->
+	<string name="displaytrackmap">Zobrazenie OpenStreetMap stopy</string> 
+
+</resources>

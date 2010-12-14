@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layouts>
+	<layout name="root">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		
+		<row>
+			<button type="page" label="Rôzne" icon="button_misc" targetlayout="misc" />
+			<button type="page" label="Obmedzenie" icon="button_restriction" targetlayout="restriction" />
+			<button type="page" label="Automobil" icon="button_car" targetlayout="car" />
+		</row>
+		<row>
+			<button type="page" label="Turistika" icon="button_tourism" targetlayout="tourism" />
+			<button type="page" label="Zariadenie" icon="button_amenity" targetlayout="amenity" />
+			<button type="page" label="Zariadenie (+)" icon="button_amenity" targetlayout="amenity_more" />
+		</row>
+		<row>
+			<button type="page" label="Cesta" icon="button_way" targetlayout="way" />
+			<button type="page" label="Nespevnená\ncesta" icon="button_track" targetlayout="track" />
+			<button type="page" label="Územie" icon="button_landuse" targetlayout="landuse" />
+		</row>
+	</layout>
+
+	<layout name="misc">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Autobusová\nzastávka" icon="button_misc_bus_stop" />
+			<button type="tag" label="Železničná\ntrať" icon="button_misc_railway" />
+			<button type="tag" label="Telefón" icon="button_misc_telephone" />
+		</row>
+		<row>
+			<button type="tag" label="Poštová\nschránka" icon="button_misc_post_box" />
+			<button type="tag" label="Bankomat" icon="button_misc_atm" />
+			<button type="tag" label="Pätník" icon="button_misc_bollard" />
+		</row>
+		<row>
+			<button type="tag" label="Toalety" icon="button_misc_toilets" />
+			<button type="tag" label="Prístrešok" icon="button_misc_shelter" />
+			<button type="tag" label="Pozorovanie" icon="button_misc_surveillance" />
+		</row>
+	</layout>
+
+	<layout name="restriction">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Max 30" icon="button_restriction" />
+			<button type="tag" label="Max 50" icon="button_restriction" />
+			<button type="tag" label="Max 80" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="Max 100" icon="button_restriction" />
+			<button type="tag" label="Max 110" icon="button_restriction" />
+			<button type="tag" label="Max 120" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="Slepá ulica" icon="button_restriction_no_exit" />
+			<button type="tag" label="Semafor" icon="button_restriction_traffic_light" />
+			<button type="tag" label="Jednosmerka" icon="button_restriction_one_way" />
+		</row>
+	</layout>
+
+	<layout name="car">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Čerpacia\nstanica" icon="button_car_fuel_station" />
+			<button type="tag" label="Parkovanie" icon="button_car_parking" />
+			<button type="tag" label="Tiesňový\ntelefón" icon="button_car_emergency_phone" />
+		</row>
+		<row>
+			<button type="tag" label="Cesta na\notáčanie" icon="button_car_turning_circle" />
+			<button type="tag" label="Radar" icon="button_car_speed_camera" />
+		</row>
+	</layout>
+
+	<layout name="tourism">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Vyhliadka" icon="button_tourism_view_point" />
+			<button type="tag" label="Informácie" icon="button_tourism_information" />
+			<button type="tag" label="Miesto pre piknik" icon="button_tourism_picnic" />
+		</row>
+		<row>
+			<button type="tag" label="Atrakcia" icon="button_tourism_attraction" />
+			<button type="tag" label="Zábavný\npark" icon="button_tourism_theme_park" />
+			<button type="tag" label="Hrad" icon="button_tourism_castle" />
+		</row>
+		<row>
+			<button type="tag" label="Pamätník" icon="button_tourism_monument" />
+			<button type="tag" label="Múzeum" icon="button_tourism_museum" />
+			<button type="tag" label="Kino" icon="button_tourism_cinema" />
+		</row>
+	</layout>
+
+	<layout name="amenity">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Lavička" icon="button_amenity_bench" />
+			<button type="tag" label="Voda" icon="button_amenity_water" />
+			<button type="tag" label="Lekáreň" icon="button_amenity_pharmacy" />
+		</row>
+		<row>
+			<button type="tag" label="Obchod" icon="button_amenity_shop" />
+			<button type="tag" label="Prístav" icon="button_amenity_marina" />
+			<button type="tag" label="Šport" icon="button_amenity_sport" />
+		</row>
+		<row>
+			<button type="tag" label="Taxislužba" icon="button_amenity_taxi" />
+			<button type="tag" label="Nemocnica,\nDoktori" icon="button_amenity_doctors" />
+			<button type="tag" label="Recyklácia" icon="button_amenity_recycling" />
+		</row>
+		<row>
+			<button type="tag" label="Miesto\nuctievania" icon="button_amenity_place_of_worship" />
+			<button type="tag" label="Pošta" icon="button_amenity_post_office" />
+			<button type="tag" label="Knižnica" icon="button_amenity_library" />
+		</row>
+	</layout>
+
+	<layout name="amenity_more">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Škola" icon="button_amenitymore_school" />
+			<button type="tag" label="Polícia" icon="button_amenitymore_police" />
+			<button type="tag" label="Požiarna\nstanica" icon="button_amenitymore_fire_station" />
+		</row>
+		<row>
+			<button type="tag" label="Banka" icon="button_amenitymore_bank" />
+			<button type="tag" label="Ihrisko" icon="button_amenitymore_playground" />
+			<button type="tag" label="Hostinec" icon="button_amenitymore_pub" />
+		</row>
+		<row>
+			<button type="tag" label="Hotel" icon="button_amenitymore_hotel" />
+			<button type="tag" label="Motel" icon="button_amenitymore_motel" />
+			<button type="tag" label="Internát" icon="button_amenitymore_hostel" />
+		</row>
+		<row>
+			<button type="tag" label="Reštaurácia" icon="button_amenitymore_restaurant" />
+			<button type="tag" label="Rýchle\nobčerstvenie" icon="button_amenitymore_fastfood" />
+			<button type="tag" label="Táborisko" icon="button_amenitymore_camp_site" />
+		</row>
+	</layout>
+
+	<layout name="way">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Most" icon="button_way_bridge" />
+			<button type="tag" label="Prechod\npre chodcov" icon="button_way_zebra_crossing" />
+			<button type="tag" label="Diaľnica" icon="button_way_motorway" />
+		</row>
+		<row>
+			<button type="tag" label="Rýchlostná\nkomunikácia" icon="button_way_trunk" />
+			<button type="tag" label="Cesta\n1. triedy" icon="button_way_primary" />
+			<button type="tag" label="Cesta\n2. triedy" icon="button_way_secondary" />
+		</row>
+		<row>
+			<button type="tag" label="Cesta\n3. triedy" icon="button_way_tertiary" />
+			<button type="tag" label="Residential" icon="button_way_residential" />
+			<button type="tag" label="Servisná" icon="button_way_service" />
+		</row>
+	</layout>
+
+	<layout name="track">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Nespevnená\ncesta" icon="button_track_track" />
+			<button type="tag" label="Cesta pre\nbicykle" icon="button_track_cycleway" />
+			<button type="tag" label="Chodník" icon="button_track_footway" />
+		</row>
+		<row>
+			<button type="tag" label="Cesta pre\nkone" icon="button_track_bridleway" />
+			<button type="tag" label="Schody" icon="button_track_steps" />
+			<button type="tag" label="Obytná\nzóna" icon="button_track_living_street" />
+		</row>
+		<row>
+			<button type="tag" label="Pešia zóna" icon="button_track_pedestrian" />
+			<button type="tag" label="Stupeň 1" icon="button_track_grade1" />
+			<button type="tag" label="Stupeň 2" icon="button_track_grade2" />
+		</row>
+		<row>
+			<button type="tag" label="Stupeň 3" icon="button_track_grade3" />
+			<button type="tag" label="Stupeň 4" icon="button_track_grade4" />
+			<button type="tag" label="Stupeň 5" icon="button_track_grade5" />
+		</row>
+	</layout>
+
+	<layout name="landuse">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Farma" icon="button_landuse_farm" />
+			<button type="tag" label="Skládka\nodpadkov" icon="button_landuse_landfill" />
+			<button type="tag" label="Povodie" icon="button_landuse_basin" />
+		</row>
+		<row>
+			<button type="tag" label="Nádrž" icon="button_landuse_reservoir" />
+			<button type="tag" label="Les" icon="button_landuse_forest" />
+			<button type="tag" label="Záhrady" icon="button_landuse_allotments" />
+		</row>
+		<row>
+			<button type="tag" label="Cintorín" icon="button_landuse_cemetery" />
+			<button type="tag" label="Rekreačné\nstredisko" icon="button_landuse_recreation_ground" />
+		</row>
+	</layout>
+</layouts>
