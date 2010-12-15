@@ -37,6 +37,7 @@ import android.widget.TableRow;
  */
 public class UserDefinedLayoutReader {
 
+	@SuppressWarnings("unused")
 	private static final String TAG = UserDefinedLayoutReader.class.getSimpleName();
 
 	/**
@@ -375,7 +376,6 @@ public class UserDefinedLayoutReader {
 		public static final String ATTR_VAL_TEXTNOTE = "textnote";
 		public static final String ATTR_VAL_PICTURE = "picture";
 		
-		public static final String ATTR_VAL_ICONPOS_AUTO = "auto";
 		public static final String ATTR_VAL_ICONPOS_TOP = "top";
 		public static final String ATTR_VAL_ICONPOS_RIGHT = "right";
 		public static final String ATTR_VAL_ICONPOS_BOTTOM = "bottom";

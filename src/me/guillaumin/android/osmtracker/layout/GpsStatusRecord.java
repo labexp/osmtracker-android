@@ -99,7 +99,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 
 			// Count active satellites
 			int satCount = 0;
-			for (GpsSatellite sat:status.getSatellites()) {
+			for (@SuppressWarnings("unused") GpsSatellite sat:status.getSatellites()) {
 				satCount++;
 			}
 			

@@ -29,6 +29,7 @@ import android.widget.LinearLayout;
  */
 public class UserDefinedLayout extends LinearLayout {
 
+	@SuppressWarnings("unused")
 	private static final String TAG = UserDefinedLayout.class.getSimpleName();
 	
 	/**
