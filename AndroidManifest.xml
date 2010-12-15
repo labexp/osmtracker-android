@@ -25,12 +25,6 @@
 			</intent-filter>
 		</service>
 
-		<service android:label="OpenStreetMapTileProviderService" android:process=":remote"
-			android:name="org.andnav.osm.services.OpenStreetMapTileProviderService">
-			<intent-filter>
-				<action android:name="org.andnav.osm.services.IOpenStreetMapTileProviderService" />
-			</intent-filter>
-		</service>
 		<provider android:name=".db.TrackContentProvider" android:authorities="me.guillaumin.android.osmtracker.provider"></provider>
 
 	</application>
