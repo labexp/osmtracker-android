@@ -10,6 +10,9 @@ import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapViewController;
 import org.andnav.osm.views.overlay.OpenStreetMapViewPathOverlay;
 import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
+import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
+import org.andnav.osm.views.util.OpenStreetMapRendererBase;
+import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -192,7 +195,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		menu.findItem(R.id.displaytrackmap_menu_center_to_gps).setEnabled(!centerToGpsPos);
+		menu.findItem(R.id.displaytrackmap_menu_center_to_gps).setEnabled( (!centerToGpsPos && currentPosition != null ) );
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -203,7 +206,9 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		switch(item.getItemId()){
 		case R.id.displaytrackmap_menu_center_to_gps:
 			centerToGpsPos = true;
-			osmViewController.setCenter(currentPosition);
+			if(currentPosition != null){
+				osmViewController.setCenter(currentPosition);
+			}
 			break;
 		}
 		return super.onOptionsItemSelected(item);
