@@ -34,7 +34,7 @@ public class TracklistAdapter extends CursorAdapter {
 	public View newView(Context context, Cursor cursor, ViewGroup vg) {
 		View view = LayoutInflater.from(vg.getContext()).inflate(R.layout.tracklist_item,
 				vg, false);
-		return bind(cursor, view, context);
+		return view;
 	}
 	
 	/**
