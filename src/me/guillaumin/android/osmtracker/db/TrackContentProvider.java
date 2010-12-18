@@ -1,5 +1,8 @@
 package me.guillaumin.android.osmtracker.db;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.guillaumin.android.osmtracker.OSMTracker;
 import android.content.ContentProvider;
 import android.content.ContentResolver;
@@ -196,6 +199,7 @@ public class TrackContentProvider extends ContentProvider {
 		return null;
 	}
 
+	
 	@Override
 	public Cursor query(Uri uri, String[] projection, String selectionIn, String[] selectionArgsIn, String sortOrder) {
 		Log.v(TAG, "query(), uri=" + uri);
@@ -207,14 +211,26 @@ public class TrackContentProvider extends ContentProvider {
 		// Select which datatype was requested
 		switch (uriMatcher.match(uri)) {
 		case Schema.URI_CODE_TRACK_TRACKPOINTS:
-			if (selectionIn != null || selectionArgsIn != null) {
-				// Any selection/selectionArgs will be ignored
-				throw new UnsupportedOperationException();
-			}
 			String trackId = uri.getPathSegments().get(1);
 			qb.setTables(Schema.TBL_TRACKPOINT);
 			selection = Schema.COL_TRACK_ID + " = ?";
-			selectionArgs = new String[] {trackId};
+			// Deal with any additional selection info provided by the caller 
+			if (null != selectionIn) {
+			    selection += " AND " + selectionIn;      
+			}
+			
+			List<String> selctionArgsList = new ArrayList<String>();
+			selctionArgsList.add(trackId);
+			// Add the callers selection arguments, if any
+			if (null != selectionArgsIn) {
+			    for (String arg : selectionArgsIn) {
+			        selctionArgsList.add(arg);
+			    }
+			}
+			selectionArgs = selctionArgsList.toArray(new String[0]);
+			// Finished with the temporary selection arguments list. release it for GC
+			selctionArgsList.clear();
+			selctionArgsList = null;
 			break;
 		case Schema.URI_CODE_TRACK_WAYPOINTS:
 			if (selectionIn != null || selectionArgsIn != null) {

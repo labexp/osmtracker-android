@@ -1,5 +1,8 @@
 package me.guillaumin.android.osmtracker.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
@@ -88,6 +91,13 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	private GeoPoint currentPosition;
 
 	/**
+	 * The row id of the last location read from the database that has been added to the
+	 * list of layout points. Using this we to reduce DB load by only reading new points.
+	 * Initially null, to indicate that no data has yet been read.  
+	 */
+	private Integer lastTrackPointIdProcessed = null;
+	
+	/**
 	 * Observes changes on trackpoints
 	 */
 	private ContentObserver trackpointContentObserver;
@@ -152,6 +162,11 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		getContentResolver().registerContentObserver(
 				TrackContentProvider.trackPointsUri(currentTrackId),
 				true, trackpointContentObserver);
+		
+	    // Forget the last waypoint read from the DB
+		// This ensures that all waypoints for the track will be reloaded 
+        // from the database to populate the path layout
+        lastTrackPointIdProcessed = null;
 		
         // Reload path
         pathChanged();
@@ -242,22 +257,45 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 			return;
 		}
 		
-		// Update only the new points
+		// Projection: The columns to retrieve. Here, we want the latitude, 
+		// longitude and primary key only
+		String[] projection = {Schema.COL_LATITUDE, Schema.COL_LONGITUDE, Schema.COL_ID};
+		// Selection: The where clause to use
+		String selection = null;
+		// SelectionArgs: The parameter replacements to use for the '?' in the selection		
+		String[] selectionArgs = null;
+		
+        // Only request the track points that we have not seen yet
+		// If we have processed any track points in this session then
+		// lastTrackPointIdProcessed will not be null. We only want 
+		// to see data from rows with a primary key greater than lastTrackPointIdProcessed  
+		if (lastTrackPointIdProcessed != null) {
+		    selection = TrackContentProvider.Schema.COL_ID + " > ?";
+		    List<String> selectionArgsList  = new ArrayList<String>();
+		    selectionArgsList.add(lastTrackPointIdProcessed.toString());
+		    
+		    selectionArgs = selectionArgsList.toArray(new String[1]); 
+		}
+
+		// Retrieve any points we have not yet seen
 		Cursor c = getContentResolver().query(
 				TrackContentProvider.trackPointsUri(currentTrackId),
-				null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
-		int existingPoints = pathOverlay.getNumberOfPoints();
+				projection, selection, selectionArgs, Schema.COL_ID + " asc");
 		
-		// Process only if we have data, and new data only
-		if (c.getCount() > 0 &&  c.getCount() > existingPoints) {		
-			c.moveToPosition(existingPoints);
+		int numberOfPointsRetrieved = c.getCount();		
+        if (numberOfPointsRetrieved > 0 ) {        
+            c.moveToFirst();
 			double lastLat = 0;
 			double lastLon = 0;
+	        int primaryKeyColumnIndex = c.getColumnIndex(Schema.COL_ID);
+	        int latitudeColumnIndex = c.getColumnIndex(Schema.COL_LATITUDE);
+	        int longitudeColumnIndex = c.getColumnIndex(Schema.COL_LONGITUDE);
 		
 			// Add each new point to the track
 			while(!c.isAfterLast()) {			
-				lastLat = c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE));
-				lastLon = c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE));
+				lastLat = c.getDouble(latitudeColumnIndex);
+				lastLon = c.getDouble(longitudeColumnIndex);
+				lastTrackPointIdProcessed = c.getInt(primaryKeyColumnIndex);
 				pathOverlay.addPoint((int)(lastLat * 1e6), (int)(lastLon * 1e6));
 				c.moveToNext();
 			}		
