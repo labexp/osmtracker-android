@@ -31,6 +31,8 @@
 	<string name="trackmgr_newtrack_hint">To record a track,\npress <b>Menu</b> then <b>New track</b></string>
 	<string name="trackmgr_newtrack_error">Unable to create a new track: {0}</string>
 	<string name="trackmgr_continuetrack_hint">You are currently recording <b>track #{0}</b>\nChoose it in the list to continue</string>
+	<string name="trackmgr_contextmenu_stop">Stop tracking</string>
+	<string name="trackmgr_contextmenu_resume">Resume tracking</string>
 	<string name="trackmgr_contextmenu_delete">Delete</string>
 	<string name="trackmgr_contextmenu_export">Export as GPX</string>
 	<string name="trackmgr_contextmenu_display">Display</string>

@@ -217,6 +217,7 @@ public class GPSLogger extends Service implements LocationListener {
 		dataHelper.stopTracking(currentTrackId);
 		stopNotifyBackgroundService();
 		currentTrackId = -1;
+		this.stopSelf();
 	}
 
 	@Override
