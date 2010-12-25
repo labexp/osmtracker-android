@@ -21,44 +21,61 @@ public class Track {
 	private String name;
 	private int tpCount, wpCount;
 	private long trackDate;
+	private long trackId;
 	
 	private Long startDate=null, endDate=null;
 	private Float startLat=null, startLong=null, endLat=null, endLong=null;
 	
-	public static Track build(final long trackId, Cursor tc, ContentResolver cr) {
+	private boolean extraInformationRead = false;
+	
+	private ContentResolver cr;
+	
+	/**
+	 * build a track object with the given cursor
+	 * 
+	 * @param trackId id of the track that will be built
+	 * @param tc cursor that is used to build the track
+	 * @param cr the content resolver to use
+	 * @param withExtraInformation if additional informations (startDate, endDate, first and last track point will be loaded from the database
+	 * @return Track
+	 */
+	public static Track build(final long trackId, Cursor tc, ContentResolver cr, boolean withExtraInformation) {
 		Track out = new Track();
-		
-		out.setTrackDate(tc.getLong(tc.getColumnIndex(Schema.COL_START_DATE)));
-		out.setName(tc.getString(tc.getColumnIndex(Schema.COL_NAME)));
 
-		// Track points
-		Cursor tpCursor = cr.query(
-				TrackContentProvider.trackPointsUri(trackId),
-				null, null, null, Schema.COL_ID);
-		out.setTpCount(tpCursor.getCount());
-		if (tpCursor.moveToFirst()) {
-			// start
-			out.setStartLat(tpCursor.getFloat(tpCursor.getColumnIndex(Schema.COL_LATITUDE)));
-			out.setStartLong(tpCursor.getFloat(tpCursor.getColumnIndex(Schema.COL_LONGITUDE)));
-			out.setStartDate(tpCursor.getLong(tpCursor.getColumnIndex(Schema.COL_TIMESTAMP)));
-			
-			tpCursor.moveToLast();
-			out.setEndLat(tpCursor.getFloat(tpCursor.getColumnIndex(Schema.COL_LATITUDE)));
-			out.setEndLong(tpCursor.getFloat(tpCursor.getColumnIndex(Schema.COL_LONGITUDE)));
-			out.setEndDate(tpCursor.getLong(tpCursor.getColumnIndex(Schema.COL_TIMESTAMP)));
-		}
-		tpCursor.close();
+		out.trackId = trackId;
+		out.cr = cr;
+		out.trackDate = tc.getLong(tc.getColumnIndex(Schema.COL_START_DATE));
+		out.name = tc.getString(tc.getColumnIndex(Schema.COL_NAME));
+
+		out.tpCount = tc.getInt(tc.getColumnIndex(Schema.COL_TRACKPOINT_COUNT));
 		
-		// Way points
-		Cursor wpCursor = cr.query(
-				TrackContentProvider.waypointsUri(trackId),
-				null, null,	null, null);
-		out.setWpCount(wpCursor.getCount());
-		wpCursor.close();
+		out.wpCount = tc.getInt(tc.getColumnIndex(Schema.COL_WAYPOINT_COUNT));
+		
+		if(withExtraInformation){
+			out.readExtraInformation();
+		}
 		
 		return out;		
 	}
-
+	
+	private void readExtraInformation(){
+		if(!extraInformationRead){
+			Cursor startCursor = cr.query(TrackContentProvider.trackStartUri(trackId), null, null, null, null);
+			if(startCursor.moveToFirst()){
+				startDate = startCursor.getLong(startCursor.getColumnIndex(Schema.COL_TIMESTAMP));
+				startLat = startCursor.getFloat(startCursor.getColumnIndex(Schema.COL_LATITUDE));
+				startLong = startCursor.getFloat(startCursor.getColumnIndex(Schema.COL_LONGITUDE));
+			}
+			Cursor endCursor = cr.query(TrackContentProvider.trackEndUri(trackId), null, null, null, null);
+			if(endCursor.moveToFirst()){
+				endDate = endCursor.getLong(endCursor.getColumnIndex(Schema.COL_TIMESTAMP));
+				endLat = endCursor.getFloat(endCursor.getColumnIndex(Schema.COL_LATITUDE));
+				endLong = endCursor.getFloat(endCursor.getColumnIndex(Schema.COL_LONGITUDE));
+			}
+			extraInformationRead = true;
+		}
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -121,6 +138,7 @@ public class Track {
 	}
 	
 	public String getStartDateAsString() {
+		readExtraInformation();
 		if (startDate != null) {
 			return DATE_FORMAT.format(new Date(startDate));
 		} else {
@@ -129,6 +147,7 @@ public class Track {
 	}
 	
 	public String getEndDateAsString() {
+		readExtraInformation();
 		if (endDate != null) {
 			return DATE_FORMAT.format(new Date(endDate));
 		} else {
@@ -137,18 +156,22 @@ public class Track {
 	}
 
 	public Float getStartLat() {
+		readExtraInformation();
 		return startLat;
 	}
 
 	public Float getStartLong() {
+		readExtraInformation();
 		return startLong;
 	}
 
 	public Float getEndLat() {
+		readExtraInformation();
 		return endLat;
 	}
 
 	public Float getEndLong() {
+		readExtraInformation();
 		return endLong;
 	}
 

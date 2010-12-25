@@ -125,7 +125,7 @@ public class TrackDetail extends Activity {
 
 		// Bind WP count, TP count, start date, etc.
 		// Fill name-field only if empty (in case changed by user/restored by onRestoreInstanceState) 
-		Track t = Track.build(trackId, cursor, cr);
+		Track t = Track.build(trackId, cursor, cr, true);
 	
 		if (etName.length() == 0) {
 			trackNameInDB = t.getName();

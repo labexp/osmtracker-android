@@ -46,6 +46,32 @@ public class TrackContentProvider extends ContentProvider {
 	public static final Uri CONTENT_URI_WAYPOINT_UUID = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_WAYPOINT + "/uuid");
 	
 	/**
+	 * tables and joins to be used within a query to get the important informations of a track
+	 */
+	private static final String TRACK_TABLES = Schema.TBL_TRACK + " left join " + Schema.TBL_TRACKPOINT + " on " + Schema.TBL_TRACK + "." + Schema.COL_ID + " = " + Schema.TBL_TRACKPOINT + "." + Schema.COL_TRACK_ID;
+	
+	/**
+	 * the projection to be used to get the important informations of a track
+	 */
+	private static final String[] TRACK_TABLES_PROJECTION = {
+		Schema.TBL_TRACK + "." + Schema.COL_ID + " as " + Schema.COL_ID,
+		Schema.COL_ACTIVE,
+		Schema.COL_DIR,
+		Schema.COL_EXPORT_DATE,
+		Schema.TBL_TRACK + "." + Schema.COL_NAME + " as "+ Schema.COL_NAME,
+		Schema.COL_START_DATE,
+		"count(" + Schema.TBL_TRACKPOINT + "." + Schema.COL_ID + ") as " + Schema.COL_TRACKPOINT_COUNT,
+		"(SELECT count("+Schema.TBL_WAYPOINT+"."+Schema.COL_TRACK_ID+") FROM "+Schema.TBL_WAYPOINT+" WHERE "+Schema.TBL_WAYPOINT+"."+Schema.COL_TRACK_ID+" = " + Schema.TBL_TRACK + "." + Schema.COL_ID + ") as " + Schema.COL_WAYPOINT_COUNT
+	};
+	
+	/**
+	 * the group by statement that is used for the track statements
+	 */
+	private static final String TRACK_TABLES_GROUP_BY = Schema.TBL_TRACK + "." + Schema.COL_ID;
+	
+	
+	
+	/**
 	 * Uri Matcher
 	 */
 	private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -53,6 +79,8 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK, Schema.URI_CODE_TRACK);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/active", Schema.URI_CODE_TRACK_ACTIVE);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#", Schema.URI_CODE_TRACK_ID);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/start", Schema.URI_CODE_TRACK_START);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/end", Schema.URI_CODE_TRACK_END);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_WAYPOINT + "s", Schema.URI_CODE_TRACK_WAYPOINTS);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_TRACKPOINT + "s", Schema.URI_CODE_TRACK_TRACKPOINTS);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/uuid/*", Schema.URI_CODE_WAYPOINT_UUID);
@@ -77,6 +105,26 @@ public class TrackContentProvider extends ContentProvider {
 		return Uri.withAppendedPath(
 				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
 				Schema.TBL_TRACKPOINT + "s" );		
+	}
+
+	/**
+	 * @param trackId target track id
+	 * @return Uri for the startpoint of the track 
+	 */
+	public static final Uri trackStartUri(long trackId) {
+		return Uri.withAppendedPath(
+				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
+				"start" );		
+	}
+
+	/**
+	 * @param trackId target track id
+	 * @return Uri for the startpoint of the track 
+	 */
+	public static final Uri trackEndUri(long trackId) {
+		return Uri.withAppendedPath(
+				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
+				"end" );		
 	}
 
 	/**
@@ -208,6 +256,9 @@ public class TrackContentProvider extends ContentProvider {
 		String selection = selectionIn;
 		String[] selectionArgs = selectionArgsIn;
 		
+		String groupBy = null;
+		String limit = null;
+		
 		// Select which datatype was requested
 		switch (uriMatcher.match(uri)) {
 		case Schema.URI_CODE_TRACK_TRACKPOINTS:
@@ -242,8 +293,34 @@ public class TrackContentProvider extends ContentProvider {
 			selection = Schema.COL_TRACK_ID + " = ?";
 			selectionArgs = new String[] {trackId};
 			break;
+		case Schema.URI_CODE_TRACK_START:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			trackId = uri.getPathSegments().get(1);
+			qb.setTables(Schema.TBL_TRACKPOINT);
+			selection = Schema.COL_TRACK_ID + " = ?";
+			selectionArgs = new String[] {trackId};
+			sortOrder = Schema.COL_ID + " asc";
+			limit = "1";
+			break;
+		case Schema.URI_CODE_TRACK_END:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			trackId = uri.getPathSegments().get(1);
+			qb.setTables(Schema.TBL_TRACKPOINT);
+			selection = Schema.COL_TRACK_ID + " = ?";
+			selectionArgs = new String[] {trackId};
+			sortOrder = Schema.COL_ID + " desc";
+			limit = "1";
+			break;
 		case Schema.URI_CODE_TRACK:
-			qb.setTables(Schema.TBL_TRACK);
+			qb.setTables(TRACK_TABLES);
+			projection = TRACK_TABLES_PROJECTION;
+			groupBy = TRACK_TABLES_GROUP_BY;
 			break;
 		case Schema.URI_CODE_TRACK_ID:
 			if (selectionIn != null || selectionArgsIn != null) {
@@ -251,8 +328,10 @@ public class TrackContentProvider extends ContentProvider {
 				throw new UnsupportedOperationException();
 			}
 			trackId = uri.getLastPathSegment();
-			qb.setTables(Schema.TBL_TRACK);
-			selection = Schema.COL_ID + " = ?";
+			qb.setTables(TRACK_TABLES);
+			projection = TRACK_TABLES_PROJECTION;
+			groupBy = TRACK_TABLES_GROUP_BY;
+			selection = Schema.TBL_TRACK + "." + Schema.COL_ID + " = ?";
 			selectionArgs = new String[] {trackId};			
 			break;
 		case Schema.URI_CODE_TRACK_ACTIVE:
@@ -268,7 +347,7 @@ public class TrackContentProvider extends ContentProvider {
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
 
-		Cursor c = qb.query(dbHelper.getReadableDatabase(), null, selection, selectionArgs, null, null, sortOrder);
+		Cursor c = qb.query(dbHelper.getReadableDatabase(), projection, selection, selectionArgs, groupBy, null, sortOrder, limit);
 		c.setNotificationUri(getContext().getContentResolver(), uri);
 		return c;
 	}
@@ -347,6 +426,10 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_ACTIVE = "active";
 		public static final String COL_EXPORT_DATE = "export_date";
 		
+		// virtual colums that are used in some sqls but dont exist in database
+		public static final String COL_TRACKPOINT_COUNT = "tp_count";
+		public static final String COL_WAYPOINT_COUNT = "wp_count";
+		
 		// Codes for UriMatcher
 		public static final int URI_CODE_TRACK = 3;
 		public static final int URI_CODE_TRACK_ID = 4;
@@ -354,6 +437,8 @@ public class TrackContentProvider extends ContentProvider {
 		public static final int URI_CODE_TRACK_TRACKPOINTS = 6;
 		public static final int URI_CODE_TRACK_ACTIVE = 7;
 		public static final int URI_CODE_WAYPOINT_UUID = 8;
+		public static final int URI_CODE_TRACK_START = 9;
+		public static final int URI_CODE_TRACK_END = 10;
 		
 
 		public static final int VAL_TRACK_ACTIVE = 1;
