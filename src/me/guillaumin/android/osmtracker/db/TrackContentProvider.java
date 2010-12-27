@@ -119,7 +119,7 @@ public class TrackContentProvider extends ContentProvider {
 
 	/**
 	 * @param trackId target track id
-	 * @return Uri for the startpoint of the track 
+	 * @return Uri for the endpoint of the track 
 	 */
 	public static final Uri trackEndUri(long trackId) {
 		return Uri.withAppendedPath(
