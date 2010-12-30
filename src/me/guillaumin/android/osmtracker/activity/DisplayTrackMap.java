@@ -3,6 +3,7 @@ package me.guillaumin.android.osmtracker.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
@@ -15,12 +16,14 @@ import org.andnav.osm.views.overlay.OpenStreetMapViewPathOverlay;
 import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -101,10 +104,19 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	 * Observes changes on trackpoints
 	 */
 	private ContentObserver trackpointContentObserver;
-		
+
+	/**
+	 * Keeps the SharedPreferences
+	 */
+	private SharedPreferences prefs = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // loading the preferences
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        
         setContentView(R.layout.displaytrackmap);
         
         currentTrackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
@@ -112,6 +124,8 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         
         // Initialize OSM view
         osmView = (OpenStreetMapView) findViewById(R.id.displaytrackmap_osmView);
+        // we'll use osmView to define if the screen is always on or not
+        osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
         osmViewController = osmView.getController();
         
         // Check if there is a saved zoom level
@@ -158,6 +172,10 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 
 	@Override
 	protected void onResume() {
+		
+		// setKeepScreenOn depending on user's preferences
+		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
+		
 		// Register content observer for any trackpoint changes
 		getContentResolver().registerContentObserver(
 				TrackContentProvider.trackPointsUri(currentTrackId),
@@ -221,6 +239,10 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 			if(currentPosition != null){
 				osmViewController.setCenter(currentPosition);
 			}
+			break;
+		case R.id.displaytrackmap_menu_settings:
+			// Start settings activity
+			startActivity(new Intent(this, Preferences.class));
 			break;
 		}
 		return super.onOptionsItemSelected(item);

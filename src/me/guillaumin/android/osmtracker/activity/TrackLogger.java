@@ -31,6 +31,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -127,8 +128,11 @@ public class TrackLogger extends Activity {
 
 		super.onCreate(savedInstanceState);
 		
-		// automatically decide which content view to show
-		autoSetContentView();
+		setContentView(R.layout.tracklogger);
+		
+		// set trackLogger to keepScreenOn depending on the user's preference
+		View trackLoggerView = findViewById(R.id.tracklogger_root);
+		trackLoggerView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
 
 		// Try to restore previous state
 		boolean previousStateIsTracking = false;
@@ -152,8 +156,9 @@ public class TrackLogger extends Activity {
 
 		setTitle(getResources().getString(R.string.tracklogger) + ": #" + currentTrackId);
 		
-		// automatically decide which content view to show
-		autoSetContentView();
+		// set trackLogger to  keepScreenOn depending on the user's preference
+		View trackLoggerView = findViewById(R.id.tracklogger_root);
+		trackLoggerView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
 		
 		// Try to inflate the buttons layout
 		try {
@@ -223,19 +228,6 @@ public class TrackLogger extends Activity {
 						}
 					}).create().show();
 			checkGPSFlag = false;
-		}
-	}
-	
-	/**
-	 * automatically sets the correct content view for the given user preferences
-	 */
-	private void autoSetContentView(){
-		if(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON)){
-			// screen on
-			setContentView(R.layout.tracklogger_screenon);
-		}else{
-			// screen off
-			setContentView(R.layout.tracklogger_screenoff);
 		}
 	}
 
