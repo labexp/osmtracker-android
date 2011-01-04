@@ -368,16 +368,16 @@ public class TrackManager extends ListActivity {
 	
 	/**
 	 * Sets the active track
+	 * calls {@link stopActiveTrack()} to stop all currently 
 	 * @param trackId ID of the track to activate
 	 */
 	private void setActiveTrack(long trackId){
-		ContentValues values = new ContentValues();
-		// set all tracks inactive
-		values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_INACTIVE);
-		getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values, null, null);
-
+		
+		// to be sure that no tracking will be in progress when we set a new track
+		stopActiveTrack();
+		
 		// set the track active
-		values.clear();
+		ContentValues values = new ContentValues();
 		values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_ACTIVE);
 		getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values, Schema.COL_ID + " = ?", new String[] {Long.toString(trackId)});
 	}
