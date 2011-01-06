@@ -6,12 +6,14 @@
 	<string name="app_description">Inspirato a OSMTracker di Windows Mobile, permette di tracciare i propri viaggi, segnare i punti di interesse importanti (disponibile la registrazione vocale), esportarli in formato GPX per un uso successivo con strumenti di Open Street Map come JOSM.</string>
 	
 	<!-- TrackLogger -->
-	<string name="tracklogger_waiting_gps">Attesa del GPS per abilitare i pulsanti...</string>
+	<string name="tracklogger">Registrazione traccia</string>
+	<string name="tracklogger_waiting_gps">In attesa del GPS per abilitare i pulsanti...</string>
 	<string name="tracklogger_voicerec_title">Registrazione vocale</string>
 	<string name="tracklogger_voicerec_text">Registrazione audio di {0}s.</string>
 	<string name="tracklogger_btnBack">Indietro</string>
 	<string name="tracklogger_tracked">Tracciato: </string>
-	<string name="tracklogger_gps_disabled">Il GPS è disabilitato. Vuoi abilitarlo?</string>
+	<string name="tracklogger_gps_disabled">GPS disattivato</string>
+	<string name="tracklogger_gps_disabled_hint">Il GPS è disattivato. Vuoi attivarlo?</string>
 
 	<!-- Waypoint List -->
 	<string name="wplist">Elenco POI</string>
@@ -19,7 +21,38 @@
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Ele: </string>
 	<string name="wplist_accuracy">Prec: </string>
-	
+
+	<!-- Track Manager -->
+	<string name="trackmgr">Gestione tracce</string>
+	<string name="trackmgr_tracklist">Elenco tracce:</string>
+	<string name="trackmgr_waypoints_count">POI: </string>
+	<string name="trackmgr_trackpoints_count">Punti traccia: </string>
+	<string name="trackmgr_empty">Nessuna traccia disponibile.</string>
+	<string name="trackmgr_newtrack_hint">Per registrare una traccia,\npremi <b>Menu</b> poi <b>Nuova traccia</b></string>
+	<string name="trackmgr_newtrack_error">Impossibile creare una nuova traccia: {0}</string>
+	<string name="trackmgr_continuetrack_hint">Stai già registrando la <b>traccia #{0}</b>\nSelezionala nell\'elenco per continuare</string>
+	<string name="trackmgr_contextmenu_stop">Ferma registrazione</string>
+	<string name="trackmgr_contextmenu_resume">Riprendi registrazione</string>
+	<string name="trackmgr_contextmenu_delete">Elimina</string>
+	<string name="trackmgr_contextmenu_export">Esporta in GPX</string>
+	<string name="trackmgr_contextmenu_display">Mostra</string>
+	<string name="trackmgr_contextmenu_details">Dettagli</string>
+	<string name="trackmgr_contextmenu_title">Traccia #{0}</string>
+	<string name="trackmgr_delete_confirm">La traccia #{0} sarà eliminata</string>
+	<string name="trackmgr_exporting">Esportazione traccia #{0}...</string>
+	<string name="trackmgr_export_error">Impossibile esportare la traccia: {0}</string>
+
+	<!-- Track Detail -->
+	<string name="trackdetail">Dettagli traccia</string>
+	<string name="trackdetail_startdate">Ora inizio:</string>
+	<string name="trackdetail_enddate">Ora fine:</string>
+	<string name="trackdetail_startloc">Inizia alle:</string>
+	<string name="trackdetail_endloc">Finisce alle:</string>
+	<string name="trackdetail_exportdate">Esportata:</string>
+	<string name="trackdetail_btn_export">Esporta in GPX</string>
+	<string name="trackdetail_export_notyet">(Non ancora esportata)</string>
+	<string name="trackdetail_export_display">Mostra</string>
+
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Registra traccia</string>
 	<string name="gpsstatus_record_trackon">Ferma registrazione</string>
@@ -34,16 +67,22 @@
 	<string name="menu_displaytrack">Mostra traccia</string>
 	<string name="menu_starttracking">Registra traccia</string>
 	<string name="menu_stoptracking">Ferma &amp; Salva</string>
+	<string name="menu_newtrack">Nuova traccia</string>
+	<string name="menu_continue">Continua traccia</string>
+	<string name="menu_save">Salva</string>
+	<string name="menu_cancel">Annulla</string>
+	<string name="menu_export">Esporta in GPX</string>
+	<string name="menu_center_to_gps">Centra nel GPS</string>
 
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Impossibile scrivere nella memoria esterna.</string>
 	<string name="error_externalstorage_not_writable_hint">Verifica che la memoria esterna sia inserita e montata correttamente.</string>
 	<string name="error_voicerec_failed">Registrazione vocale fallita</string>
-	<string name="error_userlayout_parsing">Errore durante l\'elaborazione del formato file XML. Ripristina il formato predefinito.</string>
+	<string name="error_userlayout_parsing">Errore durante l\'elaborazione del file con formato XML. Ripristina il formato predefinito.</string>
 	
 	<!-- GPX -->
 	<string name="gpx_track_name">Tracciato con OSMTracker per Android™</string>
-	<string name="gpx_hdop_approximation_cmt">Attenzione: i valori HDOP non corrispondono agli HDOP restituiti dal dispositivo GPS. La precisione della posizione è approssimata in metri e non dovrebbe essere tenuta in conto.</string>
+	<string name="gpx_hdop_approximation_cmt">Attenzione: i valori HDOP non corrispondono agli HDOP restituiti dal dispositivo GPS. La precisione della posizione è approssimativa in metri e non dovrebbe essere tenuta in conto.</string>
 	
 	<!-- About screen -->
 	<string name="about">Info</string>
@@ -51,16 +90,22 @@
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
 	
 	<!-- Notification -->
-	<string name="notification_ticker_text">OSMTracker è ancora in esecuzione</string>
-	<string name="notification_title">OSMTracker è ancora in esecuzione</string>
+	<string name="notification_ticker_text">OSMTracker sta registrando</string>
+	<string name="notification_title">OSMTracker sta registrando (#{0})</string>
 	<string name="notification_text">Tocca qui per mostrare lo schermo principale</string>
 	
 	<!-- Display track -->
 	<string name="displaytrack">Mostra traccia</string>	
 	<string name="displaytrack_north">N</string>
+
+	<!-- Track detail -->
+	<string name="trackdetail_save">Salva</string>
 	
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Precisione</string>
-	
+
+	<!-- OSM map view -->
+	<string name="displaytrackmap">Mostra traccia OpenStreetMap</string> 
+
 </resources>

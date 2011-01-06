@@ -83,7 +83,7 @@
 		</row>
 		<row>
 			<button type="tag" label="Slargo per inversione di marcia" icon="button_car_turning_circle" />
-			<button type="tag" label="Speed camera" icon="button_car_speed_camera" />
+			<button type="tag" label="Rilevatore di velocità" icon="button_car_speed_camera" />
 		</row>
 	</layout>
 
@@ -239,5 +239,3 @@
 		</row>
 	</layout>
 </layouts>
-
-

@@ -3,6 +3,8 @@
 
 <!-- Preferences -->
 	<string name="prefs">Impostazioni</string>
+
+	<string name="prefs_gps">GPS</string>
 	
 	<string name="prefs_gps_os_settings">Impostazioni GPS</string>
 	<string name="prefs_gps_os_settings_summary">Mostra la schermata impostazioni del sistema GPS</string>
@@ -10,12 +12,15 @@
 	<string name="prefs_check_gps_startup">Verifica GPS all\'avvio</string>
 	<string name="prefs_check_gps_startup_summary">Verifica se il GPS è disabilitato all\'avvio e chiede di abilitarlo.</string>
 
+	<string name="prefs_gps_ignore_clock">Ignora orologio GPS</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignora l\'orologio del GPS e utilizza quello Android per il salvataggio dell\'ora.</string>
+
 	<string name="prefs_ui">Interfaccia utente</string>
-	
+
 	<string name="prefs_ui_buttons_layout">Formato tasti</string>
 	<string name="prefs_ui_buttons_layout_summary">Permette di definire un formato personalizzato dei tasti (vedi manuale).</string>
 	<string name="prefs_ui_buttons_layout_defaut">Predefinito</string>
-    
+
 
 	<string name="prefs_voicerec_duration">Durata registrazione vocale</string>
 	<string name="prefs_voicerec_duration_seconds">secondi</string>
@@ -40,11 +45,29 @@
 		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
 
+	<string name="prefs_display_always_on">Schermo sempre attivo</string>
+	<string name="prefs_display_always_on_summary">Lo schermo rimarrà attivo durante la registrazione della traccia. Disattiva per risparmiare la batteria.</string>
+
+	<string name="prefs_displaytrack_osm">Sfondo OSM</string>
+	<string name="prefs_displaytrack_osm_summary">Mostra OpenStreetMap sotto la traccia. E\' necessaria una connessione dati.</string>
+
 	<string name="prefs_output">Salvataggio file GPX</string>
 	<string name="prefs_storage_dir">Directory memoria esterna (SD)</string>
-	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_storage_dir_hint">Valido per la traccia successiva (non per quella attuale)</string>
+	<string name="prefs_output_filename">Nome file traccia salvata</string>
+	<string name="prefs_output_filename_summary">Schema per il nome del file se la traccia ha un nome</string>
+	<string-array name="prefs_output_filename_keys">
+		<item>Nome traccia</item>
+		<item>Nome, data e ora inizio</item>
+		<item>Data e ora inizio</item>
+	</string-array>
+	<string-array name="prefs_output_filename_values">
+		<item>name</item>
+		<item>name_date</item>
+		<item>date</item>
+	</string-array>
 	<string name="prefs_output_accuracy">Precisione nel file GPX</string>
-	<string name="prefs_output_accuracy_summary">Inserisce le info di precisione nel file GPX con il nome del POI o in una scheda separata</string>
+	<string name="prefs_output_accuracy_summary">Inserisce le info di precisione nel file GPX, con il nome del POI o in una scheda separata</string>
 	<string-array name="prefs_output_accuracy_keys">
 		<item>Nessuna</item>
 		<item>Con nome POI</item>
@@ -56,5 +79,5 @@
 		<item>wpt_cmt</item>
 	</string-array>
 	<string name="prefs_output_gpx_hdop_approximation">Usa approssimazione HDOP</string>
-	<string name="prefs_output_gpx_hdop_approximation_summary">Inserisci HDOP nel GPX con un valore di approssimazione per la precisione</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Inserisce HDOP nel GPX con un valore di approssimazione per la precisione</string>
 </resources>
