@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Generic strings -->
+	<string name="app_name">OSMTracker para Android™</string>
+	<string name="app_short_name">OSMTracker</string>
+	<string name="app_description">Inspirado pelo OSMTracker para Windows Mobile, ele permite que você registre as suas viagens, marque pontos significativos da estrada (gravação de voz, fotos), exporte-os no formato GPX para utilizar depois com ferramentas do Open Street Map, como o JOSM.</string>
+
+	<!-- TrackLogger -->
+	<string name="tracklogger">Gravador de trilhas</string>
+	<string name="tracklogger_waiting_gps">Aguardando pelo GPS para habilitar botões...</string>
+	<string name="tracklogger_voicerec_title">Gravação de voz</string>
+	<string name="tracklogger_voicerec_text">Gravando um {0}s clipe de áudio.</string>
+	<string name="tracklogger_btnBack">Voltar</string>
+	<string name="tracklogger_tracked">Registrado: </string>
+	<string name="tracklogger_gps_disabled">GPS desabilitado</string>
+	<string name="tracklogger_gps_disabled_hint">GPS está desabilitado. Você deseja habilitá-lo ?</string>
+
+	<!-- Waypoint List -->
+	<string name="wplist">Lista de pontos da via</string>
+	<string name="wplist_latitude">Lat: </string>
+	<string name="wplist_longitude">Long: </string>
+	<string name="wplist_elevation">Ele: </string>
+	<string name="wplist_accuracy">Precisão: </string>
+	
+	<!-- Track Manager -->
+	<string name="trackmgr">Gerenciador de trilhas</string>
+	<string name="trackmgr_tracklist">Lista de trilhas:</string>
+	<string name="trackmgr_waypoints_count">Pontos do via: </string>
+	<string name="trackmgr_trackpoints_count">Pontos da trilha: </string>
+	<string name="trackmgr_empty">Você não possui nenhuma trilha.</string>
+	<string name="trackmgr_newtrack_hint">Para registrar uma,\ntrilha, pressione <b>Menu</b> em seguida <b>Nova trilha</b></string>
+	<string name="trackmgr_newtrack_error">Não é possível criar uma nova trilha: {0}</string>
+	<string name="trackmgr_continuetrack_hint">Você está atualmente registrando a <b>trilha #{0}</b>\nEscolha-a na lista pra continuar</string>
+	<string name="trackmgr_contextmenu_stop">Parar registro</string>
+	<string name="trackmgr_contextmenu_resume">Continuar registro</string>
+	<string name="trackmgr_contextmenu_delete">Apagar</string>
+	<string name="trackmgr_contextmenu_export">Exportar como GPX</string>
+	<string name="trackmgr_contextmenu_display">Exibir</string>
+	<string name="trackmgr_contextmenu_details">Detalhes</string>
+	<string name="trackmgr_contextmenu_title">Trilha #{0}</string>
+	<string name="trackmgr_delete_confirm">Trilha #{0} será apagada</string>
+	<string name="trackmgr_exporting">Exportando trilha #{0}...</string>
+	<string name="trackmgr_export_error">Não é possível exportar trilha: {0}</string>
+
+	<!-- Track Detail -->
+	<string name="trackdetail">Detalhes da trilha</string>
+	<string name="trackdetail_startdate">Hora de início:</string>
+	<string name="trackdetail_enddate">Hora de fim:</string>
+	<string name="trackdetail_startloc">Iniciou às:</string>
+	<string name="trackdetail_endloc">Finalizou às:</string>
+	<string name="trackdetail_exportdate">Exportada:</string>
+	<string name="trackdetail_btn_export">Exportada como GPX</string>
+	<string name="trackdetail_export_notyet">(Ainda não exportada)</string>
+	<string name="trackdetail_export_display">Exibir</string>
+
+	<!-- GPS Status & record bar -->
+	<string name="gpsstatus_record_trackoff">Iniciar registro.</string>
+	<string name="gpsstatus_record_trackon">Parar registro.</string>
+	<string name="gpsstatus_record_voicerec">Gravar voz</string>
+	<string name="gpsstatus_record_stillimage">Tirar foto</string>
+	<string name="gpsstatus_record_textnote">Nota de texto</string>
+
+	<!-- Menu -->
+	<string name="menu_settings">Configurações</string>
+	<string name="menu_waypointlist">Pontos da via</string>
+	<string name="menu_about">Sobre</string>
+	<string name="menu_displaytrack">Exibir trilha</string>
+	<string name="menu_starttracking">Iniciar trilha</string>
+	<string name="menu_stoptracking">Parar &amp; salvar</string>
+	<string name="menu_newtrack">Nova trilha</string>
+	<string name="menu_continue">Continuar trilha</string>
+	<string name="menu_save">Salvar</string>
+	<string name="menu_cancel">Cancelar</string>
+	<string name="menu_export">Exportar como GPX</string>
+	<string name="menu_center_to_gps">Centralizar para GPS</string>
+	
+	<!-- Errors -->
+	<string name="error_externalstorage_not_writable">Não é possível gravar no armazenamento externo.</string>
+	<string name="error_externalstorage_not_writable_hint">Por favor, verifique se o dispositivo de armazenamento está inserido e montado.</string>
+	<string name="error_voicerec_failed">A gravação de voz falhou</string>
+	<string name="error_userlayout_parsing">Erro ao analisar arquivo XML. Por favor, retorne para o estilo padrão.</string>
+
+	<!-- GPX -->
+	<string name="gpx_track_name">Registrado com OSMTracker para Android™</string>
+	<string name="gpx_hdop_approximation_cmt">Aviso: Valores HDOP não são o HDOP retornado pelo dispositivo. Eles se aproximam da precisão da localização em metros e podem não ser usados na conta.</string>
+
+	<!-- About screen -->
+	<string name="about">Sobre</string>
+	<string name="about_text">Para mais informações, documentos e sugestões, visite a página do projeto:</string>
+	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+
+	<!-- Notification -->
+	<string name="notification_ticker_text">OSMTracker está registrando</string>
+	<string name="notification_title">OSMTracker está registrando (#{0})</string>
+	<string name="notification_text">Toque aqui para exibir a tela principal</string>
+
+	<!-- Display track -->
+	<string name="displaytrack">Exibir trilha</string>	
+	<string name="displaytrack_north">N</string>
+	
+	<!-- Track detail -->
+	<string name="trackdetail_save">Salvar</string>
+	
+	<!-- Various -->
+	<string name="various_unit_meters">m</string>
+	<string name="various_accuracy">Precisão</string>
+
+	<!-- OSM map view -->
+	<string name="displaytrackmap">Exibir trilha do OpenStreetMap</string> 
+
+</resources>
