@@ -4,6 +4,8 @@
 	<!-- Preferences -->
 	<string name="prefs">Einstellungen</string>
        
+	<string name="prefs_gps">GPS</string>
+	
 	<string name="prefs_gps_os_settings">GPS Einstellungen</string>
 	<string name="prefs_gps_os_settings_summary">Zeige GPS-Einstellungen des Systems</string>
 
@@ -43,12 +45,15 @@
 		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
 
+	<string name="prefs_display_always_on">Bildschirm immer an</string>
+	<string name="prefs_display_always_on_summary">Bildschirm bleibt während des Trackings beleuchtet. Deaktivieren um Batterie zu sparen.</string>
+
 	<string name="prefs_displaytrack_osm">OSM Hintergrund</string>
 	<string name="prefs_displaytrack_osm_summary">OpenStreetMap als Track-Hintergrund. Benötigt Datenverbindung.</string>
 
 	<string name="prefs_output">GPX Dateiausgabe</string>
 	<string name="prefs_storage_dir">Externes Speicherverzeichnis (SD)</string>
-	<string name="prefs_storage_dir_summary"></string>
+	<string name="prefs_storage_dir_hint">Dies gilt nur für neue Tracks.</string>
 	<string name="prefs_output_filename">Dateiname für Tracks</string>
 	<string name="prefs_output_filename_summary">Form des Dateinamens, wenn ein Track einen Namen hat</string>
 	<string-array name="prefs_output_filename_keys">

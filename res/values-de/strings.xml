@@ -31,8 +31,12 @@
 	<string name="trackmgr_newtrack_hint">Drücken Sie <b>Menü</b> und dann <b>Neuer Track</b> um einen Track aufzuzeichnen.</string>
 	<string name="trackmgr_newtrack_error">Neuer Track kann nicht angelegt werden: {0}</string>
 	<string name="trackmgr_continuetrack_hint">Aktuell wird <b>Track #{0}</b> aufgezeichnet.\nWählen Sie diesen aus der Liste aus um fortzufahren.</string>
+	<string name="trackmgr_contextmenu_stop">Tracking stoppen</string>
+	<string name="trackmgr_contextmenu_resume">Tracking fortsetzen</string>
 	<string name="trackmgr_contextmenu_delete">Löschen</string>
 	<string name="trackmgr_contextmenu_export">Als GPX exportieren</string>
+	<string name="trackmgr_contextmenu_display">Anzeigen</string>
+	<string name="trackmgr_contextmenu_details">Details</string>
 	<string name="trackmgr_contextmenu_title">Track bearbeiten</string>
 	<string name="trackmgr_delete_confirm">Track #{0} wird gelöscht</string>
 	<string name="trackmgr_exporting">Track #{0} wird exportiert...</string>
@@ -40,7 +44,6 @@
 
 	<!-- Track Detail -->
 	<string name="trackdetail">Track Details</string>
-	<string name="trackdetail_name">Name: </string>
 	<string name="trackdetail_startdate">Startzeit: </string>
 	<string name="trackdetail_enddate">Endzeit: </string>
 	<string name="trackdetail_startloc">Startet bei: </string>
@@ -66,6 +69,10 @@
 	<string name="menu_stoptracking">Stoppen &amp; Speichern</string>
 	<string name="menu_newtrack">Neuer Track</string>
 	<string name="menu_continue">Track weiterbearbeiten</string>
+	<string name="menu_save">Speichern</string>
+	<string name="menu_cancel">Abbrechen</string>
+	<string name="menu_export">Als GPX exportieren</string>
+	<string name="menu_center_to_gps">An GPS Zentrieren</string>
        
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Schreiben auf externen Speicher nicht möglich.</string>
@@ -83,14 +90,17 @@
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
        
 	<!-- Notification -->
-	<string name="notification_ticker_text">OSMTracker ist immer noch aktiv</string>
-	<string name="notification_title">OSMTracker ist immer noch aktiv</string>
+	<string name="notification_ticker_text">OSMTracker ist aktiv</string>
+	<string name="notification_title">OSMTracker ist aktiv (#{0})</string>
 	<string name="notification_text">Hier tippen um den Hauptbildschirm aufzurufen</string>
        
 	<!-- Display track -->
 	<string name="displaytrack">Zeige Track</string>      
 	<string name="displaytrack_north">N</string>
        
+	<!-- Track detail -->
+	<string name="trackdetail_save">Speichern</string>
+
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Genauigkeit</string>
