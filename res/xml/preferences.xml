@@ -12,6 +12,9 @@
 		<CheckBoxPreference android:key="gps.ignoreclock"
 			android:title="@string/prefs_gps_ignore_clock" android:summary="@string/prefs_gps_ignore_clock_summary"
 			android:defaultValue="false"></CheckBoxPreference>
+		<EditTextPreference android:key="gps.logging.interval"
+			android:title="@string/prefs_gps_logging_interval" android:summary="@string/prefs_gps_logging_interval_summary"
+			android:defaultValue="0" android:inputType="number"></EditTextPreference>
 	</PreferenceCategory>
 	
 	<PreferenceCategory android:title="@string/prefs_output">

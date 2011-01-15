@@ -76,6 +76,23 @@ public class Preferences extends PreferenceActivity {
 				return true;
 			}
 		});
+		
+		// Update GPS loggin interval summary to the current value
+		pref = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL);
+		pref.setSummary(
+				PreferenceManager.getDefaultSharedPreferences(this).getString(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)
+				+ " " + getResources().getString(R.string.prefs_gps_logging_interval_seconds)
+				+ ". " + getResources().getString(R.string.prefs_gps_logging_interval_summary));
+		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				// Set summary with the interval and "seconds"
+				preference.setSummary(newValue
+						+ " " + getResources().getString(R.string.prefs_gps_logging_interval_seconds)
+						+ ". " + getResources().getString(R.string.prefs_gps_logging_interval_summary));
+				return true;
+			}
+		});
 
 		pref = findPreference(OSMTracker.Preferences.KEY_GPS_OSSETTINGS);
 		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -86,7 +103,6 @@ public class Preferences extends PreferenceActivity {
 			}
 		});
 		
-			
 	}
 
 	/**

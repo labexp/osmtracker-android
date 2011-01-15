@@ -22,6 +22,7 @@ import android.location.LocationManager;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 /**
@@ -75,6 +76,17 @@ public class GPSLogger extends Service implements LocationListener {
 	private long currentTrackId;
 
 	/**
+	 * the timestamp of the last GPS fix we used
+	 */
+	private long lastGPSTimestamp = 0;
+	
+	/**
+	 * the interval (in ms) to log GPS fixes defined in the preferences
+	 */
+	private long gpsLoggingInterval;
+	
+	
+	/**
 	 * Receives Intent for way point tracking, and stop/start logging.
 	 */
 	private BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -87,11 +99,16 @@ public class GPSLogger extends Service implements LocationListener {
 				// Track a way point
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
-					Long trackId = extras.getLong(Schema.COL_TRACK_ID);
-					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
-					String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
-					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
-					dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid);
+					// because of the gps logging interval our last fix could be very old
+					// so we'll request the last known location from the gps provider
+					lastLocation = lmgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+					if(lastLocation != null){
+						Long trackId = extras.getLong(Schema.COL_TRACK_ID);
+						String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
+						String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
+						String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
+						dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid);
+					}
 				}
 			} else if (OSMTracker.INTENT_UPDATE_WP.equals(intent.getAction())) {
 				// Update an existing waypoint
@@ -163,6 +180,10 @@ public class GPSLogger extends Service implements LocationListener {
 	@Override
 	public void onCreate() {	
 		dataHelper = new DataHelper(this);
+
+		//read the logging interval from preferences
+		gpsLoggingInterval = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
+				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 		
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
@@ -224,14 +245,18 @@ public class GPSLogger extends Service implements LocationListener {
 	public void onLocationChanged(Location location) {		
 		// We're receiving location, so GPS is enabled
 		isGpsEnabled = true;
-				
-		lastLocation = location;
-		lastNbSatellites = countSatellites();
 		
-		if (isTracking) {
-			dataHelper.track(currentTrackId, location);
+		// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
+		if((lastGPSTimestamp + gpsLoggingInterval) < System.currentTimeMillis()){
+			lastGPSTimestamp = System.currentTimeMillis(); // save the time of this fix
+		
+			lastLocation = location;
+			lastNbSatellites = countSatellites();
+			
+			if (isTracking) {
+				dataHelper.track(currentTrackId, location);
+			}
 		}
-		
 	}
 
 	/**

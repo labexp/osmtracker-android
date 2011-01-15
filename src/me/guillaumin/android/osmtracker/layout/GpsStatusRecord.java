@@ -14,6 +14,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,6 +55,21 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	private LocationManager lmgr;
 	
 	/**
+	 * the timestamp of the last GPS fix we used
+	 */
+	private long lastGPSTimestampStatus = 0;
+
+	/**
+	 * the timestamp of the last GPS fix we used for location updates
+	 */
+	private long lastGPSTimestampLocation = 0;
+	
+	/**
+	 * the interval (in ms) to log GPS fixes defined in the preferences
+	 */
+	private final long gpsLoggingInterval;
+	
+	/**
 	 * Is GPS active ?
 	 */
 	private boolean gpsActive = false;
@@ -62,6 +78,10 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		super(context, attrs);
 		LayoutInflater.from(context).inflate(R.layout.gpsstatus_record, this, true);
 
+		//read the logging interval from preferences
+		gpsLoggingInterval = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(context).getString(
+				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
+		
 		if (context instanceof TrackLogger) {
 			activity = (TrackLogger) context;
 			lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -81,57 +101,65 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 
 	@Override
 	public void onGpsStatusChanged(int event) {
-		// Update GPS Status image according to event
-		ImageView imgSatIndicator = (ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator);
-
-		switch (event) {
-		case GpsStatus.GPS_EVENT_FIRST_FIX:
-			imgSatIndicator.setImageResource(R.drawable.sat_indicator_0);
-			break;
-		case GpsStatus.GPS_EVENT_STARTED:
-			imgSatIndicator.setImageResource(R.drawable.sat_indicator_unknown);
-			break;
-		case GpsStatus.GPS_EVENT_STOPPED:
-			imgSatIndicator.setImageResource(R.drawable.sat_indicator_off);
-			break;
-		case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-			GpsStatus status = lmgr.getGpsStatus(null);
-
-			// Count active satellites
-			int satCount = 0;
-			for (@SuppressWarnings("unused") GpsSatellite sat:status.getSatellites()) {
-				satCount++;
-			}
+		// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
+		if((event != GpsStatus.GPS_EVENT_SATELLITE_STATUS) || (lastGPSTimestampStatus + gpsLoggingInterval) < System.currentTimeMillis()){
+			lastGPSTimestampStatus = System.currentTimeMillis(); // save the time of this fix
 			
-			// Count how many bars should we draw
-			int nbBars = 0;
-			for (int i=0; i<SAT_INDICATOR_TRESHOLD.length; i++) {
-				if (satCount >= SAT_INDICATOR_TRESHOLD[i]) {
-					nbBars = i;
+			// Update GPS Status image according to event
+			ImageView imgSatIndicator = (ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator);
+	
+			switch (event) {
+			case GpsStatus.GPS_EVENT_FIRST_FIX:
+				imgSatIndicator.setImageResource(R.drawable.sat_indicator_0);
+				break;
+			case GpsStatus.GPS_EVENT_STARTED:
+				imgSatIndicator.setImageResource(R.drawable.sat_indicator_unknown);
+				break;
+			case GpsStatus.GPS_EVENT_STOPPED:
+				imgSatIndicator.setImageResource(R.drawable.sat_indicator_off);
+				break;
+			case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+				GpsStatus status = lmgr.getGpsStatus(null);
+	
+				// Count active satellites
+				int satCount = 0;
+				for (@SuppressWarnings("unused") GpsSatellite sat:status.getSatellites()) {
+					satCount++;
 				}
+				
+				// Count how many bars should we draw
+				int nbBars = 0;
+				for (int i=0; i<SAT_INDICATOR_TRESHOLD.length; i++) {
+					if (satCount >= SAT_INDICATOR_TRESHOLD[i]) {
+						nbBars = i;
+					}
+				}
+				Log.v(TAG, "Found " + satCount + " satellites. Will draw " + nbBars + " bars.");			
+				imgSatIndicator.setImageResource(getResources().getIdentifier("drawable/sat_indicator_" + nbBars, null, OSMTracker.class.getPackage().getName()));
+				break;
 			}
-			Log.v(TAG, "Found " + satCount + " satellites. Will draw " + nbBars + " bars.");			
-			imgSatIndicator.setImageResource(getResources().getIdentifier("drawable/sat_indicator_" + nbBars, null, OSMTracker.class.getPackage().getName()));
-			break;
 		}
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
-		Log.v(TAG, "Location received " + location);
-		if (! gpsActive) {
-			gpsActive = true;
-			// GPS activated, activate UI
-			activity.onGpsEnabled();
+		// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
+		if((lastGPSTimestampLocation + gpsLoggingInterval) < System.currentTimeMillis()){
+			lastGPSTimestampLocation = System.currentTimeMillis(); // save the time of this fix
+			Log.v(TAG, "Location received " + location);
+			if (! gpsActive) {
+				gpsActive = true;
+				// GPS activated, activate UI
+				activity.onGpsEnabled();
+			}
+			
+			TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
+			if (location.hasAccuracy()) {
+				tvAccuracy.setText(getResources().getString(R.string.various_accuracy) + ": " + ACCURACY_FORMAT.format(location.getAccuracy()) + getResources().getString(R.string.various_unit_meters));
+			} else {
+				tvAccuracy.setText("");
+			}
 		}
-		
-		TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
-		if (location.hasAccuracy()) {
-			tvAccuracy.setText(getResources().getString(R.string.various_accuracy) + ": " + ACCURACY_FORMAT.format(location.getAccuracy()) + getResources().getString(R.string.various_unit_meters));
-		} else {
-			tvAccuracy.setText("");
-		}
-		
 	}
 
 	@Override
