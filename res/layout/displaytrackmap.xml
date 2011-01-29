@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
 	android:layout_height="wrap_content" android:id="@+id/displaytrackmapRoot">
 
-	<org.andnav.osm.views.OpenStreetMapView android:layout_width="fill_parent"
+	<org.osmdroid.views.MapView android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:id="@+id/displaytrackmap_osmView" />
 
 	<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/zoom_in"

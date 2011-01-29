@@ -8,12 +8,12 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 
-import org.andnav.osm.contributor.util.constants.OpenStreetMapContributorConstants;
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.OpenStreetMapViewController;
-import org.andnav.osm.views.overlay.OpenStreetMapViewPathOverlay;
-import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
+import org.osmdroid.contributor.util.constants.OpenStreetMapContributorConstants;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapController;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.PathOverlay;
+import org.osmdroid.views.overlay.SimpleLocationOverlay;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -61,22 +61,22 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	/**
 	 * Main OSM view
 	 */
-	private OpenStreetMapView osmView;
+	private MapView osmView;
 	
 	/**
 	 * Controller to interact with view
 	 */
-	private OpenStreetMapViewController osmViewController;
+	private MapController osmViewController;
 	
 	/**
 	 * OSM view overlay that displays current location
 	 */
-	private OpenStreetMapViewSimpleLocationOverlay myLocationOverlay;
+	private SimpleLocationOverlay myLocationOverlay;
 	
 	/**
 	 * OSM view overlay that displays current path
 	 */
-	private OpenStreetMapViewPathOverlay pathOverlay;
+	private PathOverlay pathOverlay;
 	
 	/**
 	 * Current track id
@@ -123,7 +123,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         setTitle(getTitle() + ": #" + currentTrackId);
         
         // Initialize OSM view
-        osmView = (OpenStreetMapView) findViewById(R.id.displaytrackmap_osmView);
+        osmView = (MapView) findViewById(R.id.displaytrackmap_osmView);
         // we'll use osmView to define if the screen is always on or not
         osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
         osmViewController = osmView.getController();
@@ -237,7 +237,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		case R.id.displaytrackmap_menu_center_to_gps:
 			centerToGpsPos = true;
 			if(currentPosition != null){
-				osmViewController.setCenter(currentPosition);
+				osmViewController.animateTo(currentPosition);
 			}
 			break;
 		case R.id.displaytrackmap_menu_settings:
@@ -264,10 +264,10 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	 * Creates overlays over the OSM view
 	 */
 	private void createOverlays() {
-        pathOverlay = new OpenStreetMapViewPathOverlay(Color.BLUE, this);
+        pathOverlay = new PathOverlay(Color.BLUE, this);
         osmView.getOverlays().add(pathOverlay);
         
-        myLocationOverlay = new OpenStreetMapViewSimpleLocationOverlay(this);
+        myLocationOverlay = new SimpleLocationOverlay(this);
         osmView.getOverlays().add(myLocationOverlay);
 	}
 	
