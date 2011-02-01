@@ -138,6 +138,12 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 				intent.putExtra(OSMTracker.INTENT_KEY_UUID, uuid);
 				intent.putExtra(OSMTracker.INTENT_KEY_LINK, audioFile.getName());
 				activity.sendBroadcast(intent);
+			} else {
+				// The audio file could not be created on the file system
+				// let the user know
+				Toast.makeText(v.getContext(), 
+						v.getResources().getString(R.string.error_voicerec_failed),
+						Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
@@ -183,9 +189,27 @@ public class VoiceRecOnClickListener implements OnClickListener, OnInfoListener 
 	 * @return a new File in the current track directory.
 	 */
 	public File getAudioFile() {
+		File audioFile = null;
+		
 		// Query for current track directory
-		File trackDir = DataHelper.getTrackDir(activity.getContentResolver(), currentTrackId);
-		return new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_3GPP);
+		File trackDir = DataHelper.getTrackDirectory(currentTrackId);
+		
+		// Create the track storage directory if it does not yet exist
+		if (!trackDir.exists()) {
+			if ( !trackDir.mkdirs() ) {
+				Log.w(TAG, "Directory [" + trackDir.getAbsolutePath() + "] does not exist and cannot be created");
+			}
+		}
+
+		// Ensure that this location can be written to 
+		if (trackDir.exists() && trackDir.canWrite()) {
+			audioFile = new File(trackDir, 
+					DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_3GPP);
+			} else {
+			Log.w(TAG, "The directory [" + trackDir.getAbsolutePath() + "] will not allow files to be created");
+		}
+		
+		return audioFile;
 	}
 	
 }

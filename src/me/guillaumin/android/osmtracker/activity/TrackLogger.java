@@ -404,9 +404,15 @@ public class TrackLogger extends Activity {
 	public void requestStillImage() {
 		if (gpsLogger.isTracking()) {
 			File imageFile = pushImageFile();
-			Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
-			startActivityForResult(cameraIntent, TrackLogger.REQCODE_IMAGE_CAPTURE);
+			if (null != imageFile) {
+				Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
+				startActivityForResult(cameraIntent, TrackLogger.REQCODE_IMAGE_CAPTURE);
+			} else {
+				Toast.makeText(getBaseContext(), 
+						getResources().getString(R.string.error_externalstorage_not_writable),
+						Toast.LENGTH_SHORT).show();
+			}
 		}
 	}
 
@@ -462,9 +468,23 @@ public class TrackLogger extends Activity {
 		currentImageFile = null;
 
 		// Query for current track directory
-		File trackDir = DataHelper.getTrackDir(getContentResolver(), currentTrackId);
-		currentImageFile = new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_JPG);
+		File trackDir = DataHelper.getTrackDirectory(currentTrackId);
 
+		// Create the track storage directory if it does not yet exist
+		if (!trackDir.exists()) {
+			if ( !trackDir.mkdirs() ) {
+				Log.w(TAG, "Directory [" + trackDir.getAbsolutePath() + "] does not exist and cannot be created");
+			}
+		}
+
+		// Ensure that this location can be written to 
+		if (trackDir.exists() && trackDir.canWrite()) {
+			currentImageFile = new File(trackDir, 
+					DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_JPG);			
+		} else {
+			Log.w(TAG, "The directory [" + trackDir.getAbsolutePath() + "] will not allow files to be created");
+		}
+		
 		return currentImageFile;
 	}
 	

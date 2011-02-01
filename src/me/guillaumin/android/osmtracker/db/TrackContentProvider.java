@@ -422,6 +422,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_NAME = "name";
 		public static final String COL_LINK = "link";
 		public static final String COL_START_DATE = "start_date";
+		@Deprecated
 		public static final String COL_DIR = "directory";
 		public static final String COL_ACTIVE = "active";
 		public static final String COL_EXPORT_DATE = "export_date";

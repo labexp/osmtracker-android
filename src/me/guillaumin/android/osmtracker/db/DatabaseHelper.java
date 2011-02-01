@@ -1,10 +1,17 @@
 package me.guillaumin.android.osmtracker.db;
 
+import java.io.File;
+import java.io.FilenameFilter;
+
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.util.FileSystemUtils;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Helper for managing database.
@@ -14,6 +21,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+	private static final String TAG = DatabaseHelper.class.getSimpleName();	
+	
 	/**
 	 * SQL for creating table TRACKPOINT
 	 */
@@ -66,12 +75,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * SQL for creating table TRACK
 	 * @since 5
 	 */
+	@SuppressWarnings("deprecation")
 	private static final String SQL_CREATE_TABLE_TRACK = ""
 		+ "create table " + Schema.TBL_TRACK + " ("
 		+ Schema.COL_ID + " integer primary key autoincrement,"
 		+ Schema.COL_NAME + " text,"
 		+ Schema.COL_START_DATE + " long not null,"
-		+ Schema.COL_DIR + " text,"
+		+ Schema.COL_DIR + " text," // unused since DB_VERSION 13, since SQLite doesn't support to remove a column it will stay for now
 		+ Schema.COL_ACTIVE + " integer not null default 0,"
 		+ Schema.COL_EXPORT_DATE + " long"  // null indicates not yet exported
 		+ ")";
@@ -93,10 +103,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 *  v5: add TBL_TRACK; TRACKPOINT, WAYPOINT +COL_TRACK_ID  (r198)
 	 *  v7: add TBL_TRACK.COL_DIR; drop TBL_CONFIG  (r201)
 	 *  v9: add TBL_TRACK.COL_ACTIVE  (r206)
-	 * v12: add TBL_TRACK.COL_EXPORT_DATE, IDX_TRACKPOINT_TRACK, IDX_WAYPOINT_TRACK
+	 * v12: add TBL_TRACK.COL_EXPORT_DATE, IDX_TRACKPOINT_TRACK, IDX_WAYPOINT_TRACK (r207) v0.5.0
+	 * v13: TBL_TRACK.COL_DIR is now deprecated (rxxx) v0.5.3 TODO: fill in correct revision and version 
 	 *</pre>
 	 */
-	private static final int DB_VERSION = 12;
+	private static final int DB_VERSION = 13;
 
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -116,7 +127,85 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		onCreate(db);
+		switch(oldVersion){
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+		case 11: //pre v0.5.0 (completely create a new database)
+			onCreate(db);
+			break;
+		case 12:
+			manageNewStoragePath(db);
+		}
+		
 	}
 
+	/**
+	 * copies files from the tracks to our new storage directory and removes the path reference in COL_DIR
+	 * @param db the database to work on 
+	 */
+	@SuppressWarnings("deprecation")
+	private void manageNewStoragePath(SQLiteDatabase db){
+		Log.d(TAG,"manageNewStoragePath");
+		
+		// we'll need this FilenameFitler to clean up our track directory
+		FilenameFilter gpxFilenameFilter = new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String filename) {
+				if(filename.toLowerCase().endsWith(".gpx"))
+					return true;
+				return false;
+			}
+		};
+		
+		// query all tracks
+		String[] columns = new String[]{Schema.COL_ID, Schema.COL_DIR};
+		Cursor cursor = db.query(Schema.TBL_TRACK, columns, null, null, null, null, null);
+		
+		// if we have a valid cursor and can write to the sdcard, we'll go on and try to copy the files
+		if(cursor != null && cursor.moveToFirst()){
+			Log.d(TAG, "manageNewStoragePath (found " + cursor.getCount() + " tracks to be processed)");
+			do{
+				long trackId = cursor.getLong(cursor.getColumnIndex(Schema.COL_ID));
+				Log.d(TAG,"manageNewStoragePath (" + trackId + ")");
+				String oldDirName = cursor.getString(cursor.getColumnIndex(Schema.COL_DIR));
+				File newDir = DataHelper.getTrackDirectory(trackId);
+				File oldDir = new File(oldDirName);
+				if(oldDir.exists() && oldDir.canRead()){
+					
+					// if our new directory doesn't exist, we'll create it
+					if(!newDir.exists())
+						newDir.mkdirs();
+					
+					if(newDir.exists() && newDir.canWrite()){
+						Log.d(TAG,"manageNewStoragePath (" + trackId + "): copy directory");
+						// we'll first copy all files to our new storage area... we'll clean up later
+						FileSystemUtils.copyDirectoryContents(newDir, oldDir);
+						
+						// cleaning up new storage area
+						// find gpx files we accidentally copied to our new storage area and delete them 
+						for(File gpxFile:newDir.listFiles(gpxFilenameFilter)){
+							Log.d(TAG,"manageNewStoragePath (" + trackId + "): deleting gpx file ["+gpxFile+"]");
+							gpxFile.delete();
+						}
+					}else{
+						Log.e(TAG, "manageNewStoragePath (" + trackId + "): directory ["+newDir+"] is not writable or could not be created");
+					}
+					
+				}
+			}while(cursor.moveToNext());
+		}
+		
+		ContentValues vals = new ContentValues();
+		vals.putNull(Schema.COL_DIR);
+		db.update(Schema.TBL_TRACK, vals, null, null);
+	}
+	
 }

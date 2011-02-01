@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -270,34 +271,68 @@ public class DataHelper {
 	 * @return Renamed filename (Ex: "def.png")
 	 */
 	private String renameFile(Long trackId, String from, String to) {
-		File trackDir = DataHelper.getTrackDir(contentResolver, trackId);
+		// If all goes terribly wrong and we can't rename the file,
+		// we will return the original file name we were given
+		String _return = from;
+		
+		File trackDir = getTrackDirectory(trackId);
 		
 		String ext = from.substring(from.lastIndexOf(".") + 1, from.length());
 		File origin = new File(trackDir + File.separator + from);
-		File target = new File(trackDir + File.separator + to + "." + ext);
-		// Check & manages if there is already a file with this name
-		for (int i = 0; i < MAX_RENAME_ATTEMPTS && target.exists(); i++) {
-			target = new File(trackDir + File.separator + to + i + "." + ext);
+		
+		// No point in trying to rename the file unless it exist
+		if (origin.exists()) {
+			File target = new File(trackDir + File.separator + to + "." + ext);
+			// Check & manages if there is already a file with this name
+			for (int i = 0; i < MAX_RENAME_ATTEMPTS && target.exists(); i++) {
+				target = new File(trackDir + File.separator + to + i + "." + ext);
+			}
+		
+			origin.renameTo(target);
+			_return = target.getName(); 
 		}
-		origin.renameTo(target);
-		return target.getName();
-
+		
+		return _return;
 	}
 
 	/**
-	 * @param cr Content Resoliver to use
+	 * @param cr Content Resolver to use
 	 * @param trackId Track id
 	 * @return A File to the track directory for the target track id.
 	 */
-	public static File getTrackDir(ContentResolver cr, long trackId) {
+	public static File getTrackDirFromDB(ContentResolver cr, long trackId) {
+		File trackDir = null;
 		Cursor c = cr.query(
 			ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
 			null, null, null, null);
 	
-		c.moveToFirst();
-		File trackDir = new File(c.getString(c.getColumnIndex(Schema.COL_DIR)));
-		c.close();
+		if (c != null && c.getCount() != 0) {
+			c.moveToFirst();
+			@SuppressWarnings("deprecation")
+			String trackPath = c.getString(c.getColumnIndex(Schema.COL_DIR));
+			if (trackPath != null) {
+				trackDir = new File(trackPath);
+			}
+			c.close();
+			c = null;
+		}
 		
 		return trackDir;
-	}	
+	}
+	
+	/**
+	 * Generate a string of the directory path to external storage for the track id provided 
+	 * @param trackId Track id
+	 * @return A the path where this track should store its files
+	 */
+	public static File getTrackDirectory(long trackId) {
+		File _return = null;
+		
+		String trackStorageDirectory = Environment.getExternalStorageDirectory()  
+		+ "/osmtracker/data/files/track" + trackId;
+		
+		_return = new File(trackStorageDirectory);		
+		return _return;
+	}
+
 }

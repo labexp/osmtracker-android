@@ -15,6 +15,7 @@ import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.exception.ExportTrackException;
+import me.guillaumin.android.osmtracker.util.FileSystemUtils;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -22,10 +23,12 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 /**
  * Writes a GPX file.
@@ -35,6 +38,8 @@ import android.preference.PreferenceManager;
  */
 public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 
+	private static final String TAG = ExportTrackTask.class.getSimpleName();
+	
 	/**
 	 * XML header.
 	 */
@@ -140,44 +145,70 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 
 	private void exportTrackAsGpx(long trackId) throws ExportTrackException {
 		File sdRoot = Environment.getExternalStorageDirectory();
+		
+		// The location that the user has specified gpx files 
+		// and associated content to be written
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String userGPXExportDirectoryName = prefs.getString(
+				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
+				
 		if (sdRoot.canWrite()) {
-			Cursor c = context.getContentResolver()
-					.query(ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
-							null, null);
+			ContentResolver cr = context.getContentResolver();
+			Cursor c = cr.query(ContentUris.withAppendedId(
+					TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
+					null, null);
 
-			c.moveToFirst();
-			File trackDir = new File(c.getString(c.getColumnIndex(Schema.COL_DIR)));
+			// Get the startDate of this track
+			// TODO: Maybe we should be pulling the track name instead?
+			// We'd need to consider the possibility that two tracks were given the same name
+			// We could possibly disambiguate by including the track ID in the Folder Name
+			// to avoid overwriting another track on one hand or needlessly creating additional
+			// directories to avoid overwriting.
+			Date startDate = new Date();
+			if (null != c && 1 <= c.getCount()) {
+				c.moveToFirst();
+				long startDateInMilliseconds = c.getLong(c.getColumnIndex(Schema.COL_START_DATE));
+				startDate.setTime(startDateInMilliseconds);
+			}
+			
+			String trackDirectoryName = DataHelper.FILENAME_FORMATTER.format(startDate);
+			
+			// Build up the path to the gpx output directory for this track
+			File trackGPXExportDirectory = new File(sdRoot + userGPXExportDirectoryName
+					+ File.separator + trackDirectoryName);
 
 			String filenameBase = buildGPXFilename(c);
 			c.close();
 
-			if (trackDir != null) {
+			if (trackGPXExportDirectory != null) {
 
 				// Create track directory if needed
-				if (! trackDir.exists()) {
-					trackDir.mkdirs();
+				if (! trackGPXExportDirectory.exists()) {
+					trackGPXExportDirectory.mkdirs();
 				}
 
-				File trackFile = new File(trackDir, filenameBase);
+				File trackFile = new File(trackGPXExportDirectory, filenameBase);
 
-				ContentResolver cr = context.getContentResolver();
 				Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
 						null, null, Schema.COL_TIMESTAMP + " asc");
 				Cursor cWayPoints = cr.query(TrackContentProvider.waypointsUri(trackId), null, null,
 						null, Schema.COL_TIMESTAMP + " asc");
 
-				dialog.setIndeterminate(false);
-				dialog.setProgress(0);
-				dialog.setMax(cTrackPoints.getCount() + cWayPoints.getCount());
-				
-				try {
-					writeGpxFile(cTrackPoints, cWayPoints, trackFile);
-					DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
-				} catch (IOException ioe) {
-					throw new ExportTrackException(ioe.getMessage());
-				} finally {
-					cTrackPoints.close();
-					cWayPoints.close();
+				if (null != cTrackPoints && null != cWayPoints) {
+					dialog.setIndeterminate(false);
+					dialog.setProgress(0);
+					dialog.setMax(cTrackPoints.getCount() + cWayPoints.getCount());
+					
+					try {
+						writeGpxFile(cTrackPoints, cWayPoints, trackFile);
+						copyWaypointFiles(trackGPXExportDirectory);
+						DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
+					} catch (IOException ioe) {
+						throw new ExportTrackException(ioe.getMessage());
+					} finally {
+						cTrackPoints.close();
+						cWayPoints.close();
+					}
 				}
 			}
 		} else {
@@ -376,4 +407,22 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 		    dialog.incrementProgressBy(1);
 		}
 	}
+
+	/**
+	 * Copy all files from the OSMTracker external storage location to gpxOutputDirectory
+	 * @param gpxOutputDirectory The directory to which the track is being exported
+	 */
+	private void copyWaypointFiles(File gpxOutputDirectory) {
+		// Get the new location where files related to these waypoints are/should be stored		
+		File trackDir = DataHelper.getTrackDirectory(trackId);
+
+		if(trackDir != null){
+			Log.v(TAG, "Copying files from the standard TrackDir ["+trackDir+"] to the export directory ["+gpxOutputDirectory+"]");
+			FileSystemUtils.copyDirectoryContents(gpxOutputDirectory, trackDir);
+		}
+		
+	}
+	
+
+
 }

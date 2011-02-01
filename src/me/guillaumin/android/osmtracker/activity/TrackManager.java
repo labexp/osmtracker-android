@@ -11,17 +11,16 @@ import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.exception.CreateTrackException;
 import me.guillaumin.android.osmtracker.gpx.ExportTrackTask;
+import me.guillaumin.android.osmtracker.util.FileSystemUtils;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -216,6 +215,7 @@ public class TrackManager extends ListActivity {
 		getMenuInflater().inflate(R.menu.trackmgr_contextmenu, menu);
 		
 		long selectedId = ((AdapterContextMenuInfo) menuInfo).id;
+		menu.setHeaderTitle(getResources().getString(R.string.trackmgr_contextmenu_title).replace("{0}", Long.toString(selectedId)));
 		if(currentTrackId == selectedId){
 			// the selected one is the active track, so we will show the stop item
 			menu.findItem(R.id.trackmgr_contextmenu_stop).setVisible(true);
@@ -264,6 +264,13 @@ public class TrackManager extends ListActivity {
 								ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, info.id),
 								null, null);
 						((CursorAdapter) TrackManager.this.getListAdapter()).getCursor().requery();
+
+						// Delete any data stored for the track we're deleting
+						File trackStorageDirectory = DataHelper.getTrackDirectory(info.id);
+						if (trackStorageDirectory.exists()) {
+							FileSystemUtils.delete(trackStorageDirectory, true);
+						}
+
 						dialog.dismiss();
 					}
 				})
@@ -328,42 +335,20 @@ public class TrackManager extends ListActivity {
 	 * @throws CreateTrackException
 	 */
 	private long createNewTrack() throws CreateTrackException {
+		Date startDate = new Date();
+		
+		// Create entry in TRACK table
+		ContentValues values = new ContentValues();
+		values.put(Schema.COL_NAME, "");
+		values.put(Schema.COL_START_DATE, startDate.getTime());
+		values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_ACTIVE);
+		Uri trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI_TRACK, values);
+		long trackId = ContentUris.parseId(trackUri);
 
-		// Create directory for track
-		File sdRoot = Environment.getExternalStorageDirectory();
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		String storageDir = prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
-		if (sdRoot.canWrite()) {
-			// Create base OSMTracker directory on SD Card
-			File osmTrackerDir = new File(sdRoot + storageDir);
-			if (!osmTrackerDir.exists()) {
-				osmTrackerDir.mkdir();
-			}
-
-			Date startDate = new Date();
-			
-			// Create entry in TRACK table
-			ContentValues values = new ContentValues();
-			values.put(Schema.COL_NAME, "");
-			values.put(Schema.COL_START_DATE, startDate.getTime());
-			
-			Uri trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI_TRACK, values);
-			long trackId = ContentUris.parseId(trackUri);
-
-			// Create track directory
-			File trackDir = new File(osmTrackerDir + File.separator + "#" + trackId + "_" + DataHelper.FILENAME_FORMATTER.format(startDate));
-			trackDir.mkdir();
-			values.clear();
-			values.put(Schema.COL_DIR, trackDir.getAbsolutePath());
-			getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values, Schema.COL_ID + " = ?", new String[] {Long.toString(trackId)});
-			
-			// set the active track
-			setActiveTrack(trackId);
-			
-			return trackId;
-		} else {
-			throw new CreateTrackException(getResources().getString(R.string.error_externalstorage_not_writable));
-		}
+		// set the active track
+		setActiveTrack(trackId);
+		
+		return trackId;
 	}
 	
 	/**
