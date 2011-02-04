@@ -58,6 +58,8 @@
 	<string name="prefs_output">GPX Dateiausgabe</string>
 	<string name="prefs_storage_dir">Externes Speicherverzeichnis (SD)</string>
 	<string name="prefs_storage_dir_hint">Dies gilt nur für neue Tracks.</string>
+	<string name="prefs_output_one_dir_per_track">Ein Verzeichnis je Track</string>
+	<string name="prefs_output_one_dir_per_track_summary">Speichert jeden Track und zugehörige Dateien in einem eigenen Verzeichnis.</string>
 	<string name="prefs_output_filename">Dateiname für Tracks</string>
 	<string name="prefs_output_filename_summary">Form des Dateinamens, wenn ein Track einen Namen hat</string>
 	<string-array name="prefs_output_filename_keys">

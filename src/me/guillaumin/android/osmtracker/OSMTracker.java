@@ -25,6 +25,7 @@ public class OSMTracker {
 		public final static String KEY_OUTPUT_FILENAME = "gpx.filename";
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
+		public final static String KEY_OUTPUT_DIR_PER_TRACK = "gpx.directory_per_track";
 		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
 		public final static String KEY_UI_DISPLAYTRACK_OSM = "ui.displaytrack.osm";
 		public final static String KEY_UI_DISPLAY_KEEP_ON = "ui.display_keep_on";
@@ -48,6 +49,7 @@ public class OSMTracker {
 		public final static String VAL_OUTPUT_ACCURACY = VAL_OUTPUT_ACCURACY_NONE;
 		
 		public final static boolean VAL_OUTPUT_GPX_HDOP_APPROXIMATION = false;
+		public final static boolean VAL_OUTPUT_GPX_OUTPUT_DIR_PER_TRACK = true;
 		public final static String VAL_UI_BUTTONS_LAYOUT = "default";
 		
 		public final static boolean VAL_UI_DISPLAYTRACK_OSM = false;

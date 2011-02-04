@@ -171,11 +171,21 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 				startDate.setTime(startDateInMilliseconds);
 			}
 			
-			String trackDirectoryName = DataHelper.FILENAME_FORMATTER.format(startDate);
+			boolean directoryPerTrack = prefs.getBoolean(OSMTracker.Preferences.KEY_OUTPUT_DIR_PER_TRACK, 
+					OSMTracker.Preferences.VAL_OUTPUT_GPX_OUTPUT_DIR_PER_TRACK);
+					
+			// Create the path to the directory to which we will be writing
+			// Trim the directory name, as additional spaces at the end will 
+			// not allow the directory to be created if required
+			String exportDirectoryPath = sdRoot + userGPXExportDirectoryName.trim();			
+			if (directoryPerTrack) {
+				// If the user wants a directory per track, then create a name for the destination directory
+				// based on the start date of the track
+				exportDirectoryPath += File.separator + DataHelper.FILENAME_FORMATTER.format(startDate);
+			}
 			
-			// Build up the path to the gpx output directory for this track
-			File trackGPXExportDirectory = new File(sdRoot + userGPXExportDirectoryName
-					+ File.separator + trackDirectoryName);
+			// Create a file based on the path we've generated above
+			File trackGPXExportDirectory = new File(exportDirectoryPath);
 
 			String filenameBase = buildGPXFilename(c);
 			c.close();
@@ -184,7 +194,10 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 
 				// Create track directory if needed
 				if (! trackGPXExportDirectory.exists()) {
-					trackGPXExportDirectory.mkdirs();
+					if (! trackGPXExportDirectory.mkdirs() ) {
+						Log.w(TAG,"Failed to create directory [" 
+								+trackGPXExportDirectory.getAbsolutePath()+ "]");
+					}
 				}
 
 				File trackFile = new File(trackGPXExportDirectory, filenameBase);
