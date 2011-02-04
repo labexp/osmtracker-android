@@ -101,6 +101,16 @@ public class TrackDetail extends Activity {
 			}
 		});
 				
+		final Button btnCancel = (Button) findViewById(R.id.trackdetail_btn_cancel);
+		btnCancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// Just close the dialog
+				finish();				
+			}
+		});
+		
+				
 		// further work is done in onResume.
 	}
 
