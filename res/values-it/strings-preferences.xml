@@ -24,12 +24,7 @@
 
 	<string name="prefs_voicerec_duration">Durata registrazione vocale</string>
 	<string name="prefs_voicerec_duration_seconds">secondi</string>
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-	</string-array>
+
 	<string name="prefs_theme">Tema schermata principale</string>
 	<string name="prefs_theme_summary">Riavvia l\'applicazione per impostare le modifiche</string>
 	<string-array name="prefs_theme_keys">

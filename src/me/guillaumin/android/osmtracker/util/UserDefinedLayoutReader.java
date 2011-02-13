@@ -134,7 +134,7 @@ public class UserDefinedLayoutReader {
 		
 		// Initialize listeners which will be bound to buttons
 		textNoteOnClickListener = new TextNoteOnClickListener(tl);
-		voiceRecordOnClickListener = new VoiceRecOnClickListener(tl, currentTrackId);
+		voiceRecordOnClickListener = new VoiceRecOnClickListener(tl);
 		stillImageOnClickListener = new StillImageOnClickListener(tl);
 	}
 

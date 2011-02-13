@@ -12,6 +12,7 @@ import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
 import me.guillaumin.android.osmtracker.view.TextNoteDialog;
+import me.guillaumin.android.osmtracker.view.VoiceRecDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -104,6 +105,10 @@ public class TrackLogger extends Activity {
 	 * constant for text note dialog
 	 */
 	public static final int DIALOG_TEXT_NOTE = 1;
+	/**
+	 * constant for voice recording dialog
+	 */
+	public static final int DIALOG_VOICE_RECORDING = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -392,6 +397,19 @@ public class TrackLogger extends Activity {
 				return true;
 			}
 			break;
+		case KeyEvent.KEYCODE_DPAD_CENTER:
+			// API Level 3 doesn't support long presses, so we need to do this manually
+			if((gpsLogger != null && gpsLogger.isTracking()) && (event.getEventTime() - event.getDownTime()) > OSMTracker.LONG_PRESS_TIME){
+				// new long press of dpad center detected, start voice recording dialog
+				this.showDialog(DIALOG_VOICE_RECORDING);
+				return true;
+			}
+			break;
+		case KeyEvent.KEYCODE_HEADSETHOOK:
+			if (gpsLogger != null && gpsLogger.isTracking()){
+				this.showDialog(DIALOG_VOICE_RECORDING);
+				return true;
+			}
 		}
 
 		return super.onKeyDown(keyCode, event);
@@ -438,7 +456,7 @@ public class TrackLogger extends Activity {
 
 		super.onActivityResult(requestCode, resultCode, data);
 	}
-
+	
 	/**
 	 * Getter for gpsLogger
 	 * 
@@ -503,6 +521,9 @@ public class TrackLogger extends Activity {
 		case DIALOG_TEXT_NOTE:
 			// create a new TextNoteDialog
 			return new TextNoteDialog(this, currentTrackId);
+		case DIALOG_VOICE_RECORDING:
+			// create a new VoiceRegDialog
+			return new VoiceRecDialog(this, currentTrackId);
 		}
 		return super.onCreateDialog(id);
 	}

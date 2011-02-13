@@ -25,12 +25,7 @@
 
 	<string name="prefs_voicerec_duration">Taleoptagelse varighed</string>
 	<string name="prefs_voicerec_duration_seconds">sekunder</string>
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-	</string-array>
+
 	<string name="prefs_theme">Hovedskærm grafisk tema</string>
 	<string name="prefs_theme_summary">Program genstart krævet for at ændringer træder i
 		kraft</string>

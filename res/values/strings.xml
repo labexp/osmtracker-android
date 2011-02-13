@@ -10,6 +10,7 @@
 	<string name="tracklogger_waiting_gps">Waiting for GPS fix to enable buttons...</string>
 	<string name="tracklogger_voicerec_title">Voice recording</string>
 	<string name="tracklogger_voicerec_text">Recording a {0}s audio clip.</string>
+	<string name="tracklogger_voicerec_stop">Stop</string>
 	<string name="tracklogger_btnBack">Back</string>
 	<string name="tracklogger_tracked">Tracked: </string>
 	<string name="tracklogger_gps_disabled">GPS disabled</string>

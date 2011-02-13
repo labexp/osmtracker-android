@@ -24,12 +24,7 @@
 
 	<string name="prefs_voicerec_duration">Trvanie hlasového záznamu</string>
 	<string name="prefs_voicerec_duration_seconds">sekundy/sekúnd</string>
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-	</string-array>
+
 	<string name="prefs_theme">Grafická téma hlavnej obrazovky</string>
 	<string name="prefs_theme_summary">Je potrebný reštart aplikácie na vykonanie zmien</string>
 	<string-array name="prefs_theme_keys">

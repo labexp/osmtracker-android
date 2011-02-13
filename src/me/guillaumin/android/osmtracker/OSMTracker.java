@@ -112,4 +112,8 @@ public class OSMTracker {
 	 */
 	public final static int HDOP_APPROXIMATION_FACTOR = 4;
 	
+	/**
+	 * time (in ms) we use to handle a key press as a long press
+	 */
+	public final static long LONG_PRESS_TIME = 1000;
 }

@@ -22,12 +22,7 @@
 
 	<string name="prefs_voicerec_duration">Äänitallenteen kesto</string>
 	<string name="prefs_voicerec_duration_seconds">sekuntia</string>
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-	</string-array>
+
 	<string name="prefs_theme">Pääikkunan teema</string>
 	<string name="prefs_theme_summary">Käynnistä sovellus uudelleen jotta asetukset tulevat voimaan</string>
 	<string-array name="prefs_theme_keys">

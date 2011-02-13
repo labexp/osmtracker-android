@@ -28,12 +28,7 @@
 
 	<string name="prefs_voicerec_duration">Dauer Sprachaufnahme</string>
 	<string name="prefs_voicerec_duration_seconds">Sekunden</string>
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-	</string-array>
+
 	<string name="prefs_theme">Motiv Hauptbildschirm</string>
 	<string name="prefs_theme_summary">Applikationsneustart notwendig, damit Einstellungen wirksam werden</string>
 	<string-array name="prefs_theme_keys">

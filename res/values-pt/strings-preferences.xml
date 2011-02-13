@@ -24,12 +24,7 @@
 
 	<string name="prefs_voicerec_duration">Duração da gravação de voz</string>
 	<string name="prefs_voicerec_duration_seconds">segundos</string>
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-	</string-array>
+
 	<string name="prefs_theme">Tema da tela principal</string>
 	<string name="prefs_theme_summary">É necessário reiniciar para ver as alterações</string>
 	<string-array name="prefs_theme_keys">
