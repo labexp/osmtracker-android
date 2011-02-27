@@ -29,6 +29,7 @@ public class OSMTracker {
 		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
 		public final static String KEY_UI_DISPLAYTRACK_OSM = "ui.displaytrack.osm";
 		public final static String KEY_UI_DISPLAY_KEEP_ON = "ui.display_keep_on";
+		public final static String KEY_SOUND_ENABLED = "sound_enabled";
 
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
@@ -54,6 +55,7 @@ public class OSMTracker {
 		
 		public final static boolean VAL_UI_DISPLAYTRACK_OSM = false;
 		public final static boolean VAL_UI_DISPLAY_KEEP_ON = true;
+		public final static boolean VAL_SOUND_ENABLED = true;
 	};
 	
 	/**

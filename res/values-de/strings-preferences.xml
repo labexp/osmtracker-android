@@ -79,6 +79,11 @@
 		<item>wpt_name</item>
 		<item>wpt_cmt</item>
 	</string-array>
+
 	<string name="prefs_output_gpx_hdop_approximation">Benutze HDOP-Annäherung</string>
 	<string name="prefs_output_gpx_hdop_approximation_summary">Fülle HDOP (im GPX) mit Näherungswerten der Genauigkeitsmessung</string>
+
+	<string name="prefs_sound_enabled">Sound aktivieren</string>
+	<string name="prefs_sound_enabled_summary">Spiele Sounds ab, wenn Sprachaufnahme startet und endet</string>
+
 </resources>

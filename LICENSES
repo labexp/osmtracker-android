@@ -169,6 +169,7 @@
 	permanent authorization for you to choose that version for the
 	Library.
 	
+
 ==== File lib/slf4-android-*.jar ====
 	
 	osmtracker-android uses a library from slf4j (http://www.slf4j.org/android/)
@@ -182,3 +183,15 @@
 	(http://creativecommons.org/licenses/by-sa/2.0/).
 
 	(c) OpenStreetMap (and) contributors, CC-BY-SA
+	
+	
+==== File res/raw/beep.mp3 ====
+
+	http://www.freesound.org/samplesViewSingle.php?id=26777
+	http://creativecommons.org/licenses/sampling+/1.0/
+
+
+==== File res/raw/beepbeep.mp3 ====
+
+	http://www.freesound.org/samplesViewSingle.php?id=107786
+	http://creativecommons.org/licenses/sampling+/1.0/

@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.media.MediaRecorder.OnInfoListener;
 import android.os.SystemClock;
@@ -60,6 +61,21 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	 * MediaRecorder used to record audio
 	 */
 	private MediaRecorder mediaRecorder;
+	
+	/**
+	 * MediaPlayer used to play a short beepbeep when recording starts
+	 */
+	private MediaPlayer mediaPlayerStart;
+
+	/**
+	 * MediaPlayer used to play a short beep when recording stops
+	 */
+	private MediaPlayer mediaPlayerStop;
+	
+	/**
+	 * saves if we should play some sound when starting or stopping the recording
+	 */
+	private boolean playSound;
 
 	/**
 	 * the context for this dialog
@@ -92,22 +108,21 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 		
 		// get preferences for this voice recording dialog
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		recordingDuration = Integer.parseInt(prefs.getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION,
-				OSMTracker.Preferences.VAL_VOICEREC_DURATION));
 		
 		this.setTitle(context.getResources().getString(R.string.tracklogger_voicerec_title));
-		this.setMessage(
-				context.getResources().getString(R.string.tracklogger_voicerec_text)
-				.replace("{0}", String.valueOf(recordingDuration)));
 		
 		this.setButton(context.getResources().getString(R.string.tracklogger_voicerec_stop), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				stopRecording();
 				VoiceRecDialog.this.dismiss();
 			}
 		});
 		
+		// prepare the media players
+		mediaPlayerStart = MediaPlayer.create(context, R.raw.beepbeep);
+	    mediaPlayerStart.setLooping(false);
+	    mediaPlayerStop = MediaPlayer.create(context, R.raw.beep);
+	    mediaPlayerStop.setLooping(false);
 	}
 	
 	
@@ -118,6 +133,14 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	public void onStart() {
 		// we'll need the start time of this dialog to check if a key has been pressed before the dialog was opened
 		dialogStartTime = SystemClock.uptimeMillis();
+		
+		// get preferences we'll need for this dialog 
+		playSound = prefs.getBoolean(OSMTracker.Preferences.KEY_SOUND_ENABLED, OSMTracker.Preferences.VAL_SOUND_ENABLED);
+		recordingDuration = Integer.parseInt(prefs.getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION,
+				OSMTracker.Preferences.VAL_VOICEREC_DURATION));
+		this.setMessage(
+				context.getResources().getString(R.string.tracklogger_voicerec_text)
+				.replace("{0}", String.valueOf(recordingDuration)));
 		
 		// we need to avoid screen orientation change during recording because this causes some strange behavior
 		try{
@@ -167,11 +190,15 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 					Log.d(TAG, "onStart() starting mediaRecorder...");
 					mediaRecorder.prepare();
 					mediaRecorder.start();
+
+					if(playSound){
+						// short "beep-beep" to notify that recording started
+						mediaPlayerStart.start();
+					}
+					
 					Log.d(TAG,"onStart() mediaRecorder started...");
 				} catch (Exception ioe) {
 					Log.w(TAG, "onStart() voice recording has failed", ioe);
-					stopRecording();
-	
 					this.dismiss();
 					Toast.makeText(context, context.getResources().getString(R.string.error_voicerec_failed),
 							Toast.LENGTH_SHORT).show();
@@ -206,9 +233,6 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 		case MediaRecorder.MEDIA_RECORDER_INFO_MAX_FILESIZE_REACHED:
 		case MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED:
 			// MediaRecorder has been stopped by system
-			// we still call stopRecording() to correctly handle the dialog
-			stopRecording();
-			
 			// we're done, so we can dismiss the dialog
 			this.dismiss();
 			break;
@@ -221,12 +245,20 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	@Override
 	protected void onStop() {
 		Log.d(TAG, "onStop() called");
-		try{
+
+		if(playSound){
+			// short "beep" when we stop to record
+			mediaPlayerStop.start();
+		}
+		
+	    stopRecording();
+		
+	    try{
 			this.getOwnerActivity().setRequestedOrientation(currentRequestedOrientation);
 		}catch(Exception e){
 			Log.w(TAG, "No OwnerActivity found for this Dialog. Use showDialog method within the activity to handle this Dialog and to avoid voice recording problems.");
 		}
-		stopRecording();
+		
 		mediaRecorder.release();
 		super.onStop();
 	}

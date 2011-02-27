@@ -100,4 +100,8 @@
 	
 	<string name="prefs_output_gpx_hdop_approximation">Use HDOP approximation</string>
 	<string name="prefs_output_gpx_hdop_approximation_summary">Fill HDOP in GPX with an approximation value from accuracy</string>
+
+	<string name="prefs_sound_enabled">Enable Sound</string>
+	<string name="prefs_sound_enabled_summary">Play sounds when voice recording starts and ends</string>
+
 </resources>

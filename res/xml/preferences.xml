@@ -3,6 +3,8 @@
 	<ListPreference android:title="@string/prefs_voicerec_duration"
 		android:key="voicerec.duration" android:entryValues="@array/prefs_voicerec_durations"
 		android:defaultValue="2" android:entries="@array/prefs_voicerec_durations"></ListPreference>
+	<CheckBoxPreference android:key="sound_enabled" android:title="@string/prefs_sound_enabled"
+		android:summary="@string/prefs_sound_enabled_summary" android:defaultValue="true"></CheckBoxPreference>
 	<PreferenceCategory android:title="@string/prefs_gps">
 		<Preference android:summary="@string/prefs_gps_os_settings_summary"
 			android:title="@string/prefs_gps_os_settings" android:key="gps.ossettings"></Preference>
