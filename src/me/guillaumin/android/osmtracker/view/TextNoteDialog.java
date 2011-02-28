@@ -65,7 +65,7 @@ public class TextNoteDialog extends AlertDialog {
 			public void onClick(DialogInterface dialog, int which) {
 				// Track waypoint with user input text
 				Intent intent = new Intent(OSMTracker.INTENT_UPDATE_WP);
-				intent.putExtra(Schema.COL_TRACK_ID, TextNoteDialog.this.input.getText());
+				intent.putExtra(Schema.COL_TRACK_ID, TextNoteDialog.this.wayPointTrackId);
 				intent.putExtra(OSMTracker.INTENT_KEY_NAME, input.getText().toString());
 				intent.putExtra(OSMTracker.INTENT_KEY_UUID, TextNoteDialog.this.wayPointUuid);
 				TextNoteDialog.this.context.sendBroadcast(intent);
