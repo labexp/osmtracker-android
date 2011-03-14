@@ -77,7 +77,7 @@ public class Preferences extends PreferenceActivity {
 			}
 		});
 		
-		// Update GPS loggin interval summary to the current value
+		// Update GPS logging interval summary to the current value
 		pref = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL);
 		pref.setSummary(
 				PreferenceManager.getDefaultSharedPreferences(this).getString(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)
@@ -102,6 +102,32 @@ public class Preferences extends PreferenceActivity {
 				return true;
 			}
 		});
+
+		// Button screen orientation option
+		pref = findPreference(OSMTracker.Preferences.KEY_UI_ORIENTATION);
+		ListPreference orientationListPreference = (ListPreference) pref;
+		String displayValueKey = PreferenceManager.getDefaultSharedPreferences(this).getString(OSMTracker.Preferences.KEY_UI_ORIENTATION, OSMTracker.Preferences.VAL_UI_ORIENTATION);
+		int displayValueIndex = orientationListPreference.findIndexOfValue(displayValueKey);
+		String displayValue = orientationListPreference.getEntries()[displayValueIndex].toString();
+		orientationListPreference.setSummary(displayValue + ".\n" 
+				+ getResources().getString(R.string.prefs_ui_orientation_summary));
+		
+		// Set a listener to update the preference display after a change is made
+		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				// Set summary with the display text of the item and a description of the preference
+				ListPreference orientationListPreference = (ListPreference)preference;
+				// Pull the display string from the list preference rather than simply using the key value
+				int newValueIndex = orientationListPreference.findIndexOfValue((String)newValue);
+				String newPreferenceDisplayValue = orientationListPreference.getEntries()[newValueIndex].toString();
+				
+				preference.setSummary(newPreferenceDisplayValue
+						+ ".\n" + getResources().getString(R.string.prefs_ui_orientation_summary));
+				return true;
+			}
+		});
+
 		
 	}
 

@@ -44,6 +44,8 @@
 			android:summary="@string/prefs_ui_buttons_layout_summary"></ListPreference>
 		<CheckBoxPreference android:key="ui.displaytrack.osm" android:title="@string/prefs_displaytrack_osm"
 			android:summary="@string/prefs_displaytrack_osm_summary" android:defaultValue="false"></CheckBoxPreference>
+		<ListPreference android:defaultValue="none" android:key="ui.orientation" android:title="@string/prefs_ui_orientation"
+			android:summary="@string/prefs_ui_orientation_summary" android:entries="@array/prefs_ui_orientation_options_keys" android:entryValues="@array/prefs_ui_orientation_options_values"></ListPreference>
 	</PreferenceCategory>
 
 

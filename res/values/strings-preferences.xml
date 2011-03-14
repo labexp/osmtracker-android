@@ -24,6 +24,20 @@
 	<string name="prefs_ui_buttons_layout">Buttons layout</string>
 	<string name="prefs_ui_buttons_layout_summary">Allow to define a custom button layout (See docs).</string>
 	<string name="prefs_ui_buttons_layout_defaut">Default</string>
+	<string name="prefs_ui_orientation">Orientation</string>
+	<string name="prefs_ui_orientation_summary">Preferred orientation for the button screen</string>
+	<string-array name="prefs_ui_orientation_options_keys">
+		<item>Automatic</item>
+		<item>Portrait</item>
+		<item>Landscape</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
+	<string-array name="prefs_ui_orientation_options_values">
+		<item>none</item>
+		<item>portrait</item>
+		<item>landscape</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (END) -->
 	
 
 	<string name="prefs_voicerec_duration">Voice record duration</string>

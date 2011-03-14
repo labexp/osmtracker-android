@@ -24,6 +24,13 @@
 	<string name="prefs_ui_buttons_layout">Tastenlayout</string>
 	<string name="prefs_ui_buttons_layout_summary">Erlaube benutzerdefiniertes Tastenlayout (Siehe Dokumentation).</string>
 	<string name="prefs_ui_buttons_layout_defaut">Standard</string>
+	<string name="prefs_ui_orientation">Ausrichtung</string>
+	<string name="prefs_ui_orientation_summary">Bevorzugte Ausrichtung für die Buttonanzeige</string>
+	<string-array name="prefs_ui_orientation_options_keys">
+		<item>Automatisch</item>
+		<item>Hochformat</item>
+		<item>Querformat</item>
+	</string-array>
        
 
 	<string name="prefs_voicerec_duration">Dauer Sprachaufnahme</string>
