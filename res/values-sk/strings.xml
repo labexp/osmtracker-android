@@ -8,8 +8,9 @@
 	<!-- TrackLogger -->
 	<string name="tracklogger">Denník stôp</string>
 	<string name="tracklogger_waiting_gps">Čaká sa na GPS polohu pre povolenie tlačidiel...</string>
-	<string name="tracklogger_voicerec_title">Hlasové zaznamenávanie</string>
+	<string name="tracklogger_voicerec_title">Hlasový záznam</string>
 	<string name="tracklogger_voicerec_text">Nahráva sa zvuková stopa pre {0}.</string>
+	<string name="tracklogger_voicerec_stop">Zastaviť</string>
 	<string name="tracklogger_btnBack">Späť</string>
 	<string name="tracklogger_tracked">Stopované: </string>
 	<string name="tracklogger_gps_disabled">GPS vypnuté</string>
@@ -28,24 +29,26 @@
 	<string name="trackmgr_waypoints_count">Cestovné body: </string>
 	<string name="trackmgr_trackpoints_count">Trasové body: </string>
 	<string name="trackmgr_empty">Nemáte žiadne stopy.</string>
-	<string name="trackmgr_newtrack_hint">Na nahratie stopy,\nstlačte <b>Menu</b> potom <b>Nová stopa</b></string>
+	<string name="trackmgr_newtrack_hint">Na nahratie stopy\nstlačte <b>Menu</b> a potom <b>Nová stopa</b></string>
 	<string name="trackmgr_newtrack_error">Nedá sa vytvoriť nová stopa: {0}</string>
-	<string name="trackmgr_continuetrack_hint">Práve nahrávate <b>stopu č.{0}</b>\nNa pokračovanie ju vyberte v zozname</string>
+	<string name="trackmgr_continuetrack_hint">Práve nahrávate <b>stopu #{0}</b>\nNa pokračovanie ju vyberte v zozname</string>
+	<string name="trackmgr_contextmenu_stop">Zastaviť stopovania</string>
+	<string name="trackmgr_contextmenu_resume">Pokračovať v stopovaní</string>
 	<string name="trackmgr_contextmenu_delete">Vymazať</string>
 	<string name="trackmgr_contextmenu_export">Exportovať ako GPX</string>
 	<string name="trackmgr_contextmenu_display">Zobraziť</string>
 	<string name="trackmgr_contextmenu_details">Podrobnosti</string>
-	<string name="trackmgr_contextmenu_title">Stopa č.{0}</string>
-	<string name="trackmgr_delete_confirm">Stopa č.{0} bude vymazaná</string>
-	<string name="trackmgr_exporting">Exportuje sa sotpa č.{0}...</string>
+	<string name="trackmgr_contextmenu_title">Stopa #{0}</string>
+	<string name="trackmgr_delete_confirm">Stopa #{0} bude vymazaná</string>
+	<string name="trackmgr_exporting">Exportuje sa stopa #{0}...</string>
 	<string name="trackmgr_export_error">Nedá sa exportovať stopa: {0}</string>
 
 	<!-- Track Detail -->
 	<string name="trackdetail">Podrobnosti o stope</string>
 	<string name="trackdetail_startdate">Čas začatia:</string>
 	<string name="trackdetail_enddate">Čas ukončenia:</string>
-	<string name="trackdetail_startloc">Začala v:</string>
-	<string name="trackdetail_endloc">Skončila v:</string>
+	<string name="trackdetail_startloc">Začala v bode:</string>
+	<string name="trackdetail_endloc">Skončila v bode:</string>
 	<string name="trackdetail_exportdate">Exportovaná:</string>
 	<string name="trackdetail_btn_export">Exportovať ako GPX</string>
 	<string name="trackdetail_export_notyet">(Zatiaľ neexportovaná)</string>
@@ -70,6 +73,7 @@
 	<string name="menu_save">Uložiť</string>
 	<string name="menu_cancel">Zrušiť</string>
 	<string name="menu_export">Exportovať ako GPX</string>
+	<string name="menu_center_to_gps">Centrovať na GPS polohu</string>
 	
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Nedá sa zapisovať do externého úložiska.</string>
@@ -88,12 +92,12 @@
 
 	<!-- Notification -->
 	<string name="notification_ticker_text">OSMTracker stopuje</string>
-	<string name="notification_title">OSMTracker stopuje (č.{0})</string>
+	<string name="notification_title">OSMTracker stopuje (#{0})</string>
 	<string name="notification_text">Ťuknite sem na zobrazenie hlavnej obrazovky</string>
 
 	<!-- Display track -->
 	<string name="displaytrack">Zobrazenie stopy</string>	
-	<string name="displaytrack_north">N</string>
+	<string name="displaytrack_north">S</string>
 	
 	<!-- Track detail -->
 	<string name="trackdetail_save">Uložiť</string>
