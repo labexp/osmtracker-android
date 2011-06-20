@@ -8,15 +8,15 @@
 	<string name="prefs_gps_os_settings_summary">Näytä GPS-asetukset ikkuna</string>
 
 	<string name="prefs_check_gps_startup">Tarkista GPS käynnistettäessä</string>
-	<string name="prefs_check_gps_startup_summary">Tarkista jos GPS ei ole päällä käynnistettäessä ja kysy tarvittaessa.</string>
+	<string name="prefs_check_gps_startup_summary">Tarkista jos GPS ei ole päällä käynnistettäessä ja kysy tarvittaessa</string>
 
 	<string name="prefs_gps_ignore_clock">Älä käytä GPS-aikaa</string>
-	<string name="prefs_gps_ignore_clock_summary">Käytä Androidin kelloa aikamerkinnöille.</string>
+	<string name="prefs_gps_ignore_clock_summary">Käytä Androidin kelloa aikamerkinnöille</string>
 
 	<string name="prefs_ui">Käyttöliittymä</string>
 	
 	<string name="prefs_ui_buttons_layout">Painikelayout</string>
-	<string name="prefs_ui_buttons_layout_summary">Salli omat painikelayoutit (kts. dokumentit).</string>
+	<string name="prefs_ui_buttons_layout_summary">Salli omat painikelayoutit (kts. dokumentit)</string>
 	<string name="prefs_ui_buttons_layout_defaut">Oletus</string>
 	
 
@@ -39,7 +39,7 @@
 	</string-array>
 
 	<string name="prefs_displaytrack_osm">OSM tausta</string>
-	<string name="prefs_displaytrack_osm_summary">Näytä OpenStreetMap reitin alla. Tarvitset datayhteyden.</string>
+	<string name="prefs_displaytrack_osm_summary">Näytä OpenStreetMap reitin alla. Tarvitset datayhteyden</string>
 
 	<string name="prefs_output">GPX-tiedoston tallennus</string>
 	<string name="prefs_storage_dir">Muistikortin (SD) kansio</string>

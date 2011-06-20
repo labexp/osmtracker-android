@@ -8,15 +8,15 @@
 	<string name="prefs_gps_os_settings_summary">Открыть системные настройки GPS</string>
 
 	<string name="prefs_check_gps_startup">Проверять GPS при запуске</string>
-	<string name="prefs_check_gps_startup_summary">Проверять статус GPS при запуске, предлагать включить.</string>
+	<string name="prefs_check_gps_startup_summary">Проверять статус GPS при запуске, предлагать включить</string>
 
 	<string name="prefs_gps_ignore_clock">Игнорировать время GPS</string>
-	<string name="prefs_gps_ignore_clock_summary">Игнорировать время GPS и использовать время телефона для временных меток.</string>
+	<string name="prefs_gps_ignore_clock_summary">Игнорировать время GPS и использовать время телефона для временных меток</string>
 
 	<string name="prefs_ui">Интерфейс</string>
 	
 	<string name="prefs_ui_buttons_layout">Расположение кнопок</string>
-	<string name="prefs_ui_buttons_layout_summary">Выбрать вариант расположения кнопок (См. документацию).</string>
+	<string name="prefs_ui_buttons_layout_summary">Выбрать вариант расположения кнопок (См. документацию)</string>
 	<string name="prefs_ui_buttons_layout_defaut">По умолчанию</string>
 	
 
@@ -39,7 +39,7 @@
 	</string-array>
 
 	<string name="prefs_displaytrack_osm">Картооснова OSM</string>
-	<string name="prefs_displaytrack_osm_summary">Отображать картооснову OpenStreetMap при отображении трека. Требует интернет-соединения.</string>
+	<string name="prefs_displaytrack_osm_summary">Отображать картооснову OpenStreetMap при отображении трека. Требует интернет-соединения</string>
 
 	<string name="prefs_output">Настройки GPX файлов</string>
 	<string name="prefs_storage_dir">Сохранять в каталоге</string>

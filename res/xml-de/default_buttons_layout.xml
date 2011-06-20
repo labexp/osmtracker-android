@@ -161,7 +161,7 @@
 		</row>
 		<row>
 			<button type="tag" label="Restaurant" icon="button_amenitymore_restaurant" />
-			<button type="tag" label="Fast food" icon="button_amenitymore_fastfood" />
+			<button type="tag" label="Fastfood" icon="button_amenitymore_fastfood" />
 			<button type="tag" label="Campingplatz" icon="button_amenitymore_camp_site" />
 		</row>
 	</layout>
@@ -184,7 +184,7 @@
 		</row>
 		<row>
 			<button type="tag" label="Kreisstraße" icon="button_way_tertiary" />
-			<button type="tag" label="Straße an/in \nWohngebieten" icon="button_way_residential" />
+			<button type="tag" label="Straße an/in\nWohngebieten" icon="button_way_residential" />
 			<button type="tag" label="Erschließungsweg" icon="button_way_service" />
 		</row>
 	</layout>
@@ -203,17 +203,17 @@
 		<row>
 			<button type="tag" label="Reitweg" icon="button_track_bridleway" />
 			<button type="tag" label="Treppen" icon="button_track_steps" />
-			<button type="tag" label="Verkehrsberuhigter \nBereich" icon="button_track_living_street" />
+			<button type="tag" label="Verkehrsberuhigter\nBereich" icon="button_track_living_street" />
 		</row>
 		<row>
 			<button type="tag" label="Fußgängerweg" icon="button_track_pedestrian" />
-			<button type="tag" label="Befestigter Weg \n(Grade 1)" icon="button_track_grade1" />
-			<button type="tag" label="Unbefestigter Weg \n(Grade 2)" icon="button_track_grade2" />
+			<button type="tag" label="Befestigter Weg\n(Grade 1)" icon="button_track_grade1" />
+			<button type="tag" label="Unbefestigter Weg\n(Grade 2)" icon="button_track_grade2" />
 		</row>
 		<row>
-			<button type="tag" label="Unbefestigter Weg \n(Grade 3)" icon="button_track_grade3" />
-			<button type="tag" label="Unbefestigter Weg \n(Grade 4)" icon="button_track_grade4" />
-			<button type="tag" label="Unbefestigter Weg \n(Grade 5)" icon="button_track_grade5" />
+			<button type="tag" label="Unbefestigter Weg\n(Grade 3)" icon="button_track_grade3" />
+			<button type="tag" label="Unbefestigter Weg\n(Grade 4)" icon="button_track_grade4" />
+			<button type="tag" label="Unbefestigter Weg\n(Grade 5)" icon="button_track_grade5" />
 		</row>
 	</layout>
 
@@ -225,7 +225,7 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Lanwirtschaftlich \ngenutzte Fläche" icon="button_landuse_farm" />
+			<button type="tag" label="Landwirtschaftlich\ngenutzte Fläche" icon="button_landuse_farm" />
 			<button type="tag" label="Deponie" icon="button_landuse_landfill" />
 			<button type="tag" label="Wasserbecken" icon="button_landuse_basin" />
 		</row>

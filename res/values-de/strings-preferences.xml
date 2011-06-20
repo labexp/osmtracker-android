@@ -10,19 +10,19 @@
 	<string name="prefs_gps_os_settings_summary">Zeige GPS-Einstellungen des Systems</string>
 
 	<string name="prefs_check_gps_startup">Prüfe GPS beim Start</string>
-	<string name="prefs_check_gps_startup_summary">Prüfen ob GPS beim Start deaktiviert ist und biete an es zu aktivieren.</string>
+	<string name="prefs_check_gps_startup_summary">Prüfen ob GPS beim Start deaktiviert ist und biete an es zu aktivieren</string>
 
 	<string name="prefs_gps_ignore_clock">GPS Zeit ignorieren</string>
-	<string name="prefs_gps_ignore_clock_summary">Android Zeit anstelle der GPS Zeit für Zeitstempel verwenden.</string>
+	<string name="prefs_gps_ignore_clock_summary">Android Zeit anstelle der GPS Zeit für Zeitstempel verwenden</string>
 
 	<string name="prefs_gps_logging_interval">GPS Intervall</string>
-	<string name="prefs_gps_logging_interval_summary">0 für den kürzesten Intervall.</string>
+	<string name="prefs_gps_logging_interval_summary">0 für das kürzest mögliche Intervall</string>
 	<string name="prefs_gps_logging_interval_seconds">Sekunden</string>
 
 	<string name="prefs_ui">Benutzeroberfläche</string>
        
 	<string name="prefs_ui_buttons_layout">Tastenlayout</string>
-	<string name="prefs_ui_buttons_layout_summary">Erlaube benutzerdefiniertes Tastenlayout (Siehe Dokumentation).</string>
+	<string name="prefs_ui_buttons_layout_summary">Erlaube benutzerdefiniertes Tastenlayout (siehe Dokumentation)</string>
 	<string name="prefs_ui_buttons_layout_defaut">Standard</string>
 	<string name="prefs_ui_orientation">Ausrichtung</string>
 	<string name="prefs_ui_orientation_summary">Bevorzugte Ausrichtung für die Buttonanzeige</string>
@@ -52,16 +52,16 @@
 	</string-array>
 
 	<string name="prefs_display_always_on">Bildschirm immer an</string>
-	<string name="prefs_display_always_on_summary">Bildschirm bleibt während des Trackings beleuchtet. Deaktivieren um Batterie zu sparen.</string>
+	<string name="prefs_display_always_on_summary">Bildschirm bleibt während des Trackings beleuchtet. Deaktivieren um Batterie zu sparen</string>
 
 	<string name="prefs_displaytrack_osm">OSM Hintergrund</string>
-	<string name="prefs_displaytrack_osm_summary">OpenStreetMap als Track-Hintergrund. Benötigt Datenverbindung.</string>
+	<string name="prefs_displaytrack_osm_summary">OpenStreetMap als Track-Hintergrund. Benötigt Datenverbindung</string>
 
 	<string name="prefs_output">GPX Dateiausgabe</string>
 	<string name="prefs_storage_dir">Externes Speicherverzeichnis (SD)</string>
 	<string name="prefs_storage_dir_hint">Dies gilt nur für neue Tracks.</string>
 	<string name="prefs_output_one_dir_per_track">Ein Verzeichnis je Track</string>
-	<string name="prefs_output_one_dir_per_track_summary">Speichert jeden Track und zugehörige Dateien in einem eigenen Verzeichnis.</string>
+	<string name="prefs_output_one_dir_per_track_summary">Speichert jeden Track und zugehörige Dateien in einem eigenen Verzeichnis</string>
 	<string name="prefs_output_filename">Dateiname für Tracks</string>
 	<string name="prefs_output_filename_summary">Form des Dateinamens, wenn ein Track einen Namen hat</string>
 	<string-array name="prefs_output_filename_keys">
@@ -75,11 +75,11 @@
 		<item>date</item>
 	</string-array>
 	<string name="prefs_output_accuracy">Genauigkeit in der GPX-Datei</string>
-	<string name="prefs_output_accuracy_summary">Erlaube Genauigkeitsanzeige in der GPX-Datei mit waypoint-Name oder in einem separaten Tag</string>
+	<string name="prefs_output_accuracy_summary">Erlaube Genauigkeitsanzeige in der GPX-Datei mit Waypoint-Name oder in einem separaten Tag</string>
 	<string-array name="prefs_output_accuracy_keys">
 		<item>Kein</item>
-		<item>Mit waypoint-Name</item>
-		<item>Im waypoint-Kommentar</item>
+		<item>Mit Waypoint-Name</item>
+		<item>Im Waypoint-Kommentar</item>
 	</string-array>
 	<string-array name="prefs_output_accuracy_values">
 		<item>none</item>

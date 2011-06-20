@@ -8,12 +8,12 @@
 	<string name="prefs_gps_os_settings_summary">Mostrar pantalla de configuración del sistema GPS</string>
 
 	<string name="prefs_check_gps_startup">Comprobar GPS en el inicio</string>
-	<string name="prefs_check_gps_startup_summary">Comprobar si el GPS está desactivado al iniciar, y preguntar si activarlo.</string>
+	<string name="prefs_check_gps_startup_summary">Comprobar si el GPS está desactivado al iniciar, y preguntar si activarlo</string>
 
 	<string name="prefs_ui">Interfaz de usuario</string>
 	
 	<string name="prefs_ui_buttons_layout">Disposición de los botones</string>
-	<string name="prefs_ui_buttons_layout_summary">Permite definir una disposición personalizada de los botones (ver documentación).</string>
+	<string name="prefs_ui_buttons_layout_summary">Permite definir una disposición personalizada de los botones (ver documentación)</string>
 	<string name="prefs_ui_buttons_layout_defaut">Predeterminada</string>
 	
 
@@ -51,7 +51,7 @@
 		<item>date</item>
 	</string-array>
 	<string name="prefs_output_accuracy">Precisión en el archivo GPX</string>
-	<string name="prefs_output_accuracy_summary">Permite información de precisión en el archivo GPX, con el nombre del punto o en una etiqueta separada.</string>
+	<string name="prefs_output_accuracy_summary">Permite información de precisión en el archivo GPX, con el nombre del punto o en una etiqueta separada</string>
 	<string-array name="prefs_output_accuracy_keys">
 		<item>Ninguna</item>
 		<item>Con el nombre del punto</item>

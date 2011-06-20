@@ -10,19 +10,19 @@
 	<string name="prefs_gps_os_settings_summary">Zobraziť systémovú obrazovku s nastaveniami GPS</string>
 
 	<string name="prefs_check_gps_startup">Skontrolovať GPS po spustení</string>
-	<string name="prefs_check_gps_startup_summary">Skontrolovať, či je GPS vypnuté po spustení a navrhnúť jeho zapnutie.</string>
+	<string name="prefs_check_gps_startup_summary">Skontrolovať, či je GPS vypnuté po spustení a navrhnúť jeho zapnutie</string>
 
 	<string name="prefs_gps_ignore_clock">Ignorovať čas GPS</string>
-	<string name="prefs_gps_ignore_clock_summary">Ignorovať čas GPS a použiť čas Androidu pre časové značky.</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignorovať čas GPS a použiť čas Androidu pre časové značky</string>
 
 	<string name="prefs_gps_logging_interval">Interval logovania GPS</string>
-	<string name="prefs_gps_logging_interval_summary">Použite 0 pre najkratší možný (Ovplyvní výdrž batérie).</string>
+	<string name="prefs_gps_logging_interval_summary">Použite 0 pre najkratší možný (Ovplyvní výdrž batérie)</string>
 	<string name="prefs_gps_logging_interval_seconds">sekundy</string>
 
 	<string name="prefs_ui">Užívateľské rozhranie</string>
 	
 	<string name="prefs_ui_buttons_layout">Rozloženie tlačidiel</string>
-	<string name="prefs_ui_buttons_layout_summary">Povoliť určenie vlastného rozloženia tlačidiel (Viď dokumenty).</string>
+	<string name="prefs_ui_buttons_layout_summary">Povoliť určenie vlastného rozloženia tlačidiel (Viď dokumenty)</string>
 	<string name="prefs_ui_buttons_layout_defaut">Štandardné</string>
 	<string name="prefs_ui_orientation">Orientácia</string>
 	<string name="prefs_ui_orientation_summary">Preferovaná orientácia pre obrazovku s tlačidlami</string>
@@ -46,10 +46,10 @@
 	</string-array>
 
 	<string name="prefs_display_always_on">Obrazovka vždy zapnutá</string>
-	<string name="prefs_display_always_on_summary">Obrazovka zostane zapnutá počas stopovania. Vypnite pre úsporu batérie.</string>
+	<string name="prefs_display_always_on_summary">Obrazovka zostane zapnutá počas stopovania. Vypnite pre úsporu batérie</string>
 
 	<string name="prefs_displaytrack_osm">OSM pozadie</string>
-	<string name="prefs_displaytrack_osm_summary">Zobraziť OpenStreetMap pod stopou. Potrebuje dátové pripojenie.</string>
+	<string name="prefs_displaytrack_osm_summary">Zobraziť OpenStreetMap pod stopou. Potrebuje dátové pripojenie</string>
 
 	<string name="prefs_output">Výstup GPX súboru</string>
 	<string name="prefs_storage_dir">Adresár externého úložiska (SD)</string>

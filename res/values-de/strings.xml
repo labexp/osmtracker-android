@@ -54,8 +54,8 @@
 	<string name="trackdetail_export_display">Anzeigen</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Starte tracking</string>
-	<string name="gpsstatus_record_trackon">Stoppe tracking</string>
+	<string name="gpsstatus_record_trackoff">Starte Tracking</string>
+	<string name="gpsstatus_record_trackon">Stoppe Tracking</string>
 	<string name="gpsstatus_record_voicerec">Sprachaufnahme</string>
 	<string name="gpsstatus_record_stillimage">Fotografieren</string>
 	<string name="gpsstatus_record_textnote">Textnotiz</string>
@@ -65,20 +65,20 @@
 	<string name="menu_waypointlist">Waypoints</string>
 	<string name="menu_about">Über</string>
 	<string name="menu_displaytrack">Zeige Track</string>
-	<string name="menu_starttracking">Starte tracking</string>
+	<string name="menu_starttracking">Starte Tracking</string>
 	<string name="menu_stoptracking">Stoppen &amp; Speichern</string>
 	<string name="menu_newtrack">Neuer Track</string>
 	<string name="menu_continue">Track weiterbearbeiten</string>
 	<string name="menu_save">Speichern</string>
 	<string name="menu_cancel">Abbrechen</string>
 	<string name="menu_export">Als GPX exportieren</string>
-	<string name="menu_center_to_gps">An GPS Zentrieren</string>
+	<string name="menu_center_to_gps">An GPS zentrieren</string>
        
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Schreiben auf externen Speicher nicht möglich.</string>
 	<string name="error_externalstorage_not_writable_hint">Bitte überprüfen Sie ob ext. Speicher korrekt eingesetzt und eingebunden ist.</string>
 	<string name="error_voicerec_failed">Sprachaufnahme fehlgeschlagen</string>
-	<string name="error_userlayout_parsing">Fehler während parsen der XML-Datei. Bitte auf Standardlayout wechseln.</string>
+	<string name="error_userlayout_parsing">Fehler während Parsen der XML-Datei. Bitte auf Standardlayout wechseln.</string>
        
 	<!-- GPX -->
 	<string name="gpx_track_name">Aufgezeichnet mit OSMTracker für Android™</string>

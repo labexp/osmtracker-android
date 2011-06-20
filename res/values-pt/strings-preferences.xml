@@ -10,15 +10,15 @@
 	<string name="prefs_gps_os_settings_summary">Exibe a tela de configurações do GPS</string>
 
 	<string name="prefs_check_gps_startup">Verificar GPS ao iniciar</string>
-	<string name="prefs_check_gps_startup_summary">Verifica se o GPS está desabilitado na inicialização, e permite habilitá-lo.</string>
+	<string name="prefs_check_gps_startup_summary">Verifica se o GPS está desabilitado na inicialização, e permite habilitá-lo</string>
 
 	<string name="prefs_gps_ignore_clock">Ignorar relógio do GPS</string>
-	<string name="prefs_gps_ignore_clock_summary">Ignora o relógio do GPS e usa o relógio do Android registro de horas.</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignora o relógio do GPS e usa o relógio do Android registro de horas</string>
 
 	<string name="prefs_ui">Interface do usuário</string>
 	
 	<string name="prefs_ui_buttons_layout">Disposição dos botões</string>
-	<string name="prefs_ui_buttons_layout_summary">Permite definir uma disposição customizada dos botões (Veja docs).</string>
+	<string name="prefs_ui_buttons_layout_summary">Permite definir uma disposição customizada dos botões (Veja docs)</string>
 	<string name="prefs_ui_buttons_layout_defaut">Padrão</string>
 	
 
@@ -41,10 +41,10 @@
 	</string-array>
 
 	<string name="prefs_display_always_on">Tela sempre ligada</string>
-	<string name="prefs_display_always_on_summary">A tela irá ficar ligada ao registrar. Desabilite para economizar bateria.</string>
+	<string name="prefs_display_always_on_summary">A tela irá ficar ligada ao registrar. Desabilite para economizar bateria</string>
 
 	<string name="prefs_displaytrack_osm">Plano de fundo do OSM</string>
-	<string name="prefs_displaytrack_osm_summary">Exibe o OpenStreetMap sob o registro. Precisa de uma conexão de dados.</string>
+	<string name="prefs_displaytrack_osm_summary">Exibe o OpenStreetMap sob o registro. Precisa de uma conexão de dados</string>
 
 	<string name="prefs_output">Arquivo de saída GPX</string>
 	<string name="prefs_storage_dir">Diretório de armazenamento externo (SD)</string>

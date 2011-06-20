@@ -10,19 +10,19 @@
 	<string name="prefs_gps_os_settings_summary">Display system GPS settings screen</string>
 
 	<string name="prefs_check_gps_startup">Check GPS at startup</string>
-	<string name="prefs_check_gps_startup_summary">Check if GPS is disabled at startup, and offer to enable it.</string>
+	<string name="prefs_check_gps_startup_summary">Check if GPS is disabled at startup, and offer to enable it</string>
 
 	<string name="prefs_gps_ignore_clock">Ignore GPS clock</string>
-	<string name="prefs_gps_ignore_clock_summary">Ignore GPS clock and use Android clock for timestamps.</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignore GPS clock and use Android clock for timestamps</string>
 
 	<string name="prefs_gps_logging_interval">GPS logging interval</string>
-	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (Affects battery life).</string>
+	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (Affects battery life)</string>
 	<string name="prefs_gps_logging_interval_seconds">seconds</string>
 
 	<string name="prefs_ui">User interface</string>
 	
 	<string name="prefs_ui_buttons_layout">Buttons layout</string>
-	<string name="prefs_ui_buttons_layout_summary">Allow to define a custom button layout (See docs).</string>
+	<string name="prefs_ui_buttons_layout_summary">Allow to define a custom button layout (See docs)</string>
 	<string name="prefs_ui_buttons_layout_defaut">Default</string>
 	<string name="prefs_ui_orientation">Orientation</string>
 	<string name="prefs_ui_orientation_summary">Preferred orientation for the button screen</string>
@@ -72,10 +72,10 @@
 	<!-- DO NOT TRANSLATE THIS (END) -->
 
 	<string name="prefs_display_always_on">Screen always on</string>
-	<string name="prefs_display_always_on_summary">Screen will stay on while tracking. Disable to save battery.</string>
+	<string name="prefs_display_always_on_summary">Screen will stay on while tracking. Disable to save battery</string>
 
 	<string name="prefs_displaytrack_osm">OSM background</string>
-	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap under track. Needs a data connection.</string>
+	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap under track. Needs a data connection</string>
 
 	<string name="prefs_output">GPX file output</string>
 	<string name="prefs_storage_dir">External storage (SD) directory</string>

@@ -8,15 +8,15 @@
 	<string name="prefs_gps_os_settings_summary">Affiche l\'écran de paramètrage GPS Android</string>
 
 	<string name="prefs_check_gps_startup">Vérifier le GPS au démarrage</string>
-	<string name="prefs_check_gps_startup_summary">Vérifie si le GPS est désactivé au démarrage, et propose de l\'activer.</string>
+	<string name="prefs_check_gps_startup_summary">Vérifie si le GPS est désactivé au démarrage, et propose de l\'activer</string>
 
 	<string name="prefs_gps_ignore_clock">Ignorer l\'horloge du GPS</string>
-	<string name="prefs_gps_ignore_clock_summary">Ignore l\'horloge du GPS et utilise celle d\'Android pour l\'horodatage.</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignore l\'horloge du GPS et utilise celle d\'Android pour l\'horodatage</string>
 
 	<string name="prefs_ui">Interface utilisateur</string>
 
 	<string name="prefs_ui_buttons_layout">Boutons</string>
-	<string name="prefs_ui_buttons_layout_summary">Permet de définir des boutons personalisés (Voir la doc).</string>
+	<string name="prefs_ui_buttons_layout_summary">Permet de définir des boutons personalisés (Voir la doc)</string>
 	<string name="prefs_ui_buttons_layout_defaut">Par défaut</string>
 
 
@@ -39,7 +39,7 @@
 	</string-array>
 
 	<string name="prefs_displaytrack_osm">OSM en arrière plan</string>
-	<string name="prefs_displaytrack_osm_summary">Affiche OpenStreetMap sous la trace. Nécessite une connexion de données.</string>
+	<string name="prefs_displaytrack_osm_summary">Affiche OpenStreetMap sous la trace. Nécessite une connexion de données</string>
 
 	<string name="prefs_output">Fichier d\'enregistrement GPX</string>
 	<string name="prefs_storage_dir">Répertoire de stockage externe (SD)</string>

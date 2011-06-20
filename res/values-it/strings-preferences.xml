@@ -10,15 +10,15 @@
 	<string name="prefs_gps_os_settings_summary">Mostra la schermata impostazioni del sistema GPS</string>
 
 	<string name="prefs_check_gps_startup">Verifica GPS all\'avvio</string>
-	<string name="prefs_check_gps_startup_summary">Verifica se il GPS è disabilitato all\'avvio e chiede di abilitarlo.</string>
+	<string name="prefs_check_gps_startup_summary">Verifica se il GPS è disabilitato all\'avvio e chiede di abilitarlo</string>
 
 	<string name="prefs_gps_ignore_clock">Ignora orologio GPS</string>
-	<string name="prefs_gps_ignore_clock_summary">Ignora l\'orologio del GPS e utilizza quello Android per il salvataggio dell\'ora.</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignora l\'orologio del GPS e utilizza quello Android per il salvataggio dell\'ora</string>
 
 	<string name="prefs_ui">Interfaccia utente</string>
 
 	<string name="prefs_ui_buttons_layout">Formato tasti</string>
-	<string name="prefs_ui_buttons_layout_summary">Permette di definire un formato personalizzato dei tasti (vedi manuale).</string>
+	<string name="prefs_ui_buttons_layout_summary">Permette di definire un formato personalizzato dei tasti (vedi manuale)</string>
 	<string name="prefs_ui_buttons_layout_defaut">Predefinito</string>
 
 
@@ -41,10 +41,10 @@
 	</string-array>
 
 	<string name="prefs_display_always_on">Schermo sempre attivo</string>
-	<string name="prefs_display_always_on_summary">Lo schermo rimarrà attivo durante la registrazione della traccia. Disattiva per risparmiare la batteria.</string>
+	<string name="prefs_display_always_on_summary">Lo schermo rimarrà attivo durante la registrazione della traccia. Disattiva per risparmiare la batteria</string>
 
 	<string name="prefs_displaytrack_osm">Sfondo OSM</string>
-	<string name="prefs_displaytrack_osm_summary">Mostra OpenStreetMap sotto la traccia. E\' necessaria una connessione dati.</string>
+	<string name="prefs_displaytrack_osm_summary">Mostra OpenStreetMap sotto la traccia. E\' necessaria una connessione dati</string>
 
 	<string name="prefs_output">Salvataggio file GPX</string>
 	<string name="prefs_storage_dir">Directory memoria esterna (SD)</string>
