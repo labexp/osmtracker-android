@@ -1,9 +1,12 @@
 package me.guillaumin.android.osmtracker.service.gps;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
+import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import android.content.ComponentName;
+import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 /**
@@ -25,6 +28,7 @@ public class GPSLoggerServiceConnection implements ServiceConnection {
 	
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
+		activity.setEnabledActionButtons(false);
 		activity.setGpsLogger(null);
 	}
 
@@ -39,12 +43,12 @@ public class GPSLoggerServiceConnection implements ServiceConnection {
 			gpsStatusRecord.manageRecordingIndicator(activity.getGpsLogger().isTracking());
 		}
 		
-		if (activity.getGpsLogger().isTracking()) {
-			if (activity.getGpsLogger().isGpsEnabled()) {
-				activity.setEnabledActionButtons(true);
-			}
-		} else {
+		// If not already tracking, start tracking
+		if (!activity.getGpsLogger().isTracking()) {
 			activity.setEnabledActionButtons(false);
+			Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
+			intent.putExtra(Schema.COL_TRACK_ID, activity.getCurrentTrackId());
+			activity.sendBroadcast(intent);
 		}
 	}
 

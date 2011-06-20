@@ -59,6 +59,11 @@ public class TrackLogger extends Activity {
 	 * Bundle state key for tracking flag.
 	 */
 	public static final String STATE_IS_TRACKING = "isTracking";
+    
+	/**
+	 * Bundle state key button state.
+	 */
+	public static final String STATE_BUTTONS_ENABLED = "buttonsEnabled";
 
 	/**
 	 * GPS Logger service, to receive events and be able to update UI.
@@ -103,6 +108,11 @@ public class TrackLogger extends Activity {
 	private SharedPreferences prefs = null;
 	
 	/**
+	 * keeps track of current button status
+	 */
+	private boolean buttonsEnabled = false;
+	
+	/**
 	 * constant for text note dialog
 	 */
 	public static final int DIALOG_TEXT_NOTE = 1;
@@ -140,19 +150,12 @@ public class TrackLogger extends Activity {
 		View trackLoggerView = findViewById(R.id.tracklogger_root);
 		trackLoggerView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
 
-		// Try to restore previous state
-		boolean previousStateIsTracking = false;
-		if (savedInstanceState != null) {
-			previousStateIsTracking = savedInstanceState.getBoolean(STATE_IS_TRACKING, false);
+		// we'll restore previous button state, GPSStatusRecord will enable all buttons, as soon as there's a gps fix
+		if(savedInstanceState != null){
+			buttonsEnabled = savedInstanceState.getBoolean(STATE_BUTTONS_ENABLED, false);
 		}
-
-		// Restore previous UI state
-		if (previousStateIsTracking) {
-			setEnabledActionButtons(true);
-		} else {
-			// Disable buttons until user starts tracking
-			setEnabledActionButtons(false);
-			// Inform user why buttons are disabled
+		setEnabledActionButtons(buttonsEnabled);
+		if(!buttonsEnabled){
 			Toast.makeText(this, R.string.tracklogger_waiting_gps, Toast.LENGTH_LONG).show();
 		}
 	}
@@ -270,9 +273,10 @@ public class TrackLogger extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		// Save the fact that we are currently tracking or not
-		if (gpsLogger != null) {
+		if(gpsLogger != null){
 			outState.putBoolean(STATE_IS_TRACKING, gpsLogger.isTracking());
 		}
+		outState.putBoolean(STATE_BUTTONS_ENABLED, buttonsEnabled);
 
 		super.onSaveInstanceState(outState);
 	}
@@ -303,6 +307,7 @@ public class TrackLogger extends Activity {
 	 */
 	public void setEnabledActionButtons(boolean enabled) {
 		if (mainLayout != null) {
+			buttonsEnabled = enabled;
 			mainLayout.setEnabled(enabled);
 		}
 	}
@@ -350,14 +355,13 @@ public class TrackLogger extends Activity {
 			if (gpsLogger.isTracking()) {
 				Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
 				sendBroadcast(intent);
-				setEnabledActionButtons(false);
 				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(false);
 				finish();
 			} else {
+				// TODO remove "start tracking"
 				Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
 				intent.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 				sendBroadcast(intent);
-				setEnabledActionButtons(true);
 				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(true);
 			}			
 			break;
@@ -559,6 +563,10 @@ public class TrackLogger extends Activity {
 			setIntent(newIntent);
 		}
 		super.onNewIntent(newIntent);
+	}
+
+	public long getCurrentTrackId() {
+		return this.currentTrackId;
 	}
 	
 

@@ -107,12 +107,14 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		switch (event) {
 		case GpsStatus.GPS_EVENT_FIRST_FIX:
 			imgSatIndicator.setImageResource(R.drawable.sat_indicator_0);
+			activity.onGpsEnabled();
 			break;
 		case GpsStatus.GPS_EVENT_STARTED:
 			imgSatIndicator.setImageResource(R.drawable.sat_indicator_unknown);
 			break;
 		case GpsStatus.GPS_EVENT_STOPPED:
 			imgSatIndicator.setImageResource(R.drawable.sat_indicator_off);
+			activity.onGpsDisabled();
 			break;
 		case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
 			// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
