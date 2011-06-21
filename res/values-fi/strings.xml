@@ -51,7 +51,6 @@
 	<string name="menu_waypointlist">Etapit</string>
 	<string name="menu_about">Tietoja</string>
 	<string name="menu_displaytrack">Näytä reitti</string>
-	<string name="menu_starttracking">Aloita reititys</string>
 	<string name="menu_stoptracking">Lopeta &amp; talleta</string>
 	<string name="menu_newtrack">Uusi reitti</string>
 	<string name="menu_continue">Jatka reittiä</string>

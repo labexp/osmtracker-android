@@ -61,7 +61,6 @@
 	<string name="menu_waypointlist">Puntos</string>
 	<string name="menu_about">Acerca de</string>
 	<string name="menu_displaytrack">Mostrar trazado</string>
-	<string name="menu_starttracking">Iniciar trazado</string>
 	<string name="menu_stoptracking">Parar &amp; guardar</string>
 	<string name="menu_newtrack">Nueva traza</string>
 	<string name="menu_continue">Continar</string>

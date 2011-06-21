@@ -154,10 +154,6 @@ public class TrackLogger extends Activity {
 		if(savedInstanceState != null){
 			buttonsEnabled = savedInstanceState.getBoolean(STATE_BUTTONS_ENABLED, false);
 		}
-		setEnabledActionButtons(buttonsEnabled);
-		if(!buttonsEnabled){
-			Toast.makeText(this, R.string.tracklogger_waiting_gps, Toast.LENGTH_LONG).show();
-		}
 	}
 
 	@Override
@@ -224,7 +220,12 @@ public class TrackLogger extends Activity {
 		// We can't use BIND_AUTO_CREATE here, because when we'll ubound
 		// later, we want to keep the service alive in background
 		bindService(gpsLoggerServiceIntent, gpsLoggerConnection, 0);
-		
+
+		setEnabledActionButtons(buttonsEnabled);
+		if(!buttonsEnabled){
+			Toast.makeText(this, R.string.tracklogger_waiting_gps, Toast.LENGTH_LONG).show();
+		}
+
 		super.onResume();
 	}
 
@@ -320,50 +321,19 @@ public class TrackLogger extends Activity {
 		return true;
 	}
 
-	// Display options menu
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		MenuItem item = menu.findItem(R.id.tracklogger_menu_startstoptracking);
-
-		// Change first item according to current tracking status
-		if (gpsLogger != null && gpsLogger.isTracking()) {
-			// We're tracking, item = "stop & save"
-			item.setIcon(android.R.drawable.ic_menu_save);
-			item.setTitle(getResources().getString(R.string.menu_stoptracking));
-			item.setTitleCondensed(getResources().getString(R.string.menu_stoptracking));
-		} else {
-			// We're not tracking, item = "start tracking"
-			item.setIcon(android.R.drawable.ic_menu_edit);
-			item.setTitle(getResources().getString(R.string.menu_starttracking));
-			item.setTitleCondensed(getResources().getString(R.string.menu_starttracking));
-			if (gpsLogger == null) {
-				item.setEnabled(false);
-			} else {
-				item.setEnabled(gpsLogger.isGpsEnabled());
-			}
-		}
-		return super.onPrepareOptionsMenu(menu);
-	}
-
 	// Manage options menu selections
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
 		switch (item.getItemId()) {
-		case R.id.tracklogger_menu_startstoptracking:
+		case R.id.tracklogger_menu_stoptracking:
 			// Start / Stop tracking	
 			if (gpsLogger.isTracking()) {
 				Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
 				sendBroadcast(intent);
 				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(false);
 				finish();
-			} else {
-				// TODO remove "start tracking"
-				Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
-				intent.putExtra(Schema.COL_TRACK_ID, currentTrackId);
-				sendBroadcast(intent);
-				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(true);
-			}			
+			}		
 			break;
 		case R.id.tracklogger_menu_settings:
 			// Start settings activity

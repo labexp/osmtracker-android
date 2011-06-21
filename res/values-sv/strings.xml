@@ -32,7 +32,6 @@
 	<string name="menu_waypointlist">Vägpunkter</string>
 	<string name="menu_about">Om</string>
 	<string name="menu_displaytrack">Visa spår</string>
-	<string name="menu_starttracking">Starta spår</string>
 	<string name="menu_stoptracking">Stoppa &amp; spara</string>
 
 	<!-- Errors -->

@@ -61,7 +61,6 @@
 	<string name="menu_waypointlist">Points d\'interêt</string>
 	<string name="menu_about">A propos</string>
 	<string name="menu_displaytrack">Afficher la trace</string>
-	<string name="menu_starttracking">Démarrer l\'enregistrement</string>
 	<string name="menu_stoptracking">Arrêter &amp; Enregistrer</string>
 	<string name="menu_newtrack">Nouveau trace</string>
 	<string name="menu_continue">Continer la trace</string>
