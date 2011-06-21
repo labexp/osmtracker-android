@@ -88,6 +88,7 @@
 	<string name="about">About</string>
 	<string name="about_text">For more information, docs and issue report, please visit the project home page:</string>
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+	<string name="about_debug_info">Debug info</string>
 
 	<!-- Notification -->
 	<string name="notification_ticker_text">OSMTracker is tracking</string>
