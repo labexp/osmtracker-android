@@ -327,12 +327,14 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	 * @param mp
 	 */
 	private void safeClose(MediaPlayer mp) {
-		try {
-			mp.stop();
-		} catch (Exception e) {
-			Log.w(TAG, "Failed to stop media player",e);
-		} finally {
-			mp.release();
+		if (mp != null) {
+			try {
+				mp.stop();
+			} catch (Exception e) {
+				Log.w(TAG, "Failed to stop media player",e);
+			} finally {
+				mp.release();
+			}
 		}
 	}
 	
@@ -342,15 +344,17 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	 * @param mr
 	 */
 	private void safeClose(MediaRecorder mr, boolean stopIt) {
-		try {
-			if (stopIt) {
-				mr.stop();
+		if (mr != null) {
+			try {
+				if (stopIt) {
+					mr.stop();
+				}
+			} catch (Exception e) {
+				Log.w(TAG, "Failed to stop media recorder",e);
+			} finally {
+				mr.release();
 			}
-		} catch (Exception e) {
-			Log.w(TAG, "Failed to stop media recorder",e);
-		} finally {
-			mr.release();
-		}		
+		}
 	}
 
 
