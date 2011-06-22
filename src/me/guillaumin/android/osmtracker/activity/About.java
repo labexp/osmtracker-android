@@ -56,8 +56,12 @@ public class About extends Activity {
 	}
 	
 	private String getDebugInfo() {
-		return "Environment.getExternalStorageDirectory: '" + Environment.getExternalStorageDirectory() + "'\n"
-			+ "Environment.getExternalStorageState: '" + Environment.getExternalStorageState() + "'\n"
+		return "Environment.getExternalStorageDirectory: '"
+				+ Environment.getExternalStorageDirectory().getAbsolutePath() + "'\n"
+			+ "Environment.getExternalStorageState: '"
+				+ Environment.getExternalStorageState() + "'\n"
+			+ "Can write to external storage: "
+				+ Boolean.toString(Environment.getExternalStorageDirectory().canWrite()) + "\n"
 		;
 	}
 
