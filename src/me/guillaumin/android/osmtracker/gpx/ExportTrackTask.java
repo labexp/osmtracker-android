@@ -1,8 +1,10 @@
 package me.guillaumin.android.osmtracker.gpx;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -289,18 +291,22 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 				OSMTracker.Preferences.KEY_OUTPUT_GPX_HDOP_APPROXIMATION,
 				OSMTracker.Preferences.VAL_OUTPUT_GPX_HDOP_APPROXIMATION);
 		
-		FileWriter fw = new FileWriter(target);
-		
-		fw.write(XML_HEADER + "\n");
-		fw.write(TAG_GPX + "\n");
-		
-		writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), fw, cTrackPoints, fillHDOP);
-		fw.flush();
-		writeWayPoints(fw, cWayPoints, accuracyOutput, fillHDOP);
-		
-		fw.write("</gpx>");
-		
-		fw.close();
+		Writer writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter(target));
+			
+			writer.write(XML_HEADER + "\n");
+			writer.write(TAG_GPX + "\n");
+			
+			writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP);
+			writeWayPoints(writer, cWayPoints, accuracyOutput, fillHDOP);
+			
+			writer.write("</gpx>");
+		} finally {
+			if (writer != null) {
+				writer.close();
+			}
+		}
 	}
 	
 	/**
@@ -311,7 +317,13 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
 	 * @throws IOException
 	 */
-	private void writeTrackPoints(String trackName, FileWriter fw, Cursor c, boolean fillHDOP) throws IOException {
+	private void writeTrackPoints(String trackName, Writer fw, Cursor c, boolean fillHDOP) throws IOException {
+		// Update dialog every 1%
+		int dialogUpdateThreshold = c.getCount() / 100;
+		if (dialogUpdateThreshold == 0) {
+			dialogUpdateThreshold++;
+		}
+		
 		fw.write("\t" + "<trk>" + "\n");
 		fw.write("\t\t" + "<name>" + CDATA_START + trackName + CDATA_END + "</name>" + "\n");
 		if (fillHDOP) {
@@ -324,7 +336,8 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 		
 		fw.write("\t\t" + "<trkseg>" + "\n");
 		
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+		int i=0;
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(),i++) {
 			StringBuffer out = new StringBuffer();
 			out.append("\t\t\t" + "<trkpt lat=\"" 
 					+ c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE)) + "\" "
@@ -340,8 +353,10 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	       
 	        out.append("\t\t\t" + "</trkpt>" + "\n");
 	        fw.write(out.toString());
-	        fw.flush();
-	        dialog.incrementProgressBy(1);
+
+	        if (i % dialogUpdateThreshold == 0) {
+		    	dialog.incrementProgressBy(dialogUpdateThreshold);
+		    }
 		}
 		
 		fw.write("\t\t" + "</trkseg>" + "\n");
@@ -356,13 +371,21 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
 	 * @throws IOException
 	 */
-	private void writeWayPoints(FileWriter fw, Cursor c, String accuracyInfo, boolean fillHDOP) throws IOException {
+	private void writeWayPoints(Writer fw, Cursor c, String accuracyInfo, boolean fillHDOP) throws IOException {
+
+		// Update dialog every 1%
+		int dialogUpdateThreshold = c.getCount() / 100;
+		if (dialogUpdateThreshold == 0) {
+			dialogUpdateThreshold++;
+		}
+		
 		// Label for meter unit
 		String meterUnit = context.getResources().getString(R.string.various_unit_meters);
 		// Word "accuracy"
 		String accuracy = context.getResources().getString(R.string.various_accuracy);
 		
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+		int i=0;
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(), i++) {
 			StringBuffer out = new StringBuffer();
 			out.append("\t" + "<wpt lat=\""
 					+ c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE)) + "\" "
@@ -416,8 +439,10 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 		    out.append("\t" + "</wpt>" + "\n");
 		    
 		    fw.write(out.toString());
-		    fw.flush();
-		    dialog.incrementProgressBy(1);
+
+		    if (i % dialogUpdateThreshold == 0) {
+		    	dialog.incrementProgressBy(dialogUpdateThreshold);
+		    }
 		}
 	}
 
