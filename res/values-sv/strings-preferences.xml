@@ -3,25 +3,79 @@
 
 	<!-- Preferences -->
 	<string name="prefs">Inställningar</string>
-	
+		
+	<string name="prefs_voicerec_duration">Längd på röstnoteringar</string>
+	<string name="prefs_voicerec_duration_seconds">sekunder.</string>
+	<string-array name="prefs_voicerec_durations">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+	</string-array>
+
+
+	<!-- GPS -->
+	<string name="prefs_gps">GPS</string>
+
 	<string name="prefs_gps_os_settings">GPS-inställningar</string>
-	<string name="prefs_gps_os_settings_summary">Visa systemets GPS-inställningar</string>
+	<string name="prefs_gps_os_settings_summary">Visa systemets GPS-inställningar.</string>
 
 	<string name="prefs_check_gps_startup">Kontrollera GPS vid start</string>
-	<string name="prefs_check_gps_startup_summary">Kontrollera om GPS:en är inaktiv vid start, och erbjud att aktivera den</string>
+	<string name="prefs_check_gps_startup_summary">Kontrollera om GPS:en är inaktiv vid start och erbjud att aktivera den.</string>
 
+	<string name="prefs_gps_ignore_clock">Ignorera GPS-klockan</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignorera GPS-klockan och använd istället Androids klocka för tidsstämpling.</string>
+
+	<string name="prefs_gps_logging_interval">GPS logg-intervall</string>
+	<string name="prefs_gps_logging_interval_summary">Använd 0 för kortast möjliga intervall (påverkar batteriets livsläng).</string>
+	<string name="prefs_gps_logging_interval_seconds">sekunder</string>
+
+
+	<!-- GPX-file --> 
+	<string name="prefs_output">GPX-fil</string>
+
+	<string name="prefs_storage_dir">Lagringsmapp (SD)</string>
+	<string name="prefs_storage_dir_hint">Gäller för nästa och kommande spår, inte aktuellt spår.</string>
+	<string name="prefs_storage_dir_summary"></string>
+
+	<string name="prefs_output_filename">Spårens namn</string>
+	<string name="prefs_output_filename_summary">Hur namnet på exporterade spår ska se upp.</string>
+	<string-array name="prefs_output_filename_keys">
+		<item>Spårets namn</item>
+		<item>Namn, startdatum och tid</item>
+		<item>Startdatum och tid</item>
+	</string-array>
+	<string-array name="prefs_output_filename_values">
+		<item>name</item>
+		<item>name_date</item>
+		<item>date</item>
+	</string-array>
+
+	<string name="prefs_output_accuracy">Noggrannhet</string>
+	<string name="prefs_output_accuracy_summary">Tillåt noggrannhetsinformation i GPX-filen, i vägpunktsnamnet eller i en egen tagg.</string>
+	<string-array name="prefs_output_accuracy_keys">
+		<item>Nej</item>
+		<item>I vägpunktsnamnet</item>
+		<item>I vägpunktskommentaren</item>
+	</string-array>
+	<string-array name="prefs_output_accuracy_values">
+		<item>none</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
+
+	<string name="prefs_output_gpx_hdop_approximation">Uppskattade HDOP-värden</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Använd uppskattade noggrannhets-värden som HDOP-värden i GPX-filen.</string>
+
+
+	<!-- User interface -->
 	<string name="prefs_ui">Användargränssnitt</string>
-	
-	<string name="prefs_ui_buttons_layout">Knapplayout</string>
-	<string name="prefs_ui_buttons_layout_summary">Tillåt egendefinierade knapplayouter (se dokumentationen)</string>
-	<string name="prefs_ui_buttons_layout_defaut">Standard</string>
-	
+		
+	<string name="prefs_display_always_on">Skärmen alltid på</string>
+	<string name="prefs_display_always_on_summary">Skärmen släcks inte under tiden spår spelas in. Avmarkera för att spara batteri.</string>
 
-	<string name="prefs_voicerec_duration">Längd på röstnoteringar</string>
-	<string name="prefs_voicerec_duration_seconds">sekunder</string>
-
-	<string name="prefs_theme">Huvudskärmens utseende</string>
-	<string name="prefs_theme_summary">Applikationen måste startas om innan ändringar syns</string>
+	<string name="prefs_theme">Utseende/tema</string>
+	<string name="prefs_theme_summary">Applikationen måste startas om innan ändringarna syns.</string>
 	<string-array name="prefs_theme_keys">
 		<item>Systemstandard</item>
 		<item>Systemstandard (mörk)</item>
@@ -35,21 +89,11 @@
 		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
 
-	<string name="prefs_output">GPX-fil</string>
-  <string name="prefs_storage_dir">Lagringsmapp (SD)</string>
-	<string name="prefs_storage_dir_summary"></string>
-	<string name="prefs_output_accuracy">Noggrannhet i GPX-filen</string>
-	<string name="prefs_output_accuracy_summary">Tillåt noggrannhetsinformation i GPX-filen, i vägpunktsnamnet eller i en egen tagg</string>
-	<string-array name="prefs_output_accuracy_keys">
-		<item>Nej</item>
-		<item>I vägpunktsnamnet</item>
-		<item>I vägpunktskommentaren</item>
-	</string-array>
-	<string-array name="prefs_output_accuracy_values">
-		<item>none</item>
-		<item>wpt_name</item>
-		<item>wpt_cmt</item>
-	</string-array>
-	<string name="prefs_output_gpx_hdop_approximation">Använd uppskattade HDOP-värden</string>
-	<string name="prefs_output_gpx_hdop_approximation_summary">Använd uppskattade noggrannhetsvärden som HDOP-värden i GPX-filen</string>
+	<string name="prefs_ui_buttons_layout">Knapplayout</string>
+	<string name="prefs_ui_buttons_layout_summary">Tillåt egendefinierade knapplayouter (se dokumentationen).</string>
+	<string name="prefs_ui_buttons_layout_defaut">Standard</string>
+		
+	<string name="prefs_displaytrack_osm">OSM-bakgrund</string>
+	<string name="prefs_displaytrack_osm_summary">Visa OpenStreetMap-karta under spåret. Dataanslutning krävs.</string>
 </resources>
+

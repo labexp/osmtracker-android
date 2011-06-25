@@ -3,15 +3,17 @@
 	<!-- Generic strings -->
 	<string name="app_name">OSMTracker för Android™</string>
 	<string name="app_short_name">OSMTracker</string>
-	<string name="app_description">Inspirerad av OSMTracker för Windows Mobile. Låter dig spara din färdväg, notera intressanta	punkter (det går även att skapa röstnoteringar) och exportera dem i GPX-format för att sedan kunna använda dem i OpenStreetMap-verktyg som t ex JOSM.</string>
+	<string name="app_description">Inspirerad av OSMTracker för Windows Mobile. Låter dig spara din färdväg, notera intressanta     punkter (det går även att skapa röstnoteringar) och exportera dem i GPX-format för att sedan kunna använda dem i OpenStreetMap-verktyg som t ex JOSM.</string>
 
 	<!-- TrackLogger -->
+	<string name="tracklogger">Spårloggning</string>
 	<string name="tracklogger_waiting_gps">Vissa knappar aktiveras när GPS-låsning har erhållits.</string>
 	<string name="tracklogger_voicerec_title">Röstnotering</string>
 	<string name="tracklogger_voicerec_text">Spelar in en {0}s röstnotering.</string>
 	<string name="tracklogger_btnBack">Tillbaka</string>
 	<string name="tracklogger_tracked">Noterad: </string>
-	<string name="tracklogger_gps_disabled">GPS:en är inaktiverad. Vill du aktivera den?</string>
+	<string name="tracklogger_gps_disabled">GPS inaktiverad</string>
+	<string name="tracklogger_gps_disabled_hint">GPS:en är inaktiverad. Vill du aktivera den?</string>
 
 	<!-- Waypoint List -->
 	<string name="wplist">Vägpunktslista</string>
@@ -19,6 +21,37 @@
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Höjd: </string>
 	<string name="wplist_accuracy">Noggr.: </string>
+
+	<!-- Track Manager -->
+	<string name="trackmgr">Spårhantering</string>
+	<string name="trackmgr_tracklist">Spårlista</string>
+	<string name="trackmgr_waypoints_count">Vägpunkter: </string>
+	<string name="trackmgr_trackpoints_count">Spårpunkter: </string>
+	<string name="trackmgr_empty">Du har inga spår</string>
+	<string name="trackmgr_newtrack_hint">För att spela in ett spår,\ntryck <b>Meny</b> och sedan <b>Nytt spår</b></string>
+	<string name="trackmgr_newtrack_error">Kan inte skapa nytt spår: {0}</string>
+	<string name="trackmgr_continuetrack_hint">Du spelar just nu in <b>spår #{0}</b>\nVälj spåret i listan för att fortsätta</string>
+	<string name="trackmgr_contextmenu_stop">Stoppa inspelning</string>
+	<string name="trackmgr_contextmenu_resume">Återuppta inspelning</string>
+	<string name="trackmgr_contextmenu_delete">Radera</string>
+	<string name="trackmgr_contextmenu_export">Export till GPX</string>
+	<string name="trackmgr_contextmenu_display">Visa spår på skärm</string>
+	<string name="trackmgr_contextmenu_details">Visa detaljer</string>
+	<string name="trackmgr_contextmenu_title">Spår #{0}</string>
+	<string name="trackmgr_delete_confirm">Spår #{0} kommer att raderas</string>
+	<string name="trackmgr_exporting">Exporterar spår #{0}...</string>
+	<string name="trackmgr_export_error">Kan inte exportera spår: {0}</string>
+
+	<!-- Track Detail -->
+	<string name="trackdetail">Spårdetaljer</string>
+	<string name="trackdetail_startdate">Starttid:</string>
+	<string name="trackdetail_enddate">Sluttid:</string>
+	<string name="trackdetail_startloc">Startpunkt:</string>
+	<string name="trackdetail_endloc">Slutpunkt:</string>
+	<string name="trackdetail_exportdate">Exporterad:</string>
+	<string name="trackdetail_btn_export">Exportera GPX</string>
+	<string name="trackdetail_export_notyet">(Inte exporterad ännu)</string>
+	<string name="trackdetail_export_display">Visa</string>
 
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Starta spår</string>
@@ -32,7 +65,14 @@
 	<string name="menu_waypointlist">Vägpunkter</string>
 	<string name="menu_about">Om</string>
 	<string name="menu_displaytrack">Visa spår</string>
+	<string name="menu_starttracking">Starta spår</string>
 	<string name="menu_stoptracking">Stoppa &amp; spara</string>
+	<string name="menu_newtrack">Nytt spår</string>
+	<string name="menu_continue">Fortsätt spår</string>
+	<string name="menu_save">Spara</string>
+	<string name="menu_cancel">Avbryt</string>
+	<string name="menu_export">Exportera GPX</string>
+	<string name="menu_center_to_gps">Centrera till GPS</string>
 
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Det gick inte att skriva till lagringsutrymmet.</string>
@@ -42,7 +82,7 @@
 
 	<!-- GPX -->
 	<string name="gpx_track_name">Skapad med OSMTracker för Android™</string>
-	<string name="gpx_hdop_approximation_cmt">Varning: HDOP-värdena är inte riktiga HDOP-värden från GPS-enheten. De är uppskattade värden,	angivna i hela metrar, och bör inte användas.</string>
+	<string name="gpx_hdop_approximation_cmt">Varning: HDOP-värdena är inte riktiga HDOP-värden från GPS-enheten. De är uppskattade värden, angivna i hela metrar, och bör inte användas.</string>
 
 	<!-- About screen -->
 	<string name="about">Om</string>
@@ -58,6 +98,9 @@
 	<string name="displaytrack">Visa spår</string>
 	<string name="displaytrack_north">N</string>
 
+	<!-- Track detail -->
+	<string name="trackdetail_save">Spara</string>
+
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Noggrannhet</string>
@@ -65,3 +108,4 @@
 	<!-- OSM map view -->
 	<string name="displaytrackmap">Spårvisning med OpenStreetMap</string>
 </resources>
+
