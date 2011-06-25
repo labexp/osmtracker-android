@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="fill_parent"
 	android:layout_width="fill_parent">
 
-	<TextView android:id="@+id/gpsstatus_record_tvAccuracy" android:layout_gravity="center_vertical|center_horizontal"
+	<TextView android:id="@+id/gpsstatus_record_tvAccuracy" android:text="@string/various_waiting_gps_fix"
+		android:layout_gravity="center_vertical|center_horizontal"
 		android:gravity="center" android:layout_height="fill_parent" android:layout_width="fill_parent" android:layout_weight="1"></TextView>
 	<ImageView android:id="@+id/gpsstatus_record_imgSatIndicator" android:src="@drawable/sat_indicator_off"
 		android:layout_gravity="center_vertical|center_horizontal" android:layout_width="wrap_content"

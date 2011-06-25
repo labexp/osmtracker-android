@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/tracklogger_menu_startstoptracking"
-		android:titleCondensed="@string/menu_starttracking" android:title="@string/menu_starttracking"
-		android:icon="@android:drawable/ic_menu_edit" ></item>
+	<item android:id="@+id/tracklogger_menu_stoptracking"
+		android:titleCondensed="@string/menu_stoptracking" android:title="@string/menu_stoptracking"
+		android:icon="@android:drawable/ic_menu_save" ></item>
 	<item android:id="@+id/tracklogger_menu_waypointlist"
 		android:titleCondensed="@string/menu_waypointlist" android:title="@string/menu_waypointlist"
 		android:icon="@android:drawable/ic_menu_directions"></item>

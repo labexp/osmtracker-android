@@ -32,7 +32,6 @@
 	<string name="menu_waypointlist">Путевые точки</string>
 	<string name="menu_about">О программе</string>
 	<string name="menu_displaytrack">Показать трек</string>
-	<string name="menu_starttracking">Начать запись</string>
 	<string name="menu_stoptracking">Остановить и сохранить</string>
 
 	<!-- Errors -->
