@@ -157,7 +157,7 @@ public class Preferences extends PreferenceActivity {
 			entries[0] = getResources().getString(R.string.prefs_ui_buttons_layout_defaut);
 			values[0] = OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT;
 			for (int i=0; i<layoutFiles.length; i++) {
-				entries[i+1] = layoutFiles[i];
+				entries[i+1] = layoutFiles[i].substring(0, layoutFiles[i].length()-LAYOUT_FILE_EXTENSION.length());
 				values[i+1] = layoutFiles[i];
 			}
 		} else {
