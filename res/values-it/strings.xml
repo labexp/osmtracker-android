@@ -65,7 +65,6 @@
 	<string name="menu_waypointlist">POI</string>
 	<string name="menu_about">Info</string>
 	<string name="menu_displaytrack">Mostra traccia</string>
-	<string name="menu_starttracking">Registra traccia</string>
 	<string name="menu_stoptracking">Ferma &amp; Salva</string>
 	<string name="menu_newtrack">Nuova traccia</string>
 	<string name="menu_continue">Continua traccia</string>

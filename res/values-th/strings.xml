@@ -51,7 +51,6 @@
 	<string name="menu_waypointlist">จุดแวะ</string>
 	<string name="menu_about"></string>
 	<string name="menu_displaytrack">แสดงเส้นทาง</string>
-	<string name="menu_starttracking">เริ่มบันทึกเส้นทาง</string>
 	<string name="menu_stoptracking">หยุด และ บันทึก</string>
 	<string name="menu_newtrack">เส้นทางใหม่</string>
 	<string name="menu_continue">ต่อเส้นทางเดิม</string>

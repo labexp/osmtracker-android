@@ -65,7 +65,6 @@
 	<string name="menu_waypointlist">Pontos da via</string>
 	<string name="menu_about">Sobre</string>
 	<string name="menu_displaytrack">Exibir trilha</string>
-	<string name="menu_starttracking">Iniciar trilha</string>
 	<string name="menu_stoptracking">Parar &amp; salvar</string>
 	<string name="menu_newtrack">Nova trilha</string>
 	<string name="menu_continue">Continuar trilha</string>

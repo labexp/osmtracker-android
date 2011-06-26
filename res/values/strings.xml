@@ -66,7 +66,6 @@
 	<string name="menu_waypointlist">Waypoints</string>
 	<string name="menu_about">About</string>
 	<string name="menu_displaytrack">Display track</string>
-	<string name="menu_starttracking">Start tracking</string>
 	<string name="menu_stoptracking">Stop &amp; save</string>
 	<string name="menu_newtrack">New track</string>
 	<string name="menu_continue">Continue track</string>
@@ -89,6 +88,7 @@
 	<string name="about">About</string>
 	<string name="about_text">For more information, docs and issue report, please visit the project home page:</string>
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+	<string name="about_debug_info">Debug info</string>
 
 	<!-- Notification -->
 	<string name="notification_ticker_text">OSMTracker is tracking</string>
@@ -105,6 +105,7 @@
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Accuracy</string>
+	<string name="various_waiting_gps_fix">Waiting GPS fix...</string>
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">OpenStreetMap track display</string> 
