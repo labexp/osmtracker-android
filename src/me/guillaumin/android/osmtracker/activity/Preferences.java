@@ -142,7 +142,7 @@ public class Preferences extends PreferenceActivity {
 		String[] values;
 		
 		// Check for presence of layout directory
-		File layoutsDir = new File(Environment.getExternalStorageDirectory().getPath() + storageDir + File.separator + LAYOUTS_SUBDIR + File.separator);
+		File layoutsDir = new File(Environment.getExternalStorageDirectory(), storageDir + File.separator + LAYOUTS_SUBDIR + File.separator);
 		if (layoutsDir.exists() && layoutsDir.canRead()) {
 			// List each layout file
 			String[] layoutFiles = layoutsDir.list(new FilenameFilter() {
