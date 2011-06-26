@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="osmtracker-android">
+
+    <property file="local.properties" />
+    <property file="build.properties" />
+    <property file="default.properties" />
+
+    <import file="${sdk.dir}/tools/ant/pre_setup.xml" />
+
+    <setup />
+
+</project>
