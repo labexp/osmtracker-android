@@ -124,7 +124,7 @@ public class DisplayTrackView extends TextView {
 
 		currentTrackId = trackId;
 		
-		// Set text align to centre
+		// Set text align to center
 		getPaint().setTextAlign(Align.CENTER);
 		
 		// Setup track drawing paint
@@ -168,17 +168,18 @@ public class DisplayTrackView extends TextView {
 
 		// If we have data to paint
 		if (pixels != null && pixels.length > 0) {
-			for (int i = 1; i < pixels.length; i++) {
+			int length = pixels.length;
+			for (int i = 1; i < length; i++) {
 				// Draw a line between each point
 				canvas.drawLine(PADDING + pixels[i - 1][MercatorProjection.X], PADDING
 						+ pixels[i - 1][MercatorProjection.Y], PADDING + pixels[i][MercatorProjection.X], PADDING
 						+ pixels[i][MercatorProjection.Y], trackPaint);
-				
-				if (i+1 >= pixels.length) {
-					// We're on last point. Draw current position marker
-					canvas.drawBitmap(marker, pixels[i][MercatorProjection.X], pixels[i][MercatorProjection.Y], this.getPaint());
-				}
 			}
+
+			// Draw current position marker
+			canvas.drawBitmap(marker, pixels[length - 1][MercatorProjection.X],
+					pixels[length - 1][MercatorProjection.Y], this.getPaint());
+
 			// Draw scale information
 			drawScale(canvas);
 		}
@@ -256,7 +257,9 @@ public class DisplayTrackView extends TextView {
 
 			// Project each coordinate into pixels.
 			pixels = new int[coords.length][2];
-			for (int i = 0; i < coords.length; i++) {
+			
+			int length = pixels.length;
+			for (int i = 0; i < length; i++) {
 				pixels[i] = projection.project(coords[i][MercatorProjection.LONGITUDE],
 						coords[i][MercatorProjection.LATITUDE]);
 			}
