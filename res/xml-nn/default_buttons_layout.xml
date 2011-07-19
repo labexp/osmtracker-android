@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layouts>
+	<layout name="root">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		
+		<row>
+			<button type="page" label="Diverse" icon="button_misc" targetlayout="misc" />
+			<button type="page" label="Restriksjon" icon="button_restriction" targetlayout="restriction" />
+			<button type="page" label="Bil" icon="button_car" targetlayout="car" />
+		</row>
+		<row>
+			<button type="page" label="Reiseliv" icon="button_tourism" targetlayout="tourism" />
+			<button type="page" label="Fasilitetar 1" icon="button_amenity" targetlayout="amenity" />
+			<button type="page" label="Fasilitetar 2" icon="button_amenity" targetlayout="amenity_more" />
+		</row>
+		<row>
+			<button type="page" label="Veg" icon="button_way" targetlayout="way" />
+			<button type="page" label="Spor" icon="button_track" targetlayout="track" />
+			<button type="page" label="Bruk av land" icon="button_landuse" targetlayout="landuse" />
+		</row>
+	</layout>
+
+	<layout name="misc">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Busstopp" icon="button_misc_bus_stop" />
+			<button type="tag" label="Jernbane" icon="button_misc_railway" />
+			<button type="tag" label="Telefon" icon="button_misc_telephone" />
+		</row>
+		<row>
+			<button type="tag" label="Postboks" icon="button_misc_post_box" />
+			<button type="tag" label="Minibank" icon="button_misc_atm" />
+			<button type="tag" label="Bom" icon="button_misc_bollard" />
+		</row>
+		<row>
+			<button type="tag" label="Do" icon="button_misc_toilets" />
+			<button type="tag" label="Leskur" icon="button_misc_shelter" />
+			<button type="tag" label="Overvaking" icon="button_misc_surveillance" />
+		</row>
+	</layout>
+
+	<layout name="restriction">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Maks 30" icon="button_restriction" />
+			<button type="tag" label="Maks 40" icon="button_restriction" />
+			<button type="tag" label="Maks 50" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="Maks 70" icon="button_restriction" />
+			<button type="tag" label="Maks 90" icon="button_restriction" />
+			<button type="tag" label="Maks 100" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="Inkje utgang" icon="button_restriction_no_exit" />
+			<button type="tag" label="Trafikkljos" icon="button_restriction_traffic_light" />
+			<button type="tag" label="Einvegs" icon="button_restriction_one_way" />
+		</row>
+	</layout>
+
+	<layout name="car">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Bensinstasjon" icon="button_car_fuel_station" />
+			<button type="tag" label="Parkering" icon="button_car_parking" />
+			<button type="tag" label="Naudtelefon" icon="button_car_emergency_phone" />
+		</row>
+		<row>
+			<button type="tag" label="Snuplass" icon="button_car_turning_circle" />
+			<button type="tag" label="Fotoboks" icon="button_car_speed_camera" />
+		</row>
+	</layout>
+
+	<layout name="tourism">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Utsiktspunkt" icon="button_tourism_view_point" />
+			<button type="tag" label="Informasjon" icon="button_tourism_information" />
+			<button type="tag" label="Rasteplass" icon="button_tourism_picnic" />
+		</row>
+		<row>
+			<button type="tag" label="Attraksjon" icon="button_tourism_attraction" />
+			<button type="tag" label="Opplevingspark" icon="button_tourism_theme_park" />
+			<button type="tag" label="Slott" icon="button_tourism_castle" />
+		</row>
+		<row>
+			<button type="tag" label="Monument" icon="button_tourism_monument" />
+			<button type="tag" label="Museum" icon="button_tourism_museum" />
+			<button type="tag" label="Kino" icon="button_tourism_cinema" />
+		</row>
+	</layout>
+
+	<layout name="amenity">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Benk" icon="button_amenity_bench" />
+			<button type="tag" label="Vatn" icon="button_amenity_water" />
+			<button type="tag" label="Apotek" icon="button_amenity_pharmacy" />
+		</row>
+		<row>
+			<button type="tag" label="Butikk" icon="button_amenity_shop" />
+			<button type="tag" label="Marina" icon="button_amenity_marina" />
+			<button type="tag" label="Sport" icon="button_amenity_sport" />
+		</row>
+		<row>
+			<button type="tag" label="Drosje" icon="button_amenity_taxi" />
+			<button type="tag" label="Sjukehus,\nLegar" icon="button_amenity_doctors" />
+			<button type="tag" label="Resirkulering" icon="button_amenity_recycling" />
+		</row>
+		<row>
+			<button type="tag" label="Gudshus" icon="button_amenity_place_of_worship" />
+			<button type="tag" label="Postkontor" icon="button_amenity_post_office" />
+			<button type="tag" label="Bibliotek" icon="button_amenity_library" />
+		</row>
+	</layout>
+
+	<layout name="amenity_more">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Skule" icon="button_amenitymore_school" />
+			<button type="tag" label="Politi" icon="button_amenitymore_police" />
+			<button type="tag" label="Brannstasjon" icon="button_amenitymore_fire_station" />
+		</row>
+		<row>
+			<button type="tag" label="Bank" icon="button_amenitymore_bank" />
+			<button type="tag" label="Leikeplass" icon="button_amenitymore_playground" />
+			<button type="tag" label="Pub" icon="button_amenitymore_pub" />
+		</row>
+		<row>
+			<button type="tag" label="Hotel" icon="button_amenitymore_hotel" />
+			<button type="tag" label="Pensjonat" icon="button_amenitymore_motel" />
+			<button type="tag" label="Vandrarheim" icon="button_amenitymore_hostel" />
+		</row>
+		<row>
+			<button type="tag" label="Restaurant" icon="button_amenitymore_restaurant" />
+			<button type="tag" label="Snøggmat" icon="button_amenitymore_fastfood" />
+			<button type="tag" label="Camping" icon="button_amenitymore_camp_site" />
+		</row>
+	</layout>
+
+	<layout name="way">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Bru" icon="button_way_bridge" />
+			<button type="tag" label="Fotgjengarovergang" icon="button_way_zebra_crossing" />
+			<button type="tag" label="Motorveg" icon="button_way_motorway" />
+		</row>
+		<row>
+			<button type="tag" label="Riksveg" icon="button_way_trunk" />
+			<button type="tag" label="Skilta\nfylkesveg" icon="button_way_primary" />
+			<button type="tag" label="Uskilta\nfylkesveg" icon="button_way_secondary" />
+		</row>
+		<row>
+			<button type="tag" label="Lokal\nveg" icon="button_way_tertiary" />
+			<button type="tag" label="Bustadområde-\nveg" icon="button_way_residential" />
+			<button type="tag" label="Sørvisveg" icon="button_way_service" />
+		</row>
+	</layout>
+
+	<layout name="track">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Spor" icon="button_track_track" />
+			<button type="tag" label="Sykkelveg" icon="button_track_cycleway" />
+			<button type="tag" label="Gangveg" icon="button_track_footway" />
+		</row>
+		<row>
+			<button type="tag" label="Rideveg" icon="button_track_bridleway" />
+			<button type="tag" label="Steg" icon="button_track_steps" />
+			<button type="tag" label="Gågate" icon="button_track_living_street" />
+		</row>
+		<row>
+			<button type="tag" label="Fotgjengar" icon="button_track_pedestrian" />
+			<button type="tag" label="Grad 1" icon="button_track_grade1" />
+			<button type="tag" label="Grad 2" icon="button_track_grade2" />
+		</row>
+		<row>
+			<button type="tag" label="Grad 3" icon="button_track_grade3" />
+			<button type="tag" label="Grad 4" icon="button_track_grade4" />
+			<button type="tag" label="Grad 5" icon="button_track_grade5" />
+		</row>
+	</layout>
+
+	<layout name="landuse">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Gard" icon="button_landuse_farm" />
+			<button type="tag" label="Bosfylling" icon="button_landuse_landfill" />
+			<button type="tag" label="Basin" icon="button_landuse_basin" />
+		</row>
+		<row>
+			<button type="tag" label="Vassmagasin" icon="button_landuse_reservoir" />
+			<button type="tag" label="Skog" icon="button_landuse_forest" />
+			<button type="tag" label="Parsell" icon="button_landuse_allotments" />
+		</row>
+		<row>
+			<button type="tag" label="Gravplass" icon="button_landuse_cemetery" />
+			<button type="tag" label="Rekreasjonsplass" icon="button_landuse_recreation_ground" />
+		</row>
+	</layout>
+</layouts>
