@@ -16,14 +16,12 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -174,6 +172,10 @@ public class TrackManager extends ListActivity {
 			mi.setTitleCondensed(getResources().getString(R.string.menu_newtrack));
 			mi.setIcon(android.R.drawable.ic_menu_add);
 		}
+		
+		// Remove "delete all" button if no tracks
+		menu.findItem(R.id.trackmgr_menu_deletetracks).setVisible(getListView().getCount() > 0);
+
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -206,7 +208,7 @@ public class TrackManager extends ListActivity {
 				.setMessage(getResources().getString(R.string.trackmgr_deleteall_confirm))
 				.setCancelable(true)
 				.setIcon(android.R.drawable.ic_dialog_alert)
-				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+				.setPositiveButton(R.string.menu_deletetracks, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						deleteAllTracks();
