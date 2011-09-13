@@ -16,12 +16,14 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -197,6 +199,28 @@ public class TrackManager extends ListActivity {
 						.show();
 			}
 			break;
+		case R.id.trackmgr_menu_deletetracks:
+			// Confirm and delete all track
+			new AlertDialog.Builder(this)
+				.setTitle(R.string.trackmgr_contextmenu_delete)
+				.setMessage(getResources().getString(R.string.trackmgr_deleteall_confirm))
+				.setCancelable(true)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						deleteAllTracks();
+						dialog.dismiss();
+					}
+				})
+				.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				}).create().show();
+
+			break;
 		case R.id.trackmgr_menu_settings:
 			// Start settings activity
 			startActivity(new Intent(this, Preferences.class));
@@ -259,28 +283,17 @@ public class TrackManager extends ListActivity {
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						
-						getContentResolver().delete(
-								ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, info.id),
-								null, null);
-						((CursorAdapter) TrackManager.this.getListAdapter()).getCursor().requery();
-
-						// Delete any data stored for the track we're deleting
-						File trackStorageDirectory = DataHelper.getTrackDirectory(info.id);
-						if (trackStorageDirectory.exists()) {
-							FileSystemUtils.delete(trackStorageDirectory, true);
-						}
-
+						deleteTrack(info.id);
 						dialog.dismiss();
 					}
 				})
 				.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();				
+						dialog.cancel();
 					}
 				}).create().show();
-			
+
 			break;
 		case R.id.trackmgr_contextmenu_export:	
 			new ExportTrackTask(this, info.id).execute();
@@ -330,7 +343,7 @@ public class TrackManager extends ListActivity {
 	}
 
 	/**
-	 * Create a new track, in DB and on SD card
+	 * Creates a new track, in DB and on SD card
 	 * @returns The ID of the new track
 	 * @throws CreateTrackException
 	 */
@@ -351,6 +364,42 @@ public class TrackManager extends ListActivity {
 		return trackId;
 	}
 	
+	/**
+	 * Deletes the track with the specified id from DB and SD card
+	 * @param The ID of the track to be deleted
+	 */
+	private void deleteTrack(long id) {
+		getContentResolver().delete(
+				ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, id),
+				null, null);
+		((CursorAdapter) TrackManager.this.getListAdapter()).getCursor().requery();
+
+		// Delete any data stored for the track we're deleting
+		File trackStorageDirectory = DataHelper.getTrackDirectory(id);
+		if (trackStorageDirectory.exists()) {
+			FileSystemUtils.delete(trackStorageDirectory, true);
+		}
+	}
+
+	/**
+	 * Deletes all tracks and their data
+	 */
+	private void deleteAllTracks() {
+		Cursor cursor = getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACK, null, null, null, Schema.COL_START_DATE + " asc");
+
+		// Stop any currently active tracks
+		if (currentTrackId != -1) {
+			stopActiveTrack();
+		}
+
+		if (cursor.moveToFirst()) {
+			int id_col = cursor.getColumnIndex("_id");
+			do {
+				deleteTrack(cursor.getLong(id_col));
+			} while (cursor.moveToNext());
+		}
+	}
+
 	/**
 	 * Sets the active track
 	 * calls {@link stopActiveTrack()} to stop all currently 

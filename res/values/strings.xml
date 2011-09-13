@@ -40,6 +40,7 @@
 	<string name="trackmgr_contextmenu_details">Details</string>
 	<string name="trackmgr_contextmenu_title">Track #{0}</string>
 	<string name="trackmgr_delete_confirm">Track #{0} will be deleted</string>
+	<string name="trackmgr_deleteall_confirm">All tracks will be deleted. Are you sure?</string>
 	<string name="trackmgr_exporting">Exporting track #{0}...</string>
 	<string name="trackmgr_export_error">Unable to export track: {0}</string>
 
@@ -68,6 +69,7 @@
 	<string name="menu_displaytrack">Display track</string>
 	<string name="menu_stoptracking">Stop &amp; save</string>
 	<string name="menu_newtrack">New track</string>
+	<string name="menu_deletetracks">Delete all tracks</string>
 	<string name="menu_continue">Continue track</string>
 	<string name="menu_save">Save</string>
 	<string name="menu_cancel">Cancel</string>

@@ -39,6 +39,7 @@
 	<string name="trackmgr_contextmenu_details">Details</string>
 	<string name="trackmgr_contextmenu_title">Track bearbeiten</string>
 	<string name="trackmgr_delete_confirm">Track #{0} wird gelöscht</string>
+	<string name="trackmgr_deleteall_confirm">Alle Tracks werden gelöscht. Sind Sie sicher?</string>
 	<string name="trackmgr_exporting">Track #{0} wird exportiert...</string>
 	<string name="trackmgr_export_error">Track kann nicht exportiert werden: {0}</string>
 
@@ -68,6 +69,7 @@
 	<string name="menu_starttracking">Starte Tracking</string>
 	<string name="menu_stoptracking">Stoppen &amp; Speichern</string>
 	<string name="menu_newtrack">Neuer Track</string>
+	<string name="menu_deletetracks">Lösche alle Tracks</string>
 	<string name="menu_continue">Track weiterbearbeiten</string>
 	<string name="menu_save">Speichern</string>
 	<string name="menu_cancel">Abbrechen</string>
