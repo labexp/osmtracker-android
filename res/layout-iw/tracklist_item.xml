@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" android:layout_width="fill_parent"
+		android:orientation="horizontal"
+		android:gravity="left|center_vertical"
+		android:paddingLeft="3dp" android:paddingRight="3dp" android:paddingTop="5dp" android:paddingBottom="5dp"
+		>
+    <ImageView android:src="@android:drawable/presence_online" android:layout_gravity="center_horizontal|center_vertical" android:layout_height="fill_parent" android:paddingLeft="3dp" android:id="@+id/trackmgr_item_statusicon" android:paddingRight="3dp" android:layout_marginLeft="3dp" android:layout_width="wrap_content"></ImageView>
+
+	<RelativeLayout android:layout_height="fill_parent"
+		android:gravity="right|center_vertical" android:layout_weight="1" android:layout_width="wrap_content">
+		<TextView style="@android:style/TextAppearance.Large" android:layout_width="wrap_content" android:id="@+id/trackmgr_item_nameordate" android:layout_height="wrap_content" android:text="{start_date}" android:layout_alignParentRight="true"></TextView>
+		<TextView style="@android:style/TextAppearance.Small" android:textStyle="bold" android:layout_width="wrap_content" android:id="@+id/trackmgr_item_waypoints" android:layout_height="wrap_content" android:text="@string/trackmgr_waypoints_count" android:layout_below="@+id/trackmgr_item_nameordate" android:layout_alignParentRight="true"></TextView>
+		<TextView style="@android:style/TextAppearance.Small" android:layout_width="wrap_content" android:id="@+id/trackmgr_item_wps" android:layout_height="wrap_content" android:text="{x}" android:layout_below="@+id/trackmgr_item_nameordate" android:layout_toLeftOf="@+id/trackmgr_item_waypoints" android:layout_marginRight="3dp"></TextView>
+		<TextView style="@android:style/TextAppearance.Small" android:textStyle="bold" android:layout_width="wrap_content" android:id="@+id/trackmgr_item_trackpoints" android:layout_height="wrap_content" android:text="@string/trackmgr_trackpoints_count" android:layout_below="@+id/trackmgr_item_nameordate" android:layout_toLeftOf="@+id/trackmgr_item_wps" android:layout_marginRight="15dp"></TextView>
+		<TextView style="@android:style/TextAppearance.Small" android:layout_width="wrap_content" android:id="@+id/trackmgr_item_tps" android:layout_height="wrap_content" android:text="{y}" android:layout_below="@+id/trackmgr_item_nameordate" android:layout_toLeftOf="@+id/trackmgr_item_trackpoints" android:layout_marginRight="3dp"></TextView>
+				
+	</RelativeLayout>
+	<TextView style="@android:style/TextAppearance.Medium" android:gravity="right|center_vertical" android:layout_height="fill_parent" android:id="@+id/trackmgr_item_id" android:text="{id}" android:layout_marginLeft="5dp" android:layout_width="wrap_content"></TextView>
+	
+	
+</LinearLayout>
