@@ -106,7 +106,7 @@
 	<string name="trackdetail_save">שמור</string>
 	
 	<!-- Various -->
-	<string name="various_unit_meters">מ</string>
+	<string name="various_unit_meters"> מ\'</string>
 	<string name="various_accuracy">דיוק</string>
 	<string name="various_waiting_gps_fix">ממתין לנעילת מיקום...</string>
 
