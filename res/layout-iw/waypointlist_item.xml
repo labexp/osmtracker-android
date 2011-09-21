@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:layout_width="fill_parent"
+	android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+	<TextView android:layout_width="wrap_content" android:id="@+id/wplist_item_timestamp" android:layout_height="wrap_content" android:text="{timestamp}" android:layout_below="@+id/wplist_item_location" android:layout_alignParentLeft="true" android:layout_marginLeft="10dp"></TextView>
+	<TextView style="@android:style/TextAppearance.Large" android:layout_width="wrap_content" android:id="@+id/wplist_item_name" android:layout_height="wrap_content" android:text="{name}" android:layout_alignParentTop="true" android:layout_alignParentRight="true"></TextView>
+	<TextView android:layout_width="wrap_content" android:id="@+id/wplist_item_location" android:layout_height="wrap_content" android:text="{location}" android:layout_below="@+id/wplist_item_name" android:layout_alignParentLeft="true" android:layout_marginLeft="10dp"></TextView>
+
+	
+</RelativeLayout>
