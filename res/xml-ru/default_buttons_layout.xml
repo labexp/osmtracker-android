@@ -19,7 +19,7 @@
 		</row>
 		<row>
 			<button type="page" label="Дорога" icon="button_way" targetlayout="way" />
-			<button type="page" label="Трэк" icon="button_track" targetlayout="track" />
+			<button type="page" label="Трек" icon="button_track" targetlayout="track" />
 			<button type="page" label="Землепользование" icon="button_landuse" targetlayout="landuse" />
 		</row>
 	</layout>
@@ -43,7 +43,7 @@
 		<row>
 			<button type="tag" label="Туалет" icon="button_misc_toilets" />
 			<button type="tag" label="Навес" icon="button_misc_shelter" />
-			<button type="tag" label="Камера наблюдения" icon="button_misc_surveillance" />
+			<button type="tag" label="Камера\nнаблюдения" icon="button_misc_surveillance" />
 		</row>
 	</layout>
 
@@ -64,7 +64,7 @@
 			<button type="tag" label="Max 120" icon="button_restriction" />
 		</row>
 		<row>
-			<button type="tag" label="Нет выезда" icon="button_restriction_no_exit" />
+			<button type="tag" label="Нет\nвыезда" icon="button_restriction_no_exit" />
 			<button type="tag" label="Светофор" icon="button_restriction_traffic_light" />
 			<button type="tag" label="Одностороннее" icon="button_restriction_one_way" />
 		</row>
@@ -79,11 +79,11 @@
 		<row>
 			<button type="tag" label="АЗС" icon="button_car_fuel_station" />
 			<button type="tag" label="Парковка" icon="button_car_parking" />
-			<button type="tag" label="Экстренный телефон" icon="button_car_emergency_phone" />
+			<button type="tag" label="Экстренный\nтелефон" icon="button_car_emergency_phone" />
 		</row>
 		<row>
-			<button type="tag" label="Круг для разворота" icon="button_car_turning_circle" />
-			<button type="tag" label="Камера скорости" icon="button_car_speed_camera" />
+			<button type="tag" label="Круг для\nразворота" icon="button_car_turning_circle" />
+			<button type="tag" label="Камера\nскорости" icon="button_car_speed_camera" />
 		</row>
 	</layout>
 
@@ -94,9 +94,9 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Смотровая площадка" icon="button_tourism_view_point" />
+			<button type="tag" label="Смотровая\nплощадка" icon="button_tourism_view_point" />
 			<button type="tag" label="Информация" icon="button_tourism_information" />
-			<button type="tag" label="Место для пикника" icon="button_tourism_picnic" />
+			<button type="tag" label="Место для\nпикника" icon="button_tourism_picnic" />
 		</row>
 		<row>
 			<button type="tag" label="Достопримечательность" icon="button_tourism_attraction" />
@@ -146,7 +146,7 @@
 		</row>
 		<row>
 			<button type="tag" label="Школа" icon="button_amenitymore_school" />
-			<button type="tag" label="Милиция" icon="button_amenitymore_police" />
+			<button type="tag" label="Полиция" icon="button_amenitymore_police" />
 			<button type="tag" label="Пожарная часть" icon="button_amenitymore_fire_station" />
 		</row>
 		<row>
@@ -175,17 +175,17 @@
 		<row>
 			<button type="tag" label="Мост" icon="button_way_bridge" />
 			<button type="tag" label="Пешеходный переход" icon="button_way_zebra_crossing" />
-			<button type="tag" label="Motorway" icon="button_way_motorway" />
+			<button type="tag" label="Автострада" icon="button_way_motorway" />
 		</row>
 		<row>
-			<button type="tag" label="Trunk" icon="button_way_trunk" />
-			<button type="tag" label="Primary" icon="button_way_primary" />
-			<button type="tag" label="Secondary" icon="button_way_secondary" />
+			<button type="tag" label="Магистраль" icon="button_way_trunk" />
+			<button type="tag" label="Основное" icon="button_way_primary" />
+			<button type="tag" label="Вспомогательное" icon="button_way_secondary" />
 		</row>
 		<row>
-			<button type="tag" label="Tertiary" icon="button_way_tertiary" />
-			<button type="tag" label="Residential" icon="button_way_residential" />
-			<button type="tag" label="Service" icon="button_way_service" />
+			<button type="tag" label="Третичное" icon="button_way_tertiary" />
+			<button type="tag" label="В жилом\nрайоне" icon="button_way_residential" />
+			<button type="tag" label="Служебное" icon="button_way_service" />
 		</row>
 	</layout>
 
@@ -196,24 +196,24 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Track" icon="button_track_track" />
-			<button type="tag" label="Cycleway" icon="button_track_cycleway" />
-			<button type="tag" label="Footway" icon="button_track_footway" />
+			<button type="tag" label="Трек" icon="button_track_track" />
+			<button type="tag" label="Велосипед.\nдорожка" icon="button_track_cycleway" />
+			<button type="tag" label="Пешеход.\nдорожка" icon="button_track_footway" />
 		</row>
 		<row>
-			<button type="tag" label="Bridleway" icon="button_track_bridleway" />
-			<button type="tag" label="Steps" icon="button_track_steps" />
-			<button type="tag" label="Living street" icon="button_track_living_street" />
+			<button type="tag" label="Верховая тропа" icon="button_track_bridleway" />
+			<button type="tag" label="Ступени" icon="button_track_steps" />
+			<button type="tag" label="Жилая улица" icon="button_track_living_street" />
 		</row>
 		<row>
-			<button type="tag" label="Pedestrian" icon="button_track_pedestrian" />
-			<button type="tag" label="Grade 1" icon="button_track_grade1" />
-			<button type="tag" label="Grade 2" icon="button_track_grade2" />
+			<button type="tag" label="Пешеходный" icon="button_track_pedestrian" />
+			<button type="tag" label="Класс 1" icon="button_track_grade1" />
+			<button type="tag" label="Класс 2" icon="button_track_grade2" />
 		</row>
 		<row>
-			<button type="tag" label="Grade 3" icon="button_track_grade3" />
-			<button type="tag" label="Grade 4" icon="button_track_grade4" />
-			<button type="tag" label="Grade 5" icon="button_track_grade5" />
+			<button type="tag" label="Класс 3" icon="button_track_grade3" />
+			<button type="tag" label="Класс 4" icon="button_track_grade4" />
+			<button type="tag" label="Класс 5" icon="button_track_grade5" />
 		</row>
 	</layout>
 

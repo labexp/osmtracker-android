@@ -3,22 +3,57 @@
 	<!-- Generic strings -->
 	<string name="app_name">OSMTracker для Android™</string>
 	<string name="app_short_name">OSMTracker</string>
-	<string name="app_description">Как и OSMTracker для Windows Mobile, позоляет записывать Ваши путешествия, отмечая важнейшие точки (с записью аудио), экспортировать их в формат GPX для дальнейшего использования в редакторах Open Street Map, например в JOSM.</string>
+	<string name="app_description">Как и OSMTracker для Windows Mobile, позволяет записывать Ваши путешествия, отмечая важнейшие точки (с записью аудио), экспортировать их в формат GPX для дальнейшего использования в редакторах Open Street Map, например в JOSM.</string>
 
 	<!-- TrackLogger -->
+	<string name="tracklogger">Track logger</string>
 	<string name="tracklogger_waiting_gps">Ожидание сигнала GPS для активации кнопок...</string>
 	<string name="tracklogger_voicerec_title">Запись аудио</string>
 	<string name="tracklogger_voicerec_text">Запись аудио: {0}с.</string>
+	<string name="tracklogger_voicerec_stop">Стоп</string>
 	<string name="tracklogger_btnBack">Назад</string>
 	<string name="tracklogger_tracked">Записано: </string>
 	<string name="tracklogger_gps_disabled">GPS отключен. Запустить настройки GPS?</string>
+	<string name="tracklogger_gps_disabled_hint">GPS отключен. Вы хотите включить его?</string>
 
 	<!-- Waypoint List -->
 	<string name="wplist">Список путевых точек</string>
 	<string name="wplist_latitude">Шир.: </string>
 	<string name="wplist_longitude">Долг.: </string>
-	<string name="wplist_elevation">Ele: </string>
+	<string name="wplist_elevation">Выс: </string>
 	<string name="wplist_accuracy">Точн.: </string>
+	
+	<!-- Track Manager -->
+	<string name="trackmgr">Менеджер треков</string>
+	<string name="trackmgr_tracklist">Список треков:</string>
+	<string name="trackmgr_waypoints_count">Путевые точки: </string>
+	<string name="trackmgr_trackpoints_count">Точки трека: </string>
+	<string name="trackmgr_empty">У вас нет треков.</string>
+	<string name="trackmgr_newtrack_hint">Для записи трека,\nнажмите<b>Меню</b>, затем<b>Новый трек</b></string>
+	<string name="trackmgr_newtrack_error">Невозможно создать новый трек: {0}</string>
+	<string name="trackmgr_continuetrack_hint">Сейчас вы записываете <b>трек #{0}</b>\nВыберите его в списке для продолжения</string>
+	<string name="trackmgr_contextmenu_stop">Остановить запись</string>
+	<string name="trackmgr_contextmenu_resume">Продолжить запись</string>
+	<string name="trackmgr_contextmenu_delete">Удалить</string>
+	<string name="trackmgr_contextmenu_export">Экспортировать в GPX</string>
+	<string name="trackmgr_contextmenu_display">Показать</string>
+	<string name="trackmgr_contextmenu_details">Подробности</string>
+	<string name="trackmgr_contextmenu_title">Трек #{0}</string>
+	<string name="trackmgr_delete_confirm">Трек #{0} будет удалён</string>
+	<string name="trackmgr_deleteall_confirm">Все треки будут удалены. Вы уверены?</string>
+	<string name="trackmgr_exporting">Экспорт трека #{0}...</string>
+	<string name="trackmgr_export_error">Невозможно экспортировать трек: {0}</string>
+
+	<!-- Track Detail -->
+	<string name="trackdetail">Подробности трека</string>
+	<string name="trackdetail_startdate">Время начала:</string>
+	<string name="trackdetail_enddate">Время окончания:</string>
+	<string name="trackdetail_startloc">Начало в:</string>
+	<string name="trackdetail_endloc">Окончание в:</string>
+	<string name="trackdetail_exportdate">Экспортирован:</string>
+	<string name="trackdetail_btn_export">Экспортировать в GPX</string>
+	<string name="trackdetail_export_notyet">(Ещё не экспортирован)</string>
+	<string name="trackdetail_export_display">Показать</string>
 
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_trackoff">Начало записи.</string>
@@ -33,6 +68,12 @@
 	<string name="menu_about">О программе</string>
 	<string name="menu_displaytrack">Показать трек</string>
 	<string name="menu_stoptracking">Остановить и сохранить</string>
+	<string name="menu_newtrack">Новый трек</string>
+	<string name="menu_continue">Продолжить трек</string>
+	<string name="menu_save">Сохранить</string>
+	<string name="menu_cancel">Отмена</string>
+	<string name="menu_export">Экспортировать в GPX</string>
+	<string name="menu_center_to_gps">Центрировать по GPS</string>
 
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Невозможно записать файл.</string>
@@ -48,19 +89,24 @@
 	<string name="about">О программе</string>
 	<string name="about_text">Подробная информация, сообщения об ошибках находятся на официальном сайте проекта:</string>
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+	<string name="about_debug_info">Отладочная информация</string>
 
 	<!-- Notification -->
 	<string name="notification_ticker_text">OSMTracker запущен</string>
-	<string name="notification_title">OSMTracker запущен</string>
+	<string name="notification_title">OSMTracker запущен (#{0})</string>
 	<string name="notification_text">Нажмите для возврата на основной экран</string>
 
 	<!-- Display track -->
 	<string name="displaytrack">Отобразить трек</string>	
 	<string name="displaytrack_north">С</string>
 	
+	<!-- Track detail -->
+	<string name="trackdetail_save">Сохранить</string>
+	
 	<!-- Various -->
 	<string name="various_unit_meters">м</string>
 	<string name="various_accuracy">Точность</string>
+	<string name="various_waiting_gps_fix">Ожидание сигнала GPS...</string>
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">Отображение трека (OSM)</string> 
