@@ -7,7 +7,7 @@
 
 	<!-- TrackLogger -->
 	<string name="tracklogger">Denník stôp</string>
-	<string name="tracklogger_waiting_gps">Čaká sa na GPS polohu pre povolenie tlačidiel...</string>
+	<string name="tracklogger_waiting_gps">Čaká sa na GPS polohu pre povolenie tlačidiel&#8230;</string>
 	<string name="tracklogger_voicerec_title">Hlasový záznam</string>
 	<string name="tracklogger_voicerec_text">Nahráva sa zvuková stopa pre {0}.</string>
 	<string name="tracklogger_voicerec_stop">Zastaviť</string>
@@ -40,7 +40,7 @@
 	<string name="trackmgr_contextmenu_details">Podrobnosti</string>
 	<string name="trackmgr_contextmenu_title">Stopa #{0}</string>
 	<string name="trackmgr_delete_confirm">Stopa #{0} bude vymazaná</string>
-	<string name="trackmgr_exporting">Exportuje sa stopa #{0}...</string>
+	<string name="trackmgr_exporting">Exportuje sa stopa #{0}&#8230;</string>
 	<string name="trackmgr_export_error">Nedá sa exportovať stopa: {0}</string>
 
 	<!-- Track Detail -->
@@ -103,7 +103,7 @@
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Presnosť</string>
-	<string name="various_waiting_gps_fix">Čaká sa na GPS pozíciu...</string>
+	<string name="various_waiting_gps_fix">Čaká sa na GPS pozíciu&#8230;</string>
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">Zobrazenie OpenStreetMap stopy</string> 

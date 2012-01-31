@@ -39,7 +39,7 @@
 	<string name="trackmgr_contextmenu_details">Visa detaljer</string>
 	<string name="trackmgr_contextmenu_title">Spår #{0}</string>
 	<string name="trackmgr_delete_confirm">Spår #{0} kommer att raderas</string>
-	<string name="trackmgr_exporting">Exporterar spår #{0}...</string>
+	<string name="trackmgr_exporting">Exporterar spår #{0}&#8230;</string>
 	<string name="trackmgr_export_error">Kan inte exportera spår: {0}</string>
 
 	<!-- Track Detail -->

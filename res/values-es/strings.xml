@@ -35,7 +35,7 @@
 	<string name="trackmgr_contextmenu_details">Detailles</string>
 	<string name="trackmgr_contextmenu_title">Traza #{0}</string>
 	<string name="trackmgr_delete_confirm">La traza #{0} se borrará.</string>
-	<string name="trackmgr_exporting">Exportando traza #{0}...</string>
+	<string name="trackmgr_exporting">Exportando traza #{0}&#8230;</string>
 	<string name="trackmgr_export_error">No se puede exportar la traza: {0}</string>
 
 	<!-- Track Detail -->

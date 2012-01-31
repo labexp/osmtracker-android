@@ -7,7 +7,7 @@
 
 	<!-- TrackLogger -->
 	<string name="tracklogger">ปูมเส้นทาง</string>
-	<string name="tracklogger_waiting_gps">รอตรึงตำแหน่ง GPS เพื่อให้ปุ่มใช้งานได้...</string>
+	<string name="tracklogger_waiting_gps">รอตรึงตำแหน่ง GPS เพื่อให้ปุ่มใช้งานได้&#8230;</string>
 	<string name="tracklogger_voicerec_title">บันทึกเสียง</string>
 	<string name="tracklogger_voicerec_text">บันทึกคลิปเสียง {0}วิ</string>
 	<string name="tracklogger_btnBack">กลับ</string>
@@ -36,7 +36,7 @@
 	<string name="trackmgr_contextmenu_display">แสดง</string>
 	<string name="trackmgr_contextmenu_title">เส้นทาง #{0}</string>
 	<string name="trackmgr_delete_confirm">เส้นทาง #{0} จะถูกลบ</string>
-	<string name="trackmgr_exporting">ส่งออกเส่้นทาง #{0}...</string>
+	<string name="trackmgr_exporting">ส่งออกเส่้นทาง #{0}&#8230;</string>
 	<string name="trackmgr_export_error">ไม่สามารถส่งเส้นทาง: {0}</string>
 
 	<!-- GPS Status & record bar -->

@@ -7,7 +7,7 @@
        
 	<!-- TrackLogger -->
 	<string name="tracklogger">Track Logger</string>
-	<string name="tracklogger_waiting_gps">Warte auf GPS-fix bevor Tasten verfügbar sind...</string>
+	<string name="tracklogger_waiting_gps">Warte auf GPS-fix bevor Tasten verfügbar sind&#8230;</string>
 	<string name="tracklogger_voicerec_title">Sprachaufnahme</string>
 	<string name="tracklogger_voicerec_text">Aufnahme eines {0}s Audio-Clips.</string>
 	<string name="tracklogger_btnBack">Zurück</string>
@@ -40,7 +40,7 @@
 	<string name="trackmgr_contextmenu_title">Track bearbeiten</string>
 	<string name="trackmgr_delete_confirm">Track #{0} wird gelöscht</string>
 	<string name="trackmgr_deleteall_confirm">Alle Tracks werden gelöscht. Sind Sie sicher?</string>
-	<string name="trackmgr_exporting">Track #{0} wird exportiert...</string>
+	<string name="trackmgr_exporting">Track #{0} wird exportiert&#8230;</string>
 	<string name="trackmgr_export_error">Track kann nicht exportiert werden: {0}</string>
 
 	<!-- Track Detail -->

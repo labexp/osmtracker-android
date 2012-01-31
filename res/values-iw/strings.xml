@@ -7,7 +7,7 @@
 
 	<!-- TrackLogger -->
 	<string name="tracklogger">שומר המסלולים</string>
-	<string name="tracklogger_waiting_gps">ממתין לנעילת המיקום לפי אפשור הכפתורים...</string>
+	<string name="tracklogger_waiting_gps">ממתין לנעילת המיקום לפי אפשור הכפתורים&#8230;</string>
 	<string name="tracklogger_voicerec_title">הקלטת קול</string>
 	<string name="tracklogger_voicerec_text">מקליט קטע בן {0} שניות</string>
 	<string name="tracklogger_voicerec_stop">עצור</string>
@@ -41,7 +41,7 @@
 	<string name="trackmgr_contextmenu_title">מסלול מס\' {0}</string>
 	<string name="trackmgr_delete_confirm">מסלול מס\' {0} ימחק</string>
 	<string name="trackmgr_deleteall_confirm">כל המסלולים ימחקו. האם אתה בטוח?</string>
-	<string name="trackmgr_exporting">מייצא מסלול מס\' {0}...</string>
+	<string name="trackmgr_exporting">מייצא מסלול מס\' {0}&#8230;</string>
 	<string name="trackmgr_export_error">לא ניתן לייצא מסלול: {0}</string>
 
 	<!-- Track Detail -->
@@ -106,7 +106,7 @@
 	<!-- Various -->
 	<string name="various_unit_meters"> מ\'</string>
 	<string name="various_accuracy">דיוק</string>
-	<string name="various_waiting_gps_fix">ממתין לנעילת מיקום...</string>
+	<string name="various_waiting_gps_fix">ממתין לנעילת מיקום&#8230;</string>
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">תצוגת מסלול OpenStreetMap</string> 

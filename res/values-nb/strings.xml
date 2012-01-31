@@ -7,7 +7,7 @@
 
 	<!-- TrackLogger -->
 	<string name="tracklogger">Sporlogger</string>
-	<string name="tracklogger_waiting_gps">Venter på posisjon fra GPS for å aktivere knappene...</string>
+	<string name="tracklogger_waiting_gps">Venter på posisjon fra GPS for å aktivere knappene&#8230;</string>
 	<string name="tracklogger_voicerec_title">Stemmeopptak</string>
 	<string name="tracklogger_voicerec_text">Ta opp et {0} sekunds lydklipp.</string>
 	<string name="tracklogger_voicerec_stop">Stopp</string>
@@ -41,7 +41,7 @@
 	<string name="trackmgr_contextmenu_title">Spor nr. {0}</string>
 	<string name="trackmgr_delete_confirm">Spor nr. {0} vil bli sletta</string>
 	<string name="trackmgr_deleteall_confirm">Alle spor vil bli sletta. Er du sikker?</string>
-	<string name="trackmgr_exporting">Eksporterer spor nr. {0}...</string>
+	<string name="trackmgr_exporting">Eksporterer spor nr. {0}&#8230;</string>
 	<string name="trackmgr_export_error">Kan ikke eksportere spor nr: {0}</string>
 
 	<!-- Track Detail -->
@@ -105,7 +105,7 @@
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Presisjon</string>
-	<string name="various_waiting_gps_fix">Venter på GPS-posisjon...</string>
+	<string name="various_waiting_gps_fix">Venter på GPS-posisjon&#8230;</string>
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">OpenStreetMap sporvising</string> 

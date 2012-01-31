@@ -7,7 +7,7 @@
 
 	<!-- TrackLogger -->
 	<string name="tracklogger">Registrazione traccia</string>
-	<string name="tracklogger_waiting_gps">In attesa del GPS per abilitare i pulsanti...</string>
+	<string name="tracklogger_waiting_gps">In attesa del GPS per abilitare i pulsanti&#8230;</string>
 	<string name="tracklogger_voicerec_title">Registrazione vocale</string>
 	<string name="tracklogger_voicerec_text">Registrazione audio di {0}s.</string>
 	<string name="tracklogger_voicerec_stop">Ferma</string>
@@ -41,7 +41,7 @@
 	<string name="trackmgr_contextmenu_title">Traccia #{0}</string>
 	<string name="trackmgr_delete_confirm">La traccia #{0} sarà eliminata</string>
 	<string name="trackmgr_deleteall_confirm">Tutte le tracce saranno eliminate. Sei sicuro?</string>
-	<string name="trackmgr_exporting">Esportazione traccia #{0}...</string>
+	<string name="trackmgr_exporting">Esportazione traccia #{0}&#8230;</string>
 	<string name="trackmgr_export_error">Impossibile esportare la traccia: {0}</string>
 
 	<!-- Track Detail -->
@@ -105,7 +105,7 @@
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Precisione</string>
-	<string name="various_waiting_gps_fix">In attesa aggancio GPS...</string>
+	<string name="various_waiting_gps_fix">In attesa aggancio GPS&#8230;</string>
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">Mostra traccia OpenStreetMap</string> 

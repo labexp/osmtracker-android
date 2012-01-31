@@ -7,7 +7,7 @@
 
 	<!-- TrackLogger -->
 	<string name="tracklogger">Track logger</string>
-	<string name="tracklogger_waiting_gps">Ожидание сигнала GPS для активации кнопок...</string>
+	<string name="tracklogger_waiting_gps">Ожидание сигнала GPS для активации кнопок&#8230;</string>
 	<string name="tracklogger_voicerec_title">Запись аудио</string>
 	<string name="tracklogger_voicerec_text">Запись аудио: {0}с.</string>
 	<string name="tracklogger_voicerec_stop">Стоп</string>
@@ -41,7 +41,7 @@
 	<string name="trackmgr_contextmenu_title">Трек #{0}</string>
 	<string name="trackmgr_delete_confirm">Трек #{0} будет удалён</string>
 	<string name="trackmgr_deleteall_confirm">Все треки будут удалены. Вы уверены?</string>
-	<string name="trackmgr_exporting">Экспорт трека #{0}...</string>
+	<string name="trackmgr_exporting">Экспорт трека #{0}&#8230;</string>
 	<string name="trackmgr_export_error">Невозможно экспортировать трек: {0}</string>
 
 	<!-- Track Detail -->
@@ -104,7 +104,7 @@
 	<!-- Various -->
 	<string name="various_unit_meters">м</string>
 	<string name="various_accuracy">Точность</string>
-	<string name="various_waiting_gps_fix">Ожидание сигнала GPS...</string>
+	<string name="various_waiting_gps_fix">Ожидание сигнала GPS&#8230;</string>
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">Отображение трека (OSM)</string> 

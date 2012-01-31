@@ -7,7 +7,7 @@
 
 	<!-- TrackLogger -->
 	<string name="tracklogger">Gravador de trilhas</string>
-	<string name="tracklogger_waiting_gps">Aguardando pelo GPS para habilitar botões...</string>
+	<string name="tracklogger_waiting_gps">Aguardando pelo GPS para habilitar botões&#8230;</string>
 	<string name="tracklogger_voicerec_title">Gravação de voz</string>
 	<string name="tracklogger_voicerec_text">Gravando um {0}s clipe de áudio.</string>
 	<string name="tracklogger_btnBack">Voltar</string>
@@ -39,7 +39,7 @@
 	<string name="trackmgr_contextmenu_details">Detalhes</string>
 	<string name="trackmgr_contextmenu_title">Trilha #{0}</string>
 	<string name="trackmgr_delete_confirm">Trilha #{0} será apagada</string>
-	<string name="trackmgr_exporting">Exportando trilha #{0}...</string>
+	<string name="trackmgr_exporting">Exportando trilha #{0}&#8230;</string>
 	<string name="trackmgr_export_error">Não é possível exportar trilha: {0}</string>
 
 	<!-- Track Detail -->
