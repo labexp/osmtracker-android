@@ -56,8 +56,6 @@
 	<string name="trackdetail_export_display">Afficher</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Démarrer l\'enregistrement.</string>
-	<string name="gpsstatus_record_trackon">Arrêter l\'enregistrement</string>
 	<string name="gpsstatus_record_voicerec">Mémo vocal</string>
 	<string name="gpsstatus_record_stillimage">Photographier</string>
 	<string name="gpsstatus_record_textnote">Note</string>

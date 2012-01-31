@@ -55,8 +55,6 @@
 	<string name="trackdetail_export_display">Zobraziť</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Spustiť stopovanie.</string>
-	<string name="gpsstatus_record_trackon">Zastaviť stopovanie</string>
 	<string name="gpsstatus_record_voicerec">Hlasový záznam</string>
 	<string name="gpsstatus_record_stillimage">Odfotiť snímku</string>
 	<string name="gpsstatus_record_textnote">Písomná poznámka</string>

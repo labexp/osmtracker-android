@@ -56,8 +56,6 @@
 	<string name="trackdetail_export_display">Vis</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Start sporing</string>
-	<string name="gpsstatus_record_trackon">Stopp sporing</string>
 	<string name="gpsstatus_record_voicerec">Stemmeopptak</string>
 	<string name="gpsstatus_record_stillimage">Ta bilde</string>
 	<string name="gpsstatus_record_textnote">Tekstnotat</string>

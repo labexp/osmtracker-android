@@ -40,8 +40,6 @@
 	<string name="trackmgr_export_error">ไม่สามารถส่งเส้นทาง: {0}</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">เริ่มบันทึกเส้นทาง</string>
-	<string name="gpsstatus_record_trackon">หยุดบันทึกเส้นทาง</string>
 	<string name="gpsstatus_record_voicerec">บันทึกเสียง</string>
 	<string name="gpsstatus_record_stillimage">ถ่ายภาพ</string>
 	<string name="gpsstatus_record_textnote">จดข้อความ</string>

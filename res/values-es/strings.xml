@@ -50,8 +50,6 @@
 	<string name="trackdetail_export_display">Mostrar</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Iniciar trazado.</string>
-	<string name="gpsstatus_record_trackon">Para trazado</string>
 	<string name="gpsstatus_record_voicerec">Grabar voz</string>
 	<string name="gpsstatus_record_stillimage">Echar foto</string>
 	<string name="gpsstatus_record_textnote">Nota de texto</string>

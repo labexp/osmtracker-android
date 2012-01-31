@@ -56,8 +56,6 @@
 	<string name="trackdetail_export_display">Показать</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Начало записи.</string>
-	<string name="gpsstatus_record_trackon">Остановзаписи</string>
 	<string name="gpsstatus_record_voicerec">Запись аудио</string>
 	<string name="gpsstatus_record_stillimage">Фото</string>
 	<string name="gpsstatus_record_textnote">Запись текста</string>

@@ -56,8 +56,6 @@
 	<string name="trackdetail_export_display">תצוגה</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">התחל שמירת מסלול.</string>
-	<string name="gpsstatus_record_trackon">הפסק שמירת מסלול</string>
 	<string name="gpsstatus_record_voicerec">הקלטת קול</string>
 	<string name="gpsstatus_record_stillimage">צילום תמונה</string>
 	<string name="gpsstatus_record_textnote">הערת טקסט</string>

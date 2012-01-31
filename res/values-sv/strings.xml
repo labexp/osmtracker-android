@@ -54,8 +54,6 @@
 	<string name="trackdetail_export_display">Visa</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Starta spår</string>
-	<string name="gpsstatus_record_trackon">Stoppa spår</string>
 	<string name="gpsstatus_record_voicerec">Röstnotering</string>
 	<string name="gpsstatus_record_stillimage">Bildnotering</string>
 	<string name="gpsstatus_record_textnote">Textnotering</string>

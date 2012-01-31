@@ -55,8 +55,6 @@
 	<string name="trackdetail_export_display">Anzeigen</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Starte Tracking</string>
-	<string name="gpsstatus_record_trackon">Stoppe Tracking</string>
 	<string name="gpsstatus_record_voicerec">Sprachaufnahme</string>
 	<string name="gpsstatus_record_stillimage">Fotografieren</string>
 	<string name="gpsstatus_record_textnote">Textnotiz</string>

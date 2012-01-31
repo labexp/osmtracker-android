@@ -54,8 +54,6 @@
 	<string name="trackmgr_export_error">Kunne ikke eksportere track: {0}</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_trackoff">Start tracking.</string>
-	<string name="gpsstatus_record_trackon">Stop tracking</string>
 	<string name="gpsstatus_record_voicerec">Tale optagelse</string>
 	<string name="gpsstatus_record_stillimage">Tag billede</string>
 	<string name="gpsstatus_record_textnote">Tekst note</string>
