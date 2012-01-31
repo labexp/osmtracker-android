@@ -82,7 +82,7 @@
 
 	<!-- GPX -->
 	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
-	<string name="gpx_hdop_approximation_cmt">Warning: HDOP values aren\'t the HDOP returned by GPS device. They\'re approximated for location accuracy in meters, and should not be taken into account.</string>
+	<string name="gpx_hdop_approximation_cmt">Warning: HDOP values aren\'t the HDOP as returned by the GPS device. They\'re approximated from the location accuracy in meters.</string>
 
 	<!-- About screen -->
 	<string name="about">About</string>
