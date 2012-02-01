@@ -166,11 +166,17 @@ public class TrackManager extends ListActivity {
 			mi.setTitle(R.string.menu_continue);
 			mi.setTitleCondensed(getResources().getString(R.string.menu_continue));
 			mi.setIcon(android.R.drawable.ic_menu_edit);
+			
+			// Display a 'stop tracking' option
+			menu.findItem(R.id.trackmgr_menu_stopcurrenttrack).setVisible(true);
 		} else {
 			// Not currently tracking. Set menu entry to "New"
 			mi.setTitle(R.string.menu_newtrack);
 			mi.setTitleCondensed(getResources().getString(R.string.menu_newtrack));
 			mi.setIcon(android.R.drawable.ic_menu_add);
+			
+			// Remove the 'stop tracking' option
+			menu.findItem(R.id.trackmgr_menu_stopcurrenttrack).setVisible(false);
 		}
 		
 		// Remove "delete all" button if no tracks
@@ -200,6 +206,9 @@ public class TrackManager extends ListActivity {
 						Toast.LENGTH_LONG)
 						.show();
 			}
+			break;
+		case R.id.trackmgr_menu_stopcurrenttrack:
+			stopActiveTrack();
 			break;
 		case R.id.trackmgr_menu_deletetracks:
 			// Confirm and delete all track

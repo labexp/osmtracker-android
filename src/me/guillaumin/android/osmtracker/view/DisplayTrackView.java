@@ -52,6 +52,16 @@ public class DisplayTrackView extends TextView {
 	 * Array of pixels coordinates to display track
 	 */
 	private int[][] pixels;
+	
+	/**
+	 * Coordinates of waypoints
+	 */
+	private double[][] wayPointsCoords;
+	
+	/**
+	 * Pixels coordinates to display waypoints
+	 */
+	private int[][] wayPointsPixels;
 
 	/**
 	 * The projection used to convert coordinates to pixels.
@@ -72,6 +82,11 @@ public class DisplayTrackView extends TextView {
 	 * Position marker bitmap
 	 */
 	private Bitmap marker;
+	
+	/**
+	 * Way point marker Bitmap
+	 */
+	private Bitmap wayPointMarker;
 	
 	/**
 	 * Letter to use for meter unit (taken from resources)
@@ -136,6 +151,7 @@ public class DisplayTrackView extends TextView {
 		northLabel = getResources().getString(R.string.displaytrack_north);
 		marker = BitmapFactory.decodeResource(getResources(), R.drawable.marker);
 		compass = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_compass);
+		wayPointMarker = BitmapFactory.decodeResource(getResources(), R.drawable.star);
 		
 		trackpointContentObserver = new TrackPointContentObserver(new Handler());
 		context.getContentResolver().registerContentObserver(
@@ -171,9 +187,22 @@ public class DisplayTrackView extends TextView {
 			int length = pixels.length;
 			for (int i = 1; i < length; i++) {
 				// Draw a line between each point
-				canvas.drawLine(PADDING + pixels[i - 1][MercatorProjection.X], PADDING
-						+ pixels[i - 1][MercatorProjection.Y], PADDING + pixels[i][MercatorProjection.X], PADDING
-						+ pixels[i][MercatorProjection.Y], trackPaint);
+				canvas.drawLine(
+						PADDING + pixels[i - 1][MercatorProjection.X],
+						PADDING	+ pixels[i - 1][MercatorProjection.Y],
+						PADDING + pixels[i][MercatorProjection.X],
+						PADDING	+ pixels[i][MercatorProjection.Y], trackPaint);
+			}
+			
+			// Draw a marker for each waypoint
+			if (wayPointsPixels != null && wayPointsPixels.length > 0) {
+				int wpLength = wayPointsPixels.length;
+				for (int i = 0; i < wpLength; i++) {
+					canvas.drawBitmap(wayPointMarker,
+							PADDING + wayPointsPixels[i][MercatorProjection.X],
+							PADDING + wayPointsPixels[i][MercatorProjection.Y],
+							this.getPaint());
+				}
 			}
 
 			// Draw current position marker
@@ -233,14 +262,26 @@ public class DisplayTrackView extends TextView {
 		coords = new double[c.getCount()][2];
 		int i=0;
 		
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(), i++) {
 			coords[i][MercatorProjection.LONGITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE));
 			coords[i][MercatorProjection.LATITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE));
-			i++;
 		}
 		c.close();
 		
-		Log.v(TAG, "Extracted " + coords.length + " points from DB.");
+		Log.v(TAG, "Extracted " + coords.length + " track points from DB.");
+		
+		c = getContext().getContentResolver().query(
+				TrackContentProvider.waypointsUri(currentTrackId),
+				null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+		wayPointsCoords = new double[c.getCount()][2];
+		
+		for(c.moveToFirst(), i=0; !c.isAfterLast(); c.moveToNext(), i++) {
+			wayPointsCoords[i][MercatorProjection.LONGITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE));
+			wayPointsCoords[i][MercatorProjection.LATITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE));
+		}
+		c.close();
+		
+		Log.v(TAG, "Extracted " + wayPointsCoords.length + " way points from DB.");
 	}
 	
 	/**
@@ -251,9 +292,12 @@ public class DisplayTrackView extends TextView {
 	public void projectData(int width, int height) {
 		// If we got coordinates, start projecting.
 		if (coords != null && coords.length > 0) {
-			projection = new MercatorProjection(ArrayUtils.findMin(coords, MercatorProjection.LATITUDE), ArrayUtils.findMin(coords,
-					MercatorProjection.LONGITUDE), ArrayUtils.findMax(coords, MercatorProjection.LATITUDE), ArrayUtils.findMax(coords,
-					MercatorProjection.LONGITUDE), width - PADDING * 2, height - PADDING * 2);
+			projection = new MercatorProjection(
+					ArrayUtils.findMin(coords, MercatorProjection.LATITUDE),
+					ArrayUtils.findMin(coords, MercatorProjection.LONGITUDE),
+					ArrayUtils.findMax(coords, MercatorProjection.LATITUDE),
+					ArrayUtils.findMax(coords, MercatorProjection.LONGITUDE),
+					width - PADDING * 2, height - PADDING * 2);
 
 			// Project each coordinate into pixels.
 			pixels = new int[coords.length][2];
@@ -262,6 +306,19 @@ public class DisplayTrackView extends TextView {
 			for (int i = 0; i < length; i++) {
 				pixels[i] = projection.project(coords[i][MercatorProjection.LONGITUDE],
 						coords[i][MercatorProjection.LATITUDE]);
+			}
+		
+			// Same thing for way points, using same projection
+			if (wayPointsCoords != null && wayPointsCoords.length > 0) {
+	
+				// Project each coordinate into pixels.
+				wayPointsPixels = new int[wayPointsCoords.length][2];
+				
+				length = wayPointsPixels.length;
+				for (int i = 0; i < length; i++) {
+					wayPointsPixels[i] = projection.project(wayPointsCoords[i][MercatorProjection.LONGITUDE],
+							wayPointsCoords[i][MercatorProjection.LATITUDE]);
+				}
 			}
 		}
 	}

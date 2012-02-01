@@ -69,6 +69,7 @@
 	<string name="menu_newtrack">New track</string>
 	<string name="menu_deletetracks">Delete all tracks</string>
 	<string name="menu_continue">Continue track</string>
+	<string name="menu_stopcurrenttrack">Stop current track</string>
 	<string name="menu_save">Save</string>
 	<string name="menu_cancel">Cancel</string>
 	<string name="menu_export">Export as GPX</string>

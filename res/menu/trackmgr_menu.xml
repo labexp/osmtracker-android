@@ -3,6 +3,9 @@
 	<item android:id="@+id/trackmgr_menu_newtrack"
 		android:titleCondensed="@string/menu_newtrack" android:title="@string/menu_newtrack"
 		android:icon="@android:drawable/ic_menu_add"></item>
+	<item android:id="@+id/trackmgr_menu_stopcurrenttrack"
+		android:titleCondensed="@string/menu_stopcurrenttrack" android:title="@string/menu_stopcurrenttrack"
+		android:icon="@android:drawable/ic_menu_add"></item>
 	<item android:id="@+id/trackmgr_menu_deletetracks"
 		android:titleCondensed="@string/menu_deletetracks" android:title="@string/menu_deletetracks"
 		android:icon="@android:drawable/ic_menu_delete"></item>
