@@ -60,8 +60,8 @@
 		</row>
 		<row>
 			<button type="tag" label="Maks 60" icon="button_restriction" />
+			<button type="tag" label="Maks 70" icon="button_restriction" />
 			<button type="tag" label="Maks 80" icon="button_restriction" />
-			<button type="tag" label="Maks 90" icon="button_restriction" />
 		</row>
 		<row>
 			<button type="tag" label="Ingen utgang" icon="button_restriction_no_exit" />
