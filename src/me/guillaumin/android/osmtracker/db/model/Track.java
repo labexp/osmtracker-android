@@ -66,12 +66,16 @@ public class Track {
 				startLat = startCursor.getFloat(startCursor.getColumnIndex(Schema.COL_LATITUDE));
 				startLong = startCursor.getFloat(startCursor.getColumnIndex(Schema.COL_LONGITUDE));
 			}
+			startCursor.close();
+			
 			Cursor endCursor = cr.query(TrackContentProvider.trackEndUri(trackId), null, null, null, null);
 			if(endCursor.moveToFirst()){
 				endDate = endCursor.getLong(endCursor.getColumnIndex(Schema.COL_TIMESTAMP));
 				endLat = endCursor.getFloat(endCursor.getColumnIndex(Schema.COL_LATITUDE));
 				endLong = endCursor.getFloat(endCursor.getColumnIndex(Schema.COL_LONGITUDE));
 			}
+			endCursor.close();
+			
 			extraInformationRead = true;
 		}
 	}

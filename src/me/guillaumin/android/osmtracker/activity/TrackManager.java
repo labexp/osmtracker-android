@@ -409,6 +409,7 @@ public class TrackManager extends ListActivity {
 				deleteTrack(cursor.getLong(id_col));
 			} while (cursor.moveToNext());
 		}
+		cursor.close();
 	}
 
 	/**
