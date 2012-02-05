@@ -77,6 +77,7 @@
 	
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>
+	<string name="error_create_track_dir">Unable to create track folder %s.</string>
 	<string name="error_externalstorage_not_writable_hint">Please check ext. storage is correctly inserted and mounted.</string>
 	<string name="error_voicerec_failed">Voice recording has failed</string>
 	<string name="error_userlayout_parsing">Error while parsing XML layout file. Please revert to default layout.</string>

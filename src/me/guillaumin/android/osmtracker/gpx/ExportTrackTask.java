@@ -172,58 +172,69 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 				long startDateInMilliseconds = c.getLong(c.getColumnIndex(Schema.COL_START_DATE));
 				startDate.setTime(startDateInMilliseconds);
 			}
-			
+			String filenameBase = buildGPXFilename(c);
+			c.close();
+
 			boolean directoryPerTrack = prefs.getBoolean(OSMTracker.Preferences.KEY_OUTPUT_DIR_PER_TRACK, 
 					OSMTracker.Preferences.VAL_OUTPUT_GPX_OUTPUT_DIR_PER_TRACK);
 					
 			// Create the path to the directory to which we will be writing
 			// Trim the directory name, as additional spaces at the end will 
 			// not allow the directory to be created if required
-			String exportDirectoryPath = sdRoot + userGPXExportDirectoryName.trim();			
+			String exportDirectoryPath = userGPXExportDirectoryName.trim();
+			String perTrackDirectory = "";
 			if (directoryPerTrack) {
 				// If the user wants a directory per track, then create a name for the destination directory
 				// based on the start date of the track
-				exportDirectoryPath += File.separator + DataHelper.FILENAME_FORMATTER.format(startDate);
+				perTrackDirectory = File.separator + DataHelper.FILENAME_FORMATTER.format(startDate);
 			}
 			
 			// Create a file based on the path we've generated above
-			File trackGPXExportDirectory = new File(exportDirectoryPath);
+			File trackGPXExportDirectory = new File(sdRoot + exportDirectoryPath + perTrackDirectory);
 
-			String filenameBase = buildGPXFilename(c);
-			c.close();
-
-			if (trackGPXExportDirectory != null) {
-
-				// Create track directory if needed
+			// Create track directory if needed
+			if (! trackGPXExportDirectory.exists()) {
+				if (! trackGPXExportDirectory.mkdirs()) {
+					Log.w(TAG,"Failed to create directory [" 
+							+trackGPXExportDirectory.getAbsolutePath()+ "]");
+				}
+				
 				if (! trackGPXExportDirectory.exists()) {
-					if (! trackGPXExportDirectory.mkdirs() ) {
-						Log.w(TAG,"Failed to create directory [" 
-								+trackGPXExportDirectory.getAbsolutePath()+ "]");
+					// Specific hack for Google Nexus (See issue #168)
+					if (android.os.Build.MODEL.equals(OSMTracker.Devices.NEXUS_S)) {
+						// exportDirectoryPath always starts with "/"
+						trackGPXExportDirectory = new File(exportDirectoryPath + perTrackDirectory);
+						trackGPXExportDirectory.mkdirs();
 					}
 				}
+				
+				if (! trackGPXExportDirectory.exists()) {
+					throw new ExportTrackException(context.getResources().getString(R.string.error_create_track_dir,
+							trackGPXExportDirectory.getAbsolutePath()));
+				}
+			}
 
-				File trackFile = new File(trackGPXExportDirectory, filenameBase);
+			File trackFile = new File(trackGPXExportDirectory, filenameBase);
 
-				Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
-						null, null, Schema.COL_TIMESTAMP + " asc");
-				Cursor cWayPoints = cr.query(TrackContentProvider.waypointsUri(trackId), null, null,
-						null, Schema.COL_TIMESTAMP + " asc");
+			Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
+					null, null, Schema.COL_TIMESTAMP + " asc");
+			Cursor cWayPoints = cr.query(TrackContentProvider.waypointsUri(trackId), null, null,
+					null, Schema.COL_TIMESTAMP + " asc");
 
-				if (null != cTrackPoints && null != cWayPoints) {
-					dialog.setIndeterminate(false);
-					dialog.setProgress(0);
-					dialog.setMax(cTrackPoints.getCount() + cWayPoints.getCount());
-					
-					try {
-						writeGpxFile(cTrackPoints, cWayPoints, trackFile);
-						copyWaypointFiles(trackGPXExportDirectory);
-						DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
-					} catch (IOException ioe) {
-						throw new ExportTrackException(ioe.getMessage());
-					} finally {
-						cTrackPoints.close();
-						cWayPoints.close();
-					}
+			if (null != cTrackPoints && null != cWayPoints) {
+				dialog.setIndeterminate(false);
+				dialog.setProgress(0);
+				dialog.setMax(cTrackPoints.getCount() + cWayPoints.getCount());
+				
+				try {
+					writeGpxFile(cTrackPoints, cWayPoints, trackFile);
+					copyWaypointFiles(trackGPXExportDirectory);
+					DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
+				} catch (IOException ioe) {
+					throw new ExportTrackException(ioe.getMessage());
+				} finally {
+					cTrackPoints.close();
+					cWayPoints.close();
 				}
 			}
 		} else {

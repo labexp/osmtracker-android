@@ -123,4 +123,9 @@ public class OSMTracker {
 	 * time (in ms) we use to handle a key press as a long press
 	 */
 	public final static long LONG_PRESS_TIME = 1000;
+	
+	/** Device string identifiers */
+	public static final class Devices {
+		public static final String NEXUS_S = "Nexus S";
+	}
 }

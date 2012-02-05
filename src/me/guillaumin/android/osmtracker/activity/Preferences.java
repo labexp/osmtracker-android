@@ -52,6 +52,11 @@ public class Preferences extends PreferenceActivity {
 		storageDirPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				// Ensure there is always a leading slash
+				if (! ((String) newValue).startsWith(File.separator)) {
+					newValue = File.separator + (String) newValue;
+				}
+				
 				// Set summary with the directory value
 				preference.setSummary((String) newValue);
 				
