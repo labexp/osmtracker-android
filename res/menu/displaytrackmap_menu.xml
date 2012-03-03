@@ -7,6 +7,6 @@
 		android:title="@string/menu_center_to_gps"
 		android:showAsAction="ifRoom" />
 	<item android:id="@+id/displaytrackmap_menu_settings"
-		android:titleCondensed="@string/menu_settings" android:title="@string/menu_settings"
+		android:title="@string/menu_settings"
 		android:icon="@android:drawable/ic_menu_preferences"></item>
 </menu>
