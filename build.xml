@@ -48,9 +48,16 @@
 
 <!-- extension targets. Uncomment the ones where you want to do custom work
      in between standard targets -->
-<!--
     <target name="-pre-build">
+      <echo message="Copying 'nb' resources to 'no' (See pull request #6)" />
+      <copy todir="${resource.absolute.dir}/values-no" overwrite="true">
+        <fileset dir="${resource.absolute.dir}/values-nb" />
+      </copy>
+      <copy todir="${resource.absolute.dir}/xml-no" overwrite="true">
+        <fileset dir="${resource.absolute.dir}/xml-nb" />
+      </copy>
     </target>
+<!--
     <target name="-pre-compile">
     </target>
 

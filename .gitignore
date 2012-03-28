@@ -3,3 +3,5 @@ bin
 trash
 gen
 local.properties
+# -no resources are copied from -nb
+res/*-no
