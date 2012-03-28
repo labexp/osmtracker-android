@@ -8,19 +8,19 @@
 		</row>
 		
 		<row>
-			<button type="page" label="Misc" icon="button_misc" targetlayout="misc" />
-			<button type="page" label="Restriction" icon="button_restriction" targetlayout="restriction" />
-			<button type="page" label="Car" icon="button_car" targetlayout="car" />
+			<button type="page" label="Różne" icon="button_misc" targetlayout="misc" />
+			<button type="page" label="Ograniczenia" icon="button_restriction" targetlayout="restriction" />
+			<button type="page" label="Samochód" icon="button_car" targetlayout="car" />
 		</row>
 		<row>
-			<button type="page" label="Tourism" icon="button_tourism" targetlayout="tourism" />
-			<button type="page" label="Amenity" icon="button_amenity" targetlayout="amenity" />
-			<button type="page" label="Amenity (+)" icon="button_amenity" targetlayout="amenity_more" />
+			<button type="page" label="Turystyka" icon="button_tourism" targetlayout="tourism" />
+			<button type="page" label="Udogodnienia" icon="button_amenity" targetlayout="amenity" />
+			<button type="page" label="Udogodnienia (+)" icon="button_amenity" targetlayout="amenity_more" />
 		</row>
 		<row>
-			<button type="page" label="Way" icon="button_way" targetlayout="way" />
-			<button type="page" label="Track" icon="button_track" targetlayout="track" />
-			<button type="page" label="Landuse" icon="button_landuse" targetlayout="landuse" />
+			<button type="page" label="Droga" icon="button_way" targetlayout="way" />
+			<button type="page" label="Szlak" icon="button_track" targetlayout="track" />
+			<button type="page" label="Użyt.Terenu" icon="button_landuse" targetlayout="landuse" />
 		</row>
 	</layout>
 
@@ -31,19 +31,19 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Bus stop" icon="button_misc_bus_stop" />
-			<button type="tag" label="Railway" icon="button_misc_railway" />
-			<button type="tag" label="Telephone" icon="button_misc_telephone" />
+			<button type="tag" label="Przystanek Bus" icon="button_misc_bus_stop" />
+			<button type="tag" label="Kolej" icon="button_misc_railway" />
+			<button type="tag" label="Telefon" icon="button_misc_telephone" />
 		</row>
 		<row>
-			<button type="tag" label="Post box" icon="button_misc_post_box" />
+			<button type="tag" label="Pocztowa skrzy" icon="button_misc_post_box" />
 			<button type="tag" label="ATM" icon="button_misc_atm" />
-			<button type="tag" label="Bollard" icon="button_misc_bollard" />
+			<button type="tag" label="Pachołek" icon="button_misc_bollard" />
 		</row>
 		<row>
-			<button type="tag" label="Toilets" icon="button_misc_toilets" />
-			<button type="tag" label="Shelter" icon="button_misc_shelter" />
-			<button type="tag" label="Surveillance" icon="button_misc_surveillance" />
+			<button type="tag" label="Toalety" icon="button_misc_toilets" />
+			<button type="tag" label="Schronienie" icon="button_misc_shelter" />
+			<button type="tag" label="Nadzór" icon="button_misc_surveillance" />
 		</row>
 	</layout>
 
@@ -64,9 +64,9 @@
 			<button type="tag" label="Max 120" icon="button_restriction" />
 		</row>
 		<row>
-			<button type="tag" label="No exit" icon="button_restriction_no_exit" />
-			<button type="tag" label="Traffic Light" icon="button_restriction_traffic_light" />
-			<button type="tag" label="One way" icon="button_restriction_one_way" />
+			<button type="tag" label="Ślepa" icon="button_restriction_no_exit" />
+			<button type="tag" label="Sygnalizacja świet." icon="button_restriction_traffic_light" />
+			<button type="tag" label="Jednokierunkowa" icon="button_restriction_one_way" />
 		</row>
 	</layout>
 
@@ -77,13 +77,13 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Fuel station" icon="button_car_fuel_station" />
+			<button type="tag" label="Stacja paliw" icon="button_car_fuel_station" />
 			<button type="tag" label="Parking" icon="button_car_parking" />
-			<button type="tag" label="Emergency Phone" icon="button_car_emergency_phone" />
+			<button type="tag" label="Telefon alarmowy" icon="button_car_emergency_phone" />
 		</row>
 		<row>
-			<button type="tag" label="Turning circle" icon="button_car_turning_circle" />
-			<button type="tag" label="Speed camera" icon="button_car_speed_camera" />
+			<button type="tag" label="Koło powrotu" icon="button_car_turning_circle" />
+			<button type="tag" label="Fotoradar" icon="button_car_speed_camera" />
 		</row>
 	</layout>
 
@@ -94,19 +94,19 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="View point" icon="button_tourism_view_point" />
-			<button type="tag" label="Information" icon="button_tourism_information" />
-			<button type="tag" label="Picnic site" icon="button_tourism_picnic" />
+			<button type="tag" label="Punkt widokowy" icon="button_tourism_view_point" />
+			<button type="tag" label="Info Turystyczne" icon="button_tourism_information" />
+			<button type="tag" label="Parking Turyst." icon="button_tourism_picnic" />
 		</row>
 		<row>
-			<button type="tag" label="Attraction" icon="button_tourism_attraction" />
-			<button type="tag" label="Theme park" icon="button_tourism_theme_park" />
-			<button type="tag" label="Castle" icon="button_tourism_castle" />
+			<button type="tag" label="Atrakcja" icon="button_tourism_attraction" />
+			<button type="tag" label="Park tematyczny" icon="button_tourism_theme_park" />
+			<button type="tag" label="Zamek" icon="button_tourism_castle" />
 		</row>
 		<row>
-			<button type="tag" label="Monument" icon="button_tourism_monument" />
-			<button type="tag" label="Museum" icon="button_tourism_museum" />
-			<button type="tag" label="Cinema" icon="button_tourism_cinema" />
+			<button type="tag" label="Pomnik" icon="button_tourism_monument" />
+			<button type="tag" label="Muzeum" icon="button_tourism_museum" />
+			<button type="tag" label="Kino" icon="button_tourism_cinema" />
 		</row>
 	</layout>
 
@@ -117,24 +117,24 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Bench" icon="button_amenity_bench" />
-			<button type="tag" label="Water" icon="button_amenity_water" />
-			<button type="tag" label="Pharmacy" icon="button_amenity_pharmacy" />
+			<button type="tag" label="Ławka" icon="button_amenity_bench" />
+			<button type="tag" label="Woda" icon="button_amenity_water" />
+			<button type="tag" label="Apteka" icon="button_amenity_pharmacy" />
 		</row>
 		<row>
-			<button type="tag" label="Shop" icon="button_amenity_shop" />
-			<button type="tag" label="Marina" icon="button_amenity_marina" />
+			<button type="tag" label="Sklep" icon="button_amenity_shop" />
+			<button type="tag" label="Port" icon="button_amenity_marina" />
 			<button type="tag" label="Sport" icon="button_amenity_sport" />
 		</row>
 		<row>
 			<button type="tag" label="Taxi" icon="button_amenity_taxi" />
-			<button type="tag" label="Hospital,\nDoctors" icon="button_amenity_doctors" />
+			<button type="tag" label="Szpital,\nDoktor" icon="button_amenity_doctors" />
 			<button type="tag" label="Recycling" icon="button_amenity_recycling" />
 		</row>
 		<row>
-			<button type="tag" label="Place of\nworship" icon="button_amenity_place_of_worship" />
-			<button type="tag" label="Post office" icon="button_amenity_post_office" />
-			<button type="tag" label="Library" icon="button_amenity_library" />
+			<button type="tag" label="Miejsce\nkultu" icon="button_amenity_place_of_worship" />
+			<button type="tag" label="Poczta" icon="button_amenity_post_office" />
+			<button type="tag" label="Biblioteka" icon="button_amenity_library" />
 		</row>
 	</layout>
 
@@ -145,13 +145,13 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="School" icon="button_amenitymore_school" />
-			<button type="tag" label="Police" icon="button_amenitymore_police" />
-			<button type="tag" label="Fire station" icon="button_amenitymore_fire_station" />
+			<button type="tag" label="Szkoła" icon="button_amenitymore_school" />
+			<button type="tag" label="Policja" icon="button_amenitymore_police" />
+			<button type="tag" label="Remiza strażacka" icon="button_amenitymore_fire_station" />
 		</row>
 		<row>
 			<button type="tag" label="Bank" icon="button_amenitymore_bank" />
-			<button type="tag" label="Playground" icon="button_amenitymore_playground" />
+			<button type="tag" label="Plac zabaw" icon="button_amenitymore_playground" />
 			<button type="tag" label="Pub" icon="button_amenitymore_pub" />
 		</row>
 		<row>
@@ -160,9 +160,9 @@
 			<button type="tag" label="Hostel" icon="button_amenitymore_hostel" />
 		</row>
 		<row>
-			<button type="tag" label="Restaurant" icon="button_amenitymore_restaurant" />
+			<button type="tag" label="Restauracja" icon="button_amenitymore_restaurant" />
 			<button type="tag" label="Fast food" icon="button_amenitymore_fastfood" />
-			<button type="tag" label="Camp site" icon="button_amenitymore_camp_site" />
+			<button type="tag" label="Kemping" icon="button_amenitymore_camp_site" />
 		</row>
 	</layout>
 
@@ -173,19 +173,19 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Bridge" icon="button_way_bridge" />
-			<button type="tag" label="Zebra crossing" icon="button_way_zebra_crossing" />
-			<button type="tag" label="Motorway" icon="button_way_motorway" />
+			<button type="tag" label="Most" icon="button_way_bridge" />
+			<button type="tag" label="Zebra" icon="button_way_zebra_crossing" />
+			<button type="tag" label="Autostrada" icon="button_way_motorway" />
 		</row>
 		<row>
-			<button type="tag" label="Trunk" icon="button_way_trunk" />
-			<button type="tag" label="Primary" icon="button_way_primary" />
-			<button type="tag" label="Secondary" icon="button_way_secondary" />
+			<button type="tag" label="Ekspresowa" icon="button_way_trunk" />
+			<button type="tag" label="Główna" icon="button_way_primary" />
+			<button type="tag" label="Drugorzędna" icon="button_way_secondary" />
 		</row>
 		<row>
-			<button type="tag" label="Tertiary" icon="button_way_tertiary" />
-			<button type="tag" label="Residential" icon="button_way_residential" />
-			<button type="tag" label="Service" icon="button_way_service" />
+			<button type="tag" label="Trzeciorzędna" icon="button_way_tertiary" />
+			<button type="tag" label="Osiedlowa" icon="button_way_residential" />
+			<button type="tag" label="Serwisowa" icon="button_way_service" />
 		</row>
 	</layout>
 
@@ -196,24 +196,24 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Track" icon="button_track_track" />
-			<button type="tag" label="Cycleway" icon="button_track_cycleway" />
-			<button type="tag" label="Footway" icon="button_track_footway" />
+			<button type="tag" label="Trasa" icon="button_track_track" />
+			<button type="tag" label="Trasa rower." icon="button_track_cycleway" />
+			<button type="tag" label="Chodnik" icon="button_track_footway" />
 		</row>
 		<row>
-			<button type="tag" label="Bridleway" icon="button_track_bridleway" />
-			<button type="tag" label="Steps" icon="button_track_steps" />
-			<button type="tag" label="Living street" icon="button_track_living_street" />
+			<button type="tag" label="Trasa konna" icon="button_track_bridleway" />
+			<button type="tag" label="Ścieżka" icon="button_track_steps" />
+			<button type="tag" label="Pasaż" icon="button_track_living_street" />
 		</row>
 		<row>
-			<button type="tag" label="Pedestrian" icon="button_track_pedestrian" />
-			<button type="tag" label="Grade 1" icon="button_track_grade1" />
-			<button type="tag" label="Grade 2" icon="button_track_grade2" />
+			<button type="tag" label="Piesza" icon="button_track_pedestrian" />
+			<button type="tag" label="Ranga 1" icon="button_track_grade1" />
+			<button type="tag" label="Ranga 2" icon="button_track_grade2" />
 		</row>
 		<row>
-			<button type="tag" label="Grade 3" icon="button_track_grade3" />
-			<button type="tag" label="Grade 4" icon="button_track_grade4" />
-			<button type="tag" label="Grade 5" icon="button_track_grade5" />
+			<button type="tag" label="Ranga 3" icon="button_track_grade3" />
+			<button type="tag" label="Ranga 4" icon="button_track_grade4" />
+			<button type="tag" label="Ranga 5" icon="button_track_grade5" />
 		</row>
 	</layout>
 
@@ -224,18 +224,18 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Farm" icon="button_landuse_farm" />
-			<button type="tag" label="Landfill" icon="button_landuse_landfill" />
-			<button type="tag" label="Basin" icon="button_landuse_basin" />
+			<button type="tag" label="Farma" icon="button_landuse_farm" />
+			<button type="tag" label="Składowisko" icon="button_landuse_landfill" />
+			<button type="tag" label="Dorzecze" icon="button_landuse_basin" />
 		</row>
 		<row>
-			<button type="tag" label="Reservoir" icon="button_landuse_reservoir" />
-			<button type="tag" label="Forest" icon="button_landuse_forest" />
-			<button type="tag" label="Allotments" icon="button_landuse_allotments" />
+			<button type="tag" label="Zbiornik" icon="button_landuse_reservoir" />
+			<button type="tag" label="Las" icon="button_landuse_forest" />
+			<button type="tag" label="Ogródki" icon="button_landuse_allotments" />
 		</row>
 		<row>
-			<button type="tag" label="Cemetery" icon="button_landuse_cemetery" />
-			<button type="tag" label="Recreation\nground" icon="button_landuse_recreation_ground" />
+			<button type="tag" label="Cmentarz" icon="button_landuse_cemetery" />
+			<button type="tag" label="Rekreacja" icon="button_landuse_recreation_ground" />
 		</row>
 	</layout>
 </layouts>
