@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Preferences -->
+	<string name="prefs">Ustawienia</string>
+
+	<string name="prefs_gps">GPS</string>
+
+	<string name="prefs_gps_os_settings">Ustawienia GPS</string>
+	<string name="prefs_gps_os_settings_summary">Ustawienia ekranu system GPS</string>
+
+	<string name="prefs_check_gps_startup">Sprawdź GPS przy starcie</string>
+	<string name="prefs_check_gps_startup_summary">Sprawdź, czy GPS jest wyłączony podczas uruchamiania systemu i oferować jego włączenie</string>
+
+	<string name="prefs_gps_ignore_clock">Ignoruj zegar GPS</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignoruj zegar GPS i korzystaj z zegara Androida dla znaczników czasu</string>
+
+	<string name="prefs_gps_logging_interval">GPS interwał rejestracji</string>
+	<string name="prefs_gps_logging_interval_summary">Użyj 0 dla najkrótszego (wpływa na żywotność baterii)</string>
+	<string name="prefs_gps_logging_interval_seconds">seconds</string>
+
+	<string name="prefs_ui">Interfejs użytkownika</string>
+	
+	<string name="prefs_ui_buttons_layout">Układ przycisków</string>
+	<string name="prefs_ui_buttons_layout_summary">Wybierz niestandardowy układ przycisków (zobacz docs)</string>
+	<string name="prefs_ui_buttons_layout_defaut">Domyślnie</string>
+	<string name="prefs_ui_orientation">Orientacja</string>
+	<string name="prefs_ui_orientation_summary">Preferowana orientacja na ekranie przycisków</string>
+	<string-array name="prefs_ui_orientation_options_keys">
+		<item>Automatyczny</item>
+		<item>Pionowy</item>
+		<item>Poziomy</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
+	<string-array name="prefs_ui_orientation_options_values">
+		<item>none</item>
+		<item>portrait</item>
+		<item>landscape</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (END) -->
+	
+
+	<string name="prefs_voicerec_duration">Voice record duration</string>
+	<string name="prefs_voicerec_duration_seconds">seconds</string>
+	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
+	<string-array name="prefs_voicerec_durations">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>10</item>
+		<item>20</item>
+		<item>30</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (END) -->
+	
+	<string name="prefs_theme">Main screen graphic theme</string>
+	<string name="prefs_theme_summary">Application restart required to take effect</string>
+	<string-array name="prefs_theme_keys">
+		<item>OS default</item>
+		<item>OS default (dark)</item>
+		<item>OS default (light)</item>
+		<item>High contrast</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
+	<string-array name="prefs_theme_values">
+		<item>android:style/Theme</item>
+		<item>android:style/Theme.Black</item>
+		<item>android:style/Theme.Light</item>
+		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (END) -->
+
+	<string name="prefs_display_always_on">Screen always on</string>
+	<string name="prefs_display_always_on_summary">Screen will stay on while tracking. Disable to save battery</string>
+
+	<string name="prefs_displaytrack_osm">OSM background</string>
+	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap under track. Needs a data connection</string>
+
+	<string name="prefs_output">GPX file output</string>
+	<string name="prefs_storage_dir">External storage (SD) directory</string>
+	<string name="prefs_storage_dir_hint">Effective for the next track (not the current one)</string>
+	<string name="prefs_output_one_dir_per_track">One directory per track</string>
+	<string name="prefs_output_one_dir_per_track_summary">Save each track and associated files to it\'s own directory</string>
+	<string name="prefs_output_filename">Filename for named tracks</string>
+	<string name="prefs_output_filename_summary">Pattern for filename if the track has a name</string>
+	<string-array name="prefs_output_filename_keys">
+		<item>Track name</item>
+		<item>Name, start date and time</item>
+		<item>Start date and time</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
+	<string-array name="prefs_output_filename_values">
+		<item>name</item>
+		<item>name_date</item>
+		<item>date</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (END) -->
+	
+	<string name="prefs_output_accuracy">Accuracy in GPX file</string>
+	<string name="prefs_output_accuracy_summary">Add accuracy info in the GPX file, with waypoint name or in waypoint comment</string>
+	<string-array name="prefs_output_accuracy_keys">
+		<item>None</item>
+		<item>With waypoint name</item>
+		<item>In waypoint comment</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
+	<string-array name="prefs_output_accuracy_values">
+		<item>none</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
+	<!-- DO NOT TRANSLATE THIS (END) -->
+	
+	<string name="prefs_output_gpx_hdop_approximation">Użyj zbliżenia HDOP</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Wypełnij HDOP w GPX o wartości przybliżenia z dokładnością</string>
+
+	<string name="prefs_sound_enabled">Włącz dźwięk</string>
+	<string name="prefs_sound_enabled_summary">Odtwarzaj dźwięki podczas nagrywania głosu zaczyna się i kończy</string>
+
+</resources>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Generic strings -->
+	<string name="app_name">OSMTracker Android™</string>
+	<string name="app_short_name">OSMTracker</string>
+	<string name="app_description">Zainspirowany OSMTracker na Windows Mobile, pozwala na śledzenie podróży, należy zaznaczyć najważniejsze punkty Way Nagrywanie głosu, obrazu), wyeksportować je w formacie GPX do późniejszego użycia z narzędziami Open Street Map narzędzia, takie jak JOSM.</string>
+
+	<!-- TrackLogger -->
+	<string name="tracklogger">Zapisywanie śladu</string>
+	<string name="tracklogger_waiting_gps">Oczekiwanie na ustalenia pozycji GPS, aby uaktywnić przyciski&#8230;</string>
+	<string name="tracklogger_voicerec_title">Nagrywanie głosu</string>
+	<string name="tracklogger_voicerec_text">Nagrywanie {0}s klipu audio.</string>
+	<string name="tracklogger_voicerec_stop">Stop</string>
+	<string name="tracklogger_btnBack">Wróć</string>
+	<string name="tracklogger_tracked">Ślad: </string>
+	<string name="tracklogger_gps_disabled">GPS wyłączony</string>
+	<string name="tracklogger_gps_disabled_hint">GPS jest wyłączony. Czy chcesz go włączyć?</string>
+
+	<!-- Waypoint List -->
+	<string name="wplist">Lista Waypointów</string>
+	<string name="wplist_latitude">Lat: </string>
+	<string name="wplist_longitude">Long: </string>
+	<string name="wplist_elevation">Ele: </string>
+	<string name="wplist_accuracy">Accur: </string>
+	
+	<!-- Track Manager -->
+	<string name="trackmgr">Menadżer śladów</string>
+	<string name="trackmgr_tracklist">Lista śladów:</string>
+	<string name="trackmgr_waypoints_count">Waypoints: </string>
+	<string name="trackmgr_trackpoints_count">Trackpoints: </string>
+	<string name="trackmgr_empty">Ty nie masz żadnych śladów.</string>
+	<string name="trackmgr_newtrack_hint">Aby nagrać ślad,\nnaciśnij <b>Meni</b> następnie <b>Nowy ślad</b></string>
+	<string name="trackmgr_newtrack_error">Nie można utworzyć nową ścieżkę: {0}</string>
+	<string name="trackmgr_continuetrack_hint">Nie jesteś zalogowany do nagrywania <b>ścieżka #{0}</b>\nWybierz ją z listy, aby kontynuować</string>
+	<string name="trackmgr_contextmenu_stop">Stop rejestracji śladu</string>
+	<string name="trackmgr_contextmenu_resume">Wnów rejestrację</string>
+	<string name="trackmgr_contextmenu_delete">Usuń</string>
+	<string name="trackmgr_contextmenu_export">Eksport jako GPX</string>
+	<string name="trackmgr_contextmenu_display">Wyświetl</string>
+	<string name="trackmgr_contextmenu_details">Szczegóły</string>
+	<string name="trackmgr_contextmenu_title">Ślad #{0}</string>
+	<string name="trackmgr_delete_confirm">Ślad #{0} zostaną usunięte</string>
+	<string name="trackmgr_deleteall_confirm">Wszystkie dane zostaną usunięte. Czy na pewno?</string>
+	<string name="trackmgr_exporting">Eksport śladu #{0}&#8230;</string>
+	<string name="trackmgr_export_error">Nie można eksportować śladu: {0}</string>
+
+	<!-- Track Detail -->
+	<string name="trackdetail">Detale śladu</string>
+	<string name="trackdetail_startdate">Start:</string>
+	<string name="trackdetail_enddate">Koniec:</string>
+	<string name="trackdetail_startloc">Start W:</string>
+	<string name="trackdetail_endloc">Koniec w:</string>
+	<string name="trackdetail_exportdate">Eksportuj:</string>
+	<string name="trackdetail_btn_export">Eksportuj jako GPX</string>
+	<string name="trackdetail_export_notyet">(Nie wyeksportowano jeszcze)</string>
+	<string name="trackdetail_export_display">Wyświetl</string>
+
+	<!-- GPS Status & record bar -->
+	<string name="gpsstatus_record_voicerec">Nagrywania głosu</string>
+	<string name="gpsstatus_record_stillimage">Zrób zdjęcie</string>
+	<string name="gpsstatus_record_textnote">Notka</string>
+
+	<!-- Menu -->
+	<string name="menu_settings">Ustawienia</string>
+	<string name="menu_waypointlist">Waypoints</string>
+	<string name="menu_about">O..</string>
+	<string name="menu_displaytrack">Pokaż ślad</string>
+	<string name="menu_stoptracking">Stop &amp; save</string>
+	<string name="menu_newtrack">Nowy ślad</string>
+	<string name="menu_deletetracks">Usuń wszystkie ślady</string>
+	<string name="menu_continue">Kontynuacja</string>
+	<string name="menu_stopcurrenttrack">Zaczymaj aktualny ślad</string>
+	<string name="menu_save">Zapisz</string>
+	<string name="menu_cancel">Anuluj</string>
+	<string name="menu_export">Eksport jako GPX</string>
+	<string name="menu_center_to_gps">Centrum do GPS</string>
+	
+	<!-- Errors -->
+	<string name="error_externalstorage_not_writable">Nie można zapisać do pamięci zewnętrznej.</string>
+	<string name="error_create_track_dir">Nie można utworzyć folderu ścieżki %s.</string>
+	<string name="error_externalstorage_not_writable_hint">Proszę sprawdzić wew. pamięci jest włożona prawidłowo zamontowane.</string>
+	<string name="error_voicerec_failed">Nagrywanie głosu nie powiodło się</string>
+	<string name="error_userlayout_parsing">Błąd podczas parsowania pliku XML układu. Proszę powrócić do domyślnego układu.</string>
+
+	<!-- GPX -->
+	<string name="gpx_track_name">Ślad z  OSMTracker - Android™</string>
+	<string name="gpx_hdop_approximation_cmt">UWAGA: HDOP wartości nie są HDOP zwrócony przez urządzenie GPS. Są one zbliżone od dokładności lokalizacji w metrach.</string>
+
+	<!-- About screen -->
+	<string name="about">O..</string>
+	<string name="about_text">Aby uzyskać więcej informacji, dokumenty i sprawozdania problem, należy odwiedzić stronę domową projektu:</string>
+	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
+	<string name="about_debug_info">Debug info</string>
+
+	<!-- Notification -->
+	<string name="notification_ticker_text">OSMTracker ślad</string>
+	<string name="notification_title">OSMTracker ślad (#{0})</string>
+	<string name="notification_text">Dotknij tutaj, aby wyświetlić ekran główny</string>
+
+	<!-- Display track -->
+	<string name="displaytrack">Wyświetla ślad</string>	
+	<string name="displaytrack_north">N</string>
+	
+	<!-- Track detail -->
+	<string name="trackdetail_save">Zapisz</string>
+	
+	<!-- Various -->
+	<string name="various_unit_meters">m</string>
+	<string name="various_accuracy">Dokładność</string>
+	<string name="various_waiting_gps_fix">Ustalenia pozycji GPS&#8230;</string>
+
+	<!-- OSM map view -->
+	<string name="displaytrackmap">Pokaż ślady w OpenStreetMap</string> 
+
+</resources>
