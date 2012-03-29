@@ -1,115 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- Generic strings -->
-	<string name="app_name">OSMTracker for Android™</string>
+	<string name="app_name">OSMTracker Android™</string>
 	<string name="app_short_name">OSMTracker</string>
-	<string name="app_description">Inspired by OSMTracker on Windows Mobile, it allows you to track your journeys, mark significant way points (Voice recording, picture), export them in GPX format for later use with Open Street Map tools like JOSM.</string>
+	<string name="app_description">Zainspirowany OSMTracker na Windows Mobile, pozwala na śledzenie podróży, należy zaznaczyć najważniejsze punkty Way Nagrywanie głosu, obrazu), wyeksportować je w formacie GPX do późniejszego użycia z narzędziami Open Street Map narzędzia, takie jak JOSM.</string>
 
 	<!-- TrackLogger -->
-	<string name="tracklogger">Track logger</string>
-	<string name="tracklogger_waiting_gps">Waiting for GPS fix to enable buttons&#8230;</string>
-	<string name="tracklogger_voicerec_title">Voice recording</string>
-	<string name="tracklogger_voicerec_text">Recording a {0}s audio clip.</string>
+	<string name="tracklogger">Zapisywanie śladu</string>
+	<string name="tracklogger_waiting_gps">Oczekiwanie na ustalenia pozycji GPS, aby uaktywnić przyciski&#8230;</string>
+	<string name="tracklogger_voicerec_title">Nagrywanie głosu</string>
+	<string name="tracklogger_voicerec_text">Nagrywanie {0}s klipu audio.</string>
 	<string name="tracklogger_voicerec_stop">Stop</string>
-	<string name="tracklogger_btnBack">Back</string>
-	<string name="tracklogger_tracked">Tracked: </string>
-	<string name="tracklogger_gps_disabled">GPS disabled</string>
-	<string name="tracklogger_gps_disabled_hint">GPS is disabled. Do you want to enable it?</string>
+	<string name="tracklogger_btnBack">Wróć</string>
+	<string name="tracklogger_tracked">Ślad: </string>
+	<string name="tracklogger_gps_disabled">GPS wyłączony</string>
+	<string name="tracklogger_gps_disabled_hint">GPS jest wyłączony. Czy chcesz go włączyć?</string>
 
 	<!-- Waypoint List -->
-	<string name="wplist">Waypoint List</string>
+	<string name="wplist">Lista Waypointów</string>
 	<string name="wplist_latitude">Lat: </string>
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Ele: </string>
 	<string name="wplist_accuracy">Accur: </string>
 	
 	<!-- Track Manager -->
-	<string name="trackmgr">Track manager</string>
-	<string name="trackmgr_tracklist">Track list:</string>
+	<string name="trackmgr">Menadżer śladów</string>
+	<string name="trackmgr_tracklist">Lista śladów:</string>
 	<string name="trackmgr_waypoints_count">Waypoints: </string>
 	<string name="trackmgr_trackpoints_count">Trackpoints: </string>
-	<string name="trackmgr_empty">You don\'t have any tracks.</string>
-	<string name="trackmgr_newtrack_hint">To record a track,\npress <b>Menu</b> then <b>New track</b></string>
-	<string name="trackmgr_newtrack_error">Unable to create a new track: {0}</string>
-	<string name="trackmgr_continuetrack_hint">You are currently recording <b>track #{0}</b>\nChoose it in the list to continue</string>
-	<string name="trackmgr_contextmenu_stop">Stop tracking</string>
-	<string name="trackmgr_contextmenu_resume">Resume tracking</string>
-	<string name="trackmgr_contextmenu_delete">Delete</string>
-	<string name="trackmgr_contextmenu_export">Export as GPX</string>
-	<string name="trackmgr_contextmenu_display">Display</string>
-	<string name="trackmgr_contextmenu_details">Details</string>
-	<string name="trackmgr_contextmenu_title">Track #{0}</string>
-	<string name="trackmgr_delete_confirm">Track #{0} will be deleted</string>
-	<string name="trackmgr_deleteall_confirm">All tracks will be deleted. Are you sure?</string>
-	<string name="trackmgr_exporting">Exporting track #{0}&#8230;</string>
-	<string name="trackmgr_export_error">Unable to export track: {0}</string>
+	<string name="trackmgr_empty">Ty nie masz żadnych śladów.</string>
+	<string name="trackmgr_newtrack_hint">Aby nagrać ślad,\nnaciśnij <b>Meni</b> następnie <b>Nowy ślad</b></string>
+	<string name="trackmgr_newtrack_error">Nie można utworzyć nową ścieżkę: {0}</string>
+	<string name="trackmgr_continuetrack_hint">Nie jesteś zalogowany do nagrywania <b>ścieżka #{0}</b>\nWybierz ją z listy, aby kontynuować</string>
+	<string name="trackmgr_contextmenu_stop">Stop rejestracji śladu</string>
+	<string name="trackmgr_contextmenu_resume">Wnów rejestrację</string>
+	<string name="trackmgr_contextmenu_delete">Usuń</string>
+	<string name="trackmgr_contextmenu_export">Eksport jako GPX</string>
+	<string name="trackmgr_contextmenu_display">Wyświetl</string>
+	<string name="trackmgr_contextmenu_details">Szczegóły</string>
+	<string name="trackmgr_contextmenu_title">Ślad #{0}</string>
+	<string name="trackmgr_delete_confirm">Ślad #{0} zostaną usunięte</string>
+	<string name="trackmgr_deleteall_confirm">Wszystkie dane zostaną usunięte. Czy na pewno?</string>
+	<string name="trackmgr_exporting">Eksport śladu #{0}&#8230;</string>
+	<string name="trackmgr_export_error">Nie można eksportować śladu: {0}</string>
 
 	<!-- Track Detail -->
-	<string name="trackdetail">Track Details</string>
-	<string name="trackdetail_startdate">Start time:</string>
-	<string name="trackdetail_enddate">End time:</string>
-	<string name="trackdetail_startloc">Starts at:</string>
-	<string name="trackdetail_endloc">Ends at:</string>
-	<string name="trackdetail_exportdate">Exported:</string>
-	<string name="trackdetail_btn_export">Export as GPX</string>
-	<string name="trackdetail_export_notyet">(Not exported yet)</string>
-	<string name="trackdetail_export_display">Display</string>
+	<string name="trackdetail">Detale śladu</string>
+	<string name="trackdetail_startdate">Start:</string>
+	<string name="trackdetail_enddate">Koniec:</string>
+	<string name="trackdetail_startloc">Start W:</string>
+	<string name="trackdetail_endloc">Koniec w:</string>
+	<string name="trackdetail_exportdate">Eksportuj:</string>
+	<string name="trackdetail_btn_export">Eksportuj jako GPX</string>
+	<string name="trackdetail_export_notyet">(Nie wyeksportowano jeszcze)</string>
+	<string name="trackdetail_export_display">Wyświetl</string>
 
 	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_voicerec">Voice record</string>
-	<string name="gpsstatus_record_stillimage">Take picture</string>
-	<string name="gpsstatus_record_textnote">Text note</string>
+	<string name="gpsstatus_record_voicerec">Nagrywania głosu</string>
+	<string name="gpsstatus_record_stillimage">Zrób zdjęcie</string>
+	<string name="gpsstatus_record_textnote">Notka</string>
 
 	<!-- Menu -->
-	<string name="menu_settings">Settings</string>
+	<string name="menu_settings">Ustawienia</string>
 	<string name="menu_waypointlist">Waypoints</string>
-	<string name="menu_about">About</string>
-	<string name="menu_displaytrack">Display track</string>
+	<string name="menu_about">O..</string>
+	<string name="menu_displaytrack">Pokaż ślad</string>
 	<string name="menu_stoptracking">Stop &amp; save</string>
-	<string name="menu_newtrack">New track</string>
-	<string name="menu_deletetracks">Delete all tracks</string>
-	<string name="menu_continue">Continue track</string>
-	<string name="menu_stopcurrenttrack">Stop current track</string>
-	<string name="menu_save">Save</string>
-	<string name="menu_cancel">Cancel</string>
-	<string name="menu_export">Export as GPX</string>
-	<string name="menu_center_to_gps">Center to GPS</string>
+	<string name="menu_newtrack">Nowy ślad</string>
+	<string name="menu_deletetracks">Usuń wszystkie ślady</string>
+	<string name="menu_continue">Kontynuacja</string>
+	<string name="menu_stopcurrenttrack">Zaczymaj aktualny ślad</string>
+	<string name="menu_save">Zapisz</string>
+	<string name="menu_cancel">Anuluj</string>
+	<string name="menu_export">Eksport jako GPX</string>
+	<string name="menu_center_to_gps">Centrum do GPS</string>
 	
 	<!-- Errors -->
-	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>
-	<string name="error_create_track_dir">Unable to create track folder %s.</string>
-	<string name="error_externalstorage_not_writable_hint">Please check ext. storage is correctly inserted and mounted.</string>
-	<string name="error_voicerec_failed">Voice recording has failed</string>
-	<string name="error_userlayout_parsing">Error while parsing XML layout file. Please revert to default layout.</string>
+	<string name="error_externalstorage_not_writable">Nie można zapisać do pamięci zewnętrznej.</string>
+	<string name="error_create_track_dir">Nie można utworzyć folderu ścieżki %s.</string>
+	<string name="error_externalstorage_not_writable_hint">Proszę sprawdzić wew. pamięci jest włożona prawidłowo zamontowane.</string>
+	<string name="error_voicerec_failed">Nagrywanie głosu nie powiodło się</string>
+	<string name="error_userlayout_parsing">Błąd podczas parsowania pliku XML układu. Proszę powrócić do domyślnego układu.</string>
 
 	<!-- GPX -->
-	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
-	<string name="gpx_hdop_approximation_cmt">Warning: HDOP values aren\'t the HDOP as returned by the GPS device. They\'re approximated from the location accuracy in meters.</string>
+	<string name="gpx_track_name">Ślad z  OSMTracker - Android™</string>
+	<string name="gpx_hdop_approximation_cmt">UWAGA: HDOP wartości nie są HDOP zwrócony przez urządzenie GPS. Są one zbliżone od dokładności lokalizacji w metrach.</string>
 
 	<!-- About screen -->
-	<string name="about">About</string>
-	<string name="about_text">For more information, docs and issue report, please visit the project home page:</string>
+	<string name="about">O..</string>
+	<string name="about_text">Aby uzyskać więcej informacji, dokumenty i sprawozdania problem, należy odwiedzić stronę domową projektu:</string>
 	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
 	<string name="about_debug_info">Debug info</string>
 
 	<!-- Notification -->
-	<string name="notification_ticker_text">OSMTracker is tracking</string>
-	<string name="notification_title">OSMTracker is tracking (#{0})</string>
-	<string name="notification_text">Tap here to display main screen</string>
+	<string name="notification_ticker_text">OSMTracker ślad</string>
+	<string name="notification_title">OSMTracker ślad (#{0})</string>
+	<string name="notification_text">Dotknij tutaj, aby wyświetlić ekran główny</string>
 
 	<!-- Display track -->
-	<string name="displaytrack">Display track</string>	
+	<string name="displaytrack">Wyświetla ślad</string>	
 	<string name="displaytrack_north">N</string>
 	
 	<!-- Track detail -->
-	<string name="trackdetail_save">Save</string>
+	<string name="trackdetail_save">Zapisz</string>
 	
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
-	<string name="various_accuracy">Accuracy</string>
-	<string name="various_waiting_gps_fix">Waiting GPS fix&#8230;</string>
+	<string name="various_accuracy">Dokładność</string>
+	<string name="various_waiting_gps_fix">Ustalenia pozycji GPS&#8230;</string>
 
 	<!-- OSM map view -->
-	<string name="displaytrackmap">OpenStreetMap track display</string> 
+	<string name="displaytrackmap">Pokaż ślady w OpenStreetMap</string> 
 
 </resources>
