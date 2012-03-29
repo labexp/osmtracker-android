@@ -2,34 +2,34 @@
 <resources>
 
 	<!-- Preferences -->
-	<string name="prefs">Settings</string>
+	<string name="prefs">Ustawienia</string>
 
 	<string name="prefs_gps">GPS</string>
 
-	<string name="prefs_gps_os_settings">GPS settings</string>
-	<string name="prefs_gps_os_settings_summary">Display system GPS settings screen</string>
+	<string name="prefs_gps_os_settings">Ustawienia GPS</string>
+	<string name="prefs_gps_os_settings_summary">Ustawienia ekranu system GPS</string>
 
-	<string name="prefs_check_gps_startup">Check GPS at startup</string>
-	<string name="prefs_check_gps_startup_summary">Check if GPS is disabled at startup, and offer to enable it</string>
+	<string name="prefs_check_gps_startup">Sprawdź GPS przy starcie</string>
+	<string name="prefs_check_gps_startup_summary">Sprawdź, czy GPS jest wyłączony podczas uruchamiania systemu i oferować jego włączenie</string>
 
-	<string name="prefs_gps_ignore_clock">Ignore GPS clock</string>
-	<string name="prefs_gps_ignore_clock_summary">Ignore GPS clock and use Android clock for timestamps</string>
+	<string name="prefs_gps_ignore_clock">Ignoruj zegar GPS</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignoruj zegar GPS i korzystaj z zegara Androida dla znaczników czasu</string>
 
-	<string name="prefs_gps_logging_interval">GPS logging interval</string>
-	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (affects battery life)</string>
+	<string name="prefs_gps_logging_interval">GPS interwał rejestracji</string>
+	<string name="prefs_gps_logging_interval_summary">Użyj 0 dla najkrótszego (wpływa na żywotność baterii)</string>
 	<string name="prefs_gps_logging_interval_seconds">seconds</string>
 
-	<string name="prefs_ui">User interface</string>
+	<string name="prefs_ui">Interfejs użytkownika</string>
 	
-	<string name="prefs_ui_buttons_layout">Buttons layout</string>
-	<string name="prefs_ui_buttons_layout_summary">Choose a custom button layout (see docs)</string>
-	<string name="prefs_ui_buttons_layout_defaut">Default</string>
-	<string name="prefs_ui_orientation">Orientation</string>
-	<string name="prefs_ui_orientation_summary">Preferred orientation for the button screen</string>
+	<string name="prefs_ui_buttons_layout">Układ przycisków</string>
+	<string name="prefs_ui_buttons_layout_summary">Wybierz niestandardowy układ przycisków (zobacz docs)</string>
+	<string name="prefs_ui_buttons_layout_defaut">Domyślnie</string>
+	<string name="prefs_ui_orientation">Orientacja</string>
+	<string name="prefs_ui_orientation_summary">Preferowana orientacja na ekranie przycisków</string>
 	<string-array name="prefs_ui_orientation_options_keys">
-		<item>Automatic</item>
-		<item>Portrait</item>
-		<item>Landscape</item>
+		<item>Automatyczny</item>
+		<item>Pionowy</item>
+		<item>Poziomy</item>
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
 	<string-array name="prefs_ui_orientation_options_values">
@@ -112,10 +112,10 @@
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (END) -->
 	
-	<string name="prefs_output_gpx_hdop_approximation">Use HDOP approximation</string>
-	<string name="prefs_output_gpx_hdop_approximation_summary">Fill HDOP in GPX with an approximation value from accuracy</string>
+	<string name="prefs_output_gpx_hdop_approximation">Użyj zbliżenia HDOP</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Wypełnij HDOP w GPX o wartości przybliżenia z dokładnością</string>
 
-	<string name="prefs_sound_enabled">Enable Sound</string>
-	<string name="prefs_sound_enabled_summary">Play sounds when voice recording starts and ends</string>
+	<string name="prefs_sound_enabled">Włącz dźwięk</string>
+	<string name="prefs_sound_enabled_summary">Odtwarzaj dźwięki podczas nagrywania głosu zaczyna się i kończy</string>
 
 </resources>
