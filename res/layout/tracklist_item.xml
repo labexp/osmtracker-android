@@ -13,11 +13,10 @@
 		android:gravity="left|center_vertical" android:layout_marginRight="5dp"/>
 
 	<RelativeLayout android:layout_height="fill_parent"
-		android:gravity="left|center_vertical" android:layout_width="wrap_content" android:layout_weight="1">
+		android:gravity="left|center_vertical" android:layout_width="0dip" android:layout_weight="1">
 
 		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_nameordate"
-			android:text="{start_date}" android:layout_width="wrap_content" style="@android:style/TextAppearance.Large"
-			android:layout_weight="1" />
+			android:text="{start_date}" android:layout_width="wrap_content" style="@android:style/TextAppearance.Large"/>
 
 		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_waypoints" android:layout_below="@+id/trackmgr_item_nameordate"
 			android:textStyle="bold" android:layout_marginRight="3dp" style="@android:style/TextAppearance.Small" android:text="@string/trackmgr_waypoints_count"

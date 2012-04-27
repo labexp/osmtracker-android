@@ -3,7 +3,7 @@
 	android:orientation="vertical" android:layout_height="fill_parent" android:layout_width="fill_parent">
 	<TextView android:layout_height="wrap_content" android:gravity="center_horizontal" android:layout_width="fill_parent" style="@android:style/TextAppearance.Large" android:text="@string/trackmgr_tracklist" android:paddingBottom="5dp"></TextView>
 	<FrameLayout android:layout_weight="1" android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:id="@+id/trackmanager_list" android:padding="3dp">
+		android:layout_height="0dip" android:id="@+id/trackmanager_list" android:padding="3dp">
 
 		<ListView android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:id="@id/android:list"></ListView>
