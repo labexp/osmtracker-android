@@ -64,9 +64,9 @@
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
 	<string-array name="prefs_theme_values">
-		<item>android:style/Theme</item>
-		<item>android:style/Theme.Black</item>
-		<item>android:style/Theme.Light</item>
+		<item>me.guillaumin.android.osmtracker:style/DefaultTheme</item>
+		<item>me.guillaumin.android.osmtracker:style/DarkTheme</item>
+		<item>me.guillaumin.android.osmtracker:style/LightTheme</item>
 		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (END) -->
@@ -81,7 +81,7 @@
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
 	<string name="prefs_storage_dir_hint">Effective for the next track (not the current one)</string>
 	<string name="prefs_output_one_dir_per_track">One directory per track</string>
-	<string name="prefs_output_one_dir_per_track_summary">Save each track and associated files to it\'s own directory</string>
+	<string name="prefs_output_one_dir_per_track_summary">Save each track and associated files to its own directory</string>
 	<string name="prefs_output_filename">Filename for named tracks</string>
 	<string name="prefs_output_filename_summary">Pattern for filename if the track has a name</string>
 	<string-array name="prefs_output_filename_keys">

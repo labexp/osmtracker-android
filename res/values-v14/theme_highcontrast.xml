@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<style name="HighContrast" parent="@android:style/Theme.NoTitleBar">
+	<style name="HighContrast" parent="@android:style/Theme.DeviceDefault.NoActionBar">
 		<!-- item name="android:background">#ffffff</item -->
 		<item name="android:buttonStyle">@style/Widget.Button</item>
 		<item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>

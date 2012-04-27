@@ -147,33 +147,20 @@ public class TrackManager extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.trackmgr_menu, menu);
-		if (currentTrackId != -1) {
-			MenuItem mi = menu.findItem(R.id.trackmgr_menu_newtrack);
-			if (mi != null) {
-				mi.setTitle(R.string.menu_continue);
-				mi.setTitleCondensed(getResources().getString(R.string.menu_continue));
-				mi.setIcon(android.R.drawable.ic_menu_edit);
-			}
-		}
 		return true;
 	}
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		MenuItem mi = menu.findItem(R.id.trackmgr_menu_newtrack);
 		if (currentTrackId != -1) {
-			// Currently tracking. Set menu entry to "Continue"
-			mi.setTitle(R.string.menu_continue);
-			mi.setTitleCondensed(getResources().getString(R.string.menu_continue));
-			mi.setIcon(android.R.drawable.ic_menu_edit);
+			// Currently tracking. Display "Continue" option
+			menu.findItem(R.id.trackmgr_menu_continue).setVisible(true);
 			
 			// Display a 'stop tracking' option
 			menu.findItem(R.id.trackmgr_menu_stopcurrenttrack).setVisible(true);
 		} else {
-			// Not currently tracking. Set menu entry to "New"
-			mi.setTitle(R.string.menu_newtrack);
-			mi.setTitleCondensed(getResources().getString(R.string.menu_newtrack));
-			mi.setIcon(android.R.drawable.ic_menu_add);
+			// Not currently tracking. Remove "Continue" option
+			menu.findItem(R.id.trackmgr_menu_continue).setVisible(false);
 			
 			// Remove the 'stop tracking' option
 			menu.findItem(R.id.trackmgr_menu_stopcurrenttrack).setVisible(false);
@@ -192,12 +179,8 @@ public class TrackManager extends ListActivity {
 			// Start track logger activity
 			try {
 				Intent i = new Intent(this, TrackLogger.class);
-				if (currentTrackId == -1) {
-					// New track
-					currentTrackId = createNewTrack();
-				} else {
-					i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
-				}
+				// New track
+				currentTrackId = createNewTrack();
 				i.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 				startActivity(i);
 			} catch (CreateTrackException cte) {
@@ -206,6 +189,12 @@ public class TrackManager extends ListActivity {
 						Toast.LENGTH_LONG)
 						.show();
 			}
+			break;
+		case R.id.trackmgr_menu_continue:
+			Intent i = new Intent(this, TrackLogger.class);
+			i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
+			i.putExtra(Schema.COL_TRACK_ID, currentTrackId);
+			startActivity(i);
 			break;
 		case R.id.trackmgr_menu_stopcurrenttrack:
 			stopActiveTrack();
