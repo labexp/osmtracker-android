@@ -17,7 +17,7 @@
 	<string name="tracklogger_gps_disabled_hint">GPS is disabled. Do you want to enable it?</string>
 
 	<!-- Waypoint List -->
-	<string name="wplist">Waypoint List</string>
+	<string name="wplist">Waypoint list</string>
 	<string name="wplist_latitude">Lat: </string>
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Ele: </string>
@@ -107,7 +107,7 @@
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
 	<string name="various_accuracy">Accuracy</string>
-	<string name="various_waiting_gps_fix">Waiting GPS fix&#8230;</string>
+	<string name="various_waiting_gps_fix">Waiting for GPS fix&#8230;</string>
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">OpenStreetMap track display</string> 

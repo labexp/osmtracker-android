@@ -28,7 +28,7 @@
 		<activity android:name=".activity.DisplayTrack" android:label="@string/displaytrack" />
 		<activity android:name=".activity.DisplayTrackMap" android:label="@string/displaytrackmap"></activity>
 
-		<service android:name=".service.gps.GPSLogger">
+		<service android:name=".service.gps.GPSLogger" android:exported="false">
 			<intent-filter>
 				<action android:name="me.guillaumin.android.osmtracker.intent.GPS_SERVICE" />
 			</intent-filter>
