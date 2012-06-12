@@ -12,7 +12,7 @@ import org.osmdroid.contributor.util.constants.OpenStreetMapContributorConstants
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.ItemizedOverlay;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.PathOverlay;
 import org.osmdroid.views.overlay.SimpleLocationOverlay;
@@ -280,7 +280,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		myLocationOverlay = new SimpleLocationOverlay(this);
 		osmView.getOverlays().add(myLocationOverlay);
         
-		osmView.getOverlays().add(new ItemizedOverlay<OverlayItem>(this, wayPointItems, null));        
+		osmView.getOverlays().add(new ItemizedIconOverlay<OverlayItem>(this, wayPointItems, null));
 	}
 	
 	/**
