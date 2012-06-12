@@ -13,7 +13,7 @@
 	<string name="tracklogger_voicerec_stop">Стоп</string>
 	<string name="tracklogger_btnBack">Назад</string>
 	<string name="tracklogger_tracked">Записано: </string>
-	<string name="tracklogger_gps_disabled">GPS отключен. Запустить настройки GPS?</string>
+	<string name="tracklogger_gps_disabled">GPS отключен</string>
 	<string name="tracklogger_gps_disabled_hint">GPS отключен. Вы хотите включить его?</string>
 
 	<!-- Waypoint List -->
@@ -61,20 +61,23 @@
 	<string name="gpsstatus_record_textnote">Запись текста</string>
 
 	<!-- Menu -->
-	<string name="menu_settings">Настройки</string>
+	<string name="menu_settings">Настройка</string>
 	<string name="menu_waypointlist">Путевые точки</string>
 	<string name="menu_about">О программе</string>
 	<string name="menu_displaytrack">Показать трек</string>
 	<string name="menu_stoptracking">Остановить и сохранить</string>
 	<string name="menu_newtrack">Новый трек</string>
+	<string name="menu_deletetracks">Удалить все треки</string>
 	<string name="menu_continue">Продолжить трек</string>
+	<string name="menu_stopcurrenttrack">Остановить запись трека</string>
 	<string name="menu_save">Сохранить</string>
 	<string name="menu_cancel">Отмена</string>
 	<string name="menu_export">Экспортировать в GPX</string>
 	<string name="menu_center_to_gps">Центрировать по GPS</string>
-
+	
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Невозможно записать файл.</string>
+	<string name="error_create_track_dir">Невозможно создать папку трека %s.</string>
 	<string name="error_externalstorage_not_writable_hint">Проверьте, что флеш карта правильно вставлена и примонтирована.</string>
 	<string name="error_voicerec_failed">Ошибка записи аудио</string>
 	<string name="error_userlayout_parsing">Ошибка при загрузки файла расположения кнопок. Вернитесь к файлу по умолчанию.</string>
