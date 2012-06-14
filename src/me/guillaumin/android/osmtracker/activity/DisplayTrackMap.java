@@ -79,6 +79,11 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	 * OSM view overlay that displays current path
 	 */
 	private PathOverlay pathOverlay;
+
+	/**
+	 * OSM view overlay that displays waypoints 
+	 */
+	private ItemizedIconOverlay<OverlayItem> wayPointsOverlay;	
 	
 	/**
 	 * List of waypoints to display on the map.
@@ -280,19 +285,22 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		myLocationOverlay = new SimpleLocationOverlay(this);
 		osmView.getOverlays().add(myLocationOverlay);
         
-		osmView.getOverlays().add(new ItemizedIconOverlay<OverlayItem>(this, wayPointItems, null));
+		wayPointsOverlay = new ItemizedIconOverlay<OverlayItem>(this, wayPointItems, null);
+		osmView.getOverlays().add(wayPointsOverlay);
 	}
 	
 	/**
 	 * Refreshes the list of {@link OverlayItem} that display way points.
 	 */
 	private void refreshWayPointItems() {
-		wayPointItems.clear();
+		wayPointsOverlay.removeAllItems(false);
 		
 		Cursor c = getContentResolver().query(
 				TrackContentProvider.waypointsUri(currentTrackId),
 				null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
-        
+		
+		ArrayList<OverlayItem> waypoints = new ArrayList<OverlayItem>(c.getCount());
+ 
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 			OverlayItem i = new OverlayItem(
 					c.getString(c.getColumnIndex(Schema.COL_NAME)),
@@ -302,9 +310,10 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 							c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE)))
 					);
 			i.setMarker(getResources().getDrawable(R.drawable.star));
-			wayPointItems.add(i);       	
+			waypoints.add(i);
 		}
 		c.close();
+		wayPointsOverlay.addItems(waypoints);
 	}
 	
 	/**
