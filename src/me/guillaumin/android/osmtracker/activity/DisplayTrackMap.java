@@ -49,12 +49,30 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	 * Key for keeping the zoom level in the saved instance bundle
 	 */
 	private static final String CURRENT_ZOOM = "currentZoom";
-	
+
+	/**
+	 *  Key for keeping scrolled left position of OSM view activity re-creation
+	 * 
+	 */
+	private static final String CURRENT_SCROLL_X = "currentScrollX";
+
+	/** 
+	 * Key for keeping scrolled top position of OSM view across activity re-creation
+	 * 
+	 */ 
+	private static final String CURRENT_SCROLL_Y = "currentScrollY";
+
+	/**
+	 *  Key for keeping whether the map display should be centered to the gps location 
+	 * 
+	 */
+	private static final String CURRENT_CENTER_TO_GPS_POS = "currentCenterToGpsPos";
+
 	/**
 	 * Key for keeping the last zoom level across app. restart
 	 */
 	private static final String LAST_ZOOM = "lastZoomLevel";
-	
+
 	/**
 	 * Default zoom level
 	 */
@@ -138,12 +156,15 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         // Check if there is a saved zoom level
         if(savedInstanceState != null) {
         	osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
+        	osmView.scrollTo(savedInstanceState.getInt(CURRENT_SCROLL_X, 0),
+        			savedInstanceState.getInt(CURRENT_SCROLL_Y, 0));
+        	centerToGpsPos = savedInstanceState.getBoolean(CURRENT_CENTER_TO_GPS_POS, centerToGpsPos);
         } else {
         	// Try to get last zoom Level from Shared Preferences
         	SharedPreferences settings = getPreferences(MODE_PRIVATE);
         	osmViewController.setZoom(settings.getInt(LAST_ZOOM, DEFAULT_ZOOM));
         }
-        
+
         createOverlays();
 
         // Create content observer for trackpoints
@@ -173,6 +194,9 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putInt(CURRENT_ZOOM, osmView.getZoomLevel());
+		outState.putInt(CURRENT_SCROLL_X, osmView.getScrollX());
+		outState.putInt(CURRENT_SCROLL_Y, osmView.getScrollY());
+		outState.putBoolean(CURRENT_CENTER_TO_GPS_POS, centerToGpsPos);
 		super.onSaveInstanceState(outState);
 	}
 
@@ -209,22 +233,21 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		
 		// Clear the points list.
 		pathOverlay.clearPath();
-		
+
 		super.onPause();
-	}	
+	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		
+
 		// Save zoom level in shared preferences
 		SharedPreferences settings = getPreferences(MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putInt(LAST_ZOOM, osmView.getZoomLevel());
 		editor.commit();
-		
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
