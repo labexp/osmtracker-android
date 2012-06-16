@@ -286,7 +286,8 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	public boolean onTouchEvent(MotionEvent event) {
 		switch(event.getAction()){
 			case MotionEvent.ACTION_MOVE:
-				centerToGpsPos = false;
+				if (currentPosition != null)
+					centerToGpsPos = false;
 				break;
 		}
 		return super.onTouchEvent(event);
