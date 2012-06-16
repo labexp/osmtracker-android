@@ -12,6 +12,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -44,7 +45,7 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	/**
 	 * the duration of a voice recording in seconds
 	 */
-	private int recordingDuration;
+	private int recordingDuration = -1;
 
 	/**
 	 * Indicates if we are currently recording, to prevent double click.
@@ -94,13 +95,7 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 		
 		// Try to un-mute microphone, just in case
 		audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-		
-		// get preferences we'll need for this dialog 
-		recordingDuration = Integer.parseInt(
-				PreferenceManager.getDefaultSharedPreferences(context).getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION,
-				OSMTracker.Preferences.VAL_VOICEREC_DURATION));
 
-		
 		this.setTitle(context.getResources().getString(R.string.tracklogger_voicerec_title));
 		
 		this.setButton(context.getResources().getString(R.string.tracklogger_voicerec_stop), new DialogInterface.OnClickListener() {
@@ -120,9 +115,15 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	public void onStart() {
 		// we'll need the start time of this dialog to check if a key has been pressed before the dialog was opened
 		dialogStartTime = SystemClock.uptimeMillis();
-		
-		boolean playSound = PreferenceManager.getDefaultSharedPreferences(context)
-			.getBoolean(OSMTracker.Preferences.KEY_SOUND_ENABLED, OSMTracker.Preferences.VAL_SOUND_ENABLED);
+
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+		if (!isRecording)
+			recordingDuration = Integer.parseInt(
+					preferences.getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION,
+						OSMTracker.Preferences.VAL_VOICEREC_DURATION));
+
+		assert (recordingDuration > 0);
 
 		this.setMessage(
 				context.getResources().getString(R.string.tracklogger_voicerec_text)
@@ -158,7 +159,10 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 			File audioFile = getAudioFile();
 
 			if (audioFile != null) {
-	
+
+				boolean playSound = preferences.getBoolean(OSMTracker.Preferences.KEY_SOUND_ENABLED,
+						OSMTracker.Preferences.VAL_SOUND_ENABLED);
+
 				// Some workaround for record problems
 				unMuteMicrophone();
 				
