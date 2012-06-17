@@ -123,8 +123,6 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 					preferences.getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION,
 						OSMTracker.Preferences.VAL_VOICEREC_DURATION));
 
-		assert (recordingDuration > 0);
-
 		this.setMessage(
 				context.getResources().getString(R.string.tracklogger_voicerec_text)
 				.replace("{0}", String.valueOf(recordingDuration)));
