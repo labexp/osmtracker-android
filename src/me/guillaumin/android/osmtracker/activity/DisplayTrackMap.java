@@ -7,13 +7,12 @@ import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.overlay.WayPointsOverlay;
 
 import org.osmdroid.contributor.util.constants.OpenStreetMapContributorConstants;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.ItemizedOverlay;
-import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.PathOverlay;
 import org.osmdroid.views.overlay.SimpleLocationOverlay;
 
@@ -97,11 +96,11 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	 * OSM view overlay that displays current path
 	 */
 	private PathOverlay pathOverlay;
-	
+
 	/**
-	 * List of waypoints to display on the map.
+	 * OSM view overlay that displays waypoints 
 	 */
-	private List<OverlayItem> wayPointItems = new ArrayList<OverlayItem>();
+	private WayPointsOverlay wayPointsOverlay;	
 	
 	/**
 	 * Current track id
@@ -221,7 +220,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         pathChanged();
         
         // Refresh way points
-        refreshWayPointItems();
+        // wayPointsOverlay.refresh();
         
 		super.onResume();
 	}
@@ -304,31 +303,8 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		myLocationOverlay = new SimpleLocationOverlay(this);
 		osmView.getOverlays().add(myLocationOverlay);
         
-		osmView.getOverlays().add(new ItemizedOverlay<OverlayItem>(this, wayPointItems, null));        
-	}
-	
-	/**
-	 * Refreshes the list of {@link OverlayItem} that display way points.
-	 */
-	private void refreshWayPointItems() {
-		wayPointItems.clear();
-		
-		Cursor c = getContentResolver().query(
-				TrackContentProvider.waypointsUri(currentTrackId),
-				null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
-        
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-			OverlayItem i = new OverlayItem(
-					c.getString(c.getColumnIndex(Schema.COL_NAME)),
-					c.getString(c.getColumnIndex(Schema.COL_NAME)),
-					new GeoPoint(
-							c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE)),
-							c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE)))
-					);
-			i.setMarker(getResources().getDrawable(R.drawable.star));
-			wayPointItems.add(i);       	
-		}
-		c.close();
+		wayPointsOverlay = new WayPointsOverlay(this, currentTrackId);
+		osmView.getOverlays().add(wayPointsOverlay);
 	}
 	
 	/**

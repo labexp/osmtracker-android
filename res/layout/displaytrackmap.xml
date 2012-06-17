@@ -3,7 +3,7 @@
 	android:layout_height="wrap_content" android:id="@+id/displaytrackmapRoot">
 
 	<org.osmdroid.views.MapView android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:id="@+id/displaytrackmap_osmView" />
+		android:layout_height="fill_parent" android:id="@+id/displaytrackmap_osmView" />
 
 	<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/zoom_in"
 		android:layout_alignParentRight="true" android:id="@+id/displaytrackmap_imgZoomIn"></ImageView>
