@@ -5,7 +5,8 @@
 		android:defaultValue="2" android:entries="@array/prefs_voicerec_durations"></ListPreference>
 	<CheckBoxPreference android:key="sound_enabled" android:title="@string/prefs_sound_enabled"
 		android:summary="@string/prefs_sound_enabled_summary" android:defaultValue="true"></CheckBoxPreference>
-	<PreferenceCategory android:title="@string/prefs_gps">
+	<PreferenceCategory android:key="perfs.gps" 
+	    android:title="@string/prefs_gps">
 		<Preference android:summary="@string/prefs_gps_os_settings_summary"
 			android:title="@string/prefs_gps_os_settings" android:key="gps.ossettings"></Preference>
 		<CheckBoxPreference android:key="gps.checkstartup"
@@ -13,6 +14,9 @@
 			android:defaultValue="true"></CheckBoxPreference>
 		<CheckBoxPreference android:key="gps.ignoreclock"
 			android:title="@string/prefs_gps_ignore_clock" android:summary="@string/prefs_gps_ignore_clock_summary"
+			android:defaultValue="false"></CheckBoxPreference>
+		<CheckBoxPreference android:key="gps.log.raw.nmea"
+			android:title="@string/prefs_gps_log_raw_nmea" android:summary="@string/prefs_gps_log_raw_nmea_summary"
 			android:defaultValue="false"></CheckBoxPreference>
 		<EditTextPreference android:key="gps.logging.interval"
 			android:title="@string/prefs_gps_logging_interval" android:summary="@string/prefs_gps_logging_interval_summary"

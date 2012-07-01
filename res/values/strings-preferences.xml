@@ -18,6 +18,9 @@
 	<string name="prefs_gps_logging_interval">GPS logging interval</string>
 	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (affects battery life)</string>
 	<string name="prefs_gps_logging_interval_seconds">seconds</string>
+	
+	<string name="prefs_gps_log_raw_nmea">Log raw NMEA data</string>
+	<string name="prefs_gps_log_raw_nmea_summary">May not work on some phones</string>
 
 	<string name="prefs_ui">User interface</string>
 	

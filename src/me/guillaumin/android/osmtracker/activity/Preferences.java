@@ -14,6 +14,7 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 
@@ -133,7 +134,12 @@ public class Preferences extends PreferenceActivity {
 			}
 		});
 
-		
+		// Log raw NMEA data option
+		if (android.os.Build.VERSION.SDK_INT <= 5) {
+			PreferenceCategory category = (PreferenceCategory)findPreference("perfs.gps");
+			pref = findPreference(OSMTracker.Preferences.KEY_GPS_LOG_RAW_NMEA);
+			category.removePreference(pref);
+		}
 	}
 
 	/**

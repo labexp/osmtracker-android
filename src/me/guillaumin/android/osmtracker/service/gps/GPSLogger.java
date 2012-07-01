@@ -6,6 +6,7 @@ import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,6 +15,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -69,7 +71,12 @@ public class GPSLogger extends Service implements LocationListener {
 	 * LocationManager
 	 */
 	private LocationManager lmgr;
-	
+
+	/**
+	 * NMEA Listener 
+	 */
+	NmeaHandler nmeaHandler;
+
 	/**
 	 * Current Track ID
 	 */
@@ -84,8 +91,12 @@ public class GPSLogger extends Service implements LocationListener {
 	 * the interval (in ms) to log GPS fixes defined in the preferences
 	 */
 	private long gpsLoggingInterval;
-	
-	
+
+	/**
+	 * Is NMEA logging enabled ?
+	 */
+	private boolean isRawNmeaLogEnabled;
+
 	/**
 	 * Receives Intent for way point tracking, and stop/start logging.
 	 */
@@ -144,6 +155,33 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private final IBinder binder = new GPSLoggerBinder();
 
+	
+	/* NMEA Handler */
+	public class NmeaHandler {
+		protected LocationManager lmgr;
+		private GpsStatus.NmeaListener nmeaListener;
+		
+		NmeaHandler(LocationManager lmgr) {
+			this.lmgr = lmgr;
+		}
+
+		@TargetApi(5)
+		public void addNmeaListener() {
+			nmeaListener = new GpsStatus.NmeaListener() {
+				public void onNmeaReceived(long timestamp, String nmea) {
+					Log.d(TAG, "nmea: " + nmea);
+				}
+				};
+			lmgr.addNmeaListener(nmeaListener);
+		}
+
+		@TargetApi(5)
+		public void removeNmeaListener() {
+			if (nmeaListener != null)
+				lmgr.removeNmeaListener(nmeaListener);
+		}
+	}
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		return binder;
@@ -181,10 +219,16 @@ public class GPSLogger extends Service implements LocationListener {
 	public void onCreate() {	
 		dataHelper = new DataHelper(this);
 
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(
+				this.getApplicationContext());
+
 		//read the logging interval from preferences
-		gpsLoggingInterval = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
+		gpsLoggingInterval = Long.parseLong(preferences.getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
-		
+
+		isRawNmeaLogEnabled = preferences.getBoolean(OSMTracker.Preferences.KEY_GPS_LOG_RAW_NMEA,
+				OSMTracker.Preferences.VAL_GPS_LOG_RAW_NMEA);
+
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(OSMTracker.INTENT_TRACK_WP);
@@ -198,9 +242,16 @@ public class GPSLogger extends Service implements LocationListener {
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 		
+		if (android.os.Build.VERSION.SDK_INT >= 5)
+			nmeaHandler = new NmeaHandler(lmgr);
+
+		// Register NMEA logger
+		if (isRawNmeaLogEnabled)
+			nmeaHandler.addNmeaListener();
+		
 		super.onCreate();
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		if (isTracking) {
@@ -210,7 +261,11 @@ public class GPSLogger extends Service implements LocationListener {
 
 		// Unregister listener
 		lmgr.removeUpdates(this);
-		
+
+		// Unregister NMEA listener
+		if (nmeaHandler != null)
+			nmeaHandler.removeNmeaListener();
+
 		// Unregister broadcast receiver
 		unregisterReceiver(receiver);
 		
