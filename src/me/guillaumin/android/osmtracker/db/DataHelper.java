@@ -43,6 +43,11 @@ public class DataHelper {
 	public static final String EXTENSION_JPG = ".jpg";
 
 	/**
+	 * NMEA file extension
+	 */
+	public static final String EXTENSION_NMEA = ".nmea";
+
+	/**
 	 * Number of tries to rename a media file for the current track if there are
 	 * already a media file of this name.
 	 */

@@ -1,5 +1,11 @@
 package me.guillaumin.android.osmtracker.service.gps;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
@@ -73,9 +79,9 @@ public class GPSLogger extends Service implements LocationListener {
 	private LocationManager lmgr;
 
 	/**
-	 * NMEA Listener 
+	 * NMEA Logger 
 	 */
-	NmeaHandler nmeaHandler;
+	NmeaLogger nmeaLogger;
 
 	/**
 	 * Current Track ID
@@ -156,29 +162,115 @@ public class GPSLogger extends Service implements LocationListener {
 	private final IBinder binder = new GPSLoggerBinder();
 
 	
-	/* NMEA Handler */
-	public class NmeaHandler {
-		protected LocationManager lmgr;
-		private GpsStatus.NmeaListener nmeaListener;
-		
-		NmeaHandler(LocationManager lmgr) {
-			this.lmgr = lmgr;
-		}
+	/* NMEA Logger */
+	public class NmeaLogger {
+		public void activate() {};
+		public void deactivate() {};
+	}
+	
+	@TargetApi(5)
+	public class NmeaV5Logger extends NmeaLogger {
 
-		@TargetApi(5)
-		public void addNmeaListener() {
+		/** 
+		 * NMEA listener
+		 */
+
+		private GpsStatus.NmeaListener nmeaListener;
+
+		/** 
+		 * NMEA log writer
+		 */
+		private BufferedWriter nmeaLog;
+
+		private boolean is_active;
+
+		NmeaV5Logger() {
 			nmeaListener = new GpsStatus.NmeaListener() {
 				public void onNmeaReceived(long timestamp, String nmea) {
-					Log.d(TAG, "nmea: " + nmea);
+					NmeaV5Logger.this.onNmeaReceived(timestamp, nmea);
 				}
-				};
-			lmgr.addNmeaListener(nmeaListener);
+			};
 		}
 
-		@TargetApi(5)
-		public void removeNmeaListener() {
-			if (nmeaListener != null)
-				lmgr.removeNmeaListener(nmeaListener);
+		private boolean openLog()
+		{
+			File nmeaLogFile;
+
+			if (nmeaLog != null)
+				return true;
+
+			// Query for current track directory
+			File trackDir = DataHelper.getTrackDirectory(currentTrackId);
+
+			// Create the track storage directory if it does not yet exist
+			if (!trackDir.exists()) {
+				if ( !trackDir.mkdirs() ) {
+					Log.w(TAG, "Directory [" + trackDir.getAbsolutePath() + "] does not exist and cannot be created");
+					return false;
+				}
+			}
+
+			// Ensure that this location can be written to 
+			if (trackDir.exists() && trackDir.canWrite()) {
+				nmeaLogFile = new File(trackDir,
+						DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_NMEA);
+			} else {
+				Log.w(TAG, "The directory [" + trackDir.getAbsolutePath() + "] will not allow files to be created");
+				return false;
+			}
+
+			try {
+				nmeaLog = new BufferedWriter(new FileWriter(nmeaLogFile, true));
+			}catch (IOException e) {
+				Log.w(TAG, "Failed to open NMEA log file " + nmeaLogFile  + ": " + e);
+			}
+
+			return nmeaLog != null;
+		}
+
+		private void closeLog()
+		{
+			if (nmeaLog == null)
+				return;
+
+			try {
+				nmeaLog.close();
+			} catch (IOException e) {
+				Log.w(TAG, "closeLogfile() error " + e);
+			}
+			nmeaLog = null;
+		}
+
+		private void onNmeaReceived(long timestamp, String nmea) {
+			if (!isTracking)
+				return;
+
+			if ((nmeaLog == null)
+					&& (openLog() == false))
+				return;
+
+			try {
+				nmeaLog.write(nmea);
+			} catch (IOException e) {
+				Log.e(TAG, "nmeaLog.write() error " + e);
+				closeLog();
+			}
+		}
+
+		@Override
+		public void activate() {
+			if (is_active)
+				return;
+			is_active = lmgr.addNmeaListener(nmeaListener);
+		}
+
+		@Override
+		public void deactivate() {
+			if (!is_active)
+				return;
+			lmgr.removeNmeaListener(nmeaListener);
+			closeLog();
+			is_active = false;
 		}
 	}
 
@@ -243,12 +335,10 @@ public class GPSLogger extends Service implements LocationListener {
 		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 		
 		if (android.os.Build.VERSION.SDK_INT >= 5)
-			nmeaHandler = new NmeaHandler(lmgr);
+			nmeaLogger = new NmeaV5Logger();
+		else
+			nmeaLogger = new NmeaLogger();
 
-		// Register NMEA logger
-		if (isRawNmeaLogEnabled)
-			nmeaHandler.addNmeaListener();
-		
 		super.onCreate();
 	}
 
@@ -261,10 +351,6 @@ public class GPSLogger extends Service implements LocationListener {
 
 		// Unregister listener
 		lmgr.removeUpdates(this);
-
-		// Unregister NMEA listener
-		if (nmeaHandler != null)
-			nmeaHandler.removeNmeaListener();
 
 		// Unregister broadcast receiver
 		unregisterReceiver(receiver);
@@ -282,6 +368,11 @@ public class GPSLogger extends Service implements LocationListener {
 		currentTrackId = trackId;
 		Log.v(TAG, "Starting track logging for track #" + trackId);
 		isTracking = true;
+
+		// Start NMEA logging
+		if (isRawNmeaLogEnabled)
+			nmeaLogger.activate();
+
 		notifyBackgroundService();
 	}
 
@@ -291,6 +382,7 @@ public class GPSLogger extends Service implements LocationListener {
 	private void stopTrackingAndSave() {
 		isTracking = false;
 		dataHelper.stopTracking(currentTrackId);
+		nmeaLogger.deactivate();
 		stopNotifyBackgroundService();
 		currentTrackId = -1;
 		this.stopSelf();
