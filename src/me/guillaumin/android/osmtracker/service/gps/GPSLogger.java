@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -39,7 +40,8 @@ import android.util.Log;
  * @author Nicolas Guillaumin
  *
  */
-public class GPSLogger extends Service implements LocationListener {
+public class GPSLogger extends Service implements LocationListener,
+   SharedPreferences.OnSharedPreferenceChangeListener {
 
 	private static final String TAG = GPSLogger.class.getSimpleName();
 
@@ -161,6 +163,10 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private final IBinder binder = new GPSLoggerBinder();
 
+	/**
+	 * Keeps the SharedPreferences
+	 */
+	private SharedPreferences preferences;
 	
 	/* NMEA Logger */
 	public class NmeaLogger {
@@ -311,13 +317,14 @@ public class GPSLogger extends Service implements LocationListener {
 	public void onCreate() {	
 		dataHelper = new DataHelper(this);
 
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(
+		preferences = PreferenceManager.getDefaultSharedPreferences(
 				this.getApplicationContext());
 
 		//read the logging interval from preferences
 		gpsLoggingInterval = Long.parseLong(preferences.getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 
+		// read if raw NMEA log is enabled 
 		isRawNmeaLogEnabled = preferences.getBoolean(OSMTracker.Preferences.KEY_GPS_LOG_RAW_NMEA,
 				OSMTracker.Preferences.VAL_GPS_LOG_RAW_NMEA);
 
@@ -333,7 +340,10 @@ public class GPSLogger extends Service implements LocationListener {
 		// Register ourselves for location updates
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-		
+
+		// Register ourselves for preferences changes
+		preferences.registerOnSharedPreferenceChangeListener(this);
+
 		if (android.os.Build.VERSION.SDK_INT >= 5)
 			nmeaLogger = new NmeaV5Logger();
 		else
@@ -352,9 +362,12 @@ public class GPSLogger extends Service implements LocationListener {
 		// Unregister listener
 		lmgr.removeUpdates(this);
 
+		// Unregister preference change listener
+		preferences.unregisterOnSharedPreferenceChangeListener(this);
+
 		// Unregister broadcast receiver
 		unregisterReceiver(receiver);
-		
+
 		// Cancel any existing notification
 		stopNotifyBackgroundService();
 
@@ -463,6 +476,25 @@ public class GPSLogger extends Service implements LocationListener {
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// Not interested in provider status			
+	}
+	
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
+	{
+		if (key.equals(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL)) {
+			gpsLoggingInterval = Long.parseLong(sharedPreferences.getString(
+					OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
+		}else if (key.equals(OSMTracker.Preferences.KEY_GPS_LOG_RAW_NMEA)) {
+			isRawNmeaLogEnabled = sharedPreferences.getBoolean(OSMTracker.Preferences.KEY_GPS_LOG_RAW_NMEA,
+					OSMTracker.Preferences.VAL_GPS_LOG_RAW_NMEA);
+
+			if (isTracking) {
+				if (isRawNmeaLogEnabled)
+					nmeaLogger.activate();
+				else
+					nmeaLogger.deactivate();
+			}
+		}
 	}
 
 	/**
