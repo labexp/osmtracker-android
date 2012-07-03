@@ -31,6 +31,7 @@ import android.location.LocationManager;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -84,6 +85,11 @@ public class GPSLogger extends Service implements LocationListener,
 	 * NMEA Logger 
 	 */
 	NmeaLogger nmeaLogger;
+	
+	/**
+	 * Wake lock that ensures that the CPU is running.
+	 */
+	private PowerManager.WakeLock wakeLock;
 
 	/**
 	 * Current Track ID
@@ -349,6 +355,10 @@ public class GPSLogger extends Service implements LocationListener,
 		else
 			nmeaLogger = new NmeaLogger();
 
+		PowerManager pm = (PowerManager)getSystemService(
+                Context.POWER_SERVICE);
+		wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "OsmtrackerServiceLock");
+
 		super.onCreate();
 	}
 
@@ -386,6 +396,9 @@ public class GPSLogger extends Service implements LocationListener,
 		if (isRawNmeaLogEnabled)
 			nmeaLogger.activate();
 
+		// Lock CPU power
+		wakeLock.acquire();
+
 		notifyBackgroundService();
 	}
 
@@ -396,6 +409,7 @@ public class GPSLogger extends Service implements LocationListener,
 		isTracking = false;
 		dataHelper.stopTracking(currentTrackId);
 		nmeaLogger.deactivate();
+		wakeLock.release();
 		stopNotifyBackgroundService();
 		currentTrackId = -1;
 		this.stopSelf();
