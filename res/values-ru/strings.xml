@@ -6,7 +6,7 @@
 	<string name="app_description">Как и OSMTracker для Windows Mobile, позволяет записывать Ваши путешествия, отмечая важнейшие точки (с записью аудио), экспортировать их в формат GPX для дальнейшего использования в редакторах Open Street Map, например в JOSM.</string>
 
 	<!-- TrackLogger -->
-	<string name="tracklogger">Track logger</string>
+	<string name="tracklogger">Регистратор маршрутов</string>
 	<string name="tracklogger_waiting_gps">Ожидание сигнала GPS для активации кнопок&#8230;</string>
 	<string name="tracklogger_voicerec_title">Запись аудио</string>
 	<string name="tracklogger_voicerec_text">Запись аудио: {0}с.</string>
@@ -61,7 +61,7 @@
 	<string name="gpsstatus_record_textnote">Запись текста</string>
 
 	<!-- Menu -->
-	<string name="menu_settings">Настройка</string>
+	<string name="menu_settings">Настройки</string>
 	<string name="menu_waypointlist">Путевые точки</string>
 	<string name="menu_about">О программе</string>
 	<string name="menu_displaytrack">Показать трек</string>

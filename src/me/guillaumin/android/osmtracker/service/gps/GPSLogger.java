@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -84,7 +83,7 @@ public class GPSLogger extends Service implements LocationListener,
 	/**
 	 * NMEA Logger 
 	 */
-	NmeaLogger nmeaLogger;
+	private NmeaLogger nmeaLogger;
 	
 	/**
 	 * Wake lock that ensures that the CPU is running.
