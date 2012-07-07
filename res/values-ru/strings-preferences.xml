@@ -18,9 +18,12 @@
 	<string name="prefs_gps_logging_interval">Интервал сохранения GPS</string>
 	<string name="prefs_gps_logging_interval_summary">Установите 0 для минимально возможного (ускоряет разряд батереи)</string>
 	<string name="prefs_gps_logging_interval_seconds">секунд(ы)</string>
-	
+
+	<string name="prefs_gps_log_raw_nmea">Вести журнал первичных данных NMEA</string>
+	<string name="prefs_gps_log_raw_nmea_summary">Сохранять первичные данные NMEA на SD-карту. Не работает на некоторых телефонах.</string>
+
 	<string name="prefs_ui">Интерфейс</string>
-	
+
 	<string name="prefs_ui_buttons_layout">Расположение кнопок</string>
 	<string name="prefs_ui_buttons_layout_summary">Выбрать вариант расположения кнопок (См. документацию)</string>
 	<string name="prefs_ui_buttons_layout_defaut">По умолчанию</string>

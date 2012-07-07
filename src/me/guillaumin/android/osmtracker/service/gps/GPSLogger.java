@@ -1,11 +1,18 @@
 package me.guillaumin.android.osmtracker.service.gps;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,6 +21,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -21,7 +29,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Binder;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -31,7 +41,8 @@ import android.util.Log;
  * @author Nicolas Guillaumin
  *
  */
-public class GPSLogger extends Service implements LocationListener {
+public class GPSLogger extends Service implements LocationListener,
+   SharedPreferences.OnSharedPreferenceChangeListener {
 
 	private static final String TAG = GPSLogger.class.getSimpleName();
 
@@ -69,7 +80,17 @@ public class GPSLogger extends Service implements LocationListener {
 	 * LocationManager
 	 */
 	private LocationManager lmgr;
+
+	/**
+	 * NMEA Logger 
+	 */
+	private NmeaLogger nmeaLogger;
 	
+	/**
+	 * Wake lock that ensures that the CPU is running.
+	 */
+	private PowerManager.WakeLock wakeLock;
+
 	/**
 	 * Current Track ID
 	 */
@@ -84,8 +105,12 @@ public class GPSLogger extends Service implements LocationListener {
 	 * the interval (in ms) to log GPS fixes defined in the preferences
 	 */
 	private long gpsLoggingInterval;
-	
-	
+
+	/**
+	 * Is NMEA logging enabled ?
+	 */
+	private boolean isRawNmeaLogEnabled;
+
 	/**
 	 * Receives Intent for way point tracking, and stop/start logging.
 	 */
@@ -144,6 +169,178 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private final IBinder binder = new GPSLoggerBinder();
 
+	/**
+	 * Keeps the SharedPreferences
+	 */
+	private SharedPreferences preferences;
+	
+	/* NMEA Logger */
+	public class NmeaLogger {
+		public void activate() {};
+		public void deactivate() {};
+	}
+	
+	@TargetApi(5)
+	public class NmeaV5Logger extends NmeaLogger {
+
+		/** 
+		 * NMEA listener
+		 */
+
+		private GpsStatus.NmeaListener nmeaListener;
+
+		/** 
+		 * NMEA log file
+		 */
+		File nmeaLogFile;
+
+		/** 
+		 * NMEA log file writer
+		 */
+		private BufferedWriter nmeaLog;
+
+		private boolean isActive = false;
+
+		private BroadcastReceiver mExternalStorageReceiver;
+
+		private boolean mExternalStorageWriteable = false;
+
+		NmeaV5Logger() {
+			nmeaListener = new GpsStatus.NmeaListener() {
+				public void onNmeaReceived(long timestamp, String nmea) {
+					NmeaV5Logger.this.onNmeaReceived(timestamp, nmea);
+				}
+			};
+		}
+
+		private boolean openLog()
+		{
+			if (!mExternalStorageWriteable)
+				return false;
+
+			if (nmeaLog != null)
+				return true;
+
+			// Query for current track directory
+			File trackDir = DataHelper.getTrackDirectory(currentTrackId);
+
+			// Create the track storage directory if it does not yet exist
+			if (!trackDir.exists()) {
+				if ( !trackDir.mkdirs() ) {
+					Log.w(TAG, "Directory [" + trackDir.getAbsolutePath() + "] does not exist and cannot be created");
+					return false;
+				}
+			}
+
+			// Ensure that this location can be written to 
+			if (trackDir.exists() && trackDir.canWrite()) {
+				nmeaLogFile = new File(trackDir,
+						DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_NMEA);
+			} else {
+				Log.w(TAG, "The directory [" + trackDir.getAbsolutePath() + "] will not allow files to be created");
+				return false;
+			}
+
+			try {
+				nmeaLog = new BufferedWriter(new FileWriter(nmeaLogFile, true));
+			}catch (IOException e) {
+				Log.w(TAG, "Failed to open NMEA log file " + nmeaLogFile  + ": " + e);
+			}
+			
+			if (nmeaLog != null)
+				Log.i(TAG, "Opened NMEA log file " + nmeaLogFile.getAbsolutePath());
+
+			return nmeaLog != null;
+		}
+
+		private void closeLog()
+		{
+			if (nmeaLog == null)
+				return;
+
+			try {
+				nmeaLog.close();
+			} catch (IOException e) {
+				Log.w(TAG, "closeLogfile() error " + e);
+			}
+			Log.i(TAG, "Closed NMEA log file " + nmeaLogFile.getAbsolutePath());
+			nmeaLog = null;
+			nmeaLogFile = null;
+		}
+
+		private void onNmeaReceived(long timestamp, String nmea) {
+			if (!isTracking)
+				return;
+
+			if (!mExternalStorageWriteable)
+				return;
+
+			if ((nmeaLog == null)
+					&& (openLog() == false))
+				return;
+
+			try {
+				nmeaLog.write(nmea);
+			} catch (IOException e) {
+				Log.e(TAG, "nmeaLog.write() error " + e);
+				closeLog();
+			}
+		}
+
+
+		private void startWatchingExternalStorage()
+		{
+			mExternalStorageReceiver = new BroadcastReceiver() {
+		        @Override
+		        public void onReceive(Context context, Intent intent) {
+		        	String action = intent.getAction();
+		        	if (action.equals(Intent.ACTION_MEDIA_EJECT)) {
+		        		Log.i(TAG, "got an EJECT for " + intent.getData() );
+		        		closeLog();
+		        	}else
+		        		Log.i(TAG, "Storage " + intent.getData());
+		            updateExternalStorageState();
+		        }
+		    };
+		    IntentFilter filter = new IntentFilter();
+		    filter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+		    filter.addAction(Intent.ACTION_MEDIA_EJECT);
+		    filter.addDataScheme("file");
+		    registerReceiver(mExternalStorageReceiver, filter);
+		    updateExternalStorageState();
+		}
+
+		private void stopWatchingExternalStorage()
+		{
+			unregisterReceiver(mExternalStorageReceiver);
+		}
+
+		private void updateExternalStorageState()
+		{
+			String state = Environment.getExternalStorageState();
+			mExternalStorageWriteable = Environment.MEDIA_MOUNTED.equals(state);
+		}
+
+		@Override
+		public void activate() {
+			if (isActive)
+				return;
+			isActive = lmgr.addNmeaListener(nmeaListener);
+			if (isActive)
+				startWatchingExternalStorage();
+		}
+
+		@Override
+		public void deactivate() {
+			if (!isActive)
+				return;
+			stopWatchingExternalStorage();
+			lmgr.removeNmeaListener(nmeaListener);
+			closeLog();
+			isActive = false;
+		}
+	}
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		return binder;
@@ -181,10 +378,17 @@ public class GPSLogger extends Service implements LocationListener {
 	public void onCreate() {	
 		dataHelper = new DataHelper(this);
 
+		preferences = PreferenceManager.getDefaultSharedPreferences(
+				this.getApplicationContext());
+
 		//read the logging interval from preferences
-		gpsLoggingInterval = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
+		gpsLoggingInterval = Long.parseLong(preferences.getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
-		
+
+		// read if raw NMEA log is enabled 
+		isRawNmeaLogEnabled = preferences.getBoolean(OSMTracker.Preferences.KEY_GPS_LOG_RAW_NMEA,
+				OSMTracker.Preferences.VAL_GPS_LOG_RAW_NMEA);
+
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(OSMTracker.INTENT_TRACK_WP);
@@ -197,10 +401,22 @@ public class GPSLogger extends Service implements LocationListener {
 		// Register ourselves for location updates
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-		
+
+		// Register ourselves for preferences changes
+		preferences.registerOnSharedPreferenceChangeListener(this);
+
+		if (android.os.Build.VERSION.SDK_INT >= 5)
+			nmeaLogger = new NmeaV5Logger();
+		else
+			nmeaLogger = new NmeaLogger();
+
+		PowerManager pm = (PowerManager)getSystemService(
+                Context.POWER_SERVICE);
+		wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "OsmtrackerServiceLock");
+
 		super.onCreate();
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		if (isTracking) {
@@ -210,10 +426,13 @@ public class GPSLogger extends Service implements LocationListener {
 
 		// Unregister listener
 		lmgr.removeUpdates(this);
-		
+
+		// Unregister preference change listener
+		preferences.unregisterOnSharedPreferenceChangeListener(this);
+
 		// Unregister broadcast receiver
 		unregisterReceiver(receiver);
-		
+
 		// Cancel any existing notification
 		stopNotifyBackgroundService();
 
@@ -227,6 +446,14 @@ public class GPSLogger extends Service implements LocationListener {
 		currentTrackId = trackId;
 		Log.v(TAG, "Starting track logging for track #" + trackId);
 		isTracking = true;
+
+		// Start NMEA logging
+		if (isRawNmeaLogEnabled)
+			nmeaLogger.activate();
+
+		// Lock CPU power
+		wakeLock.acquire();
+
 		notifyBackgroundService();
 	}
 
@@ -236,6 +463,8 @@ public class GPSLogger extends Service implements LocationListener {
 	private void stopTrackingAndSave() {
 		isTracking = false;
 		dataHelper.stopTracking(currentTrackId);
+		nmeaLogger.deactivate();
+		wakeLock.release();
 		stopNotifyBackgroundService();
 		currentTrackId = -1;
 		this.stopSelf();
@@ -316,6 +545,25 @@ public class GPSLogger extends Service implements LocationListener {
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// Not interested in provider status			
+	}
+	
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
+	{
+		if (key.equals(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL)) {
+			gpsLoggingInterval = Long.parseLong(sharedPreferences.getString(
+					OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
+		}else if (key.equals(OSMTracker.Preferences.KEY_GPS_LOG_RAW_NMEA)) {
+			isRawNmeaLogEnabled = sharedPreferences.getBoolean(OSMTracker.Preferences.KEY_GPS_LOG_RAW_NMEA,
+					OSMTracker.Preferences.VAL_GPS_LOG_RAW_NMEA);
+
+			if (isTracking) {
+				if (isRawNmeaLogEnabled)
+					nmeaLogger.activate();
+				else
+					nmeaLogger.deactivate();
+			}
+		}
 	}
 
 	/**
