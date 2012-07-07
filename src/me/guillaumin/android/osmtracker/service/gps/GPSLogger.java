@@ -29,6 +29,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Binder;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
@@ -189,11 +190,20 @@ public class GPSLogger extends Service implements LocationListener,
 		private GpsStatus.NmeaListener nmeaListener;
 
 		/** 
-		 * NMEA log writer
+		 * NMEA log file
+		 */
+		File nmeaLogFile;
+
+		/** 
+		 * NMEA log file writer
 		 */
 		private BufferedWriter nmeaLog;
 
-		private boolean is_active;
+		private boolean isActive = false;
+
+		private BroadcastReceiver mExternalStorageReceiver;
+
+		private boolean mExternalStorageWriteable = false;
 
 		NmeaV5Logger() {
 			nmeaListener = new GpsStatus.NmeaListener() {
@@ -205,7 +215,8 @@ public class GPSLogger extends Service implements LocationListener,
 
 		private boolean openLog()
 		{
-			File nmeaLogFile;
+			if (!mExternalStorageWriteable)
+				return false;
 
 			if (nmeaLog != null)
 				return true;
@@ -235,6 +246,9 @@ public class GPSLogger extends Service implements LocationListener,
 			}catch (IOException e) {
 				Log.w(TAG, "Failed to open NMEA log file " + nmeaLogFile  + ": " + e);
 			}
+			
+			if (nmeaLog != null)
+				Log.i(TAG, "Opened NMEA log file " + nmeaLogFile.getAbsolutePath());
 
 			return nmeaLog != null;
 		}
@@ -249,11 +263,16 @@ public class GPSLogger extends Service implements LocationListener,
 			} catch (IOException e) {
 				Log.w(TAG, "closeLogfile() error " + e);
 			}
+			Log.i(TAG, "Closed NMEA log file " + nmeaLogFile.getAbsolutePath());
 			nmeaLog = null;
+			nmeaLogFile = null;
 		}
 
 		private void onNmeaReceived(long timestamp, String nmea) {
 			if (!isTracking)
+				return;
+
+			if (!mExternalStorageWriteable)
 				return;
 
 			if ((nmeaLog == null)
@@ -268,20 +287,57 @@ public class GPSLogger extends Service implements LocationListener,
 			}
 		}
 
+
+		private void startWatchingExternalStorage()
+		{
+			mExternalStorageReceiver = new BroadcastReceiver() {
+		        @Override
+		        public void onReceive(Context context, Intent intent) {
+		        	String action = intent.getAction();
+		        	if (action.equals(Intent.ACTION_MEDIA_EJECT)) {
+		        		Log.i(TAG, "got an EJECT for " + intent.getData() );
+		        		closeLog();
+		        	}else
+		        		Log.i(TAG, "Storage " + intent.getData());
+		            updateExternalStorageState();
+		        }
+		    };
+		    IntentFilter filter = new IntentFilter();
+		    filter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+		    filter.addAction(Intent.ACTION_MEDIA_EJECT);
+		    filter.addDataScheme("file");
+		    registerReceiver(mExternalStorageReceiver, filter);
+		    updateExternalStorageState();
+		}
+
+		private void stopWatchingExternalStorage()
+		{
+			unregisterReceiver(mExternalStorageReceiver);
+		}
+
+		private void updateExternalStorageState()
+		{
+			String state = Environment.getExternalStorageState();
+			mExternalStorageWriteable = Environment.MEDIA_MOUNTED.equals(state);
+		}
+
 		@Override
 		public void activate() {
-			if (is_active)
+			if (isActive)
 				return;
-			is_active = lmgr.addNmeaListener(nmeaListener);
+			isActive = lmgr.addNmeaListener(nmeaListener);
+			if (isActive)
+				startWatchingExternalStorage();
 		}
 
 		@Override
 		public void deactivate() {
-			if (!is_active)
+			if (!isActive)
 				return;
+			stopWatchingExternalStorage();
 			lmgr.removeNmeaListener(nmeaListener);
 			closeLog();
-			is_active = false;
+			isActive = false;
 		}
 	}
 
