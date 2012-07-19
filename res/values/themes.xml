@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DefaultTheme" parent="@android:style/Theme"/>
+    <style name="DarkTheme" parent="@android:style/Theme.Black"/>
+    <style name="LightTheme" parent="@android:style/Theme.Light"/>
+</resources>
