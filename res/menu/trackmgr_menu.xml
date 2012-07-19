@@ -2,10 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:id="@+id/trackmgr_menu_newtrack"
 		android:title="@string/menu_newtrack"
-		android:icon="@android:drawable/ic_menu_add"></item>
+		android:icon="@android:drawable/ic_menu_add"
+		android:showAsAction="ifRoom|withText"></item>
+	<item android:id="@+id/trackmgr_menu_continuetrack"
+		android:title="@string/menu_continue"
+		android:icon="@android:drawable/ic_menu_edit"
+		android:showAsAction="never"
+		android:visible="false"></item>
 	<item android:id="@+id/trackmgr_menu_stopcurrenttrack"
 		android:title="@string/menu_stopcurrenttrack"
-		android:icon="@android:drawable/ic_menu_add"></item>
+		android:icon="@android:drawable/ic_menu_add"
+		android:showAsAction="never"></item>
 	<item android:id="@+id/trackmgr_menu_deletetracks"
 		android:title="@string/menu_deletetracks"
 		android:icon="@android:drawable/ic_menu_delete"></item>
@@ -14,8 +21,10 @@
 	    android:icon="@android:drawable/ic_menu_set_as"></item>
 	<item android:id="@+id/trackmgr_menu_settings"
 		android:title="@string/menu_settings"
-		android:icon="@android:drawable/ic_menu_preferences"></item>
+		android:icon="@android:drawable/ic_menu_preferences"
+		android:showAsAction="never"></item>
 	<item android:id="@+id/trackmgr_menu_about"
 		android:title="@string/menu_about"
-		android:icon="@android:drawable/ic_menu_help"></item>
+		android:icon="@android:drawable/ic_menu_help"
+		android:showAsAction="never"></item>
 </menu>
