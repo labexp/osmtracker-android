@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="android_lint" default="lint" >
+
+    <property name="lint.binary" value="${sdk.dir}/tools/lint" />
+
+    <target name="lint" >
+        <exec executable="${lint.binary}" failonerror="yes" >
+            <arg value="--exitcode" />
+            <arg value="-Wall" />
+            <arg value="." />
+        </exec>
+    </target>
+
+</project>
