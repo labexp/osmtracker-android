@@ -148,14 +148,6 @@ public class TrackManager extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.trackmgr_menu, menu);
-		if (currentTrackId != -1) {
-			MenuItem mi = menu.findItem(R.id.trackmgr_menu_newtrack);
-			if (mi != null) {
-				mi.setTitle(R.string.menu_continue);
-				mi.setTitleCondensed(getResources().getString(R.string.menu_continue));
-				mi.setIcon(android.R.drawable.ic_menu_edit);
-			}
-		}
 		return true;
 	}
 
@@ -188,12 +180,8 @@ public class TrackManager extends ListActivity {
 			// Start track logger activity
 			try {
 				Intent i = new Intent(this, TrackLogger.class);
-				if (currentTrackId == -1) {
-					// New track
-					currentTrackId = createNewTrack();
-				} else {
-					i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
-				}
+				// New track
+				currentTrackId = createNewTrack();
 				i.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 				startActivity(i);
 			} catch (CreateTrackException cte) {
