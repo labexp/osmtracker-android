@@ -309,8 +309,8 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 			writer.write(XML_HEADER + "\n");
 			writer.write(TAG_GPX + "\n");
 			
-			writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP);
 			writeWayPoints(writer, cWayPoints, accuracyOutput, fillHDOP);
+			writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP);
 			
 			writer.write("</gpx>");
 		} finally {
@@ -359,7 +359,7 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	        out.append("\t\t\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 	        
 	        if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
-	        	out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
+				out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
 	        }
 	       
 	        out.append("\t\t\t" + "</trkpt>" + "\n");
@@ -406,10 +406,6 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	        }
 		    out.append("\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 
-		    if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
-	        	out.append("\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
-	        }
-		    
 		    String name = c.getString(c.getColumnIndex(Schema.COL_NAME));
 		    
 		    if (! OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_NONE.equals(accuracyInfo) && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
@@ -446,6 +442,10 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 		    if (! c.isNull(c.getColumnIndex(Schema.COL_NBSATELLITES))) {
 		    	out.append("\t\t" + "<sat>" + c.getInt(c.getColumnIndex(Schema.COL_NBSATELLITES)) + "</sat>" + "\n");
 		    }
+
+		    if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
+				out.append("\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
+	        }
 		    
 		    out.append("\t" + "</wpt>" + "\n");
 		    
