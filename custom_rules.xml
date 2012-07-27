@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="OSMTracker-custom" default="help">
+
+    <property name="lint.binary" value="${sdk.dir}/tools/lint" />
+
+    <target name="lint" >
+        <exec executable="${lint.binary}" failonerror="yes" >
+            <arg value="--exitcode" />
+            <arg value="-Wall" />
+            <arg value="." />
+        </exec>
+    </target>
+
+    <target name="-pre-build" depends="lint">
+
+      <echo message="Copying 'nb' resources to 'no' (See pull request #6)" />
+      <copy todir="${resource.absolute.dir}/values-no" overwrite="true">
+        <fileset dir="${resource.absolute.dir}/values-nb" />
+      </copy>
+      <copy todir="${resource.absolute.dir}/xml-no" overwrite="true">
+        <fileset dir="${resource.absolute.dir}/xml-nb" />
+      </copy>
+    </target>
+
+</project>
