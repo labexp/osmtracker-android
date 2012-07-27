@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layouts>
+	<layout name="root">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+
+		<row>
+			<button type="page" label="その他" icon="button_misc" targetlayout="misc" />
+			<button type="page" label="制限" icon="button_restriction" targetlayout="restriction" />
+			<button type="page" label="自動車" icon="button_car" targetlayout="car" />
+		</row>
+		<row>
+			<button type="page" label="観光" icon="button_tourism" targetlayout="tourism" />
+			<button type="page" label="施設" icon="button_amenity" targetlayout="amenity" />
+			<button type="page" label="施設 (+)" icon="button_amenity" targetlayout="amenity_more" />
+		</row>
+		<row>
+			<button type="page" label="道路" icon="button_way" targetlayout="way" />
+			<button type="page" label="道" icon="button_track" targetlayout="track" />
+			<button type="page" label="土地利用" icon="button_landuse" targetlayout="landuse" />
+		</row>
+	</layout>
+
+	<layout name="misc">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="バス停" icon="button_misc_bus_stop" />
+			<button type="tag" label="鉄道" icon="button_misc_railway" />
+			<button type="tag" label="電話" icon="button_misc_telephone" />
+		</row>
+		<row>
+			<button type="tag" label="郵便ポスト" icon="button_misc_post_box" />
+			<button type="tag" label="ATM" icon="button_misc_atm" />
+			<button type="tag" label="車両止" icon="button_misc_bollard" />
+		</row>
+		<row>
+			<button type="tag" label="トイレ" icon="button_misc_toilets" />
+			<button type="tag" label="吾妻屋" icon="button_misc_shelter" />
+			<button type="tag" label="監視カメラ" icon="button_misc_surveillance" />
+		</row>
+	</layout>
+
+	<layout name="restriction">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="Max 30" icon="button_restriction" />
+			<button type="tag" label="Max 50" icon="button_restriction" />
+			<button type="tag" label="Max 80" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="Max 100" icon="button_restriction" />
+			<button type="tag" label="Max 110" icon="button_restriction" />
+			<button type="tag" label="Max 120" icon="button_restriction" />
+		</row>
+		<row>
+			<button type="tag" label="行止まり" icon="button_restriction_no_exit" />
+			<button type="tag" label="信号" icon="button_restriction_traffic_light" />
+			<button type="tag" label="一方通行" icon="button_restriction_one_way" />
+		</row>
+	</layout>
+
+	<layout name="car">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="GS" icon="button_car_fuel_station" />
+			<button type="tag" label="駐車場" icon="button_car_parking" />
+			<button type="tag" label="非常電話" icon="button_car_emergency_phone" />
+		</row>
+		<row>
+			<button type="tag" label="ロータリー" icon="button_car_turning_circle" />
+			<button type="tag" label="オービス" icon="button_car_speed_camera" />
+		</row>
+	</layout>
+
+	<layout name="tourism">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="ビューポイント" icon="button_tourism_view_point" />
+			<button type="tag" label="案内書" icon="button_tourism_information" />
+			<button type="tag" label="休憩所" icon="button_tourism_picnic" />
+		</row>
+		<row>
+			<button type="tag" label="アトラクション" icon="button_tourism_attraction" />
+			<button type="tag" label="テーマパーク" icon="button_tourism_theme_park" />
+			<button type="tag" label="城" icon="button_tourism_castle" />
+		</row>
+		<row>
+			<button type="tag" label="碑" icon="button_tourism_monument" />
+			<button type="tag" label="博物館" icon="button_tourism_museum" />
+			<button type="tag" label="映画館" icon="button_tourism_cinema" />
+		</row>
+	</layout>
+
+	<layout name="amenity">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="ベンチ" icon="button_amenity_bench" />
+			<button type="tag" label="水場" icon="button_amenity_water" />
+			<button type="tag" label="薬局" icon="button_amenity_pharmacy" />
+		</row>
+		<row>
+			<button type="tag" label="店" icon="button_amenity_shop" />
+			<button type="tag" label="港" icon="button_amenity_marina" />
+			<button type="tag" label="スポーツ" icon="button_amenity_sport" />
+		</row>
+		<row>
+			<button type="tag" label="タクシー" icon="button_amenity_taxi" />
+			<button type="tag" label="病院\n診療所" icon="button_amenity_doctors" />
+			<button type="tag" label="ゴミ集積所" icon="button_amenity_recycling" />
+		</row>
+		<row>
+			<button type="tag" label="寺社" icon="button_amenity_place_of_worship" />
+			<button type="tag" label="郵便局" icon="button_amenity_post_office" />
+			<button type="tag" label="図書館" icon="button_amenity_library" />
+		</row>
+	</layout>
+
+	<layout name="amenity_more">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="学校" icon="button_amenitymore_school" />
+			<button type="tag" label="警察" icon="button_amenitymore_police" />
+			<button type="tag" label="消防" icon="button_amenitymore_fire_station" />
+		</row>
+		<row>
+			<button type="tag" label="銀行" icon="button_amenitymore_bank" />
+			<button type="tag" label="遊び場" icon="button_amenitymore_playground" />
+			<button type="tag" label="飲み屋" icon="button_amenitymore_pub" />
+		</row>
+		<row>
+			<button type="tag" label="ホテル" icon="button_amenitymore_hotel" />
+			<button type="tag" label="モーテル" icon="button_amenitymore_motel" />
+			<button type="tag" label="民宿" icon="button_amenitymore_hostel" />
+		</row>
+		<row>
+			<button type="tag" label="レストラン" icon="button_amenitymore_restaurant" />
+			<button type="tag" label="ファースト\nフード" icon="button_amenitymore_fastfood" />
+			<button type="tag" label="キャンプ場" icon="button_amenitymore_camp_site" />
+		</row>
+	</layout>
+
+	<layout name="way">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="橋" icon="button_way_bridge" />
+			<button type="tag" label="横断歩道" icon="button_way_zebra_crossing" />
+			<button type="tag" label="自動車専用道" icon="button_way_motorway" />
+		</row>
+		<row>
+			<button type="tag" label="国道" icon="button_way_trunk" />
+			<button type="tag" label="県道" icon="button_way_primary" />
+			<button type="tag" label="地方道" icon="button_way_secondary" />
+		</row>
+		<row>
+			<button type="tag" label="一般道" icon="button_way_tertiary" />
+			<button type="tag" label="居住区域内道" icon="button_way_residential" />
+			<button type="tag" label="敷地内道" icon="button_way_service" />
+		</row>
+	</layout>
+
+	<layout name="track">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="山道" icon="button_track_track" />
+			<button type="tag" label="自転車道" icon="button_track_cycleway" />
+			<button type="tag" label="歩道" icon="button_track_footway" />
+		</row>
+		<row>
+			<button type="tag" label="Bridleway" icon="button_track_bridleway" />
+			<button type="tag" label="階段" icon="button_track_steps" />
+			<button type="tag" label="Living street" icon="button_track_living_street" />
+		</row>
+		<row>
+			<button type="tag" label="歩行者天国" icon="button_track_pedestrian" />
+			<button type="tag" label="簡易舗装" icon="button_track_grade1" />
+			<button type="tag" label="砂利道" icon="button_track_grade2" />
+		</row>
+		<row>
+			<button type="tag" label="ダート" icon="button_track_grade3" />
+			<button type="tag" label="悪路" icon="button_track_grade4" />
+			<button type="tag" label="轍" icon="button_track_grade5" />
+		</row>
+	</layout>
+
+	<layout name="landuse">
+		<row>
+			<button type="voicerec" icon="voice_32x32" />
+			<button type="picture" icon="camera_32x32" />
+			<button type="textnote" icon="text_32x32" />
+		</row>
+		<row>
+			<button type="tag" label="農地" icon="button_landuse_farm" />
+			<button type="tag" label="埋立地" icon="button_landuse_landfill" />
+			<button type="tag" label="調整池" icon="button_landuse_basin" />
+		</row>
+		<row>
+			<button type="tag" label="貯水池" icon="button_landuse_reservoir" />
+			<button type="tag" label="森林" icon="button_landuse_forest" />
+			<button type="tag" label="市民菜園" icon="button_landuse_allotments" />
+		</row>
+		<row>
+			<button type="tag" label="霊園" icon="button_landuse_cemetery" />
+			<button type="tag" label="広場" icon="button_landuse_recreation_ground" />
+		</row>
+	</layout>
+</layouts>
