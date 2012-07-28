@@ -202,6 +202,11 @@ public class GPSLogger extends Service implements LocationListener {
 	}
 	
 	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		return Service.START_STICKY;
+	}
+
+	@Override
 	public void onDestroy() {
 		if (isTracking) {
 			// If we're currently tracking, save user data.
