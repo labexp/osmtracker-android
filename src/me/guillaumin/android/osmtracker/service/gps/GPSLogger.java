@@ -53,7 +53,7 @@ public class GPSLogger extends Service implements LocationListener {
 	/**
 	 * System notification id.
 	 */
-	private static final int NOTIFICATION_ID = 0;
+	private static final int NOTIFICATION_ID = 1;
 	
 	/**
 	 * Last known location
@@ -73,7 +73,7 @@ public class GPSLogger extends Service implements LocationListener {
 	/**
 	 * Current Track ID
 	 */
-	private long currentTrackId;
+	private long currentTrackId = -1;
 
 	/**
 	 * the timestamp of the last GPS fix we used
@@ -146,11 +146,13 @@ public class GPSLogger extends Service implements LocationListener {
 
 	@Override
 	public IBinder onBind(Intent intent) {
+		Log.v(TAG, "Service onBind()");
 		return binder;
 	}
 	
 	@Override
 	public boolean onUnbind(Intent intent) {
+		Log.v(TAG, "Service onUnbind()");
 		// If we aren't currently tracking we can
 		// stop ourselves
 		if (! isTracking ) {
@@ -179,6 +181,7 @@ public class GPSLogger extends Service implements LocationListener {
 	
 	@Override
 	public void onCreate() {	
+		Log.v(TAG, "Service onCreate()");
 		dataHelper = new DataHelper(this);
 
 		//read the logging interval from preferences
@@ -203,11 +206,14 @@ public class GPSLogger extends Service implements LocationListener {
 	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+		Log.v(TAG, "Service onStartCommand(-,"+flags+","+startId+")");
+		startForeground(NOTIFICATION_ID, getNotification());
 		return Service.START_STICKY;
 	}
 
 	@Override
 	public void onDestroy() {
+		Log.v(TAG, "Service onDestroy()");
 		if (isTracking) {
 			// If we're currently tracking, save user data.
 			stopTrackingAndSave();
@@ -231,8 +237,10 @@ public class GPSLogger extends Service implements LocationListener {
 	private void startTracking(long trackId) {
 		currentTrackId = trackId;
 		Log.v(TAG, "Starting track logging for track #" + trackId);
+		// Refresh notification with correct Track ID
+		NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		nmgr.notify(NOTIFICATION_ID, getNotification());
 		isTracking = true;
-		notifyBackgroundService();
 	}
 
 	/**
@@ -241,7 +249,6 @@ public class GPSLogger extends Service implements LocationListener {
 	private void stopTrackingAndSave() {
 		isTracking = false;
 		dataHelper.stopTracking(currentTrackId);
-		stopNotifyBackgroundService();
 		currentTrackId = -1;
 		this.stopSelf();
 	}
@@ -281,23 +288,21 @@ public class GPSLogger extends Service implements LocationListener {
 	}
 	
 	/**
-	 * Notifies the user that we're still tracking in background.
+	 * Builds the notification to display when tracking in background.
 	 */
-	private void notifyBackgroundService() {
-		NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+	private Notification getNotification() {
 		Notification n = new Notification(R.drawable.icon_greyed_25x25, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
 			
 		Intent startTrackLogger = new Intent(this, TrackLogger.class);
 		startTrackLogger.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, PendingIntent.FLAG_UPDATE_CURRENT);
-		n.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
+		n.flags = Notification.FLAG_FOREGROUND_SERVICE | Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
 		n.setLatestEventInfo(
 				getApplicationContext(),
-				getResources().getString(R.string.notification_title).replace("{0}", Long.toString(currentTrackId)),
+				getResources().getString(R.string.notification_title).replace("{0}", (currentTrackId > -1) ? Long.toString(currentTrackId) : "?"),
 				getResources().getString(R.string.notification_text),
 				contentIntent);
-			
-		nmgr.notify(NOTIFICATION_ID, n);
+		return n;
 	}
 	
 	/**
