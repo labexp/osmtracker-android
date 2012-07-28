@@ -72,7 +72,7 @@ public class TrackManager extends ListActivity {
 	protected void onResume() {
 		Cursor cursor = getContentResolver().query(
 				TrackContentProvider.CONTENT_URI_TRACK, null, null, null,
-				Schema.COL_START_DATE + " asc");
+				Schema.COL_START_DATE + " desc");
 		startManagingCursor(cursor);
 		setListAdapter(new TracklistAdapter(TrackManager.this, cursor));
 		getListView().setEmptyView(findViewById(R.id.trackmgr_empty));  // undo change from onPause
