@@ -15,8 +15,8 @@
 	<string name="prefs_gps_ignore_clock">Ignorer l\'horloge du GPS</string>
 	<string name="prefs_gps_ignore_clock_summary">Ignore l\'horloge du GPS et utilise celle d\'Android pour l\'horodatage</string>
 
-	<string name="prefs_gps_logging_interval">Interval d\'enregistrement GPS</string>
-	<string name="prefs_gps_logging_interval_summary">Choisissez 0 pour le plus petit interval possible (consomme plus de batterie)</string>
+	<string name="prefs_gps_logging_interval">Intervalle d\'enregistrement GPS</string>
+	<string name="prefs_gps_logging_interval_summary">Choisissez 0 pour le plus petit intervalle possible (consomme plus de batterie)</string>
 	<string name="prefs_gps_logging_interval_seconds">seconds</string>
 
 	<string name="prefs_ui">Interface utilisateur</string>

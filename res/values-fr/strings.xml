@@ -40,7 +40,7 @@
 	<string name="trackmgr_contextmenu_details">Détails</string>
 	<string name="trackmgr_contextmenu_title">Trace #{0}</string>
 	<string name="trackmgr_delete_confirm">La trace #{0} sera supprimée.</string>
-	<string name="trackmgr_deleteall_confirm">Toutes les traces serotn supprimées. Êtes-vous sur ?</string>
+	<string name="trackmgr_deleteall_confirm">Toutes les traces seront supprimées. Êtes-vous sûr ?</string>
 	<string name="trackmgr_exporting">Export de la trace #{0} en cours&#8230;</string>
 	<string name="trackmgr_export_error">Impossible d\'exporter la trace : {0}</string>
 
@@ -69,7 +69,7 @@
 	<string name="menu_newtrack">Nouvelle trace</string>
 	<string name="menu_deletetracks">Supprimer tout</string>
 	<string name="menu_continue">Continuer la trace</string>
-	<string name="menu_save">Sauvegrader</string>
+	<string name="menu_save">Sauvegarder</string>
 	<string name="menu_cancel">Annuler</string>
 	<string name="menu_export">Exporter en GPX</string>
 	<string name="menu_center_to_gps">Centrer sur le GPS</string>
