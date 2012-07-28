@@ -42,7 +42,8 @@
 		android:paddingLeft="3dp"
 		android:layout_marginRight="3dp"
 		android:layout_gravity="center_horizontal|center_vertical"
-		android:paddingRight="3dp"/>
+		android:paddingRight="3dp"
+		android:contentDescription="@string/acc.track_status" />
 	
 	
 </LinearLayout>

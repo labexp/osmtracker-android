@@ -34,7 +34,9 @@
 			</intent-filter>
 		</service>
 
-		<provider android:name=".db.TrackContentProvider" android:authorities="me.guillaumin.android.osmtracker.provider"></provider>
+		<provider android:name=".db.TrackContentProvider"
+		    android:authorities="me.guillaumin.android.osmtracker.provider"
+		    android:exported="false" />
 
 	</application>
 

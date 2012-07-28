@@ -134,6 +134,10 @@ public class DisplayTrackView extends TextView {
 	 */
 	private TrackPointContentObserver trackpointContentObserver;
 
+	public DisplayTrackView(Context context) {
+		super(context);
+	}
+	
 	public DisplayTrackView(Context context, long trackId) {
 		super(context);
 

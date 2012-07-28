@@ -17,6 +17,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -46,6 +47,10 @@ public class UserDefinedLayout extends LinearLayout {
 	 * Stack for keeping track of user navigation in pages
 	 */
 	private Stack<String> layoutStack = new Stack<String>();
+
+	public UserDefinedLayout(Context ctx) {
+		super(ctx);
+	}
 	
 	public UserDefinedLayout(TrackLogger activity, long trackId, File xmlLayout) throws XmlPullParserException, IOException {
 		super(activity);
