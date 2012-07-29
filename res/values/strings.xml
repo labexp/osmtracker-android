@@ -43,6 +43,7 @@
 	<string name="trackmgr_deleteall_confirm">All tracks will be deleted. Are you sure?</string>
 	<string name="trackmgr_exporting">Exporting track #{0}&#8230;</string>
 	<string name="trackmgr_export_error">Unable to export track: {0}</string>
+	<string name="trackmgr_exportall_confirm">All tracks will be exported, that might take a long time. Are you sure?</string>
 
 	<!-- Track Detail -->
 	<string name="trackdetail">Track Details</string>
@@ -74,7 +75,8 @@
 	<string name="menu_cancel">Cancel</string>
 	<string name="menu_export">Export as GPX</string>
 	<string name="menu_center_to_gps">Center to GPS</string>
-	
+	<string name="menu_exportall">Export all as GPX</string>
+
 	<!-- Errors -->
 	<string name="error_externalstorage_not_writable">Unable to write to external storage.</string>
 	<string name="error_create_track_dir">Unable to create track folder %s.</string>

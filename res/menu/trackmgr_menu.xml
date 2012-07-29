@@ -9,6 +9,9 @@
 	<item android:id="@+id/trackmgr_menu_deletetracks"
 		android:title="@string/menu_deletetracks"
 		android:icon="@android:drawable/ic_menu_delete"></item>
+	<item android:id="@+id/trackmgr_menu_exportall"
+	    android:title="@string/menu_exportall"
+	    android:icon="@android:drawable/ic_menu_upload"></item>
 	<item android:id="@+id/trackmgr_menu_settings"
 		android:title="@string/menu_settings"
 		android:icon="@android:drawable/ic_menu_preferences"></item>

@@ -17,6 +17,7 @@ import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -232,6 +233,34 @@ public class TrackManager extends ListActivity {
 				}).create().show();
 
 			break;
+		case R.id.trackmgr_menu_exportall:
+			// Confirm
+			new AlertDialog.Builder(this)
+				.setTitle(R.string.menu_exportall)
+				.setMessage(getResources().getString(R.string.trackmgr_exportall_confirm))
+				.setCancelable(true)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setPositiveButton(R.string.menu_exportall, new OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Cursor cursor = getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACK,
+								null, null, null, Schema.COL_START_DATE + " desc");
+						if (cursor.moveToFirst()) {
+							int id_col = cursor.getColumnIndex(Schema.COL_ID);
+							do {
+								new ExportTrackTask(TrackManager.this, cursor.getLong(id_col)).execute();
+							} while (cursor.moveToNext());
+						}
+						cursor.close();
+					}
+				})
+				.setNegativeButton(android.R.string.cancel, new OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				}).create().show();
+			break;
 		case R.id.trackmgr_menu_settings:
 			// Start settings activity
 			startActivity(new Intent(this, Preferences.class));
@@ -404,7 +433,7 @@ public class TrackManager extends ListActivity {
 		}
 
 		if (cursor.moveToFirst()) {
-			int id_col = cursor.getColumnIndex("_id");
+			int id_col = cursor.getColumnIndex(Schema.COL_ID);
 			do {
 				deleteTrack(cursor.getLong(id_col));
 			} while (cursor.moveToNext());
