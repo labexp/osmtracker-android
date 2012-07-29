@@ -20,10 +20,12 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.test.ActivityInstrumentationTestCase2;
 
 public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackManager> {
@@ -47,6 +49,20 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 	
 	@Override
 	protected void setUp() throws Exception {
+		// Delete file entry in media library
+		getActivity().getContentResolver().delete(
+				MediaStore.Files.getContentUri("external"),
+				MediaStore.Files.FileColumns.TITLE + " = ?",
+				new String[] {"gpx-test"});
+
+		Cursor cursor = getActivity().managedQuery(
+				MediaStore.Files.getContentUri("external"),
+				null,
+				MediaStore.Files.FileColumns.TITLE + " = ?",
+				new String[] {"gpx-test"},
+				null);
+		Assert.assertEquals(0, cursor.getCount());
+
 		trackFile = new File(Environment.getExternalStorageDirectory(), "osmtracker/gpx-test.gpx");
 		if (trackFile.exists()) {
 			Assert.assertTrue(trackFile.delete());
@@ -112,12 +128,37 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 	
 	public void test() throws Exception {		
 		new ExportTrackTask(getActivity(), trackId).execute().get();
-		
+
+		// Ensure file contents are OK
 		Assert.assertTrue(trackFile.exists());
 		Assert.assertEquals(
 				readFully(
 						getInstrumentation().getContext().getAssets().open("gpx/gpx-test.gpx")),
 				readFully(new FileInputStream(trackFile)));
+
+		// Ensure the media library has been refreshed
+		// We have to wait for the refresh Intent to be dispatched
+		long maxWaitTime = 1000 * 5;
+		long waited = 0;
+		Cursor c = null;
+		while (waited < maxWaitTime) {
+			c = getActivity().managedQuery(
+					MediaStore.Files.getContentUri("external"),
+					null,
+					MediaStore.Files.FileColumns.TITLE + " = ?",
+					new String[] {"gpx-test"},
+					null);
+			if (c.moveToFirst()) {
+				break;
+			}
+
+			Thread.sleep(250);
+			waited += 250;
+		}
+
+		Assert.assertEquals(1, c.getCount());
+		Assert.assertEquals(0, c.getInt(c.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE)));
+		Assert.assertEquals("gpx-test", c.getString(c.getColumnIndex(MediaStore.Files.FileColumns.TITLE)));
 	}
 
 	private static String readFully(InputStream is) throws IOException {

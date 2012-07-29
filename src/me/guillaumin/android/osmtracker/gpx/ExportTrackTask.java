@@ -25,8 +25,10 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -77,6 +79,11 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	 * Track ID to export
 	 */
 	private long trackId;
+
+	/**
+	 * Path to the exported GPX file
+	 */
+	private File trackFile;
 	
 	/**
 	 * Dialog to display while exporting
@@ -142,6 +149,9 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 					}
 				})
 				.show();
+		} else {
+			// Force rescan of GPX file
+			context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(trackFile)));
 		}
 	}
 
@@ -214,7 +224,7 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 				}
 			}
 
-			File trackFile = new File(trackGPXExportDirectory, filenameBase);
+			trackFile = new File(trackGPXExportDirectory, filenameBase);
 
 			Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
 					null, null, Schema.COL_TIMESTAMP + " asc");

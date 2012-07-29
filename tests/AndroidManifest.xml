@@ -4,7 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="7"/>
+    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="11"/>
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
