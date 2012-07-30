@@ -1,0 +1,37 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:id="@+id/trackdetail_item_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:inputType="text"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/trackdetail_item_description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trackdetail_item_name"
+        android:layout_margin="5dp"
+        android:hint="@string/trackdetail_description"
+        android:inputType="text"
+        android:singleLine="false" />
+
+    <EditText
+        android:id="@+id/trackdetail_item_tags"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trackdetail_item_description"
+        android:layout_margin="5dp"
+        android:hint="@string/trackdetail_tags"
+        android:inputType="text"
+        android:singleLine="true" />
+
+    <Spinner
+        android:id="@+id/trackdetail_item_osm_visibility"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trackdetail_item_tags" />
+
+</merge>

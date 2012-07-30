@@ -9,18 +9,20 @@ import java.util.Map;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
-import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.db.model.Track;
+import me.guillaumin.android.osmtracker.db.model.Track.OSMVisibility;
 import me.guillaumin.android.osmtracker.gpx.ExportTrackTask;
 import me.guillaumin.android.osmtracker.util.MercatorProjection;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -29,11 +31,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,7 +81,16 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
 
 	/** Edit text for the track name */
 	private EditText etName;
-	
+
+	/** Edit text for track description */
+	private EditText etDescription;
+
+	/** Edit text for track tags */
+	private EditText etTags;
+
+	/** Spinner for track visibility */
+	private Spinner spVisibility;
+
 	/**
 	 * List with track info
 	 */
@@ -93,22 +107,24 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
         setTitle(getTitle() + ": #" + trackId);
 
 		etName = (EditText) findViewById(R.id.trackdetail_item_name);
+		etDescription = (EditText) findViewById(R.id.trackdetail_item_description);
+		etTags = (EditText) findViewById(R.id.trackdetail_item_tags);
+		spVisibility = (Spinner) findViewById(R.id.trackdetail_item_osm_visibility);
 		lv = (ListView) findViewById(R.id.trackdetail_list);
-		
+
+		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,
+				android.R.layout.simple_spinner_item);
+		for (OSMVisibility v: OSMVisibility.values()) {
+			adapter.add(getResources().getString(v.resId));
+		}
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spVisibility.setAdapter(adapter);
+
 		final Button btnOk = (Button) findViewById(R.id.trackdetail_btn_ok);
 		btnOk.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// Save changes to db (if any), then finish.
-				
-				// Save name field, if changed, to db.
-				// String class required for equals to work, and for trim().
-				String enteredName = etName.getText().toString().trim();
-				if ((enteredName.length() > 0) && (! enteredName.equals(trackNameInDB))) {
-					DataHelper.setTrackName(trackId, enteredName, getContentResolver());
-				}
-
-				// All done
+				save();
 				finish();				
 			}
 		});
@@ -122,7 +138,9 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
 			}
 		});
 		
-				
+		// Do not show soft keyboard by default
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+		
 		// further work is done in onResume.
 	}
 
@@ -153,7 +171,11 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
 			trackNameInDB = t.getName();
 			etName.setText(trackNameInDB);
 		}
-	
+		
+		etDescription.setText(t.getDescription());
+		etTags.setText(t.getCommaSeparatedTags());
+		spVisibility.setSelection(t.getVisibility().position);
+		
 		String from[] = new String[]{ITEM_KEY, ITEM_VALUE};
 		int[] to = new int[] {R.id.trackdetail_item_key, R.id.trackdetail_item_value};
 		
@@ -227,12 +249,7 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 		case R.id.trackdetail_menu_save:
-			String enteredName = etName.getText().toString().trim();
-			if ((enteredName.length() > 0) && (! enteredName.equals(trackNameInDB))) {
-				DataHelper.setTrackName(trackId, enteredName, getContentResolver());
-			}
-
-			// All done
+			save();
 			finish();	
 			break;
 		case R.id.trackdetail_menu_cancel:
@@ -278,6 +295,30 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
 		startActivity(i);
 	}
 
+	private void save() {
+		// Save changes to db (if any), then finish.
+		
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+		ContentValues values = new ContentValues();
+		
+		// Save name field, if changed, to db.
+		// String class required for equals to work, and for trim().
+		String enteredName = etName.getText().toString().trim();
+		if ((enteredName.length() > 0) && (! enteredName.equals(trackNameInDB))) {
+			values.put(Schema.COL_NAME, enteredName);
+		}
+		
+		// All other values updated even if empty
+		values.put(Schema.COL_DESCRIPTION, etDescription.getText().toString().trim());
+		values.put(Schema.COL_TAGS, etTags.getText().toString().trim());
+		values.put(Schema.COL_OSM_VISIBILITY, OSMVisibility.fromPosition(spVisibility.getSelectedItemPosition()).toString());
+		
+		getContentResolver().update(trackUri, values, null, null);	
+
+		// All done
+
+	}
+	
 	/**
 	 * Extend SimpleAdapter so we can underline the clickable Waypoint count.
 	 * Always uses <tt>R.layout.trackdetail_item</tt> as its list item resource.

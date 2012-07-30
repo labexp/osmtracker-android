@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-	<LinearLayout android:gravity="bottom" android:id="@+id/trackdetail_buttons"
-		android:orientation="horizontal" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:layout_alignParentBottom="true"
-		android:background="@android:color/darker_gray" android:padding="3dp">
+    <LinearLayout
+        android:id="@+id/trackdetail_buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:padding="3dp" >
 
-		<Button android:id="@+id/trackdetail_btn_ok"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:text="@string/trackdetail_save" android:layout_weight="1" />
+        <Button
+            android:id="@+id/trackdetail_btn_ok"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/trackdetail_save" />
 
-		<Button android:id="@+id/trackdetail_btn_cancel"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:text="@android:R/string/cancel" android:layout_weight="1" />
+        <Button
+            android:id="@+id/trackdetail_btn_cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@android:R/string/cancel" />
+    </LinearLayout>
 
-	</LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/trackdetail_buttons"
+        android:orientation="vertical" >
 
-	<EditText android:id="@+id/trackdetail_item_name"
-		android:layout_height="wrap_content" android:layout_width="fill_parent"
-		android:inputType="text" android:singleLine="true"
-		android:layout_margin="5dp" />
+        <include
+            android:id="@+id/trackdetail_fields_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/trackdetail_fields" />
 
-	<ListView android:id="@+id/trackdetail_list"
-		android:layout_width="fill_parent" android:layout_height="fill_parent"
-		android:layout_above="@id/trackdetail_buttons" android:layout_below="@id/trackdetail_item_name"
-		android:layout_marginBottom="5dp"></ListView>
-
+        <ListView
+            android:id="@+id/trackdetail_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp" >
+        </ListView>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -55,6 +55,12 @@
 	<string name="trackdetail_btn_export">Export as GPX</string>
 	<string name="trackdetail_export_notyet">(Not exported yet)</string>
 	<string name="trackdetail_export_display">Display</string>
+	<string name="trackdetail_description">Description</string>
+	<string name="trackdetail_tags">Tags (comma separated)</string>
+	<string name="osm_visibility_private">Private</string>
+	<string name="osm_visibility_public">Public</string>
+	<string name="osm_visibility_trackable">Trackable</string>
+	<string name="osm_visibility_identifiable">Identifiable</string>
 
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_voicerec">Voice record</string>

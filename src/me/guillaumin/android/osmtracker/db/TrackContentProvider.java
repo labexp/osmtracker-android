@@ -59,6 +59,9 @@ public class TrackContentProvider extends ContentProvider {
 		Schema.COL_DIR,
 		Schema.COL_EXPORT_DATE,
 		Schema.TBL_TRACK + "." + Schema.COL_NAME + " as "+ Schema.COL_NAME,
+		Schema.COL_DESCRIPTION,
+		Schema.COL_TAGS,
+		Schema.COL_OSM_VISIBILITY,
 		Schema.COL_START_DATE,
 		"count(" + Schema.TBL_TRACKPOINT + "." + Schema.COL_ID + ") as " + Schema.COL_TRACKPOINT_COUNT,
 		"(SELECT count("+Schema.TBL_WAYPOINT+"."+Schema.COL_TRACK_ID+") FROM "+Schema.TBL_WAYPOINT+" WHERE "+Schema.TBL_WAYPOINT+"."+Schema.COL_TRACK_ID+" = " + Schema.TBL_TRACK + "." + Schema.COL_ID + ") as " + Schema.COL_WAYPOINT_COUNT
@@ -420,6 +423,9 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_NBSATELLITES = "nb_satellites";
 		public static final String COL_TIMESTAMP = "point_timestamp";
 		public static final String COL_NAME = "name";
+		public static final String COL_DESCRIPTION = "description";
+		public static final String COL_TAGS = "tags";
+		public static final String COL_OSM_VISIBILITY = "osm_visibility";
 		public static final String COL_LINK = "link";
 		public static final String COL_START_DATE = "start_date";
 		@Deprecated

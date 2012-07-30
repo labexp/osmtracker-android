@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.db.model.Track.OSMVisibility;
 import me.guillaumin.android.osmtracker.util.FileSystemUtils;
 import android.content.ContentValues;
 import android.content.Context;
@@ -80,6 +81,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ "create table " + Schema.TBL_TRACK + " ("
 		+ Schema.COL_ID + " integer primary key autoincrement,"
 		+ Schema.COL_NAME + " text,"
+		+ Schema.COL_DESCRIPTION + " text,"
+		+ Schema.COL_TAGS + " text,"
+		+ Schema.COL_OSM_VISIBILITY + " text default '"+OSMVisibility.Private+"',"
 		+ Schema.COL_START_DATE + " long not null,"
 		+ Schema.COL_DIR + " text," // unused since DB_VERSION 13, since SQLite doesn't support to remove a column it will stay for now
 		+ Schema.COL_ACTIVE + " integer not null default 0,"
@@ -104,10 +108,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 *  v7: add TBL_TRACK.COL_DIR; drop TBL_CONFIG  (r201)
 	 *  v9: add TBL_TRACK.COL_ACTIVE  (r206)
 	 * v12: add TBL_TRACK.COL_EXPORT_DATE, IDX_TRACKPOINT_TRACK, IDX_WAYPOINT_TRACK (r207) v0.5.0
-	 * v13: TBL_TRACK.COL_DIR is now deprecated (rxxx) v0.5.3 TODO: fill in correct revision and version 
+	 * v13: TBL_TRACK.COL_DIR is now deprecated (rxxx) v0.5.3 TODO: fill in correct revision and version
+	 * v14: add TBL_TRACK.COL_DESCRIPTION, TBL_TRACK.COL_TAGS and TBL_TRACK.COL_OSM_VISIBILITY for OSM upload - v0.6.0 
 	 *</pre>
 	 */
-	private static final int DB_VERSION = 13;
+	private static final int DB_VERSION = 14;
 
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -143,6 +148,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			break;
 		case 12:
 			manageNewStoragePath(db);
+		case 13:
+			// Create 'description', 'tags' and 'visibility'
+			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_DESCRIPTION + " text");
+			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_TAGS + " text");
+			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_OSM_VISIBILITY
+					+ " text default '"+OSMVisibility.Private+"'");
 		}
 		
 	}
