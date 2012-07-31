@@ -9,7 +9,6 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-import java.util.regex.Pattern;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
@@ -26,7 +25,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -35,12 +33,13 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 /**
- * Writes a GPX file.
+ * Base class to writes a GPX file and export
+ * track media (Photos, Sounds)
  * 
  * @author Nicolas Guillaumin
  *
  */
-public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
+public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 
 	private static final String TAG = ExportTrackTask.class.getSimpleName();
 	
@@ -65,20 +64,17 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	/**
 	 * Date format for a point timestamp.
 	 */
-	private static SimpleDateFormat POINT_DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-	static {
-		POINT_DATE_FORMATTER.setTimeZone(TimeZone.getTimeZone("UTC"));
-	}
+	private SimpleDateFormat pointDateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	
 	/**
 	 * {@link Context} to get resources
 	 */
-	private Context context;
+	protected Context context;
 	
 	/**
 	 * Track ID to export
 	 */
-	private long trackId;
+	protected long trackId;
 
 	/**
 	 * Path to the exported GPX file
@@ -94,12 +90,32 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	 * Message in case of an error
 	 */
 	private String errorMsg = null;
+
+	/**
+	 * @param startDate
+	 * @return The directory in which the track file should be created
+	 * @throws ExportTrackException
+	 */
+	protected abstract File getExportDirectory(Date startDate) throws ExportTrackException;
 	
+	/**
+	 * The file name of the track file
+	 * @param c
+	 * @return
+	 */
+	protected abstract String buildGPXFilename(Cursor c);
+	
+	/**
+	 * Whereas to export the media files or not
+	 * @return
+	 */
+	protected abstract boolean exportMediaFiles();
+
 	public ExportTrackTask(Context context, long trackId) {
 		this.context = context;
 		this.trackId = trackId;
+		pointDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
-
 	
 	@Override
 	protected void onPreExecute() {
@@ -158,15 +174,10 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	private void exportTrackAsGpx(long trackId) throws ExportTrackException {
 		File sdRoot = Environment.getExternalStorageDirectory();
 		
-		// The location that the user has specified gpx files 
-		// and associated content to be written
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		String userGPXExportDirectoryName = prefs.getString(
-				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
-				
 		if (sdRoot.canWrite()) {
 			ContentResolver cr = context.getContentResolver();
-			Cursor c = cr.query(ContentUris.withAppendedId(
+			
+			Cursor c = context.getContentResolver().query(ContentUris.withAppendedId(
 					TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
 					null, null);
 
@@ -182,50 +193,14 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 				long startDateInMilliseconds = c.getLong(c.getColumnIndex(Schema.COL_START_DATE));
 				startDate.setTime(startDateInMilliseconds);
 			}
+
+			File trackGPXExportDirectory = getExportDirectory(startDate);
 			String filenameBase = buildGPXFilename(c);
 			c.close();
-
-			boolean directoryPerTrack = prefs.getBoolean(OSMTracker.Preferences.KEY_OUTPUT_DIR_PER_TRACK, 
-					OSMTracker.Preferences.VAL_OUTPUT_GPX_OUTPUT_DIR_PER_TRACK);
-					
-			// Create the path to the directory to which we will be writing
-			// Trim the directory name, as additional spaces at the end will 
-			// not allow the directory to be created if required
-			String exportDirectoryPath = userGPXExportDirectoryName.trim();
-			String perTrackDirectory = "";
-			if (directoryPerTrack) {
-				// If the user wants a directory per track, then create a name for the destination directory
-				// based on the start date of the track
-				perTrackDirectory = File.separator + DataHelper.FILENAME_FORMATTER.format(startDate);
-			}
 			
-			// Create a file based on the path we've generated above
-			File trackGPXExportDirectory = new File(sdRoot + exportDirectoryPath + perTrackDirectory);
-
-			// Create track directory if needed
-			if (! trackGPXExportDirectory.exists()) {
-				if (! trackGPXExportDirectory.mkdirs()) {
-					Log.w(TAG,"Failed to create directory [" 
-							+trackGPXExportDirectory.getAbsolutePath()+ "]");
-				}
-				
-				if (! trackGPXExportDirectory.exists()) {
-					// Specific hack for Google Nexus (See issue #168)
-					if (android.os.Build.MODEL.equals(OSMTracker.Devices.NEXUS_S)) {
-						// exportDirectoryPath always starts with "/"
-						trackGPXExportDirectory = new File(exportDirectoryPath + perTrackDirectory);
-						trackGPXExportDirectory.mkdirs();
-					}
-				}
-				
-				if (! trackGPXExportDirectory.exists()) {
-					throw new ExportTrackException(context.getResources().getString(R.string.error_create_track_dir,
-							trackGPXExportDirectory.getAbsolutePath()));
-				}
-			}
-
 			trackFile = new File(trackGPXExportDirectory, filenameBase);
 
+			
 			Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
 					null, null, Schema.COL_TIMESTAMP + " asc");
 			Cursor cWayPoints = cr.query(TrackContentProvider.waypointsUri(trackId), null, null,
@@ -238,7 +213,9 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 				
 				try {
 					writeGpxFile(cTrackPoints, cWayPoints, trackFile);
-					copyWaypointFiles(trackGPXExportDirectory);
+					if (exportMediaFiles()) {
+						copyWaypointFiles(trackGPXExportDirectory);
+					}
 					DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
 				} catch (IOException ioe) {
 					throw new ExportTrackException(ioe.getMessage());
@@ -252,50 +229,6 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 		}
 	}
 
-	/**
-	 * Characters to replace in track filename, for use by {@link #buildGPXFilename(Cursor)}. <BR>
-	 * The characters are: (space) ' " / \ * ? ~ @ &lt; &gt; <BR>
-	 * In addition, ':' will be replaced by ';', before calling this pattern.
-	 */
-	private final static Pattern FILENAME_CHARS_BLACKLIST_PATTERN =
-		Pattern.compile("[ '\"/\\\\*?~@<>]");  // must double-escape \
-
-	/**
-	 * Build GPX filename from track info, based on preferences.
-	 * The filename will have the start date, and/or the track name if available.
-	 * If no name is available, fall back to the start date and time.
-	 * Track name characters will be sanitized using {@link #FILENAME_CHARS_BLACKLIST_PATTERN}.
-	 * @param c  Track info: {@link Schema#COL_NAME}, {@link Schema#COL_START_DATE}
-	 * @return  GPX filename, not including the path
-	 */
-	private String buildGPXFilename(Cursor c) {
-		// Build GPX filename from track info & preferences
-		final String filenameOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
-				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
-				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
-		StringBuffer filenameBase = new StringBuffer();
-		final int colName = c.getColumnIndex(Schema.COL_NAME);
-		if ((! c.isNull(colName))
-			&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE)))
-		{
-			final String tname_raw =
-				c.getString(colName).trim().replace(':', ';');
-			final String sanitized =
-				FILENAME_CHARS_BLACKLIST_PATTERN.matcher(tname_raw).replaceAll("_");
-			filenameBase.append(sanitized);
-		}
-		if ((filenameBase.length() == 0)
-			|| ! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME))
-		{
-			final long startDate = c.getLong(c.getColumnIndex(Schema.COL_START_DATE));
-			if (filenameBase.length() > 0)
-				filenameBase.append('_');
-			filenameBase.append(DataHelper.FILENAME_FORMATTER.format(new Date(startDate)));
-		}
-		filenameBase.append(DataHelper.EXTENSION_GPX);
-		return filenameBase.toString();
-	}
-	
 	/**
 	 * Writes the GPX file
 	 * @param cTrackPoints Cursor to track points.
@@ -366,7 +299,7 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	        if (! c.isNull(c.getColumnIndex(Schema.COL_ELEVATION))) {
 	        	out.append("\t\t\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(Schema.COL_ELEVATION)) + "</ele>" + "\n");
 	        }
-	        out.append("\t\t\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
+	        out.append("\t\t\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 	        
 	        if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
 				out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
@@ -414,7 +347,7 @@ public class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
 	        if (! c.isNull(c.getColumnIndex(Schema.COL_ELEVATION))) {
 	        	out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(Schema.COL_ELEVATION)) + "</ele>" + "\n");
 	        }
-		    out.append("\t\t" + "<time>" + POINT_DATE_FORMATTER.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
+		    out.append("\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 
 		    String name = c.getString(c.getColumnIndex(Schema.COL_NAME));
 		    

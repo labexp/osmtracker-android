@@ -12,17 +12,13 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.db.model.Track;
-import me.guillaumin.android.osmtracker.db.model.Track.OSMVisibility;
-import me.guillaumin.android.osmtracker.gpx.ExportTrackTask;
+import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
 import me.guillaumin.android.osmtracker.util.MercatorProjection;
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Paint;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -33,12 +29,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,7 +43,7 @@ import android.widget.Toast;
  * @author Jeremy D Monin <jdmonin@nand.net>
  *
  */
-public class TrackDetail extends Activity implements AdapterView.OnItemClickListener {
+public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItemClickListener {
 
 	@SuppressWarnings("unused")
 	private static final String TAG = TrackDetail.class.getSimpleName();
@@ -70,26 +63,8 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
 	 */
 	private static final int WP_COUNT_INDEX = 0;
 
-	/** Keeps track of our track id. */
-	private long trackId;
-
-	/** Name of the track, or starting date if none */
-	private String trackNameInDB = null;
-
 	/** Does this track have any waypoints?  If true, underline Waypoint count in the list. */
 	private boolean trackHasWaypoints = false;
-
-	/** Edit text for the track name */
-	private EditText etName;
-
-	/** Edit text for track description */
-	private EditText etDescription;
-
-	/** Edit text for track tags */
-	private EditText etTags;
-
-	/** Spinner for track visibility */
-	private Spinner spVisibility;
 
 	/**
 	 * List with track info
@@ -98,27 +73,9 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		// Get the track id to work with
-		trackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
+		super.onCreate(savedInstanceState, R.layout.trackdetail, getIntent().getExtras().getLong(Schema.COL_TRACK_ID));
 
-		setContentView(R.layout.trackdetail);
-        setTitle(getTitle() + ": #" + trackId);
-
-		etName = (EditText) findViewById(R.id.trackdetail_item_name);
-		etDescription = (EditText) findViewById(R.id.trackdetail_item_description);
-		etTags = (EditText) findViewById(R.id.trackdetail_item_tags);
-		spVisibility = (Spinner) findViewById(R.id.trackdetail_item_osm_visibility);
 		lv = (ListView) findViewById(R.id.trackdetail_list);
-
-		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,
-				android.R.layout.simple_spinner_item);
-		for (OSMVisibility v: OSMVisibility.values()) {
-			adapter.add(getResources().getString(v.resId));
-		}
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spVisibility.setAdapter(adapter);
 
 		final Button btnOk = (Button) findViewById(R.id.trackdetail_btn_ok);
 		btnOk.setOnClickListener(new OnClickListener() {
@@ -166,15 +123,8 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
 		// Bind WP count, TP count, start date, etc.
 		// Fill name-field only if empty (in case changed by user/restored by onRestoreInstanceState) 
 		Track t = Track.build(trackId, cursor, cr, true);
-	
-		if (etName.length() == 0) {
-			trackNameInDB = t.getName();
-			etName.setText(trackNameInDB);
-		}
-		
-		etDescription.setText(t.getDescription());
-		etTags.setText(t.getCommaSeparatedTags());
-		spVisibility.setSelection(t.getVisibility().position);
+
+		bindTrack(t);		
 		
 		String from[] = new String[]{ITEM_KEY, ITEM_VALUE};
 		int[] to = new int[] {R.id.trackdetail_item_key, R.id.trackdetail_item_value};
@@ -268,7 +218,7 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
 			startActivity(i);	
 			break;
 		case R.id.trackdetail_menu_export:
-			new ExportTrackTask(this, trackId).execute();
+			new ExportToStorageTask(this, trackId).execute();
 			// Pick last list item (Exported date) and update it
 			SimpleAdapter adapter = ((SimpleAdapter) lv.getAdapter());
 			@SuppressWarnings("unchecked")
@@ -293,30 +243,6 @@ public class TrackDetail extends Activity implements AdapterView.OnItemClickList
 		Intent i = new Intent(this, WaypointList.class);
 		i.putExtra(Schema.COL_TRACK_ID, trackId);
 		startActivity(i);
-	}
-
-	private void save() {
-		// Save changes to db (if any), then finish.
-		
-		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
-		ContentValues values = new ContentValues();
-		
-		// Save name field, if changed, to db.
-		// String class required for equals to work, and for trim().
-		String enteredName = etName.getText().toString().trim();
-		if ((enteredName.length() > 0) && (! enteredName.equals(trackNameInDB))) {
-			values.put(Schema.COL_NAME, enteredName);
-		}
-		
-		// All other values updated even if empty
-		values.put(Schema.COL_DESCRIPTION, etDescription.getText().toString().trim());
-		values.put(Schema.COL_TAGS, etTags.getText().toString().trim());
-		values.put(Schema.COL_OSM_VISIBILITY, OSMVisibility.fromPosition(spVisibility.getSelectedItemPosition()).toString());
-		
-		getContentResolver().update(trackUri, values, null, null);	
-
-		// All done
-
 	}
 	
 	/**

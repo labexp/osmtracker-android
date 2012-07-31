@@ -23,10 +23,17 @@
 		<activity android:name=".activity.Preferences" android:label="@string/prefs" />
 		<activity android:name=".activity.WaypointList" android:label="@string/wplist" />
 		<activity android:name=".activity.TrackDetail" android:label="@string/trackdetail" />
-
+		<activity android:name=".activity.OSMUpload" android:label="@string/osm_upload">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:host="osm-upload" android:scheme="osmtracker"/>
+			</intent-filter>
+		</activity>
 		<activity android:name=".activity.About" android:label="@string/about" />
 		<activity android:name=".activity.DisplayTrack" android:label="@string/displaytrack" />
-		<activity android:name=".activity.DisplayTrackMap" android:label="@string/displaytrackmap"></activity>
+		<activity android:name=".activity.DisplayTrackMap" android:label="@string/displaytrackmap" />
 
 		<service android:name=".service.gps.GPSLogger" android:exported="false">
 			<intent-filter>

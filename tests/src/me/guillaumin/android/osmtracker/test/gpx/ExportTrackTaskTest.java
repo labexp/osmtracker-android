@@ -11,7 +11,7 @@ import junit.framework.Assert;
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.TrackManager;
 import me.guillaumin.android.osmtracker.db.DataHelper;
-import me.guillaumin.android.osmtracker.gpx.ExportTrackTask;
+import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
 import me.guillaumin.android.osmtracker.test.util.MockData;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -67,7 +67,7 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 	}
 	
 	public void test() throws Exception {		
-		new ExportTrackTask(getActivity(), trackId).execute().get();
+		new ExportToStorageTask(getActivity(), trackId).execute().get();
 
 		// Ensure file contents are OK
 		Assert.assertTrue(trackFile.exists());

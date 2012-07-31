@@ -36,6 +36,7 @@
 	<string name="trackmgr_contextmenu_resume">Resume tracking</string>
 	<string name="trackmgr_contextmenu_delete">Delete</string>
 	<string name="trackmgr_contextmenu_export">Export as GPX</string>
+	<string name="trackmgr_contextmenu_osm_upload">Upload to OSM</string>
 	<string name="trackmgr_contextmenu_display">Display</string>
 	<string name="trackmgr_contextmenu_details">Details</string>
 	<string name="trackmgr_contextmenu_title">Track #{0}</string>
@@ -62,6 +63,12 @@
 	<string name="osm_visibility_trackable">Trackable</string>
 	<string name="osm_visibility_identifiable">Identifiable</string>
 
+	<!-- OSM upload -->
+	<string name="osm_upload">OpenStreetMap upload</string>
+	<string name="osm_upload_ok">Save and upload</string>
+	<string name="osm_upload_tmpfile_failed">Unable to export the track to a temporary file</string>
+	<string name="osm_upload_oauth_failed">Unable to authenticate to OSM</string>
+	
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_voicerec">Voice record</string>
 	<string name="gpsstatus_record_stillimage">Take picture</string>

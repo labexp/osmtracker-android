@@ -10,7 +10,7 @@ import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.exception.CreateTrackException;
-import me.guillaumin.android.osmtracker.gpx.ExportTrackTask;
+import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
 import me.guillaumin.android.osmtracker.util.FileSystemUtils;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -248,7 +248,7 @@ public class TrackManager extends ListActivity {
 						if (cursor.moveToFirst()) {
 							int id_col = cursor.getColumnIndex(Schema.COL_ID);
 							do {
-								new ExportTrackTask(TrackManager.this, cursor.getLong(id_col)).execute();
+								new ExportToStorageTask(TrackManager.this, cursor.getLong(id_col)).execute();
 							} while (cursor.moveToNext());
 						}
 						cursor.close();
@@ -336,7 +336,12 @@ public class TrackManager extends ListActivity {
 
 			break;
 		case R.id.trackmgr_contextmenu_export:	
-			new ExportTrackTask(this, info.id).execute();
+			new ExportToStorageTask(this, info.id).execute();
+			break;
+		case R.id.trackmgr_contextmenu_osm_upload:
+			i = new Intent(this, OSMUpload.class);
+			i.putExtra(Schema.COL_TRACK_ID, info.id);
+			startActivity(i);
 			break;
 		case R.id.trackmgr_contextmenu_display:
 			// Start display track activity, with or without OSM background
