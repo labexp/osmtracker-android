@@ -1,7 +1,9 @@
 package me.guillaumin.android.osmtracker.activity;
 
 import java.io.File;
+import java.util.concurrent.ExecutionException;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
@@ -17,9 +19,12 @@ import android.app.AlertDialog;
 import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +36,7 @@ import android.widget.Toast;
  * Uploads a track on OSM using the API and
  * OAuth authentication.
  *
+ * @author Nicolas Guillaumin
  */
 public class OSMUpload extends TrackDetailEditor {
 
@@ -117,22 +123,18 @@ public class OSMUpload extends TrackDetailEditor {
 			String verifier = uri.getQueryParameter(OAuth.OAUTH_VERIFIER);
 			try {
 				oAuthProvider.retrieveAccessToken(oAuthConsumer, verifier);
-			
-				ExportToTempFileTask task = new ExportToTempFileTask(this, trackId);
-				task.execute().get();
-				File f = task.getTmpFile();
+				
+				// Store token in preferences for future use
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+				Editor editor = prefs.edit();
+				editor.putString(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN, oAuthConsumer.getToken());
+				editor.putString(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET, oAuthConsumer.getTokenSecret());
+				editor.commit();
 
-				Log.d(TAG, "Token" + oAuthConsumer.getToken());
-				Log.d(TAG, "Secret" + oAuthConsumer.getTokenSecret());
-				
-				int result = new UploadToOsmTask(oAuthConsumer, f, null, null, null).execute().get();
-				
-				showErrorDialog("Result is: " + result);
+				uploadToOsm();
 				
 			} catch (OAuthException oe) {
 				showErrorDialog(getResources().getString(R.string.osm_upload_oauth_failed) + ": " + oe);
-			} catch (Exception e) {
-				showErrorDialog(getResources().getString(R.string.osm_upload_tmpfile_failed) + ": " + e);
 			}
 
 		}
@@ -145,14 +147,37 @@ public class OSMUpload extends TrackDetailEditor {
 		
 		try {
 			
-			String requestTokenUrl = oAuthProvider.retrieveRequestToken(oAuthConsumer, CALLBACK_URL+trackId);
-			Log.d(TAG, "Token:" + requestTokenUrl);
-			
-			// Open browser for user to authenticate
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(requestTokenUrl)));
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+			if ( prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN)
+					&& prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET)) {
+				oAuthConsumer.setTokenWithSecret(
+						prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN, ""),
+						prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET, ""));
+				uploadToOsm();
+			} else {
+				String requestTokenUrl = oAuthProvider.retrieveRequestToken(oAuthConsumer, CALLBACK_URL+trackId);
+				
+				// Open browser for user to authenticate
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(requestTokenUrl)));
+			}
 		} catch (OAuthException oe) {
 			showErrorDialog(getResources().getString(R.string.osm_upload_oauth_failed) + ": " + oe);
 		}
+	}
+	
+	private void uploadToOsm() {
+		try {
+			ExportToTempFileTask task = new ExportToTempFileTask(this, trackId);
+			task.execute().get();
+			File f = task.getTmpFile();
+		
+			int result = new UploadToOsmTask(oAuthConsumer, f, null, null, null).execute().get();
+		
+			showErrorDialog("Result is: " + result);
+		} catch (Exception ee) {
+			showErrorDialog("FAIL: " + ee);
+		}
+
 	}
 	
 	private void showErrorDialog(CharSequence msg) {

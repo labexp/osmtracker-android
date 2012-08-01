@@ -31,6 +31,9 @@ public class OSMTracker {
 		public final static String KEY_UI_DISPLAY_KEEP_ON = "ui.display_keep_on";
 		public final static String KEY_SOUND_ENABLED = "sound_enabled";
 		public final static String KEY_UI_ORIENTATION = "ui.orientation";
+		public final static String KEY_OSM_OAUTH_TOKEN = "osm.oauth.token";
+		public final static String KEY_OSM_OAUTH_SECRET = "osm.oauth.secret";
+		public final static String KEY_OSM_OAUTH_CLEAR_DATA = "osm.oauth.clear-data";
 
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";

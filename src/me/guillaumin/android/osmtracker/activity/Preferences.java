@@ -6,6 +6,8 @@ import java.io.FilenameFilter;
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.EditTextPreference;
@@ -45,10 +47,11 @@ public class Preferences extends PreferenceActivity {
 		
 		// Set summary of some preferences to their actual values
 		// and register a change listener to set again the summary in case of change
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
 		// External storage directory
 		EditTextPreference storageDirPref = (EditTextPreference) findPreference(OSMTracker.Preferences.KEY_STORAGE_DIR);
-		storageDirPref.setSummary(PreferenceManager.getDefaultSharedPreferences(this).getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR));
+		storageDirPref.setSummary(prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR));
 		storageDirPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -72,7 +75,7 @@ public class Preferences extends PreferenceActivity {
 
 		// Voice record duration
 		Preference pref = findPreference(OSMTracker.Preferences.KEY_VOICEREC_DURATION);
-		pref.setSummary(PreferenceManager.getDefaultSharedPreferences(this).getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION, OSMTracker.Preferences.VAL_VOICEREC_DURATION) + " " + getResources().getString(R.string.prefs_voicerec_duration_seconds));
+		pref.setSummary(prefs.getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION, OSMTracker.Preferences.VAL_VOICEREC_DURATION) + " " + getResources().getString(R.string.prefs_voicerec_duration_seconds));
 		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -85,7 +88,7 @@ public class Preferences extends PreferenceActivity {
 		// Update GPS logging interval summary to the current value
 		pref = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL);
 		pref.setSummary(
-				PreferenceManager.getDefaultSharedPreferences(this).getString(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)
+				prefs.getString(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)
 				+ " " + getResources().getString(R.string.prefs_gps_logging_interval_seconds)
 				+ ". " + getResources().getString(R.string.prefs_gps_logging_interval_summary));
 		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -111,7 +114,7 @@ public class Preferences extends PreferenceActivity {
 		// Button screen orientation option
 		pref = findPreference(OSMTracker.Preferences.KEY_UI_ORIENTATION);
 		ListPreference orientationListPreference = (ListPreference) pref;
-		String displayValueKey = PreferenceManager.getDefaultSharedPreferences(this).getString(OSMTracker.Preferences.KEY_UI_ORIENTATION, OSMTracker.Preferences.VAL_UI_ORIENTATION);
+		String displayValueKey = prefs.getString(OSMTracker.Preferences.KEY_UI_ORIENTATION, OSMTracker.Preferences.VAL_UI_ORIENTATION);
 		int displayValueIndex = orientationListPreference.findIndexOfValue(displayValueKey);
 		String displayValue = orientationListPreference.getEntries()[displayValueIndex].toString();
 		orientationListPreference.setSummary(displayValue + ".\n" 
@@ -133,6 +136,27 @@ public class Preferences extends PreferenceActivity {
 			}
 		});
 
+		// Clear OSM data: Disable if there's no OSM data stored
+		pref = findPreference(OSMTracker.Preferences.KEY_OSM_OAUTH_CLEAR_DATA);
+		if (prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN)
+				&& prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET)) {
+			pref.setEnabled(true);
+		} else {
+			pref.setEnabled(false);
+		}
+		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				// Clear data
+				Editor editor = prefs.edit();
+				editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN);
+				editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET);
+				editor.commit();
+				
+				preference.setEnabled(false);
+				return false;
+			}
+		});
 		
 	}
 

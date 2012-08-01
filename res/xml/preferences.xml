@@ -5,6 +5,10 @@
 		android:defaultValue="2" android:entries="@array/prefs_voicerec_durations"></ListPreference>
 	<CheckBoxPreference android:key="sound_enabled" android:title="@string/prefs_sound_enabled"
 		android:summary="@string/prefs_sound_enabled_summary" android:defaultValue="true"></CheckBoxPreference>
+	<com.android.internal.preference.YesNoPreference android:key="osm.oauth.clear-data"
+	    android:title="@string/prefs_osm_clear_oauth_data" android:summary="@string/prefs_osm_clear_oauth_data_summary"
+	    android:dialogMessage="@string/prefs_osm_clear_oauth_data_dialog" android:dialogIcon="@android:drawable/ic_dialog_alert" />
+	
 	<PreferenceCategory android:title="@string/prefs_gps">
 		<Preference android:summary="@string/prefs_gps_os_settings_summary"
 			android:title="@string/prefs_gps_os_settings" android:key="gps.ossettings"></Preference>
