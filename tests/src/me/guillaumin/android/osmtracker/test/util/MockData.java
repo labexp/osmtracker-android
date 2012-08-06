@@ -1,6 +1,8 @@
 package me.guillaumin.android.osmtracker.test.util;
 
 import java.util.Calendar;
+import java.util.Random;
+import java.util.UUID;
 
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
@@ -73,5 +75,51 @@ public class MockData {
 		}
 
 		return trackId;
+	}
+	
+	public static long mockBigTrack(Context context, int numWayPoints, int numTrackPoints) {
+		ContentResolver cr = context.getContentResolver();
+		
+		// Create new track
+		ContentValues values = new ContentValues();
+		values.put(Schema.COL_NAME, "");
+		values.put(Schema.COL_START_DATE, System.currentTimeMillis());
+		values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_ACTIVE);
+		values.put(Schema.COL_NAME, "gpx-big-test");
+		Uri trackUri = cr.insert(TrackContentProvider.CONTENT_URI_TRACK, values);
+		long trackId = ContentUris.parseId(trackUri);
+		
+		Random r = new Random();
+
+		DataHelper helper = new DataHelper(context);
+		for (int i=0; i<numWayPoints; i++) {
+			Location l = new Location("test");
+			l.setLatitude((r.nextDouble() * 180) -90);
+			l.setLongitude((r.nextDouble() * 360) - 180);
+			l.setAccuracy(r.nextFloat());
+			l.setAltitude((r.nextDouble() * 2000) - 1000);
+			l.setSpeed(r.nextFloat() * 200);
+			l.setTime(System.currentTimeMillis());
+			helper.track(trackId, l);
+		}
+		
+		for (int i=0; i<numTrackPoints; i++) {
+			Location l = new Location("test");
+			l.setLatitude((r.nextDouble() * 180) -90);
+			l.setLongitude((r.nextDouble() * 360) - 180);
+			l.setAccuracy(r.nextFloat());
+			l.setAltitude((r.nextDouble() * 2000) - 1000);
+			l.setSpeed(r.nextFloat() * 200);
+			l.setTime(System.currentTimeMillis());
+
+			helper.wayPoint(trackId, l,
+					r.nextInt() * 10,
+					"wayPoint #"+i,
+					"http://link.com/"+i,
+					UUID.randomUUID().toString());
+		}
+
+		return trackId;
+
 	}
 }

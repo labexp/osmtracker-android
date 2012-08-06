@@ -24,16 +24,16 @@ public abstract class TrackDetailEditor extends Activity {
 	protected long trackId;
 
 	/** Edit text for the track name */
-	private EditText etName;
+	protected EditText etName;
 
 	/** Edit text for track description */
-	private EditText etDescription;
+	protected EditText etDescription;
 
 	/** Edit text for track tags */
-	private EditText etTags;
+	protected EditText etTags;
 
 	/** Spinner for track visibility */
-	private Spinner spVisibility;
+	protected Spinner spVisibility;
 
 	
 	protected void onCreate(Bundle savedInstanceState, int viewResId, long trackId) {

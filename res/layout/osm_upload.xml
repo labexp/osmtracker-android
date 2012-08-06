@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="@android:R/string/cancel" />
+            android:text="@string/osm_upload_back_to_tracklist" />
 
     </LinearLayout>
 

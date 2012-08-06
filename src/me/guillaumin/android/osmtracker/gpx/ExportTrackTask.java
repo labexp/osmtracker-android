@@ -84,7 +84,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	/**
 	 * Dialog to display while exporting
 	 */
-	private ProgressDialog dialog;
+	protected ProgressDialog dialog;
 
 	/**
 	 * Message in case of an error
@@ -142,11 +142,12 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 		return true;
 	}
 	
-	
+	/*
 	@Override
 	protected void onProgressUpdate(Integer... values) {
 		dialog.setProgress(values[0]);
 	}
+	*/
 
 	@Override
 	protected void onPostExecute(Boolean success) {

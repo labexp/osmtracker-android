@@ -23,7 +23,7 @@
 		<activity android:name=".activity.Preferences" android:label="@string/prefs" />
 		<activity android:name=".activity.WaypointList" android:label="@string/wplist" />
 		<activity android:name=".activity.TrackDetail" android:label="@string/trackdetail" />
-		<activity android:name=".activity.OSMUpload" android:label="@string/osm_upload">
+		<activity android:name=".activity.OpenStreetMapUpload" android:label="@string/osm_upload">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
 				<category android:name="android.intent.category.BROWSABLE"/>

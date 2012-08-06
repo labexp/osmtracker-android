@@ -339,7 +339,7 @@ public class TrackManager extends ListActivity {
 			new ExportToStorageTask(this, info.id).execute();
 			break;
 		case R.id.trackmgr_contextmenu_osm_upload:
-			i = new Intent(this, OSMUpload.class);
+			i = new Intent(this, OpenStreetMapUpload.class);
 			i.putExtra(Schema.COL_TRACK_ID, info.id);
 			startActivity(i);
 			break;

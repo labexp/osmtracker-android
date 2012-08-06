@@ -15,7 +15,7 @@ import android.util.Log;
  * media, only the GPX file.
  *
  */
-public class ExportToTempFileTask extends ExportTrackTask {
+public abstract class ExportToTempFileTask extends ExportTrackTask {
 
 	private static final String TAG = ExportToTempFileTask.class.getSimpleName();
 	
@@ -51,4 +51,12 @@ public class ExportToTempFileTask extends ExportTrackTask {
 	public File getTmpFile() {
 		return tmpFile;
 	}
+	
+	@Override
+	protected void onPostExecute(Boolean success) {
+		super.onPostExecute(success);
+		executionCompleted();
+	}
+	
+	protected abstract void executionCompleted();
 }
