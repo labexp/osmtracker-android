@@ -87,7 +87,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ Schema.COL_START_DATE + " long not null,"
 		+ Schema.COL_DIR + " text," // unused since DB_VERSION 13, since SQLite doesn't support to remove a column it will stay for now
 		+ Schema.COL_ACTIVE + " integer not null default 0,"
-		+ Schema.COL_EXPORT_DATE + " long"  // null indicates not yet exported
+		+ Schema.COL_EXPORT_DATE + " long,"  // null indicates not yet exported
+		+ Schema.COL_OSM_UPLOAD_DATE + " long" // null indicates not yet uploaded
 		+ ")";
 
 	/**
@@ -109,7 +110,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 *  v9: add TBL_TRACK.COL_ACTIVE  (r206)
 	 * v12: add TBL_TRACK.COL_EXPORT_DATE, IDX_TRACKPOINT_TRACK, IDX_WAYPOINT_TRACK (r207) v0.5.0
 	 * v13: TBL_TRACK.COL_DIR is now deprecated (rxxx) v0.5.3 TODO: fill in correct revision and version
-	 * v14: add TBL_TRACK.COL_DESCRIPTION, TBL_TRACK.COL_TAGS and TBL_TRACK.COL_OSM_VISIBILITY for OSM upload - v0.6.0 
+	 * v14: add TBL_TRACK.COL_OSM_UPLOAD_DATE, TBL_TRACK.COL_DESCRIPTION,
+	 * 			TBL_TRACK.COL_TAGS and TBL_TRACK.COL_OSM_VISIBILITY for OSM upload - v0.6.0 
 	 *</pre>
 	 */
 	private static final int DB_VERSION = 14;
@@ -149,7 +151,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		case 12:
 			manageNewStoragePath(db);
 		case 13:
-			// Create 'description', 'tags' and 'visibility'
+			// Create 'osm_upload_date', 'description', 'tags' and 'visibility'
+			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_OSM_UPLOAD_DATE+ " long");
 			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_DESCRIPTION + " text");
 			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_TAGS + " text");
 			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_OSM_VISIBILITY

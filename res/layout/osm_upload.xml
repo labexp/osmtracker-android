@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <include
-        android:id="@+id/trackdetail_fields_include"
+    <LinearLayout
+        android:id="@+id/trackdetail_buttons"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        layout="@layout/trackdetail_fields" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray"
+        android:gravity="bottom"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:padding="3dp" >
 
         <Button
             android:id="@+id/osm_upload_btn_ok"
@@ -30,8 +28,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="@string/osm_upload_back_to_tracklist" />
-
+            android:text="@string/tracklogger_btnBack" />
     </LinearLayout>
 
-</LinearLayout>
+    <include
+        android:id="@+id/trackdetail_fields_include"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/trackdetail_fields" />
+
+</RelativeLayout>

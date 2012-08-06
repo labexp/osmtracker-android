@@ -34,7 +34,9 @@ public abstract class TrackDetailEditor extends Activity {
 
 	/** Spinner for track visibility */
 	protected Spinner spVisibility;
-
+	
+	/** Whereas to verify if mandatory fields are filled or not */
+	protected boolean fieldsMandatory = false;
 	
 	protected void onCreate(Bundle savedInstanceState, int viewResId, long trackId) {
 		super.onCreate(savedInstanceState);
@@ -69,8 +71,19 @@ public abstract class TrackDetailEditor extends Activity {
 		spVisibility.setSelection(t.getVisibility().position);
 	}
 
-	protected void save() {
+	/**
+	 * Saves the new information in database
+	 * @return false if the save didn't take place, true otherwise.
+	 */
+	protected boolean save() {
 		// Save changes to db (if any), then finish.
+		etDescription.setError(null);
+		if (fieldsMandatory) {
+			if (etDescription.getText().length() < 1) {
+				etDescription.setError(getResources().getString(R.string.trackdetail_description_mandatory));
+				return false;
+			}
+		}
 		
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 		ContentValues values = new ContentValues();
@@ -90,7 +103,7 @@ public abstract class TrackDetailEditor extends Activity {
 		getContentResolver().update(trackUri, values, null, null);	
 
 		// All done
-
+		return true;
 	}
 
 }

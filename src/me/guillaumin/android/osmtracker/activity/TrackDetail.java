@@ -168,6 +168,16 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		map.put(ITEM_VALUE, MercatorProjection.formatDegreesAsDMS(t.getEndLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getEndLong(), false));
 		data.add(map);
 
+		// OSM Upload date
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_osm_upload_date));
+		if (cursor.isNull(cursor.getColumnIndex(Schema.COL_OSM_UPLOAD_DATE))) {
+			map.put(ITEM_VALUE, getResources().getString(R.string.trackdetail_osm_upload_notyet));
+		} else {
+			map.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(cursor.getLong(cursor.getColumnIndex(Schema.COL_EXPORT_DATE)))));
+		}
+		data.add(map);
+		
 		// Exported date. Should be the last item in order to be refreshed
 		// if the user exports the track
 		map = new HashMap<String, String>();
@@ -197,6 +207,8 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
+		
 		switch(item.getItemId()) {
 		case R.id.trackdetail_menu_save:
 			save();
@@ -206,7 +218,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			finish();
 			break;
 		case R.id.trackdetail_menu_display:
-			Intent i;
+			
 			boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 					OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
 			if (useOpenStreetMapBackground) {
@@ -225,6 +237,11 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			Map<String, String> data = (Map<String, String>) adapter.getItem(adapter.getCount()-1);
 			data.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
 			adapter.notifyDataSetChanged();
+			break;
+		case R.id.trackdetail_menu_osm_upload:
+			i = new Intent(this, OpenStreetMapUpload.class);
+			i.putExtra(Schema.COL_TRACK_ID, trackId);
+			startActivity(i);
 			break;
 		}
 		return super.onOptionsItemSelected(item);

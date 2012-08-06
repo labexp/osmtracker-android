@@ -11,7 +11,7 @@
 		android:icon="@android:drawable/ic_menu_delete"></item>
 	<item android:id="@+id/trackmgr_menu_exportall"
 	    android:title="@string/menu_exportall"
-	    android:icon="@android:drawable/ic_menu_upload"></item>
+	    android:icon="@android:drawable/ic_menu_set_as"></item>
 	<item android:id="@+id/trackmgr_menu_settings"
 		android:title="@string/menu_settings"
 		android:icon="@android:drawable/ic_menu_preferences"></item>

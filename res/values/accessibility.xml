@@ -14,5 +14,6 @@
     
     <!-- Track list -->
     <string name="acc.track_status">Track status indicator</string>
+	<string name="acc.upload_status">OpenStreetMap upload status indicator</string>    
     
 </resources>

@@ -110,6 +110,12 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	 * @return
 	 */
 	protected abstract boolean exportMediaFiles();
+	
+	/**
+	 * Whereas to update the track export date in the database at the end or not
+	 * @return
+	 */
+	protected abstract boolean updateExportDate();
 
 	public ExportTrackTask(Context context, long trackId) {
 		this.context = context;
@@ -217,7 +223,9 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 					if (exportMediaFiles()) {
 						copyWaypointFiles(trackGPXExportDirectory);
 					}
-					DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
+					if (updateExportDate()) {
+						DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
+					}
 				} catch (IOException ioe) {
 					throw new ExportTrackException(ioe.getMessage());
 				} finally {
@@ -415,7 +423,5 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 		}
 		
 	}
-	
-
 
 }

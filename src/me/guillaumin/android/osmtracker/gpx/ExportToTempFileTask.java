@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.exception.ExportTrackException;
 import android.content.Context;
 import android.database.Cursor;
@@ -45,6 +44,11 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 
 	@Override
 	protected boolean exportMediaFiles() {
+		return false;
+	}
+	
+	@Override
+	protected boolean updateExportDate() {
 		return false;
 	}
 	

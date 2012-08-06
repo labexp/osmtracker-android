@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.model.Track.OSMVisibility;
 import me.guillaumin.android.osmtracker.osm.ProgressMultipartEntity.ProgressListener;
 import me.guillaumin.android.osmtracker.util.DialogUtils;
@@ -156,8 +157,22 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 			break;
 		case HttpStatus.SC_OK:
 			dialog.dismiss();
-			// Success ! Close activity
-			activity.finish();
+			// Success ! Update database and close activity
+			DataHelper.setTrackUploadDate(trackId, System.currentTimeMillis(), activity.getContentResolver());
+			
+			new AlertDialog.Builder(activity)
+				.setTitle(android.R.string.dialog_alert_title)
+				.setIcon(android.R.drawable.ic_dialog_info)
+				.setMessage(R.string.osm_upload_sucess)
+				.setCancelable(true)
+				.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						activity.finish();
+					}
+				}).create().show();
+			
 			break;
 		case HttpStatus.SC_UNAUTHORIZED:
 			dialog.dismiss();

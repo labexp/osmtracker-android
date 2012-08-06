@@ -129,4 +129,9 @@ public class ExportToStorageTask extends ExportTrackTask {
 	protected boolean exportMediaFiles() {
 		return true;
 	}
+	
+	@Override
+	protected boolean updateExportDate() {
+		return true;
+	}
 }

@@ -58,6 +58,7 @@ public class TrackContentProvider extends ContentProvider {
 		Schema.COL_ACTIVE,
 		Schema.COL_DIR,
 		Schema.COL_EXPORT_DATE,
+		Schema.COL_OSM_UPLOAD_DATE,
 		Schema.TBL_TRACK + "." + Schema.COL_NAME + " as "+ Schema.COL_NAME,
 		Schema.COL_DESCRIPTION,
 		Schema.COL_TAGS,
@@ -432,6 +433,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_DIR = "directory";
 		public static final String COL_ACTIVE = "active";
 		public static final String COL_EXPORT_DATE = "export_date";
+		public static final String COL_OSM_UPLOAD_DATE = "osm_upload_date";
 		
 		// virtual colums that are used in some sqls but dont exist in database
 		public static final String COL_TRACKPOINT_COUNT = "tp_count";

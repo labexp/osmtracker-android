@@ -2,7 +2,7 @@ package me.guillaumin.android.osmtracker.osm;
 
 public class OpenStreetMapConstants {
 
-	private static final boolean DEV_MODE = true;
+	private static final boolean DEV_MODE = false;
 	
 	private static final String OSM_API_URL_DEV = "http://master.apis.dev.openstreetmap.org";
 	private static final String OSM_API_URL_PROD = "http://www.openstreetmap.org";

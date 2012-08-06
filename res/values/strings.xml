@@ -53,11 +53,14 @@
 	<string name="trackdetail_startloc">Starts at:</string>
 	<string name="trackdetail_endloc">Ends at:</string>
 	<string name="trackdetail_exportdate">Exported:</string>
+	<string name="trackdetail_osm_upload_date">Uploaded to OpenStreetMap:</string>
 	<string name="trackdetail_btn_export">Export as GPX</string>
 	<string name="trackdetail_export_notyet">(Not exported yet)</string>
+	<string name="trackdetail_osm_upload_notyet">(Not uploaded yet)</string>
 	<string name="trackdetail_export_display">Display</string>
 	<string name="trackdetail_description">Description</string>
 	<string name="trackdetail_tags">Tags (comma separated)</string>
+	<string name="trackdetail_description_mandatory">You must enter a description</string>
 	<string name="osm_visibility_private">Private</string>
 	<string name="osm_visibility_public">Public</string>
 	<string name="osm_visibility_trackable">Trackable</string>
@@ -66,7 +69,6 @@
 	<!-- OSM upload -->
 	<string name="osm_upload">OpenStreetMap upload</string>
 	<string name="osm_upload_ok">Save and upload</string>
-	<string name="osm_upload_back_to_tracklist">Back to track list</string>
 	<string name="osm_upload_tmpfile_failed">Unable to export the track to a temporary file</string>
 	<string name="osm_upload_oauth_failed">Unable to authenticate to OSM</string>
 	<string name="osm_upload_sending">Sending track #{0}&#8230;</string>
@@ -74,6 +76,7 @@
 	<string name="osm_upload_error">Error while uploading track</string>
 	<string name="osm_upload_bad_response">The OSM server returned an error: ({0}) message {1}</string>
 	<string name="osm_upload_unauthorized">Autorization error. Would you like to clear the saved OpenStreetMap credentials?</string>
+	<string name="osm_upload_sucess">OpenStreetMap upload succeeded</string>
 	
 	<!-- GPS Status & record bar -->
 	<string name="gpsstatus_record_voicerec">Voice record</string>
@@ -93,6 +96,7 @@
 	<string name="menu_save">Save</string>
 	<string name="menu_cancel">Cancel</string>
 	<string name="menu_export">Export as GPX</string>
+	<string name="menu_osm_upload">OpenStreetMap upload</string>
 	<string name="menu_center_to_gps">Center to GPS</string>
 	<string name="menu_exportall">Export all as GPX</string>
 

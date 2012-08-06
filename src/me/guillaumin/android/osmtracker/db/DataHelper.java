@@ -260,6 +260,13 @@ public class DataHelper {
 		values.put(Schema.COL_EXPORT_DATE, exportTime);
 		cr.update(trackUri, values, null, null);		
 	}
+	
+	public static void setTrackUploadDate(long trackId, long uploadTime, ContentResolver cr) {
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+		ContentValues values = new ContentValues();
+		values.put(Schema.COL_OSM_UPLOAD_DATE, uploadTime);
+		cr.update(trackUri, values, null, null);		
+	}
 
 	/**
 	 * Renames a file inside track directory, keeping the extension

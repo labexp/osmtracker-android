@@ -54,6 +54,7 @@ public class TracklistAdapter extends CursorAdapter {
 		TextView vWps = (TextView) v.findViewById(R.id.trackmgr_item_wps);
 		TextView vTps = (TextView) v.findViewById(R.id.trackmgr_item_tps);
 		ImageView vStatus = (ImageView) v.findViewById(R.id.trackmgr_item_statusicon);
+		ImageView vUploadStatus = (ImageView) v.findViewById(R.id.trackmgr_item_upload_statusicon);
 
 		// Is track active ?
 		int active = cursor.getInt(cursor.getColumnIndex(Schema.COL_ACTIVE));
@@ -63,12 +64,17 @@ public class TracklistAdapter extends CursorAdapter {
 			vStatus.setVisibility(View.VISIBLE);
 		} else if (cursor.isNull(cursor.getColumnIndex(Schema.COL_EXPORT_DATE))) {
 			// Hide green circle icon: Track not yet exported
-			vStatus.setVisibility(View.INVISIBLE);
+			((ViewGroup) v).removeView(vStatus);
 		} else {
 			// Show green circle icon (don't assume already visible with this drawable; may be a re-query)
 			vStatus.setImageResource(android.R.drawable.presence_online);
 			vStatus.setVisibility(View.VISIBLE);
 		}
+		
+		// Upload status
+		if (cursor.isNull(cursor.getColumnIndex(Schema.COL_OSM_UPLOAD_DATE))) {
+			((ViewGroup) v).removeView(vUploadStatus);
+		}		
 		
 		// Bind id
 		long trackId = cursor.getLong(cursor.getColumnIndex(Schema.COL_ID));

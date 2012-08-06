@@ -57,13 +57,15 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState, R.layout.osm_upload, getTrackId());
+		fieldsMandatory = true;
 
 		final Button btnOk = (Button) findViewById(R.id.osm_upload_btn_ok);
 		btnOk.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				save();
-				startUpload();		
+				if (save()) {
+					startUpload();
+				}
 			}
 		});
 				
