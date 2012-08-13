@@ -35,6 +35,9 @@ import android.view.View.OnClickListener;
 /**
  * Display current track over an OSM map.
  * Based on osmdroid code http://osmdroid.googlecode.com/
+ *<P>
+ * Used only if {@link OSMTracker.Preferences#KEY_UI_DISPLAYTRACK_OSM} is set.
+ * Otherwise {@link DisplayTrack} is used (track only, no OSM background tiles).
  * 
  * @author Viesturs Zarins
  *
@@ -310,6 +313,10 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	
 	/**
 	 * On track path changed, update the two overlays and repaint view.
+	 * If {@link #lastTrackPointIdProcessed} is null, this is the initial call
+	 * from {@link #onResume()}, and not the periodic call from
+	 * {@link ContentObserver#onChange(boolean) trackpointContentObserver.onChange(boolean)}
+	 * while recording.
 	 */
 	private void pathChanged() {
 		if (isFinishing()) {
