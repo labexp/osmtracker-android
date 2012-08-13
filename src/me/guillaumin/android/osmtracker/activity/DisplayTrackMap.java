@@ -345,16 +345,15 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		// (the first point will overwrite these lat/lon bounds.)
 		boolean doInitialBoundsCalc = false;
 		double minLat = 91.0, minLon = 181.0;
-		double maxLat = -91.0, maxLon = 181.0;
+		double maxLat = -91.0, maxLon = -181.0;
 		if ((! zoomedToTrackAlready) && (lastTrackPointIdProcessed == null)) {
 			final String[] proj_active = {Schema.COL_ACTIVE};
 			Cursor cursor = getContentResolver().query(
 				ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, currentTrackId),
 				proj_active, null, null, null);
 			if (cursor.moveToFirst()) {
-				final boolean trackActive =
-					(cursor.getInt(cursor.getColumnIndex(Schema.COL_ACTIVE)) == 1);
-				doInitialBoundsCalc = ! trackActive;
+				doInitialBoundsCalc =
+					(cursor.getInt(cursor.getColumnIndex(Schema.COL_ACTIVE)) == Schema.VAL_TRACK_INACTIVE);
 			}
 			cursor.close();
 		}
@@ -387,13 +386,6 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		int numberOfPointsRetrieved = c.getCount();		
         if (numberOfPointsRetrieved > 0 ) {        
             c.moveToFirst();
-            if (doInitialBoundsCalc) {
-            	// the first point will overwrite these
-            	minLat = 91.0;
-            	minLon = 181.0;
-            	maxLat = -91.0;
-            	maxLon = -181.0;
-            }
 			double lastLat = 0;
 			double lastLon = 0;
 	        int primaryKeyColumnIndex = c.getColumnIndex(Schema.COL_ID);
