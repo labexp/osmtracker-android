@@ -10,6 +10,7 @@ import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.overlay.WayPointsOverlay;
 
 import org.osmdroid.contributor.util.constants.OpenStreetMapContributorConstants;
+import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
@@ -17,6 +18,7 @@ import org.osmdroid.views.overlay.PathOverlay;
 import org.osmdroid.views.overlay.SimpleLocationOverlay;
 
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
@@ -71,6 +73,12 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	private static final String CURRENT_CENTER_TO_GPS_POS = "currentCenterToGpsPos";
 
 	/**
+	 *  Key for keeping whether the map display was zoomed and centered
+	 *  on an old track id loaded from the database (boolean {@link #zoomedToTrackAlready})
+	 */
+	private static final String CURRENT_ZOOMED_TO_TRACK = "currentZoomedToTrack";
+
+	/**
 	 * Key for keeping the last zoom level across app. restart
 	 */
 	private static final String LAST_ZOOM = "lastZoomLevel";
@@ -114,6 +122,12 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	 * whether the map display should be centered to the gps location 
 	 */
 	private boolean centerToGpsPos = true;
+	
+	/**
+	 * whether the map display was already zoomed and centered
+	 * on an old track loaded from the database (should be done only once).
+	 */
+	private boolean zoomedToTrackAlready = false;
 	
 	/**
 	 * the last position we know
@@ -162,6 +176,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         	osmView.scrollTo(savedInstanceState.getInt(CURRENT_SCROLL_X, 0),
         			savedInstanceState.getInt(CURRENT_SCROLL_Y, 0));
         	centerToGpsPos = savedInstanceState.getBoolean(CURRENT_CENTER_TO_GPS_POS, centerToGpsPos);
+        	zoomedToTrackAlready = savedInstanceState.getBoolean(CURRENT_ZOOMED_TO_TRACK, zoomedToTrackAlready);
         } else {
         	// Try to get last zoom Level from Shared Preferences
         	SharedPreferences settings = getPreferences(MODE_PRIVATE);
@@ -200,6 +215,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		outState.putInt(CURRENT_SCROLL_X, osmView.getScrollX());
 		outState.putInt(CURRENT_SCROLL_Y, osmView.getScrollY());
 		outState.putBoolean(CURRENT_CENTER_TO_GPS_POS, centerToGpsPos);
+		outState.putBoolean(CURRENT_ZOOMED_TO_TRACK, zoomedToTrackAlready);
 		super.onSaveInstanceState(outState);
 	}
 
@@ -323,6 +339,26 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 			return;
 		}
 		
+		// See if the track is active.
+		// If not, we'll calculate initial track bounds
+		// while retrieving from the database.
+		// (the first point will overwrite these lat/lon bounds.)
+		boolean doInitialBoundsCalc = false;
+		double minLat = 91.0, minLon = 181.0;
+		double maxLat = -91.0, maxLon = 181.0;
+		if ((! zoomedToTrackAlready) && (lastTrackPointIdProcessed == null)) {
+			final String[] proj_active = {Schema.COL_ACTIVE};
+			Cursor cursor = getContentResolver().query(
+				ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, currentTrackId),
+				proj_active, null, null, null);
+			if (cursor.moveToFirst()) {
+				final boolean trackActive =
+					(cursor.getInt(cursor.getColumnIndex(Schema.COL_ACTIVE)) == 1);
+				doInitialBoundsCalc = ! trackActive;
+			}
+			cursor.close();
+		}
+		
 		// Projection: The columns to retrieve. Here, we want the latitude, 
 		// longitude and primary key only
 		String[] projection = {Schema.COL_LATITUDE, Schema.COL_LONGITUDE, Schema.COL_ID};
@@ -351,6 +387,13 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		int numberOfPointsRetrieved = c.getCount();		
         if (numberOfPointsRetrieved > 0 ) {        
             c.moveToFirst();
+            if (doInitialBoundsCalc) {
+            	// the first point will overwrite these
+            	minLat = 91.0;
+            	minLon = 181.0;
+            	maxLat = -91.0;
+            	maxLon = -181.0;
+            }
 			double lastLat = 0;
 			double lastLon = 0;
 	        int primaryKeyColumnIndex = c.getColumnIndex(Schema.COL_ID);
@@ -363,6 +406,12 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 				lastLon = c.getDouble(longitudeColumnIndex);
 				lastTrackPointIdProcessed = c.getInt(primaryKeyColumnIndex);
 				pathOverlay.addPoint((int)(lastLat * 1e6), (int)(lastLon * 1e6));
+				if (doInitialBoundsCalc) {
+					if (lastLat < minLat)  minLat = lastLat;
+					if (lastLon < minLon)  minLon = lastLon;
+					if (lastLat > maxLat)  maxLat = lastLat;
+					if (lastLon > maxLon)  maxLon = lastLon;
+				}
 				c.moveToNext();
 			}		
 		
@@ -375,6 +424,19 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		
 			// Repaint
 			osmView.invalidate();
+			if (doInitialBoundsCalc && (numberOfPointsRetrieved > 1)) {
+				// osmdroid-3.0.8 hangs if we directly call zoomToSpan during initial onResume,
+				// so post a Runnable instead for after it's done initializing.
+		    	final double north = maxLat, east = maxLon, south = minLat, west = minLon;
+		    	osmView.post(new Runnable() {
+					@Override
+					public void run() {
+						osmViewController.zoomToSpan(new BoundingBoxE6(north, east, south, west));
+						osmViewController.setCenter(new GeoPoint((north + south) / 2, (east + west) / 2));
+						zoomedToTrackAlready = true;
+					}
+				});
+			}
 		}
 		c.close();
 	}
