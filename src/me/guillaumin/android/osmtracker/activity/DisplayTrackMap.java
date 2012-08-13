@@ -148,6 +148,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         
         // Initialize OSM view
         osmView = (MapView) findViewById(R.id.displaytrackmap_osmView);
+        osmView.setMultiTouchControls(true);  // pinch to zoom
         // we'll use osmView to define if the screen is always on or not
         osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
         osmViewController = osmView.getController();
