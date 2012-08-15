@@ -4,7 +4,8 @@
     <item
         android:id="@+id/trackdetail_menu_save"
         android:icon="@android:drawable/ic_menu_save"
-        android:title="@string/menu_save">
+        android:title="@string/menu_save"
+        android:showAsAction="ifRoom|withText">
     </item>
     <item
         android:id="@+id/trackdetail_menu_cancel"
@@ -20,7 +21,8 @@
     <item
         android:id="@+id/trackdetail_menu_export"
         android:icon="@android:drawable/ic_menu_set_as"
-        android:title="@string/menu_export">
+        android:title="@string/menu_export"
+        android:showAsAction="ifRoom|withText">
     </item>
     <item
         android:id="@+id/trackdetail_menu_osm_upload"

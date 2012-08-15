@@ -64,9 +64,9 @@
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
 	<string-array name="prefs_theme_values">
-		<item>android:style/Theme</item>
-		<item>android:style/Theme.Black</item>
-		<item>android:style/Theme.Light</item>
+		<item>me.guillaumin.android.osmtracker:style/DefaultTheme</item>
+		<item>me.guillaumin.android.osmtracker:style/DarkTheme</item>
+		<item>me.guillaumin.android.osmtracker:style/LightTheme</item>
 		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (END) -->
