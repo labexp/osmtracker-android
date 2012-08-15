@@ -10,6 +10,7 @@ import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.overlay.WayPointsOverlay;
 
 import org.osmdroid.contributor.util.constants.OpenStreetMapContributorConstants;
+import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
@@ -17,6 +18,7 @@ import org.osmdroid.views.overlay.PathOverlay;
 import org.osmdroid.views.overlay.SimpleLocationOverlay;
 
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
@@ -35,6 +37,9 @@ import android.view.View.OnClickListener;
 /**
  * Display current track over an OSM map.
  * Based on osmdroid code http://osmdroid.googlecode.com/
+ *<P>
+ * Used only if {@link OSMTracker.Preferences#KEY_UI_DISPLAYTRACK_OSM} is set.
+ * Otherwise {@link DisplayTrack} is used (track only, no OSM background tiles).
  * 
  * @author Viesturs Zarins
  *
@@ -66,6 +71,12 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	 * 
 	 */
 	private static final String CURRENT_CENTER_TO_GPS_POS = "currentCenterToGpsPos";
+
+	/**
+	 *  Key for keeping whether the map display was zoomed and centered
+	 *  on an old track id loaded from the database (boolean {@link #zoomedToTrackAlready})
+	 */
+	private static final String CURRENT_ZOOMED_TO_TRACK = "currentZoomedToTrack";
 
 	/**
 	 * Key for keeping the last zoom level across app. restart
@@ -113,6 +124,12 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	private boolean centerToGpsPos = true;
 	
 	/**
+	 * whether the map display was already zoomed and centered
+	 * on an old track loaded from the database (should be done only once).
+	 */
+	private boolean zoomedToTrackAlready = false;
+	
+	/**
 	 * the last position we know
 	 */
 	private GeoPoint currentPosition;
@@ -148,6 +165,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         
         // Initialize OSM view
         osmView = (MapView) findViewById(R.id.displaytrackmap_osmView);
+        osmView.setMultiTouchControls(true);  // pinch to zoom
         // we'll use osmView to define if the screen is always on or not
         osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
         osmViewController = osmView.getController();
@@ -158,6 +176,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         	osmView.scrollTo(savedInstanceState.getInt(CURRENT_SCROLL_X, 0),
         			savedInstanceState.getInt(CURRENT_SCROLL_Y, 0));
         	centerToGpsPos = savedInstanceState.getBoolean(CURRENT_CENTER_TO_GPS_POS, centerToGpsPos);
+        	zoomedToTrackAlready = savedInstanceState.getBoolean(CURRENT_ZOOMED_TO_TRACK, zoomedToTrackAlready);
         } else {
         	// Try to get last zoom Level from Shared Preferences
         	SharedPreferences settings = getPreferences(MODE_PRIVATE);
@@ -196,6 +215,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		outState.putInt(CURRENT_SCROLL_X, osmView.getScrollX());
 		outState.putInt(CURRENT_SCROLL_Y, osmView.getScrollY());
 		outState.putBoolean(CURRENT_CENTER_TO_GPS_POS, centerToGpsPos);
+		outState.putBoolean(CURRENT_ZOOMED_TO_TRACK, zoomedToTrackAlready);
 		super.onSaveInstanceState(outState);
 	}
 
@@ -309,10 +329,33 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	
 	/**
 	 * On track path changed, update the two overlays and repaint view.
+	 * If {@link #lastTrackPointIdProcessed} is null, this is the initial call
+	 * from {@link #onResume()}, and not the periodic call from
+	 * {@link ContentObserver#onChange(boolean) trackpointContentObserver.onChange(boolean)}
+	 * while recording.
 	 */
 	private void pathChanged() {
 		if (isFinishing()) {
 			return;
+		}
+		
+		// See if the track is active.
+		// If not, we'll calculate initial track bounds
+		// while retrieving from the database.
+		// (the first point will overwrite these lat/lon bounds.)
+		boolean doInitialBoundsCalc = false;
+		double minLat = 91.0, minLon = 181.0;
+		double maxLat = -91.0, maxLon = -181.0;
+		if ((! zoomedToTrackAlready) && (lastTrackPointIdProcessed == null)) {
+			final String[] proj_active = {Schema.COL_ACTIVE};
+			Cursor cursor = getContentResolver().query(
+				ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, currentTrackId),
+				proj_active, null, null, null);
+			if (cursor.moveToFirst()) {
+				doInitialBoundsCalc =
+					(cursor.getInt(cursor.getColumnIndex(Schema.COL_ACTIVE)) == Schema.VAL_TRACK_INACTIVE);
+			}
+			cursor.close();
 		}
 		
 		// Projection: The columns to retrieve. Here, we want the latitude, 
@@ -355,6 +398,12 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 				lastLon = c.getDouble(longitudeColumnIndex);
 				lastTrackPointIdProcessed = c.getInt(primaryKeyColumnIndex);
 				pathOverlay.addPoint((int)(lastLat * 1e6), (int)(lastLon * 1e6));
+				if (doInitialBoundsCalc) {
+					if (lastLat < minLat)  minLat = lastLat;
+					if (lastLon < minLon)  minLon = lastLon;
+					if (lastLat > maxLat)  maxLat = lastLat;
+					if (lastLon > maxLon)  maxLon = lastLon;
+				}
 				c.moveToNext();
 			}		
 		
@@ -367,6 +416,19 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		
 			// Repaint
 			osmView.invalidate();
+			if (doInitialBoundsCalc && (numberOfPointsRetrieved > 1)) {
+				// osmdroid-3.0.8 hangs if we directly call zoomToSpan during initial onResume,
+				// so post a Runnable instead for after it's done initializing.
+		    	final double north = maxLat, east = maxLon, south = minLat, west = minLon;
+		    	osmView.post(new Runnable() {
+					@Override
+					public void run() {
+						osmViewController.zoomToSpan(new BoundingBoxE6(north, east, south, west));
+						osmViewController.setCenter(new GeoPoint((north + south) / 2, (east + west) / 2));
+						zoomedToTrackAlready = true;
+					}
+				});
+			}
 		}
 		c.close();
 	}

@@ -2,6 +2,7 @@ package me.guillaumin.android.osmtracker.db;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
@@ -26,6 +27,9 @@ public class WaypointListAdapter extends CursorAdapter {
 	 * Date formatter
 	 */
 	public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("HH:mm:ss 'UTC'");
+	static {
+		DATE_FORMATTER.setTimeZone(TimeZone.getTimeZone("UTC"));
+	}
 
 	/**
 	 * Constructor.
