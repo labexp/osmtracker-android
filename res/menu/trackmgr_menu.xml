@@ -11,7 +11,7 @@
 		android:visible="false"></item>
 	<item android:id="@+id/trackmgr_menu_stopcurrenttrack"
 		android:title="@string/menu_stopcurrenttrack"
-		android:icon="@android:drawable/ic_menu_add"
+		android:icon="@android:drawable/ic_menu_close_clear_cancel"
 		android:showAsAction="never"></item>
 	<item android:id="@+id/trackmgr_menu_deletetracks"
 		android:title="@string/menu_deletetracks"

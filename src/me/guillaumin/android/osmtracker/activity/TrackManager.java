@@ -193,9 +193,9 @@ public class TrackManager extends ListActivity {
 			break;
 		case R.id.trackmgr_menu_continuetrack:
 			Intent i = new Intent(this, TrackLogger.class);
-				i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
-				i.putExtra(Schema.COL_TRACK_ID, currentTrackId);
-				startActivity(i);
+			i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
+			i.putExtra(Schema.COL_TRACK_ID, currentTrackId);
+			startActivity(i);
 			break;
 		case R.id.trackmgr_menu_stopcurrenttrack:
 			stopActiveTrack();
