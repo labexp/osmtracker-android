@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- About screen -->
+    <string name="acc.osmtracker_logo">OSMTracker logo</string>
+    
+    <!-- Zoom in/out in map view -->
+    <string name="acc.zoom_in">Zoom ind</string>
+    <string name="acc.zoom_out">Zoom ud</string>
+    
+    <!-- GPS status bar -->
+    <string name="acc.sat_indicator">Satellite signal styrke indikator</string>
+    <string name="acc.record_indicator">Optagelse status indikator</string>
+    
+    <!-- Track list -->
+    <string name="acc.track_status">Track status indikator</string>
+	<string name="acc.upload_status">OpenStreetMap upload status indikator</string>    
+    
+</resources>

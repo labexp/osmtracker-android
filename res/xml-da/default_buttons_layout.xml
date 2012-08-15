@@ -6,20 +6,20 @@
 			<button type="picture" icon="camera_32x32" />
 			<button type="textnote" icon="text_32x32" />
 		</row>
-
+		
 		<row>
-			<button type="page" label="Diverse" icon="button_misc" targetlayout="misc" />
-			<button type="page" label="Restriktioner" icon="button_restriction" targetlayout="restriction" />
+			<button type="page" label="Div." icon="button_misc" targetlayout="misc" />
+			<button type="page" label="Begrænsning" icon="button_restriction" targetlayout="restriction" />
 			<button type="page" label="Bil" icon="button_car" targetlayout="car" />
 		</row>
 		<row>
-			<button type="page" label="Tourisme" icon="button_tourism" targetlayout="tourism" />
+			<button type="page" label="Turisme" icon="button_tourism" targetlayout="tourism" />
 			<button type="page" label="Tilbehør" icon="button_amenity" targetlayout="amenity" />
 			<button type="page" label="Tilbehør (+)" icon="button_amenity" targetlayout="amenity_more" />
 		</row>
 		<row>
 			<button type="page" label="Vej" icon="button_way" targetlayout="way" />
-			<button type="page" label="Spor" icon="button_track" targetlayout="track" />
+			<button type="page" label="Sport" icon="button_track" targetlayout="track" />
 			<button type="page" label="Brug af område" icon="button_landuse" targetlayout="landuse" />
 		</row>
 	</layout>
@@ -31,18 +31,18 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Bus stoppested" icon="button_misc_bus_stop" />
+			<button type="tag" label="Bus stop" icon="button_misc_bus_stop" />
 			<button type="tag" label="Jernbane" icon="button_misc_railway" />
 			<button type="tag" label="Telefon" icon="button_misc_telephone" />
 		</row>
 		<row>
 			<button type="tag" label="Postkasse" icon="button_misc_post_box" />
 			<button type="tag" label="Pengeautomat" icon="button_misc_atm" />
-			<button type="tag" label="Bollard,\nVejblokade" icon="button_misc_bollard" />
+			<button type="tag" label="Bom" icon="button_misc_bollard" />
 		</row>
 		<row>
 			<button type="tag" label="Toilet" icon="button_misc_toilets" />
-			<button type="tag" label="Skur,\nLy" icon="button_misc_shelter" />
+			<button type="tag" label="Skur/Ly" icon="button_misc_shelter" />
 			<button type="tag" label="Overvågning" icon="button_misc_surveillance" />
 		</row>
 	</layout>
@@ -59,9 +59,9 @@
 			<button type="tag" label="Max 80" icon="button_restriction" />
 		</row>
 		<row>
-			<button type="tag" label="Max 100" icon="button_restriction" />
+			<button type="tag" label="Max 90" icon="button_restriction" />
 			<button type="tag" label="Max 110" icon="button_restriction" />
-			<button type="tag" label="Max 120" icon="button_restriction" />
+			<button type="tag" label="Max 130" icon="button_restriction" />
 		</row>
 		<row>
 			<button type="tag" label="Blind vej" icon="button_restriction_no_exit" />
@@ -77,13 +77,13 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Tankstation" icon="button_car_fuel_station" />
+			<button type="tag" label="Benzinstation" icon="button_car_fuel_station" />
 			<button type="tag" label="Parkering" icon="button_car_parking" />
 			<button type="tag" label="Nødtelefon" icon="button_car_emergency_phone" />
 		</row>
 		<row>
 			<button type="tag" label="Vendeplads" icon="button_car_turning_circle" />
-			<button type="tag" label="Fart kamera" icon="button_car_speed_camera" />
+			<button type="tag" label="Fotofælde" icon="button_car_speed_camera" />
 		</row>
 	</layout>
 
@@ -94,14 +94,14 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Udsigtpunkt" icon="button_tourism_view_point" />
+			<button type="tag" label="Udsigtspunkt" icon="button_tourism_view_point" />
 			<button type="tag" label="Information" icon="button_tourism_information" />
-			<button type="tag" label="Rasteplads" icon="button_tourism_picnic" />
+			<button type="tag" label="Resteplads" icon="button_tourism_picnic" />
 		</row>
 		<row>
 			<button type="tag" label="Attraktion" icon="button_tourism_attraction" />
 			<button type="tag" label="Temapark" icon="button_tourism_theme_park" />
-			<button type="tag" label="Borg,\nslot" icon="button_tourism_castle" />
+			<button type="tag" label="Slot" icon="button_tourism_castle" />
 		</row>
 		<row>
 			<button type="tag" label="Monument" icon="button_tourism_monument" />
@@ -127,12 +127,12 @@
 			<button type="tag" label="Sport" icon="button_amenity_sport" />
 		</row>
 		<row>
-			<button type="tag" label="Taxi" icon="button_amenity_taxi" />
-			<button type="tag" label="Hospital,\nDoctors" icon="button_amenity_doctors" />
+			<button type="tag" label="Taxa" icon="button_amenity_taxi" />
+			<button type="tag" label="Hospital,\nLæger" icon="button_amenity_doctors" />
 			<button type="tag" label="Genbrug" icon="button_amenity_recycling" />
 		</row>
 		<row>
-			<button type="tag" label="Bedested\nKirke" icon="button_amenity_place_of_worship" />
+			<button type="tag" label="Kirke" icon="button_amenity_place_of_worship" />
 			<button type="tag" label="Posthus" icon="button_amenity_post_office" />
 			<button type="tag" label="Bibliotek" icon="button_amenity_library" />
 		</row>
@@ -152,16 +152,16 @@
 		<row>
 			<button type="tag" label="Bank" icon="button_amenitymore_bank" />
 			<button type="tag" label="Legeplads" icon="button_amenitymore_playground" />
-			<button type="tag" label="Pub" icon="button_amenitymore_pub" />
+			<button type="tag" label="Pub-Bar" icon="button_amenitymore_pub" />
 		</row>
 		<row>
 			<button type="tag" label="Hotel" icon="button_amenitymore_hotel" />
 			<button type="tag" label="Motel" icon="button_amenitymore_motel" />
-			<button type="tag" label="Vandrehjem,\nHerberg" icon="button_amenitymore_hostel" />
+			<button type="tag" label="Vandrehjem" icon="button_amenitymore_hostel" />
 		</row>
 		<row>
 			<button type="tag" label="Restaurant" icon="button_amenitymore_restaurant" />
-			<button type="tag" label="Fast food" icon="button_amenitymore_fastfood" />
+			<button type="tag" label="Fastfood" icon="button_amenitymore_fastfood" />
 			<button type="tag" label="Camping" icon="button_amenitymore_camp_site" />
 		</row>
 	</layout>
@@ -178,9 +178,9 @@
 			<button type="tag" label="Motorvej" icon="button_way_motorway" />
 		</row>
 		<row>
-			<button type="tag" label="Motortrafikvej" icon="button_way_trunk" />
-			<button type="tag" label="Primær rute" icon="button_way_primary" />
-			<button type="tag" label="Sekundær rute" icon="button_way_secondary" />
+			<button type="tag" label="Trunk" icon="button_way_trunk" />
+			<button type="tag" label="Primær" icon="button_way_primary" />
+			<button type="tag" label="Sekundær" icon="button_way_secondary" />
 		</row>
 		<row>
 			<button type="tag" label="Tertiær" icon="button_way_tertiary" />
@@ -196,14 +196,14 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Grusvej,\nSkovvej" icon="button_track_track" />
+			<button type="tag" label="Track" icon="button_track_track" />
 			<button type="tag" label="Cykelsti" icon="button_track_cycleway" />
 			<button type="tag" label="Gangsti" icon="button_track_footway" />
 		</row>
 		<row>
-			<button type="tag" label="Offentlige,\nstier" icon="button_track_bridleway" />
+			<button type="tag" label="Hestesti" icon="button_track_bridleway" />
 			<button type="tag" label="Trin" icon="button_track_steps" />
-			<button type="tag" label="Beboelsesgade" icon="button_track_living_street" />
+			<button type="tag" label="Beboelsesvej" icon="button_track_living_street" />
 		</row>
 		<row>
 			<button type="tag" label="Fodgænger" icon="button_track_pedestrian" />
@@ -217,7 +217,6 @@
 		</row>
 	</layout>
 
-
 	<layout name="landuse">
 		<row>
 			<button type="voicerec" icon="voice_32x32" />
@@ -225,7 +224,7 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="Landbrug" icon="button_landuse_farm" />
+			<button type="tag" label="Gård" icon="button_landuse_farm" />
 			<button type="tag" label="Losseplads" icon="button_landuse_landfill" />
 			<button type="tag" label="Bassin" icon="button_landuse_basin" />
 		</row>
@@ -236,7 +235,7 @@
 		</row>
 		<row>
 			<button type="tag" label="Kirkegård" icon="button_landuse_cemetery" />
-			<button type="tag" label="Rekreation,\nområde" icon="button_landuse_recreation_ground" />
+			<button type="tag" label="Lege\nområde" icon="button_landuse_recreation_ground" />
 		</row>
 	</layout>
 </layouts>
