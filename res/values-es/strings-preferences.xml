@@ -1,67 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
-
-	<!-- Preferences -->
-	<string name="prefs">Configuración</string>
-	
-	<string name="prefs_gps_os_settings">Configuración del GPS</string>
-	<string name="prefs_gps_os_settings_summary">Mostrar pantalla de configuración del sistema GPS</string>
-
-	<string name="prefs_check_gps_startup">Comprobar GPS en el inicio</string>
-	<string name="prefs_check_gps_startup_summary">Comprobar si el GPS está desactivado al iniciar, y preguntar si activarlo</string>
-
-	<string name="prefs_ui">Interfaz de usuario</string>
-	
-	<string name="prefs_ui_buttons_layout">Disposición de los botones</string>
-	<string name="prefs_ui_buttons_layout_summary">Permite definir una disposición personalizada de los botones (ver documentación)</string>
-	<string name="prefs_ui_buttons_layout_defaut">Predeterminada</string>
-	
-
-	<string name="prefs_voicerec_duration">Duración de la grabación de voz</string>
-	<string name="prefs_voicerec_duration_seconds">segundos</string>
-
-	<string name="prefs_theme">Tema de la pantalla principal</string>
-	<string name="prefs_theme_summary">Es necesario reiniciar para que haga efecto</string>
-	<string-array name="prefs_theme_keys">
-		<item>Predeterminado del SO</item>
-		<item>Predeterminado del SO (oscuro)</item>
-		<item>Predeterminado del SO (claro)</item>
-		<item>Contraste alto</item>
-	</string-array>
-	<string-array name="prefs_theme_values">
-		<item>android:style/Theme</item>
-		<item>android:style/Theme.Black</item>
-		<item>android:style/Theme.Light</item>
-		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
-	</string-array>
-
-	<string name="prefs_output">Salida del archivo GPX</string>
-	<string name="prefs_storage_dir">Carpeta de almacenamiento externo (SD)</string>
-	<string name="prefs_storage_dir_summary"></string>
-	<string name="prefs_output_filename">Nombre del archivo de trazas llamadas</string>
-	<string name="prefs_output_filename_summary">Modelo para el nombre del archivo, si la traza tiene un nombre</string>
-	<string-array name="prefs_output_filename_keys">
-		<item>Nombre de la traza</item>
-		<item>Nombre, fecha y hora de inicio</item>
-		<item>Fecha y hora de inicio</item>
-	</string-array>
-	<string-array name="prefs_output_filename_values">
-		<item>name</item>
-		<item>name_date</item>
-		<item>date</item>
-	</string-array>
-	<string name="prefs_output_accuracy">Precisión en el archivo GPX</string>
-	<string name="prefs_output_accuracy_summary">Permite información de precisión en el archivo GPX, con el nombre del punto o en una etiqueta separada</string>
-	<string-array name="prefs_output_accuracy_keys">
-		<item>Ninguna</item>
-		<item>Con el nombre del punto</item>
-		<item>En un comentario del punto</item>
-	</string-array>
-	<string-array name="prefs_output_accuracy_values">
-		<item>none</item>
-		<item>wpt_name</item>
-		<item>wpt_cmt</item>
-	</string-array>
-	<string name="prefs_output_gpx_hdop_approximation">Usar aproximación HDOP</string>
-	<string name="prefs_output_gpx_hdop_approximation_summary">Rellenar el HDOP en el GPX con un valor de aproximación de la precisión</string>
+  <!--Preferences-->
+  <string name="prefs">Configuración</string>
+  <string name="prefs_gps_os_settings">Configuración del GPS</string>
+  <string name="prefs_gps_os_settings_summary">Mostrar pantalla de configuración del sistema GPS</string>
+  <string name="prefs_check_gps_startup">Comprobar GPS en el inicio</string>
+  <string name="prefs_check_gps_startup_summary">Comprobar si el GPS está desactivado al iniciar, y preguntar si activarlo</string>
+  <string name="prefs_ui">Interfaz de usuario</string>
+  <string name="prefs_ui_buttons_layout">Disposición de los botones</string>
+  <string name="prefs_ui_buttons_layout_summary">Permite definir una disposición personalizada de los botones (ver documentación)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Predeterminada</string>
+  <!--DO NOT TRANSLATE THIS (BEGIN)-->
+  <!--DO NOT TRANSLATE THIS (END)-->
+  <string name="prefs_voicerec_duration">Duración de la grabación de voz</string>
+  <string name="prefs_voicerec_duration_seconds">segundos</string>
+  <!--DO NOT TRANSLATE THIS (BEGIN)-->
+  <!--DO NOT TRANSLATE THIS (END)-->
+  <string name="prefs_theme">Tema de la pantalla principal</string>
+  <string name="prefs_theme_summary">Es necesario reiniciar para que haga efecto</string>
+  <string-array name="prefs_theme_keys">
+    <item>Predeterminado del SO</item>
+    <item>Predeterminado del SO (oscuro)</item>
+    <item>Predeterminado del SO (claro)</item>
+    <item>Contraste alto</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (BEGIN)-->
+  <string-array name="prefs_theme_values">
+    <item>android:style/Theme</item>
+    <item>android:style/Theme.Black</item>
+    <item>android:style/Theme.Light</item>
+    <item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (END)-->
+  <string name="prefs_output">Salida del archivo GPX</string>
+  <string name="prefs_storage_dir">Carpeta de almacenamiento externo (SD)</string>
+  <string name="prefs_output_filename">Nombre del archivo de trazas llamadas</string>
+  <string name="prefs_output_filename_summary">Modelo para el nombre del archivo, si la traza tiene un nombre</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Nombre de la traza</item>
+    <item>Nombre, fecha y hora de inicio</item>
+    <item>Fecha y hora de inicio</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (BEGIN)-->
+  <string-array name="prefs_output_filename_values">
+    <item>name</item>
+    <item>name_date</item>
+    <item>date</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (END)-->
+  <string name="prefs_output_accuracy">Precisión en el archivo GPX</string>
+  <string name="prefs_output_accuracy_summary">Permite información de precisión en el archivo GPX, con el nombre del punto o en una etiqueta separada</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Ninguna</item>
+    <item>Con el nombre del punto</item>
+    <item>En un comentario del punto</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (BEGIN)-->
+  <string-array name="prefs_output_accuracy_values">
+    <item>none</item>
+    <item>wpt_name</item>
+    <item>wpt_cmt</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (END)-->
+  <string name="prefs_output_gpx_hdop_approximation">Usar aproximación HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Rellenar el HDOP en el GPX con un valor de aproximación de la precisión</string>
 </resources>

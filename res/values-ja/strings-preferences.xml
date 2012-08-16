@@ -1,121 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
-
-	<!-- Preferences -->
-	<string name="prefs">設定</string>
-
-	<string name="prefs_gps">GPS</string>
-
-	<string name="prefs_gps_os_settings">GPSの設定</string>
-	<string name="prefs_gps_os_settings_summary">Display system GPS settings screen</string>
-
-	<string name="prefs_check_gps_startup">起動時にGPSをチェック</string>
-	<string name="prefs_check_gps_startup_summary">起動時にGPSが無効なら、有効にするよう提案する</string>
-
-	<string name="prefs_gps_ignore_clock">GPS時刻を無視</string>
-	<string name="prefs_gps_ignore_clock_summary">タイムスタンプに、GPSの時計を参照せずにAndroidの時計を使用する</string>
-
-	<string name="prefs_gps_logging_interval">GPS ロギング間隔</string>
-	<string name="prefs_gps_logging_interval_summary">可能な限り短い間隔で (バッテリー消費量大)</string>
-	<string name="prefs_gps_logging_interval_seconds">秒</string>
-
-	<string name="prefs_ui">ユーザーインターフェース</string>
-
-	<string name="prefs_ui_buttons_layout">ボタンレイアウト</string>
-	<string name="prefs_ui_buttons_layout_summary">カスタムボタンレイアウト (ドキュメント参照)</string>
-	<string name="prefs_ui_buttons_layout_defaut">デフォルト</string>
-	<string name="prefs_ui_orientation">位置確認</string>
-	<string name="prefs_ui_orientation_summary">Preferred orientation for the button screen</string>
-	<string-array name="prefs_ui_orientation_options_keys">
-		<item>自動</item>
-		<item>縦長</item>
-		<item>横長</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_ui_orientation_options_values">
-		<item>none</item>
-		<item>portrait</item>
-		<item>longcase</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
-
-
-	<string name="prefs_voicerec_duration">録音時間</string>
-	<string name="prefs_voicerec_duration_seconds">秒</string>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-		<item>10</item>
-		<item>20</item>
-		<item>30</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
-
-	<string name="prefs_theme">スクリーン表示テーマ</string>
-	<string name="prefs_theme_summary">アプリ再起動で反映します</string>
-	<string-array name="prefs_theme_keys">
-		<item>OSデフォルト</item>
-		<item>OSデフォルト (ダーク)</item>
-		<item>OSデフォルト (ライト)</item>
-		<item>ハイコントラスト</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_theme_values">
-		<item>android:style/Theme</item>
-		<item>android:style/Theme.Black</item>
-		<item>android:style/Theme.Light</item>
-		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
-
-	<string name="prefs_display_always_on">常時オン</string>
-	<string name="prefs_display_always_on_summary">トラッキング中はスクリーンは常時オン、バッテリーセーブは無効</string>
-
-	<string name="prefs_displaytrack_osm">OSM 背景</string>
-	<string name="prefs_displaytrack_osm_summary">トラックの背景に OpenStreetMap を表示する。データ通信接続が必要</string>
-
-	<string name="prefs_output">GPX ファイル出力</string>
-	<string name="prefs_storage_dir">外部ストレージ(SD)</string>
-	<string name="prefs_storage_dir_hint">次回から反映 (現在の分は適用外)</string>
-	<string name="prefs_output_one_dir_per_track">トラック毎にディレクトリを分ける</string>
-	<string name="prefs_output_one_dir_per_track_summary">それぞれのトラックと関連ファイルは専用のディレクトリに保存する</string>
-	<string name="prefs_output_filename">トラック名をファイル名にする</string>
-	<string name="prefs_output_filename_summary">ファイル名のパターン</string>
-	<string-array name="prefs_output_filename_keys">
-		<item>トラック名</item>
-		<item>ネーム_開始日時</item>
-		<item>開始日時</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_output_filename_values">
-		<item>name</item>
-		<item>name_date</item>
-		<item>date</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
-
-	<string name="prefs_output_accuracy">GPXファイルの補完</string>
-	<string name="prefs_output_accuracy_summary">GPXファイル内のウェイポイントやコメントを補完する</string>
-	<string-array name="prefs_output_accuracy_keys">
-		<item>None</item>
-		<item>ウェイポイント名称</item>
-		<item>ウェイポイントコメント</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_output_accuracy_values">
-		<item>none</item>
-		<item>wpt_name</item>
-		<item>wpt_cmt</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
-
-	<string name="prefs_output_gpx_hdop_approximation">HDOP近似値を使用する</string>
-	<string name="prefs_output_gpx_hdop_approximation_summary">Fill HDOP in GPX with an approximation value from accuracy</string>
-
-	<string name="prefs_sound_enabled">サウンド有効</string>
-	<string name="prefs_sound_enabled_summary">録音の開始と終了時に音を鳴らす</string>
-
+  <!--Preferences-->
+  <string name="prefs">設定</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPSの設定</string>
+  <string name="prefs_gps_os_settings_summary">Display system GPS settings screen</string>
+  <string name="prefs_check_gps_startup">起動時にGPSをチェック</string>
+  <string name="prefs_check_gps_startup_summary">起動時にGPSが無効なら、有効にするよう提案する</string>
+  <string name="prefs_gps_ignore_clock">GPS時刻を無視</string>
+  <string name="prefs_gps_ignore_clock_summary">タイムスタンプに、GPSの時計を参照せずにAndroidの時計を使用する</string>
+  <string name="prefs_gps_logging_interval">GPS ロギング間隔</string>
+  <string name="prefs_gps_logging_interval_summary">可能な限り短い間隔で (バッテリー消費量大)</string>
+  <string name="prefs_gps_logging_interval_seconds">秒</string>
+  <string name="prefs_ui">ユーザーインターフェース</string>
+  <string name="prefs_ui_buttons_layout">ボタンレイアウト</string>
+  <string name="prefs_ui_buttons_layout_summary">カスタムボタンレイアウト (ドキュメント参照)</string>
+  <string name="prefs_ui_buttons_layout_defaut">デフォルト</string>
+  <string name="prefs_ui_orientation">位置確認</string>
+  <string name="prefs_ui_orientation_summary">Preferred orientation for the button screen</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>自動</item>
+    <item>縦長</item>
+    <item>横長</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (BEGIN)-->
+  <string-array name="prefs_ui_orientation_options_values">
+    <item>none</item>
+    <item>portrait</item>
+    <item>longcase</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (END)-->
+  <string name="prefs_voicerec_duration">録音時間</string>
+  <string name="prefs_voicerec_duration_seconds">秒</string>
+  <!--DO NOT TRANSLATE THIS (BEGIN)-->
+  <string-array name="prefs_voicerec_durations">
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>10</item>
+    <item>20</item>
+    <item>30</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (END)-->
+  <string name="prefs_theme">スクリーン表示テーマ</string>
+  <string name="prefs_theme_summary">アプリ再起動で反映します</string>
+  <string-array name="prefs_theme_keys">
+    <item>OSデフォルト</item>
+    <item>OSデフォルト (ダーク)</item>
+    <item>OSデフォルト (ライト)</item>
+    <item>ハイコントラスト</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (BEGIN)-->
+  <string-array name="prefs_theme_values">
+    <item>android:style/Theme</item>
+    <item>android:style/Theme.Black</item>
+    <item>android:style/Theme.Light</item>
+    <item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (END)-->
+  <string name="prefs_display_always_on">常時オン</string>
+  <string name="prefs_display_always_on_summary">トラッキング中はスクリーンは常時オン、バッテリーセーブは無効</string>
+  <string name="prefs_displaytrack_osm">OSM 背景</string>
+  <string name="prefs_displaytrack_osm_summary">トラックの背景に OpenStreetMap を表示する。データ通信接続が必要</string>
+  <string name="prefs_output">GPX ファイル出力</string>
+  <string name="prefs_storage_dir">外部ストレージ(SD)</string>
+  <string name="prefs_storage_dir_hint">次回から反映 (現在の分は適用外)</string>
+  <string name="prefs_output_one_dir_per_track">トラック毎にディレクトリを分ける</string>
+  <string name="prefs_output_one_dir_per_track_summary">それぞれのトラックと関連ファイルは専用のディレクトリに保存する</string>
+  <string name="prefs_output_filename">トラック名をファイル名にする</string>
+  <string name="prefs_output_filename_summary">ファイル名のパターン</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>トラック名</item>
+    <item>ネーム_開始日時</item>
+    <item>開始日時</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (BEGIN)-->
+  <string-array name="prefs_output_filename_values">
+    <item>name</item>
+    <item>name_date</item>
+    <item>date</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (END)-->
+  <string name="prefs_output_accuracy">GPXファイルの補完</string>
+  <string name="prefs_output_accuracy_summary">GPXファイル内のウェイポイントやコメントを補完する</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>None</item>
+    <item>ウェイポイント名称</item>
+    <item>ウェイポイントコメント</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (BEGIN)-->
+  <string-array name="prefs_output_accuracy_values">
+    <item>none</item>
+    <item>wpt_name</item>
+    <item>wpt_cmt</item>
+  </string-array>
+  <!--DO NOT TRANSLATE THIS (END)-->
+  <string name="prefs_output_gpx_hdop_approximation">HDOP近似値を使用する</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Fill HDOP in GPX with an approximation value from accuracy</string>
+  <string name="prefs_sound_enabled">サウンド有効</string>
+  <string name="prefs_sound_enabled_summary">録音の開始と終了時に音を鳴らす</string>
 </resources>

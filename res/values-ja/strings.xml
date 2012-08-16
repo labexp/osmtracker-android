@@ -1,115 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
-	<!-- Generic strings -->
-	<string name="app_name">OSMTracker for Android™</string>
-	<string name="app_short_name">OSMTracker</string>
-	<string name="app_description">Windows-Mobile版 OSMTracker の後継, あなたの旅の軌跡を記録します。ウェイポイントとして印を付ける(音声録音, 写真), GPXフォーマットで出力して、後でOpen Street Map のJOSMなどで編集できます。</string>
-
-	<!-- TrackLogger -->
-	<string name="tracklogger">トラックログ</string>
-	<string name="tracklogger_waiting_gps">GPS準備待ち&#8230;</string>
-	<string name="tracklogger_voicerec_title">録音</string>
-	<string name="tracklogger_voicerec_text">録音 {0}秒</string>
-	<string name="tracklogger_voicerec_stop">停止</string>
-	<string name="tracklogger_btnBack">戻る</string>
-	<string name="tracklogger_tracked">トラック: </string>
-	<string name="tracklogger_gps_disabled">GPS無効</string>
-	<string name="tracklogger_gps_disabled_hint">GPSは無効です。有効にしますか？</string>
-
-	<!-- Waypoint List -->
-	<string name="wplist">ウェイポイントリスト</string>
-	<string name="wplist_latitude">緯度: </string>
-	<string name="wplist_longitude">経度: </string>
-	<string name="wplist_elevation">標高: </string>
-	<string name="wplist_accuracy">精度: </string>
-
-	<!-- Track Manager -->
-	<string name="trackmgr">トラック管理</string>
-	<string name="trackmgr_tracklist">トラックリスト:</string>
-	<string name="trackmgr_waypoints_count">ウェイポイント: </string>
-	<string name="trackmgr_trackpoints_count">トラックポイント: </string>
-	<string name="trackmgr_empty">トラックデータがありません。</string>
-	<string name="trackmgr_newtrack_hint">トラックを記録するには,\n<b>メニュー</b>の<b>新規トラック</b>を押してください。</string>
-	<string name="trackmgr_newtrack_error">新しいトラックが作成できません: {0}</string>
-	<string name="trackmgr_continuetrack_hint">現在<b>トラック #{0}</b>を記録中\n続行するにはリストから選択して下さい。</string>
-	<string name="trackmgr_contextmenu_stop">トラッキングの停止</string>
-	<string name="trackmgr_contextmenu_resume">トラッキングの再開</string>
-	<string name="trackmgr_contextmenu_delete">削除</string>
-	<string name="trackmgr_contextmenu_export">GPXに出力</string>
-	<string name="trackmgr_contextmenu_display">表示</string>
-	<string name="trackmgr_contextmenu_details">詳細</string>
-	<string name="trackmgr_contextmenu_title">トラック #{0}</string>
-	<string name="trackmgr_delete_confirm">トラック #{0} は削除されました</string>
-	<string name="trackmgr_deleteall_confirm">全てのトラックが削除されます。よろしいですか？</string>
-	<string name="trackmgr_exporting">出力中 トラック #{0}&#8230;</string>
-	<string name="trackmgr_export_error">トラックを出力出来ません: {0}</string>
-
-	<!-- Track Detail -->
-	<string name="trackdetail">トラックの詳細</string>
-	<string name="trackdetail_startdate">開始時刻:</string>
-	<string name="trackdetail_enddate">終了時刻:</string>
-	<string name="trackdetail_startloc">開始位置:</string>
-	<string name="trackdetail_endloc">終了位置:</string>
-	<string name="trackdetail_exportdate">出力済み:</string>
-	<string name="trackdetail_btn_export">GPXで出力</string>
-	<string name="trackdetail_export_notyet">(未出力)</string>
-	<string name="trackdetail_export_display">表示</string>
-
-	<!-- GPS Status & record bar -->
-	<string name="gpsstatus_record_voicerec">音声録音</string>
-	<string name="gpsstatus_record_stillimage">写真撮影</string>
-	<string name="gpsstatus_record_textnote">テキスト</string>
-
-	<!-- Menu -->
-	<string name="menu_settings">設定</string>
-	<string name="menu_waypointlist">ウェイポイント</string>
-	<string name="menu_about">インフォ</string>
-	<string name="menu_displaytrack">トラック表示</string>
-	<string name="menu_stoptracking">停止 &amp; 保存</string>
-	<string name="menu_newtrack">新規トラック</string>
-	<string name="menu_deletetracks">全てのトラックを削除</string>
-	<string name="menu_continue">トラックを続行</string>
-	<string name="menu_stopcurrenttrack">現在のトラックを停止</string>
-	<string name="menu_save">保存</string>
-	<string name="menu_cancel">取消</string>
-	<string name="menu_export">GPXに出力</string>
-	<string name="menu_center_to_gps">GPSの中心</string>
-
-	<!-- Errors -->
-	<string name="error_externalstorage_not_writable">外部ストレージに書き込み出来ません。</string>
-	<string name="error_create_track_dir">&#8216;%s&#8217;フォルダを作成できません。</string>
-	<string name="error_externalstorage_not_writable_hint">外部ストレージが挿入され、正しくマウントされていることを確認してください。</string>
-	<string name="error_voicerec_failed">音声録音に失敗しました</string>
-	<string name="error_userlayout_parsing">XMLレイアウトファイルが認識できません。デフォルトレイアウトに戻してください。</string>
-
-	<!-- GPX -->
-	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
-	<string name="gpx_hdop_approximation_cmt">警告: HDOP values aren\'t the HDOP as returned by the GPS device. They\'re approximated from the location accuracy in meters.</string>
-
-	<!-- About screen -->
-	<string name="about">About</string>
-	<string name="about_text">詳細情報,ドキュメント,議論については、ホームページを参照してください:</string>
-	<string name="about_link"><a href="http://osmtracker-android.googlecode.com/">http://osmtracker-android.googlecode.com/</a></string>
-	<string name="about_debug_info">デバッグ情報</string>
-
-	<!-- Notification -->
-	<string name="notification_ticker_text">OSMTracker トラッキング中</string>
-	<string name="notification_title">OSMTracker トラッキング中 (#{0})</string>
-	<string name="notification_text">表示するにはスクリーンをタップしてください</string>
-
-	<!-- Display track -->
-	<string name="displaytrack">トラック表示</string>
-	<string name="displaytrack_north">N</string>
-
-	<!-- Track detail -->
-	<string name="trackdetail_save">保存</string>
-
-	<!-- Various -->
-	<string name="various_unit_meters">m</string>
-	<string name="various_accuracy">精度</string>
-	<string name="various_waiting_gps_fix">GPS測定待ち &#8230;</string>
-
-	<!-- OSM map view -->
-	<string name="displaytrackmap">OpenStreetMap トラック表示</string>
-
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker for Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Windows-Mobile版 OSMTracker の後継, あなたの旅の軌跡を記録します。ウェイポイントとして印を付ける(音声録音, 写真), GPXフォーマットで出力して、後でOpen Street Map のJOSMなどで編集できます。</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">トラックログ</string>
+  <string name="tracklogger_waiting_gps">GPS準備待ち…</string>
+  <string name="tracklogger_voicerec_title">録音</string>
+  <string name="tracklogger_voicerec_text">録音 {0}秒</string>
+  <string name="tracklogger_voicerec_stop">停止</string>
+  <string name="tracklogger_btnBack">戻る</string>
+  <string name="tracklogger_tracked">トラック: </string>
+  <string name="tracklogger_gps_disabled">GPS無効</string>
+  <string name="tracklogger_gps_disabled_hint">GPSは無効です。有効にしますか？</string>
+  <!--Waypoint List-->
+  <string name="wplist">ウェイポイントリスト</string>
+  <string name="wplist_latitude">緯度: </string>
+  <string name="wplist_longitude">経度: </string>
+  <string name="wplist_elevation">標高: </string>
+  <string name="wplist_accuracy">精度: </string>
+  <!--Track Manager-->
+  <string name="trackmgr">トラック管理</string>
+  <string name="trackmgr_tracklist">トラックリスト:</string>
+  <string name="trackmgr_waypoints_count">ウェイポイント: </string>
+  <string name="trackmgr_trackpoints_count">トラックポイント: </string>
+  <string name="trackmgr_empty">トラックデータがありません。</string>
+  <string name="trackmgr_newtrack_hint">トラックを記録するには,\n<b>メニュー</b>の<b>新規トラック</b>を押してください。</string>
+  <string name="trackmgr_newtrack_error">新しいトラックが作成できません: {0}</string>
+  <string name="trackmgr_continuetrack_hint">現在<b>トラック #{0}</b>を記録中\n続行するにはリストから選択して下さい。</string>
+  <string name="trackmgr_contextmenu_stop">トラッキングの停止</string>
+  <string name="trackmgr_contextmenu_resume">トラッキングの再開</string>
+  <string name="trackmgr_contextmenu_delete">削除</string>
+  <string name="trackmgr_contextmenu_export">GPXに出力</string>
+  <string name="trackmgr_contextmenu_display">表示</string>
+  <string name="trackmgr_contextmenu_details">詳細</string>
+  <string name="trackmgr_contextmenu_title">トラック #{0}</string>
+  <string name="trackmgr_delete_confirm">トラック #{0} は削除されました</string>
+  <string name="trackmgr_deleteall_confirm">全てのトラックが削除されます。よろしいですか？</string>
+  <string name="trackmgr_exporting">出力中 トラック #{0}…</string>
+  <string name="trackmgr_export_error">トラックを出力出来ません: {0}</string>
+  <!--Track Detail-->
+  <string name="trackdetail">トラックの詳細</string>
+  <string name="trackdetail_startdate">開始時刻:</string>
+  <string name="trackdetail_enddate">終了時刻:</string>
+  <string name="trackdetail_startloc">開始位置:</string>
+  <string name="trackdetail_endloc">終了位置:</string>
+  <string name="trackdetail_exportdate">出力済み:</string>
+  <string name="trackdetail_btn_export">GPXで出力</string>
+  <string name="trackdetail_export_notyet">(未出力)</string>
+  <string name="trackdetail_export_display">表示</string>
+  <!--OSM upload-->
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">音声録音</string>
+  <string name="gpsstatus_record_stillimage">写真撮影</string>
+  <string name="gpsstatus_record_textnote">テキスト</string>
+  <!--Menu-->
+  <string name="menu_settings">設定</string>
+  <string name="menu_waypointlist">ウェイポイント</string>
+  <string name="menu_about">インフォ</string>
+  <string name="menu_displaytrack">トラック表示</string>
+  <string name="menu_stoptracking">停止 &amp; 保存</string>
+  <string name="menu_newtrack">新規トラック</string>
+  <string name="menu_deletetracks">全てのトラックを削除</string>
+  <string name="menu_continue">トラックを続行</string>
+  <string name="menu_stopcurrenttrack">現在のトラックを停止</string>
+  <string name="menu_save">保存</string>
+  <string name="menu_cancel">取消</string>
+  <string name="menu_export">GPXに出力</string>
+  <string name="menu_center_to_gps">GPSの中心</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">外部ストレージに書き込み出来ません。</string>
+  <string name="error_create_track_dir">‘%s’フォルダを作成できません。</string>
+  <string name="error_externalstorage_not_writable_hint">外部ストレージが挿入され、正しくマウントされていることを確認してください。</string>
+  <string name="error_voicerec_failed">音声録音に失敗しました</string>
+  <string name="error_userlayout_parsing">XMLレイアウトファイルが認識できません。デフォルトレイアウトに戻してください。</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
+  <string name="gpx_hdop_approximation_cmt">警告: HDOP values aren\'t the HDOP as returned by the GPS device. They\'re approximated from the location accuracy in meters.</string>
+  <!--About screen-->
+  <string name="about">About</string>
+  <string name="about_text">詳細情報,ドキュメント,議論については、ホームページを参照してください:</string>
+  <string name="about_link"></string>
+  <string name="about_debug_info">デバッグ情報</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker トラッキング中</string>
+  <string name="notification_title">OSMTracker トラッキング中 (#{0})</string>
+  <string name="notification_text">表示するにはスクリーンをタップしてください</string>
+  <!--Display track-->
+  <string name="displaytrack">トラック表示</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">保存</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">精度</string>
+  <string name="various_waiting_gps_fix">GPS測定待ち …</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">OpenStreetMap トラック表示</string>
 </resources>

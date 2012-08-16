@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
-	<string name="osmarender">OsmaRender</string>
-	<string name="mapnik">Mapnik</string>
-	<string name="cyclemap">Cycle Map</string>
-	<string name="openareal_sat">OpenArialMap (サテライト)</string>
-	<string name="trails">道</string>
-	<string name="relief">地形</string>
-	<string name="cloudmade_small">Cloudmade (小さいタイル)</string>
-	<string name="cloudmade_standard">Cloudmade (標準タイル)</string>
+  <string name="osmarender">OsmaRender</string>
+  <string name="mapnik">Mapnik</string>
+  <string name="cyclemap">Cycle Map</string>
+  <string name="openareal_sat">OpenArialMap (サテライト)</string>
+  <string name="trails">道</string>
+  <string name="relief">地形</string>
+  <string name="cloudmade_small">Cloudmade (小さいタイル)</string>
+  <string name="cloudmade_standard">Cloudmade (標準タイル)</string>
 </resources>
