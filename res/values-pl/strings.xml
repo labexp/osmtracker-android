@@ -3,9 +3,8 @@
 	<!-- Generic strings -->
 	<string name="app_name">OSMTracker Android™</string>
 	<string name="app_short_name">OSMTracker</string>
-		<string name="app_description">Inspired by OSMTracker on Windows Mobile, it allows you to track your journeys, mark significant way points (Voice recording, picture), export them in GPX format for later use with Open Street Map tools like JOSM.</string>
-
 	<string name="app_description">Zainspirowany aplikacją OSMTracker na Windows Mobile. Pozwala na śledzenie podróży, oznaczanie najważniejszych punktów nawigacji (także poprzez notatki głosowe lub zdjęcia), wyeksportować je do formatu GPX by wspomóc edycję narzędziami OpenStreetMap, np. JOSM.</string>
+	
 	<!-- TrackLogger -->
 	<string name="tracklogger">Zapisywanie śladu</string>
 	<string name="tracklogger_waiting_gps">Oczekiwanie na pozycję GPS, aby uaktywnić przyciski&#8230;</string>
