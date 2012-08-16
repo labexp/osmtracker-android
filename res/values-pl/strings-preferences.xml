@@ -7,17 +7,17 @@
 	<string name="prefs_gps">GPS</string>
 
 	<string name="prefs_gps_os_settings">Ustawienia GPS</string>
-	<string name="prefs_gps_os_settings_summary">Ustawienia ekranu system GPS</string>
+	<string name="prefs_gps_os_settings_summary">Systemowe ustawienia GPS</string>
 
 	<string name="prefs_check_gps_startup">Sprawdź GPS przy starcie</string>
-	<string name="prefs_check_gps_startup_summary">Sprawdź, czy GPS jest wyłączony podczas uruchamiania systemu i oferować jego włączenie</string>
+	<string name="prefs_check_gps_startup_summary">Sprawdza czy GPS jest wyłączony i oferuje jego włączenie</string>
 
 	<string name="prefs_gps_ignore_clock">Ignoruj zegar GPS</string>
 	<string name="prefs_gps_ignore_clock_summary">Ignoruj zegar GPS i korzystaj z zegara Androida dla znaczników czasu</string>
 
 	<string name="prefs_gps_logging_interval">GPS interwał rejestracji</string>
 	<string name="prefs_gps_logging_interval_summary">Użyj 0 dla najkrótszego (wpływa na żywotność baterii)</string>
-	<string name="prefs_gps_logging_interval_seconds">seconds</string>
+	<string name="prefs_gps_logging_interval_seconds">sekund</string>
 
 	<string name="prefs_ui">Interfejs użytkownika</string>
 	
@@ -40,8 +40,8 @@
 	<!-- DO NOT TRANSLATE THIS (END) -->
 	
 
-	<string name="prefs_voicerec_duration">Voice record duration</string>
-	<string name="prefs_voicerec_duration_seconds">seconds</string>
+	<string name="prefs_voicerec_duration">Długość nagrania audio</string>
+	<string name="prefs_voicerec_duration_seconds">sekund</string>
 	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
 	<string-array name="prefs_voicerec_durations">
 		<item>2</item>
@@ -54,13 +54,13 @@
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (END) -->
 	
-	<string name="prefs_theme">Main screen graphic theme</string>
-	<string name="prefs_theme_summary">Application restart required to take effect</string>
+	<string name="prefs_theme">Temat graficzny ekranu głównego</string>
+	<string name="prefs_theme_summary">Wymaga ponownego uruchomienia aplikacji</string>
 	<string-array name="prefs_theme_keys">
-		<item>OS default</item>
-		<item>OS default (dark)</item>
-		<item>OS default (light)</item>
-		<item>High contrast</item>
+		<item>domyślny</item>
+		<item>domyślny ciemny</item>
+		<item>domyślny jasny</item>
+		<item>Wysoki kontrast</item>
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
 	<string-array name="prefs_theme_values">
@@ -71,23 +71,23 @@
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (END) -->
 
-	<string name="prefs_display_always_on">Screen always on</string>
-	<string name="prefs_display_always_on_summary">Screen will stay on while tracking. Disable to save battery</string>
+	<string name="prefs_display_always_on">Ekran zawsze włączony</string>
+	<string name="prefs_display_always_on_summary">Ekran pozostanie włączony podczas śledzenia. Wyłącz by oszczędzić baterię.</string>
 
-	<string name="prefs_displaytrack_osm">OSM background</string>
-	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap under track. Needs a data connection</string>
+	<string name="prefs_displaytrack_osm">Podkład ścieżki OSM</string>
+	<string name="prefs_displaytrack_osm_summary">Włącza podkład mapy OSM w podglądzie ścieżki. Wymaga aktywnego połączenia z internetem.</string>
 
-	<string name="prefs_output">GPX file output</string>
-	<string name="prefs_storage_dir">External storage (SD) directory</string>
-	<string name="prefs_storage_dir_hint">Effective for the next track (not the current one)</string>
-	<string name="prefs_output_one_dir_per_track">One directory per track</string>
-	<string name="prefs_output_one_dir_per_track_summary">Save each track and associated files to it\'s own directory</string>
-	<string name="prefs_output_filename">Filename for named tracks</string>
-	<string name="prefs_output_filename_summary">Pattern for filename if the track has a name</string>
+	<string name="prefs_output">Wyjściowy plik GPX</string>
+	<string name="prefs_storage_dir">Folder na karcie pamięci</string>
+	<string name="prefs_storage_dir_hint">Zmiana zadziała przy następnej ścieżce</string>
+	<string name="prefs_output_one_dir_per_track">Osobne foldery ścieżek</string>
+	<string name="prefs_output_one_dir_per_track_summary">Zapisuje każdą ścieżki wraz z powiązanymi plikami w oddzielnych folderach</string>
+	<string name="prefs_output_filename">Nazwy plików</string>
+	<string name="prefs_output_filename_summary">Schemat dla nazwanych ścieżek</string>
 	<string-array name="prefs_output_filename_keys">
-		<item>Track name</item>
-		<item>Name, start date and time</item>
-		<item>Start date and time</item>
+		<item>Nazwa ścieżki</item>
+		<item>Nazwa, data i czas startu</item>
+		<item>Data i czas startu</item>
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
 	<string-array name="prefs_output_filename_values">
@@ -97,12 +97,12 @@
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (END) -->
 	
-	<string name="prefs_output_accuracy">Accuracy in GPX file</string>
-	<string name="prefs_output_accuracy_summary">Add accuracy info in the GPX file, with waypoint name or in waypoint comment</string>
+	<string name="prefs_output_accuracy">Precyzja w pliku GPX</string>
+	<string name="prefs_output_accuracy_summary">Dodaje informacje o dokładności w pliku GPX, w nazwie punktu, w komantarzu punktu</string>
 	<string-array name="prefs_output_accuracy_keys">
-		<item>None</item>
-		<item>With waypoint name</item>
-		<item>In waypoint comment</item>
+		<item>Brak</item>
+		<item>W nazwie punktu</item>
+		<item>W komentarzu punktu</item>
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
 	<string-array name="prefs_output_accuracy_values">
@@ -112,10 +112,10 @@
 	</string-array>
 	<!-- DO NOT TRANSLATE THIS (END) -->
 	
-	<string name="prefs_output_gpx_hdop_approximation">Użyj zbliżenia HDOP</string>
-	<string name="prefs_output_gpx_hdop_approximation_summary">Wypełnij HDOP w GPX o wartości przybliżenia z dokładnością</string>
+	<string name="prefs_output_gpx_hdop_approximation">Użyj orientacyjne HDOP</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Używa przybliżonych wartości dokładności</string>
 
 	<string name="prefs_sound_enabled">Włącz dźwięk</string>
-	<string name="prefs_sound_enabled_summary">Odtwarzaj dźwięki podczas nagrywania głosu zaczyna się i kończy</string>
+	<string name="prefs_sound_enabled_summary">Odtwarza dźwięk przed nagrywaniem głosu</string>
 
 </resources>
