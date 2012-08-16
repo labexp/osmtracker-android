@@ -11,6 +11,7 @@
         </exec>
     </target>
 
+    <!--
     <target name="-pre-build" depends="lint">
 
       <echo message="Copying 'nb' resources to 'no' (See pull request #6)" />
@@ -21,5 +22,6 @@
         <fileset dir="${resource.absolute.dir}/xml-nb" />
       </copy>
     </target>
+    -->
 
 </project>
