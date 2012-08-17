@@ -55,7 +55,7 @@
 	<!-- DO NOT TRANSLATE THIS (END) -->
 	
 	<string name="prefs_theme">Main screen graphic theme</string>
-	<string name="prefs_theme_summary">Application restart required to take effect</string>
+	<string name="prefs_theme_summary">Application restart required for change to take effect</string>
 	<string-array name="prefs_theme_keys">
 		<item>OS default</item>
 		<item>OS default (dark)</item>
@@ -74,8 +74,8 @@
 	<string name="prefs_display_always_on">Screen always on</string>
 	<string name="prefs_display_always_on_summary">Screen will stay on while tracking. Disable to save battery</string>
 
-	<string name="prefs_displaytrack_osm">OSM background</string>
-	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap under track. Needs a data connection</string>
+	<string name="prefs_displaytrack_osm">Background map</string>
+	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap map under track. Needs a data connection</string>
 
 	<string name="prefs_output">GPX file output</string>
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
@@ -115,7 +115,7 @@
 	<string name="prefs_output_gpx_hdop_approximation">Use HDOP approximation</string>
 	<string name="prefs_output_gpx_hdop_approximation_summary">Fill HDOP in GPX with an approximation value from accuracy</string>
 
-	<string name="prefs_sound_enabled">Enable Sound</string>
+	<string name="prefs_sound_enabled">Enable sound</string>
 	<string name="prefs_sound_enabled_summary">Play sounds when voice recording starts and ends</string>
 	
 	<string name="prefs_osm_clear_oauth_data">Clear OSM authentication data</string>
