@@ -323,7 +323,8 @@ public class TrackContentProvider extends ContentProvider {
 			break;
 		case Schema.URI_CODE_TRACK:
 			qb.setTables(TRACK_TABLES);
-			projection = TRACK_TABLES_PROJECTION;
+			if (projection == null)
+				projection = TRACK_TABLES_PROJECTION;
 			groupBy = TRACK_TABLES_GROUP_BY;
 			break;
 		case Schema.URI_CODE_TRACK_ID:
@@ -333,7 +334,8 @@ public class TrackContentProvider extends ContentProvider {
 			}
 			trackId = uri.getLastPathSegment();
 			qb.setTables(TRACK_TABLES);
-			projection = TRACK_TABLES_PROJECTION;
+			if (projection == null)
+				projection = TRACK_TABLES_PROJECTION;
 			groupBy = TRACK_TABLES_GROUP_BY;
 			selection = Schema.TBL_TRACK + "." + Schema.COL_ID + " = ?";
 			selectionArgs = new String[] {trackId};			
