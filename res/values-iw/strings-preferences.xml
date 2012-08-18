@@ -31,28 +31,12 @@
 		<item>לאורך</item>
 		<item>לרוחב</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_ui_orientation_options_values">
-		<item>none</item>
-		<item>portrait</item>
-		<item>landscape</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
+
 	
 
 	<string name="prefs_voicerec_duration">משך הקלטת קול</string>
 	<string name="prefs_voicerec_duration_seconds">שניות</string>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-		<item>10</item>
-		<item>20</item>
-		<item>30</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
+
 	
 	<string name="prefs_theme">ערכת הנושא לדף הראשי</string>
 	<string name="prefs_theme_summary">נדרשת הפעלה מחדש של היישום על מנת להחיל</string>
@@ -62,14 +46,7 @@
 		<item>בהיר</item>
 		<item>ניגודיות גבוהה</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_theme_values">
-		<item>android:style/Theme</item>
-		<item>android:style/Theme.Black</item>
-		<item>android:style/Theme.Light</item>
-		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
+
 
 	<string name="prefs_display_always_on">צג תמיד פועל</string>
 	<string name="prefs_display_always_on_summary">הצג ישאר דולק במהלך שמירת מסלול. בטל על מנת לחסוך בסוללה</string>
@@ -89,13 +66,7 @@
 		<item>שם, תאריך ושעת התחלה</item>
 		<item>תאריך ושעת התחלה</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_output_filename_values">
-		<item>name</item>
-		<item>name_date</item>
-		<item>date</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
+
 	
 	<string name="prefs_output_accuracy">דיוק בקובץ ה-GPX</string>
 	<string name="prefs_output_accuracy_summary">שמור את הדיוק בקובץ ה-GPX, יחד עם ציון הדרך או בתג נפרד</string>
@@ -104,13 +75,7 @@
 		<item>עם שם ציון הדרך</item>
 		<item>בהערה של ציון הדרך</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_output_accuracy_values">
-		<item>none</item>
-		<item>wpt_name</item>
-		<item>wpt_cmt</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
+
 	
 	<string name="prefs_output_gpx_hdop_approximation">השתמש בקירוב HDOP</string>
 	<string name="prefs_output_gpx_hdop_approximation_summary">מלא שדה HDOP בקובץ ה-GPX עם ערך מקורב לפי הדיוק</string>

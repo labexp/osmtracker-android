@@ -31,28 +31,12 @@
 		<item>Portrett</item>
 		<item>Landskap</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_ui_orientation_options_values">
-		<item>none</item>
-		<item>portrait</item>
-		<item>landscape</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
+
 	
 
 	<string name="prefs_voicerec_duration">Lengde på stemmeopptak</string>
 	<string name="prefs_voicerec_duration_seconds">sekund</string>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-		<item>10</item>
-		<item>20</item>
-		<item>30</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
+
 	
 	<string name="prefs_theme">Drakt for knappeskjermen</string>
 	<string name="prefs_theme_summary">Programmet må startes om for å aktivere endring</string>
@@ -62,14 +46,7 @@
 		<item>OS-standard (lys)</item>
 		<item>Høy kontrast</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_theme_values">
-		<item>android:style/Theme</item>
-		<item>android:style/Theme.Black</item>
-		<item>android:style/Theme.Light</item>
-		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
+
 
 	<string name="prefs_display_always_on">Skjerm alltid på</string>
 	<string name="prefs_display_always_on_summary">Skjermen er alltid på under sporing. Slå av for å spare batteri</string>
@@ -89,13 +66,7 @@
 		<item>Spornavn, startdato og -tid</item>
 		<item>Startdato og -tid</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_output_filename_values">
-		<item>name</item>
-		<item>name_date</item>
-		<item>date</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
+
 	
 	<string name="prefs_output_accuracy">Presisjon i GPX-fil</string>
 	<string name="prefs_output_accuracy_summary">Legg til presisjonsinformasjon i GPX-fila, sammen med sporpunktnavn eller i sporpunktkommentar</string>
@@ -104,13 +75,7 @@
 		<item>Sammen med sporpunktnavn</item>
 		<item>I sporpunktkommentar</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_output_accuracy_values">
-		<item>none</item>
-		<item>wpt_name</item>
-		<item>wpt_cmt</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
+
 	
 	<string name="prefs_output_gpx_hdop_approximation">Bruk HDOP-estimat</string>
 	<string name="prefs_output_gpx_hdop_approximation_summary">Estimer HDOP frå presisjonsverdi</string>

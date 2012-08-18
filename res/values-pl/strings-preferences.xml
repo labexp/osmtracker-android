@@ -1,121 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <!--Preferences-->
+  <string name="prefs">Ustawienia</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">Ustawienia GPS</string>
+  <string name="prefs_gps_os_settings_summary">Systemowe ustawienia GPS</string>
+  <string name="prefs_check_gps_startup">Sprawdź GPS przy starcie</string>
+  <string name="prefs_check_gps_startup_summary">Sprawdza czy GPS jest wyłączony i oferuje jego włączenie</string>
+  <string name="prefs_gps_ignore_clock">Ignoruj zegar GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Ignoruj zegar GPS i korzystaj z zegara Androida dla znaczników czasu</string>
+  <string name="prefs_gps_logging_interval">GPS interwał rejestracji</string>
+  <string name="prefs_gps_logging_interval_summary">Użyj 0 dla najkrótszego (wpływa na żywotność baterii)</string>
+  <string name="prefs_gps_logging_interval_seconds">sekund</string>
+  <string name="prefs_ui">Interfejs użytkownika</string>
+  <string name="prefs_ui_buttons_layout">Układ przycisków</string>
+  <string name="prefs_ui_buttons_layout_summary">Wybierz niestandardowy układ przycisków (zobacz docs)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Domyślnie</string>
+  <string name="prefs_ui_orientation">Orientacja</string>
+  <string name="prefs_ui_orientation_summary">Preferowana orientacja na ekranie przycisków</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automatyczny</item>
+    <item>Pionowy</item>
+    <item>Poziomy</item>
+  </string-array>
 
-	<!-- Preferences -->
-	<string name="prefs">Ustawienia</string>
+  <string name="prefs_voicerec_duration">Długość nagrania audio</string>
+  <string name="prefs_voicerec_duration_seconds">sekund</string>
 
-	<string name="prefs_gps">GPS</string>
+  <string name="prefs_theme">Temat graficzny ekranu głównego</string>
+  <string name="prefs_theme_summary">Wymaga ponownego uruchomienia aplikacji</string>
+  <string-array name="prefs_theme_keys">
+    <item>domyślny</item>
+    <item>domyślny ciemny</item>
+    <item>domyślny jasny</item>
+    <item>Wysoki kontrast</item>
+  </string-array>
 
-	<string name="prefs_gps_os_settings">Ustawienia GPS</string>
-	<string name="prefs_gps_os_settings_summary">Systemowe ustawienia GPS</string>
+  <string name="prefs_display_always_on">Ekran zawsze włączony</string>
+  <string name="prefs_display_always_on_summary">Ekran pozostanie włączony podczas śledzenia. Wyłącz by oszczędzić baterię.</string>
+  <string name="prefs_displaytrack_osm">Podkład ścieżki OSM</string>
+  <string name="prefs_displaytrack_osm_summary">Włącza podkład mapy OSM w podglądzie ścieżki. Wymaga aktywnego połączenia z internetem.</string>
+  <string name="prefs_output">Wyjściowy plik GPX</string>
+  <string name="prefs_storage_dir">Folder na karcie pamięci</string>
+  <string name="prefs_storage_dir_hint">Zmiana zadziała przy następnej ścieżce</string>
+  <string name="prefs_output_one_dir_per_track">Osobne foldery ścieżek</string>
+  <string name="prefs_output_one_dir_per_track_summary">Zapisuje każdą ścieżki wraz z powiązanymi plikami w oddzielnych folderach</string>
+  <string name="prefs_output_filename">Nazwy plików</string>
+  <string name="prefs_output_filename_summary">Schemat dla nazwanych ścieżek</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Nazwa ścieżki</item>
+    <item>Nazwa, data i czas startu</item>
+    <item>Data i czas startu</item>
+  </string-array>
 
-	<string name="prefs_check_gps_startup">Sprawdź GPS przy starcie</string>
-	<string name="prefs_check_gps_startup_summary">Sprawdza czy GPS jest wyłączony i oferuje jego włączenie</string>
+  <string name="prefs_output_accuracy">Precyzja w pliku GPX</string>
+  <string name="prefs_output_accuracy_summary">Dodaje informacje o dokładności w pliku GPX, w nazwie punktu, w komantarzu punktu</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Brak</item>
+    <item>W nazwie punktu</item>
+    <item>W komentarzu punktu</item>
+  </string-array>
 
-	<string name="prefs_gps_ignore_clock">Ignoruj zegar GPS</string>
-	<string name="prefs_gps_ignore_clock_summary">Ignoruj zegar GPS i korzystaj z zegara Androida dla znaczników czasu</string>
-
-	<string name="prefs_gps_logging_interval">GPS interwał rejestracji</string>
-	<string name="prefs_gps_logging_interval_summary">Użyj 0 dla najkrótszego (wpływa na żywotność baterii)</string>
-	<string name="prefs_gps_logging_interval_seconds">sekund</string>
-
-	<string name="prefs_ui">Interfejs użytkownika</string>
-	
-	<string name="prefs_ui_buttons_layout">Układ przycisków</string>
-	<string name="prefs_ui_buttons_layout_summary">Wybierz niestandardowy układ przycisków (zobacz docs)</string>
-	<string name="prefs_ui_buttons_layout_defaut">Domyślnie</string>
-	<string name="prefs_ui_orientation">Orientacja</string>
-	<string name="prefs_ui_orientation_summary">Preferowana orientacja na ekranie przycisków</string>
-	<string-array name="prefs_ui_orientation_options_keys">
-		<item>Automatyczny</item>
-		<item>Pionowy</item>
-		<item>Poziomy</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_ui_orientation_options_values">
-		<item>none</item>
-		<item>portrait</item>
-		<item>landscape</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
-	
-
-	<string name="prefs_voicerec_duration">Długość nagrania audio</string>
-	<string name="prefs_voicerec_duration_seconds">sekund</string>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-		<item>10</item>
-		<item>20</item>
-		<item>30</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
-	
-	<string name="prefs_theme">Temat graficzny ekranu głównego</string>
-	<string name="prefs_theme_summary">Wymaga ponownego uruchomienia aplikacji</string>
-	<string-array name="prefs_theme_keys">
-		<item>domyślny</item>
-		<item>domyślny ciemny</item>
-		<item>domyślny jasny</item>
-		<item>Wysoki kontrast</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_theme_values">
-		<item>android:style/Theme</item>
-		<item>android:style/Theme.Black</item>
-		<item>android:style/Theme.Light</item>
-		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
-
-	<string name="prefs_display_always_on">Ekran zawsze włączony</string>
-	<string name="prefs_display_always_on_summary">Ekran pozostanie włączony podczas śledzenia. Wyłącz by oszczędzić baterię.</string>
-
-	<string name="prefs_displaytrack_osm">Podkład ścieżki OSM</string>
-	<string name="prefs_displaytrack_osm_summary">Włącza podkład mapy OSM w podglądzie ścieżki. Wymaga aktywnego połączenia z internetem.</string>
-
-	<string name="prefs_output">Wyjściowy plik GPX</string>
-	<string name="prefs_storage_dir">Folder na karcie pamięci</string>
-	<string name="prefs_storage_dir_hint">Zmiana zadziała przy następnej ścieżce</string>
-	<string name="prefs_output_one_dir_per_track">Osobne foldery ścieżek</string>
-	<string name="prefs_output_one_dir_per_track_summary">Zapisuje każdą ścieżki wraz z powiązanymi plikami w oddzielnych folderach</string>
-	<string name="prefs_output_filename">Nazwy plików</string>
-	<string name="prefs_output_filename_summary">Schemat dla nazwanych ścieżek</string>
-	<string-array name="prefs_output_filename_keys">
-		<item>Nazwa ścieżki</item>
-		<item>Nazwa, data i czas startu</item>
-		<item>Data i czas startu</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_output_filename_values">
-		<item>name</item>
-		<item>name_date</item>
-		<item>date</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
-	
-	<string name="prefs_output_accuracy">Precyzja w pliku GPX</string>
-	<string name="prefs_output_accuracy_summary">Dodaje informacje o dokładności w pliku GPX, w nazwie punktu, w komantarzu punktu</string>
-	<string-array name="prefs_output_accuracy_keys">
-		<item>Brak</item>
-		<item>W nazwie punktu</item>
-		<item>W komentarzu punktu</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_output_accuracy_values">
-		<item>none</item>
-		<item>wpt_name</item>
-		<item>wpt_cmt</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
-	
-	<string name="prefs_output_gpx_hdop_approximation">Użyj orientacyjne HDOP</string>
-	<string name="prefs_output_gpx_hdop_approximation_summary">Używa przybliżonych wartości dokładności</string>
-
-	<string name="prefs_sound_enabled">Włącz dźwięk</string>
-	<string name="prefs_sound_enabled_summary">Odtwarza dźwięk przed nagrywaniem głosu</string>
-
+  <string name="prefs_output_gpx_hdop_approximation">Użyj orientacyjne HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Używa przybliżonych wartości dokładności</string>
+  <string name="prefs_sound_enabled">Włącz dźwięk</string>
+  <string name="prefs_sound_enabled_summary">Odtwarza dźwięk przed nagrywaniem głosu</string>
 </resources>

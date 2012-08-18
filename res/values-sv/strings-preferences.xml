@@ -16,18 +16,10 @@
   <string name="prefs_ui_buttons_layout">Knapplayout</string>
   <string name="prefs_ui_buttons_layout_summary">Tillåt egendefinierade knapplayouter (se dokumentationen).</string>
   <string name="prefs_ui_buttons_layout_defaut">Standard</string>
-  <!--DO NOT TRANSLATE THIS (BEGIN)-->
-  <!--DO NOT TRANSLATE THIS (END)-->
+
   <string name="prefs_voicerec_duration">Längd på röstnoteringar</string>
   <string name="prefs_voicerec_duration_seconds">sekunder.</string>
-  <!--DO NOT TRANSLATE THIS (BEGIN)-->
-  <string-array name="prefs_voicerec_durations">
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-    <item>5</item>
-  </string-array>
-  <!--DO NOT TRANSLATE THIS (END)-->
+
   <string name="prefs_theme">Utseende/tema</string>
   <string name="prefs_theme_summary">Applikationen måste startas om innan ändringarna syns.</string>
   <string-array name="prefs_theme_keys">
@@ -36,14 +28,7 @@
     <item>Systemstandard (ljus)</item>
     <item>Hög kontrast</item>
   </string-array>
-  <!--DO NOT TRANSLATE THIS (BEGIN)-->
-  <string-array name="prefs_theme_values">
-    <item>android:style/Theme</item>
-    <item>android:style/Theme.Black</item>
-    <item>android:style/Theme.Light</item>
-    <item>me.guillaumin.android.osmtracker:style/HighContrast</item>
-  </string-array>
-  <!--DO NOT TRANSLATE THIS (END)-->
+
   <string name="prefs_display_always_on">Skärmen alltid på</string>
   <string name="prefs_display_always_on_summary">Skärmen släcks inte under tiden spår spelas in. Avmarkera för att spara batteri.</string>
   <string name="prefs_displaytrack_osm">OSM-bakgrund</string>
@@ -58,13 +43,7 @@
     <item>Namn, startdatum och tid</item>
     <item>Startdatum och tid</item>
   </string-array>
-  <!--DO NOT TRANSLATE THIS (BEGIN)-->
-  <string-array name="prefs_output_filename_values">
-    <item>name</item>
-    <item>name_date</item>
-    <item>date</item>
-  </string-array>
-  <!--DO NOT TRANSLATE THIS (END)-->
+
   <string name="prefs_output_accuracy">Noggrannhet</string>
   <string name="prefs_output_accuracy_summary">Tillåt noggrannhetsinformation i GPX-filen, i vägpunktsnamnet eller i en egen tagg.</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -72,13 +51,7 @@
     <item>I vägpunktsnamnet</item>
     <item>I vägpunktskommentaren</item>
   </string-array>
-  <!--DO NOT TRANSLATE THIS (BEGIN)-->
-  <string-array name="prefs_output_accuracy_values">
-    <item>none</item>
-    <item>wpt_name</item>
-    <item>wpt_cmt</item>
-  </string-array>
-  <!--DO NOT TRANSLATE THIS (END)-->
+
   <string name="prefs_output_gpx_hdop_approximation">Uppskattade HDOP-värden</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Använd uppskattade noggrannhets-värden som HDOP-värden i GPX-filen.</string>
 </resources>
