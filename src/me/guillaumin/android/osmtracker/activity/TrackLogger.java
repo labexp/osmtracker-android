@@ -11,6 +11,7 @@ import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
+import me.guillaumin.android.osmtracker.util.ThemeValidator;
 import me.guillaumin.android.osmtracker.view.TextNoteDialog;
 import me.guillaumin.android.osmtracker.view.VoiceRecDialog;
 import android.app.Activity;
@@ -20,6 +21,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -138,9 +140,7 @@ public class TrackLogger extends Activity {
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
 		// Set application theme according to user settings
-		String theme = prefs.getString(
-				OSMTracker.Preferences.KEY_UI_THEME, OSMTracker.Preferences.VAL_UI_THEME);
-		setTheme(getResources().getIdentifier(theme, null, null));
+		setTheme(getResources().getIdentifier(ThemeValidator.getValidTheme(prefs, getResources()), null, null));
 
 		super.onCreate(savedInstanceState);
 		

@@ -1,7 +1,7 @@
 package me.guillaumin.android.osmtracker.activity;
 
-import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.util.ThemeValidator;
 import me.guillaumin.android.osmtracker.view.DisplayTrackView;
 import android.app.Activity;
 import android.os.Bundle;
@@ -22,9 +22,8 @@ public class DisplayTrack extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// Set application theme according to user settings
-		String theme = PreferenceManager.getDefaultSharedPreferences(this).getString(
-				OSMTracker.Preferences.KEY_UI_THEME, OSMTracker.Preferences.VAL_UI_THEME);
-		setTheme(getResources().getIdentifier(theme, null, null));
+		setTheme(getResources().getIdentifier(ThemeValidator.getValidTheme(
+				PreferenceManager.getDefaultSharedPreferences(this), getResources()), null, null));
 		
 		super.onCreate(savedInstanceState);
 		

@@ -38,7 +38,7 @@ public class OSMTracker {
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
 		public final static String VAL_VOICEREC_DURATION = "2";
-		public final static String VAL_UI_THEME = "@android:style/Theme";
+		public final static String VAL_UI_THEME = "me.guillaumin.android.osmtracker:style/DefaultTheme";
 		public final static boolean VAL_GPS_CHECKSTARTUP = true;
 		public final static boolean VAL_GPS_IGNORE_CLOCK = false;
 		public final static String VAL_GPS_LOGGING_INTERVAL = "0";
