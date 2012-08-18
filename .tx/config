@@ -25,12 +25,6 @@ source_file = res/values/strings-preferences.xml
 source_lang = en
 type = ANDROID
 
-[osmtracker-android.renderers]
-file_filter = res/values-<lang>/renderers.xml
-source_file = res/values/renderers.xml
-source_lang = en
-type = ANDROID
-
 [osmtracker-android.strings-tags]
 file_filter = res/values-<lang>/strings-tags.xml
 source_file = res/values/strings-tags.xml
