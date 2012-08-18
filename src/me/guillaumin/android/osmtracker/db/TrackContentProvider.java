@@ -175,11 +175,17 @@ public class TrackContentProvider extends ContentProvider {
 		return count;
 	}
 
+	/**
+	 * Match and get the URI type, if recognized:
+	 * Matches {@link Schema#URI_CODE_TRACK_TRACKPOINTS}, {@link Schema#URI_CODE_TRACK_WAYPOINTS},
+	 * or {@link Schema#URI_CODE_TRACK}.
+	 * @throws IllegalArgumentException if not matched
+	 */
 	@Override
-	public String getType(Uri uri) {
+	public String getType(Uri uri) throws IllegalArgumentException {
 		Log.v(TAG, "getType(), uri=" + uri);
 
-		// Select wich type to return
+		// Select which type to return
 		switch (uriMatcher.match(uri)) {
 		case Schema.URI_CODE_TRACK_TRACKPOINTS:
 			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
@@ -190,8 +196,9 @@ public class TrackContentProvider extends ContentProvider {
 		case Schema.URI_CODE_TRACK:
 			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
 					+ Schema.TBL_TRACK;
+		default:
+			throw new IllegalArgumentException("Unknown URL " + uri);
 		}
-		return null;
 	}
 
 	@Override
