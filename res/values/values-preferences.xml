@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="prefs_ui_orientation_options_values">
+		<item>none</item>
+		<item>portrait</item>
+		<item>landscape</item>
+	</string-array>
+
+	<string-array name="prefs_voicerec_durations">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>10</item>
+		<item>20</item>
+		<item>30</item>
+	</string-array>
+
+	<string-array name="prefs_theme_values">
+		<item>me.guillaumin.android.osmtracker:style/DefaultTheme</item>
+		<item>me.guillaumin.android.osmtracker:style/DarkTheme</item>
+		<item>me.guillaumin.android.osmtracker:style/LightTheme</item>
+		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+	</string-array>
+
+	<string-array name="prefs_output_filename_values">
+		<item>name</item>
+		<item>name_date</item>
+		<item>date</item>
+	</string-array>
+	
+	<string-array name="prefs_output_accuracy_values">
+		<item>none</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
+
+</resources>

@@ -31,28 +31,10 @@
 		<item>Portrait</item>
 		<item>Landscape</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_ui_orientation_options_values">
-		<item>none</item>
-		<item>portrait</item>
-		<item>landscape</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
 	
 
 	<string name="prefs_voicerec_duration">Voice record duration</string>
 	<string name="prefs_voicerec_duration_seconds">seconds</string>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_voicerec_durations">
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
-		<item>10</item>
-		<item>20</item>
-		<item>30</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
 	
 	<string name="prefs_theme">Main screen graphic theme</string>
 	<string name="prefs_theme_summary">Application restart required for change to take effect</string>
@@ -62,14 +44,6 @@
 		<item>OS default (light)</item>
 		<item>High contrast</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_theme_values">
-		<item>me.guillaumin.android.osmtracker:style/DefaultTheme</item>
-		<item>me.guillaumin.android.osmtracker:style/DarkTheme</item>
-		<item>me.guillaumin.android.osmtracker:style/LightTheme</item>
-		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
 
 	<string name="prefs_display_always_on">Screen always on</string>
 	<string name="prefs_display_always_on_summary">Screen will stay on while tracking. Disable to save battery</string>
@@ -89,13 +63,6 @@
 		<item>Name, start date and time</item>
 		<item>Start date and time</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_output_filename_values">
-		<item>name</item>
-		<item>name_date</item>
-		<item>date</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
 	
 	<string name="prefs_output_accuracy">Accuracy in GPX file</string>
 	<string name="prefs_output_accuracy_summary">Add accuracy info in the GPX file, with waypoint name or in waypoint comment</string>
@@ -104,13 +71,6 @@
 		<item>With waypoint name</item>
 		<item>In waypoint comment</item>
 	</string-array>
-	<!-- DO NOT TRANSLATE THIS (BEGIN) -->
-	<string-array name="prefs_output_accuracy_values">
-		<item>none</item>
-		<item>wpt_name</item>
-		<item>wpt_cmt</item>
-	</string-array>
-	<!-- DO NOT TRANSLATE THIS (END) -->
 	
 	<string name="prefs_output_gpx_hdop_approximation">Use HDOP approximation</string>
 	<string name="prefs_output_gpx_hdop_approximation_summary">Fill HDOP in GPX with an approximation value from accuracy</string>
