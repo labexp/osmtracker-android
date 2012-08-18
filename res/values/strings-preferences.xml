@@ -21,8 +21,8 @@
 
 	<string name="prefs_ui">User interface</string>
 	
-	<string name="prefs_ui_buttons_layout">Buttons layout</string>
-	<string name="prefs_ui_buttons_layout_summary">Choose a custom button layout (see docs)</string>
+	<string name="prefs_ui_buttons_layout">Buttons presets</string>
+	<string name="prefs_ui_buttons_layout_summary">Choose a custom set of buttons (see docs)</string>
 	<string name="prefs_ui_buttons_layout_defaut">Default</string>
 	<string name="prefs_ui_orientation">Orientation</string>
 	<string name="prefs_ui_orientation_summary">Preferred orientation for the button screen</string>
@@ -77,7 +77,7 @@
 	<string name="prefs_displaytrack_osm">Background map</string>
 	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap map under track. Needs a data connection</string>
 
-	<string name="prefs_output">GPX file output</string>
+	<string name="prefs_output">GPX settings</string>
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
 	<string name="prefs_storage_dir_hint">Effective for the next track (not the current one)</string>
 	<string name="prefs_output_one_dir_per_track">One directory per track</string>
@@ -118,7 +118,7 @@
 	<string name="prefs_sound_enabled">Enable sound</string>
 	<string name="prefs_sound_enabled_summary">Play sounds when voice recording starts and ends</string>
 	
-	<string name="prefs_osm_clear_oauth_data">Clear OSM authentication data</string>
+	<string name="prefs_osm_clear_oauth_data">Reset OSM authentication</string>
 	<string name="prefs_osm_clear_oauth_data_summary">Forget OSM credentials and permissions and force OSMTracker to ask them again</string>
 	<string name="prefs_osm_clear_oauth_data_dialog">You\'ll have to authorize OSMTracker to upload tracks again. Are you sure?</string>
 
