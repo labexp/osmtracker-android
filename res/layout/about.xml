@@ -48,7 +48,6 @@
         android:text="@string/about_debug_info" />
 
     <LinearLayout
-        android:id="@+id/about_texts"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/about_debug_info_button"
@@ -71,7 +70,6 @@
             </TextView>
 
             <TextView
-                android:id="@+id/about_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/about_text"
@@ -98,7 +96,6 @@
             </TextView>
 
             <TextView
-                android:id="@+id/about_translate_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/about_translate_text"
