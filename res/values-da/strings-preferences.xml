@@ -23,10 +23,8 @@
     <item>Stående</item>
     <item>&gt;Liggende</item>
   </string-array>
-
   <string name="prefs_voicerec_duration">Tale optagelse varighed</string>
   <string name="prefs_voicerec_duration_seconds">sekunder</string>
-
   <string name="prefs_theme">Hovedskærm grafisk tema</string>
   <string name="prefs_theme_summary">Program genstartet påkrævet</string>
   <string-array name="prefs_theme_keys">
@@ -35,7 +33,6 @@
     <item>OS standard (lys)</item>
     <item>Høj kontrast</item>
   </string-array>
-
   <string name="prefs_display_always_on">Skærm altid tændt</string>
   <string name="prefs_display_always_on_summary">Skærm forbliver tændt under tracking. Inaktiver for at spare batteri</string>
   <string name="prefs_displaytrack_osm">OSM baggrund</string>
@@ -52,7 +49,6 @@
     <item>Navn, start dato og tid</item>
     <item>Start dato og tid</item>
   </string-array>
-
   <string name="prefs_output_accuracy">Præcision i GPX fil</string>
   <string name="prefs_output_accuracy_summary">Tilføj præcision i GPX fil, med waypoint navn eller i waypoint kommentar</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -60,7 +56,6 @@
     <item>Med waypoint navn</item>
     <item>I waypoint kommentar</item>
   </string-array>
-
   <string name="prefs_output_gpx_hdop_approximation">Brug HDOP approksimering</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Fyld HDOP i GPX med approksimeringsværdi fra præcision</string>
   <string name="prefs_sound_enabled">Aktiver lyd</string>

@@ -23,10 +23,8 @@
     <item>Na výšku</item>
     <item>Na šírku</item>
   </string-array>
-
   <string name="prefs_voicerec_duration">Dĺžka hlasového záznamu</string>
   <string name="prefs_voicerec_duration_seconds">sekundy/sekúnd</string>
-
   <string name="prefs_theme">Grafická téma hlavnej obrazovky</string>
   <string name="prefs_theme_summary">Je potrebný reštart aplikácie na vykonanie zmien</string>
   <string-array name="prefs_theme_keys">
@@ -35,7 +33,6 @@
     <item>Štandardná OS (Svetlá)</item>
     <item>Vysoký kontrast</item>
   </string-array>
-
   <string name="prefs_display_always_on">Obrazovka vždy zapnutá</string>
   <string name="prefs_display_always_on_summary">Obrazovka zostane zapnutá počas stopovania. Vypnite pre úsporu batérie</string>
   <string name="prefs_displaytrack_osm">OSM pozadie</string>
@@ -52,7 +49,6 @@
     <item>Názov, dátum a čas spustenia</item>
     <item>Dátum a čas spustenia</item>
   </string-array>
-
   <string name="prefs_output_accuracy">Presnosť v GPX súbore</string>
   <string name="prefs_output_accuracy_summary">Povoliť informácie o presnosti v GPX súbore, s názvom cestovného bodu alebo v oddelenom poli</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -60,7 +56,6 @@
     <item>S názvom cestovného bodu</item>
     <item>V komentári cestovného bodu</item>
   </string-array>
-
   <string name="prefs_output_gpx_hdop_approximation">Použiť odhad HDOP</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Vyplniť HDOP v GPX s odhadovanou hodnotou presnosti</string>
   <string name="prefs_sound_enabled">Zapnúť zvuky</string>

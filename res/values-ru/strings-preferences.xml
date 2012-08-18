@@ -23,10 +23,8 @@
     <item>Портретная</item>
     <item>Ладншафтная</item>
   </string-array>
-
   <string name="prefs_voicerec_duration">Длительность записи аудио</string>
   <string name="prefs_voicerec_duration_seconds">секунд(ы)</string>
-
   <string name="prefs_theme">Основная тема оформления</string>
   <string name="prefs_theme_summary">Изменения будут действовать после перезагрузки программы</string>
   <string-array name="prefs_theme_keys">
@@ -35,7 +33,6 @@
     <item>Светлая</item>
     <item>Высокий контраст</item>
   </string-array>
-
   <string name="prefs_display_always_on">Не отключать экран</string>
   <string name="prefs_display_always_on_summary">Экран всегда будет включен во время записи трека. Отключите для экономии заряда батареи</string>
   <string name="prefs_displaytrack_osm">Картооснова OSM</string>
@@ -52,7 +49,6 @@
     <item>Имя, дата и время старта</item>
     <item>Дата и время старта</item>
   </string-array>
-
   <string name="prefs_output_accuracy">Точность в GPX файл</string>
   <string name="prefs_output_accuracy_summary">Записывать информацию о точности в GPX файл, в название точки, или отдельным тэгом</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -60,7 +56,6 @@
     <item>В имя точки</item>
     <item>В комментарий точки</item>
   </string-array>
-
   <string name="prefs_output_gpx_hdop_approximation">Использовать аппроксимацию HDOP</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Заполнять тэг HDOP в GPX файле аппроксимированным значением точности</string>
   <string name="prefs_sound_enabled">Включить звук</string>

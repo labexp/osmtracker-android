@@ -23,10 +23,8 @@
     <item>縦長</item>
     <item>横長</item>
   </string-array>
-
   <string name="prefs_voicerec_duration">録音時間</string>
   <string name="prefs_voicerec_duration_seconds">秒</string>
-
   <string name="prefs_theme">スクリーン表示テーマ</string>
   <string name="prefs_theme_summary">アプリ再起動で反映します</string>
   <string-array name="prefs_theme_keys">
@@ -35,7 +33,6 @@
     <item>OSデフォルト (ライト)</item>
     <item>ハイコントラスト</item>
   </string-array>
-
   <string name="prefs_display_always_on">常時オン</string>
   <string name="prefs_display_always_on_summary">トラッキング中はスクリーンは常時オン、バッテリーセーブは無効</string>
   <string name="prefs_displaytrack_osm">OSM 背景</string>
@@ -52,7 +49,6 @@
     <item>ネーム_開始日時</item>
     <item>開始日時</item>
   </string-array>
-
   <string name="prefs_output_accuracy">GPXファイルの補完</string>
   <string name="prefs_output_accuracy_summary">GPXファイル内のウェイポイントやコメントを補完する</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -60,7 +56,6 @@
     <item>ウェイポイント名称</item>
     <item>ウェイポイントコメント</item>
   </string-array>
-
   <string name="prefs_output_gpx_hdop_approximation">HDOP近似値を使用する</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Fill HDOP in GPX with an approximation value from accuracy</string>
   <string name="prefs_sound_enabled">サウンド有効</string>

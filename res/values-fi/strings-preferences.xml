@@ -14,10 +14,8 @@
   <string name="prefs_ui_buttons_layout">Painikelayout</string>
   <string name="prefs_ui_buttons_layout_summary">Salli omat painikelayoutit (kts. dokumentit)</string>
   <string name="prefs_ui_buttons_layout_defaut">Oletus</string>
-
   <string name="prefs_voicerec_duration">Äänitallenteen kesto</string>
   <string name="prefs_voicerec_duration_seconds">sekuntia</string>
-
   <string name="prefs_theme">Pääikkunan teema</string>
   <string name="prefs_theme_summary">Käynnistä sovellus uudelleen jotta asetukset tulevat voimaan</string>
   <string-array name="prefs_theme_keys">
@@ -26,12 +24,10 @@
     <item>OS oletus (Vaalea)</item>
     <item>Korkea kontrasti</item>
   </string-array>
-
   <string name="prefs_displaytrack_osm">OSM tausta</string>
   <string name="prefs_displaytrack_osm_summary">Näytä OpenStreetMap reitin alla. Tarvitset datayhteyden</string>
   <string name="prefs_output">GPX-tiedoston tallennus</string>
   <string name="prefs_storage_dir">Muistikortin (SD) kansio</string>
-
   <string name="prefs_output_accuracy">Tarkkuus GPX-tiedostossa</string>
   <string name="prefs_output_accuracy_summary">Salli tarkkuusinfo GPX-tiedostossa waypoint-nimellä tai erillisellä kommentilla</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -39,7 +35,6 @@
     <item>Waypoint-nimi</item>
     <item>Waypoint-kommentti</item>
   </string-array>
-
   <string name="prefs_output_gpx_hdop_approximation">Käytä HDOP-arviota</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Täytä HDOP GPX:ään tarkkuuden arviolla</string>
 </resources>

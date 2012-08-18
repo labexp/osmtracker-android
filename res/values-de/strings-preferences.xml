@@ -23,10 +23,8 @@
     <item>Hochformat</item>
     <item>Querformat</item>
   </string-array>
-
   <string name="prefs_voicerec_duration">Dauer Sprachaufnahme</string>
   <string name="prefs_voicerec_duration_seconds">Sekunden</string>
-
   <string name="prefs_theme">Motiv Hauptbildschirm</string>
   <string name="prefs_theme_summary">Applikationsneustart notwendig, damit Einstellungen wirksam werden</string>
   <string-array name="prefs_theme_keys">
@@ -35,7 +33,6 @@
     <item>OS Standard (Hell)</item>
     <item>Hoher Kontrast</item>
   </string-array>
-
   <string name="prefs_display_always_on">Bildschirm immer an</string>
   <string name="prefs_display_always_on_summary">Bildschirm bleibt während des Trackings beleuchtet. Deaktivieren um Batterie zu sparen</string>
   <string name="prefs_displaytrack_osm">OSM Hintergrund</string>
@@ -52,7 +49,6 @@
     <item>Name, Startdatum und -zeit</item>
     <item>Startdatum und -zeit</item>
   </string-array>
-
   <string name="prefs_output_accuracy">Genauigkeit in der GPX-Datei</string>
   <string name="prefs_output_accuracy_summary">Erlaube Genauigkeitsanzeige in der GPX-Datei mit Waypoint-Name oder in einem separaten Tag</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -60,7 +56,6 @@
     <item>Mit Waypoint-Name</item>
     <item>Im Waypoint-Kommentar</item>
   </string-array>
-
   <string name="prefs_output_gpx_hdop_approximation">Benutze HDOP-Annäherung</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Fülle HDOP (im GPX) mit Näherungswerten der Genauigkeitsmessung</string>
   <string name="prefs_sound_enabled">Sound aktivieren</string>

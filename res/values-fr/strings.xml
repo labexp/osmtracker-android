@@ -66,8 +66,8 @@
   <string name="osm_upload_ok">Sauvegarder et uploader</string>
   <string name="osm_upload_tmpfile_failed">Erreur lors de l\'export vers un fichier temporaire</string>
   <string name="osm_upload_oauth_failed">Erreur d\'authentification à OpenStreetMap</string>
-  <string name="osm_upload_sending">Envoi de la trace #{0}...</string>
-  <string name="osm_upload_waiting_response">Attente de la réponse du serveur...</string>
+  <string name="osm_upload_sending">Envoi de la trace #{0}…</string>
+  <string name="osm_upload_waiting_response">Attente de la réponse du serveur…</string>
   <string name="osm_upload_error">Erreur lors de l\'upload</string>
   <string name="osm_upload_bad_response">Le serveur OSM à retourné une erreur ({0} message {1})</string>
   <string name="osm_upload_unauthorized">Erreur d\'authentification. Voulez-vouz supprimer les données d\'authentifications et vous re-connecter ?</string>
@@ -105,6 +105,8 @@
   <string name="about">À propos</string>
   <string name="about_text">Pour plus d\'informations, documentation et bugs, veuillez visiter la page du projet :</string>
   <string name="about_link"></string>
+  <string name="about_translate_text">Aidez à traduire OSMTracker</string>
+  <string name="about_translate_link">https://www.transifex.com/projects/p/osmtracker-android/</string>
   <string name="about_debug_info">Info de débogage</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker est en cours d\'éxécution</string>

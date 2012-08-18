@@ -13,10 +13,8 @@
   <string name="prefs_ui_buttons_layout">Disposição dos botões</string>
   <string name="prefs_ui_buttons_layout_summary">Permite definir uma disposição customizada dos botões (Veja docs)</string>
   <string name="prefs_ui_buttons_layout_defaut">Padrão</string>
-
   <string name="prefs_voicerec_duration">Duração da gravação de voz</string>
   <string name="prefs_voicerec_duration_seconds">segundos</string>
-
   <string name="prefs_theme">Tema da tela principal</string>
   <string name="prefs_theme_summary">É necessário reiniciar para ver as alterações</string>
   <string-array name="prefs_theme_keys">
@@ -25,7 +23,6 @@
     <item>SO padrão (Light)</item>
     <item>Alto contraste</item>
   </string-array>
-
   <string name="prefs_display_always_on">Tela sempre ligada</string>
   <string name="prefs_display_always_on_summary">A tela irá ficar ligada ao registrar. Desabilite para economizar bateria</string>
   <string name="prefs_displaytrack_osm">Plano de fundo do OSM</string>
@@ -40,7 +37,6 @@
     <item>Nome, data de início e hora</item>
     <item>Data de início e hora</item>
   </string-array>
-
   <string name="prefs_output_accuracy">Precisão no arquivo GPX</string>
   <string name="prefs_output_accuracy_summary">Permite informações de precisão no arquivo GPX, com nome de pontos da via name ou em uma etiqueta separada</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -48,7 +44,6 @@
     <item>Com o nome do ponto da via</item>
     <item>No comentário do ponto da via</item>
   </string-array>
-
   <string name="prefs_output_gpx_hdop_approximation">Use aproximação HDOP</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Insira HDOP no GPX com um valor de aproximação para precisão</string>
 </resources>

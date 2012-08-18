@@ -23,10 +23,8 @@
     <item>Portrait</item>
     <item>Paysage</item>
   </string-array>
-
   <string name="prefs_voicerec_duration">Durée du mémo vocal</string>
   <string name="prefs_voicerec_duration_seconds">secondes</string>
-
   <string name="prefs_theme">Thème graphique</string>
   <string name="prefs_theme_summary">Redémarrage de l\'application nécessaire pour prendre effet</string>
   <string-array name="prefs_theme_keys">
@@ -35,7 +33,6 @@
     <item>OS par défaut (Lumineux)</item>
     <item>Contraste élevé</item>
   </string-array>
-
   <string name="prefs_display_always_on">Écran toujours actif</string>
   <string name="prefs_display_always_on_summary">L\'écran restera actif durant l\'enregistrement. Désactivez pour économiser la batterie</string>
   <string name="prefs_displaytrack_osm">OSM en arrière plan</string>
@@ -52,7 +49,6 @@
     <item>Nom, date et heure de début</item>
     <item>Date et heure de début</item>
   </string-array>
-
   <string name="prefs_output_accuracy">Contenu du fichier GPX</string>
   <string name="prefs_output_accuracy_summary">Intègre la précision au fichier GPX, dans le nom des waypoint ou dans un tag séparé</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -60,7 +56,6 @@
     <item>Dans le nom des waypoint</item>
     <item>Dans le tag commentaire des waypoints</item>
   </string-array>
-
   <string name="prefs_output_gpx_hdop_approximation">Approximation HDOP</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Ajout du HDOP dans le GPX (issu d\'une approximation à partir de la précision)</string>
   <string name="prefs_sound_enabled">Activer le son</string>

@@ -10,10 +10,8 @@
   <string name="prefs_ui_buttons_layout">Disposición de los botones</string>
   <string name="prefs_ui_buttons_layout_summary">Permite definir una disposición personalizada de los botones (ver documentación)</string>
   <string name="prefs_ui_buttons_layout_defaut">Predeterminada</string>
-
   <string name="prefs_voicerec_duration">Duración de la grabación de voz</string>
   <string name="prefs_voicerec_duration_seconds">segundos</string>
-
   <string name="prefs_theme">Tema de la pantalla principal</string>
   <string name="prefs_theme_summary">Es necesario reiniciar para que haga efecto</string>
   <string-array name="prefs_theme_keys">
@@ -22,7 +20,6 @@
     <item>Predeterminado del SO (claro)</item>
     <item>Contraste alto</item>
   </string-array>
-
   <string name="prefs_output">Salida del archivo GPX</string>
   <string name="prefs_storage_dir">Carpeta de almacenamiento externo (SD)</string>
   <string name="prefs_output_filename">Nombre del archivo de trazas llamadas</string>
@@ -32,7 +29,6 @@
     <item>Nombre, fecha y hora de inicio</item>
     <item>Fecha y hora de inicio</item>
   </string-array>
-
   <string name="prefs_output_accuracy">Precisión en el archivo GPX</string>
   <string name="prefs_output_accuracy_summary">Permite información de precisión en el archivo GPX, con el nombre del punto o en una etiqueta separada</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -40,7 +36,6 @@
     <item>Con el nombre del punto</item>
     <item>En un comentario del punto</item>
   </string-array>
-
   <string name="prefs_output_gpx_hdop_approximation">Usar aproximación HDOP</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Rellenar el HDOP en el GPX con un valor de aproximación de la precisión</string>
 </resources>
