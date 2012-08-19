@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
@@ -99,7 +100,10 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 			final long totalSize = gpxFile.length();
 			
 			// Custom entity to display a progress bar while uploading
-            MultipartEntity entity = new ProgressMultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE, new ProgressListener() {
+            MultipartEntity entity = new ProgressMultipartEntity(
+            		HttpMultipartMode.BROWSER_COMPATIBLE,
+            		Charset.defaultCharset(),
+            		new ProgressListener() {
 				@Override
 				public void transferred(long num) {
 					dialog.incrementProgressBy((int) num);
@@ -118,12 +122,12 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 					
 				}
 			});
-            
+
             // API parameters
             entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.FILE, new FileBody(gpxFile));
-            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.DESCRIPTION, new StringBody(description));
-            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.TAGS, new StringBody(tags));
-            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.VISIBILITY, new StringBody(visibility.toString().toLowerCase()));
+            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.DESCRIPTION, new StringBody(description, Charset.defaultCharset()));
+            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.TAGS, new StringBody(tags, Charset.defaultCharset()));
+            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.VISIBILITY, new StringBody(visibility.toString().toLowerCase(),Charset.defaultCharset()));
             request.setEntity(entity);
             
     		// Display progress dialog

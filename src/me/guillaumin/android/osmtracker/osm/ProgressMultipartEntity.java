@@ -3,6 +3,7 @@ package me.guillaumin.android.osmtracker.osm;
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
@@ -11,8 +12,8 @@ public class ProgressMultipartEntity extends MultipartEntity {
 
 	private final ProgressListener listener;
 
-	public ProgressMultipartEntity(final HttpMultipartMode mode, final ProgressListener listener) {
-		super(mode);
+	public ProgressMultipartEntity(final HttpMultipartMode mode, Charset charset, final ProgressListener listener) {
+		super(mode, null, charset);
 		this.listener = listener;
 	}
 
