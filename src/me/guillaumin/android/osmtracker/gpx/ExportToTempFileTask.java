@@ -53,8 +53,10 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 	private File checkForExportFile() {
 		reusedRealExport = false;
 
+		// Query the track columns needed by this method and buildGPXFilename
+		final String[] pro = { Schema.COL_EXPORT_DATE, Schema.COL_START_DATE,  Schema.COL_NAME };
 		Cursor c = context.getContentResolver().query(ContentUris.withAppendedId(
-				TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
+				TrackContentProvider.CONTENT_URI_TRACK, trackId), pro, null,
 				null, null);
 		if (null == c)
 			return null;  // <--- Early return: could not query ---
