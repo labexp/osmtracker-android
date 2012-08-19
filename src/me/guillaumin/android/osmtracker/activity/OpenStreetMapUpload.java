@@ -174,7 +174,7 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 			@Override
 			protected void executionCompleted() {
 				new UploadToOpenStreetMapTask(OpenStreetMapUpload.this, trackId, oAuthConsumer, this.getTmpFile(),
-						etDescription.getText().toString(), etTags.getText().toString(),
+						this.getFilename(), etDescription.getText().toString(), etTags.getText().toString(),
 						OSMVisibility.fromPosition(OpenStreetMapUpload.this.spVisibility.getSelectedItemPosition()))
 							.execute();
 			}

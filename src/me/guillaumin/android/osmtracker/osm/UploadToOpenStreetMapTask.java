@@ -42,6 +42,8 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 
 	private static final String TAG = UploadToOpenStreetMapTask.class.getSimpleName();
 
+	private static final String GPX_MIMETYPE = "application/gpx+xml";
+	
 	/** Upload progress dialog */
 	private ProgressDialog dialog;
 	
@@ -53,6 +55,9 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 	
 	/** File to export */
 	private final File gpxFile;
+	
+	/** Filename to use when uploading */
+	private final String filename;
 	
 	/** Track description */
 	private final String description;
@@ -79,9 +84,11 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 	
 	public UploadToOpenStreetMapTask(Activity activity,
 			long trackId, CommonsHttpOAuthConsumer oAuthConsumer,
-			File gpxFile, String description, String tags, OSMVisibility visibility) {
+			File gpxFile, String filename,
+			String description, String tags, OSMVisibility visibility) {
 		this.activity = activity;
 		this.trackId = trackId;
+		this.filename = filename;
 		
 		this.oAuthConsumer = oAuthConsumer;
 		this.gpxFile = gpxFile;
@@ -124,7 +131,7 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 			});
 
             // API parameters
-            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.FILE, new FileBody(gpxFile));
+            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.FILE, new FileBody(gpxFile, filename, GPX_MIMETYPE, Charset.defaultCharset().name()));
             entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.DESCRIPTION, new StringBody(description, Charset.defaultCharset()));
             entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.TAGS, new StringBody(tags, Charset.defaultCharset()));
             entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.VISIBILITY, new StringBody(visibility.toString().toLowerCase(),Charset.defaultCharset()));

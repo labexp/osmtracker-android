@@ -19,6 +19,7 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 	private static final String TAG = ExportToTempFileTask.class.getSimpleName();
 	
 	private final File tmpFile;
+	private String filename;
 	
 	public ExportToTempFileTask(Context context, long trackId) {
 		super(context, trackId);
@@ -39,6 +40,7 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 
 	@Override
 	protected String buildGPXFilename(Cursor c) {
+		filename = super.buildGPXFilename(c);
 		return tmpFile.getName();
 	}
 
@@ -54,6 +56,10 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 	
 	public File getTmpFile() {
 		return tmpFile;
+	}
+	
+	public String getFilename() {
+		return filename;
 	}
 	
 	@Override
