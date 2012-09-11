@@ -6,3 +6,5 @@ local.properties
 proguard-project.txt
 # -no resources are copied from -nb
 res/*-no
+*.pl
+*.sh

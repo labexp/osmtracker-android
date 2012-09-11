@@ -8,16 +8,14 @@ import me.guillaumin.android.osmtracker.db.model.Track;
 import me.guillaumin.android.osmtracker.db.model.Track.OSMVisibility;
 import me.guillaumin.android.osmtracker.gpx.ExportToTempFileTask;
 import me.guillaumin.android.osmtracker.osm.OpenStreetMapConstants;
+import me.guillaumin.android.osmtracker.osm.RetrieveAccessTokenTask;
+import me.guillaumin.android.osmtracker.osm.RetrieveRequestTokenTask;
 import me.guillaumin.android.osmtracker.osm.UploadToOpenStreetMapTask;
-import me.guillaumin.android.osmtracker.util.DialogUtils;
 import oauth.signpost.OAuth;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
-import oauth.signpost.exception.OAuthException;
 import android.content.ContentUris;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -56,6 +54,7 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState, R.layout.osm_upload, getTrackId());
 		fieldsMandatory = true;
 
@@ -124,21 +123,8 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 		if (uri != null && uri.toString().startsWith(OAUTH_CALLBACK_URL)) {
 			// User is returning from authentication
 			String verifier = uri.getQueryParameter(OAuth.OAUTH_VERIFIER);
-			try {
-				oAuthProvider.retrieveAccessToken(oAuthConsumer, verifier);
-				
-				// Store token in preferences for future use
-				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-				Editor editor = prefs.edit();
-				editor.putString(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN, oAuthConsumer.getToken());
-				editor.putString(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET, oAuthConsumer.getTokenSecret());
-				editor.commit();
-
-				uploadToOsm();
-				
-			} catch (OAuthException oe) {
-				DialogUtils.showErrorDialog(this, getResources().getString(R.string.osm_upload_oauth_failed) + ": " + oe);
-			}
+			
+			new RetrieveAccessTokenTask(this, oAuthProvider, oAuthConsumer, verifier).execute();
 		}
 	}
 
@@ -147,29 +133,24 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 	 * or ask the user to authenticate via the browser.
 	 */
 	private void startUpload() {
-		try {
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-			if ( prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN)
-					&& prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET)) {
-				// Re-use saved token
-				oAuthConsumer.setTokenWithSecret(
-						prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN, ""),
-						prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET, ""));
-				uploadToOsm();
-			} else {
-				// Open browser and request token
-				String requestTokenUrl = oAuthProvider.retrieveRequestToken(oAuthConsumer, OAUTH_CALLBACK_URL+trackId);
-				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(requestTokenUrl)));
-			}
-		} catch (OAuthException oe) {
-			DialogUtils.showErrorDialog(this, getResources().getString(R.string.osm_upload_oauth_failed) + ": " + oe);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if ( prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN)
+				&& prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET)) {
+			// Re-use saved token
+			oAuthConsumer.setTokenWithSecret(
+					prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN, ""),
+					prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET, ""));
+			uploadToOsm();
+		} else {
+			// Open browser and request token
+			new RetrieveRequestTokenTask(this, oAuthProvider, oAuthConsumer, OAUTH_CALLBACK_URL+trackId).execute();
 		}
 	}
 
 	/**
 	 * Exports track on disk then upload to OSM.
 	 */
-	private void uploadToOsm() {
+	public void uploadToOsm() {
 		new ExportToTempFileTask(this, trackId) {
 			@Override
 			protected void executionCompleted() {
