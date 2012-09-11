@@ -102,7 +102,7 @@
   <!--About screen-->
   <string name="about">Om</string>
   <string name="about_text">Besøk prosjektheimesida for meir informasjon, dokumentasjon og feilmelding:</string>
-  <string name="about_link"></string>
+  <string name="about_translate_text">Hjelp med omsetjing av OSMTracker:</string>
   <string name="about_debug_info">Debug info</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker sporar</string>

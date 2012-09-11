@@ -60,4 +60,7 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">Inserisce HDOP nel GPX con un valore di approssimazione per la precisione</string>
   <string name="prefs_sound_enabled">Abilita suoni</string>
   <string name="prefs_sound_enabled_summary">Riproduci suoni ad inizio e fine registrazioni vocali</string>
+  <string name="prefs_osm_clear_oauth_data">Ripristina l\'autenticazione su OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Dimentica le credenziali e le autorizzazioni di OSM e forza OSMTracker a chiederle di nuovo</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Devi autorizzare nuovamente OSMTracker a caricare i tracciati. Sei sicuro?</string>
 </resources>

@@ -16,6 +16,13 @@
   <string name="prefs_ui_buttons_layout">Knapplayout</string>
   <string name="prefs_ui_buttons_layout_summary">Tillåt egendefinierade knapplayouter (se dokumentationen).</string>
   <string name="prefs_ui_buttons_layout_defaut">Standard</string>
+  <string name="prefs_ui_orientation">Orientering</string>
+  <string name="prefs_ui_orientation_summary">Orientering av knappskärmen du föredrar</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automatiskt</item>
+    <item>Poträtt</item>
+    <item>Landskap</item>
+  </string-array>
   <string name="prefs_voicerec_duration">Längd på röstnoteringar</string>
   <string name="prefs_voicerec_duration_seconds">sekunder.</string>
   <string name="prefs_theme">Utseende/tema</string>
@@ -33,6 +40,8 @@
   <string name="prefs_output">GPX-fil</string>
   <string name="prefs_storage_dir">Lagringsmapp (SD)</string>
   <string name="prefs_storage_dir_hint">Gäller för nästa och kommande spår, inte aktuellt spår.</string>
+  <string name="prefs_output_one_dir_per_track">En riktning per spår</string>
+  <string name="prefs_output_one_dir_per_track_summary">Spara varje spår och relaterade filer i en egen mapp</string>
   <string name="prefs_output_filename">Spårens namn</string>
   <string name="prefs_output_filename_summary">Hur namnet på exporterade spår ska se upp.</string>
   <string-array name="prefs_output_filename_keys">
@@ -49,4 +58,9 @@
   </string-array>
   <string name="prefs_output_gpx_hdop_approximation">Uppskattade HDOP-värden</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Använd uppskattade noggrannhets-värden som HDOP-värden i GPX-filen.</string>
+  <string name="prefs_sound_enabled">Aktivera ljud</string>
+  <string name="prefs_sound_enabled_summary">Spela upp ljud när ljudinspelning startar och slutar</string>
+  <string name="prefs_osm_clear_oauth_data">Återställ inloggning till OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Glöm bort inloggning och tillstånd och tvinga OSMTracker att fråga om detta igen</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Du måste godkänna OSMTracker för att kunna ladda upp spår igen. Är du säker?</string>
 </resources>

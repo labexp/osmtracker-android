@@ -60,4 +60,7 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">Fülle HDOP (im GPX) mit Näherungswerten der Genauigkeitsmessung</string>
   <string name="prefs_sound_enabled">Sound aktivieren</string>
   <string name="prefs_sound_enabled_summary">Spiele Sounds ab, wenn Sprachaufnahme startet und endet</string>
+  <string name="prefs_osm_clear_oauth_data">OSM-Anmeldedaten rücksetzen</string>
+  <string name="prefs_osm_clear_oauth_data_summary">OSM-Anmeldedaten und -Rechte vergessen und OSMTracker neu danach fragen lassen</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Du musst OSMTracker neu erlauben, Tracks hochladen zu dürfen. Bist Du sicher?</string>
 </resources>

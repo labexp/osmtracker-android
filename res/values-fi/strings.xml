@@ -67,7 +67,6 @@
   <!--About screen-->
   <string name="about">Tietoja</string>
   <string name="about_text">Lisätiedot kuten dokumentit ja raportointi projektin kotisivuilla:</string>
-  <string name="about_link"></string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker on edelleen päällä</string>
   <string name="notification_title">OSMTracker on edelleen päällä</string>

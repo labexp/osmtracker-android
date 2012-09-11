@@ -81,7 +81,6 @@
   <!--About screen-->
   <string name="about">About</string>
   <string name="about_text">詳細情報,ドキュメント,議論については、ホームページを参照してください:</string>
-  <string name="about_link"></string>
   <string name="about_debug_info">デバッグ情報</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker トラッキング中</string>

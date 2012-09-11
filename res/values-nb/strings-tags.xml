@@ -7,7 +7,7 @@
   <string name="tag.amenity">Fasiliteter 1</string>
   <string name="tag.amenity_more">Fasiliteter 2</string>
   <string name="tag.way">Veg</string>
-  <string name="tag.track">Grusveg</string>
+  <string name="tag.track">Grus-/\nskogsveg</string>
   <string name="tag.landuse">Bruk av land</string>
   <string name="tag.misc_bus_stop">Busstopp</string>
   <string name="tag.misc_railway">Jernbane</string>
@@ -44,6 +44,8 @@
   <string name="tag.tourism_attraction">Attraksjon</string>
   <string name="tag.tourism_theme_park">Fornøyelsespark</string>
   <string name="tag.tourism_castle">Slott</string>
+  <string name="tag.tourism_monument">Monument</string>
+  <string name="tag.tourism_museum">Museum</string>
   <string name="tag.tourism_cinema">Kino</string>
   <string name="tag.amenity_bench">Benk</string>
   <string name="tag.amenity_water">Vann</string>
@@ -62,9 +64,11 @@
   <string name="tag.amenitymore_fire_station">Brannstasjon</string>
   <string name="tag.amenitymore_bank">Bank</string>
   <string name="tag.amenitymore_playground">Lekeplass</string>
+  <string name="tag.amenitymore_pub">Pub</string>
   <string name="tag.amenitymore_hotel">Hotell</string>
   <string name="tag.amenitymore_motel">Pensjonat</string>
   <string name="tag.amenitymore_hostel">Vandrerheim</string>
+  <string name="tag.amenitymore_restaurant">Restaurant</string>
   <string name="tag.amenitymore_fastfood">Hurtigmat</string>
   <string name="tag.amenitymore_camp_site">Camping</string>
   <string name="tag.way_bridge">Bru</string>
@@ -83,11 +87,11 @@
   <string name="tag.track_steps">Steg</string>
   <string name="tag.track_living_street">Gågate</string>
   <string name="tag.track_pedestrian">Fotgjenger</string>
-  <string name="tag.track_grade1">Grad 1</string>
-  <string name="tag.track_grade2">Grad 2</string>
-  <string name="tag.track_grade3">Grad 3</string>
-  <string name="tag.track_grade4">Grad 4</string>
-  <string name="tag.track_grade5">Grad 5</string>
+  <string name="tag.track_grade1">grade1</string>
+  <string name="tag.track_grade2">grade2</string>
+  <string name="tag.track_grade3">grade3</string>
+  <string name="tag.track_grade4">grade4</string>
+  <string name="tag.track_grade5">grade5</string>
   <string name="tag.landuse_farm">Gard</string>
   <string name="tag.landuse_landfill">Bossfylling</string>
   <string name="tag.landuse_basin">Basseng</string>
@@ -95,5 +99,5 @@
   <string name="tag.landuse_forest">Skog</string>
   <string name="tag.landuse_allotments">Parsell</string>
   <string name="tag.landuse_cemetery">Gravplass</string>
-  <string name="tag.landuse_recreation_ground">Rekreasjonsplass</string>
+  <string name="tag.landuse_recreation_ground">Rekreasjons-\nplass</string>
 </resources>

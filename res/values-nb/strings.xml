@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
+  <string name="app_name">OSMTracker til Android™</string>
+  <string name="app_short_name">OSMTracker</string>
   <string name="app_description">OSMTracker lar deg spore reisene dine, merke av viktige punkt ved hjelp av et notat, foto eller stemmeopptak. Sporet kan du så eksportere til GPX-formatet som så kan brukes med ulike OpenStreetMap-verktøy som til dømes JOSM. OSMTracker er inspirert av OSMTracker for Windows Mobile.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Sporlogger</string>
@@ -102,7 +104,7 @@
   <!--About screen-->
   <string name="about">Om</string>
   <string name="about_text">Besøk prosjektheimesida for mer informasjon, dokumentasjon og feilmelding:</string>
-  <string name="about_link"></string>
+  <string name="about_translate_text">Hjelp med oversettelse av OSMTracker:</string>
   <string name="about_debug_info">Debug info</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker sporer</string>

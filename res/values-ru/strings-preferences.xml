@@ -60,4 +60,7 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">Заполнять тэг HDOP в GPX файле аппроксимированным значением точности</string>
   <string name="prefs_sound_enabled">Включить звук</string>
   <string name="prefs_sound_enabled_summary">Играть звук в момент начала и окончания записи аудио</string>
+  <string name="prefs_osm_clear_oauth_data">Сбросить учетные данные OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Удалить учетные данные доступа к OSM и задать OSMTracker запросить их снова.</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Нужно будет заново авторизовать OSMTracker, чтобы закачивать треки. Вы уверены?</string>
 </resources>

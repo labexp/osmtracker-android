@@ -2,14 +2,27 @@
 <resources>
   <!--Preferences-->
   <string name="prefs">Configuración</string>
+  <string name="prefs_gps">GPS</string>
   <string name="prefs_gps_os_settings">Configuración del GPS</string>
   <string name="prefs_gps_os_settings_summary">Mostrar pantalla de configuración del sistema GPS</string>
   <string name="prefs_check_gps_startup">Comprobar GPS en el inicio</string>
   <string name="prefs_check_gps_startup_summary">Comprobar si el GPS está desactivado al iniciar, y preguntar si activarlo</string>
+  <string name="prefs_gps_ignore_clock">Ignorar el reloj GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Ignorar el reloj GPS y utilizar el reloj Android como marcas de tiempo</string>
+  <string name="prefs_gps_logging_interval">Intervalo de registro de GPS</string>
+  <string name="prefs_gps_logging_interval_summary">Utilice 0 para el más breve posible (que afecta a la vida de la batería)</string>
+  <string name="prefs_gps_logging_interval_seconds">segundos</string>
   <string name="prefs_ui">Interfaz de usuario</string>
   <string name="prefs_ui_buttons_layout">Disposición de los botones</string>
   <string name="prefs_ui_buttons_layout_summary">Permite definir una disposición personalizada de los botones (ver documentación)</string>
   <string name="prefs_ui_buttons_layout_defaut">Predeterminada</string>
+  <string name="prefs_ui_orientation">Orientación</string>
+  <string name="prefs_ui_orientation_summary">La orientación preferida para la pantalla des botóns</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automático</item>
+    <item>Retrato</item>
+    <item>Paisaje</item>
+  </string-array>
   <string name="prefs_voicerec_duration">Duración de la grabación de voz</string>
   <string name="prefs_voicerec_duration_seconds">segundos</string>
   <string name="prefs_theme">Tema de la pantalla principal</string>
@@ -20,8 +33,15 @@
     <item>Predeterminado del SO (claro)</item>
     <item>Contraste alto</item>
   </string-array>
+  <string name="prefs_display_always_on">Pantalla siempre activada</string>
+  <string name="prefs_display_always_on_summary">La pantalla permanecerá encendida mientras que trazando. Desactivar para ahorrar batería</string>
+  <string name="prefs_displaytrack_osm">Fondo OSM</string>
+  <string name="prefs_displaytrack_osm_summary">Mostrar OpenStreetMap bajo la traza. Requiere una conexión de datos</string>
   <string name="prefs_output">Salida del archivo GPX</string>
   <string name="prefs_storage_dir">Carpeta de almacenamiento externo (SD)</string>
+  <string name="prefs_storage_dir_hint">Es eficaz para la traza siguiente (no la actual)</string>
+  <string name="prefs_output_one_dir_per_track">Una carpeta por cada traza</string>
+  <string name="prefs_output_one_dir_per_track_summary">Guarde cada rastro y los archivos asociados a su propio carpeta</string>
   <string name="prefs_output_filename">Nombre del archivo de trazas llamadas</string>
   <string name="prefs_output_filename_summary">Modelo para el nombre del archivo, si la traza tiene un nombre</string>
   <string-array name="prefs_output_filename_keys">
@@ -38,4 +58,9 @@
   </string-array>
   <string name="prefs_output_gpx_hdop_approximation">Usar aproximación HDOP</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Rellenar el HDOP en el GPX con un valor de aproximación de la precisión</string>
+  <string name="prefs_sound_enabled">Activar el sonido</string>
+  <string name="prefs_sound_enabled_summary">Reproducir sonidos cuando la grabación de voz comienza y termina</string>
+  <string name="prefs_osm_clear_oauth_data">Borrar los datos de autenticación de OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Olvídese de las credenciales de OSM y los permisos, y la fuerza OSMTracker para pedirles una vez más</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Vas a tener que autorizar OSMTracker para cargar las pistas de nuevo. ¿Está seguro?</string>
 </resources>

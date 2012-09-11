@@ -76,7 +76,6 @@
   <!--About screen-->
   <string name="about">Sobre</string>
   <string name="about_text">Para mais informações, documentos e sugestões, visite a página do projeto:</string>
-  <string name="about_link"></string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker está registrando</string>
   <string name="notification_title">OSMTracker está registrando (#{0})</string>

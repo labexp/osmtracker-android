@@ -104,9 +104,7 @@
   <!--About screen-->
   <string name="about">À propos</string>
   <string name="about_text">Pour plus d\'informations, documentation et bugs, veuillez visiter la page du projet :</string>
-  <string name="about_link"></string>
   <string name="about_translate_text">Aidez à traduire OSMTracker</string>
-  <string name="about_translate_link">https://www.transifex.com/projects/p/osmtracker-android/</string>
   <string name="about_debug_info">Info de débogage</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker est en cours d\'éxécution</string>
