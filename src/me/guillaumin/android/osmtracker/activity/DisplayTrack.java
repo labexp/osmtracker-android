@@ -15,6 +15,9 @@ import android.view.ViewGroup.LayoutParams;
 
 /**
  * Displays current track in 2D view.
+ *<P>
+ * Used only if {@link OSMTracker.Preferences#KEY_UI_DISPLAYTRACK_OSM} is not true.
+ * Otherwise {@link DisplayTrackMap} is used.
  * 
  * @author Nicolas Guillaumin
  *
