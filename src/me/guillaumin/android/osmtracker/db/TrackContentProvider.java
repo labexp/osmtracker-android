@@ -444,8 +444,16 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_EXPORT_DATE = "export_date";
 		public static final String COL_OSM_UPLOAD_DATE = "osm_upload_date";
 		
-		// virtual colums that are used in some sqls but dont exist in database
+		/**
+		 * A track's calculated trackpoint count, or null if active.  Before schema 15,
+		 * this was a virtual column used in some SQLs that didn't exist in the database.
+		 * @since 15
+		 */
 		public static final String COL_TRACKPOINT_COUNT = "tp_count";
+		/**
+		 * A track's calculated waypoint count, or null if active.
+		 * @since 15
+		 */
 		public static final String COL_WAYPOINT_COUNT = "wp_count";
 		
 		// Codes for UriMatcher

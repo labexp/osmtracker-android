@@ -88,7 +88,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ Schema.COL_DIR + " text," // unused since DB_VERSION 13, since SQLite doesn't support to remove a column it will stay for now
 		+ Schema.COL_ACTIVE + " integer not null default 0,"
 		+ Schema.COL_EXPORT_DATE + " long,"  // null indicates not yet exported
-		+ Schema.COL_OSM_UPLOAD_DATE + " long" // null indicates not yet uploaded
+		+ Schema.COL_OSM_UPLOAD_DATE + " long," // null indicates not yet uploaded
+		+ Schema.COL_TRACKPOINT_COUNT + " integer," // null indicates active track or not yet calculated
+		+ Schema.COL_WAYPOINT_COUNT + " integer" // null indicates active track or not yet calculated
 		+ ")";
 
 	/**
@@ -112,9 +114,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * v13: TBL_TRACK.COL_DIR is now deprecated (rxxx) v0.5.3 TODO: fill in correct revision and version
 	 * v14: add TBL_TRACK.COL_OSM_UPLOAD_DATE, TBL_TRACK.COL_DESCRIPTION,
 	 * 			TBL_TRACK.COL_TAGS and TBL_TRACK.COL_OSM_VISIBILITY for OSM upload - v0.6.0 
+	 * v15: add TBL_TRACK.COL_TRACKPOINT_COUNT, COL_WAYPOINT_COUNT
 	 *</pre>
 	 */
-	private static final int DB_VERSION = 14;
+	private static final int DB_VERSION = 15;
 
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -132,6 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_CREATE_TABLE_TRACK);
 	}
 
+	/** Upgrade an existing db to the latest {@link #DB_VERSION}. */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		switch(oldVersion){
@@ -157,6 +161,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_TAGS + " text");
 			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_OSM_VISIBILITY
 					+ " text default '"+OSMVisibility.Private+"'");
+		case 14:
+			// Create 'tp_count', 'wp_count'
+			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_TRACKPOINT_COUNT + " integer");
+			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_WAYPOINT_COUNT + " integer");
 		}
 		
 	}
