@@ -71,10 +71,14 @@ public class Track {
 	 * @param trackId id of the track that will be built
 	 * @param tc cursor that is used to build the track
 	 * @param cr the content resolver to use
+	 * @param readPointCounts  if trackpoint/waypoint counts will be needed; may be more work for the database.
+	 *          If the track table's tp_count and wp_count fields are null, or the track is active,
+	 *          the points are counted with SQL COUNT(*) select statements.  The counts will then be
+	 *          saved to tp_count and wp_count unless the track is active.
 	 * @param withExtraInformation if additional informations (startDate, endDate, first and last track point will be loaded from the database
 	 * @return Track
 	 */
-	public static Track build(final long trackId, Cursor tc, ContentResolver cr, boolean withExtraInformation) {
+	public static Track build(final long trackId, Cursor tc, ContentResolver cr, final boolean readPointCounts, boolean withExtraInformation) {
 		Track out = new Track();
  
 		out.trackId = trackId;
@@ -91,7 +95,6 @@ public class Track {
 		
 		out.visibility = OSMVisibility.valueOf(tc.getString(tc.getColumnIndex(Schema.COL_OSM_VISIBILITY)));
 
-		final boolean readPointCounts = true;
 		if (readPointCounts) {
 			final boolean trackInactive = (tc.getInt(tc.getColumnIndex(Schema.COL_ACTIVE)) == Schema.VAL_TRACK_INACTIVE);
 			boolean countedAlready = trackInactive;

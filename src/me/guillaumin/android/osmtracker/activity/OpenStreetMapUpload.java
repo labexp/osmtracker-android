@@ -116,7 +116,7 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 				return;  // <--- Early return ---
 			}
 
-		bindTrack(Track.build(trackId, cursor, getContentResolver(), false));
+		bindTrack(Track.build(trackId, cursor, getContentResolver(), false, false));
 		
 		Uri uri = getIntent().getData();
 		Log.d(TAG, "URI: " + uri);

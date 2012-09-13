@@ -218,6 +218,11 @@ public class DataHelper {
 		ContentValues values = new ContentValues();
 		values.put(Schema.COL_ACTIVE, Schema.VAL_TRACK_INACTIVE);
 		contentResolver.update(trackUri, values, null, null);
+
+		// The next time TrackManager displays this track in the list,
+		// Track.build will count the trackpoints and waypoints and
+		// save them to the track's tp_count and wp_count columns.
+		// We don't need to do that here.
 	}
 
 	/**
