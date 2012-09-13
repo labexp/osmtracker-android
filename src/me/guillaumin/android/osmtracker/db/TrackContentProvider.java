@@ -48,7 +48,7 @@ public class TrackContentProvider extends ContentProvider {
 	/**
 	 * tables and joins to be used within a query to get the important informations of a track
 	 */
-	private static final String TRACK_TABLES = Schema.TBL_TRACK + " left join " + Schema.TBL_TRACKPOINT + " on " + Schema.TBL_TRACK + "." + Schema.COL_ID + " = " + Schema.TBL_TRACKPOINT + "." + Schema.COL_TRACK_ID;
+	private static final String TRACK_TABLES = Schema.TBL_TRACK;
 	
 	/**
 	 * the projection to be used to get the important informations of a track
@@ -64,9 +64,14 @@ public class TrackContentProvider extends ContentProvider {
 		Schema.COL_TAGS,
 		Schema.COL_OSM_VISIBILITY,
 		Schema.COL_START_DATE,
-		"count(" + Schema.TBL_TRACKPOINT + "." + Schema.COL_ID + ") as " + Schema.COL_TRACKPOINT_COUNT,
-		"(SELECT count("+Schema.TBL_WAYPOINT+"."+Schema.COL_TRACK_ID+") FROM "+Schema.TBL_WAYPOINT+" WHERE "+Schema.TBL_WAYPOINT+"."+Schema.COL_TRACK_ID+" = " + Schema.TBL_TRACK + "." + Schema.COL_ID + ") as " + Schema.COL_WAYPOINT_COUNT
+		Schema.COL_TRACKPOINT_COUNT,
+		Schema.COL_WAYPOINT_COUNT
 	};
+	
+	/**
+	 * Projection with one column: count(*).
+	 */
+	private static final String[] ROWCOUNT_PROJECTION = { "count(*)" };
 	
 	/**
 	 * the group by statement that is used for the track statements
@@ -88,6 +93,8 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_WAYPOINT + "s", Schema.URI_CODE_TRACK_WAYPOINTS);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_TRACKPOINT + "s", Schema.URI_CODE_TRACK_TRACKPOINTS);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/uuid/*", Schema.URI_CODE_WAYPOINT_UUID);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/tpcount", Schema.URI_CODE_TRACK_TP_COUNT);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/wpcount", Schema.URI_CODE_TRACK_WP_COUNT);
 		
 	}
 	
@@ -129,6 +136,34 @@ public class TrackContentProvider extends ContentProvider {
 		return Uri.withAppendedPath(
 				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
 				"end" );		
+	}
+
+	/**
+	 * Get a URI for the track's trackpoint count in the {@link Schema#TBL_TRACKPOINT} table.
+	 * This queries and calculates using SQL COUNT(*), it does not use the track table's
+	 * {@link Schema#COL_TRACKPOINT_COUNT} field.
+	 * @param trackId target track id
+	 * @return Uri for the trackpoint count of the track
+	 * @since schema 15
+	 */
+	public static final Uri trackTrackpointCountUri(long trackId) {
+		return Uri.withAppendedPath(
+				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
+				"tpcount" );  // URI_CODE_TRACK_TP_COUNT
+	}
+
+	/**
+	 * Get a URI for the track's waypoint count in the {@link Schema#TBL_WAYPOINT} table.
+	 * This queries and calculates using SQL COUNT(*), it does not use the track table's
+	 * {@link Schema#COL_WAYPOINT_COUNT} field.
+	 * @param trackId target track id
+	 * @return Uri for the waypoint count of the track
+	 * @since schema 15
+	 */
+	public static final Uri trackWaypointCountUri(long trackId) {
+		return Uri.withAppendedPath(
+				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
+				"wpcount" );  // URI_CODE_TRACK_WP_COUNT
 	}
 
 	/**
@@ -356,6 +391,29 @@ public class TrackContentProvider extends ContentProvider {
 			selection = Schema.COL_ACTIVE + " = ?";
 			selectionArgs = new String[] {Integer.toString(Schema.VAL_TRACK_ACTIVE)};			
 			break;
+		case Schema.URI_CODE_TRACK_TP_COUNT:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be rejected
+				throw new UnsupportedOperationException();
+			}
+			trackId = uri.getPathSegments().get(1);
+			qb.setTables(Schema.TBL_TRACKPOINT);
+			projection = ROWCOUNT_PROJECTION;
+			selection = Schema.COL_TRACK_ID + " = ?";
+			selectionArgs = new String[] {trackId};
+			break;
+		case Schema.URI_CODE_TRACK_WP_COUNT:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be rejected
+				throw new UnsupportedOperationException();
+			}
+			trackId = uri.getPathSegments().get(1);
+			qb.setTables(Schema.TBL_WAYPOINT);
+			projection = ROWCOUNT_PROJECTION;
+			selection = Schema.COL_TRACK_ID + " = ?";
+			selectionArgs = new String[] {trackId};
+			break;
+
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
@@ -465,6 +523,8 @@ public class TrackContentProvider extends ContentProvider {
 		public static final int URI_CODE_WAYPOINT_UUID = 8;
 		public static final int URI_CODE_TRACK_START = 9;
 		public static final int URI_CODE_TRACK_END = 10;
+		private static final int URI_CODE_TRACK_TP_COUNT = 11;  // query only
+		private static final int URI_CODE_TRACK_WP_COUNT = 12;  // query only
 		
 
 		public static final int VAL_TRACK_ACTIVE = 1;

@@ -10,7 +10,10 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.database.Cursor;
+import android.net.Uri;
 
 /**
  * Represents a Track
@@ -88,9 +91,47 @@ public class Track {
 		
 		out.visibility = OSMVisibility.valueOf(tc.getString(tc.getColumnIndex(Schema.COL_OSM_VISIBILITY)));
 
-		out.tpCount = tc.getInt(tc.getColumnIndex(Schema.COL_TRACKPOINT_COUNT));
-		
-		out.wpCount = tc.getInt(tc.getColumnIndex(Schema.COL_WAYPOINT_COUNT));
+		final boolean readPointCounts = true;
+		if (readPointCounts) {
+			final boolean trackInactive = (tc.getInt(tc.getColumnIndex(Schema.COL_ACTIVE)) == Schema.VAL_TRACK_INACTIVE);
+			boolean countedAlready = trackInactive;
+			if (countedAlready) {
+				// try to retrieve from tp_count, wp_count columns
+				final int idx_tp = tc.getColumnIndex(Schema.COL_TRACKPOINT_COUNT),
+				          idx_wp = tc.getColumnIndex(Schema.COL_WAYPOINT_COUNT);
+				if (tc.isNull(idx_tp) || tc.isNull(idx_wp)) {
+					countedAlready = false;
+				} else {
+					out.tpCount = tc.getInt(idx_tp);
+					out.wpCount = tc.getInt(idx_wp);
+				}
+			}
+
+			if (! countedAlready) {
+				Cursor pcc = cr.query(TrackContentProvider.trackTrackpointCountUri(trackId), null, null, null, null);
+				if (pcc.moveToFirst())
+					out.tpCount = pcc.getInt(0);
+				else
+					out.tpCount = -1;
+				pcc.close();
+
+				pcc = cr.query(TrackContentProvider.trackWaypointCountUri(trackId), null, null, null, null);
+				if (pcc.moveToFirst())
+					out.wpCount = pcc.getInt(0);
+				else
+					out.wpCount = -1;
+				pcc.close();
+
+				if (trackInactive && (out.tpCount != -1) && (out.wpCount != -1)) {
+					// remember those counts in track table
+					Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+					ContentValues values = new ContentValues();
+					values.put(Schema.COL_TRACKPOINT_COUNT, out.tpCount);
+					values.put(Schema.COL_WAYPOINT_COUNT, out.wpCount);
+					cr.update(trackUri, values, null, null);
+				}
+			}
+		}
 		
 		if(withExtraInformation){
 			out.readExtraInformation();
