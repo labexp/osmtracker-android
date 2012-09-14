@@ -26,12 +26,6 @@ public class DisplayTrack extends Activity {
 
 	@SuppressWarnings("unused")
 	private static final String TAG = DisplayTrack.class.getSimpleName();
-	
-	/**
-	 * Private pref key for if we've already asked the user
-	 * whether they'd rather see {@link DisplayTrackMap}.
-	 */
-	private static final String ASKED_DISPLAY_OSM = "askedDisplayTrackOSM";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +45,9 @@ public class DisplayTrack extends Activity {
 		// If this is the first time showing this activity,
 		// wait for everything to initialize and then ask
 		// the user if they'd rather see the OSM background.
-		SharedPreferences dtPrefs = getPreferences(MODE_PRIVATE);
-		if (! dtPrefs.getBoolean(ASKED_DISPLAY_OSM, false)) {
-			dtPrefs.edit().putBoolean(ASKED_DISPLAY_OSM, true).commit();
+		SharedPreferences dtPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if (! dtPrefs.getBoolean(OSMTracker.Preferences.KEY_UI_ASKED_DISPLAYTRACK_OSM, false)) {
+			dtPrefs.edit().putBoolean(OSMTracker.Preferences.KEY_UI_ASKED_DISPLAYTRACK_OSM, true).commit();
 			dtv.post(new Runnable() {
 				@Override
 				public void run() {
