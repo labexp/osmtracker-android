@@ -291,7 +291,7 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Builds the notification to display when tracking in background.
 	 */
 	private Notification getNotification() {
-		Notification n = new Notification(R.drawable.icon_greyed_25x25, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
+		Notification n = new Notification(R.drawable.ic_stat_track, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
 			
 		Intent startTrackLogger = new Intent(this, TrackLogger.class);
 		startTrackLogger.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
