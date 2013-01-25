@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTracker 標誌</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">放大</string>
+  <string name="acc.zoom_out">縮小</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">訊號強度</string>
+  <string name="acc.record_indicator">正在記錄</string>
+  <!--Track list-->
+  <string name="acc.track_status">軌跡狀態</string>
+  <string name="acc.upload_status">OSM上傳進度</string>
+</resources>

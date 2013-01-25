@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Instellingen</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS-instellingen</string>
+  <string name="prefs_check_gps_startup">Controleer GPS tijdens starten</string>
+  <string name="prefs_gps_ignore_clock">Negeer GPS-klok</string>
+  <string name="prefs_gps_logging_interval">GPS loginterval</string>
+  <string name="prefs_gps_logging_interval_summary">Gebruik 0 voor de kortst mogelijke (beïnvloedt batterij-duur)</string>
+  <string name="prefs_gps_logging_interval_seconds">seconden</string>
+  <string name="prefs_ui">Gebruikersinterface</string>
+  <string name="prefs_ui_buttons_layout_defaut">Standaard</string>
+  <string name="prefs_ui_orientation">Orientatie</string>
+  <string name="prefs_voicerec_duration_seconds">seconden</string>
+  <string name="prefs_display_always_on">Scherm altijd aan</string>
+  <string name="prefs_displaytrack_osm">Achtergrondkaart</string>
+  <string name="prefs_output">GPX instellingen</string>
+  <string name="prefs_output_accuracy">Nauwkeurigheid in GPS bestand</string>
+  <string name="prefs_output_gpx_hdop_approximation">Gebruik HDOP benadering</string>
+  <string name="prefs_sound_enabled">Geluid aan</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTracker-logo</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Zoom inn</string>
+  <string name="acc.zoom_out">Zoom ut</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Satellittsignalstyrke</string>
+  <string name="acc.record_indicator">Indikator for at sporing pågår</string>
+  <!--Track list-->
+  <string name="acc.track_status">Indikator for sporingsstatus</string>
+  <string name="acc.upload_status">Indikator for opplasting til OpenStreetMap</string>
+</resources>

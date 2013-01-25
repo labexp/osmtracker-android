@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">设置</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS设置</string>
+  <string name="prefs_gps_os_settings_summary">显示系统GPS设置界面</string>
+  <string name="prefs_check_gps_startup">开启时检查GPS状态</string>
+  <string name="prefs_check_gps_startup_summary">若开启时检查到GPS关闭，开启它</string>
+  <string name="prefs_gps_logging_interval_seconds">秒</string>
+  <string name="prefs_ui">用户界面</string>
+  <string name="prefs_ui_buttons_layout_defaut">默认</string>
+  <string name="prefs_voicerec_duration_seconds">秒</string>
+  <string name="prefs_display_always_on">屏幕常亮</string>
+  <string name="prefs_display_always_on_summary">记录轨迹时屏幕常亮。关闭以节约电量</string>
+  <string name="prefs_displaytrack_osm">背景地图</string>
+  <string name="prefs_displaytrack_osm_summary">在轨迹下显示OpenStreetMap。需要数据连接</string>
+  <string name="prefs_output">GPX设置</string>
+  <string name="prefs_sound_enabled">开启声音</string>
+  <string name="prefs_osm_clear_oauth_data">重设 OSM 验证</string>
+</resources>

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker pro Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Inspirován OSMTracker pro Windows Mobile, umožňuje trasovat vaše cesty, označit důležité body na cestě (hlasovou nahrávku, obrázek), exportovat je v GPX formátu pro pozdější použití s nástroji pro Open Street Map jako je JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Zaznamenávač tras</string>
+  <string name="tracklogger_waiting_gps">Čekám na GPS signál pro odemknutí tlačítek...</string>
+  <string name="tracklogger_voicerec_title">Nahrávání hlasu</string>
+  <string name="tracklogger_voicerec_text">Nahrávám {0}s zvukového klipu.</string>
+  <string name="tracklogger_voicerec_stop">Zastavit</string>
+  <string name="tracklogger_btnBack">Zpět</string>
+  <string name="tracklogger_tracked">Sledované:</string>
+  <string name="tracklogger_gps_disabled">GPS zakázána</string>
+  <string name="tracklogger_gps_disabled_hint">GPS je zakázána. Chcete ji povolit?</string>
+  <!--Waypoint List-->
+  <string name="wplist">Seznam waypointů</string>
+  <string name="wplist_latitude">Lat:</string>
+  <string name="wplist_longitude">Long:</string>
+  <string name="wplist_elevation">Ele:</string>
+  <string name="wplist_accuracy">Přesnost:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Správce tras</string>
+  <string name="trackmgr_tracklist">Seznam tras:</string>
+  <string name="trackmgr_waypoints_count">Waypoints:</string>
+  <string name="trackmgr_trackpoints_count">Body trasy:</string>
+  <string name="trackmgr_empty">Zatím nemáte žádné trasy.</string>
+  <string name="trackmgr_newtrack_hint">Pro záznam trasy,\nstiskněte <b>Menu</b> a potom <b>Nová trasa</b></string>
+  <string name="trackmgr_newtrack_error">Není možné vytvořit novou trasu: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Nyní nahráváte <b>trasu #{0}</b>\nPro pokračování ji vyberte ze seznamu</string>
+  <string name="trackmgr_contextmenu_stop">Zastavit trasování</string>
+  <string name="trackmgr_contextmenu_resume">Obnovit trasování</string>
+  <string name="trackmgr_contextmenu_delete">Smazat</string>
+  <string name="trackmgr_contextmenu_export">Export jako GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Nahrát na OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Zobrazit</string>
+  <string name="trackmgr_contextmenu_details">Podrobnosti</string>
+  <string name="trackmgr_contextmenu_title">Trasa #{0}</string>
+  <string name="trackmgr_delete_confirm">Trasa #{0} bude smazána</string>
+  <string name="trackmgr_deleteall_confirm">Všechny trasy budou smazány. Jste si jisti?</string>
+  <string name="trackmgr_exporting">Exportuji trasu #{0}...</string>
+  <string name="trackmgr_export_error">Není možné exportovat trasu: {0}</string>
+  <string name="trackmgr_exportall_confirm">Všechny trasy budou exportovány, to může být časově náročné. Jste si jisti?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Podrobnosti trasy</string>
+  <string name="trackdetail_startdate">Čas startu:</string>
+  <string name="trackdetail_enddate">Čas konce:</string>
+  <string name="trackdetail_startloc">Start v:</string>
+  <string name="trackdetail_endloc">Konec v:</string>
+  <string name="trackdetail_exportdate">Exportováno:</string>
+  <string name="trackdetail_osm_upload_date">Nahráno na OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Exportovat jako GPX</string>
+  <string name="trackdetail_export_notyet">(ještě není exportováno)</string>
+  <string name="trackdetail_osm_upload_notyet">(ještě není nahráno)</string>
+  <string name="trackdetail_export_display">Zobrazit</string>
+  <string name="trackdetail_description">Popis</string>
+  <string name="trackdetail_tags">Značky (oddělené čárkou)</string>
+  <string name="trackdetail_description_mandatory">Je třeba vložit popis</string>
+  <string name="osm_visibility_private">Soukromé</string>
+  <string name="osm_visibility_public">Veřejné</string>
+  <string name="osm_visibility_trackable">Trasovatelné</string>
+  <string name="osm_visibility_identifiable">Identifikovatelné</string>
+  <!--OSM upload-->
+  <string name="osm_upload">Nahrání na OpenStreetMap</string>
+  <string name="osm_upload_ok">Uložit a nahrát</string>
+  <string name="osm_upload_tmpfile_failed">Není možné exportovat trasu do dočasného souboru</string>
+  <string name="osm_upload_oauth_failed">Není možné se přihlásit do OSM</string>
+  <string name="osm_upload_sending">Posílám trasu #{0}…</string>
+  <string name="osm_upload_waiting_response">Čekám na odpověď od serveru OpenStreetMap</string>
+  <string name="osm_upload_error">Vyskytla se chyba během nahrávání trasy</string>
+  <string name="osm_upload_bad_response">OSM server vrátil chybu: ({0}) zpráva {1}</string>
+  <string name="osm_upload_unauthorized">Chyba autorizace. Chcete smazat uložené údaje o přihlášení k OpenStreetMap?</string>
+  <string name="osm_upload_sucess">Nahrání na OpenStreetMap bylo úspěšné</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Záznam zvuku</string>
+  <string name="gpsstatus_record_stillimage">Pořídit obrázek</string>
+  <string name="gpsstatus_record_textnote">Textová poznámka</string>
+  <!--Menu-->
+  <string name="menu_settings">Nastavení</string>
+  <string name="menu_waypointlist">Waypoints</string>
+  <string name="menu_about">O</string>
+  <string name="menu_displaytrack">Zobrazit trasu</string>
+  <string name="menu_stoptracking">Zastavit a uložit</string>
+  <string name="menu_newtrack">Nová trasa</string>
+  <string name="menu_deletetracks">Smazat všechny trasy</string>
+  <string name="menu_continue">Pokračovat v trase</string>
+  <string name="menu_stopcurrenttrack">Zastavit současnou trasu</string>
+  <string name="menu_save">Uložit</string>
+  <string name="menu_cancel">Zrušit</string>
+  <string name="menu_export">Export jako GPX</string>
+  <string name="menu_osm_upload">Nahrání na OpenStreetMap</string>
+  <string name="menu_center_to_gps">Vycentrovat dle GPS</string>
+  <string name="menu_exportall">Exportovat vše jako GPX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Není možný zápis do externího úložiště</string>
+  <string name="error_create_track_dir">Není možné vytvořit složku trasy %s</string>
+  <string name="error_externalstorage_not_writable_hint">Zkontrolujte, prosím, jestli je externí úložiště správně vloženo a připojeno.</string>
+  <string name="error_voicerec_failed">Došlo k chybě během záznamu hlasu</string>
+  <string name="error_userlayout_parsing">Došlo k chybě během zpracování XML souboru pro rozložení. Přejděte, prosím, k implicitnímu rozložení.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Trasováno pomocí OSMTracker pro Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Upozornění: hodnoty HDOP nejsou hodnotami HDOP vrácenými zařízením GPS. Hodnoty jsou aproximovány z přesnosti lokace v metrech.</string>
+  <!--About screen-->
+  <string name="about">O</string>
+  <string name="about_text">Pro více informací, dokumentace a hlášení chyb, se podívejte, prosím, na home page projektu.</string>
+  <string name="about_translate_text">Pomozte přeložit OSMTracker:</string>
+  <string name="about_debug_info">Ladící informace</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker nyní trasuje</string>
+  <string name="notification_title">OSMTracker nyní trasuje (#{0})</string>
+  <string name="notification_text">Klepněte zde pro zobrazení hlavní obrazovky</string>
+  <!--Display track-->
+  <string name="displaytrack">Zobrazit trasu</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Uložit</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Přesnost</string>
+  <string name="various_waiting_gps_fix">Čekám na GPS signál...</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">Zobrazení trasy OpenStreetMap</string>
+</resources>

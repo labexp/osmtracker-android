@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMtracker voor Android</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Vrij naar OSMTracker voor Windows Mobile, stelt OSMTracker u in staat om uw routes op te nemen, punten te markeren met geluidopname en foto\'s, en alles te exporteren in GPX formaat om later te bewerken met OpenStreetMap tools zoals JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Route opname</string>
+  <string name="tracklogger_waiting_gps">Bezig met GPS fix voordat scherm bediend kan worden...</string>
+  <string name="tracklogger_voicerec_title">Stemopname</string>
+  <string name="tracklogger_voicerec_text">{0} s geluid opname</string>
+  <string name="tracklogger_voicerec_stop">Stop</string>
+  <string name="tracklogger_btnBack">Terug</string>
+  <string name="tracklogger_tracked">Opgenomen:</string>
+  <string name="tracklogger_gps_disabled">GPS UIT</string>
+  <string name="tracklogger_gps_disabled_hint">GPS staat uit. Wilt u GPS aanzetten?</string>
+  <!--Waypoint List-->
+  <string name="wplist">Lijst van routepunten</string>
+  <string name="wplist_latitude">Breedte:</string>
+  <string name="wplist_longitude">Lengte:</string>
+  <string name="wplist_elevation">Hoogte:</string>
+  <string name="wplist_accuracy">Afwijking:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Route manager</string>
+  <string name="trackmgr_tracklist">Route overzicht:</string>
+  <string name="trackmgr_waypoints_count">Punten:</string>
+  <string name="trackmgr_trackpoints_count">Punten:</string>
+  <string name="trackmgr_empty">U hebt nog geen routes.</string>
+  <string name="trackmgr_newtrack_hint">Om een nieuwe route op te nemen, druk op <b>Menu</b> en kies <b>Nieuwe route</b></string>
+  <string name="trackmgr_newtrack_error">Kan geen nieuwe route starten: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Route #{0} aan het opnemen; klik deze route aan in de lijst om door te gaan.</string>
+  <string name="trackmgr_contextmenu_stop">Stop route opnemen</string>
+  <string name="trackmgr_contextmenu_resume">Doorgaan met route</string>
+  <string name="trackmgr_contextmenu_delete">Verwijder</string>
+  <string name="trackmgr_contextmenu_export">Opslaan als GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Naar OpenStreetMap sturen</string>
+  <string name="trackmgr_contextmenu_details">Details</string>
+  <string name="trackmgr_contextmenu_title">Route #{0}</string>
+  <string name="trackmgr_delete_confirm">Route #{0} wordt verwijderd</string>
+  <string name="trackmgr_deleteall_confirm">ALLE routes worden verwijderd. Weet u het zeker?</string>
+  <string name="trackmgr_exporting">Route #{0} wordt opgeslagen...</string>
+  <string name="trackmgr_export_error">Kan route #{0} niet opslaan</string>
+  <string name="trackmgr_exportall_confirm">Alle routes opslaan kan wat tijd kosten. Weet u het zeker?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Route details</string>
+  <string name="trackdetail_startdate">Starttijd:</string>
+  <string name="trackdetail_enddate">Eindtijd:</string>
+  <string name="trackdetail_startloc">Begint op:</string>
+  <string name="trackdetail_endloc">Eindigt op:</string>
+  <string name="trackdetail_exportdate">Opgeslagen:</string>
+  <string name="trackdetail_osm_upload_date">Naar OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Opgeslagen als GPS</string>
+  <string name="trackdetail_export_notyet">(nog niet opgeslagen)</string>
+  <string name="trackdetail_osm_upload_notyet">(nog niet naar OpenStreetMap gestuurd)</string>
+  <string name="trackdetail_description">Beschrijving</string>
+  <string name="trackdetail_description_mandatory">Een beschrijving is vereist</string>
+  <string name="osm_visibility_private">Alleen zichtbaar voor u</string>
+  <string name="osm_visibility_public">Zichtbaar voor iedereen</string>
+  <string name="osm_visibility_trackable">Te volgen</string>
+  <string name="osm_visibility_identifiable">Te identificeren</string>
+  <!--OSM upload-->
+  <string name="osm_upload">OpenStreetMap opsturen</string>
+  <string name="osm_upload_ok">Opslaan en opsturen</string>
+  <string name="osm_upload_tmpfile_failed">Kan de route niet naar een tijdelijk bestand opslaan</string>
+  <string name="osm_upload_oauth_failed">Aanmelden bij OSM lukt niet.</string>
+  <string name="osm_upload_sending">Route #{0} wordt nu opgestuurd...</string>
+  <string name="osm_upload_waiting_response">Wacht tot de OpenStreetMap server antwoord geeft...</string>
+  <string name="osm_upload_error">Bij het opsturen van de route is iets fout gegaan.</string>
+  <string name="osm_upload_bad_response">Foutmelding van de OSM server:  ({0}) melding {1}</string>
+  <string name="osm_upload_unauthorized">Foute naam/wachtwoord. Wilt u de opgeslagen OpenStreetMap aanmeldgegevens wissen?</string>
+  <string name="osm_upload_sucess">Opgestuurd naar OpenStreetMap</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Geluidopname</string>
+  <string name="gpsstatus_record_stillimage">Maak foto</string>
+  <string name="gpsstatus_record_textnote">Notitie</string>
+  <!--Menu-->
+  <string name="menu_settings">Instellingen</string>
+  <string name="menu_waypointlist">Routepunten</string>
+  <string name="menu_about">Info</string>
+  <string name="menu_displaytrack">Laat route zien</string>
+  <string name="menu_stoptracking">Stop &amp; Opslaan</string>
+  <string name="menu_newtrack">Nieuwe route</string>
+  <string name="menu_deletetracks">Wis alle routes</string>
+  <string name="menu_continue">Doorgaan met route</string>
+  <string name="menu_stopcurrenttrack">Stop opnemen route</string>
+  <string name="menu_save">Opslaan</string>
+  <string name="menu_cancel">Stop</string>
+  <string name="menu_export">Opslaan als GPX</string>
+  <string name="menu_osm_upload">Opsturen naar OpenStreetMap</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Kan niet schrijven (SD kaart)</string>
+  <string name="error_create_track_dir">Kan de map %s niet aanmaken</string>
+  <string name="error_externalstorage_not_writable_hint">Kunt u checken of de SD kaart erin zit en gebruikt kan worden?</string>
+  <string name="error_voicerec_failed">Geluidopname niet gelukt.</string>
+  <string name="error_userlayout_parsing">XML Layout file was niet goed leesbaar (probeer Opslaan als ASCII). Gebruik de default a.u.b.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Opgenomen met OSMTracker voor Android</string>
+  <string name="gpx_hdop_approximation_cmt">Let op: HDOP waardes worden niet uit de GPS gelezen maar berekend op basis van de nauwkeurigheid (in meters).</string>
+  <!--About screen-->
+  <string name="about">Informatie</string>
+  <string name="about_text">Bezoek de webpagina voor meer informatie:</string>
+  <string name="about_translate_text">Help met vertaling:</string>
+  <string name="about_debug_info">Fouten in het programma opsporen</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker scribeert</string>
+  <string name="notification_title">OSMTracker: Route #{0} wordt opgenomen...</string>
+  <string name="notification_text">Aanraken om het eerste scherm te tonen</string>
+  <!--Display track-->
+  <string name="displaytrack">Route tonen</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Opslaan</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Afwijking</string>
+  <string name="various_waiting_gps_fix">Wacht tot GPS positie bepaald is...</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">OpenStreetMap routes tonen</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTrackerロゴ</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">拡大</string>
+  <string name="acc.zoom_out">縮小</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">衛星信号の強弱表示</string>
+  <string name="acc.record_indicator">記録の進捗状況表示</string>
+  <!--Track list-->
+  <string name="acc.track_status">トラックの状況表示</string>
+  <string name="acc.upload_status">OpenStreetMapへのアップロード進捗状況表示</string>
+</resources>

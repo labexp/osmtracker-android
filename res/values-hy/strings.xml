@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">Անդրոիդի ՕԷսԷմԹրաքեր</string>
+  <string name="app_short_name">ՕԷսԷմԹրաքեր</string>
+  <!--TrackLogger-->
+  <string name="tracklogger_voicerec_title">Ձայնագրում</string>
+  <string name="tracklogger_voicerec_stop">Կանգնել</string>
+  <string name="tracklogger_btnBack">Հետ</string>
+  <!--Waypoint List-->
+  <string name="wplist_latitude">Լայն՝</string>
+  <string name="wplist_longitude">Երկայն՝</string>
+  <string name="wplist_elevation">Բարձր՝</string>
+  <!--Track Manager-->
+  <string name="trackmgr_contextmenu_delete">Ջնջել</string>
+  <string name="trackmgr_contextmenu_display">Ցույց տալ</string>
+  <string name="trackmgr_contextmenu_details">Մանրամասնություններ</string>
+  <!--Track Detail-->
+  <string name="trackdetail_description">Նկարագրություն</string>
+  <!--OSM upload-->
+  <!--GPS Status & record bar-->
+  <!--Menu-->
+  <!--Errors-->
+  <!--GPX-->
+  <!--About screen-->
+  <!--Notification-->
+  <!--Display track-->
+  <!--Track detail-->
+  <!--Various-->
+  <!--OSM map view-->
+</resources>

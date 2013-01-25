@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTracker logo</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Lähennä</string>
+  <string name="acc.zoom_out">Loitonna</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Satelliittisignaalin voimakkuuden ilmaisin</string>
+  <!--Track list-->
+  <string name="acc.track_status">Reitin tilan ilmaisin</string>
+</resources>

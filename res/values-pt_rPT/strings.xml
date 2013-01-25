@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker para Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Inspirado pelo OSMTracker para Windows Mobile, permite o registo de viagens, marcos importantes (gravação de voz, fotografia) e exportação no formato GPX para usar com ferramentas do Open Street Map como o JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Registo de caminhos</string>
+  <string name="tracklogger_waiting_gps">À espera de ligação GPS para activar os botões...</string>
+  <string name="tracklogger_voicerec_title">Gravação de voz</string>
+  <string name="tracklogger_voicerec_text">A gravar um clip áudio de {0}s</string>
+  <string name="tracklogger_voicerec_stop">Parar</string>
+  <string name="tracklogger_btnBack">Voltar</string>
+  <string name="tracklogger_tracked">Registrados:</string>
+  <string name="tracklogger_gps_disabled">GPS inactivo</string>
+  <string name="tracklogger_gps_disabled_hint">O GPS está inactivo. Quer activá-lo?</string>
+  <!--Waypoint List-->
+  <string name="wplist">Lista de marcos</string>
+  <string name="wplist_latitude">Lat:</string>
+  <string name="wplist_longitude">Long:</string>
+  <string name="wplist_elevation">Elev:</string>
+  <string name="wplist_accuracy">Precis:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Gestor de caminhos</string>
+  <string name="trackmgr_tracklist">Lista de caminhos</string>
+  <string name="trackmgr_waypoints_count">Marcos:</string>
+  <string name="trackmgr_trackpoints_count">Marcos de caminhos:</string>
+  <string name="trackmgr_empty">Não tem nenhum caminho.</string>
+  <string name="trackmgr_newtrack_hint">Para registar um caminho,\npressione <b>Menu</b>, depois <b>Novo caminho</b></string>
+  <string name="trackmgr_newtrack_error">Não foi possível criar o novo caminho: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Está, neste momento, a registar o <b>caminho #{0}</b>\nEscolha-o da lista para continuar</string>
+  <string name="trackmgr_contextmenu_stop">Parar registo</string>
+  <string name="trackmgr_contextmenu_resume">Retomar registo</string>
+  <string name="trackmgr_contextmenu_delete">Apagar</string>
+  <string name="trackmgr_contextmenu_export">Exportar para GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Enviar para OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Apresentar</string>
+  <string name="trackmgr_contextmenu_details">Detalhes</string>
+  <string name="trackmgr_contextmenu_title">Caminho #{0}</string>
+  <string name="trackmgr_delete_confirm">Caminho #{0} será removido</string>
+  <string name="trackmgr_deleteall_confirm">Todos os caminhos serão removidos. Tem a certeza?</string>
+  <string name="trackmgr_exporting">Exportar caminho #{0}...</string>
+  <string name="trackmgr_export_error">Não foi possível exportar o caminho: {0}</string>
+  <string name="trackmgr_exportall_confirm">Todos os caminhos serão exportados o que poderá demorar algum tempo. Tem a certeza?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Detalhes do Caminho</string>
+  <string name="trackdetail_startdate">Hora de onício:</string>
+  <string name="trackdetail_enddate">Hora de fim:</string>
+  <string name="trackdetail_startloc">Começa em:</string>
+  <string name="trackdetail_endloc">Termina em:</string>
+  <string name="trackdetail_exportdate">Exportado:</string>
+  <string name="trackdetail_osm_upload_date">Enviado para o OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Exportar como GPX</string>
+  <string name="trackdetail_export_notyet">(Ainda não foi exportado)</string>
+  <string name="trackdetail_osm_upload_notyet">(Ainda não foi enviado)</string>
+  <string name="trackdetail_export_display">Apresentar</string>
+  <string name="trackdetail_description">Descrição</string>
+  <string name="trackdetail_tags">Etiquetas (separadas por vírgulas)</string>
+  <string name="trackdetail_description_mandatory">Tem de indicar uma descrição</string>
+  <string name="osm_visibility_private">Privado</string>
+  <string name="osm_visibility_public">Público</string>
+  <string name="osm_visibility_trackable">Registável</string>
+  <string name="osm_visibility_identifiable">Identificável</string>
+  <!--OSM upload-->
+  <string name="osm_upload">Enviar para OpenStreetMap</string>
+  <string name="osm_upload_ok">Guardar e enviar</string>
+  <string name="osm_upload_tmpfile_failed">Não foi possível exportar o caminho para um ficheiro temporário</string>
+  <string name="osm_upload_oauth_failed">Não foi possível a autenticação no OSM</string>
+  <string name="osm_upload_sending">A enviar caminho #{0}...</string>
+  <string name="osm_upload_waiting_response">À espera de resposta do servidor OpenStreetMap...</string>
+  <string name="osm_upload_error">Erro ao enviar caminho</string>
+  <string name="osm_upload_bad_response">O servidor OSM devolveu um erro: ({0}) mensagem {1}</string>
+  <string name="osm_upload_unauthorized">Erro de autorização. Deseja limpar as credenciais guadadas para o OpenStreetMap</string>
+  <string name="osm_upload_sucess">Envio para o OpenStreetMap bem sucedido</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Gravar de voz</string>
+  <string name="gpsstatus_record_stillimage">Tirar fotografia</string>
+  <string name="gpsstatus_record_textnote">Nota de texto</string>
+  <!--Menu-->
+  <string name="menu_settings">Definições</string>
+  <string name="menu_waypointlist">Marcos</string>
+  <string name="menu_about">Sobre</string>
+  <string name="menu_displaytrack">Apresentar caminho</string>
+  <string name="menu_stoptracking">Parar e guardar</string>
+  <string name="menu_newtrack">Novo caminho</string>
+  <string name="menu_deletetracks">Remover todos os caminhos</string>
+  <string name="menu_continue">Continuar caminho</string>
+  <string name="menu_stopcurrenttrack">Parar caminho actual</string>
+  <string name="menu_save">Guardar</string>
+  <string name="menu_cancel">Cancelar</string>
+  <string name="menu_export">Exportar como GPX</string>
+  <string name="menu_osm_upload">Envio para OpenStreeMap</string>
+  <string name="menu_center_to_gps">Centrar no GPS</string>
+  <string name="menu_exportall">Exportar tudo como GPX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Não foi possível escrever para o armazenamento externo.</string>
+  <string name="error_create_track_dir">Não foi possível criar directoria %s</string>
+  <string name="error_externalstorage_not_writable_hint">Por favor, verifique se o armaz. externo está inserido e montado correctamente.</string>
+  <string name="error_voicerec_failed">A gravação de vóz falhou</string>
+  <string name="error_userlayout_parsing">Ocorreu um erro ao ler o ficheiro de interface gráfica. Por favor, reverta para o aspecto grátfico por omissão.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Registado com o OSMTracker para Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Aviso: Os valores HDOP não são os valores HDOP indicados pelo GPS. São aproximações dadas pela precisão da localização em metros.</string>
+  <!--About screen-->
+  <string name="about">Sobre</string>
+  <string name="about_text">Para mais informação, documentos e erros visite a página do projecto:</string>
+  <string name="about_translate_text">Ajude a traduzir o OSMTracker:</string>
+  <string name="about_debug_info">Informação de depuração</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">O OSMTracker está a registar</string>
+  <string name="notification_title">O OSMTracker está a registar ({0})</string>
+  <string name="notification_text">Toque aqui para apresentar o ecrã principal</string>
+  <!--Display track-->
+  <string name="displaytrack">Apresentar caminho</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Guardar</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Precisão</string>
+  <string name="various_waiting_gps_fix">À espera de ligação GPS...</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">Apresentação de caminho OpenStreetMap</string>
+</resources>

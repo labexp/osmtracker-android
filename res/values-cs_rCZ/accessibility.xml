@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">Logo OSMTracker</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Přiblížit</string>
+  <string name="acc.zoom_out">Oddálit</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Indikátor síly signálu GPS</string>
+  <string name="acc.record_indicator">Indikátor průběhu nahrávání</string>
+  <!--Track list-->
+  <string name="acc.track_status">Indikátor stavu Tracku</string>
+  <string name="acc.upload_status">Indikátor stavu nahrávání na OpenStreetMap</string>
+</resources>

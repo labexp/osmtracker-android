@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker for Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">追踪记录器</string>
+  <string name="tracklogger_voicerec_title">录音中</string>
+  <string name="tracklogger_voicerec_stop">停止</string>
+  <string name="tracklogger_btnBack">后退</string>
+  <string name="tracklogger_gps_disabled">GPS已禁用</string>
+  <string name="tracklogger_gps_disabled_hint">GPS已禁用。是否开启？</string>
+  <!--Waypoint List-->
+  <string name="wplist">路点列表</string>
+  <string name="wplist_latitude">纬度：</string>
+  <string name="wplist_longitude">经度：</string>
+  <string name="wplist_elevation">海拔：</string>
+  <!--Track Manager-->
+  <string name="trackmgr">轨迹管理器</string>
+  <string name="trackmgr_tracklist">轨迹列表：</string>
+  <string name="trackmgr_waypoints_count">路点：</string>
+  <string name="trackmgr_trackpoints_count">追踪点：</string>
+  <string name="trackmgr_contextmenu_stop">停止记录</string>
+  <string name="trackmgr_contextmenu_resume">恢复追踪</string>
+  <string name="trackmgr_contextmenu_delete">删除</string>
+  <string name="trackmgr_contextmenu_export">以 GPX 文件导出</string>
+  <string name="trackmgr_contextmenu_osm_upload">上传到 OpenStreetMap</string>
+  <!--Track Detail-->
+  <string name="trackdetail">追踪细节</string>
+  <string name="trackdetail_startdate">起始时间：</string>
+  <string name="trackdetail_enddate">终止时间：</string>
+  <string name="trackdetail_startloc">起始位置：</string>
+  <string name="trackdetail_endloc">终止位置：</string>
+  <string name="trackdetail_osm_upload_date">上传到OpenStreetMap</string>
+  <string name="trackdetail_btn_export">以GPX文件导出</string>
+  <string name="trackdetail_export_notyet">(未导出)</string>
+  <string name="trackdetail_osm_upload_notyet">(未上传)</string>
+  <string name="osm_visibility_private">私人</string>
+  <string name="osm_visibility_public">公开</string>
+  <string name="osm_visibility_trackable">可追踪</string>
+  <!--OSM upload-->
+  <string name="osm_upload">OpenStreetMap 上传</string>
+  <string name="osm_upload_ok">保存并上传</string>
+  <string name="osm_upload_sucess">已成功上传至OpenStreetMap</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">录音</string>
+  <string name="gpsstatus_record_stillimage">拍照</string>
+  <string name="gpsstatus_record_textnote">记笔记</string>
+  <!--Menu-->
+  <string name="menu_settings">设置</string>
+  <string name="menu_waypointlist">路点</string>
+  <string name="menu_about">关于</string>
+  <string name="menu_displaytrack">显示轨迹</string>
+  <string name="menu_stoptracking">停止 &amp; 保存</string>
+  <string name="menu_newtrack">新轨迹</string>
+  <string name="menu_deletetracks">删除全部轨迹</string>
+  <string name="menu_continue">继续追踪</string>
+  <string name="menu_stopcurrenttrack">停止当前追踪</string>
+  <string name="menu_save">保存</string>
+  <string name="menu_cancel">取消</string>
+  <string name="menu_export">导出为 GPX</string>
+  <string name="menu_osm_upload">OpenStreetMap 上传</string>
+  <string name="menu_exportall">导出全部为 GPX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">无法写入至外部存储。</string>
+  <string name="error_create_track_dir">无法创建追踪文件夹 %s</string>
+  <!--GPX-->
+  <!--About screen-->
+  <!--Notification-->
+  <!--Display track-->
+  <!--Track detail-->
+  <!--Various-->
+  <!--OSM map view-->
+</resources>
