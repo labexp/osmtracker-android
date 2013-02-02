@@ -428,6 +428,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_UUID = "uuid";
 		public static final String COL_LONGITUDE = "longitude";
 		public static final String COL_LATITUDE = "latitude";
+		public static final String COL_SPEED = "speed";
 		public static final String COL_ELEVATION = "elevation";
 		public static final String COL_ACCURACY = "accuracy";
 		public static final String COL_NBSATELLITES = "nb_satellites";

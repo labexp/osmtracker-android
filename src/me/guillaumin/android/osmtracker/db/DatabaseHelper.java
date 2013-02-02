@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ Schema.COL_TRACK_ID + " integer not null,"
 		+ Schema.COL_LATITUDE + " double not null,"
 		+ Schema.COL_LONGITUDE + " double not null,"
+		+ Schema.COL_SPEED + " double null,"
 		+ Schema.COL_ELEVATION + " double null,"
 		+ Schema.COL_ACCURACY + " double null,"
 		+ Schema.COL_TIMESTAMP + " long not null" + ")";

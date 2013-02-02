@@ -94,6 +94,10 @@ public class DataHelper {
 		if (location.hasAccuracy()) {
 			values.put(Schema.COL_ACCURACY, location.getAccuracy());
 		}
+		if (location.hasSpeed())
+		{
+			values.put(Schema.COL_SPEED, location.getSpeed());
+		}
 		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		if (prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_IGNORE_CLOCK, OSMTracker.Preferences.VAL_GPS_IGNORE_CLOCK)) {
