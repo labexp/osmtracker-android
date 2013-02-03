@@ -316,13 +316,12 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 				out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
 	        }
 
-	        if(! c.isNull(c.getColumnIndex(Schema.COL_SPEED)))
-	        {
-	            out.append("\t\t\t\t" + "<extensions>\n");
-	            out.append("\t\t\t\t\t" + "<speed>" + c.getDouble(c.getColumnIndex(Schema.COL_SPEED)) + "</speed>" + "\n");
-	            out.append("\t\t\t\t" + "</extensions>\n");
-	        }
-	       
+			if(! c.isNull(c.getColumnIndex(Schema.COL_SPEED))) {
+				out.append("\t\t\t\t" + "<extensions>\n");
+				out.append("\t\t\t\t\t" + "<speed>" + c.getDouble(c.getColumnIndex(Schema.COL_SPEED)) + "</speed>" + "\n");
+				out.append("\t\t\t\t" + "</extensions>\n");
+			}
+
 	        out.append("\t\t\t" + "</trkpt>" + "\n");
 	        fw.write(out.toString());
 

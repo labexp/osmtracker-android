@@ -94,8 +94,7 @@ public class DataHelper {
 		if (location.hasAccuracy()) {
 			values.put(Schema.COL_ACCURACY, location.getAccuracy());
 		}
-		if (location.hasSpeed())
-		{
+		if (location.hasSpeed()) {
 			values.put(Schema.COL_SPEED, location.getSpeed());
 		}
 		
