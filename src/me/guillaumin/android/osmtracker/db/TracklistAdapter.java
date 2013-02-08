@@ -82,7 +82,7 @@ public class TracklistAdapter extends CursorAdapter {
 		vId.setText("#" + strTrackId);
 
 		// Bind WP count, TP count, name
-		Track t = Track.build(trackId, cursor, context.getContentResolver(), false);
+		Track t = Track.build(trackId, cursor, context.getContentResolver(), true, false);
 		vTps.setText(Integer.toString(t.getTpCount()));
 		vWps.setText(Integer.toString(t.getWpCount()));
 		vNameOrStartDate.setText(t.getName());
