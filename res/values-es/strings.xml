@@ -3,17 +3,17 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker para Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Inspirado en OSMTracker para Windows Mobile, le permite trazar sus viajes, marcar puntos de interés (disponible grabación de voz) y exportarlos a formato GPX para un uso posterior con herramientas de Open Street Map como JOSM.</string>
+  <string name="app_description">Inspirado en OSMTracker para Windows Mobile, le permite trazar sus viajes, marcar puntos de interés (incluyendo grabación de voz y fotografías) y exportarlos a formato GPX, lo que le permitirá utilizar las trazas en herramientas de Open Street Map como JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Grabadora de trazas</string>
-  <string name="tracklogger_waiting_gps">Esperando a la señal GPS para activar botones…</string>
+  <string name="tracklogger_waiting_gps">Esperando la señal de GPS para habilitar los botones…</string>
   <string name="tracklogger_voicerec_title">Grabación de voz</string>
   <string name="tracklogger_voicerec_text">Grabando un sonido de {0} s.</string>
-  <string name="tracklogger_voicerec_stop">Parar</string>
+  <string name="tracklogger_voicerec_stop">Detener</string>
   <string name="tracklogger_btnBack">Atrás</string>
   <string name="tracklogger_tracked">Trazado: </string>
-  <string name="tracklogger_gps_disabled">El GPS está desactivado, ¿desea activarlo?</string>
-  <string name="tracklogger_gps_disabled_hint">El GPS está desactivado, ¿desea activarlo?</string>
+  <string name="tracklogger_gps_disabled">GPS desactivado</string>
+  <string name="tracklogger_gps_disabled_hint">El GPS está desactivado. ¿Desea activarlo?</string>
   <!--Waypoint List-->
   <string name="wplist">Lista de puntos</string>
   <string name="wplist_latitude">Lat.: </string>
@@ -21,39 +21,39 @@
   <string name="wplist_elevation">Elev.: </string>
   <string name="wplist_accuracy">Prec.: </string>
   <!--Track Manager-->
-  <string name="trackmgr">Administrator de Trazas</string>
+  <string name="trackmgr">Administrador de trazas</string>
   <string name="trackmgr_tracklist">Lista de trazas:</string>
   <string name="trackmgr_waypoints_count">Puntos de ref.:</string>
   <string name="trackmgr_trackpoints_count">P. de traza:</string>
-  <string name="trackmgr_empty">Usted no tiene ningún rastro.</string>
-  <string name="trackmgr_newtrack_hint">Para recordar una traza,\npulse el botón <b>Menú</b> y pulse <b>Nueva traza</b>.</string>
+  <string name="trackmgr_empty">Usted no tiene ninguna traza.</string>
+  <string name="trackmgr_newtrack_hint">Para grabar una traza,\npulse el botón <b>Menú</b> y luego <b>Nueva traza</b>.</string>
   <string name="trackmgr_newtrack_error">No se puede crear una nueva traza: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Está <b>trazando #{0}</b> ahora.\nElijalo en la lista para continuar.</string>
-  <string name="trackmgr_contextmenu_stop">Parar trazando</string>
-  <string name="trackmgr_contextmenu_resume">Reanudar trazando</string>
-  <string name="trackmgr_contextmenu_delete">Borrar</string>
+  <string name="trackmgr_continuetrack_hint">Actualmente se encuentra grabando la <b>traza #{0}</b>.\nElíjalo en la lista para continuar.</string>
+  <string name="trackmgr_contextmenu_stop">Detener el trazado</string>
+  <string name="trackmgr_contextmenu_resume">Reanudar el trazado</string>
+  <string name="trackmgr_contextmenu_delete">Eliminar</string>
   <string name="trackmgr_contextmenu_export">Exportar como GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Cargar a OpenStreetMap</string>
-  <string name="trackmgr_contextmenu_display">Mostrar</string>
-  <string name="trackmgr_contextmenu_details">Detailles</string>
+  <string name="trackmgr_contextmenu_display">Visualizar</string>
+  <string name="trackmgr_contextmenu_details">Detalles</string>
   <string name="trackmgr_contextmenu_title">Traza #{0}</string>
-  <string name="trackmgr_delete_confirm">La traza #{0} se borrará.</string>
-  <string name="trackmgr_deleteall_confirm">Todos las trazas serán borradas. ¿Está seguro?</string>
+  <string name="trackmgr_delete_confirm">La traza #{0} se eliminará.</string>
+  <string name="trackmgr_deleteall_confirm">Se eliminarán todos las trazas. ¿Está seguro?</string>
   <string name="trackmgr_exporting">Exportando traza #{0}…</string>
   <string name="trackmgr_export_error">No se puede exportar la traza: {0}</string>
-  <string name="trackmgr_exportall_confirm">Todos las trazas serán exportadas, que podría tardar mucho tiempo. ¿Está seguro?</string>
+  <string name="trackmgr_exportall_confirm">Se exportarán todas las trazas, lo cual podría tardar mucho tiempo. ¿Está seguro?</string>
   <!--Track Detail-->
-  <string name="trackdetail">Detailles de traza</string>
-  <string name="trackdetail_startdate">Tiempo inicio: </string>
-  <string name="trackdetail_enddate">Tiempo paré: </string>
+  <string name="trackdetail">Detalles de la traza</string>
+  <string name="trackdetail_startdate">Hora de inicio: </string>
+  <string name="trackdetail_enddate">Hora de fin: </string>
   <string name="trackdetail_startloc">Se inicia en: </string>
   <string name="trackdetail_endloc">Termina en: </string>
   <string name="trackdetail_exportdate">Se exportó a: </string>
   <string name="trackdetail_osm_upload_date">Cargado a OpenStreetMap a: </string>
   <string name="trackdetail_btn_export">Exportar a GPX</string>
-  <string name="trackdetail_export_notyet">(No es ya exportados)</string>
-  <string name="trackdetail_osm_upload_notyet">(No es ya cargados)</string>
-  <string name="trackdetail_export_display">Mostrar</string>
+  <string name="trackdetail_export_notyet">(aún no exportado)</string>
+  <string name="trackdetail_osm_upload_notyet">(aún no subido a OSM)</string>
+  <string name="trackdetail_export_display">Visualizar</string>
   <string name="trackdetail_description">Descripción: </string>
   <string name="trackdetail_tags">Etiquetas (delimitado por comas)</string>
   <string name="trackdetail_description_mandatory">Debe introducir una descripción</string>
@@ -63,29 +63,29 @@
   <string name="osm_visibility_identifiable">Identificable</string>
   <!--OSM upload-->
   <string name="osm_upload">Cargar a OpenStreetMap</string>
-  <string name="osm_upload_ok">Guardar y cargar</string>
-  <string name="osm_upload_tmpfile_failed">No se puede exportar la traza en un archivo temporal</string>
-  <string name="osm_upload_oauth_failed">No se puede autenticar a OSM</string>
+  <string name="osm_upload_ok">Guardar y subir a OSM</string>
+  <string name="osm_upload_tmpfile_failed">No se puede exportar la traza a un archivo temporal</string>
+  <string name="osm_upload_oauth_failed">No se pudo autenticar en OSM</string>
   <string name="osm_upload_sending">Subiendo traza #{0}…</string>
-  <string name="osm_upload_waiting_response">Esperando de respuesta del servidor OpenStreetMap…</string>
-  <string name="osm_upload_error">Error al cargar traza</string>
+  <string name="osm_upload_waiting_response">Esperando la respuesta del servidor OpenStreetMap…</string>
+  <string name="osm_upload_error">Error al subir la traza</string>
   <string name="osm_upload_bad_response">El servidor OSM ha devuelto un error: ({0}) mensaje {1}</string>
-  <string name="osm_upload_unauthorized">Error de autorización. ¿Te gustaría borrar las credenciales guardadas OSM?</string>
-  <string name="osm_upload_sucess">Carga OSM se realizó correctamente</string>
+  <string name="osm_upload_unauthorized">Error de autorización. ¿Desea borrar las credenciales de OSM guardadas?</string>
+  <string name="osm_upload_sucess">La carga a OSM se realizó correctamente</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Grabar voz</string>
-  <string name="gpsstatus_record_stillimage">Echar foto</string>
+  <string name="gpsstatus_record_stillimage">Tomar fotografía</string>
   <string name="gpsstatus_record_textnote">Nota de texto</string>
   <!--Menu-->
   <string name="menu_settings">Configuración</string>
   <string name="menu_waypointlist">Puntos</string>
   <string name="menu_about">Acerca de</string>
-  <string name="menu_displaytrack">Mostrar trazado</string>
-  <string name="menu_stoptracking">Parar &amp; guardar</string>
+  <string name="menu_displaytrack">Visualizar trazado</string>
+  <string name="menu_stoptracking">Detener y guardar</string>
   <string name="menu_newtrack">Nueva traza</string>
   <string name="menu_deletetracks">Borrar todas las trazas</string>
-  <string name="menu_continue">Continar</string>
-  <string name="menu_stopcurrenttrack">Parar la traza actual</string>
+  <string name="menu_continue">Continuar el trazado</string>
+  <string name="menu_stopcurrenttrack">Detener la traza actual</string>
   <string name="menu_save">Guardar</string>
   <string name="menu_cancel">Cancelar</string>
   <string name="menu_export">Exportar como GPX</string>
@@ -93,25 +93,25 @@
   <string name="menu_center_to_gps">Centrar a GPS</string>
   <string name="menu_exportall">Exportar todas como GPX</string>
   <!--Errors-->
-  <string name="error_externalstorage_not_writable">No se puede escribir en el almacenamiento externo.</string>
+  <string name="error_externalstorage_not_writable">No se puede grabar en el almacenamiento externo.</string>
   <string name="error_create_track_dir">No se puede crear la carpeta de traza %s.</string>
   <string name="error_externalstorage_not_writable_hint">Compruebe que el almacenamiento externo está correctamente insertado y montado.</string>
   <string name="error_voicerec_failed">La grabación de voz ha fallado</string>
   <string name="error_userlayout_parsing">Error al analizar el archivo XML de disposición. Por favor, vuelva a la disposición predeterminada.</string>
   <!--GPX-->
   <string name="gpx_track_name">Trazado con OSMTracker para Android™</string>
-  <string name="gpx_hdop_approximation_cmt">Atención: Los valores HDOP no son devueltos por el dispositivo GPS. Son aproximados por la precisión de la ubicación en metros, y no deberían tenerse en cuenta.</string>
+  <string name="gpx_hdop_approximation_cmt">Advertencia: los valores HDOP no son los valores HDOP devueltos por el dispositivo GPS. Son valores aproximados de acuerdo a la precisión de la ubicación en metros.</string>
   <!--About screen-->
   <string name="about">Acerca de</string>
   <string name="about_text">Para más información, documentos e informe de incidencias, visite la web del proyecto:</string>
   <string name="about_translate_text">Ayúdanos a traducir OSMTracker:</string>
-  <string name="about_debug_info">Info. de depurar</string>
+  <string name="about_debug_info">Info. de depuración</string>
   <!--Notification-->
-  <string name="notification_ticker_text">OSMTracker está ejecutándose todavía</string>
-  <string name="notification_title">OSMTracker está ejecutándose todavía</string>
+  <string name="notification_ticker_text">OSMTracker está trazando</string>
+  <string name="notification_title">OSMTracker está trazando (#{0})</string>
   <string name="notification_text">Pulse aquí para mostrar la pantalla principal</string>
   <!--Display track-->
-  <string name="displaytrack">Mostrar traza</string>
+  <string name="displaytrack">Visualizar traza</string>
   <string name="displaytrack_north">N</string>
   <!--Track detail-->
   <string name="trackdetail_save">Guardar</string>
@@ -120,5 +120,5 @@
   <string name="various_accuracy">Precisión</string>
   <string name="various_waiting_gps_fix">Esperando a la señal GPS…</string>
   <!--OSM map view-->
-  <string name="displaytrackmap">Visualización traza OpenStreetMap</string>
+  <string name="displaytrackmap">Visualización de traza OpenStreetMap</string>
 </resources>

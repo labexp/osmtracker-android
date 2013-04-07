@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">Logotipo do OSMTrackwer</string>
+  <!--Zoom in/out in map view-->
+  <!--GPS status bar-->
+  <!--Track list-->
+</resources>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Inspirado no OSMTracker do Windows Mobile, permite facer un seguemento das viaxes, marcar paradas significativas (con gravacións de voz ou imaxes) exportar ao formato GPX para empregar posteriormente con ferramentas para Open Street Map como JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Rexistro de rutas</string>
+  <string name="tracklogger_waiting_gps">A agardar que funcione o GPS para activar os botóns...</string>
+  <string name="tracklogger_voicerec_title">Gravación de voz</string>
+  <string name="tracklogger_voicerec_text">A gravar {0}s de son.</string>
+  <string name="tracklogger_voicerec_stop">Deter</string>
+  <string name="tracklogger_btnBack">Atrás</string>
+  <string name="tracklogger_tracked">Seguimento:</string>
+  <string name="tracklogger_gps_disabled">GPS desactivado</string>
+  <string name="tracklogger_gps_disabled_hint">O GPS está desactivado. Desexa activalo?</string>
+  <!--Waypoint List-->
+  <string name="wplist_latitude">Lista de paradas</string>
+  <string name="wplist_longitude">Lat:</string>
+  <string name="wplist_elevation">Ele:</string>
+  <string name="wplist_accuracy">Prcs:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Xestor de rutas</string>
+  <string name="trackmgr_tracklist">Lista de rutas:</string>
+  <string name="trackmgr_waypoints_count">Paradas:</string>
+  <string name="trackmgr_trackpoints_count">Puntos de ruta:</string>
+  <string name="trackmgr_empty">Non tén ningunha ruta.</string>
+  <string name="trackmgr_newtrack_hint">Para gravar unha pista,\nprema <b>Menú</b> e despois <b>Nova pista</b></string>
+  <!--Track Detail-->
+  <!--OSM upload-->
+  <!--GPS Status & record bar-->
+  <!--Menu-->
+  <!--Errors-->
+  <!--GPX-->
+  <!--About screen-->
+  <!--Notification-->
+  <!--Display track-->
+  <!--Track detail-->
+  <!--Various-->
+  <!--OSM map view-->
+</resources>

@@ -83,13 +83,13 @@
   <string name="menu_displaytrack">Visa spår</string>
   <string name="menu_stoptracking">Stoppa &amp; spara</string>
   <string name="menu_newtrack">Nytt spår</string>
-  <string name="menu_deletetracks">Ta bort alla språ</string>
+  <string name="menu_deletetracks">Ta bort alla spår</string>
   <string name="menu_continue">Fortsätt spår</string>
   <string name="menu_stopcurrenttrack">Stoppa aktuellt spår</string>
   <string name="menu_save">Spara</string>
   <string name="menu_cancel">Avbryt</string>
   <string name="menu_export">Exportera GPX</string>
-  <string name="menu_osm_upload">OpenStreetMap uppladning</string>
+  <string name="menu_osm_upload">OpenStreetMap-uppladdning</string>
   <string name="menu_center_to_gps">Centrera till GPS</string>
   <string name="menu_exportall">Exportera alla som GPX</string>
   <!--Errors-->

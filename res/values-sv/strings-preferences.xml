@@ -10,7 +10,7 @@
   <string name="prefs_gps_ignore_clock">Ignorera GPS-klockan</string>
   <string name="prefs_gps_ignore_clock_summary">Ignorera GPS-klockan och använd istället Androids klocka för tidsstämpling.</string>
   <string name="prefs_gps_logging_interval">GPS logg-intervall</string>
-  <string name="prefs_gps_logging_interval_summary">Använd 0 för kortast möjliga intervall (påverkar batteriets livsläng).</string>
+  <string name="prefs_gps_logging_interval_summary">Använd 0 för kortast möjliga intervall (påverkar batteriets livslängd).</string>
   <string name="prefs_gps_logging_interval_seconds">sekunder</string>
   <string name="prefs_ui">Användargränssnitt</string>
   <string name="prefs_ui_buttons_layout">Knapplayout</string>
@@ -19,8 +19,8 @@
   <string name="prefs_ui_orientation">Orientering</string>
   <string name="prefs_ui_orientation_summary">Orientering av knappskärmen du föredrar</string>
   <string-array name="prefs_ui_orientation_options_keys">
-    <item>Automatiskt</item>
-    <item>Poträtt</item>
+    <item>Automatisk</item>
+    <item>Porträtt</item>
     <item>Landskap</item>
   </string-array>
   <string name="prefs_voicerec_duration">Längd på röstnoteringar</string>
@@ -40,10 +40,10 @@
   <string name="prefs_output">GPX-fil</string>
   <string name="prefs_storage_dir">Lagringsmapp (SD)</string>
   <string name="prefs_storage_dir_hint">Gäller för nästa och kommande spår, inte aktuellt spår.</string>
-  <string name="prefs_output_one_dir_per_track">En riktning per spår</string>
+  <string name="prefs_output_one_dir_per_track">En mapp per spår</string>
   <string name="prefs_output_one_dir_per_track_summary">Spara varje spår och relaterade filer i en egen mapp</string>
   <string name="prefs_output_filename">Spårens namn</string>
-  <string name="prefs_output_filename_summary">Hur namnet på exporterade spår ska se upp.</string>
+  <string name="prefs_output_filename_summary">Hur filnamnet på namngivna spår ska se ut.</string>
   <string-array name="prefs_output_filename_keys">
     <item>Spårets namn</item>
     <item>Namn, startdatum och tid</item>

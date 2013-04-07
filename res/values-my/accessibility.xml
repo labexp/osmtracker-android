@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">ချဲ့</string>
+  <string name="acc.zoom_out">ချုံ့</string>
+  <!--GPS status bar-->
+  <!--Track list-->
+</resources>

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker Androiderako™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Windows Mobile-rako OSMTracker-ean inspiratua, non, zure ibilbideak jarraitzea ahalbidetzen dizun, bideko-puntu esanguratsuak markatu (ahots grabaketa, irudia) edota JOSM bezalako Open Street Map tresnetarako GPX formatura exportatu ditzakezu.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Ibilbide erregistroa</string>
+  <string name="tracklogger_waiting_gps">GPSa itxaroten botoiak gaitzeko...</string>
+  <string name="tracklogger_voicerec_title">Ahots grabaketa</string>
+  <string name="tracklogger_voicerec_text">{0}s audioa grabatzen.</string>
+  <string name="tracklogger_voicerec_stop">Gelditu</string>
+  <string name="tracklogger_btnBack">Atzera</string>
+  <string name="tracklogger_tracked">Ibilitakoa:</string>
+  <string name="tracklogger_gps_disabled">GPSa ezgaitua</string>
+  <string name="tracklogger_gps_disabled_hint">GPSa ezgaitua dago. Gaitu nahi al duzu?</string>
+  <!--Waypoint List-->
+  <string name="wplist">Bideko-puntu zerrenda</string>
+  <string name="wplist_latitude">Lat: </string>
+  <string name="wplist_longitude">Long: </string>
+  <string name="wplist_elevation">Ele: </string>
+  <string name="wplist_accuracy">Zehaz:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Ibilbide kudeaketa</string>
+  <string name="trackmgr_tracklist">Ibilbide zerrenda:</string>
+  <string name="trackmgr_waypoints_count">Bide-puntuak:</string>
+  <string name="trackmgr_trackpoints_count">Ibilbide-puntuak:</string>
+  <string name="trackmgr_empty">Ez daukazu ibilbiderik.</string>
+  <string name="trackmgr_newtrack_hint">Ibilbidea grabatzeko,\nzapaldu <b>Menua</b> eta gero <b>Ibilbide berria</b></string>
+  <string name="trackmgr_newtrack_error">Ezin da ibilbide berria sortu: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Momentu honetan <b>#{0} ibilbidea</b> grabatzen ari zara\nAukeratu ezazu zerrendan aurrera jarraitzeko</string>
+  <string name="trackmgr_contextmenu_stop">Gelditu ibilbidea</string>
+  <string name="trackmgr_contextmenu_resume">Berrekin ibilbidea</string>
+  <string name="trackmgr_contextmenu_delete">Ezabatu</string>
+  <string name="trackmgr_contextmenu_export">Exportatu GPX moduan</string>
+  <string name="trackmgr_contextmenu_osm_upload">Igo OpenStreetMap-era</string>
+  <string name="trackmgr_contextmenu_display">Erakutsi</string>
+  <string name="trackmgr_contextmenu_details">Xehetasunak</string>
+  <string name="trackmgr_contextmenu_title">#{0} ibilbidea</string>
+  <string name="trackmgr_delete_confirm">#{0} ibilbidea ezabatua izango da</string>
+  <string name="trackmgr_deleteall_confirm">Ibilbide guztiak ezabatuak izango dira. Ziur zaude?</string>
+  <string name="trackmgr_exporting">#{0} ibilbidea exportatzen...</string>
+  <string name="trackmgr_export_error">Ezin izan da ibilbidea exportatu: {0}</string>
+  <string name="trackmgr_exportall_confirm">Ibilbide guztiak exportatuko dira eta denbora luzea iraun dezake. Ziur zaude?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Ibilbide xehetasunak</string>
+  <string name="trackdetail_startdate">Hasiera ordua:</string>
+  <string name="trackdetail_enddate">Amaiera ordua:</string>
+  <string name="trackdetail_startloc">Hasiera:</string>
+  <string name="trackdetail_endloc">Amaiera:</string>
+  <string name="trackdetail_exportdate">Exportatua:</string>
+  <string name="trackdetail_osm_upload_date">OpenStreetMap-era igota:</string>
+  <string name="trackdetail_btn_export">Exportatu GPX-era</string>
+  <string name="trackdetail_export_notyet">(Oraindik exportatu gabe)</string>
+  <string name="trackdetail_osm_upload_notyet">(Oraindik igo gabe)</string>
+  <string name="trackdetail_export_display">Erakutsi</string>
+  <string name="trackdetail_description">Deskribapena</string>
+  <string name="trackdetail_tags">Etiketak (komaz bereiziak)</string>
+  <string name="trackdetail_description_mandatory">Deskribapena sartu behar duzu</string>
+  <string name="osm_visibility_private">Pribatua</string>
+  <string name="osm_visibility_public">Publikoa</string>
+  <string name="osm_visibility_trackable">Jarraigarria</string>
+  <string name="osm_visibility_identifiable">Identifikagarria</string>
+  <!--OSM upload-->
+  <string name="osm_upload">Igo OpenStreetMap</string>
+  <string name="osm_upload_ok">Gorde eta igo</string>
+  <string name="osm_upload_tmpfile_failed">Ezin izan da ibilbidea aldi bateko fitxategira exportatu</string>
+  <string name="osm_upload_oauth_failed">Ezin izan da OSMn autentifikatu</string>
+  <string name="osm_upload_sending">#{0} ibilbidea bidaltzen...</string>
+  <string name="osm_upload_waiting_response">OpenStreetMap zerbitzariaren erantzunaren zain...</string>
+  <string name="osm_upload_error">Akatsa ibilbidea igotzerakoan</string>
+  <string name="osm_upload_bad_response">OSM zerbitzariak akatsa izan du: ({0}) mezua {1}</string>
+  <string name="osm_upload_unauthorized">Autorizazio akatsa. Nahi al duzu gordetako OpenStreetMap egiaztagiriak garbitzea?</string>
+  <string name="osm_upload_sucess">OpenStreetMap-era arrakastaz igo da</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Ahots grabazioa</string>
+  <string name="gpsstatus_record_stillimage">Atera argazkia</string>
+  <string name="gpsstatus_record_textnote">Testu oharra</string>
+  <!--Menu-->
+  <string name="menu_settings">Ezarpenak</string>
+  <string name="menu_waypointlist">Bide-puntuak</string>
+  <string name="menu_about">Honi buruz</string>
+  <string name="menu_displaytrack">Erakutsi ibilbidea</string>
+  <string name="menu_stoptracking">Gelditu eta gorde</string>
+  <string name="menu_newtrack">Ibilbide berria</string>
+  <string name="menu_deletetracks">Ezabatu ibilbide guztiak</string>
+  <string name="menu_continue">Jarraitu ibilbidea</string>
+  <string name="menu_stopcurrenttrack">Gelditu oraingo ibilbidea</string>
+  <string name="menu_save">Gorde</string>
+  <string name="menu_cancel">Ezeztatu</string>
+  <string name="menu_export">Exportatu GPXera</string>
+  <string name="menu_osm_upload">Igo OpenStreetMap</string>
+  <string name="menu_center_to_gps">Erdiratu GPSra</string>
+  <string name="menu_exportall">Exportatu dena GPXra</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Ezin izan da kanpo memorian idatzi</string>
+  <string name="error_create_track_dir">Ezin izan da %s ibilbidearen karpeta sortu</string>
+  <string name="error_externalstorage_not_writable_hint">Mesedez begiratu kanpo memoria zuzen sartuta edo muntatuta dagoen.</string>
+  <string name="error_voicerec_failed">Ahots grabaketak akatsa izan du</string>
+  <string name="error_userlayout_parsing">Akatsa XML banaketa fitxategia analizatzean. Mesedez itzuli lehenetsitako banaketara.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Androiderako OSMTracker-ekin jarraitua™</string>
+  <string name="gpx_hdop_approximation_cmt">Abisua: GPSak bidalitako HDOP balioak ez dira HDOPrenak. Kokalekuko metrotako zehaztasunarekin hurbilduak dira.</string>
+  <!--About screen-->
+  <string name="about">Honi buruz</string>
+  <string name="about_text">Informazio, dokumentu eta arazo txosten gehiagorako, mesedez bisitatu proiektuko webgunea:</string>
+  <string name="about_translate_text">Lagundu OSMTracker itzultzen:</string>
+  <string name="about_debug_info">Arazketa informazioa</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker jarraipena egiten ari da</string>
+  <string name="notification_title">OSMTracker (#{0}) jarraitzen ari da</string>
+  <string name="notification_text">Ukitu hemen pantaila nagusia erakusteko</string>
+  <!--Display track-->
+  <string name="displaytrack">Erakutsi ibilbidea</string>
+  <string name="displaytrack_north">I</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Gorde</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Zehaztasuna</string>
+  <string name="various_waiting_gps_fix">GPSa itxoiten...</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">OpenStreetMap ibilbidea</string>
+</resources>
