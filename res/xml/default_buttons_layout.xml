@@ -33,15 +33,28 @@
 		<row>
 			<button type="tag" label="@string/tag.misc_bus_stop" icon="button_misc_bus_stop" />
 			<button type="tag" label="@string/tag.misc_railway" icon="button_misc_railway" />
-			<button type="tag" label="@string/tag.misc_telephone" icon="button_misc_telephone" />
+			<button type="custom_tag" label="@string/tag.misc_telephone" icon="button_misc_telephone">				
+				<element key="phone" type="text"/>
+				<element key="operator" type="text"/>
+				<element key="ref" type="text"/>
+				<element key="covered" type="boolean"/>
+				<element key="fee" type="boolean" value="yes"/>   
+		    </button>
 		</row>
 		<row>
 			<button type="tag" label="@string/tag.misc_post_box" icon="button_misc_post_box" />
-			<button type="tag" label="@string/tag.misc_atm" icon="button_misc_atm" />
+			<button type="custom_tag" label="@string/tag.misc_atm" icon="button_misc_atm">
+				<element key="operator" type="text"/>
+				<element key="cash_in" type="boolean"/>
+			</button>
 			<button type="tag" label="@string/tag.misc_bollard" icon="button_misc_bollard" />
 		</row>
 		<row>
-			<button type="tag" label="@string/tag.misc_toilets" icon="button_misc_toilets" />
+			<button type="custom_tag" label="@string/tag.misc_toilets" icon="button_misc_toilets">
+			    <element key="fee" type="boolean"/>
+			    <element key="wheelchair" type="boolean"/>
+			    <element key="diaper" type="boolean"/>
+		    </button>
 			<button type="tag" label="@string/tag.misc_shelter" icon="button_misc_shelter" />
 			<button type="tag" label="@string/tag.misc_surveillance" icon="button_misc_surveillance" />
 		</row>
@@ -77,7 +90,20 @@
 			<button type="textnote" icon="text_32x32" />
 		</row>
 		<row>
-			<button type="tag" label="@string/tag.car_fuel_station" icon="button_car_fuel_station" />
+			<button type="custom_tag" label="@string/tag.car_fuel_station" icon="button_car_fuel_station">
+		    	<element key="brand" type="text"/>
+		    	<element key="opening_hours" type="text"/>
+		    	<element key="name" type="text"/>
+		    	<element key="fuel:electricity" type="boolean"/>
+		    	<element key="fuel:diesel" type="boolean"/>
+		    	<element key="fuel:biodiesel" type="boolean"/>
+		    	<element key="fuel:e10" type="boolean"/>
+		    	<element key="fuel:e85" type="boolean"/>
+		    	<element key="fuel:ocatane_91" type="boolean"/>
+		    	<element key="fuel:ocatane_95" type="boolean"/>
+		    	<element key="fuel:ocatane_98" type="boolean"/>		    	
+		    	<element key="lpg" type="boolean"/>
+		    </button>
 			<button type="tag" label="@string/tag.car_parking" icon="button_car_parking" />
 			<button type="tag" label="@string/tag.car_emergency_phone" icon="button_car_emergency_phone" />
 		</row>

@@ -1,7 +1,9 @@
 package me.guillaumin.android.osmtracker.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
@@ -14,6 +16,10 @@ import me.guillaumin.android.osmtracker.listener.TagButtonOnClickListener;
 import me.guillaumin.android.osmtracker.listener.TextNoteOnClickListener;
 import me.guillaumin.android.osmtracker.listener.VoiceRecOnClickListener;
 import me.guillaumin.android.osmtracker.service.resources.IconResolver;
+import me.plutoz.android.osmtracker.customdialog.CustomDialogElement;
+import me.plutoz.android.osmtracker.customdialog.CustomDialogElement.ElementType;
+import me.plutoz.android.osmtracker.customdialog.CustomDialogSettings;
+import me.plutoz.android.osmtracker.customdialog.CustomTagButtonOnClickListener;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -236,6 +242,7 @@ public class UserDefinedLayoutReader {
 
 		String currentTagName = null;
 		// int eventType = parser.next();
+		
 		while (!XmlSchema.TAG_ROW.equals(currentTagName)) {
 			int eventType = parser.next();
 			switch (eventType) {
@@ -262,8 +269,10 @@ public class UserDefinedLayoutReader {
 	 * 
 	 * @param row
 	 *            The table row to attach the button to
+	 * @throws IOException 
+	 * @throws XmlPullParserException 
 	 */
-	public void inflateButton(TableRow row) {
+	public void inflateButton(TableRow row) throws XmlPullParserException, IOException {
 		Button button = new Button(row.getContext());
 		button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,
 				TableRow.LayoutParams.FILL_PARENT, 1));
@@ -283,7 +292,40 @@ public class UserDefinedLayoutReader {
 			button.setText(findLabel(parser.getAttributeValue(null, XmlSchema.ATTR_LABEL), resources));			
 			buttonIcon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
 			button.setOnClickListener(new TagButtonOnClickListener(currentTrackId));
-		} else if (XmlSchema.ATTR_VAL_VOICEREC.equals(buttonType)) {
+		} else if (XmlSchema.ATTR_VAL_CUSTOM_TAG.equals(buttonType)){
+			// Custom dialog button
+			String label = findLabel(parser.getAttributeValue(null, XmlSchema.ATTR_LABEL), resources);
+			button.setText(label);			
+			buttonIcon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
+			
+			// TODO: need to parse settings from file
+			List<CustomDialogElement> elements = new ArrayList<CustomDialogElement>();
+			
+			int eventType = parser.nextTag();
+			String tagName = parser.getName();
+			while(tagName.equals(XmlSchema.TAG_ELEMENT)){				
+				if (eventType==XmlPullParser.START_TAG){
+					String key = parser.getAttributeValue(null, XmlSchema.ATTR_VAL_CUSTOM_TAG_ELEMENT_KEY);
+					String value = parser.getAttributeValue(null, XmlSchema.ATTR_VAL_CUSTOM_TAG_ELEMENT_VALUE);
+					String typeString = parser.getAttributeValue(null, XmlSchema.ATTR_VAL_CUSTOM_TAG_ELEMENT_TYPE);
+					ElementType type;
+					if (typeString.equals(XmlSchema.ATTR_VAL_CUSTOM_TAG_ELEMENT_TYPE_TEXT)){
+						type=ElementType.TEXT;
+					}else if (typeString.equals(XmlSchema.ATTR_VAL_CUSTOM_TAG_ELEMENT_TYPE_BOOLEAN)){
+						type=ElementType.BOOLEAN;
+					}else throw new XmlPullParserException("Unknown element type: "+typeString);
+					
+					CustomDialogElement e = new CustomDialogElement(key,value,type);
+					elements.add(e);
+				}
+				eventType = parser.nextTag();	
+				tagName = parser.getName();
+			}			
+			
+			CustomDialogSettings settings = new CustomDialogSettings(label,elements);			
+			
+			button.setOnClickListener(new CustomTagButtonOnClickListener(settings,currentTrackId));
+		}else if (XmlSchema.ATTR_VAL_VOICEREC.equals(buttonType)) {
 			// Voice record button
 			button.setText(resources.getString(R.string.gpsstatus_record_voicerec));
 			buttonIcon = resources.getDrawable(R.drawable.voice_32x32);
@@ -362,6 +404,7 @@ public class UserDefinedLayoutReader {
 		public static final String TAG_LAYOUT = "layout";
 		public static final String TAG_ROW = "row";
 		public static final String TAG_BUTTON = "button";
+		public static final String TAG_ELEMENT = "element";
 
 		public static final String ATTR_NAME = "name";
 		public static final String ATTR_TYPE = "type";
@@ -371,6 +414,12 @@ public class UserDefinedLayoutReader {
 		public static final String ATTR_ICONPOS = "iconpos";
 
 		public static final String ATTR_VAL_TAG = "tag";
+		public static final String ATTR_VAL_CUSTOM_TAG = "custom_tag";
+		public static final String ATTR_VAL_CUSTOM_TAG_ELEMENT_KEY = "key";
+		public static final String ATTR_VAL_CUSTOM_TAG_ELEMENT_VALUE = "value";
+		public static final String ATTR_VAL_CUSTOM_TAG_ELEMENT_TYPE = "type";
+		public static final String ATTR_VAL_CUSTOM_TAG_ELEMENT_TYPE_TEXT = "text";
+		public static final String ATTR_VAL_CUSTOM_TAG_ELEMENT_TYPE_BOOLEAN = "boolean";
 		public static final String ATTR_VAL_PAGE = "page";
 		public static final String ATTR_VAL_VOICEREC = "voicerec";
 		public static final String ATTR_VAL_TEXTNOTE = "textnote";
