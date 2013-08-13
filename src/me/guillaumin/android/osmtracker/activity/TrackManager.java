@@ -251,8 +251,9 @@ public class TrackManager extends ListActivity {
 				}).create().show();
 			break;
 		case R.id.trackmgr_menu_settings:
-			// Start settings activity
-			startActivity(new Intent(this, Preferences.class));
+		    Intent intent = new Intent();
+		    intent.setClass(TrackManager.this, SetPreferenceActivity.class);
+		    startActivityForResult(intent, 0);
 			break;
 		case R.id.trackmgr_menu_about:
 			// Start About activity

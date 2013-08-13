@@ -15,7 +15,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 
@@ -25,7 +25,7 @@ import android.provider.Settings;
  * @author Nicolas Guillaumin
  *
  */
-public class Preferences extends PreferenceActivity {
+public class Preferences extends PreferenceFragment {
 
 	@SuppressWarnings("unused")
 	private static final String TAG = Preferences.class.getSimpleName();
@@ -41,13 +41,13 @@ public class Preferences extends PreferenceActivity {
 	private static final String LAYOUT_FILE_EXTENSION = ".xml";
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		
 		// Set summary of some preferences to their actual values
 		// and register a change listener to set again the summary in case of change
-		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		
 		// External storage directory
 		EditTextPreference storageDirPref = (EditTextPreference) findPreference(OSMTracker.Preferences.KEY_STORAGE_DIR);
