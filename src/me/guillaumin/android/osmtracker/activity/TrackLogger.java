@@ -335,8 +335,9 @@ public class TrackLogger extends Activity {
 			}		
 			break;
 		case R.id.tracklogger_menu_settings:
-			// Start settings activity
-			startActivity(new Intent(this, Preferences.class));
+		    Intent intent = new Intent();
+            intent.setClass(TrackLogger.this, SetPreferenceActivity.class);
+            startActivityForResult(intent, 0);
 			break;
 		case R.id.tracklogger_menu_waypointlist:
 			// Start Waypoint list activity

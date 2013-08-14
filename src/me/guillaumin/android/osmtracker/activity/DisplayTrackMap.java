@@ -293,8 +293,9 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 			}
 			break;
 		case R.id.displaytrackmap_menu_settings:
-			// Start settings activity
-			startActivity(new Intent(this, Preferences.class));
+		    Intent intent = new Intent();
+		    intent.setClass(DisplayTrackMap.this, SetPreferenceActivity.class);
+		    startActivityForResult(intent, 0);
 			break;
 		}
 		return super.onOptionsItemSelected(item);
