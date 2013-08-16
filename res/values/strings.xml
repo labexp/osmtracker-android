@@ -15,6 +15,9 @@
 	<string name="tracklogger_tracked">Tracked: </string>
 	<string name="tracklogger_gps_disabled">GPS disabled</string>
 	<string name="tracklogger_gps_disabled_hint">GPS is disabled. Do you want to enable it?</string>
+	<string name="tracklogger_choose_gallery_camera">Gallery or camera?</string>
+	<string name="tracklogger_camera">Take picture with camera</string>
+	<string name="tracklogger_gallery">Select picture from gallery</string>
 
 	<!-- Waypoint List -->
 	<string name="wplist">Waypoint list</string>
