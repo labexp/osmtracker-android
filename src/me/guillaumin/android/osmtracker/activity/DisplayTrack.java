@@ -54,7 +54,7 @@ public class DisplayTrack extends Activity {
 					new AlertDialog.Builder(DisplayTrack.this)
 						.setTitle(me.guillaumin.android.osmtracker.R.string.prefs_displaytrack_osm)
 						.setMessage(me.guillaumin.android.osmtracker.R.string.prefs_displaytrack_osm_summary_ask)
-						.setNegativeButton(me.guillaumin.android.osmtracker.R.string.no, null)
+						.setNegativeButton(android.R.string.no, null)
 						.setPositiveButton(me.guillaumin.android.osmtracker.R.string.displaytrack_map, new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
