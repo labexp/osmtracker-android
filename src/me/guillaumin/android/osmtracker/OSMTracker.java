@@ -35,7 +35,6 @@ public class OSMTracker {
 		public final static String KEY_OSM_OAUTH_TOKEN = "osm.oauth.token";
 		public final static String KEY_OSM_OAUTH_SECRET = "osm.oauth.secret";
 		public final static String KEY_OSM_OAUTH_CLEAR_DATA = "osm.oauth.clear-data";
-		
 
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
@@ -68,8 +67,6 @@ public class OSMTracker {
 		public final static String VAL_UI_ORIENTATION = VAL_UI_ORIENTATION_NONE;
 		
 		public final static String VAL_UI_MAP_TILE_MAPNIK = "MAPNIK";
-		public final static String VAL_UI_MAP_TILE_CYCLEMAP = "CYCLEMAP";
-		public final static String VAL_UI_MAP_TILE_MAPQUESTOSM = "MAPQUESTOSM";
 		
 	};
 	

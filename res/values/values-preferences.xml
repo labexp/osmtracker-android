@@ -37,9 +37,9 @@
 	</string-array>
 	
 	<string-array name="prefs_map_tile_values">
-        <item>MAPNIK</item>
-        <item>CYCLEMAP</item>
-        <item>MAPQUESTOSM</item>
-    </string-array>
+		<item>MAPNIK</item>
+		<item>CYCLEMAP</item>
+		<item>MAPQUESTOSM</item>
+	</string-array>
 
 </resources>

@@ -6,8 +6,8 @@
 	<CheckBoxPreference android:key="sound_enabled" android:title="@string/prefs_sound_enabled"
 		android:summary="@string/prefs_sound_enabled_summary" android:defaultValue="true"></CheckBoxPreference>
 	<com.android.internal.preference.YesNoPreference android:key="osm.oauth.clear-data"
-	    android:title="@string/prefs_osm_clear_oauth_data" android:summary="@string/prefs_osm_clear_oauth_data_summary"
-	    android:dialogMessage="@string/prefs_osm_clear_oauth_data_dialog" android:dialogIcon="@android:drawable/ic_dialog_alert" />
+		android:title="@string/prefs_osm_clear_oauth_data" android:summary="@string/prefs_osm_clear_oauth_data_summary"
+		android:dialogMessage="@string/prefs_osm_clear_oauth_data_dialog" android:dialogIcon="@android:drawable/ic_dialog_alert" />
 	
 	<PreferenceCategory android:title="@string/prefs_gps">
 		<Preference android:summary="@string/prefs_gps_os_settings_summary"
@@ -48,10 +48,10 @@
 			android:summary="@string/prefs_ui_buttons_layout_summary"></ListPreference>
 		<CheckBoxPreference android:key="ui.displaytrack.osm" android:title="@string/prefs_displaytrack_osm"
 			android:summary="@string/prefs_displaytrack_osm_summary" android:defaultValue="false"></CheckBoxPreference>
-		<ListPreference android:defaultValue="none" android:key="ui.orientation" android:title="@string/prefs_ui_orientation"
-			android:summary="@string/prefs_ui_orientation_summary" android:entries="@array/prefs_ui_orientation_options_keys" android:entryValues="@array/prefs_ui_orientation_options_values"></ListPreference>
 		<ListPreference android:entries="@array/prefs_map_tile_keys" android:title="@string/prefs_map_tile"
-            android:entryValues="@array/prefs_map_tile_values" android:key="ui.map.tile" android:summary="@string/prefs_map_tile_summary" android:defaultValue="MAPNIK"></ListPreference>
+			android:entryValues="@array/prefs_map_tile_values" android:key="ui.map.tile" android:summary="@string/prefs_map_tile_summary" android:defaultValue="MAPNIK"></ListPreference>
+				<ListPreference android:defaultValue="none" android:key="ui.orientation" android:title="@string/prefs_ui_orientation"
+			android:summary="@string/prefs_ui_orientation_summary" android:entries="@array/prefs_ui_orientation_options_keys" android:entryValues="@array/prefs_ui_orientation_options_values"></ListPreference>
 	</PreferenceCategory>
 
 

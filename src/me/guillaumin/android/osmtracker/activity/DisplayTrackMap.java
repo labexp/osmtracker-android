@@ -1,5 +1,6 @@
 package me.guillaumin.android.osmtracker.activity;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -48,7 +50,6 @@ import android.view.View.OnClickListener;
  */
 public class DisplayTrackMap extends Activity implements OpenStreetMapContributorConstants{
 
-	@SuppressWarnings("unused")
 	private static final String TAG = DisplayTrackMap.class.getSimpleName();
 	
 	/**
@@ -229,13 +230,13 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	 * @return ITileSource with the selected Tile-Source
 	 */
 	private ITileSource selectMapTile(String mapTile) {
-
-		if (mapTile.equals(OSMTracker.Preferences.VAL_UI_MAP_TILE_CYCLEMAP))
-			return TileSourceFactory.CYCLEMAP;
-		else if (mapTile.equals(OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPQUESTOSM))
-			return TileSourceFactory.MAPQUESTOSM;
-		else
+		try {
+			Field f = TileSourceFactory.class.getField(mapTile);
+			return (ITileSource) f.get(null); 
+		} catch (Exception e) {
+			Log.e(TAG, "Invalid tile source '"+mapTile+"'", e);
 			return TileSourceFactory.MAPNIK;
+		}
 	}
 
 
