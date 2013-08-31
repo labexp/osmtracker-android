@@ -35,5 +35,11 @@
 		<item>wpt_name</item>
 		<item>wpt_cmt</item>
 	</string-array>
+	
+	<string-array name="prefs_map_tile_values">
+        <item>MAPNIK</item>
+        <item>CYCLEMAP</item>
+        <item>MAPQUESTOSM</item>
+    </string-array>
 
 </resources>

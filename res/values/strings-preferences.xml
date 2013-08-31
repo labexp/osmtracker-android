@@ -81,5 +81,13 @@
 	<string name="prefs_osm_clear_oauth_data">Reset OSM authentication</string>
 	<string name="prefs_osm_clear_oauth_data_summary">Forget OSM credentials and permissions and force OSMTracker to ask them again</string>
 	<string name="prefs_osm_clear_oauth_data_dialog">You\'ll have to authorize OSMTracker to upload tracks again. Are you sure?</string>
+	
+	<string name="prefs_map_tile">Map Tile provider</string>
+    <string name="prefs_map_tile_summary"></string>
+	<string-array name="prefs_map_tile_keys">
+        <item>MAPNIK</item>
+        <item>CYCLEMAP</item>
+        <item>MAPQUESTOSM</item>
+    </string-array>
 
 </resources>

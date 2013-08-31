@@ -10,6 +10,8 @@ import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.overlay.WayPointsOverlay;
 
 import org.osmdroid.contributor.util.constants.OpenStreetMapContributorConstants;
+import org.osmdroid.tileprovider.tilesource.ITileSource;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
@@ -182,6 +184,8 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         	SharedPreferences settings = getPreferences(MODE_PRIVATE);
         	osmViewController.setZoom(settings.getInt(LAST_ZOOM, DEFAULT_ZOOM));
         }
+        
+        selectTileSource();
 
         createOverlays();
 
@@ -207,8 +211,34 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 			}
         });
    }
+
+    	/**
+    	 * Sets the map tile provider according to the user's demands in the settings.
+    	 */
+	public void selectTileSource() {
+		String mapTile = prefs.getString(OSMTracker.Preferences.KEY_UI_MAP_TILE, OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPNIK);
+		osmView.setTileSource(selectMapTile(mapTile));
+	}
     
-    
+	/**
+	 * Returns a ITileSource for the map according to the selected mapTile
+	 * String. The default is mapnik.
+	 * 
+	 * @param mapTile
+	 *                String that is the name of the tile provider
+	 * @return ITileSource with the selected Tile-Source
+	 */
+	private ITileSource selectMapTile(String mapTile) {
+
+		if (mapTile.equals(OSMTracker.Preferences.VAL_UI_MAP_TILE_CYCLEMAP))
+			return TileSourceFactory.CYCLEMAP;
+		else if (mapTile.equals(OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPQUESTOSM))
+			return TileSourceFactory.MAPQUESTOSM;
+		else
+			return TileSourceFactory.MAPNIK;
+	}
+
+
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putInt(CURRENT_ZOOM, osmView.getZoomLevel());
@@ -238,6 +268,8 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		
         // Reload path
         pathChanged();
+
+         selectTileSource();
         
         // Refresh way points
         // wayPointsOverlay.refresh();
