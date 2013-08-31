@@ -12,7 +12,7 @@ public class OSMUploadTest extends ActivityInstrumentationTestCase2<OpenStreetMa
 	
 	@Override
 	protected void setUp() throws Exception {
-		MockData.mockBigTrack(getInstrumentation().getContext(), 2000, 2000);
+		// MockData.mockBigTrack(getInstrumentation().getContext(), 2000, 2000);
 	}
 	
 	public void test() {
