@@ -4,6 +4,7 @@
 	<string name="app_name">OSMTracker for Android™</string>
 	<string name="app_short_name">OSMTracker</string>
 	<string name="app_description">Inspired by OSMTracker on Windows Mobile, it allows you to track your journeys, mark significant way points (Voice recording, picture), export them in GPX format for later use with Open Street Map tools like JOSM.</string>
+	<string name="no">No</string>
 
 	<!-- TrackLogger -->
 	<string name="tracklogger">Track logger</string>
@@ -126,7 +127,8 @@
 	<string name="notification_text">Tap here to display main screen</string>
 
 	<!-- Display track -->
-	<string name="displaytrack">Display track</string>	
+	<string name="displaytrack">Display track</string>
+	<string name="displaytrack_map">Display map</string>
 	<string name="displaytrack_north">N</string>
 	
 	<!-- Track detail -->
