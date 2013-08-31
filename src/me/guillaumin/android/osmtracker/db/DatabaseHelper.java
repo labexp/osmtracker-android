@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ Schema.COL_TRACK_ID + " integer not null,"
 		+ Schema.COL_LATITUDE + " double not null,"
 		+ Schema.COL_LONGITUDE + " double not null,"
+		+ Schema.COL_SPEED + " double null,"
 		+ Schema.COL_ELEVATION + " double null,"
 		+ Schema.COL_ACCURACY + " double null,"
 		+ Schema.COL_TIMESTAMP + " long not null" + ")";
@@ -112,9 +113,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * v13: TBL_TRACK.COL_DIR is now deprecated (rxxx) v0.5.3 TODO: fill in correct revision and version
 	 * v14: add TBL_TRACK.COL_OSM_UPLOAD_DATE, TBL_TRACK.COL_DESCRIPTION,
 	 * 			TBL_TRACK.COL_TAGS and TBL_TRACK.COL_OSM_VISIBILITY for OSM upload - v0.6.0 
+	 * v15: add TBL_TRACKPOINT.COL_SPPED
 	 *</pre>
 	 */
-	private static final int DB_VERSION = 14;
+	private static final int DB_VERSION = 15;
 
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -157,6 +159,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_TAGS + " text");
 			db.execSQL("alter table " + Schema.TBL_TRACK + " add column " + Schema.COL_OSM_VISIBILITY
 					+ " text default '"+OSMVisibility.Private+"'");
+		case 14:
+			db.execSQL("alter table " + Schema.TBL_TRACKPOINT + " add column " + Schema.COL_SPEED + " double null");
 		}
 		
 	}
