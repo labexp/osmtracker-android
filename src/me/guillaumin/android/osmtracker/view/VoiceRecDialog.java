@@ -145,12 +145,12 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 			Log.d(TAG,"onStart() no UUID set, generating a new UUID");
 			// there is no UUID set for the waypoint we're working on
 			// so we need to generate a UUID and track this point
-	        wayPointUuid = UUID.randomUUID().toString();
+			wayPointUuid = UUID.randomUUID().toString();
 			Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 			intent.putExtra(Schema.COL_TRACK_ID, wayPointTrackId);
 			intent.putExtra(OSMTracker.INTENT_KEY_UUID, wayPointUuid);
 			intent.putExtra(OSMTracker.INTENT_KEY_NAME, context.getResources().getString(R.string.wpt_voicerec));
-	        context.sendBroadcast(intent);
+			context.sendBroadcast(intent);
 		}
 		
 		if (!isRecording) {
@@ -171,13 +171,13 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 				// prepare the media players		
 				if (playSound) {
 					mediaPlayerStart = MediaPlayer.create(context, R.raw.beepbeep);
-				    if (mediaPlayerStart != null) {
-				    	mediaPlayerStart.setLooping(false);
-				    }
-				    mediaPlayerStop = MediaPlayer.create(context, R.raw.beep);
-				    if (mediaPlayerStop != null) {
-				    	mediaPlayerStop.setLooping(false);
-				    }
+					if (mediaPlayerStart != null) {
+						mediaPlayerStart.setLooping(false);
+					}
+					mediaPlayerStop = MediaPlayer.create(context, R.raw.beep);
+					if (mediaPlayerStop != null) {
+						mediaPlayerStop.setLooping(false);
+					}
 				}
 
 				mediaRecorder = new MediaRecorder();
@@ -252,7 +252,7 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	@Override
 	protected void onStop() {
 		Log.d(TAG, "onStop() called");
-	    
+		 
 		safeClose(mediaRecorder, false);
 		safeClose(mediaPlayerStart);
 		safeClose(mediaPlayerStop);
@@ -260,7 +260,7 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 		wayPointUuid = null;
 		isRecording = false;
 		
-	    try {
+		try {
 			this.getOwnerActivity().setRequestedOrientation(currentRequestedOrientation);
 		} catch(Exception e) {
 			Log.w(TAG, "No OwnerActivity found for this Dialog. Use showDialog method within the activity to handle this Dialog and to avoid voice recording problems.");
@@ -268,7 +268,6 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 		
 		super.onStop();
 	}
-	
 	
 	/* (non-Javadoc)
 	 * @see android.app.AlertDialog#onKeyDown(int, android.view.KeyEvent)

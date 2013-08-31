@@ -63,7 +63,7 @@ public class TrackLogger extends Activity {
 	 * Bundle state key for tracking flag.
 	 */
 	public static final String STATE_IS_TRACKING = "isTracking";
-    
+	
 	/**
 	 * Bundle state key button state.
 	 */
@@ -305,8 +305,7 @@ public class TrackLogger extends Activity {
 	/**
 	 * Enable buttons associated to tracking
 	 * 
-	 * @param enabled
-	 *            true to enable, false to disable
+	 * @param enabled true to enable, false to disable
 	 */
 	public void setEnabledActionButtons(boolean enabled) {
 		if (mainLayout != null) {
@@ -496,7 +495,7 @@ public class TrackLogger extends Activity {
 	 * Setter for gpsLogger
 	 * 
 	 * @param l
-	 *            {@link GPSLogger} to set.
+	 *				{@link GPSLogger} to set.
 	 */
 	public void setGpsLogger(GPSLogger l) {
 		this.gpsLogger = l;

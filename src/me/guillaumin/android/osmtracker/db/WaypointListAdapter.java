@@ -35,9 +35,9 @@ public class WaypointListAdapter extends CursorAdapter {
 	 * Constructor.
 	 * 
 	 * @param context
-	 *            Application context
+	 *				Application context
 	 * @param c
-	 *            {@link Cursor} to data
+	 *				{@link Cursor} to data
 	 */
 	public WaypointListAdapter(Context context, Cursor c) {
 		super(context, c);
@@ -60,11 +60,11 @@ public class WaypointListAdapter extends CursorAdapter {
 	 * Do the binding between data and item view.
 	 * 
 	 * @param cursor
-	 *            Cursor to pull data
+	 *				Cursor to pull data
 	 * @param rl
-	 *            RelativeView representing one item
+	 *				RelativeView representing one item
 	 * @param context
-	 *            Context, to get resources
+	 *				Context, to get resources
 	 * @return The relative view with data bound.
 	 */
 	private View bind(Cursor cursor, RelativeLayout rl, Context context) {

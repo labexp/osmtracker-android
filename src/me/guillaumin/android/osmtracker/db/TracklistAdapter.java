@@ -41,11 +41,11 @@ public class TracklistAdapter extends CursorAdapter {
 	 * Do the binding between data and item view.
 	 * 
 	 * @param cursor
-	 *            Cursor to pull data
+	 *				Cursor to pull data
 	 * @param v
-	 *            RelativeView representing one item
+	 *				RelativeView representing one item
 	 * @param context
-	 *            Context, to get resources
+	 *				Context, to get resources
 	 * @return The relative view with data bound.
 	 */
 	private View bind(Cursor cursor, View v, Context context) {

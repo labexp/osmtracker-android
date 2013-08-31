@@ -154,79 +154,78 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	 */
 	private SharedPreferences prefs = null;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        
-        // loading the preferences
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        
-        setContentView(R.layout.displaytrackmap);
-        
-        currentTrackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
-        setTitle(getTitle() + ": #" + currentTrackId);
-        
-        // Initialize OSM view
-        osmView = (MapView) findViewById(R.id.displaytrackmap_osmView);
-        osmView.setMultiTouchControls(true);  // pinch to zoom
-        // we'll use osmView to define if the screen is always on or not
-        osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
-        osmViewController = osmView.getController();
-        
-        // Check if there is a saved zoom level
-        if(savedInstanceState != null) {
-        	osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
-        	osmView.scrollTo(savedInstanceState.getInt(CURRENT_SCROLL_X, 0),
-        			savedInstanceState.getInt(CURRENT_SCROLL_Y, 0));
-        	centerToGpsPos = savedInstanceState.getBoolean(CURRENT_CENTER_TO_GPS_POS, centerToGpsPos);
-        	zoomedToTrackAlready = savedInstanceState.getBoolean(CURRENT_ZOOMED_TO_TRACK, zoomedToTrackAlready);
-        } else {
-        	// Try to get last zoom Level from Shared Preferences
-        	SharedPreferences settings = getPreferences(MODE_PRIVATE);
-        	osmViewController.setZoom(settings.getInt(LAST_ZOOM, DEFAULT_ZOOM));
-        }
-        
-        selectTileSource();
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		// loading the preferences
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		setContentView(R.layout.displaytrackmap);
+		
+		currentTrackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
+		setTitle(getTitle() + ": #" + currentTrackId);
+		
+		// Initialize OSM view
+		osmView = (MapView) findViewById(R.id.displaytrackmap_osmView);
+		osmView.setMultiTouchControls(true);  // pinch to zoom
+		// we'll use osmView to define if the screen is always on or not
+		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
+		osmViewController = osmView.getController();
+		
+		// Check if there is a saved zoom level
+		if(savedInstanceState != null) {
+			osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
+			osmView.scrollTo(savedInstanceState.getInt(CURRENT_SCROLL_X, 0),
+					savedInstanceState.getInt(CURRENT_SCROLL_Y, 0));
+			centerToGpsPos = savedInstanceState.getBoolean(CURRENT_CENTER_TO_GPS_POS, centerToGpsPos);
+			zoomedToTrackAlready = savedInstanceState.getBoolean(CURRENT_ZOOMED_TO_TRACK, zoomedToTrackAlready);
+		} else {
+			// Try to get last zoom Level from Shared Preferences
+			SharedPreferences settings = getPreferences(MODE_PRIVATE);
+			osmViewController.setZoom(settings.getInt(LAST_ZOOM, DEFAULT_ZOOM));
+		}
+		
+		selectTileSource();
 
-        createOverlays();
+		createOverlays();
 
-        // Create content observer for trackpoints
-        trackpointContentObserver = new ContentObserver(new Handler()) {
-    		@Override
-    		public void onChange(boolean selfChange) {		
-    			pathChanged();		
-    		}
-    	};
-        
-        // Register listeners for zoom buttons
-        findViewById(R.id.displaytrackmap_imgZoomIn).setOnClickListener( new OnClickListener() {
+		// Create content observer for trackpoints
+		trackpointContentObserver = new ContentObserver(new Handler()) {
+			@Override
+			public void onChange(boolean selfChange) {
+				pathChanged();
+			}
+		};
+		
+		// Register listeners for zoom buttons
+		findViewById(R.id.displaytrackmap_imgZoomIn).setOnClickListener( new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				osmViewController.zoomIn();
 			}
-        });
-        findViewById(R.id.displaytrackmap_imgZoomOut).setOnClickListener( new OnClickListener() {
+		});
+		findViewById(R.id.displaytrackmap_imgZoomOut).setOnClickListener( new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				osmViewController.zoomOut();
 			}
-        });
-   }
+		});
+	}
 
-    	/**
-    	 * Sets the map tile provider according to the user's demands in the settings.
-    	 */
+	/**
+	 * Sets the map tile provider according to the user's demands in the settings.
+	 */
 	public void selectTileSource() {
 		String mapTile = prefs.getString(OSMTracker.Preferences.KEY_UI_MAP_TILE, OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPNIK);
 		osmView.setTileSource(selectMapTile(mapTile));
 	}
-    
+	
 	/**
 	 * Returns a ITileSource for the map according to the selected mapTile
 	 * String. The default is mapnik.
 	 * 
-	 * @param mapTile
-	 *                String that is the name of the tile provider
+	 * @param mapTile String that is the name of the tile provider
 	 * @return ITileSource with the selected Tile-Source
 	 */
 	private ITileSource selectMapTile(String mapTile) {
@@ -262,19 +261,19 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 				TrackContentProvider.trackPointsUri(currentTrackId),
 				true, trackpointContentObserver);
 		
-	    // Forget the last waypoint read from the DB
+		// Forget the last waypoint read from the DB
 		// This ensures that all waypoints for the track will be reloaded 
-        // from the database to populate the path layout
-        lastTrackPointIdProcessed = null;
+		// from the database to populate the path layout
+		lastTrackPointIdProcessed = null;
 		
-        // Reload path
-        pathChanged();
+		// Reload path
+		pathChanged();
 
-         selectTileSource();
-        
-        // Refresh way points
-        // wayPointsOverlay.refresh();
-        
+		selectTileSource();
+		
+		// Refresh way points
+		// wayPointsOverlay.refresh();
+		
 		super.onResume();
 	}
 	
@@ -303,7 +302,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.displaytrackmap_menu, menu);
+		 inflater.inflate(R.menu.displaytrackmap_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -352,10 +351,10 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	private void createOverlays() {
 		pathOverlay = new PathOverlay(Color.BLUE, this);
 		osmView.getOverlays().add(pathOverlay);
-        
+		
 		myLocationOverlay = new SimpleLocationOverlay(this);
 		osmView.getOverlays().add(myLocationOverlay);
-        
+		
 		wayPointsOverlay = new WayPointsOverlay(this, currentTrackId);
 		osmView.getOverlays().add(wayPointsOverlay);
 	}
@@ -399,31 +398,31 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		// SelectionArgs: The parameter replacements to use for the '?' in the selection		
 		String[] selectionArgs = null;
 		
-        // Only request the track points that we have not seen yet
+		  // Only request the track points that we have not seen yet
 		// If we have processed any track points in this session then
 		// lastTrackPointIdProcessed will not be null. We only want 
 		// to see data from rows with a primary key greater than lastTrackPointIdProcessed  
 		if (lastTrackPointIdProcessed != null) {
-		    selection = TrackContentProvider.Schema.COL_ID + " > ?";
-		    List<String> selectionArgsList  = new ArrayList<String>();
-		    selectionArgsList.add(lastTrackPointIdProcessed.toString());
-		    
-		    selectionArgs = selectionArgsList.toArray(new String[1]); 
+			selection = TrackContentProvider.Schema.COL_ID + " > ?";
+			List<String> selectionArgsList  = new ArrayList<String>();
+			selectionArgsList.add(lastTrackPointIdProcessed.toString());
+			
+			selectionArgs = selectionArgsList.toArray(new String[1]); 
 		}
 
 		// Retrieve any points we have not yet seen
 		Cursor c = getContentResolver().query(
-				TrackContentProvider.trackPointsUri(currentTrackId),
-				projection, selection, selectionArgs, Schema.COL_ID + " asc");
+			TrackContentProvider.trackPointsUri(currentTrackId),
+			projection, selection, selectionArgs, Schema.COL_ID + " asc");
 		
-		int numberOfPointsRetrieved = c.getCount();		
-        if (numberOfPointsRetrieved > 0 ) {        
-            c.moveToFirst();
+		int numberOfPointsRetrieved = c.getCount();
+		if (numberOfPointsRetrieved > 0 ) {
+			c.moveToFirst();
 			double lastLat = 0;
 			double lastLon = 0;
-	        int primaryKeyColumnIndex = c.getColumnIndex(Schema.COL_ID);
-	        int latitudeColumnIndex = c.getColumnIndex(Schema.COL_LATITUDE);
-	        int longitudeColumnIndex = c.getColumnIndex(Schema.COL_LONGITUDE);
+			int primaryKeyColumnIndex = c.getColumnIndex(Schema.COL_ID);
+			int latitudeColumnIndex = c.getColumnIndex(Schema.COL_LATITUDE);
+			int longitudeColumnIndex = c.getColumnIndex(Schema.COL_LONGITUDE);
 		
 			// Add each new point to the track
 			while(!c.isAfterLast()) {			
@@ -452,8 +451,8 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 			if (doInitialBoundsCalc && (numberOfPointsRetrieved > 1)) {
 				// osmdroid-3.0.8 hangs if we directly call zoomToSpan during initial onResume,
 				// so post a Runnable instead for after it's done initializing.
-		    	final double north = maxLat, east = maxLon, south = minLat, west = minLon;
-		    	osmView.post(new Runnable() {
+				final double north = maxLat, east = maxLon, south = minLat, west = minLon;
+				osmView.post(new Runnable() {
 					@Override
 					public void run() {
 						osmViewController.zoomToSpan(new BoundingBoxE6(north, east, south, west));

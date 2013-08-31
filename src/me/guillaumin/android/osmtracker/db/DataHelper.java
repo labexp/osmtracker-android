@@ -67,7 +67,7 @@ public class DataHelper {
 	 * Constructor.
 	 * 
 	 * @param c
-	 *            Application context.
+	 *				Application context.
 	 */
 	public DataHelper(Context c) {
 		context = c;
@@ -112,15 +112,15 @@ public class DataHelper {
 	 * Tracks a way point with link
 	 * 
 	 * @param trackId
-	 *            Id of the track
+	 *				Id of the track
 	 * @param location
-	 *            Location of waypoint
+	 *				Location of waypoint
 	 * @param nbSatellites
-	 *            Number of satellites used for the location
+	 *				Number of satellites used for the location
 	 * @param name
-	 *            Name of waypoint
+	 *				Name of waypoint
 	 * @param link
-	 *            Link of waypoint
+	 *				Link of waypoint
 	 * @param uuid 
 	 * 			  Unique id of the waypoint
 	 */
@@ -170,13 +170,13 @@ public class DataHelper {
 	 * Updates a waypoint
 	 * 
 	 * @param trackId
-	 *            Id of the track
+	 *				Id of the track
 	 * @param uuid
-	 *            Unique ID of the target waypoint
+	 *				Unique ID of the target waypoint
 	 * @param name
-	 *            New name
+	 *				New name
 	 * @param link
-	 *            New link
+	 *				New link
 	 */
 	public void updateWayPoint(long trackId, String uuid, String name, String link) {
 		Log.v(TAG, "Updating waypoint with uuid '" + uuid + "'. New values: name='" + name + "', link='" + link + "'");
@@ -199,7 +199,7 @@ public class DataHelper {
 	 * Deletes a waypoint
 	 * 
 	 * @param uuid
-	 *            Unique ID of the target waypoint
+	 *				Unique ID of the target waypoint
 	 */
 	public void deleteWayPoint(String uuid) {
 		Log.v(TAG, "Deleting waypoint with uuid '" + uuid);
@@ -272,9 +272,9 @@ public class DataHelper {
 	 * Renames a file inside track directory, keeping the extension
 	 * 
 	 * @param from
-	 *            File to rename (Ex: "abc.png")
+	 *				File to rename (Ex: "abc.png")
 	 * @param to
-	 *            Filename to use for new name (Ex: "def")
+	 *				Filename to use for new name (Ex: "def")
 	 * @return Renamed filename (Ex: "def.png")
 	 */
 	private String renameFile(Long trackId, String from, String to) {

@@ -225,7 +225,7 @@ public class DisplayTrackView extends TextView {
 	 * Draw scale information.
 	 * 
 	 * @param canvas
-	 *            Canvas used to draw
+	 *				Canvas used to draw
 	 */
 	private void drawScale(Canvas canvas) {
 		double scale = projection.getScale();
@@ -248,7 +248,7 @@ public class DisplayTrackView extends TextView {
 	 * Draw various static gfx (Compass ...)
 	 * 
 	 * @param canvas
-	 *            Canvas used to draw
+	 *				Canvas used to draw
 	 */
 	private void drawStatic(Canvas canvas) {
 		canvas.drawBitmap(compass, PADDING, getHeight() - PADDING - compass.getHeight(), null);

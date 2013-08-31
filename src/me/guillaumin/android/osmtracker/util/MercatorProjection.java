@@ -80,12 +80,12 @@ public class MercatorProjection {
 	 * Projects lon/lat coordinates into this projection.
 	 * 
 	 * @param longitude
-	 *            Longitude to project
+	 *				Longitude to project
 	 * @param latitude
-	 *            Latitude to project
+	 *				Latitude to project
 	 * @return An array of 2 int projected coordinates (use
-	 *         {@link MercatorProjection.X} and {@link MercatorProjection.Y} for
-	 *         access.
+	 *			{@link MercatorProjection.X} and {@link MercatorProjection.Y} for
+	 *			access.
 	 */
 	public int[] project(double longitude, double latitude) {
 		int[] out = new int[2];
@@ -100,7 +100,7 @@ public class MercatorProjection {
 	 * Convert longitude to X coordinate.
 	 * 
 	 * @param longitude
-	 *            Longitude to convert.
+	 *				Longitude to convert.
 	 * @return Converted X coordinate.
 	 */
 	private double convertLongitude(double longitude) {
@@ -111,7 +111,7 @@ public class MercatorProjection {
 	 * Converts latitude to Y coordinate.
 	 * 
 	 * @param latitude
-	 *            Latitude to convert.
+	 *				Latitude to convert.
 	 * @return Converted Y coordinate.
 	 */
 	private double convertLatitude(double latitude) {

@@ -307,21 +307,21 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			out.append("\t\t\t" + "<trkpt lat=\"" 
 					+ c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE)) + "\" "
 					+ "lon=\"" + c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE)) + "\">" + "\n");
-	        if (! c.isNull(c.getColumnIndex(Schema.COL_ELEVATION))) {
-	        	out.append("\t\t\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(Schema.COL_ELEVATION)) + "</ele>" + "\n");
-	        }
-	        out.append("\t\t\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
-	        
-	        if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
+			if (! c.isNull(c.getColumnIndex(Schema.COL_ELEVATION))) {
+				out.append("\t\t\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(Schema.COL_ELEVATION)) + "</ele>" + "\n");
+			}
+			out.append("\t\t\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
+			
+			if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
 				out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
-	        }
-	       
-	        out.append("\t\t\t" + "</trkpt>" + "\n");
-	        fw.write(out.toString());
+			}
+			
+			out.append("\t\t\t" + "</trkpt>" + "\n");
+			fw.write(out.toString());
 
-	        if (i % dialogUpdateThreshold == 0) {
-		    	dialog.incrementProgressBy(dialogUpdateThreshold);
-		    }
+			if (i % dialogUpdateThreshold == 0) {
+				dialog.incrementProgressBy(dialogUpdateThreshold);
+			}
 		}
 		
 		fw.write("\t\t" + "</trkseg>" + "\n");
@@ -355,59 +355,59 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			out.append("\t" + "<wpt lat=\""
 					+ c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE)) + "\" "
 					+ "lon=\"" + c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE)) + "\">" + "\n");
-	        if (! c.isNull(c.getColumnIndex(Schema.COL_ELEVATION))) {
-	        	out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(Schema.COL_ELEVATION)) + "</ele>" + "\n");
-	        }
-		    out.append("\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
+			if (! c.isNull(c.getColumnIndex(Schema.COL_ELEVATION))) {
+				out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(Schema.COL_ELEVATION)) + "</ele>" + "\n");
+			}
+			out.append("\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 
-		    String name = c.getString(c.getColumnIndex(Schema.COL_NAME));
-		    
-		    if (! OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_NONE.equals(accuracyInfo) && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
-		    	// Outputs accuracy info for way point
-		    	if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_NAME.equals(accuracyInfo)) {
-		    		// Output accuracy with name
-		    		out.append("\t\t" + "<name>"
-		    				+ CDATA_START 
-		    				+ name
-		    				+ " (" + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + ")"
-		    				+ CDATA_END
-		    				+ "</name>" + "\n");
-		    	} else if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_CMT.equals(accuracyInfo)) {
-		    		// Output accuracy in separate tag
-		    		out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
-		    		out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
-		    	} else {
-		    		// Unknown value for accuracy info, shouldn't occur but who knows ?
-		    		// See issue #68. Output at least the name just in case.
-		    		out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
-		    	}
-		    } else {
-		    	// No accuracy info requested, or available
-		    	out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
-		    }
+			String name = c.getString(c.getColumnIndex(Schema.COL_NAME));
 			
-		    String link = c.getString(c.getColumnIndex(Schema.COL_LINK));
-		    if (link != null) {
-		       	out.append("\t\t" + "<link href=\"" + URLEncoder.encode(link) + "\">" + "\n");
-		       	out.append("\t\t\t" + "<text>" + link +"</text>\n");
-		       	out.append("\t\t" + "</link>" + "\n");
-		    }
-		    
-		    if (! c.isNull(c.getColumnIndex(Schema.COL_NBSATELLITES))) {
-		    	out.append("\t\t" + "<sat>" + c.getInt(c.getColumnIndex(Schema.COL_NBSATELLITES)) + "</sat>" + "\n");
-		    }
+			if (! OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_NONE.equals(accuracyInfo) && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
+				// Outputs accuracy info for way point
+				if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_NAME.equals(accuracyInfo)) {
+					// Output accuracy with name
+					out.append("\t\t" + "<name>"
+							+ CDATA_START 
+							+ name
+							+ " (" + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + ")"
+							+ CDATA_END
+							+ "</name>" + "\n");
+				} else if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_CMT.equals(accuracyInfo)) {
+					// Output accuracy in separate tag
+					out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
+					out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
+				} else {
+					// Unknown value for accuracy info, shouldn't occur but who knows ?
+					// See issue #68. Output at least the name just in case.
+					out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
+				}
+			} else {
+				// No accuracy info requested, or available
+				out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
+			}
+			
+			String link = c.getString(c.getColumnIndex(Schema.COL_LINK));
+			if (link != null) {
+					out.append("\t\t" + "<link href=\"" + URLEncoder.encode(link) + "\">" + "\n");
+					out.append("\t\t\t" + "<text>" + link +"</text>\n");
+					out.append("\t\t" + "</link>" + "\n");
+			}
+			
+			if (! c.isNull(c.getColumnIndex(Schema.COL_NBSATELLITES))) {
+				out.append("\t\t" + "<sat>" + c.getInt(c.getColumnIndex(Schema.COL_NBSATELLITES)) + "</sat>" + "\n");
+			}
 
-		    if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
+			if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
 				out.append("\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
-	        }
-		    
-		    out.append("\t" + "</wpt>" + "\n");
-		    
-		    fw.write(out.toString());
+			}
+			
+			out.append("\t" + "</wpt>" + "\n");
+			
+			fw.write(out.toString());
 
-		    if (i % dialogUpdateThreshold == 0) {
-		    	dialog.incrementProgressBy(dialogUpdateThreshold);
-		    }
+			if (i % dialogUpdateThreshold == 0) {
+				dialog.incrementProgressBy(dialogUpdateThreshold);
+			}
 		}
 	}
 

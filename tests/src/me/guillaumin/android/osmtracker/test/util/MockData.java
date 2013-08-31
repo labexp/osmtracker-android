@@ -18,12 +18,12 @@ public class MockData {
 
 	private static Object[][] mockTrackPoints = new Object[][] {
 			{12.34, 56.78, 0.42f, 4321.7d, 45.8f },
-			{21.57, 12.6,  0.24f, 12.1d,   12.6f }  
+			{21.57, 12.6,  0.24f, 12.1d,	12.6f }  
 	};
 	
 	private static Object[][] mockWayPoints = new Object[][] {
 			{34.12, 18.45, 0.25f, 5812.2d, 284.5f, 2, "wp1", "http://link1.com", "uuid1"},
-			{43.76, 31.89, 0.61f, 75.4d,   127.4f, 6, "wp2", "http://link2.com", "uuid2"}
+			{43.76, 31.89, 0.61f, 75.4d,	127.4f, 6, "wp2", "http://link2.com", "uuid2"}
 	};
 
 	public static long mockTrack(Context context) {

@@ -278,16 +278,16 @@ public class TrackContentProvider extends ContentProvider {
 			selection = Schema.COL_TRACK_ID + " = ?";
 			// Deal with any additional selection info provided by the caller 
 			if (null != selectionIn) {
-			    selection += " AND " + selectionIn;      
+				selection += " AND " + selectionIn;
 			}
 			
 			List<String> selctionArgsList = new ArrayList<String>();
 			selctionArgsList.add(trackId);
 			// Add the callers selection arguments, if any
 			if (null != selectionArgsIn) {
-			    for (String arg : selectionArgsIn) {
-			        selctionArgsList.add(arg);
-			    }
+				for (String arg : selectionArgsIn) {
+					selctionArgsList.add(arg);
+				}
 			}
 			selectionArgs = selctionArgsList.toArray(new String[0]);
 			// Finished with the temporary selection arguments list. release it for GC

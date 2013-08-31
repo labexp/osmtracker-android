@@ -45,7 +45,7 @@ public abstract class TrackDetailEditor extends Activity {
 		
 		setContentView(viewResId);
 		setTitle(getTitle() + ": #" + trackId);
-        
+		
 		etName = (EditText) findViewById(R.id.trackdetail_item_name);
 		etDescription = (EditText) findViewById(R.id.trackdetail_item_description);
 		etTags = (EditText) findViewById(R.id.trackdetail_item_tags);

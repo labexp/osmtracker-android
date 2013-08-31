@@ -11,9 +11,9 @@ public final class ArrayUtils {
 	 * Finds minimum value of an 2-dim array
 	 * 
 	 * @param in
-	 *            Input array
+	 *				Input array
 	 * @param offset
-	 *            Offset to use for second dimension
+	 *				Offset to use for second dimension
 	 * @return minimum value of the offset column for this array
 	 */
 	public static double findMin(double[][] in, int offset) {
@@ -30,9 +30,9 @@ public final class ArrayUtils {
 	 * Finds maximum value of an 2-dim array
 	 * 
 	 * @param in
-	 *            Input array
+	 *				Input array
 	 * @param offset
-	 *            Offset to use for second dimension
+	 *				Offset to use for second dimension
 	 * @return maximum value of the offset column for this array
 	 */
 	public static double findMax(double[][] in, int offset) {

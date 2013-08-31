@@ -111,15 +111,15 @@ public class UserDefinedLayoutReader {
 	 * Constructor
 	 * 
 	 * @param udl
-	 *            User defined layout
+	 *				User defined layout
 	 * @param c
-	 *            Context for accessing resources
+	 *				Context for accessing resources
 	 * @param tl
-	 *            TrackLogger activity
+	 *				TrackLogger activity
 	 * @param trackId
 	 * 			  Current track id
 	 * @param input
-	 *            Parser for reading layout
+	 *				Parser for reading layout
 	 * @param ir
 	 * 			  Icon resolver to use to fetch icons 
 	 */
@@ -225,7 +225,7 @@ public class UserDefinedLayoutReader {
 	 * Inflates a <row> into a {@link TableRow}
 	 * 
 	 * @param layout
-	 *            {@link TableLayout} to rattach the row to
+	 *				{@link TableLayout} to rattach the row to
 	 * @throws XmlPullParserException
 	 * @throws IOException
 	 */
@@ -261,7 +261,7 @@ public class UserDefinedLayoutReader {
 	 * Inflates a <button>
 	 * 
 	 * @param row
-	 *            The table row to attach the button to
+	 *				The table row to attach the button to
 	 */
 	public void inflateButton(TableRow row) {
 		Button button = new Button(row.getContext());

@@ -100,12 +100,12 @@ public class TextNoteDialog extends AlertDialog {
 		if(wayPointUuid == null){
 			// there is no UUID set for the waypoint we're working on
 			// so we need to generate a UUID and track this point
-	        wayPointUuid = UUID.randomUUID().toString();
-	        Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
-	        intent.putExtra(Schema.COL_TRACK_ID, wayPointTrackId);
-	        intent.putExtra(OSMTracker.INTENT_KEY_UUID, wayPointUuid);
-	        intent.putExtra(OSMTracker.INTENT_KEY_NAME, context.getResources().getString(R.string.gpsstatus_record_textnote));
-	        context.sendBroadcast(intent);
+			wayPointUuid = UUID.randomUUID().toString();
+			Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+			intent.putExtra(Schema.COL_TRACK_ID, wayPointTrackId);
+			intent.putExtra(OSMTracker.INTENT_KEY_UUID, wayPointUuid);
+			intent.putExtra(OSMTracker.INTENT_KEY_NAME, context.getResources().getString(R.string.gpsstatus_record_textnote));
+			context.sendBroadcast(intent);
 		}
 		
 		super.onStart();

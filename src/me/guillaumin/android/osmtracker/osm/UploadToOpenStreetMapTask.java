@@ -107,10 +107,10 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 			final long totalSize = gpxFile.length();
 			
 			// Custom entity to display a progress bar while uploading
-            MultipartEntity entity = new ProgressMultipartEntity(
-            		HttpMultipartMode.BROWSER_COMPATIBLE,
-            		Charset.defaultCharset(),
-            		new ProgressListener() {
+			MultipartEntity entity = new ProgressMultipartEntity(
+					HttpMultipartMode.BROWSER_COMPATIBLE,
+					Charset.defaultCharset(),
+					new ProgressListener() {
 				@Override
 				public void transferred(long num) {
 					dialog.incrementProgressBy((int) num);
@@ -120,8 +120,8 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 						activity.runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
-					    		dialog.setIndeterminate(true);
-					    		dialog.setCancelable(false);
+						 		dialog.setIndeterminate(true);
+						 		dialog.setCancelable(false);
 								dialog.setTitle(activity.getResources().getString(R.string.osm_upload_waiting_response));
 							}
 						});
@@ -130,25 +130,24 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 				}
 			});
 
-            // API parameters
-            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.FILE, new FileBody(gpxFile, filename, GPX_MIMETYPE, Charset.defaultCharset().name()));
-            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.DESCRIPTION, new StringBody(description, Charset.defaultCharset()));
-            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.TAGS, new StringBody(tags, Charset.defaultCharset()));
-            entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.VISIBILITY, new StringBody(visibility.toString().toLowerCase(),Charset.defaultCharset()));
-            request.setEntity(entity);
-            
-    		// Display progress dialog
-    		dialog = new ProgressDialog(activity);
-    		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-    		dialog.setIndeterminate(false);
-    		dialog.setMax((int) totalSize);
-    		dialog.setTitle(
-    				activity.getResources().getString(R.string.osm_upload_sending)
-    				.replace("{0}", Long.toString(trackId)));
-    		dialog.setCancelable(false);
-    		dialog.show();
+			// API parameters
+			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.FILE, new FileBody(gpxFile, filename, GPX_MIMETYPE, Charset.defaultCharset().name()));
+			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.DESCRIPTION, new StringBody(description, Charset.defaultCharset()));
+			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.TAGS, new StringBody(tags, Charset.defaultCharset()));
+			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.VISIBILITY, new StringBody(visibility.toString().toLowerCase(),Charset.defaultCharset()));
+			request.setEntity(entity);
+				
+			// Display progress dialog
+			dialog = new ProgressDialog(activity);
+			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			dialog.setIndeterminate(false);
+			dialog.setMax((int) totalSize);
+			dialog.setTitle(
+					activity.getResources().getString(R.string.osm_upload_sending)
+					.replace("{0}", Long.toString(trackId)));
+			dialog.setCancelable(false);
+			dialog.show();
 
-            
 		} catch (Exception e) {
 			Log.e(TAG, "onPreExecute() failed", e);
 			errorMsg = e.getLocalizedMessage();
