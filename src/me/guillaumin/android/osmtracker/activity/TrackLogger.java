@@ -21,14 +21,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -56,6 +53,11 @@ public class TrackLogger extends Activity {
 	 * picture for us.
 	 */
 	private static final int REQCODE_IMAGE_CAPTURE = 0;
+	
+	/**
+	 * Request code for callback after the gallery was chosen by the user.
+	 */
+	private static final int REQCODE_GALLERY_CHOSEN = 1;
 
 	/**
 	 * Bundle state key for tracking flag.
@@ -409,9 +411,32 @@ public class TrackLogger extends Activity {
 		if (gpsLogger.isTracking()) {
 			File imageFile = pushImageFile();
 			if (null != imageFile) {
-				Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
-				startActivityForResult(cameraIntent, TrackLogger.REQCODE_IMAGE_CAPTURE);
+
+				// Let the user choose between using the camera
+				// or selecting a picture from the gallery
+
+				AlertDialog.Builder getImageFrom = new AlertDialog.Builder(TrackLogger.this);
+				getImageFrom.setTitle("Select:");
+				final CharSequence[] opsChars = { getString(R.string.tracklogger_camera), getString(R.string.tracklogger_gallery) };
+				getImageFrom.setItems(opsChars, new android.content.DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						if (which == 0) {
+							Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+							startActivityForResult(cameraIntent, REQCODE_IMAGE_CAPTURE);
+						} else if (which == 1) {
+							Intent intent = new Intent();
+							intent.setType("image/*");
+							intent.setAction(Intent.ACTION_GET_CONTENT);
+							startActivityForResult(Intent.createChooser(intent, getString(R.string.tracklogger_choose_gallery_camera)), REQCODE_GALLERY_CHOSEN);
+						}
+						dialog.dismiss();
+					}
+				});
+
+				getImageFrom.show();
+				
 			} else {
 				Toast.makeText(getBaseContext(), 
 						getResources().getString(R.string.error_externalstorage_not_writable),
@@ -435,13 +460,28 @@ public class TrackLogger extends Activity {
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
 					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
 					sendBroadcast(intent);
-				}			
+				}
 			}
 			break;
+		case REQCODE_GALLERY_CHOSEN:
+			if (resultCode == RESULT_OK) {
+				// A still image has been captured, track the corresponding waypoint
+				// Send an intent to inform service to track the waypoint.
+				File imageFile = popImageFile();
+				if (imageFile != null) {
+					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+					intent.putExtra(Schema.COL_TRACK_ID, currentTrackId);
+					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
+					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
+					sendBroadcast(intent);
+				}
+			}
 		}
 
 		super.onActivityResult(requestCode, resultCode, data);
 	}
+	
+	
 	
 	/**
 	 * Getter for gpsLogger
