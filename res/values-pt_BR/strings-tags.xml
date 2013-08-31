@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="tag.restriction">Restrição</string>
+  <string name="tag.car">Carro</string>
+  <string name="tag.tourism">Turismo</string>
+  <string name="tag.way">Via</string>
+  <string name="tag.track">Trilha</string>
+  <string name="tag.misc_bus_stop">Ponto de ônibus</string>
+  <string name="tag.misc_telephone">Telefone</string>
+  <string name="tag.misc_toilets">Banheiros</string>
+  <string name="tag.restriction_no_exit">Sem saída</string>
+  <string name="tag.restriction_one_way">Um caminho</string>
+  <string name="tag.car_parking">Estacionamento</string>
+  <string name="tag.tourism_information">Informação</string>
+  <string name="tag.tourism_monument">Monumento</string>
+  <string name="tag.tourism_museum">Museu</string>
+  <string name="tag.tourism_cinema">Cinema</string>
+  <string name="tag.amenity_bench">Banco</string>
+  <string name="tag.amenity_water">Água</string>
+  <string name="tag.amenity_pharmacy">Farmácia</string>
+  <string name="tag.amenity_shop">Shopping</string>
+  <string name="tag.amenity_sport">Esporte</string>
+  <string name="tag.amenity_taxi">Táxi</string>
+  <string name="tag.amenity_doctors">Hospital,\nDoutores</string>
+  <string name="tag.amenity_place_of_worship">Lugar de\nadoração</string>
+  <string name="tag.amenitymore_school">Escola</string>
+  <string name="tag.amenitymore_police">Polícia</string>
+  <string name="tag.amenitymore_fire_station">Corpo de Bombeiros</string>
+  <string name="tag.amenitymore_bank">Banco</string>
+  <string name="tag.amenitymore_hotel">Hotel</string>
+  <string name="tag.amenitymore_motel">Motel</string>
+  <string name="tag.amenitymore_restaurant">Restaurante</string>
+  <string name="tag.amenitymore_fastfood">Lanchonete</string>
+  <string name="tag.way_primary">Primário</string>
+  <string name="tag.way_secondary">Secundário</string>
+  <string name="tag.way_tertiary">Terciário</string>
+  <string name="tag.way_residential">Residencial</string>
+  <string name="tag.way_service">Serviço</string>
+  <string name="tag.track_track">Trilha</string>
+  <string name="tag.track_cycleway">Ciclovia</string>
+</resources>

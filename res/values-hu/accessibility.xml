@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTracker logo</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Nagyítás</string>
+  <string name="acc.zoom_out">Kicsinyítés</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Műhold jelerősség jelző</string>
+  <string name="acc.record_indicator">Rögzítés folyamatban jelző</string>
+  <!--Track list-->
+  <string name="acc.track_status">Nyomkövetés állapot jelző</string>
+  <string name="acc.upload_status">OpenStreetMap feltöltés állapot jelző</string>
+</resources>

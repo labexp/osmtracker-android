@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Ρυθμίσεις</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">Ρυθμίσεις GPS</string>
+  <string name="prefs_gps_os_settings_summary">Εμφάνιση ρυθμίσεων GPS συστήματος</string>
+  <string name="prefs_check_gps_startup">Έλεγχος GPS κατά την εκκίνηση</string>
+  <string name="prefs_check_gps_startup_summary">Έλεγχος ενεργού GPS κατά την εκκίνηση, και ενεργοποίηση</string>
+  <string name="prefs_gps_ignore_clock">Αγνόηση ρολογιού GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Αγνόηση ρολογιού GPS και χρήση ρολογιού Android για χρονική σήμανση</string>
+  <string name="prefs_gps_logging_interval">Διάστημα καταγραφής GPS</string>
+  <string name="prefs_gps_logging_interval_summary">Χρησιμοποιήστε 0 για το μικρότερο δυνατό (επηρεάζει τη ζωή της μπαταρίας)</string>
+  <string name="prefs_gps_logging_interval_seconds">δευτερόλεπτα</string>
+  <string name="prefs_ui">Διεπαφή χρήστη</string>
+  <string name="prefs_ui_buttons_layout">Προκαθορισμένα κουμπιά</string>
+  <string name="prefs_ui_buttons_layout_summary">Επιλέξτε ένα προσαρμοσμένο σύνολο κουμπιών (δείτε τα έγγραφα)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Προκαθορισμένο</string>
+  <string name="prefs_ui_orientation">Προσανατολισμός</string>
+  <string name="prefs_ui_orientation_summary">Προτιμώμενος προσανατολισμός για την οθόνη κουμπιών</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Αυτόματα</item>
+    <item>Πορτραίτο</item>
+    <item>Τοπίο</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Διάρκεια καταγραφής φωνής</string>
+  <string name="prefs_voicerec_duration_seconds">δευτερόλεπτα</string>
+  <string name="prefs_theme">Γραφικό θέμα κεντρικής οθόνης</string>
+  <string name="prefs_theme_summary">Επανεκκινήστε την εφαρμογή για να ενεργοποιηθούν οι αλλαγές</string>
+  <string-array name="prefs_theme_keys">
+    <item>OS default</item>
+    <item>OS default (σκοτεινό)</item>
+    <item>OS default (φωτεινό)</item>
+    <item>Υψηλή αντίθεση</item>
+  </string-array>
+  <string name="prefs_display_always_on">Η οθόνη πάντα ανοικτή</string>
+  <string name="prefs_display_always_on_summary">Η οθόνη θα παραμένει ανοιχτή κατά την ιχνηλάτηση. Απενεργοποιήστε για να αυξήσετε τη διάρκεια της μπαταρίας.</string>
+  <string name="prefs_displaytrack_osm">Χάρτης παρασκηνίου</string>
+  <string name="prefs_displaytrack_osm_summary">Εμφάνιση του χάρτη OpenStreetMap κάτω από το ίχνος. Χρειάζεται σύνδεση δεδομένων</string>
+  <string name="prefs_output">Ρυθμίσεις GPX</string>
+  <string name="prefs_storage_dir">Κατάλογος εξωτερικής αποθήκευσης (SD)</string>
+  <string name="prefs_storage_dir_hint">Θα επηρεάσει το επόμενο ίχνος (όχι το τρέχων)</string>
+  <string name="prefs_output_one_dir_per_track">Ένας κατάλογος ανά ίχνος</string>
+  <string name="prefs_output_one_dir_per_track_summary">Αποθήκευση κάθε ίχνους και των σχετικών του αρχείων στον δικό του κατάλογο</string>
+  <string name="prefs_output_filename">Όνομα αρχείου για διαδρομές με όνομα</string>
+  <string name="prefs_output_filename_summary">Πρότυπο όνομα αρχείου για ίχνος που έχει όνομα.</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Όνομα ίχνους</item>
+    <item>Όνομα, ημερομηνία και ώρα έναρξης</item>
+    <item>Ημερομηνία και ώρα έναρξης</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Ακρίβεια στο αρχείο GPX</string>
+  <string name="prefs_output_accuracy_summary">Προσθήκη ακρίβειας στο αρχείο GPX, με το όνομα σημείου ή στο σχόλιο του σημείου</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Κανένα</item>
+    <item>Με όνομα σημείου</item>
+    <item>Στο σχόλιο του σημείου</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Χρήση προσέγγισης HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Πλήρωση του HDOP στο GPX με μια κατά προσέγγιση τιμή για την ακρίβεια</string>
+  <string name="prefs_sound_enabled">Ενεργοποίση ήχων</string>
+  <string name="prefs_sound_enabled_summary">Αναπαραγωγή ήχων κατά την εκκίνηση και στάση φωνητικής εγγραφής</string>
+  <string name="prefs_osm_clear_oauth_data">Μηδενισμός πιστοποίησης OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Αγνόηση των διαπιστευτηρίων και των δικαιωμάτων OSM και ανάγκασε τον OSMTracker να τα ζητήσει ξανά</string>
+</resources>

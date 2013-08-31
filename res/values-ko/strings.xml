@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <!--TrackLogger-->
+  <!--Waypoint List-->
+  <string name="wplist_latitude">위도:</string>
+  <string name="wplist_longitude">경도:</string>
+  <string name="wplist_accuracy">정확도:</string>
+  <!--Track Manager-->
+  <string name="trackmgr_contextmenu_export">GPX로 내보내기</string>
+  <!--Track Detail-->
+  <!--OSM upload-->
+  <!--GPS Status & record bar-->
+  <!--Menu-->
+  <string name="menu_save">저장</string>
+  <string name="menu_cancel">취소</string>
+  <!--Errors-->
+  <!--GPX-->
+  <!--About screen-->
+  <!--Notification-->
+  <!--Display track-->
+  <!--Track detail-->
+  <!--Various-->
+  <!--OSM map view-->
+</resources>

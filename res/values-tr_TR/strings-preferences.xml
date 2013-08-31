@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Tercihler</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS ayarları</string>
+  <string name="prefs_check_gps_startup">Açılışta GPS kontrol et</string>
+  <string name="prefs_ui">Kullanıcı arayüzü</string>
+  <string name="prefs_ui_buttons_layout_defaut">Varsayılan</string>
+</resources>

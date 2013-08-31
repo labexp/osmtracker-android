@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">Logotipo OSMTracker</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Aumentar zoom</string>
+  <string name="acc.zoom_out">Diminuir zoom</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Indicador de força do sinal de satélite</string>
+  <string name="acc.record_indicator">Indicador do progresso da gravação</string>
+  <!--Track list-->
+  <string name="acc.track_status">Indicador do status da trilha</string>
+  <string name="acc.upload_status">Indicador do status de envio para o OpenStreetMap</string>
+</resources>

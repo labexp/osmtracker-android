@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Configurações</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">Configurações do GPS</string>
+  <string name="prefs_gps_os_settings_summary">Exibir tela de configuração do GPS</string>
+  <string name="prefs_check_gps_startup">Verificar GPS ao iniciar</string>
+  <string name="prefs_check_gps_startup_summary">Ao iniciar, verificar se o GPS está desativado e perguntar se quer ativá-lo</string>
+  <string name="prefs_gps_ignore_clock">Ignorar relógio do GPS</string>
+  <string name="prefs_output">Configurações GPX</string>
+  <string name="prefs_sound_enabled">Ativar som</string>
+</resources>

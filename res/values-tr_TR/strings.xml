@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">Android™ için OSMTracker</string>
+  <string name="app_short_name">OSMTracker</string>
+  <!--TrackLogger-->
+  <string name="tracklogger_voicerec_stop">Durdur</string>
+  <string name="tracklogger_btnBack">Geri</string>
+  <string name="tracklogger_gps_disabled">GPS devre dışı</string>
+  <string name="tracklogger_gps_disabled_hint">GPS devre dışı. Etkinleştirmek ister misiniz?</string>
+  <!--Waypoint List-->
+  <string name="wplist_latitude">Enlem:</string>
+  <string name="wplist_longitude">Boylam:</string>
+  <string name="wplist_elevation">Yükseklik:</string>
+  <string name="wplist_accuracy">Doğruluk:</string>
+  <!--Track Manager-->
+  <string name="trackmgr_contextmenu_delete">Si</string>
+  <string name="trackmgr_contextmenu_osm_upload">OpenStreetMap\'e yükle</string>
+  <!--Track Detail-->
+  <string name="trackdetail_startdate">Başlama zamanı:</string>
+  <string name="trackdetail_enddate">Bitiş zamanı:</string>
+  <string name="trackdetail_osm_upload_date">OpenStreetMap yüklendi:</string>
+  <string name="trackdetail_description">Tanım</string>
+  <string name="trackdetail_tags">Etiketler (virgülle ayrık)</string>
+  <string name="trackdetail_description_mandatory">Bir tanım girmelisiniz</string>
+  <!--OSM upload-->
+  <string name="osm_upload_ok">Kaydet ve yükle</string>
+  <string name="osm_upload_sucess">OpenStreetMap\'e yükleme başarılı</string>
+  <!--GPS Status & record bar-->
+  <!--Menu-->
+  <string name="menu_settings">Ayarlar</string>
+  <string name="menu_about">Hakkında</string>
+  <string name="menu_save">Kaydet</string>
+  <string name="menu_cancel">İptal</string>
+  <!--Errors-->
+  <!--GPX-->
+  <!--About screen-->
+  <string name="about">Hakkında</string>
+  <string name="about_translate_text">OSMTracker çevirisine yardım et:</string>
+  <!--Notification-->
+  <!--Display track-->
+  <!--Track detail-->
+  <!--Various-->
+  <string name="various_accuracy">Doğruluk</string>
+  <string name="various_waiting_gps_fix">GPS düzeltme için bekleniyor...</string>
+  <!--OSM map view-->
+</resources>
