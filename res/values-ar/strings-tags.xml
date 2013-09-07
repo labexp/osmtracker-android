@@ -1,9 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">منوعات</string>
-  <string name="tag.restriction">تقييد</string>
+  <string name="tag.restriction">قيود</string>
   <string name="tag.car">سيارة</string>
   <string name="tag.tourism">سياحة</string>
+  <string name="tag.amenity">لطافة</string>
+  <string name="tag.amenity_more">لطافة (+)</string>
   <string name="tag.way">طريق</string>
   <string name="tag.track">مسلك</string>
   <string name="tag.landuse">استخدام الأراضي</string>
@@ -34,6 +36,7 @@
   <string name="tag.car_fuel_station">محطة وقود</string>
   <string name="tag.car_parking">مأوى سيارات</string>
   <string name="tag.car_emergency_phone">هاتف للطوارئ</string>
+  <string name="tag.car_turning_circle">تدوير دائرة</string>
   <string name="tag.car_speed_camera">رادار أوتوماتيكي</string>
   <string name="tag.tourism_view_point">نقطة مشاهدة</string>
   <string name="tag.tourism_information">معلومات</string>
@@ -69,6 +72,7 @@
   <string name="tag.amenitymore_fastfood">مطعم سريع</string>
   <string name="tag.amenitymore_camp_site">مخيم</string>
   <string name="tag.way_bridge">جسر</string>
+  <string name="tag.way_zebra_crossing">معبر مشاة</string>
   <string name="tag.way_motorway">طريق سيارة</string>
   <string name="tag.way_trunk">طريق سريع</string>
   <string name="tag.way_primary">رئيسي</string>
@@ -79,7 +83,9 @@
   <string name="tag.track_track">مسلك</string>
   <string name="tag.track_cycleway">مسلك دراجات</string>
   <string name="tag.track_footway">طريق للمشاة</string>
+  <string name="tag.track_bridleway">لوحة اتجاه</string>
   <string name="tag.track_steps">درج</string>
+  <string name="tag.track_living_street">شارع الحي</string>
   <string name="tag.track_pedestrian">للمترجلين</string>
   <string name="tag.track_grade1">درجة 1</string>
   <string name="tag.track_grade2">درجة 2</string>
@@ -87,8 +93,11 @@
   <string name="tag.track_grade4">درجة 4</string>
   <string name="tag.track_grade5">درجة 5</string>
   <string name="tag.landuse_farm">مزرعة</string>
+  <string name="tag.landuse_landfill">مكب النفايات</string>
   <string name="tag.landuse_basin">حوض</string>
   <string name="tag.landuse_reservoir">صهريج</string>
   <string name="tag.landuse_forest">غابة</string>
+  <string name="tag.landuse_allotments">تقسيمات</string>
   <string name="tag.landuse_cemetery">مقبرة</string>
+  <string name="tag.landuse_recreation_ground">استجمام\nأرض</string>
 </resources>

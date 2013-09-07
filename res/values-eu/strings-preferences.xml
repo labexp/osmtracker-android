@@ -63,4 +63,5 @@
   <string name="prefs_osm_clear_oauth_data">Berrezarri OSM autentifikazioa</string>
   <string name="prefs_osm_clear_oauth_data_summary">Ahaztu OSM egiaztagiri eta baimenak eta behartu OSMTracker berriz galdetzera</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Ibilbideak igotzeko OSMTracker berriz baimendu beharko duzu. Ziur zaude?</string>
+  <string name="prefs_map_tile_summary"></string>
 </resources>

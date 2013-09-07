@@ -12,22 +12,22 @@
   <string name="tracklogger_voicerec_stop">Stop</string>
   <string name="tracklogger_btnBack">Tilbage</string>
   <string name="tracklogger_tracked">Tracked: </string>
-  <string name="tracklogger_gps_disabled">GPS ikke tændt</string>
-  <string name="tracklogger_gps_disabled_hint">GPS er ikke tændt. Vil du tænde den?</string>
+  <string name="tracklogger_gps_disabled">GPS slukket</string>
+  <string name="tracklogger_gps_disabled_hint">GPS er slukket. Vil du tænde den?</string>
   <!--Waypoint List-->
-  <string name="wplist">Waypoint liste</string>
-  <string name="wplist_latitude">Lat: </string>
-  <string name="wplist_longitude">Long: </string>
-  <string name="wplist_elevation">Ele: </string>
-  <string name="wplist_accuracy">Accur: </string>
+  <string name="wplist">Waypoint-liste</string>
+  <string name="wplist_latitude">Bred: </string>
+  <string name="wplist_longitude">Læng.: </string>
+  <string name="wplist_elevation">Høj: </string>
+  <string name="wplist_accuracy">Nøj: </string>
   <!--Track Manager-->
-  <string name="trackmgr">Track styring</string>
-  <string name="trackmgr_tracklist">Track liste:</string>
+  <string name="trackmgr">Track-håndtering</string>
+  <string name="trackmgr_tracklist">Track-liste:</string>
   <string name="trackmgr_waypoints_count">Waypoints: </string>
-  <string name="trackmgr_trackpoints_count">Track punkter: </string>
+  <string name="trackmgr_trackpoints_count">Track-punkter: </string>
   <string name="trackmgr_empty">Du har ingen tracks.</string>
-  <string name="trackmgr_newtrack_hint">For at gemme et track, tryk <b>Menu</b> og så <b>Ny track</b></string>
-  <string name="trackmgr_newtrack_error">Kunne ikke oprette ny track: {0}</string>
+  <string name="trackmgr_newtrack_hint">For at gemme et track, tryk <b>Menu</b> og så <b>Nyt track</b></string>
+  <string name="trackmgr_newtrack_error">Kunne ikke oprette nyt track: {0}</string>
   <string name="trackmgr_continuetrack_hint">Du optager aktuelt <b>track #{0}</b>\nVælg det i listen for at fortsætte</string>
   <string name="trackmgr_contextmenu_stop">Stop tracking</string>
   <string name="trackmgr_contextmenu_resume">Gentoptag tracking</string>
@@ -43,7 +43,7 @@
   <string name="trackmgr_export_error">Kunne ikke eksportere track: {0}</string>
   <string name="trackmgr_exportall_confirm">Alle tracks bliver eksporteret. Det kan tage noget tid. Er du sikker?</string>
   <!--Track Detail-->
-  <string name="trackdetail">Track detaljer</string>
+  <string name="trackdetail">Track-detaljer</string>
   <string name="trackdetail_startdate">Starttid:</string>
   <string name="trackdetail_enddate">Sluttid:</string>
   <string name="trackdetail_startloc">Starter ved:</string>
@@ -73,16 +73,16 @@
   <string name="osm_upload_unauthorized">Loginfejl. Vil du nulstille OpenStreetMap logininformation?</string>
   <string name="osm_upload_sucess">OpenStreetMap upload lykkedes</string>
   <!--GPS Status & record bar-->
-  <string name="gpsstatus_record_voicerec">Tale optagelse</string>
-  <string name="gpsstatus_record_stillimage">Tage billeder</string>
-  <string name="gpsstatus_record_textnote">Tekst note</string>
+  <string name="gpsstatus_record_voicerec">Tale-optagelse</string>
+  <string name="gpsstatus_record_stillimage">Tag billede</string>
+  <string name="gpsstatus_record_textnote">Tekstnote</string>
   <!--Menu-->
   <string name="menu_settings">Indstillinger</string>
   <string name="menu_waypointlist">Waypoints</string>
   <string name="menu_about">Om</string>
   <string name="menu_displaytrack">Vis track</string>
   <string name="menu_stoptracking">Stop &amp; gem</string>
-  <string name="menu_newtrack">Ny track</string>
+  <string name="menu_newtrack">Nyt track</string>
   <string name="menu_deletetracks">Slet alle tracks</string>
   <string name="menu_continue">Fortsæt track</string>
   <string name="menu_stopcurrenttrack">Stop aktuelle track</string>
@@ -94,16 +94,16 @@
   <string name="menu_exportall">Eksporter alle til GPX</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">Kunne ikke skrive til ekstern lager.</string>
-  <string name="error_create_track_dir">Kunne ikke oprette track mappe %s.</string>
-  <string name="error_externalstorage_not_writable_hint">Check at eksternt lager er korrekt monteret og mounted.</string>
-  <string name="error_voicerec_failed">Tale optagelse fejlede</string>
-  <string name="error_userlayout_parsing">Fejl under parsing af XML layout file. Brug i stedet standard layout.</string>
+  <string name="error_create_track_dir">Kunne ikke oprette track-mappe %s.</string>
+  <string name="error_externalstorage_not_writable_hint">Check at eksternt lager er korrekt indsat og mounted.</string>
+  <string name="error_voicerec_failed">Taleoptagelse fejlede</string>
+  <string name="error_userlayout_parsing">Fejl under parsing af XML-layout-fil. Brug i stedet standardlayout.</string>
   <!--GPX-->
   <string name="gpx_track_name">Tracked med OSMTracker til Android™</string>
   <string name="gpx_hdop_approximation_cmt">Advarsel: HDOP-værdier er ikke de samme HDOP-værdier som kommer fra GPS. De er approksimeret fra placeringspræcisionen i meter.</string>
   <!--About screen-->
   <string name="about">Om</string>
-  <string name="about_text">For more information, dokumenter og support besøg venligst projektets hjemmeside:</string>
+  <string name="about_text">For more information, dokumentation og support besøg venligst projektets hjemmeside:</string>
   <string name="about_translate_text">Hjælp med at oversætte OSMTracker:</string>
   <string name="about_debug_info">Debug info</string>
   <!--Notification-->
@@ -118,7 +118,7 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Præcision</string>
-  <string name="various_waiting_gps_fix">Vewnter på GPS fix…</string>
+  <string name="various_waiting_gps_fix">Venter på GPS-fix…</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap track visning</string>
 </resources>

@@ -37,6 +37,7 @@
   <string name="prefs_display_always_on_summary">Η οθόνη θα παραμένει ανοιχτή κατά την ιχνηλάτηση. Απενεργοποιήστε για να αυξήσετε τη διάρκεια της μπαταρίας.</string>
   <string name="prefs_displaytrack_osm">Χάρτης παρασκηνίου</string>
   <string name="prefs_displaytrack_osm_summary">Εμφάνιση του χάρτη OpenStreetMap κάτω από το ίχνος. Χρειάζεται σύνδεση δεδομένων</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Πάντα εμφάνιση του παρασκηνίου OpenStreetMap; απαιτεί σύνδεση δεδομένων.</string>
   <string name="prefs_output">Ρυθμίσεις GPX</string>
   <string name="prefs_storage_dir">Κατάλογος εξωτερικής αποθήκευσης (SD)</string>
   <string name="prefs_storage_dir_hint">Θα επηρεάσει το επόμενο ίχνος (όχι το τρέχων)</string>
@@ -62,4 +63,12 @@
   <string name="prefs_sound_enabled_summary">Αναπαραγωγή ήχων κατά την εκκίνηση και στάση φωνητικής εγγραφής</string>
   <string name="prefs_osm_clear_oauth_data">Μηδενισμός πιστοποίησης OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Αγνόηση των διαπιστευτηρίων και των δικαιωμάτων OSM και ανάγκασε τον OSMTracker να τα ζητήσει ξανά</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Θα πρέπει να εξουσιοδοτήσετε τον  OSMTracker για να αποστείλει ίχνη ξανά. Είστε σίγουρος;</string>
+  <string name="prefs_map_tile">Παροχέας πλακιδίων χάρτη</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>MAPNIK</item>
+    <item>CYCLEMAP</item>
+    <item>MAPQUESTOSM</item>
+  </string-array>
 </resources>

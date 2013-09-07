@@ -14,6 +14,9 @@
   <string name="tracklogger_tracked">Ślad: </string>
   <string name="tracklogger_gps_disabled">GPS wyłączony</string>
   <string name="tracklogger_gps_disabled_hint">GPS jest wyłączony. Czy chcesz go włączyć?</string>
+  <string name="tracklogger_choose_gallery_camera">Galeria czy aparat?</string>
+  <string name="tracklogger_camera">Zrób zdjęcie</string>
+  <string name="tracklogger_gallery">Wybierz zdjęcie z galerii</string>
   <!--Waypoint List-->
   <string name="wplist">Lista punktów nawigacji</string>
   <string name="wplist_latitude">Szer: </string>
@@ -112,6 +115,7 @@
   <string name="notification_text">Dotknij tutaj, aby wyświetlić ekran główny</string>
   <!--Display track-->
   <string name="displaytrack">Wyświetla ślad</string>
+  <string name="displaytrack_map">Wyświetl mapę w tle</string>
   <string name="displaytrack_north">N</string>
   <!--Track detail-->
   <string name="trackdetail_save">Zapisz</string>

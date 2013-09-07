@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
-  <string name="app_name">OSMTracker（Android版）</string>
+  <string name="app_name">OSMTracker for Android™</string>
   <string name="app_short_name">OSMTracker</string>
   <string name="app_description">本程式點子借自 Windows Mobile 上的 OSMTracker，提供您記錄移動的軌跡、標註顯著的航點（您可錄製語音或拍照），匯出以上資訊為 GPX 格式檔案，以便之後用於 OpenStreetMap 的輔助工具，例如 JSOM。</string>
   <!--TrackLogger-->

@@ -18,4 +18,5 @@
   <string name="prefs_output">GPX设置</string>
   <string name="prefs_sound_enabled">开启声音</string>
   <string name="prefs_osm_clear_oauth_data">重设 OSM 验证</string>
+  <string name="prefs_map_tile_summary"></string>
 </resources>

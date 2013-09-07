@@ -37,6 +37,7 @@
   <string name="prefs_display_always_on_summary">A képernyő bekapcsolva marad nyomkövetéskor. Kapcsolja ki az akku jobb üzemidejéhez</string>
   <string name="prefs_displaytrack_osm">Háttér térkép</string>
   <string name="prefs_displaytrack_osm_summary">Az OpenStreetMap megjelenítése a nyomkövetés alatt. Adatkapcsolatot igényel</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Az OpenStreetMap háttér megjelenítése mindig? Adatkapcsolatot igényel.</string>
   <string name="prefs_output">GPX beállítások</string>
   <string name="prefs_storage_dir">Külső tároló (SD) könyvtár</string>
   <string name="prefs_storage_dir_hint">A következő nyomkövetésnél lép életbe (nem az aktuálisnál)\n</string>
@@ -63,4 +64,11 @@
   <string name="prefs_osm_clear_oauth_data">OSM authentikáció alaphelyzetbe állítása</string>
   <string name="prefs_osm_clear_oauth_data_summary">Az OSM belépési adatok és jogosultságok elfelejtése és az OSMTracker kényszerítése, hogy megkérdezze újra azokat</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Az OSMTrackert majd újból azonosítani kell a nyomvonalak feltöltéséhez. Biztosan ezt szeretné?</string>
+  <string name="prefs_map_tile">Térképcsempe szolgáltató</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>MAPNIK</item>
+    <item>CYCLEMAP</item>
+    <item>MAPQUESTOSM</item>
+  </string-array>
 </resources>

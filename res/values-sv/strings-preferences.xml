@@ -37,6 +37,7 @@
   <string name="prefs_display_always_on_summary">Skärmen släcks inte under tiden spår spelas in. Avmarkera för att spara batteri.</string>
   <string name="prefs_displaytrack_osm">OSM-bakgrund</string>
   <string name="prefs_displaytrack_osm_summary">Visa OpenStreetMap-karta under spåret. Dataanslutning krävs.</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Visa alltid OpenStreetMap-bakgrund? Dataanslutning krävs.</string>
   <string name="prefs_output">GPX-fil</string>
   <string name="prefs_storage_dir">Lagringsmapp (SD)</string>
   <string name="prefs_storage_dir_hint">Gäller för nästa och kommande spår, inte aktuellt spår.</string>
@@ -63,4 +64,10 @@
   <string name="prefs_osm_clear_oauth_data">Återställ inloggning till OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Glöm bort inloggning och tillstånd och tvinga OSMTracker att fråga om detta igen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Du måste godkänna OSMTracker för att kunna ladda upp spår igen. Är du säker?</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>MAPNIK</item>
+    <item>CYCLEMAP</item>
+    <item>MAPQUESTOSM</item>
+  </string-array>
 </resources>

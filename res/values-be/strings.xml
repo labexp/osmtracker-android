@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <!--TrackLogger-->
+  <string name="tracklogger_btnBack">Назад</string>
+  <!--Waypoint List-->
+  <!--Track Manager-->
+  <!--Track Detail-->
+  <!--OSM upload-->
+  <!--GPS Status & record bar-->
+  <!--Menu-->
+  <string name="menu_save">Захаваць</string>
+  <string name="menu_cancel">Скасаваць</string>
+  <!--Errors-->
+  <!--GPX-->
+  <!--About screen-->
+  <!--Notification-->
+  <!--Display track-->
+  <!--Track detail-->
+  <!--Various-->
+  <string name="various_unit_meters">м</string>
+  <!--OSM map view-->
+</resources>

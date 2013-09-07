@@ -63,4 +63,5 @@
   <string name="prefs_osm_clear_oauth_data">Fjern OSM-nøkkel</string>
   <string name="prefs_osm_clear_oauth_data_summary">Fjern brukarinformasjon og tilgangsinformasjon for OSM og få OSMTracker til å spørje om tilgang på nytt</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Du kjem til å måtte gje OSMTracker løyve til å lasta opp spor til OSM att. Er du sikker?</string>
+  <string name="prefs_map_tile_summary"></string>
 </resources>

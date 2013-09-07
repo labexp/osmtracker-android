@@ -37,6 +37,7 @@
   <string name="prefs_display_always_on_summary">Екран завжди буде включений під час запису шляху. Вимкніть для економії заряду батареї</string>
   <string name="prefs_displaytrack_osm">Основна карта</string>
   <string name="prefs_displaytrack_osm_summary">Відображати карти OpenStreetMap при відображенні шляху. Вимагає з\'єднання з інтернетом</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Завжди відображати основу OpenStreetMap? Вимагає з\'єднання з інтернетом.</string>
   <string name="prefs_output">Налаштування GPX</string>
   <string name="prefs_storage_dir">Каталог зовнішнього носія (SD)</string>
   <string name="prefs_storage_dir_hint">Буде використовуватися для запису наступного шляху (не для поточного)</string>
@@ -63,4 +64,11 @@
   <string name="prefs_osm_clear_oauth_data">Скинути облікові дані OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Видалити облікові дані доступу до OSM і примусити OSMTracker запросити їх знову.</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Потрібно буде заново авторизувати OSMTracker, щоб завантажувати шляхи. Ви впевнені?</string>
+  <string name="prefs_map_tile">Постачальник основи карти</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>MAPNIK</item>
+    <item>CYCLEMAP</item>
+    <item>MAPQUESTOSM</item>
+  </string-array>
 </resources>

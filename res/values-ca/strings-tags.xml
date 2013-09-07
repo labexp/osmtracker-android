@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="tag.restriction">Restricció</string>
+  <string name="tag.car">Cotxe</string>
+  <string name="tag.tourism">Turisme</string>
+  <string name="tag.way">Via</string>
+  <string name="tag.landuse">Ús de terreny</string>
+  <string name="tag.misc_bus_stop">Parada de bus</string>
+  <string name="tag.misc_telephone">Telèfon</string>
+  <string name="tag.misc_atm">Caixer</string>
+  <string name="tag.misc_toilets">Lavabos</string>
+  <string name="tag.misc_shelter">Sopluig</string>
+  <string name="tag.restriction_no_exit">Sense sortida</string>
+  <string name="tag.restriction_one_way">Un sentit</string>
+  <string name="tag.car_fuel_station">Gasolinera</string>
+  <string name="tag.car_parking">Aparcament</string>
+  <string name="tag.car_speed_camera">Radar</string>
+  <string name="tag.tourism_information">Informació</string>
+  <string name="tag.tourism_castle">Castell</string>
+  <string name="tag.tourism_museum">Museu</string>
+  <string name="tag.amenity_water">Aigua</string>
+  <string name="tag.amenity_shop">Botiga</string>
+  <string name="tag.amenity_library">Biblioteca</string>
+  <string name="tag.amenitymore_school">Escola</string>
+  <string name="tag.amenitymore_police">Policia</string>
+  <string name="tag.amenitymore_bank">Banc</string>
+  <string name="tag.amenitymore_fastfood">Menjar ràpid</string>
+  <string name="tag.way_bridge">Pont</string>
+  <string name="tag.landuse_forest">Bosc</string>
+</resources>

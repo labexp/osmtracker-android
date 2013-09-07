@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker για Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Εμπνευσμένο από το OSMTracker για το Windows Mobile, σας αφήνει να ιχνηλατήστε τα ταξίδια σας, να σημειώσετε σημαντικά σημεία (ηχογράφηση φωνής, εικόνα) και να κάνετε εξαγωγή σε τύπο αρχείου GPX για χρήση αργότερα με εργαλεία για το OpenStreetMap όπως το JOSM.</string>
+  <string name="app_description">Εμπνευσμένο από το OSMTracker για το Windows Mobile, σας αφήνει να ιχνηλατήσετε τα ταξίδια σας, να σημειώσετε σημαντικά σημεία (ηχογράφηση φωνής, εικόνα) και να κάνετε εξαγωγή σε τύπο αρχείου GPX για χρήση αργότερα με εργαλεία για το OpenStreetMap όπως το JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Καταγραφέας ίχνους</string>
   <string name="tracklogger_waiting_gps">Αναμονή του GPS για ενεργοποίηση των κουμπιών</string>
@@ -14,7 +14,11 @@
   <string name="tracklogger_tracked">Ίχνευση:</string>
   <string name="tracklogger_gps_disabled">GPS απενεργοποιημένο</string>
   <string name="tracklogger_gps_disabled_hint">Το GPS είναι απενεργοποιημένο. Θέλεις να το ενεργοποιήσεις;</string>
+  <string name="tracklogger_choose_gallery_camera">Συλλογή ή κάμερα;</string>
+  <string name="tracklogger_camera">Λήψη φωτογραφίας με την κάμερα</string>
+  <string name="tracklogger_gallery">Επιλογή εικόνας από τη συλλογή</string>
   <!--Waypoint List-->
+  <string name="wplist">Λίστα σημείων</string>
   <string name="wplist_latitude">Πλάτος:</string>
   <string name="wplist_longitude">Μήκος:</string>
   <string name="wplist_elevation">Ύψος:</string>
@@ -22,6 +26,8 @@
   <!--Track Manager-->
   <string name="trackmgr">Διαχειριστής ιχνών</string>
   <string name="trackmgr_tracklist">Κατάλογος ιχνών:</string>
+  <string name="trackmgr_waypoints_count">Ενδιάμεσα σημεία:</string>
+  <string name="trackmgr_trackpoints_count">Ίχνη:</string>
   <string name="trackmgr_empty">Δεν έχεις ίχνη.</string>
   <string name="trackmgr_newtrack_hint">Για να γράψεις ένα ίχνος⏎ πάτα <b>Μενού</b> και μετά <b>Νέο ίχνος</b></string>
   <string name="trackmgr_newtrack_error">Αδύνατη η δημιουργία νέου ίχνους: {0}</string>
@@ -45,7 +51,7 @@
   <string name="trackdetail_enddate">Χρόνος ολοκλήρωσης:</string>
   <string name="trackdetail_startloc">Αρχίζει σε:</string>
   <string name="trackdetail_endloc">Τελειώνει σε:</string>
-  <string name="trackdetail_exportdate">Εξαχθεί:</string>
+  <string name="trackdetail_exportdate">Εξήχθη:</string>
   <string name="trackdetail_osm_upload_date">Εστάλη στο OpenStreetMap:</string>
   <string name="trackdetail_btn_export">Εξαγωγή ως GPX</string>
   <string name="trackdetail_export_notyet">(Δεν έχει ακόμη εξαχθεί)</string>
@@ -56,6 +62,7 @@
   <string name="trackdetail_description_mandatory">Πρέπει να εισάγετε περιγραφή</string>
   <string name="osm_visibility_private">Προσωπικό</string>
   <string name="osm_visibility_public">Δημόσιο</string>
+  <string name="osm_visibility_trackable">Ανιχνεύσιμα</string>
   <string name="osm_visibility_identifiable">Αναγνωρίσιμο</string>
   <!--OSM upload-->
   <string name="osm_upload">Αποστολή στο OpenStreetMap</string>
@@ -67,7 +74,7 @@
   <string name="osm_upload_error">Σφάλμα κατά την αποστολή ίχνους</string>
   <string name="osm_upload_bad_response">Ο εξυπηρετητής OSM απέδωσε σφάλμα: ({0}) μήνυμα {1}</string>
   <string name="osm_upload_unauthorized">Σφάλμα επικύρωσης. Θελε να εκκαθαρίσετε τα αποθηκευμένα πιστοποιητικά για το OSM;</string>
-  <string name="osm_upload_sucess">Αποστολη στο OpenStreetmap επιτυχής</string>
+  <string name="osm_upload_sucess">Αποστολή στο OpenStreetmap επιτυχής</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Ηχογράφηση φωνής</string>
   <string name="gpsstatus_record_stillimage">Λήψη φωτογραφίας</string>
@@ -79,36 +86,43 @@
   <string name="menu_displaytrack">Προβολή ίχνους</string>
   <string name="menu_stoptracking">Διακοπή και αποθήκευση</string>
   <string name="menu_newtrack">Νέο ίχνος</string>
-  <string name="menu_deletetracks">Διαγραφή όλων των ίχνων</string>
+  <string name="menu_deletetracks">Διαγραφή όλων των ιχνών</string>
   <string name="menu_continue">Συνέχεια ίχνους</string>
-  <string name="menu_stopcurrenttrack">Διακοπή τρέχων ίχνους</string>
+  <string name="menu_stopcurrenttrack">Διακοπή τρέχοντος ίχνους</string>
   <string name="menu_save">Αποθήκευση</string>
   <string name="menu_cancel">Ακύρωση</string>
   <string name="menu_export">Εξαγωγή ως GPX</string>
   <string name="menu_osm_upload">Αποστολή στο OpenStreetMap</string>
-  <string name="menu_center_to_gps">Κεντραρισμός στο GPS</string>
+  <string name="menu_center_to_gps">Κεντράρισμα στο GPS</string>
   <string name="menu_exportall">Εξαγωγή όλων ως GPX</string>
   <!--Errors-->
+  <string name="error_externalstorage_not_writable">Δεν ήταν δυνατή η αποθήκευση σε εξωτερικά μέσα</string>
   <string name="error_create_track_dir">Αδύνατη η δημιουργία φακέλου για το ίχνος %s</string>
   <string name="error_externalstorage_not_writable_hint">Παρακαλούμε κοιτάξτε αν η εξωτερική αποθήκευση έχει τοποθετηθεί σωστά. </string>
   <string name="error_voicerec_failed">Η ηχογράφηση φωνής απέτυχε</string>
+  <string name="error_userlayout_parsing">Σφάλμα στην ανάπτυξη του σχεδίου XML. Επαναφέρετε το προκαθορισμένο σχέδιο.</string>
   <!--GPX-->
   <string name="gpx_track_name">Ιχνηλατίστηκε με το OSMTracker για Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Προσοχή: Οι τιμές HDOP δεν είναι ίδιες με αυτές που όριζει η συσκευή GPS. Είναι κατά προσέγγιση από την ακρίβεια θέσης σε μέτρα.</string>
   <!--About screen-->
   <string name="about">Σχετικά</string>
+  <string name="about_text">Για περισσότερες πληροφορίες, εγχειρίδια και αναφορές λαθών, επισκεφθείτε τη σελίδα της εφαρμογής:</string>
   <string name="about_translate_text">Βοηθήστε στη μετάφραση του OSMTracker:</string>
+  <string name="about_debug_info">Πληροφορίες εντοπισμού σφαλμάτων</string>
   <!--Notification-->
   <string name="notification_ticker_text">Το OSMTracker ιχνηλατεί</string>
   <string name="notification_title">Το OSMTracker ιχνηλατεί (#{0})</string>
   <string name="notification_text">Πατήστε εδώ για να επιστρέψετε στην κύρια οθόνη</string>
   <!--Display track-->
   <string name="displaytrack">Προβολή ίχνους</string>
+  <string name="displaytrack_map">Εμφάνιση χάρτη παρασκηνίου</string>
   <string name="displaytrack_north">Β</string>
   <!--Track detail-->
   <string name="trackdetail_save">Αποθήκευση</string>
   <!--Various-->
   <string name="various_unit_meters">μ</string>
   <string name="various_accuracy">Ακρίβεια</string>
+  <string name="various_waiting_gps_fix">Αναμονή GPS...</string>
   <!--OSM map view-->
-  <string name="displaytrackmap">Προβολή ίχνων OpenStreetMap</string>
+  <string name="displaytrackmap">Προβολή ιχνών OpenStreetMap</string>
 </resources>

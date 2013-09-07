@@ -14,6 +14,9 @@
   <string name="tracklogger_tracked">Rögzítve:</string>
   <string name="tracklogger_gps_disabled">GPS kikapcsolva</string>
   <string name="tracklogger_gps_disabled_hint">A GPS ki van kapcsolva. Szeretné engedélyezni?</string>
+  <string name="tracklogger_choose_gallery_camera">Galéria vagy kamera?</string>
+  <string name="tracklogger_camera">Kép készítése kamerával</string>
+  <string name="tracklogger_gallery">Kép kiválasztása a Galériából</string>
   <!--Waypoint List-->
   <string name="wplist">Útpont lista</string>
   <string name="wplist_latitude">Szél:</string>
@@ -112,6 +115,7 @@
   <string name="notification_text">Érintse meg itt a fő képernyő mgjelenítéséhez</string>
   <!--Display track-->
   <string name="displaytrack">Nyomvonal mutatása</string>
+  <string name="displaytrack_map">Háttér térkép megjelenítése</string>
   <string name="displaytrack_north">É</string>
   <!--Track detail-->
   <string name="trackdetail_save">Mentés</string>

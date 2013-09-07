@@ -63,4 +63,5 @@
   <string name="prefs_osm_clear_oauth_data">Restabelecer a autenticação OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Esquecer as credenciais e permissões OSM e forçar o OSMTracker a pedi-las novamente</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Terá de autorizar, novamente, o OSMTracker a enviar informações de caminhos. Tem a certeza?</string>
+  <string name="prefs_map_tile_summary"></string>
 </resources>

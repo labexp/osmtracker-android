@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs_gps_logging_interval_seconds">segons</string>
+  <string name="prefs_ui">Interfície d\'usuari</string>
+  <string name="prefs_ui_orientation">Orientació</string>
+  <string name="prefs_voicerec_duration_seconds">segons</string>
+  <string name="prefs_displaytrack_osm">Mapa de fons</string>
+  <string name="prefs_sound_enabled">Activa so</string>
+  <string name="prefs_map_tile_summary"></string>
+</resources>

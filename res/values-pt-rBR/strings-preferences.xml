@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Configurações</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">Configurações do GPS</string>
+  <string name="prefs_gps_os_settings_summary">Exibir tela de configuração do GPS</string>
+  <string name="prefs_check_gps_startup">Verificar GPS ao iniciar</string>
+  <string name="prefs_check_gps_startup_summary">Ao iniciar, verificar se o GPS está desativado e perguntar se quer ativá-lo</string>
+  <string name="prefs_gps_ignore_clock">Ignorar relógio do GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Ignorar relógio do GPS e usar relógio do Android para marcas de tempo</string>
+  <string name="prefs_gps_logging_interval">Intervalo do registro do GPS</string>
+  <string name="prefs_gps_logging_interval_summary">Use 0 para o menor possível (afeta vida da bateria)</string>
+  <string name="prefs_gps_logging_interval_seconds">segundos</string>
+  <string name="prefs_ui">Interface do usuário</string>
+  <string name="prefs_ui_buttons_layout">Definições de botões</string>
+  <string name="prefs_ui_buttons_layout_summary">Escolha uma configuração de botões customizada (veja documentação)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Padrão</string>
+  <string name="prefs_ui_orientation">Orientação</string>
+  <string name="prefs_ui_orientation_summary">Orientação preferida para o botão da tela</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automática</item>
+    <item>Retrato</item>
+    <item>Paisagem</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Duração da gravação de voz</string>
+  <string name="prefs_voicerec_duration_seconds">segundos</string>
+  <string name="prefs_theme">Tema do gráfico da tela principal</string>
+  <string name="prefs_theme_summary">É necessário reiniciar o aplicativo para que as mudanças façam efeito</string>
+  <string-array name="prefs_theme_keys">
+    <item>Padrão do sistema</item>
+    <item>Padrão do sistema (escuro)</item>
+    <item>Padrão do sistema (claro)</item>
+    <item>Alto contraste</item>
+  </string-array>
+  <string name="prefs_display_always_on">Tela sempre ligada</string>
+  <string name="prefs_display_always_on_summary">Tela ficará sempre ligada durante rastreamento. Desative para economizar bateria</string>
+  <string name="prefs_displaytrack_osm">Mapa de fundo</string>
+  <string name="prefs_displaytrack_osm_summary">Exibir mapa do OpenStreetMap por baixo. Precisa de uma conexão de dados</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Sempre exibir o OpenStreetMap de fundo? Requer uma conexão de dados.</string>
+  <string name="prefs_output">Configurações GPX</string>
+  <string name="prefs_storage_dir">Pasta do armazenamento externo (SD)</string>
+  <string name="prefs_storage_dir_hint">Entrará em efeito na próxima trilha (não na atual)</string>
+  <string name="prefs_output_one_dir_per_track">Uma pasta por trilha</string>
+  <string name="prefs_output_one_dir_per_track_summary">Salvar cada trilha e arquivos associados em uma pasta própria</string>
+  <string name="prefs_output_filename">Nome do arquivo para trilhas nomeadas</string>
+  <string name="prefs_output_filename_summary">Padrão para nomes de arquivo se a trilha tem um nome</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Nome da trilha</item>
+    <item>Nome, data e hora do início</item>
+    <item>Data e hora do início</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Precisão do arquivo GPX</string>
+  <string name="prefs_output_accuracy_summary">Adicionar informações sobre precisão nos arquivos GPX, com nomes ou comentários dos pontos de passagem</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Nenhum</item>
+    <item>Com nome do ponto de passagem</item>
+    <item>Em um comentário do ponto de passagem</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Usar aproximação HDOP</string>
+  <string name="prefs_sound_enabled">Ativar som</string>
+  <string name="prefs_sound_enabled_summary">Tocar som quando gravação de voz começa e termina</string>
+  <string name="prefs_osm_clear_oauth_data">Redefinir autenticação OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Esquecer as credenciais e permissões OSM e forçar o OSMTracker a perguntar isso novamente</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Você vai ter que autorizar OSMTracker para carregar trilhas novamente. Tem certeza?</string>
+  <string name="prefs_map_tile">Provedor do mapa</string>
+  <string name="prefs_map_tile_summary"></string>
+</resources>

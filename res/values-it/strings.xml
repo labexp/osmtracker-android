@@ -14,6 +14,9 @@
   <string name="tracklogger_tracked">Tracciato: </string>
   <string name="tracklogger_gps_disabled">GPS disattivato</string>
   <string name="tracklogger_gps_disabled_hint">Il GPS è disattivato. Vuoi attivarlo?</string>
+  <string name="tracklogger_choose_gallery_camera">Galleria o fotocamera?</string>
+  <string name="tracklogger_camera">Scatta foto con la fotocamera</string>
+  <string name="tracklogger_gallery">Seleziona foto dalla galleria</string>
   <!--Waypoint List-->
   <string name="wplist">Elenco POI</string>
   <string name="wplist_latitude">Lat: </string>
@@ -112,6 +115,7 @@
   <string name="notification_text">Tocca qui per mostrare lo schermo principale</string>
   <!--Display track-->
   <string name="displaytrack">Mostra traccia</string>
+  <string name="displaytrack_map">Visualizza sfondo mappa</string>
   <string name="displaytrack_north">N</string>
   <!--Track detail-->
   <string name="trackdetail_save">Salva</string>

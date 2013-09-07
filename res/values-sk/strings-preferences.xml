@@ -60,4 +60,5 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">Vyplniť HDOP v GPX s odhadovanou hodnotou presnosti</string>
   <string name="prefs_sound_enabled">Zapnúť zvuky</string>
   <string name="prefs_sound_enabled_summary">Prehrávať zvuky pri spustení a ukončení nahrávania hlasovej stopy</string>
+  <string name="prefs_map_tile_summary"></string>
 </resources>

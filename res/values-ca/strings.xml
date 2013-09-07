@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <!--TrackLogger-->
+  <string name="tracklogger_voicerec_title">Gravació de veu</string>
+  <string name="tracklogger_voicerec_stop">Atura</string>
+  <string name="tracklogger_btnBack">Enrera</string>
+  <!--Waypoint List-->
+  <!--Track Manager-->
+  <string name="trackmgr_contextmenu_delete">Esborra</string>
+  <string name="trackmgr_contextmenu_osm_upload">Puja a OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_details">Detalls</string>
+  <!--Track Detail-->
+  <string name="trackdetail_description">Descripció</string>
+  <string name="osm_visibility_private">Privat</string>
+  <string name="osm_visibility_public">Públic</string>
+  <!--OSM upload-->
+  <string name="osm_upload_ok">Desa i puja</string>
+  <!--GPS Status & record bar-->
+  <!--Menu-->
+  <string name="menu_save">Desa</string>
+  <string name="menu_center_to_gps">Centra al GPS</string>
+  <!--Errors-->
+  <!--GPX-->
+  <!--About screen-->
+  <!--Notification-->
+  <!--Display track-->
+  <!--Track detail-->
+  <string name="trackdetail_save">Desa</string>
+  <!--Various-->
+  <!--OSM map view-->
+</resources>

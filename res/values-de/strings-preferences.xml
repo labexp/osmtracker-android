@@ -63,4 +63,5 @@
   <string name="prefs_osm_clear_oauth_data">OSM-Anmeldedaten rücksetzen</string>
   <string name="prefs_osm_clear_oauth_data_summary">OSM-Anmeldedaten und -Rechte vergessen und OSMTracker neu danach fragen lassen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Du musst OSMTracker neu erlauben, Tracks hochladen zu dürfen. Bist Du sicher?</string>
+  <string name="prefs_map_tile_summary"></string>
 </resources>

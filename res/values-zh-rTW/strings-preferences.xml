@@ -63,4 +63,5 @@
   <string name="prefs_osm_clear_oauth_data">重新設定 OSM 認證</string>
   <string name="prefs_osm_clear_oauth_data_summary">捨棄現存的 OSM 認證與權限資訊，強制 OSMTracker 重新取得它們</string>
   <string name="prefs_osm_clear_oauth_data_dialog">您必須重新認證 OSMTracker 方能繼續上傳軌跡資料，確定嗎？</string>
+  <string name="prefs_map_tile_summary"></string>
 </resources>

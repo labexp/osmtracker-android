@@ -14,6 +14,9 @@
   <string name="tracklogger_tracked">Noterad: </string>
   <string name="tracklogger_gps_disabled">GPS inaktiverad</string>
   <string name="tracklogger_gps_disabled_hint">GPS:en är inaktiverad. Vill du aktivera den?</string>
+  <string name="tracklogger_choose_gallery_camera">Galleri eller kamera?</string>
+  <string name="tracklogger_camera">Ta kort med kamera</string>
+  <string name="tracklogger_gallery">Välj bild från galleri</string>
   <!--Waypoint List-->
   <string name="wplist">Vägpunktslista</string>
   <string name="wplist_latitude">Lat: </string>
@@ -112,6 +115,7 @@
   <string name="notification_text">Tryck för att visa startskärmen</string>
   <!--Display track-->
   <string name="displaytrack">Visa spår</string>
+  <string name="displaytrack_map">Visa bakgrundskarta</string>
   <string name="displaytrack_north">N</string>
   <!--Track detail-->
   <string name="trackdetail_save">Spara</string>

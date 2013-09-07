@@ -14,6 +14,9 @@
   <string name="tracklogger_tracked">Відстежено</string>
   <string name="tracklogger_gps_disabled">GPS вимкнено</string>
   <string name="tracklogger_gps_disabled_hint">GPS вимкнено. Бажаєте його включити?</string>
+  <string name="tracklogger_choose_gallery_camera">Галерея чи камера?</string>
+  <string name="tracklogger_camera">Зробити знімок камерою</string>
+  <string name="tracklogger_gallery">Вибрати зображення з галереї</string>
   <!--Waypoint List-->
   <string name="wplist">Список дорожніх точок</string>
   <string name="wplist_latitude">Шир.:</string>
@@ -112,6 +115,7 @@
   <string name="notification_text">Натисніть тут для повернення на головний екран</string>
   <!--Display track-->
   <string name="displaytrack">Показати шлях</string>
+  <string name="displaytrack_map">Відображати основну карту</string>
   <string name="displaytrack_north">Пн</string>
   <!--Track detail-->
   <string name="trackdetail_save">Зберегти</string>

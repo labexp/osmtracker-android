@@ -1,8 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
+  <string name="app_name">OSMTracker dành cho Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Được truyền cảm hứng từ OSMTracker trên phiên bản Windows Mobile, chúng tôi hân hạnh giới thiệu đến với các bạn dòng sản phẩm cùng tên trên hệ điều hành Android, đảm nhận các chức năng tuyệt vời (Ghi âm giọng nói, hình ảnh), xuất dữ liệu sang định dạng GPX và sau đó có thể được sử dụng kèm các phần mềm thuộc hệ thông Open Street Map chẳng hạn như JOSM.</string>
   <!--TrackLogger-->
+  <string name="tracklogger">Theo dấu logger</string>
+  <string name="tracklogger_waiting_gps">Đang đợi GPS sửa lỗi kích hoạt nút...</string>
+  <string name="tracklogger_voicerec_title">Ghi âm giọng nói</string>
+  <string name="tracklogger_voicerec_text">Đang ghi âm {0} audio clip.</string>
+  <string name="tracklogger_voicerec_stop">Dừng lại</string>
+  <string name="tracklogger_btnBack">Quay lại</string>
+  <string name="tracklogger_tracked">Đã theo dấu:</string>
+  <string name="tracklogger_gps_disabled">Tắt GPS</string>
+  <string name="tracklogger_gps_disabled_hint">GPS hiện đang tắt. Bạn có muốn bật lên không?</string>
   <!--Waypoint List-->
+  <string name="wplist">Danh sách điểm</string>
+  <string name="wplist_latitude">Kinh độ:</string>
+  <string name="wplist_longitude">Vĩ độ:</string>
   <!--Track Manager-->
   <!--Track Detail-->
   <!--OSM upload-->

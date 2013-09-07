@@ -46,4 +46,5 @@
   </string-array>
   <string name="prefs_output_gpx_hdop_approximation">Use aproximação HDOP</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Insira HDOP no GPX com um valor de aproximação para precisão</string>
+  <string name="prefs_map_tile_summary"></string>
 </resources>
