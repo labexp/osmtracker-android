@@ -5,5 +5,6 @@
 		android:id="@+id/gpsStatus" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 
-	<LinearLayout android:id="@+id/tracklogger_root" android:layout_width="fill_parent" android:layout_height="fill_parent"></LinearLayout>
+	<LinearLayout android:id="@+id/tracklogger_root" android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" android:orientation="vertical"></LinearLayout>
 </LinearLayout>
