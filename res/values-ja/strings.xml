@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker for Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Windows-Mobile版 OSMTracker の後継, あなたの旅の軌跡を記録します。ウェイポイントとして印を付ける(音声録音, 写真), GPXフォーマットで出力して、後でOpen Street Map のJOSMなどで編集できます。</string>
+  <string name="app_description">Windows Mobile版 OSMTracker の後継。あなたの旅の軌跡を記録し、ウェイポイントに印（音声録音、写真）をつけたり、GPX形式でエクスポートして、後でJOSMなどのOpen Street Map用ツールで編集したりできます。</string>
   <!--TrackLogger-->
   <string name="tracklogger">トラックログ</string>
   <string name="tracklogger_waiting_gps">GPS準備待ち…</string>
@@ -35,7 +35,7 @@
   <string name="trackmgr_contextmenu_stop">トラッキングの停止</string>
   <string name="trackmgr_contextmenu_resume">トラッキングの再開</string>
   <string name="trackmgr_contextmenu_delete">削除</string>
-  <string name="trackmgr_contextmenu_export">GPXに出力</string>
+  <string name="trackmgr_contextmenu_export">GPXにエクスポート</string>
   <string name="trackmgr_contextmenu_osm_upload">OpenStreetMapへアップロード</string>
   <string name="trackmgr_contextmenu_display">表示</string>
   <string name="trackmgr_contextmenu_details">詳細</string>
@@ -43,17 +43,17 @@
   <string name="trackmgr_delete_confirm">トラック #{0} を削除します</string>
   <string name="trackmgr_deleteall_confirm">全てのトラックを削除します。よろしいですか？</string>
   <string name="trackmgr_exporting">トラック #{0} をエクスポート中…</string>
-  <string name="trackmgr_export_error">トラックをエクスポートできません: {0}</string>
-  <string name="trackmgr_exportall_confirm">すべてのトラックをエクスポートします。時間がかかる可能性があります。よろしいですか？</string>
+  <string name="trackmgr_export_error">トラック {0} をエクスポートできません</string>
+  <string name="trackmgr_exportall_confirm">全てのトラックをエクスポートします。時間がかかる可能性があります。よろしいですか？</string>
   <!--Track Detail-->
   <string name="trackdetail">トラックの詳細</string>
   <string name="trackdetail_startdate">開始時刻:</string>
   <string name="trackdetail_enddate">終了時刻:</string>
   <string name="trackdetail_startloc">開始位置:</string>
   <string name="trackdetail_endloc">終了位置:</string>
-  <string name="trackdetail_exportdate">出力済み:</string>
-  <string name="trackdetail_osm_upload_date">OpenStreetMapへのアップロード日時:</string>
-  <string name="trackdetail_btn_export">GPXで出力</string>
+  <string name="trackdetail_exportdate">エクスポート時刻:</string>
+  <string name="trackdetail_osm_upload_date">OpenStreetMapアップロード時刻:</string>
+  <string name="trackdetail_btn_export">GPXでエクスポート</string>
   <string name="trackdetail_export_notyet">（まだエクスポートしていません）</string>
   <string name="trackdetail_osm_upload_notyet">（まだアップロードしていません）</string>
   <string name="trackdetail_export_display">表示</string>
@@ -91,10 +91,10 @@
   <string name="menu_stopcurrenttrack">現在のトラックを停止</string>
   <string name="menu_save">保存</string>
   <string name="menu_cancel">取消</string>
-  <string name="menu_export">GPXに出力</string>
+  <string name="menu_export">GPXでエクスポート</string>
   <string name="menu_osm_upload">OpenStreetMapへのアップロード</string>
   <string name="menu_center_to_gps">GPS位置を中央にする</string>
-  <string name="menu_exportall">すべてのトラックをGPXでエクスポート</string>
+  <string name="menu_exportall">全てをGPXでエクスポート</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">外部ストレージに書き込み出来ません。</string>
   <string name="error_create_track_dir">‘%s’フォルダを作成できません。</string>

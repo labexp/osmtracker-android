@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Använd 0 för kortast möjliga intervall (påverkar batteriets livslängd).</string>
   <string name="prefs_gps_logging_interval_seconds">sekunder</string>
   <string name="prefs_ui">Användargränssnitt</string>
+  <string name="prefs_ui_picture_source">Vald bildkälla</string>
+  <string name="prefs_ui_picture_source_summary">Välj bild från kamera eller galleri?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamera</item>
+    <item>Galleri</item>
+    <item>Fråga alltid</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Knapplayout</string>
   <string name="prefs_ui_buttons_layout_summary">Tillåt egendefinierade knapplayouter (se dokumentationen).</string>
   <string name="prefs_ui_buttons_layout_defaut">Standard</string>
@@ -35,7 +42,7 @@
   </string-array>
   <string name="prefs_display_always_on">Skärmen alltid på</string>
   <string name="prefs_display_always_on_summary">Skärmen släcks inte under tiden spår spelas in. Avmarkera för att spara batteri.</string>
-  <string name="prefs_displaytrack_osm">OSM-bakgrund</string>
+  <string name="prefs_displaytrack_osm">Bakgrundskarta</string>
   <string name="prefs_displaytrack_osm_summary">Visa OpenStreetMap-karta under spåret. Dataanslutning krävs.</string>
   <string name="prefs_displaytrack_osm_summary_ask">Visa alltid OpenStreetMap-bakgrund? Dataanslutning krävs.</string>
   <string name="prefs_output">GPX-fil</string>
@@ -64,6 +71,7 @@
   <string name="prefs_osm_clear_oauth_data">Återställ inloggning till OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Glöm bort inloggning och tillstånd och tvinga OSMTracker att fråga om detta igen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Du måste godkänna OSMTracker för att kunna ladda upp spår igen. Är du säker?</string>
+  <string name="prefs_map_tile">Tillhandahållare av kartrutor</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>MAPNIK</item>

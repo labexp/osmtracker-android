@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Käytä 0 lyhimpään mahdolliseen (vaikuttaa akun kestoon)</string>
   <string name="prefs_gps_logging_interval_seconds">sekuntia</string>
   <string name="prefs_ui">Käyttöliittymä</string>
+  <string name="prefs_ui_picture_source">Kuvien oletuslähde</string>
+  <string name="prefs_ui_picture_source_summary">Otetaanko kuvat kamerasta vai galleriasta?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamerasta</item>
+    <item>Galleriasta</item>
+    <item>Kysy aina</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Painike-esiasetukset</string>
   <string name="prefs_ui_buttons_layout_summary">Salli omat painikeasetukset (kts. dokumentit)</string>
   <string name="prefs_ui_buttons_layout_defaut">Oletus</string>

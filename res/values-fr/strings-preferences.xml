@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Choisissez 0 pour le plus petit intervalle possible (consomme plus de batterie)</string>
   <string name="prefs_gps_logging_interval_seconds">seconds</string>
   <string name="prefs_ui">Interface utilisateur</string>
+  <string name="prefs_ui_picture_source">Source de photos</string>
+  <string name="prefs_ui_picture_source_summary">Appareil photo ou gallerie ?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Appareil photo</item>
+    <item>Gallerie</item>
+    <item>Toujours demander</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Boutons</string>
   <string name="prefs_ui_buttons_layout_summary">Permet de définir des boutons personalisés (voir la doc)</string>
   <string name="prefs_ui_buttons_layout_defaut">Par défaut</string>
