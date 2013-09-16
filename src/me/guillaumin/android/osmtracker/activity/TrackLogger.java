@@ -23,9 +23,11 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -408,7 +410,7 @@ public class TrackLogger extends Activity {
 	 */
 	public void requestStillImage() {
 		if (gpsLogger.isTracking()) {
-			File imageFile = pushImageFile();
+			final File imageFile = pushImageFile();
 			if (null != imageFile) {
 
 				// Let the user choose between using the camera
@@ -423,6 +425,7 @@ public class TrackLogger extends Activity {
 					public void onClick(DialogInterface dialog, int which) {
 						if (which == 0) {
 							Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+							cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
 							startActivityForResult(cameraIntent, REQCODE_IMAGE_CAPTURE);
 						} else if (which == 1) {
 							Intent intent = new Intent();
