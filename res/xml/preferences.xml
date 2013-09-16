@@ -39,6 +39,8 @@
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/prefs_ui">
+		<ListPreference android:defaultValue="none" android:key="ui.picture.source" android:title="@string/prefs_ui_picture_source"
+			android:summary="@string/prefs_ui_picture_source_summary" android:entries="@array/prefs_ui_picture_source_keys" android:entryValues="@array/prefs_ui_picture_source_values"></ListPreference>
 		<CheckBoxPreference android:key="ui.display_keep_on" android:title="@string/prefs_display_always_on"
 			android:summary="@string/prefs_display_always_on_summary" android:defaultValue="true"></CheckBoxPreference>
 		<ListPreference android:entries="@array/prefs_theme_keys" android:title="@string/prefs_theme"
@@ -50,7 +52,7 @@
 			android:summary="@string/prefs_displaytrack_osm_summary" android:defaultValue="false"></CheckBoxPreference>
 		<ListPreference android:entries="@array/prefs_map_tile_keys" android:title="@string/prefs_map_tile"
 			android:entryValues="@array/prefs_map_tile_values" android:key="ui.map.tile" android:summary="@string/prefs_map_tile_summary" android:defaultValue="MAPNIK"></ListPreference>
-				<ListPreference android:defaultValue="none" android:key="ui.orientation" android:title="@string/prefs_ui_orientation"
+		<ListPreference android:defaultValue="none" android:key="ui.orientation" android:title="@string/prefs_ui_orientation"
 			android:summary="@string/prefs_ui_orientation_summary" android:entries="@array/prefs_ui_orientation_options_keys" android:entryValues="@array/prefs_ui_orientation_options_values"></ListPreference>
 	</PreferenceCategory>
 

@@ -26,6 +26,8 @@ public class OSMTracker {
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
 		public final static String KEY_OUTPUT_DIR_PER_TRACK = "gpx.directory_per_track";
+		
+		public final static String KEY_UI_PICTURE_SOURCE = "ui.picture.source";
 		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
 		public final static String KEY_UI_DISPLAYTRACK_OSM = "ui.displaytrack.osm";
 		/** True if DisplayTrack activity has already asked the user whether they'd rather see DisplayTrackMap. */
@@ -58,8 +60,13 @@ public class OSMTracker {
 		
 		public final static boolean VAL_OUTPUT_GPX_HDOP_APPROXIMATION = false;
 		public final static boolean VAL_OUTPUT_GPX_OUTPUT_DIR_PER_TRACK = true;
-		public final static String VAL_UI_BUTTONS_LAYOUT = "default";
+
+		public final static String VAL_UI_PICTURE_SOURCE_CAMERA = "camera";
+		public final static String VAL_UI_PICTURE_SOURCE_GALLERY = "gallery";
+		public final static String VAL_UI_PICTURE_SOURCE_ASK = "ask";
+		public final static String VAL_UI_PICTURE_SOURCE = VAL_UI_PICTURE_SOURCE_CAMERA;
 		
+		public final static String VAL_UI_BUTTONS_LAYOUT = "default";
 		public final static boolean VAL_UI_DISPLAYTRACK_OSM = false;
 		public final static boolean VAL_UI_DISPLAY_KEEP_ON = true;
 		public final static boolean VAL_SOUND_ENABLED = true;

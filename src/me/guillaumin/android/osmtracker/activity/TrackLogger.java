@@ -413,32 +413,35 @@ public class TrackLogger extends Activity {
 			final File imageFile = pushImageFile();
 			if (null != imageFile) {
 
-				// Let the user choose between using the camera
-				// or selecting a picture from the gallery
-
-				AlertDialog.Builder getImageFrom = new AlertDialog.Builder(TrackLogger.this);
-				getImageFrom.setTitle("Select:");
-				final CharSequence[] opsChars = { getString(R.string.tracklogger_camera), getString(R.string.tracklogger_gallery) };
-				getImageFrom.setItems(opsChars, new android.content.DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						if (which == 0) {
-							Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-							cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
-							startActivityForResult(cameraIntent, REQCODE_IMAGE_CAPTURE);
-						} else if (which == 1) {
-							Intent intent = new Intent();
-							intent.setType("image/*");
-							intent.setAction(Intent.ACTION_GET_CONTENT);
-							startActivityForResult(Intent.createChooser(intent, getString(R.string.tracklogger_choose_gallery_camera)), REQCODE_GALLERY_CHOSEN);
-						}
-						dialog.dismiss();
-					}
-				});
-
-				getImageFrom.show();
 				
+				final String pictureSource = prefs.getString(OSMTracker.Preferences.KEY_UI_PICTURE_SOURCE, 
+						OSMTracker.Preferences.VAL_UI_PICTURE_SOURCE);
+				if (OSMTracker.Preferences.VAL_UI_PICTURE_SOURCE_CAMERA.equals(pictureSource)) {
+					startCamera(imageFile);
+				} else if (OSMTracker.Preferences.VAL_UI_PICTURE_SOURCE_GALLERY.equals(pictureSource)) {
+					startGallery();
+				} else {
+					// Let the user choose between using the camera
+					// or selecting a picture from the gallery
+
+					AlertDialog.Builder getImageFrom = new AlertDialog.Builder(TrackLogger.this);
+					getImageFrom.setTitle("Select:");
+					final CharSequence[] opsChars = { getString(R.string.tracklogger_camera), getString(R.string.tracklogger_gallery) };
+					getImageFrom.setItems(opsChars, new android.content.DialogInterface.OnClickListener() {
+	
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							if (which == 0) {
+								startCamera(imageFile);
+							} else if (which == 1) {
+								startGallery();
+							}
+							dialog.dismiss();
+						}
+					});
+	
+					getImageFrom.show();
+				}
 			} else {
 				Toast.makeText(getBaseContext(), 
 						getResources().getString(R.string.error_externalstorage_not_writable),
@@ -579,6 +582,26 @@ public class TrackLogger extends Activity {
 
 	public long getCurrentTrackId() {
 		return this.currentTrackId;
+	}
+	
+	/**
+	 * Starts the camera app. to take a picture
+	 * @param imageFile File to save the picture to
+	 */
+	private void startCamera(File imageFile) {
+		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
+		startActivityForResult(cameraIntent, REQCODE_IMAGE_CAPTURE);
+	}
+	
+	/**
+	 * Starts the gallery app. to choose a picture
+	 */
+	private void startGallery() {
+		Intent intent = new Intent();
+		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);
+		startActivityForResult(Intent.createChooser(intent, getString(R.string.tracklogger_choose_gallery_camera)), REQCODE_GALLERY_CHOSEN);
 	}
 	
 

@@ -21,6 +21,14 @@
 
 	<string name="prefs_ui">User interface</string>
 	
+	<string name="prefs_ui_picture_source">Default picture source</string>
+	<string name="prefs_ui_picture_source_summary">Take pictures from camera or gallery?</string>
+	<string-array name="prefs_ui_picture_source_keys">
+		<item>Camera</item>
+		<item>Gallery</item>
+		<item>Always ask</item>
+	</string-array>
+	
 	<string name="prefs_ui_buttons_layout">Buttons presets</string>
 	<string name="prefs_ui_buttons_layout_summary">Choose a custom set of buttons (see docs)</string>
 	<string name="prefs_ui_buttons_layout_defaut">Default</string>
