@@ -23,9 +23,10 @@ public final class FileSystemUtils {
 	 * Copy copy file sourceFile to the directory destination directory
 	 * @param destinationDirectory location where the file to be copied
 	 * @param sourceFile the location of the file to copy
+	 * @param targetFileName name of the target file
 	 * @return true if the file was copied successfully, false otherwise
 	 */	
-	public static boolean copyFile(final File destinationDirectory, final File sourceFile) {
+	public static boolean copyFile(final File destinationDirectory, final File sourceFile, final String targetFileName) {
 		boolean _return = false;
 		
 		if (null != destinationDirectory && null != sourceFile) {
@@ -33,7 +34,7 @@ public final class FileSystemUtils {
 			FileOutputStream outputStream = null;
 			byte[] dataBuffer = new byte[1024];
 			File outputFile = new File(destinationDirectory.getAbsoluteFile()
-					+ File.separator + sourceFile.getName()); 
+					+ File.separator + targetFileName); 
 			try {
 				inputStream = new FileInputStream(sourceFile);
 				outputStream = new FileOutputStream(outputFile);
@@ -90,7 +91,7 @@ public final class FileSystemUtils {
 				Log.i(TAG,"Copying link file [" + fileToCopy.getName() + "] from ["
 						+ sourceDirectory.getAbsolutePath() + "] to [" + destinationDirectory + "]");
 				
-				if (! copyFile(destinationDirectory, fileToCopy) ) {
+				if (! copyFile(destinationDirectory, fileToCopy, fileToCopy.getName()) ) {
 					if (failedCopy == null) {
 						failedCopy = new ArrayList<String>();
 					}

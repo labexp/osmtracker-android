@@ -1,6 +1,7 @@
 package me.guillaumin.android.osmtracker.activity;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
@@ -11,6 +12,7 @@ import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
+import me.guillaumin.android.osmtracker.util.FileSystemUtils;
 import me.guillaumin.android.osmtracker.util.ThemeValidator;
 import me.guillaumin.android.osmtracker.view.TextNoteDialog;
 import me.guillaumin.android.osmtracker.view.VoiceRecDialog;
@@ -22,6 +24,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +32,7 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.provider.MediaStore.Images.ImageColumns;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -470,10 +474,18 @@ public class TrackLogger extends Activity {
 			break;
 		case REQCODE_GALLERY_CHOSEN:
 			if (resultCode == RESULT_OK) {
-				// A still image has been captured, track the corresponding waypoint
-				// Send an intent to inform service to track the waypoint.
+				// An image has been selected from the gallery, track the corresponding waypoint
 				File imageFile = popImageFile();
 				if (imageFile != null) {
+					// Copy the file from the gallery
+					Cursor c = getContentResolver().query(data.getData(), null, null, null, null);
+					c.moveToFirst();
+					String f = c.getString(c.getColumnIndex(ImageColumns.DATA));
+					c.close();
+					Log.d(TAG, "Copying gallery file '"+f+"' into '"+imageFile+"'");
+					FileSystemUtils.copyFile(imageFile.getParentFile(), new File(f), imageFile.getName());
+					
+					// Send an intent to inform service to track the waypoint.
 					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 					intent.putExtra(Schema.COL_TRACK_ID, currentTrackId);
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
