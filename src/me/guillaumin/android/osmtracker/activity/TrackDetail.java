@@ -2,6 +2,7 @@ package me.guillaumin.android.osmtracker.activity;
 
 import java.sql.Date;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -154,6 +155,19 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_enddate));
 		map.put(ITEM_VALUE, t.getEndDateAsString());
+		data.add(map);
+		
+		DecimalFormat df = new DecimalFormat("####0.00");
+		// Distance
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_distance));
+		map.put(ITEM_VALUE, df.format(t.getDistance()/1000) + " " +getResources().getString(R.string.trackdetail_distance_unit));
+		data.add(map);
+		
+		// Elevation
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_elevation));
+		map.put(ITEM_VALUE, df.format(t.getElevationMin()) + " / " + df.format(t.getElevationMax()));
 		data.add(map);
 
 		// Start point

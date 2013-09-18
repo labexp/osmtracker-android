@@ -9,6 +9,7 @@ import java.util.List;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.util.DistanceUtil;
 import android.content.ContentResolver;
 import android.database.Cursor;
 
@@ -57,6 +58,8 @@ public class Track {
 	
 	private Long startDate=null, endDate=null;
 	private Float startLat=null, startLong=null, endLat=null, endLong=null;
+	private Double distance=0.0;
+	private Float elevationMax=0.0f,elevationMin=0.0f;
 	
 	private boolean extraInformationRead = false;
 	
@@ -117,9 +120,53 @@ public class Track {
 			}
 			endCursor.close();
 			
+			readExtraInformation_stats();
+			
 			extraInformationRead = true;
 		}
 	}
+	
+  /**
+   *
+   * @todo: allow to exclude zero speed values
+   */
+  private void readExtraInformation_stats() {
+    Cursor cursor = cr.query(TrackContentProvider.trackPointsUri(trackId), null, null, null, null);
+	Float latitudeCurrent, longitudeCurrent, latitudePrev, longitudePrev;
+	
+    Float elevationCurr, speedMax, speedMin, speedCurr;
+    
+    if(cursor != null && cursor.moveToFirst()) {
+    	// Initialize the min/max values
+        elevationMin  = elevationMax = cursor.getFloat(cursor.getColumnIndex(Schema.COL_ELEVATION));
+        speedMin      = speedMax     = cursor.getFloat(cursor.getColumnIndex(Schema.COL_SPEED));
+        latitudePrev  = cursor.getFloat(cursor.getColumnIndex(Schema.COL_LATITUDE));
+        longitudePrev = cursor.getFloat(cursor.getColumnIndex(Schema.COL_LONGITUDE));
+      
+        // Iterate over all points
+        while (cursor.moveToNext()) {            
+          latitudeCurrent = cursor.getFloat(cursor.getColumnIndex(Schema.COL_LATITUDE));
+          longitudeCurrent = cursor.getFloat(cursor.getColumnIndex(Schema.COL_LONGITUDE));
+          distance += DistanceUtil.getDistance(latitudePrev, longitudePrev, latitudeCurrent, longitudeCurrent);
+          
+          latitudePrev = latitudeCurrent;
+          longitudePrev = longitudeCurrent;
+          
+          // Compute the Elevation
+          elevationCurr = cursor.getFloat(cursor.getColumnIndex(Schema.COL_ELEVATION));
+          elevationMin = Math.min(elevationMin, elevationCurr);
+          elevationMax = Math.max(elevationMax, elevationCurr);
+          
+          // Compute the Speed
+          speedCurr = cursor.getFloat(cursor.getColumnIndex(Schema.COL_SPEED));
+          speedMin = Math.min(speedMin, speedCurr);
+          speedMax = Math.max(speedMax, speedCurr);
+        }
+      
+      cursor.close();
+    }
+  }
+	
 	
 	public void setName(String name) {
 		this.name = name;
@@ -175,6 +222,21 @@ public class Track {
 	
 	public Integer getTpCount() {
 		return tpCount;
+	}
+	
+	public Double getDistance() {
+		readExtraInformation();
+		return distance;
+	}
+	
+	public Float getElevationMin() {
+		readExtraInformation();
+		return elevationMin;
+	}
+	
+	public Float getElevationMax() {
+		readExtraInformation();
+		return elevationMax;
 	}
 	
 	public String getName() {
