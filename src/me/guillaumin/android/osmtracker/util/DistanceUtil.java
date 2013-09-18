@@ -4,7 +4,7 @@ public class DistanceUtil {
 
 	private static final double DEG2RAD = Math.PI / 180.0;
 	// private static final double RAD2DEG = 180.0 / Math.PI;
-	private static final double RADIUS_EARTH_METERS = 6371.01; 
+	private static final double RADIUS_EARTH_METERS = 6378137.0;
 	
 	/**
 	 * Computes the distance with Spherical Law of Cosines
