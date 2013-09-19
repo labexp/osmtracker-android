@@ -137,10 +137,14 @@ public class Track {
 	
     Float elevationCurr, speedCurr;
     
+    boolean avoidZeroSpeed = true;
+    
     if(cursor != null && cursor.moveToFirst()) {
     	// Initialize the min/max values
         elevationMin  = elevationMax = cursor.getFloat(cursor.getColumnIndex(Schema.COL_ELEVATION));
-        speedMin      = speedMax     = cursor.getFloat(cursor.getColumnIndex(Schema.COL_SPEED));
+        speedMax = cursor.getFloat(cursor.getColumnIndex(Schema.COL_SPEED));
+        speedMin = (avoidZeroSpeed && speedMax == 0) ? Float.MAX_VALUE : speedMax;
+        
         latitudePrev  = cursor.getFloat(cursor.getColumnIndex(Schema.COL_LATITUDE));
         longitudePrev = cursor.getFloat(cursor.getColumnIndex(Schema.COL_LONGITUDE));
       
@@ -160,8 +164,10 @@ public class Track {
           
           // Compute the Speed
           speedCurr = cursor.getFloat(cursor.getColumnIndex(Schema.COL_SPEED));
-          speedMin = Math.min(speedMin, speedCurr);
-          speedMax = Math.max(speedMax, speedCurr);
+          if (!avoidZeroSpeed || speedCurr > 0) {
+        	speedMin = Math.min(speedMin, speedCurr);
+          	speedMax = Math.max(speedMax, speedCurr);
+          }
         }
       
       cursor.close();
@@ -247,7 +253,8 @@ public class Track {
 
 	public Float getSpeedMin() {
 		readExtraInformation();
-		return speedMin;
+		// Avoid returning inconsistent min-speed if "avoidZeroSpeed" is set to true
+		return (speedMin > speedMax) ? 0.0f : speedMin;
 	}
 	
 	public String getName() {
