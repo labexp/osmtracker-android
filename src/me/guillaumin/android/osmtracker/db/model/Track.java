@@ -58,7 +58,7 @@ public class Track {
 	
 	private Long startDate=null, endDate=null;
 	private Float startLat=null, startLong=null, endLat=null, endLong=null;
-	private Double distance=0.0;
+	private Float distance=0.0f;
 	private Float elevationMax=0.0f,elevationMin=0.0f;
 	
 	private boolean extraInformationRead = false;
@@ -224,7 +224,7 @@ public class Track {
 		return tpCount;
 	}
 	
-	public Double getDistance() {
+	public Float getDistance() {
 		readExtraInformation();
 		return distance;
 	}
