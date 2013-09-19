@@ -18,11 +18,14 @@ public class DistanceUtil {
 	 * @return The distance (in meters) between point1 and point2
 	 */
 	public static float getDistance(final float lat1, final float lon1, final float lat2, final float lon2) {
-	  final double theta = lon1 - lon2;
-	  final double a = Math.sin(DEG2RAD * lat1) * Math.sin(DEG2RAD * lat2);
-	  final double b = Math.cos(DEG2RAD * lat1) * Math.cos(DEG2RAD * lat2) * Math.cos(DEG2RAD * theta);
-	  
-	  return (float) (Math.acos(a + b) * RADIUS_EARTH_METERS);
+		final double theta = lon1 - lon2;
+		System.out.println("theta = " + theta);
+		final double v =  (Math.sin(DEG2RAD * lat1) * Math.sin(DEG2RAD * lat2))
+						+ (Math.cos(DEG2RAD * lat1) * Math.cos(DEG2RAD * lat2) * Math.cos(DEG2RAD * theta));
+		
+		// Due to Float/Double approximations sometimes the value v is greater than 1, thus out of Math.acos() domain
+		// @see: http://www.mathworks.it/it/help/matlab/ref/acos.html
+		return (v > 1) ? 0.0f : (float) (Math.acos(v) * RADIUS_EARTH_METERS);
 	}
 	
 	/**
