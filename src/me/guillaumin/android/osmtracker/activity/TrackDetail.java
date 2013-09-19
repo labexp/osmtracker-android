@@ -157,7 +157,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		map.put(ITEM_VALUE, t.getEndDateAsString());
 		data.add(map);
 		
-		DecimalFormat df = new DecimalFormat("####0.00");
+		DecimalFormat df = new DecimalFormat("#,##0.00");
 		// Distance
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_distance));
@@ -167,13 +167,13 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		// Elevation
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_elevation));
-		map.put(ITEM_VALUE, df.format(t.getElevationMin()) + " / " + df.format(t.getElevationMax()));
+		map.put(ITEM_VALUE, df.format(t.getElevationMin()) + " / " + df.format(t.getElevationMax()) + " " +getResources().getString(R.string.trackdetail_elevation_unit));
 		data.add(map);
 
 		// Speed 
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_speed));
-		map.put(ITEM_VALUE, df.format(t.getSpeedMin()) + " / " + df.format(t.getSpeedMax()));
+		map.put(ITEM_VALUE, df.format(t.getSpeedMin() * 3.6) + " / " + df.format(t.getSpeedMax() * 3.6) + " " + getResources().getString(R.string.trackdetail_speed_unit));
 		data.add(map);
 
 		// Start point
