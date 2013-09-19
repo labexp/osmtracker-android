@@ -170,6 +170,12 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		map.put(ITEM_VALUE, df.format(t.getElevationMin()) + " / " + df.format(t.getElevationMax()));
 		data.add(map);
 
+		// Speed 
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_speed));
+		map.put(ITEM_VALUE, df.format(t.getSpeedMin()) + " / " + df.format(t.getSpeedMax()));
+		data.add(map);
+
 		// Start point
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_startloc));

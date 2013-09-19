@@ -60,6 +60,7 @@ public class Track {
 	private Float startLat=null, startLong=null, endLat=null, endLong=null;
 	private Float distance=0.0f;
 	private Float elevationMax=0.0f,elevationMin=0.0f;
+	private Float speedMax=0.0f,    speedMin=0.0f;
 	
 	private boolean extraInformationRead = false;
 	
@@ -134,7 +135,7 @@ public class Track {
     Cursor cursor = cr.query(TrackContentProvider.trackPointsUri(trackId), null, null, null, null);
 	Float latitudeCurrent, longitudeCurrent, latitudePrev, longitudePrev;
 	
-    Float elevationCurr, speedMax, speedMin, speedCurr;
+    Float elevationCurr, speedCurr;
     
     if(cursor != null && cursor.moveToFirst()) {
     	// Initialize the min/max values
@@ -237,6 +238,16 @@ public class Track {
 	public Float getElevationMax() {
 		readExtraInformation();
 		return elevationMax;
+	}
+
+	public Float getSpeedMax() {
+		readExtraInformation();
+		return speedMax;
+	}
+
+	public Float getSpeedMin() {
+		readExtraInformation();
+		return speedMin;
 	}
 	
 	public String getName() {
