@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="libs/httpclient-4.2.1.jar"/>
 	<classpathentry kind="lib" path="libs/httpcore-4.2.1.jar"/>
 	<classpathentry kind="lib" path="libs/httpmime-4.2.1.jar"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
