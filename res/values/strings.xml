@@ -25,7 +25,8 @@
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Ele: </string>
 	<string name="wplist_accuracy">Accur: </string>
-	
+	<string name="wplist_wp_name">Waypoint Name</string>
+
 	<!-- Track Manager -->
 	<string name="trackmgr">Track manager</string>
 	<string name="trackmgr_tracklist">Track list:</string>
