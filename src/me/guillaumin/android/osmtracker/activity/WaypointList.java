@@ -8,6 +8,8 @@ import me.guillaumin.android.osmtracker.db.WaypointListAdapter;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -26,24 +28,51 @@ public class WaypointList extends ListActivity {
 
 	/**
 	 * Dialog for editing waypoint name when clicked in list.
+	 * Set {@link #wpId} and {@link #wpName} before calling {@link #showDialog(int) showDialog(DIALOG_WP_NAME)}.
 	 * See {@link #onPrepareDialog(int, android.app.Dialog, android.os.Bundle)}
 	 */
 	private static final int DIALOG_WP_NAME = 1;
 
 	/**
+	 * Dialog to confirm before first edit if {@link #trackExportedConfirmEdit}.
+	 * If confirmed, immediately shows {@link #DIALOG_WP_NAME}.
+	 */
+	private static final int DIALOG_CONFIRM_EDIT = 2;
+
+	/**
 	 * Bundle state key for waypoint name during edit.
 	 */
-	public static final String STATE_WP_NAME = "wpName";
+	private static final String STATE_WP_NAME = "wpName";
 
 	/**
 	 * Bundle state key for long waypoint id during edit.
 	 */
-	public static final String STATE_WP_ID = "wpId";
+	private static final String STATE_WP_ID = "wpId";
+
+	/**
+	 * Bundle state key for {@link #trackQueried}.
+	 */
+	private static final String STATE_TRK_QUERIED = "trkQueried";
+
+	/**
+	 * Bundle state key for {@link #trackExportedConfirmEdit}.
+	 */
+	private static final String STATE_CONFIRM_EDIT = "confirmEdit";
 
 	/**
 	 * Track ID containing these waypoints, from intent extras {@link Schema#COL_TRACK_ID}
 	 */
 	private long trackId;
+
+	/**
+	 * If true, we've already queried track properties for {@link #trackExportedConfirmEdit}.
+	 */
+	private boolean trackQueried;
+
+	/**
+	 * If true, track has been exported or uploaded; before showing first waypoint edit dialog, confirm edit with user.
+	 */
+	private boolean trackExportedConfirmEdit;
 
 	/**
 	 * Waypoint ID when editing WP name in {@link #DIALOG_WP_NAME}.
@@ -65,17 +94,39 @@ public class WaypointList extends ListActivity {
 	@Override
 	protected void onCreate(final Bundle savedState) {
 		super.onCreate(savedState);
-		if ((savedState != null) && savedState.containsKey(STATE_WP_NAME)) {
-			wpName = savedState.getString(STATE_WP_NAME);
-			wpId = savedState.getLong(STATE_WP_ID);
+		if (savedState != null) {
+			trackQueried = savedState.getBoolean(STATE_TRK_QUERIED, false);
+			trackExportedConfirmEdit = savedState.getBoolean(STATE_CONFIRM_EDIT, false);
+			if (savedState.containsKey(STATE_WP_NAME)) {
+				wpName = savedState.getString(STATE_WP_NAME);
+				wpId = savedState.getLong(STATE_WP_ID);
+			}
 		}
 	}
 
 	@Override
 	protected void onResume() {
 		trackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
-		
-		Cursor cursor = getContentResolver().query(TrackContentProvider.waypointsUri(trackId),
+
+		final ContentResolver cr = getContentResolver();
+
+		if (! trackQueried) {
+			Cursor trackCursor = cr.query(
+				ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
+				null, null, null, null);
+
+			if (trackCursor.moveToFirst()) {
+				trackExportedConfirmEdit =
+					(! trackCursor.isNull(trackCursor.getColumnIndex(Schema.COL_EXPORT_DATE)))
+					|| (! trackCursor.isNull(trackCursor.getColumnIndex(Schema.COL_OSM_UPLOAD_DATE)));
+
+			}
+
+			trackCursor.close();
+			trackQueried = true;
+		}
+
+		Cursor cursor = cr.query(TrackContentProvider.waypointsUri(trackId),
 				null, null, null, Schema.COL_TIMESTAMP + " asc");
 		startManagingCursor(cursor);
 		setListAdapter(new WaypointListAdapter(WaypointList.this, cursor));
@@ -118,7 +169,10 @@ public class WaypointList extends ListActivity {
 		if (c.moveToPosition(position)) {
 			wpId = c.getLong(c.getColumnIndex(Schema.COL_ID));
 			wpName = c.getString(c.getColumnIndex(Schema.COL_NAME));
-			showDialog(DIALOG_WP_NAME);
+			if (trackExportedConfirmEdit)
+				showDialog(DIALOG_CONFIRM_EDIT);
+			else
+				showDialog(DIALOG_WP_NAME);
 		}
 	}
 
@@ -158,6 +212,26 @@ public class WaypointList extends ListActivity {
 				break;
 			}
 
+		case DIALOG_CONFIRM_EDIT:
+			{
+				AlertDialog.Builder wpnameBuilder = new AlertDialog.Builder(this);
+				wpnameBuilder.setMessage(R.string.wplist_wp_exported_confirm_edit);
+
+				wpnameBuilder.setPositiveButton(R.string.wplist_edit, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						trackExportedConfirmEdit = false;
+						showDialog(DIALOG_WP_NAME);
+					}
+				});
+
+				wpnameBuilder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) { }
+				});
+
+				dia = wpnameBuilder.create();
+				break;
+			}
+
 		default:
 			dia = null;
 		}
@@ -169,6 +243,12 @@ public class WaypointList extends ListActivity {
 	 * On older android versions, update {@link #wpEdit} from {@link #wpName} before showing {@link #DIALOG_WP_NAME}.
 	 */
 	protected void onPrepareDialog(final int id, Dialog dialog) {
+		if ((id != DIALOG_WP_NAME) || (wpEdit == null))
+		{
+			super.onPrepareDialog(id, dialog);
+			return;
+		}
+
 		onPrepareDialog(id, dialog, null);
 	}
 
@@ -191,6 +271,9 @@ public class WaypointList extends ListActivity {
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
+
+		outState.putBoolean(STATE_TRK_QUERIED, trackQueried);
+		outState.putBoolean(STATE_CONFIRM_EDIT, trackExportedConfirmEdit);
 
 		// Save waypoint name if editing
 		if (wpName != null) {

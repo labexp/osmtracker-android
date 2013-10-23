@@ -25,7 +25,9 @@
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Ele: </string>
 	<string name="wplist_accuracy">Accur: </string>
+	<string name="wplist_edit">Edit</string>
 	<string name="wplist_wp_name">Waypoint Name</string>
+	<string name="wplist_wp_exported_confirm_edit">This track has been uploaded or exported. Are you sure you want to edit waypoints?</string>
 
 	<!-- Track Manager -->
 	<string name="trackmgr">Track manager</string>
