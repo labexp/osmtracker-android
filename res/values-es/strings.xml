@@ -20,6 +20,11 @@
   <string name="wplist_longitude">Long.: </string>
   <string name="wplist_elevation">Elev.: </string>
   <string name="wplist_accuracy">Prec.: </string>
+  <string name="wplist_delete">Eliminar</string>
+  <string name="wplist_edit">Editar</string>
+  <string name="wplist_wp_name">Nombre del Punto</string>
+  <string name="wplist_wp_confirm_delete">¿Eliminar este punto?</string>
+  <string name="wplist_wp_exported_confirm_edit">Esta traza ha sido cargado o exportado. ¿Está seguro que desea editar puntos?</string>
   <!--Track Manager-->
   <string name="trackmgr">Administrador de trazas</string>
   <string name="trackmgr_tracklist">Lista de trazas:</string>

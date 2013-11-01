@@ -177,9 +177,9 @@ public class DataHelper {
 	 * @param uuid
 	 *				Unique ID of the target waypoint
 	 * @param name
-	 *				New name
+	 *				New name, or null to keep existing value
 	 * @param link
-	 *				New link
+	 *				New link, or null to keep existing value
 	 */
 	public void updateWayPoint(long trackId, String uuid, String name, String link) {
 		Log.v(TAG, "Updating waypoint with uuid '" + uuid + "'. New values: name='" + name + "', link='" + link + "'");
@@ -197,7 +197,26 @@ public class DataHelper {
 					"uuid = ?", new String[] { uuid });
 		}
 	}
-	
+
+	/**
+	 * Updates a waypoint name by ID.
+	 *
+	 * @param waypointId
+	 *				Id of the target waypoint
+	 * @param name
+	 *				New name; not null
+	 */
+	public void updateWayPoint(long waypointId, String name) {
+		Log.v(TAG, "Updating waypoint with id " + waypointId + ". New name: name='" + name + "'");
+		if (name != null) {
+			ContentValues values = new ContentValues();
+			values.put(Schema.COL_NAME, name);
+
+			Uri wpUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_WAYPOINT_ID, waypointId);
+			contentResolver.update(wpUri, values, null, null);
+		}
+	}
+
 	/**
 	 * Deletes a waypoint
 	 * 
@@ -211,6 +230,16 @@ public class DataHelper {
 		}
 	}
 	
+	/**
+	 * Deletes a waypoint by ID
+	 * 
+	 * @param uuid
+	 *				ID of the target waypoint
+	 */
+	public void deleteWayPoint(long id) {
+		Log.v(TAG, "Deleting waypoint with id " + id);
+		contentResolver.delete(ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_WAYPOINT_ID, id), null, null);
+	}
 	
 	/**
 	 * Stop tracking by making the track inactive
