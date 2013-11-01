@@ -41,10 +41,19 @@ public class TrackContentProvider extends ContentProvider {
 	public static final Uri CONTENT_URI_TRACK_ACTIVE = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACK + "/active");
 
 	/**
-	 * Uri for a specific waypoint
+	 * Uri for a specific waypoint by UUID: Use with {@link Uri#withAppendedPath(Uri, String)},
+	 * no other selection arguments are recognized.  Supports delete.
+	 * See also {@link #CONTENT_URI_WAYPOINT_FOR_ID}.
 	 */
 	public static final Uri CONTENT_URI_WAYPOINT_UUID = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_WAYPOINT + "/uuid");
-	
+
+	/**
+	 * Uri for a specific waypoint by _ID: Use with {@link ContentUris#withAppendedId(Uri, long)},
+	 * no other selection arguments are recognized.  Supports update and delete.
+	 * See also {@link #CONTENT_URI_WAYPOINT_UUID}.
+	 */
+	public static final Uri CONTENT_URI_WAYPOINT_ID = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_WAYPOINT + "/id");
+
 	/**
 	 * tables and joins to be used within a query to get the important informations of a track
 	 */
@@ -88,6 +97,7 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_WAYPOINT + "s", Schema.URI_CODE_TRACK_WAYPOINTS);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_TRACKPOINT + "s", Schema.URI_CODE_TRACK_TRACKPOINTS);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/uuid/*", Schema.URI_CODE_WAYPOINT_UUID);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/id/#", Schema.URI_CODE_WAYPOINT_ID);
 		
 	}
 	
@@ -163,6 +173,14 @@ public class TrackContentProvider extends ContentProvider {
 			String uuid = uri.getLastPathSegment();
 			if(uuid != null){
 				count = dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, Schema.COL_UUID + " = ?", new String[]{uuid});
+			}else{
+				count = 0;
+			}
+			break;
+		case Schema.URI_CODE_WAYPOINT_ID:
+			String id = uri.getLastPathSegment();
+			if(id != null){
+				count = dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, Schema.COL_ID + " = ?", new String[]{id});
 			}else{
 				count = 0;
 			}
@@ -381,6 +399,21 @@ public class TrackContentProvider extends ContentProvider {
 			}
 			table = Schema.TBL_WAYPOINT;
 			break;
+		case Schema.URI_CODE_WAYPOINT_ID:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be rejected
+				throw new UnsupportedOperationException();
+			}
+			table = Schema.TBL_WAYPOINT;
+			String wpId = uri.getLastPathSegment();
+			if (wpId != null) {
+				selection = Schema.COL_ID + " = ?";
+				selectionArgs = new String[] {wpId};
+			} else {
+				// Caller must give the specific waypoint id
+				throw new IllegalArgumentException();
+			}
+			break;
 		case Schema.URI_CODE_TRACK_ID:
 			if (selectionIn != null || selectionArgsIn != null) {
 				// Any selection/selectionArgs will be ignored
@@ -458,6 +491,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final int URI_CODE_WAYPOINT_UUID = 8;
 		public static final int URI_CODE_TRACK_START = 9;
 		public static final int URI_CODE_TRACK_END = 10;
+		public static final int URI_CODE_WAYPOINT_ID = 11;
 		
 
 		public static final int VAL_TRACK_ACTIVE = 1;

@@ -197,7 +197,7 @@ public class WaypointList extends ListActivity {
 							return;
 
 						DataHelper dataHelper = new DataHelper(WaypointList.this);
-						dataHelper.updateWayPoint(trackId, wpId, wpName);
+						dataHelper.updateWayPoint(wpId, wpName);
 
 						// Need a new cursor to refresh the displayed list item data
 						requery();
