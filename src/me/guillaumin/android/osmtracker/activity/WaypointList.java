@@ -40,6 +40,11 @@ public class WaypointList extends ListActivity {
 	private static final int DIALOG_CONFIRM_EDIT = 2;
 
 	/**
+	 * Dialog to confirm deleting a waypoint, when user erases its name in {@link #DIALOG_WP_NAME}.
+	 */
+	private static final int DIALOG_CONFIRM_DELETE = 3;
+
+	/**
 	 * Bundle state key for waypoint name during edit.
 	 */
 	private static final String STATE_WP_NAME = "wpName";
@@ -193,8 +198,11 @@ public class WaypointList extends ListActivity {
 				wpnameBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						wpName = wpEdit.getText().toString().trim();
-						if (wpName.length() == 0)  // TODO delete if 0 length?
+						if (wpName.length() == 0)
+						{
+							showDialog(DIALOG_CONFIRM_DELETE);
 							return;
+						}
 
 						DataHelper dataHelper = new DataHelper(WaypointList.this);
 						dataHelper.updateWayPoint(wpId, wpName);
@@ -214,22 +222,45 @@ public class WaypointList extends ListActivity {
 
 		case DIALOG_CONFIRM_EDIT:
 			{
-				AlertDialog.Builder wpnameBuilder = new AlertDialog.Builder(this);
-				wpnameBuilder.setMessage(R.string.wplist_wp_exported_confirm_edit);
+				AlertDialog.Builder wpconfBuilder = new AlertDialog.Builder(this);
+				wpconfBuilder.setMessage(R.string.wplist_wp_exported_confirm_edit);
 
-				wpnameBuilder.setPositiveButton(R.string.wplist_edit, new DialogInterface.OnClickListener() {
+				wpconfBuilder.setPositiveButton(R.string.wplist_edit, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						trackExportedConfirmEdit = false;
 						showDialog(DIALOG_WP_NAME);
 					}
 				});
 
-				wpnameBuilder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+				wpconfBuilder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) { }
 				});
 
-				dia = wpnameBuilder.create();
+				dia = wpconfBuilder.create();
 				break;
+			}
+
+		case DIALOG_CONFIRM_DELETE:
+			{
+				AlertDialog.Builder dcBuilder = new AlertDialog.Builder(this);
+				dcBuilder.setMessage(R.string.wplist_wp_confirm_delete);
+
+				dcBuilder.setPositiveButton(R.string.wplist_delete, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						DataHelper dataHelper = new DataHelper(WaypointList.this);
+						dataHelper.deleteWayPoint(wpId);
+
+						// Need a new cursor to refresh the displayed list item data
+						requery();
+					}
+				});
+
+				dcBuilder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) { }
+				});
+
+				dia = dcBuilder.create();
+				break;				
 			}
 
 		default:
