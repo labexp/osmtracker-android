@@ -23,6 +23,11 @@
   <string name="wplist_longitude">Long: </string>
   <string name="wplist_elevation">Alt: </string>
   <string name="wplist_accuracy">Préci: </string>
+  <string name="wplist_delete">Supprimer</string>
+  <string name="wplist_edit">Editer</string>
+  <string name="wplist_wp_name">Nom du point</string>
+  <string name="wplist_wp_confirm_delete">Supprime cette point d\'interêt?</string>
+  <string name="wplist_wp_exported_confirm_edit">Cette trace a été uploadé ou exporté. Etes-vous sûr de vouloir continuer?</string>
   <!--Track Manager-->
   <string name="trackmgr">Gestionnaire de traces</string>
   <string name="trackmgr_tracklist">Liste des traces :</string>
