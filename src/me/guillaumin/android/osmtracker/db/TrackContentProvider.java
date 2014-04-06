@@ -444,6 +444,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_ACTIVE = "active";
 		public static final String COL_EXPORT_DATE = "export_date";
 		public static final String COL_OSM_UPLOAD_DATE = "osm_upload_date";
+		public static final String COL_COMPASS = "compass_heading";
 		
 		// virtual colums that are used in some sqls but dont exist in database
 		public static final String COL_TRACKPOINT_COUNT = "tp_count";

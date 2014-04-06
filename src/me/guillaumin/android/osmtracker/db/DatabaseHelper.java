@@ -36,7 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ Schema.COL_SPEED + " double null,"
 		+ Schema.COL_ELEVATION + " double null,"
 		+ Schema.COL_ACCURACY + " double null,"
-		+ Schema.COL_TIMESTAMP + " long not null" + ")";
+		+ Schema.COL_TIMESTAMP + " long not null,"
+		+ Schema.COL_COMPASS + " double null" + ")";
 
 	/**
 	 * SQL for creating index TRACKPOINT_idx (track id)
@@ -62,7 +63,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ Schema.COL_TIMESTAMP + " long not null,"
 		+ Schema.COL_NAME + " text,"
 		+ Schema.COL_LINK + " text,"
-		+ Schema.COL_NBSATELLITES + " integer not null" + ")";
+		+ Schema.COL_NBSATELLITES + " integer not null,"
+		+ Schema.COL_COMPASS + " double null" + ")";
 
 	/**
 	 * SQL for creating index WAYPOINT_idx (track id)
@@ -114,9 +116,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * v14: add TBL_TRACK.COL_OSM_UPLOAD_DATE, TBL_TRACK.COL_DESCRIPTION,
 	 * 			TBL_TRACK.COL_TAGS and TBL_TRACK.COL_OSM_VISIBILITY for OSM upload - v0.6.0 
 	 * v15: add TBL_TRACKPOINT.COL_SPPED
+	 * v16: add TBL_TRACKPOINT.COL_COMPASS and TBL_WAYPOINT.COL_COMPASS
 	 *</pre>
 	 */
-	private static final int DB_VERSION = 15;
+	private static final int DB_VERSION = 16;
 
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -161,6 +164,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					+ " text default '"+OSMVisibility.Private+"'");
 		case 14:
 			db.execSQL("alter table " + Schema.TBL_TRACKPOINT + " add column " + Schema.COL_SPEED + " double null");
+		case 15:
+			db.execSQL("alter table " + Schema.TBL_TRACKPOINT + " add column " + Schema.COL_COMPASS + "double null");
+			db.execSQL("alter table " + Schema.TBL_WAYPOINT + " add column " + Schema.COL_COMPASS + "double null");
 		}
 		
 	}

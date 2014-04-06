@@ -127,8 +127,8 @@ public class DataHelper {
 	 * @param uuid 
 	 * 			  Unique id of the waypoint
 	 */
-	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid) {
-		Log.v(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid + ", link='" + link + "', location=" + location);
+	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid, float azimuth) {
+		Log.v(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid + ", link='" + link + "', location=" + location + ", azimuth=" + azimuth);
 
 		// location should not be null, but sometime is.
 		// TODO investigate this issue.
@@ -162,6 +162,11 @@ public class DataHelper {
 			} else {
 				// Use GPS clock
 				values.put(Schema.COL_TIMESTAMP, location.getTime());
+			}
+			
+			//add compass if valid
+			if (azimuth >= 0) {
+				values.put(Schema.COL_COMPASS, azimuth);
 			}
 
 			Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
