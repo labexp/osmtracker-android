@@ -139,6 +139,7 @@
 	<string name="various_waiting_gps_fix">Waiting for GPS fix&#8230;</string>
 
 	<!-- OSM map view -->
-	<string name="displaytrackmap">OpenStreetMap track display</string> 
+	<string name="displaytrackmap">OpenStreetMap track display</string>
+	<string name="various_heading">wait for heading ...</string> 
 
 </resources>
