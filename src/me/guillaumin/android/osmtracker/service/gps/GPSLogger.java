@@ -384,7 +384,13 @@ public class GPSLogger extends Service implements LocationListener {
 			lastNbSatellites = countSatellites();
 			
 			if (isTracking) {
-				dataHelper.track(currentTrackId, location);
+				float a;
+				if (geomag != null && gravity != null) {
+					a = azimuth;
+				} else {
+					a = 360;
+				}
+				dataHelper.track(currentTrackId, location, a);
 			}
 		}
 	}

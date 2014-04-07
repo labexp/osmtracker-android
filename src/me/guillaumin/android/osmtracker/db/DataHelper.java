@@ -82,7 +82,7 @@ public class DataHelper {
 	 * @param location
 	 *            The Location to track
 	 */
-	public void track(long trackId, Location location) {
+	public void track(long trackId, Location location, float azimuth) {
 		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location);
 		ContentValues values = new ContentValues();
 		values.put(Schema.COL_TRACK_ID, trackId);
@@ -107,6 +107,10 @@ public class DataHelper {
 			values.put(Schema.COL_TIMESTAMP, location.getTime());
 		}
 
+		if (azimuth < 360) {
+			values.put(Schema.COL_COMPASS, azimuth);
+		}
+		
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 		contentResolver.insert(Uri.withAppendedPath(trackUri, Schema.TBL_TRACKPOINT + "s"), values);
 	}
@@ -165,7 +169,7 @@ public class DataHelper {
 			}
 			
 			//add compass if valid
-			if (azimuth >= 0) {
+			if (azimuth <= 360) {
 				values.put(Schema.COL_COMPASS, azimuth);
 			}
 
