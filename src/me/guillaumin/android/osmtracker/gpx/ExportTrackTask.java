@@ -255,6 +255,11 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 		boolean fillHDOP = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
 				OSMTracker.Preferences.KEY_OUTPUT_GPX_HDOP_APPROXIMATION,
 				OSMTracker.Preferences.VAL_OUTPUT_GPX_HDOP_APPROXIMATION);
+		String compassOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
+				OSMTracker.Preferences.KEY_OUTPUT_COMPASS,
+				OSMTracker.Preferences.VAL_OUTPUT_COMPASS);
+		
+		Log.v("GPXFileWriter", "write preferences: compass:" + compassOutput);
 		
 		Writer writer = null;
 		try {
@@ -263,8 +268,8 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			writer.write(XML_HEADER + "\n");
 			writer.write(TAG_GPX + "\n");
 			
-			writeWayPoints(writer, cWayPoints, accuracyOutput, fillHDOP);
-			writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP);
+			writeWayPoints(writer, cWayPoints, accuracyOutput, fillHDOP, compassOutput);
+			writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP, compassOutput);
 			
 			writer.write("</gpx>");
 		} finally {
@@ -282,7 +287,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
 	 * @throws IOException
 	 */
-	private void writeTrackPoints(String trackName, Writer fw, Cursor c, boolean fillHDOP) throws IOException {
+	private void writeTrackPoints(String trackName, Writer fw, Cursor c, boolean fillHDOP, String compass) throws IOException {
 		// Update dialog every 1%
 		int dialogUpdateThreshold = c.getCount() / 100;
 		if (dialogUpdateThreshold == 0) {
@@ -291,14 +296,14 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 		
 		fw.write("\t" + "<trk>" + "\n");
 		fw.write("\t\t" + "<name>" + CDATA_START + trackName + CDATA_END + "</name>" + "\n");
+		String buffer = "";
 		if (fillHDOP) {
-			fw.write("\t\t" + "<cmt>"
-					+ CDATA_START
-					+ context.getResources().getString(R.string.gpx_hdop_approximation_cmt)
-					+ CDATA_END
-					+ "</cmt>" + "\n");
-		}
-		
+		fw.write("\t\t" + "<cmt>"
+				+ CDATA_START
+				+ context.getResources().getString(R.string.gpx_hdop_approximation_cmt)
+				+ CDATA_END
+				+ "</cmt>" + "\n");
+		}		
 		fw.write("\t\t" + "<trkseg>" + "\n");
 		
 		int i=0;
@@ -315,10 +320,22 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
 				out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
 			}
-
+			if(OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) && !c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
+				out.append("\t\t\t\t" + "<cmt>"+CDATA_START+"compass: " + 
+							c.getDouble(c.getColumnIndex(Schema.COL_COMPASS))+
+				            CDATA_END+"</cmt>"+"\n");
+			}
+			
+			String buff = "";
 			if(! c.isNull(c.getColumnIndex(Schema.COL_SPEED))) {
+				buff += "\t\t\t\t\t" + "<speed>" + c.getDouble(c.getColumnIndex(Schema.COL_SPEED)) + "</speed>" + "\n";
+			}
+			if(OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) && !c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
+				buff += "\t\t\t\t\t" + "<compass>" + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + "</compass>" + "\n";
+			}
+			if(! buff.equals("")) {
 				out.append("\t\t\t\t" + "<extensions>\n");
-				out.append("\t\t\t\t\t" + "<speed>" + c.getDouble(c.getColumnIndex(Schema.COL_SPEED)) + "</speed>" + "\n");
+				out.append(buff);
 				out.append("\t\t\t\t" + "</extensions>\n");
 			}
 
@@ -342,7 +359,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
 	 * @throws IOException
 	 */
-	private void writeWayPoints(Writer fw, Cursor c, String accuracyInfo, boolean fillHDOP) throws IOException {
+	private void writeWayPoints(Writer fw, Cursor c, String accuracyInfo, boolean fillHDOP, String compass) throws IOException {
 
 		// Update dialog every 1%
 		int dialogUpdateThreshold = c.getCount() / 100;
@@ -381,7 +398,13 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 				} else if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_CMT.equals(accuracyInfo)) {
 					// Output accuracy in separate tag
 					out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
-					out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
+					if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) &&
+							! c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
+						out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + 
+								"\n\t\t\t compass heading: " + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + "deg" + CDATA_END + "</cmt>" + "\n");
+					} else {
+						out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
+					}
 				} else {
 					// Unknown value for accuracy info, shouldn't occur but who knows ?
 					// See issue #68. Output at least the name just in case.
@@ -390,6 +413,10 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			} else {
 				// No accuracy info requested, or available
 				out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
+				if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) &&
+						! c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
+					out.append("\t\t"+ "<cmt>" + CDATA_START + "compass: " + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + CDATA_END + "</cmt>\n");
+				}
 			}
 			
 			String link = c.getString(c.getColumnIndex(Schema.COL_LINK));
@@ -405,6 +432,13 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 
 			if(fillHDOP && ! c.isNull(c.getColumnIndex(Schema.COL_ACCURACY))) {
 				out.append("\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
+			}
+
+			if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) &&
+					! c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
+				out.append("\t\t <extensions>\n");
+				out.append("\t\t\t"+ "<compass>" + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + "</compass>\n");
+				out.append("\t\t </extensions>\n");				
 			}
 			
 			out.append("\t" + "</wpt>" + "\n");
