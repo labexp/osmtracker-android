@@ -140,6 +140,8 @@
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">OpenStreetMap track display</string>
-	<string name="various_heading">wait for heading ...</string> 
+	<string name="various_heading">wait for heading #8230</string>
+	<string name="various_heading_unknown">Heading can\'t be determined</string>
+	<string name="various_heading_unit">deg</string> 
 
 </resources>
