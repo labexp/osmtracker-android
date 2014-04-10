@@ -100,6 +100,8 @@ public class GPSLogger extends Service implements LocationListener {
 	private float[] I = new float[9];
 	private float[] orientVals = new float[3];
 	private float azimuth, pitch, roll;
+	private float orAzimuth, orPitch, orRoll;
+	private int orAccuracy;
 	static float rad2deg = 180.0f/3.141592653589793f;
 	
 	private SensorEventListener sensorListener = new SensorEventListener() {
@@ -108,16 +110,13 @@ public class GPSLogger extends Service implements LocationListener {
 
 		 @Override
 		 public void onSensorChanged(SensorEvent event) {
-//			 Log.v("GPSLogger","got sensor event! sensor: " + event.sensor.getType() + 
-//					 ", accuracy: " + event.accuracy + 
-//					 ",value: "+ event.values[0] + ", " + event.values[1] + ", " + event.values[2] );
-		   // If the sensor data is unreliable return
 			 // in fact I find that accuracy is always UNRELIABLE. So I skip this here
 //		   if (event.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE) {
 //			   //Log.w("GPSLogger", "sensor reliability " + event.accuracy);.
+//
 //			   return;
 //		   }
-//			 Log.v("GPSLogger", "sensor reliable");
+//		   Log.v("GPSLogger", "sensor reliable");
 		   // Gets the value of the sensor that has been changed
 		   switch (event.sensor.getType()){  
 		   case Sensor.TYPE_ACCELEROMETER:
@@ -129,6 +128,12 @@ public class GPSLogger extends Service implements LocationListener {
 			   geomag = event.values.clone();
 			   //Log.v("GPSLogger","geomag update " + geomag);
 			   break;
+	       case Sensor.TYPE_ORIENTATION:
+	           orAzimuth = event.values[0];
+	           orPitch = event.values[1];
+	           orRoll = event.values[2];
+	           orAccuracy = event.accuracy;
+	           break;
 		   }
 
 		   // If gravity and geomag have values then find rotation matrix
@@ -148,22 +153,8 @@ public class GPSLogger extends Service implements LocationListener {
 					azimuth = orientVals[0]*rad2deg;
 					pitch = orientVals[1]*rad2deg;
 					roll = orientVals[2]*rad2deg;
-					Log.v("GPSLogger","new azimuth: "+azimuth+", pitch: "+pitch+", roll: "+roll);
+//					Log.v("GPSLogger","new azimuth: "+azimuth+", pitch: "+pitch+", roll: "+roll);
 
-//		     // Displays a pop up message with the azimuth and inclination angles
-//		     String endl = System.getProperty("line.separator");
-//		     Toast.makeText(getBaseContext(), 
-//		       "Rotation:" +
-//		       outR[0] + " " + outR[1] + " " + outR[2] + endl +
-//		       outR[4] + " " + outR[5] + " " + outR[6] + endl +
-//		       outR[8] + " " + outR[9] + " " + outR[10] + endl +endl +
-//		       "Azimuth: " + azimuth + " degrees" + endl + 
-//		       "Pitch: " + pitch + " degrees" + endl +
-//		       "Roll: " + roll + " degrees", 
-//		       Toast.LENGTH_LONG).show();
-//		    } /*else
-//		     Toast.makeText(getBaseContext(), 
-//		       "Get Rotation Matrix Failed", Toast.LENGTH_LONG).show();*/
 			   }   
 		   }
 		
@@ -193,11 +184,13 @@ public class GPSLogger extends Service implements LocationListener {
 						String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
 						
 						// get orientation
-						float a;
-						if (geomag == null && gravity == null) {
-							a = 360; //360 signals invalid angle
+						float a = 0;
+						if (orAccuracy != SensorManager.SENSOR_STATUS_UNRELIABLE) {
+							a = orAzimuth;
+						} else if (!(geomag == null && gravity == null)) {
+							a = azimuth; //360 signals invalid angle
 						} else {
-							a = azimuth;
+							a = 2*360;
 						}
 						dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, a);
 					}
@@ -298,6 +291,7 @@ public class GPSLogger extends Service implements LocationListener {
 	    
 	    Sensor accelSens = sensorService.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 	    Sensor magSens = sensorService.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+	    Sensor oriSens = sensorService.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 	    
 	    if (accelSens != null && magSens != null) {
 		    sensorService.registerListener(sensorListener, 
@@ -314,6 +308,11 @@ public class GPSLogger extends Service implements LocationListener {
 	    	Log.e("GPSLogger", "either magnetic or oritentation sensor not found");
 	    	geomag = null;
 	    	gravity = null;
+	    }
+	    if (oriSens != null) {
+	    	sensorService.registerListener(sensorListener, oriSens, SensorManager.SENSOR_DELAY_NORMAL);
+	    } else {
+	    	orAccuracy = 0;
 	    }
 		
 		super.onCreate();
@@ -384,11 +383,14 @@ public class GPSLogger extends Service implements LocationListener {
 			lastNbSatellites = countSatellites();
 			
 			if (isTracking) {
-				float a;
-				if (geomag != null && gravity != null) {
-					a = azimuth;
+				// get orientation
+				float a = 0;
+				if (orAccuracy != SensorManager.SENSOR_STATUS_UNRELIABLE) {
+					a = orAzimuth;
+				} else if (!(geomag == null && gravity == null)) {
+					a = azimuth; //360 signals invalid angle
 				} else {
-					a = 360;
+					a = 2*360;
 				}
 				dataHelper.track(currentTrackId, location, a);
 			}

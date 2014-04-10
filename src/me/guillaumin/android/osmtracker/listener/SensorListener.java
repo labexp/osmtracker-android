@@ -60,39 +60,40 @@ public class SensorListener implements SensorEventListener {
            orPitch = event.values[1];
            orRoll = event.values[2];
            orAccuracy = event.accuracy;
-//           TextView tvAccuracy = (TextView) activity.findViewById(R.id.gpsstatus_record_tvHeading);
-//           tvAccuracy.setText("" + HEADING_FORMAT.format(orAzimuth) + " " + accurcay + ", " + activity.getResources().getString(R.string.various_heading_unit));
            break;
 
 	   }
 
-	   // If gravity and geomag have values then find rotation matrix
-	   if (gravity != null && geomag != null){
-
-		   // checks that the rotation matrix is found
-		   boolean success = SensorManager.getRotationMatrix(inR, I, gravity, geomag);
-		   if (success){
-
-			    // Re-map coordinates so y-axis comes out of camera
-			    SensorManager.remapCoordinateSystem(inR, SensorManager.AXIS_X, 
-			    SensorManager.AXIS_Z, outR);
-
-			    // Finds the Azimuth and Pitch angles of the y-axis with 
-			    // magnetic north and the horizon respectively
-				SensorManager.getOrientation(outR, orientVals);
-				azimuth = orientVals[0]*rad2deg;
-				pitch = orientVals[1]*rad2deg;
-				roll = orientVals[2]*rad2deg;
-				//Log.v("GPSLogger","new azimuth: "+azimuth+", pitch: "+pitch+", roll: "+roll);
-
-				TextView tvAccuracy = (TextView) activity.findViewById(R.id.gpsstatus_record_tvHeading);
-				tvAccuracy.setText("" + HEADING_FORMAT.format(azimuth) + "["+accuracy+"]" + " (" + HEADING_FORMAT.format(orAzimuth) +  "["+orAccuracy+"])" + activity.getResources().getString(R.string.various_heading_unit));
-		   }   
-	   }
-	   else {
-			TextView tvAccuracy = (TextView) activity.findViewById(R.id.gpsstatus_record_tvHeading);
-			tvAccuracy.setText(activity.getResources().getString(R.string.various_heading_unknown));		   
-	   }
+//	   // If gravity and geomag have values then find rotation matrix
+//	   if (gravity != null && geomag != null){
+//
+//		   // checks that the rotation matrix is found
+//		   boolean success = SensorManager.getRotationMatrix(inR, I, gravity, geomag);
+//		   if (success){
+//
+//			    // Re-map coordinates so y-axis comes out of camera
+//			    SensorManager.remapCoordinateSystem(inR, SensorManager.AXIS_X, 
+//			    SensorManager.AXIS_Z, outR);
+//
+//			    // Finds the Azimuth and Pitch angles of the y-axis with 
+//			    // magnetic north and the horizon respectively
+//				SensorManager.getOrientation(outR, orientVals);
+//				azimuth = orientVals[0]*rad2deg;
+//				pitch = orientVals[1]*rad2deg;
+//				roll = orientVals[2]*rad2deg;
+//				//Log.v("GPSLogger","new azimuth: "+azimuth+", pitch: "+pitch+", roll: "+roll);
+//
+//				TextView tvAccuracy = (TextView) activity.findViewById(R.id.gpsstatus_record_tvHeading);
+//				tvAccuracy.setText(""  + HEADING_FORMAT.format(orAzimuth) +  "["+orAccuracy+"])" + activity.getResources().getString(R.string.various_heading_unit));
+//
+////				tvAccuracy.setText("" + HEADING_FORMAT.format(azimuth) + "["+accuracy+"]" + " (" + HEADING_FORMAT.format(orAzimuth) +  "["+orAccuracy+"])" + activity.getResources().getString(R.string.various_heading_unit));
+//		   }   
+//	} else {
+//			TextView tvAccuracy = (TextView) activity.findViewById(R.id.gpsstatus_record_tvHeading);
+//			tvAccuracy.setText(activity.getResources().getString(R.string.various_heading_unknown));		   
+//	   }
+		TextView tvAccuracy = (TextView) activity.findViewById(R.id.gpsstatus_record_tvHeading);
+		tvAccuracy.setText(""  + HEADING_FORMAT.format(orAzimuth) +  "["+orAccuracy+"]" + activity.getResources().getString(R.string.various_heading_unit));
 	
 	 }
 	public boolean register(Activity activity){
