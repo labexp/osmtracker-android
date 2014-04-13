@@ -259,7 +259,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 				OSMTracker.Preferences.KEY_OUTPUT_COMPASS,
 				OSMTracker.Preferences.VAL_OUTPUT_COMPASS);
 		
-		Log.v("GPXFileWriter", "write preferences: compass:" + compassOutput);
+		Log.v(TAG, "write preferences: compass:" + compassOutput);
 		
 		Writer writer = null;
 		try {
