@@ -156,7 +156,9 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 				if (!gpsActive) {
 					//we set the text field (since nobody else does
 					TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
-					tvAccuracy.setText(getResources().getString(R.string.various_waiting_gps_fix) + " (" + fixCount + "/" + satCount +")");
+					tvAccuracy.setText(getResources().getString(R.string.various_waiting_gps_fix)
+							.replace("{0}",Long.toString(fixCount))
+							.replace("{1}", Long.toString(satCount)));
 				}
 			}
 			break;
@@ -177,7 +179,12 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			
 			TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
 			if (location.hasAccuracy()) {
-				tvAccuracy.setText(getResources().getString(R.string.various_accuracy) + ": " + ACCURACY_FORMAT.format(location.getAccuracy()) + getResources().getString(R.string.various_unit_meters) + " (" + fixCount + "/" + satCount + ")");
+				tvAccuracy.setText(getResources().getString(R.string.various_accuracy) + ": " 
+							+ ACCURACY_FORMAT.format(location.getAccuracy()) + " " +
+							getResources().getString(R.string.various_unit_meters) + 
+							getResources().getString(R.string.various_sat_count)
+								.replace("{0}", Long.toString(fixCount))
+								.replace("{1}", Long.toString(satCount)));
 			} else {
 				tvAccuracy.setText("");
 			}

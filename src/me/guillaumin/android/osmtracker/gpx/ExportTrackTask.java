@@ -285,6 +285,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	 * @param fw Writer to the target file.
 	 * @param c Cursor to track points.
 	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
+	 * @param compass Indicates if and how to write compass heading to the GPX ('none', 'comment', 'extension')
 	 * @throws IOException
 	 */
 	private void writeTrackPoints(String trackName, Writer fw, Cursor c, boolean fillHDOP, String compass) throws IOException {
@@ -298,11 +299,11 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 		fw.write("\t\t" + "<name>" + CDATA_START + trackName + CDATA_END + "</name>" + "\n");
 		String buffer = "";
 		if (fillHDOP) {
-		fw.write("\t\t" + "<cmt>"
-				+ CDATA_START
-				+ context.getResources().getString(R.string.gpx_hdop_approximation_cmt)
-				+ CDATA_END
-				+ "</cmt>" + "\n");
+			fw.write("\t\t" + "<cmt>"
+					+ CDATA_START
+					+ context.getResources().getString(R.string.gpx_hdop_approximation_cmt)
+					+ CDATA_END
+					+ "</cmt>" + "\n");
 		}		
 		fw.write("\t\t" + "<trkseg>" + "\n");
 		
@@ -357,6 +358,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	 * @param c Cursor to way points.
 	 * @param accuracyInfo Constant describing how to include (or not) accuracy info for way points.
 	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
+	 * @param compass Indicates if and how to write compass heading to the GPX ('none', 'comment', 'extension')
 	 * @throws IOException
 	 */
 	private void writeWayPoints(Writer fw, Cursor c, String accuracyInfo, boolean fillHDOP, String compass) throws IOException {

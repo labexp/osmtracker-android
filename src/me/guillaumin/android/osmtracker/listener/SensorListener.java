@@ -253,7 +253,7 @@ public class SensorListener implements SensorEventListener {
 		if (sensorService != null) { 
 			sensorService.unregisterListener(this);
 			sensorService = null;
-			Log.v("SensorListener","unregisterd");
+			Log.v(TAG,"unregisterd");
 		}
 	}
 };
