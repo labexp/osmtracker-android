@@ -15,6 +15,17 @@ import android.hardware.SensorManager;
 import android.util.Log;
 import android.widget.TextView;
 
+/**
+ * Listener for sensors. In particular for the acceleration and magnetic sensors to provide compass
+ * heading.
+ * 
+ * Register the listener with your context using the register/unregister functions
+ * 
+ * most recent reading from the sensor is always available from azimuth, pitch, roll, accuracy and valid fields
+ * 
+ * @author Christoph Gohle
+ *
+ */
 public class SensorListener implements SensorEventListener {
 	private SensorManager sensorService;
 	/**
@@ -72,8 +83,8 @@ public class SensorListener implements SensorEventListener {
 	 */
 	private final static boolean USE_ORIENTATION_AS_DEFAULT = true;
 	
-	public void onAccuracyChanged(Sensor arg0, int arg1) {
-		Log.v("SensorListener", "Accuracy changed: sensor:" + arg0 + ", accuracy: " + arg1);
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		Log.v("SensorListener", "Accuracy changed: sensor:" + sensor + ", accuracy: " + accuracy);
 	}
 
 	public void onSensorChanged(SensorEvent event) {
@@ -130,7 +141,8 @@ public class SensorListener implements SensorEventListener {
 						break;
 					}
 					tvHeading.setTextColor(color);
-					tvHeading.setText(""  + HEADING_FORMAT.format(azimuth) +  "["+accuracy+"]" + activity.getResources().getString(R.string.various_heading_unit));
+					tvHeading.setText(activity.getResources().getString(R.string.various_heading_display)
+							.replace("{0}", HEADING_FORMAT.format(azimuth)));
 				} else {
 					tvHeading.setTextColor(Color.GRAY);
 					tvHeading.setText(activity.getResources().getString(R.string.various_heading_unknown));

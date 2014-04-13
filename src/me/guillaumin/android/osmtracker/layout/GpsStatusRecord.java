@@ -179,12 +179,11 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			
 			TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
 			if (location.hasAccuracy()) {
-				tvAccuracy.setText(getResources().getString(R.string.various_accuracy) + ": " 
-							+ ACCURACY_FORMAT.format(location.getAccuracy()) + " " +
-							getResources().getString(R.string.various_unit_meters) + 
-							getResources().getString(R.string.various_sat_count)
-								.replace("{0}", Long.toString(fixCount))
-								.replace("{1}", Long.toString(satCount)));
+				tvAccuracy.setText(getResources().getString(R.string.various_accuracy_with_sats)
+						.replace("{0}", ACCURACY_FORMAT.format(location.getAccuracy()))
+						.replace("{1}",getResources().getString(R.string.various_unit_meters)) 
+						.replace("{2}", Long.toString(fixCount))
+						.replace("{3}", Long.toString(satCount)));
 			} else {
 				tvAccuracy.setText("");
 			}
