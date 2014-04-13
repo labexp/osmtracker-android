@@ -10,6 +10,7 @@ import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
+import me.guillaumin.android.osmtracker.listener.SensorListener;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
 import me.guillaumin.android.osmtracker.util.FileSystemUtils;
@@ -130,7 +131,11 @@ public class TrackLogger extends Activity {
 	 * constant for voice recording dialog
 	 */
 	public static final int DIALOG_VOICE_RECORDING = 2;
-
+	/**
+	 * sensor listener for the azimuth display
+	 */
+	
+	public SensorListener sensorListener;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -162,6 +167,9 @@ public class TrackLogger extends Activity {
 		if(savedInstanceState != null){
 			buttonsEnabled = savedInstanceState.getBoolean(STATE_BUTTONS_ENABLED, false);
 		}
+		
+		// create sensor listener
+		sensorListener = new SensorListener();
 	}
 
 	@Override
@@ -228,6 +236,9 @@ public class TrackLogger extends Activity {
 		// We can't use BIND_AUTO_CREATE here, because when we'll ubound
 		// later, we want to keep the service alive in background
 		bindService(gpsLoggerServiceIntent, gpsLoggerConnection, 0);
+		
+		// connect the sensor listener
+		sensorListener.register(this);
 
 		setEnabledActionButtons(buttonsEnabled);
 		if(!buttonsEnabled){
@@ -274,6 +285,10 @@ public class TrackLogger extends Activity {
 			} else {
 				unbindService(gpsLoggerConnection);
 			}
+		}
+		
+		if (sensorListener!=null) {
+			sensorListener.unregister();
 		}
 
 		super.onPause();

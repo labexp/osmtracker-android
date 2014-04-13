@@ -90,6 +90,14 @@ public class WaypointListAdapter extends CursorAdapter {
 			locationAsString.append(", " + context.getResources().getString(R.string.wplist_accuracy)
 					+ cursor.getString(cursor.getColumnIndex(Schema.COL_ACCURACY)));
 		}
+		if (!cursor.isNull(cursor.getColumnIndex(Schema.COL_COMPASS))) {
+			locationAsString.append(", " + context.getResources().getString(R.string.wplist_compass)
+					+ cursor.getString(cursor.getColumnIndex(Schema.COL_COMPASS)));
+			locationAsString.append(", " + context.getResources().getString(R.string.wplist_compass_accuracy)
+					+ cursor.getString(cursor.getColumnIndex(Schema.COL_COMPASS_ACCURACY)));
+			
+		
+		}		
 		vLocation.setText(locationAsString.toString());
 
 		// Bind timestamp

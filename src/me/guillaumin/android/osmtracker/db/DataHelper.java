@@ -47,6 +47,13 @@ public class DataHelper {
 	 * already a media file of this name.
 	 */
 	private static final int MAX_RENAME_ATTEMPTS = 20;
+	
+	/**
+	 * valid range for azimuth angles.
+	 */
+	public static final float AZIMUTH_MIN = 0;
+	public static final float AZIMUTH_MAX = 360;
+	public static final float AZIMUTH_INVALID = -1;
 
 	/**
 	 * Formatter for various files (GPX, media)
@@ -81,8 +88,13 @@ public class DataHelper {
 	 *            Id of the track
 	 * @param location
 	 *            The Location to track
+	 * @param azimuth
+	 * 			  azimuth angle in degrees (0-360deg) of the track point. if it is outside the given range it will be set null.
+	 * @param accuracy
+	 * 			  accuracy of the compass reading (as SensorManager.SENSOR_STATUS_ACCURACY*),
+	 * 			  ignored if azimuth is invalid.
 	 */
-	public void track(long trackId, Location location) {
+	public void track(long trackId, Location location, float azimuth, int accuracy) {
 		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location);
 		ContentValues values = new ContentValues();
 		values.put(Schema.COL_TRACK_ID, trackId);
@@ -107,6 +119,11 @@ public class DataHelper {
 			values.put(Schema.COL_TIMESTAMP, location.getTime());
 		}
 
+		if (azimuth >= AZIMUTH_MIN && azimuth < AZIMUTH_MAX) {
+			values.put(Schema.COL_COMPASS, azimuth);
+			values.put(Schema.COL_COMPASS_ACCURACY, accuracy);
+		}
+		
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 		contentResolver.insert(Uri.withAppendedPath(trackUri, Schema.TBL_TRACKPOINT + "s"), values);
 	}
@@ -125,10 +142,15 @@ public class DataHelper {
 	 * @param link
 	 *				Link of waypoint
 	 * @param uuid 
-	 * 			  Unique id of the waypoint
+	 * 			    Unique id of the waypoint
+	 * @param azimuth
+	 * 			    azimuth angle in degrees (0-360deg) of the way point. if it is outside the given range it will be set null.
+	 * @param accuracy
+	 * 			  accuracy of the compass reading (as SensorManager.SENSOR_STATUS_ACCURACY*),
+	 * 			  ignored if azimuth is invalid.
 	 */
-	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid) {
-		Log.v(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid + ", link='" + link + "', location=" + location);
+	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid, float azimuth, int accuracy) {
+		Log.v(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid + ", link='" + link + "', location=" + location + ", azimuth=" + azimuth + ", accuracy="+accuracy);
 
 		// location should not be null, but sometime is.
 		// TODO investigate this issue.
@@ -162,6 +184,12 @@ public class DataHelper {
 			} else {
 				// Use GPS clock
 				values.put(Schema.COL_TIMESTAMP, location.getTime());
+			}
+			
+			//add compass if valid
+			if (azimuth >= AZIMUTH_MIN && azimuth < AZIMUTH_MAX) {
+				values.put(Schema.COL_COMPASS, azimuth);
+				values.put(Schema.COL_COMPASS_ACCURACY, accuracy);
 			}
 
 			Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);

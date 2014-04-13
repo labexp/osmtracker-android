@@ -47,5 +47,10 @@
 		<item>CYCLEMAP</item>
 		<item>MAPQUESTOSM</item>
 	</string-array>
+	<string-array name="prefs_compass_heading_values">
+		<item >none</item>
+		<item >comment</item>
+		<item >extension</item>
+	</string-array>
 
 </resources>
