@@ -47,6 +47,13 @@ public class DataHelper {
 	 * already a media file of this name.
 	 */
 	private static final int MAX_RENAME_ATTEMPTS = 20;
+	
+	/**
+	 * valid range for azimuth angles.
+	 */
+	public static final float AZIMUTH_MIN = 0;
+	public static final float AZIMUTH_MAX = 360;
+	public static final float AZIMUTH_INVALID = -1;
 
 	/**
 	 * Formatter for various files (GPX, media)
@@ -81,6 +88,8 @@ public class DataHelper {
 	 *            Id of the track
 	 * @param location
 	 *            The Location to track
+	 * @param azimuth
+	 * 			  azimuth angle in degrees (0-360deg) of the track point. if it is outside the given range it will be set null.
 	 */
 	public void track(long trackId, Location location, float azimuth) {
 		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location);
@@ -107,7 +116,7 @@ public class DataHelper {
 			values.put(Schema.COL_TIMESTAMP, location.getTime());
 		}
 
-		if (azimuth < 360) {
+		if (azimuth >= AZIMUTH_MIN && azimuth < AZIMUTH_MAX) {
 			values.put(Schema.COL_COMPASS, azimuth);
 		}
 		
@@ -129,7 +138,9 @@ public class DataHelper {
 	 * @param link
 	 *				Link of waypoint
 	 * @param uuid 
-	 * 			  Unique id of the waypoint
+	 * 			    Unique id of the waypoint
+	 * @param azimuth
+	 * 			    azimuth angle in degrees (0-360deg) of the way point. if it is outside the given range it will be set null.
 	 */
 	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid, float azimuth) {
 		Log.v(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid + ", link='" + link + "', location=" + location + ", azimuth=" + azimuth);
@@ -169,7 +180,7 @@ public class DataHelper {
 			}
 			
 			//add compass if valid
-			if (azimuth <= 360) {
+			if (azimuth >= AZIMUTH_MIN && azimuth < AZIMUTH_MAX) {
 				values.put(Schema.COL_COMPASS, azimuth);
 			}
 

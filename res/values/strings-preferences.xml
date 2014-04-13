@@ -104,6 +104,6 @@
 		<item >in extension</item>
 	</string-array>
 	<string name="prefs_compass_heading">Export Compass Heading</string>
-	<string name="prefs_compass_heading_summary">Defines if and how the compass data should be exported to the gpx file</string>
+	<string name="prefs_compass_heading_summary">Defines if and how the compass data should be exported to the GPX file</string>
 
 </resources>
