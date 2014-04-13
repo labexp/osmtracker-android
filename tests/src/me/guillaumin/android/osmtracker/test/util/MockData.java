@@ -59,7 +59,7 @@ public class MockData {
 			l.setAltitude((Double) mock[3]);
 			l.setSpeed((Float) mock[4]);
 			l.setTime(c.getTime().getTime());
-			helper.track(trackId, l, DataHelper.AZIMUTH_INVALID);
+			helper.track(trackId, l, DataHelper.AZIMUTH_INVALID, 0);
 		}
 		
 		for (Object[] mock: mockWayPoints) {
@@ -71,7 +71,7 @@ public class MockData {
 			l.setSpeed((Float) mock[4]);
 			l.setTime(c.getTime().getTime());
 
-			helper.wayPoint(trackId, l, (Integer) mock[5], (String) mock[6], (String) mock[7], (String) mock[8], DataHelper.AZIMUTH_INVALID);
+			helper.wayPoint(trackId, l, (Integer) mock[5], (String) mock[6], (String) mock[7], (String) mock[8], DataHelper.AZIMUTH_INVALID, 0);
 		}
 
 		return trackId;
@@ -100,7 +100,7 @@ public class MockData {
 			l.setAltitude((r.nextDouble() * 2000) - 1000);
 			l.setSpeed(r.nextFloat() * 200);
 			l.setTime(System.currentTimeMillis());
-			helper.track(trackId, l, DataHelper.AZIMUTH_INVALID);
+			helper.track(trackId, l, DataHelper.AZIMUTH_INVALID, 0);
 		}
 		
 		for (int i=0; i<numTrackPoints; i++) {
@@ -116,7 +116,7 @@ public class MockData {
 					r.nextInt() * 10,
 					"wayPoint #"+i,
 					"http://link.com/"+i,
-					UUID.randomUUID().toString(), DataHelper.AZIMUTH_INVALID);
+					UUID.randomUUID().toString(), DataHelper.AZIMUTH_INVALID, 0);
 		}
 
 		return trackId;

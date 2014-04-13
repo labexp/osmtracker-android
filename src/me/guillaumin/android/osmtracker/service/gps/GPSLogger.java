@@ -120,7 +120,7 @@ public class GPSLogger extends Service implements LocationListener {
 						} else {
 							a = DataHelper.AZIMUTH_INVALID;
 						}
-						dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, a);
+						dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, a, sensorListener.accuracy);
 					}
 				}
 			} else if (OSMTracker.INTENT_UPDATE_WP.equals(intent.getAction())) {
@@ -292,7 +292,7 @@ public class GPSLogger extends Service implements LocationListener {
 				} else {
 					a = DataHelper.AZIMUTH_INVALID;
 				}
-				dataHelper.track(currentTrackId, location, a);
+				dataHelper.track(currentTrackId, location, a, sensorListener.accuracy);
 			}
 		}
 	}

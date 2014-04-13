@@ -140,8 +140,9 @@
 	<string name="various_heading_display">{0}&#176;</string> <!-- parameters: (heading in degrees) -->
 	<string name="various_heading">Wait for heading&#8230;</string>
 	<string name="various_heading_unknown">Heading can\'t be determined</string>
-	<string name="wplist_compass">compass:</string> 
-		
+	<string name="wplist_compass">comp. head.:</string> 
+	<string name="wplist_compass_accuracy">comp. accur.:</string> 
+			
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">OpenStreetMap track display</string>

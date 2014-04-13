@@ -323,7 +323,9 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			}
 			if(OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) && !c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
 				out.append("\t\t\t\t" + "<cmt>"+CDATA_START+"compass: " + 
-							c.getDouble(c.getColumnIndex(Schema.COL_COMPASS))+
+							c.getDouble(c.getColumnIndex(Schema.COL_COMPASS))+ 
+							"\n\t\t\t\t\tcompAccuracy: " + 
+							c.getLong(c.getColumnIndex(Schema.COL_COMPASS_ACCURACY))+
 				            CDATA_END+"</cmt>"+"\n");
 			}
 			
@@ -333,6 +335,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			}
 			if(OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) && !c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
 				buff += "\t\t\t\t\t" + "<compass>" + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + "</compass>" + "\n";
+				buff += "\t\t\t\t\t" + "<compass_accuracy>" + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n";
 			}
 			if(! buff.equals("")) {
 				out.append("\t\t\t\t" + "<extensions>\n");
@@ -397,13 +400,19 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 							+ " (" + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + ")"
 							+ CDATA_END
 							+ "</name>" + "\n");
+					if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) &&
+							! c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
+						out.append("\t\t"+ "<cmt>" + CDATA_START + "compass: " + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + 
+								"\n\t\t\tcompass accuracy: " + c.getInt(c.getColumnIndex(Schema.COL_COMPASS_ACCURACY)) + CDATA_END + "</cmt>\n");
+					}
 				} else if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_CMT.equals(accuracyInfo)) {
 					// Output accuracy in separate tag
 					out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
 					if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) &&
 							! c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
 						out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + 
-								"\n\t\t\t compass heading: " + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + "deg" + CDATA_END + "</cmt>" + "\n");
+								"\n\t\t\t compass heading: " + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + 
+								"deg\n\t\t\t compass accuracy: " + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS_ACCURACY)) +CDATA_END + "</cmt>" + "\n");
 					} else {
 						out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
 					}
@@ -417,7 +426,8 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 				out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
 				if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) &&
 						! c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
-					out.append("\t\t"+ "<cmt>" + CDATA_START + "compass: " + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + CDATA_END + "</cmt>\n");
+					out.append("\t\t"+ "<cmt>" + CDATA_START + "compass: " + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + 
+							"\n\t\t\tcompass accuracy: " + c.getInt(c.getColumnIndex(Schema.COL_COMPASS_ACCURACY)) + CDATA_END + "</cmt>\n");
 				}
 			}
 			
@@ -438,9 +448,10 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 
 			if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) &&
 					! c.isNull(c.getColumnIndex(Schema.COL_COMPASS))) {
-				out.append("\t\t <extensions>\n");
+				out.append("\t\t<extensions>\n");
 				out.append("\t\t\t"+ "<compass>" + c.getDouble(c.getColumnIndex(Schema.COL_COMPASS)) + "</compass>\n");
-				out.append("\t\t </extensions>\n");				
+				out.append("\t\t\t" + "<compass_accuracy>" + c.getInt(c.getColumnIndex(Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n");
+				out.append("\t\t</extensions>\n");				
 			}
 			
 			out.append("\t" + "</wpt>" + "\n");

@@ -90,8 +90,11 @@ public class DataHelper {
 	 *            The Location to track
 	 * @param azimuth
 	 * 			  azimuth angle in degrees (0-360deg) of the track point. if it is outside the given range it will be set null.
+	 * @param accuracy
+	 * 			  accuracy of the compass reading (as SensorManager.SENSOR_STATUS_ACCURACY*),
+	 * 			  ignored if azimuth is invalid.
 	 */
-	public void track(long trackId, Location location, float azimuth) {
+	public void track(long trackId, Location location, float azimuth, int accuracy) {
 		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location);
 		ContentValues values = new ContentValues();
 		values.put(Schema.COL_TRACK_ID, trackId);
@@ -118,6 +121,7 @@ public class DataHelper {
 
 		if (azimuth >= AZIMUTH_MIN && azimuth < AZIMUTH_MAX) {
 			values.put(Schema.COL_COMPASS, azimuth);
+			values.put(Schema.COL_COMPASS_ACCURACY, accuracy);
 		}
 		
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
@@ -141,9 +145,12 @@ public class DataHelper {
 	 * 			    Unique id of the waypoint
 	 * @param azimuth
 	 * 			    azimuth angle in degrees (0-360deg) of the way point. if it is outside the given range it will be set null.
+	 * @param accuracy
+	 * 			  accuracy of the compass reading (as SensorManager.SENSOR_STATUS_ACCURACY*),
+	 * 			  ignored if azimuth is invalid.
 	 */
-	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid, float azimuth) {
-		Log.v(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid + ", link='" + link + "', location=" + location + ", azimuth=" + azimuth);
+	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid, float azimuth, int accuracy) {
+		Log.v(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid + ", link='" + link + "', location=" + location + ", azimuth=" + azimuth + ", accuracy="+accuracy);
 
 		// location should not be null, but sometime is.
 		// TODO investigate this issue.
@@ -182,6 +189,7 @@ public class DataHelper {
 			//add compass if valid
 			if (azimuth >= AZIMUTH_MIN && azimuth < AZIMUTH_MAX) {
 				values.put(Schema.COL_COMPASS, azimuth);
+				values.put(Schema.COL_COMPASS_ACCURACY, accuracy);
 			}
 
 			Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
