@@ -6,6 +6,7 @@ import me.guillaumin.android.osmtracker.activity.TrackLogger;
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.listener.SensorListener;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -85,7 +86,11 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private long gpsLoggingInterval;
 	
-	
+	/**
+	 * sensors for magnetic orientation
+	 */
+	private SensorListener sensorListener = new SensorListener();	
+
 	/**
 	 * Receives Intent for way point tracking, and stop/start logging.
 	 */
@@ -107,7 +112,15 @@ public class GPSLogger extends Service implements LocationListener {
 						String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
 						String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
 						String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
-						dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid);
+						
+						// get orientation
+						float a = 0;
+						if (sensorListener.valid) {
+							a = sensorListener.azimuth;
+						} else {
+							a = DataHelper.AZIMUTH_INVALID;
+						}
+						dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, a, sensorListener.accuracy);
 					}
 				}
 			} else if (OSMTracker.INTENT_UPDATE_WP.equals(intent.getAction())) {
@@ -201,6 +214,9 @@ public class GPSLogger extends Service implements LocationListener {
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 		
+		//register for Orientation updates
+		sensorListener.register(this);
+				
 		super.onCreate();
 	}
 	
@@ -227,6 +243,9 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		// Cancel any existing notification
 		stopNotifyBackgroundService();
+		
+		// stop sensors
+		sensorListener.unregister();
 
 		super.onDestroy();
 	}
@@ -266,7 +285,14 @@ public class GPSLogger extends Service implements LocationListener {
 			lastNbSatellites = countSatellites();
 			
 			if (isTracking) {
-				dataHelper.track(currentTrackId, location);
+				// get orientation
+				float a = 0;
+				if (sensorListener.valid) {
+					a = sensorListener.azimuth;
+				} else {
+					a = DataHelper.AZIMUTH_INVALID;
+				}
+				dataHelper.track(currentTrackId, location, a, sensorListener.accuracy);
 			}
 		}
 	}

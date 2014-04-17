@@ -20,7 +20,7 @@ public class WaypointList extends ListActivity {
 		Long trackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
 		
 		Cursor cursor = getContentResolver().query(TrackContentProvider.waypointsUri(trackId),
-				null, null, null, Schema.COL_TIMESTAMP + " asc");
+				null, null, null, Schema.COL_TIMESTAMP + " desc");
 		startManagingCursor(cursor);
 		setListAdapter(new WaypointListAdapter(WaypointList.this, cursor));
 		

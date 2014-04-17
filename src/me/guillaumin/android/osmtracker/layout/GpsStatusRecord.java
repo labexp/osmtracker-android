@@ -74,6 +74,13 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	 */
 	private boolean gpsActive = false;
 
+	/**
+	 * satellite counts
+	 */
+	int satCount = 0;
+	int fixCount = 0;
+
+	
 	public GpsStatusRecord(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		LayoutInflater.from(context).inflate(R.layout.gpsstatus_record, this, true);
@@ -123,21 +130,36 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 
 				GpsStatus status = lmgr.getGpsStatus(null);
 
+				satCount = 0;
+				fixCount = 0;
 				// Count active satellites
-				int satCount = 0;
-				for (@SuppressWarnings("unused") GpsSatellite sat:status.getSatellites()) {
+				for (GpsSatellite sat:status.getSatellites()) {
 					satCount++;
+					if (sat.usedInFix()) {
+						fixCount++;
+					}
 				}
 
 				// Count how many bars should we draw
 				int nbBars = 0;
 				for (int i=0; i<SAT_INDICATOR_TRESHOLD.length; i++) {
-					if (satCount >= SAT_INDICATOR_TRESHOLD[i]) {
+					if (fixCount >= SAT_INDICATOR_TRESHOLD[i]) {
 						nbBars = i;
 					}
 				}
-				Log.v(TAG, "Found " + satCount + " satellites. Will draw " + nbBars + " bars.");			
+				Log.v(TAG, "Found " + satCount + " satellites. " + fixCount + " used in fix. Will draw " + nbBars + " bars.");			
 				imgSatIndicator.setImageResource(getResources().getIdentifier("drawable/sat_indicator_" + nbBars, null, OSMTracker.class.getPackage().getName()));
+				if (fixCount == 0 && gpsActive) {
+					activity.onGpsDisabled();
+					gpsActive = false;
+				}
+				if (!gpsActive) {
+					//we set the text field (since nobody else does
+					TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
+					tvAccuracy.setText(getResources().getString(R.string.various_waiting_gps_fix)
+							.replace("{0}",Long.toString(fixCount))
+							.replace("{1}", Long.toString(satCount)));
+				}
 			}
 			break;
 		}
@@ -157,7 +179,11 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			
 			TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
 			if (location.hasAccuracy()) {
-				tvAccuracy.setText(getResources().getString(R.string.various_accuracy) + ": " + ACCURACY_FORMAT.format(location.getAccuracy()) + getResources().getString(R.string.various_unit_meters));
+				tvAccuracy.setText(getResources().getString(R.string.various_accuracy_with_sats)
+						.replace("{0}", ACCURACY_FORMAT.format(location.getAccuracy()))
+						.replace("{1}",getResources().getString(R.string.various_unit_meters)) 
+						.replace("{2}", Long.toString(fixCount))
+						.replace("{3}", Long.toString(satCount)));
 			} else {
 				tvAccuracy.setText("");
 			}
