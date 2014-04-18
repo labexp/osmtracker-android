@@ -25,6 +25,8 @@
 	<string name="wplist_longitude">Long: </string>
 	<string name="wplist_elevation">Ele: </string>
 	<string name="wplist_accuracy">Accur: </string>
+	<string name="wplist_compass">Comp. head.:</string> 
+	<string name="wplist_compass_accuracy">Comp. accur.:</string> 
 	
 	<!-- Track Manager -->
 	<string name="trackmgr">Track manager</string>
@@ -135,14 +137,13 @@
 	
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
+	<string name="various_accuracy">Accuracy</string>
 	<string name="various_accuracy_with_sats">Accuracy {0}{1} ({2}/{3})</string> <!-- parameters: (accuracy, meters, used sats, visible sats) -->
 	<string name="various_waiting_gps_fix">Waiting for GPS fix&#8230; ({0}/{1})</string> <!-- parameters: (used sats, visible sats) -->
 	<string name="various_heading_display">{0}&#176;</string> <!-- parameters: (heading in degrees) -->
 	<string name="various_heading">Wait for heading&#8230;</string>
 	<string name="various_heading_unknown">Heading can\'t be determined</string>
-	<string name="wplist_compass">comp. head.:</string> 
-	<string name="wplist_compass_accuracy">comp. accur.:</string> 
-			
+	
 
 	<!-- OSM map view -->
 	<string name="displaytrackmap">OpenStreetMap track display</string>

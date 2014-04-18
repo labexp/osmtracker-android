@@ -95,7 +95,7 @@ public class DataHelper {
 	 * 			  ignored if azimuth is invalid.
 	 */
 	public void track(long trackId, Location location, float azimuth, int accuracy) {
-		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location);
+		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location + " azimuth: " + azimuth + ", accuracy: " + accuracy);
 		ContentValues values = new ContentValues();
 		values.put(Schema.COL_TRACK_ID, trackId);
 		values.put(Schema.COL_LATITUDE, location.getLatitude());

@@ -75,10 +75,14 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	private boolean gpsActive = false;
 
 	/**
-	 * satellite counts
+	 * Satellites count
 	 */
-	int satCount = 0;
-	int fixCount = 0;
+	private int satCount = 0;
+	
+	/**
+	 * Satellites used in fix count
+	 */
+	private int fixCount = 0;
 
 	
 	public GpsStatusRecord(Context context, AttributeSet attrs) {
@@ -92,7 +96,13 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		if (context instanceof TrackLogger) {
 			activity = (TrackLogger) context;
 			lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-		}		
+		}
+		
+		// Initialize waiting message (0 satellites so far)
+		TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
+		tvAccuracy.setText(getResources().getString(R.string.various_waiting_gps_fix)
+				.replace("{0}", "0")
+				.replace("{1}", "0"));
 
 	}
 	

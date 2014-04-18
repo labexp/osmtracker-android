@@ -127,15 +127,17 @@ public class TrackLogger extends Activity {
 	 * constant for text note dialog
 	 */
 	public static final int DIALOG_TEXT_NOTE = 1;
+	
 	/**
 	 * constant for voice recording dialog
 	 */
 	public static final int DIALOG_VOICE_RECORDING = 2;
+	
 	/**
 	 * sensor listener for the azimuth display
 	 */
+	private SensorListener sensorListener;
 	
-	public SensorListener sensorListener;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		

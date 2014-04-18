@@ -117,7 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * v13: TBL_TRACK.COL_DIR is now deprecated (rxxx) v0.5.3 TODO: fill in correct revision and version
 	 * v14: add TBL_TRACK.COL_OSM_UPLOAD_DATE, TBL_TRACK.COL_DESCRIPTION,
 	 * 			TBL_TRACK.COL_TAGS and TBL_TRACK.COL_OSM_VISIBILITY for OSM upload - v0.6.0 
-	 * v15: add TBL_TRACKPOINT.COL_SPPED
+	 * v15: add TBL_TRACKPOINT.COL_SPEED
 	 * v16: add TBL_TRACKPOINT.COL_COMPASS, TBL_TRACKPOINT.COL_COMPASS_ACCURACY,
 	 *          TBL_WAYPOINT.COL_COMPASS and TBL_WAYPOINT.COL_COMPASS_ACCURACY
 	 *</pre>

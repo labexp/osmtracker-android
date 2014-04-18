@@ -27,37 +27,48 @@ import android.widget.TextView;
  *
  */
 public class SensorListener implements SensorEventListener {
+
 	private SensorManager sensorService;
+
 	/**
 	 * value of the last accelerometer sensor event
 	 */
-	public float[] gravity = null;
+	private float[] gravity = null;
+	
 	/**
 	 * accuracy of the last accelerometer sensor event
 	 */
-	public int gravAccuracy = 0;
+	private int gravAccuracy = 0;
+	
 	/**
 	 * value of the last magnetic field sensor event
 	 */
-	public float[] geomag = null;
+	private float[] geomag = null;
+	
 	/**
 	 * accuracy of the last magnetic field sensor event
 	 */
-	public int magAccuracy = 0;
+	private int magAccuracy = 0;
+	
 	/**
-	 * azimuth, pitch and roll and accuracy (as in SensorManager.SENSOR_ACCURACY_* of the last sensor event 
+	 * Azimuth, pitch and roll (as in SensorManager.SENSOR_ACCURACY_* of the last sensor event) 
 	 */
-	public float azimuth, pitch, roll;
-	public int accuracy;
+	private float azimuth, pitch, roll;
+	
+	/**
+	 * Accuracy (as in SensorManager.SENSOR_ACCURACY_* of the last sensor event
+	 */
+	private int accuracy;
+	
 	/**
 	 * true if current azimuth, pitch and roll are valid (from the last sensor event)
 	 */
-	public boolean valid = false;
+	private boolean valid = false;
 	
 	/**
 	 * conversion from rad to degrees
 	 */
-	public static final float rad2deg = 180.0f/3.141592653589793f;
+	public static final float RAD_TO_DEG = 180.0f/3.141592653589793f;
 
 	private float[] inR = new float[9];
 	private float[] outR = new float[9];
@@ -84,7 +95,7 @@ public class SensorListener implements SensorEventListener {
 	private final static boolean USE_ORIENTATION_AS_DEFAULT = true;
 	
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		Log.v("SensorListener", "Accuracy changed: sensor:" + sensor + ", accuracy: " + accuracy);
+		Log.v(TAG, "Accuracy changed: sensor:" + sensor + ", accuracy: " + accuracy);
 	}
 
 	public void onSensorChanged(SensorEvent event) {
@@ -115,7 +126,7 @@ public class SensorListener implements SensorEventListener {
 	    }
 		
 		if (update_rotation) {
-			valid = calc_orientation();
+			valid = calcOrientation();
 		} else {
 			// case for orientation event: already done
 		}
@@ -151,7 +162,7 @@ public class SensorListener implements SensorEventListener {
 		}
 	}
 
-	private boolean calc_orientation() {
+	private boolean calcOrientation() {
 		// If gravity and geomag have values then find rotation matrix
 		boolean success = false;
 		if (gravity != null && geomag != null){
@@ -166,9 +177,9 @@ public class SensorListener implements SensorEventListener {
 				// Finds the Azimuth and Pitch angles of the y-axis with 
 				// magnetic north and the horizon respectively
 				SensorManager.getOrientation(outR, orientVals);
-				azimuth = orientVals[0]*rad2deg;
-				pitch = orientVals[1]*rad2deg;
-				roll = orientVals[2]*rad2deg;
+				azimuth = orientVals[0]*RAD_TO_DEG;
+				pitch = orientVals[1]*RAD_TO_DEG;
+				roll = orientVals[2]*RAD_TO_DEG;
 				if (magAccuracy<gravAccuracy) {
 					accuracy = magAccuracy;
 				} else {
@@ -189,17 +200,6 @@ public class SensorListener implements SensorEventListener {
 	public boolean register(Activity activity) {
 		this.activity = activity;
 		return register(activity, USE_ORIENTATION_AS_DEFAULT);
-	}
-
-	/**
-	 * register the listener with orientation sensors 
-	 * @param activity activity that will be updated from this listener
-	 * @param use_orientation use (deprecated) orientation sensor if true. Otherwise use the getOrientation method
-	 * @return true on success
-	 */
-	public boolean registeer(Activity activity, boolean use_orientation) {
-		this.activity = activity;
-		return register((Context) activity, use_orientation);
 	}
 	
 	/**
@@ -267,5 +267,17 @@ public class SensorListener implements SensorEventListener {
 			sensorService = null;
 			Log.v(TAG,"unregisterd");
 		}
+	}
+	
+	public float getAzimuth() {
+		if (valid) {
+			return azimuth;
+		} else {
+			return DataHelper.AZIMUTH_INVALID;
+		}
+	}
+	
+	public int getAccuracy() {
+		return accuracy;
 	}
 };

@@ -113,14 +113,7 @@ public class GPSLogger extends Service implements LocationListener {
 						String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
 						String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
 						
-						// get orientation
-						float a = 0;
-						if (sensorListener.valid) {
-							a = sensorListener.azimuth;
-						} else {
-							a = DataHelper.AZIMUTH_INVALID;
-						}
-						dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, a, sensorListener.accuracy);
+						dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy());
 					}
 				}
 			} else if (OSMTracker.INTENT_UPDATE_WP.equals(intent.getAction())) {
@@ -285,14 +278,7 @@ public class GPSLogger extends Service implements LocationListener {
 			lastNbSatellites = countSatellites();
 			
 			if (isTracking) {
-				// get orientation
-				float a = 0;
-				if (sensorListener.valid) {
-					a = sensorListener.azimuth;
-				} else {
-					a = DataHelper.AZIMUTH_INVALID;
-				}
-				dataHelper.track(currentTrackId, location, a, sensorListener.accuracy);
+				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy());
 			}
 		}
 	}
