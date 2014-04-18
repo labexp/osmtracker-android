@@ -296,8 +296,12 @@ public class TrackManager extends ListActivity {
 			break;
 		case R.id.trackmgr_contextmenu_resume:
 			// let's activate the track and start the TrackLogger activity
-			setActiveTrack(info.id);
 			i = new Intent(this, TrackLogger.class);
+			if (info.id == currentTrackId) {
+				i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
+			}else {
+				setActiveTrack(info.id);
+			}
 			i.putExtra(Schema.COL_TRACK_ID, info.id);
 			startActivity(i);
 			break;
