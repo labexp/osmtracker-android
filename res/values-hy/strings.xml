@@ -27,5 +27,8 @@
   <!--Display track-->
   <!--Track detail-->
   <!--Various-->
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
 </resources>

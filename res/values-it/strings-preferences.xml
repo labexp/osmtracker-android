@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Usa 0 per il più breve possibile (influisce sulla durata batteria)</string>
   <string name="prefs_gps_logging_interval_seconds">secondi</string>
   <string name="prefs_ui">Interfaccia utente</string>
+  <string name="prefs_ui_picture_source">Sorgente immagini</string>
+  <string name="prefs_ui_picture_source_summary">Utilizzare le immagini della fotocamera o della galleria?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Fotocamera</item>
+    <item>Galleria</item>
+    <item>Chiedi ogni volta</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Formato tasti</string>
   <string name="prefs_ui_buttons_layout_summary">Permette di definire un formato personalizzato dei tasti (vedi manuale)</string>
   <string name="prefs_ui_buttons_layout_defaut">Predefinito</string>

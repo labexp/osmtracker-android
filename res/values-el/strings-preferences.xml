@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Χρησιμοποιήστε 0 για το μικρότερο δυνατό (επηρεάζει τη ζωή της μπαταρίας)</string>
   <string name="prefs_gps_logging_interval_seconds">δευτερόλεπτα</string>
   <string name="prefs_ui">Διεπαφή χρήστη</string>
+  <string name="prefs_ui_picture_source">Προεπιλεγμένη πηγή εικόνας</string>
+  <string name="prefs_ui_picture_source_summary">Επιλογή εικόνων από την κάμερα ή από τη συλλογή;</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Κάμερα</item>
+    <item>Συλλογή</item>
+    <item>Ερώτηση πάντα</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Προκαθορισμένα κουμπιά</string>
   <string name="prefs_ui_buttons_layout_summary">Επιλέξτε ένα προσαρμοσμένο σύνολο κουμπιών (δείτε τα έγγραφα)</string>
   <string name="prefs_ui_buttons_layout_defaut">Προκαθορισμένο</string>

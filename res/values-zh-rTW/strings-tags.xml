@@ -1,8 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">其他</string>
+  <string name="tag.restriction">限制</string>
   <string name="tag.car">汽車</string>
   <string name="tag.tourism">觀光</string>
+  <string name="tag.amenity">設施</string>
+  <string name="tag.amenity_more">設施 (+)</string>
   <string name="tag.landuse">土地利用</string>
   <string name="tag.misc_bus_stop">公車站</string>
   <string name="tag.misc_railway">鐵路</string>
@@ -10,6 +13,7 @@
   <string name="tag.misc_post_box">郵筒</string>
   <string name="tag.misc_atm">ATM</string>
   <string name="tag.misc_toilets">洗手間</string>
+  <string name="tag.misc_shelter">涼亭</string>
   <string name="tag.restriction_traffic_light">交通燈號</string>
   <string name="tag.restriction_one_way">單行道</string>
   <string name="tag.car_fuel_station">加油站</string>
@@ -19,6 +23,7 @@
   <string name="tag.tourism_castle">城堡</string>
   <string name="tag.tourism_museum">博物館</string>
   <string name="tag.tourism_cinema">電影院</string>
+  <string name="tag.amenity_bench">長椅</string>
   <string name="tag.amenity_water">水域</string>
   <string name="tag.amenity_pharmacy">藥局</string>
   <string name="tag.amenity_shop">購物</string>

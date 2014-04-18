@@ -85,6 +85,7 @@
   <string name="tag.track_footway">Μονοπάτι</string>
   <string name="tag.track_bridleway">Μονοπάτι αλόγων</string>
   <string name="tag.track_steps">Σκαλιά</string>
+  <string name="tag.track_living_street">Δρόμος ήπιας κυκλοφορίας</string>
   <string name="tag.track_pedestrian">Πεζόδρομος</string>
   <string name="tag.track_grade1">Βαθμός 1</string>
   <string name="tag.track_grade2">Βαθμός 2</string>
@@ -96,6 +97,7 @@
   <string name="tag.landuse_basin">Λεκανοπέδιο</string>
   <string name="tag.landuse_reservoir">Ταμιευτήρας</string>
   <string name="tag.landuse_forest">Δάσος</string>
+  <string name="tag.landuse_allotments">κλήροι</string>
   <string name="tag.landuse_cemetery">Κοιμητήριο</string>
   <string name="tag.landuse_recreation_ground">Χώρος\nΑναψυχής</string>
 </resources>

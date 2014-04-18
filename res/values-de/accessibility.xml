@@ -3,8 +3,8 @@
   <!--About screen-->
   <string name="acc.osmtracker_logo">OSMTracker Logo</string>
   <!--Zoom in/out in map view-->
-  <string name="acc.zoom_in">Zoom in</string>
-  <string name="acc.zoom_out">Zoom out</string>
+  <string name="acc.zoom_in">Zoom Hinein</string>
+  <string name="acc.zoom_out">Zoom Heraus</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">Anzeige der Stärke des Satellitensignals</string>
   <string name="acc.record_indicator">Aufnahme-Fortschrittsanzeige</string>

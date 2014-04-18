@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Użyj 0 dla najkrótszego (wpływa na żywotność baterii)</string>
   <string name="prefs_gps_logging_interval_seconds">sekund</string>
   <string name="prefs_ui">Interfejs użytkownika</string>
+  <string name="prefs_ui_picture_source">Domyślne źródło obrazów</string>
+  <string name="prefs_ui_picture_source_summary">Wziąć zdjęcia z aparatu czy z galerii?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Aparat</item>
+    <item>Galeria</item>
+    <item>Zawsze pytaj</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Układ przycisków</string>
   <string name="prefs_ui_buttons_layout_summary">Wybierz własny układ przycisków (zobacz dokumentację)</string>
   <string name="prefs_ui_buttons_layout_defaut">Domyślnie</string>

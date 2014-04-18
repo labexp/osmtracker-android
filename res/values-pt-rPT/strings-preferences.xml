@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Use 0 para o valor mais pequeno possível (afecta a vida da bateria)</string>
   <string name="prefs_gps_logging_interval_seconds">segundos</string>
   <string name="prefs_ui">Interface com Utilizador</string>
+  <string name="prefs_ui_picture_source">Fonte da imagem por omissão</string>
+  <string name="prefs_ui_picture_source_summary">Tirar fotografias da câmara ou da galeria?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Câmara</item>
+    <item>Galeria</item>
+    <item>Perguntar sempre</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Conjunto de botões</string>
   <string name="prefs_ui_buttons_layout_summary">Escolha um conjunto de botões personalizado (confira docs)</string>
   <string name="prefs_ui_buttons_layout_defaut">Por omissão</string>
@@ -37,6 +44,7 @@
   <string name="prefs_display_always_on_summary">O ecrão manter-se-á ligado enquanto estiver a registrar. Desactive para poupar bateria</string>
   <string name="prefs_displaytrack_osm">Mapa de fundo</string>
   <string name="prefs_displaytrack_osm_summary">Apresentar o mapa OpenStreetMap sob o caminho. Necessita de ligação de dados</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Apresentar sempre o fundo OpenStreetMap? Exige uma ligação de dados.</string>
   <string name="prefs_output">Definições de GPX</string>
   <string name="prefs_storage_dir">Directoria de armazenamento externo (SD)</string>
   <string name="prefs_storage_dir_hint">Aplicável apenas ao próximo caminho (não ao actual)</string>
@@ -63,5 +71,11 @@
   <string name="prefs_osm_clear_oauth_data">Restabelecer a autenticação OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Esquecer as credenciais e permissões OSM e forçar o OSMTracker a pedi-las novamente</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Terá de autorizar, novamente, o OSMTracker a enviar informações de caminhos. Tem a certeza?</string>
+  <string name="prefs_map_tile">Fornecedor de Map Tile</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>MAPNIK</item>
+    <item>CYCLEMAP</item>
+    <item>MAPQUESTOSM</item>
+  </string-array>
 </resources>

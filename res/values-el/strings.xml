@@ -122,7 +122,9 @@
   <!--Various-->
   <string name="various_unit_meters">μ</string>
   <string name="various_accuracy">Ακρίβεια</string>
-  <string name="various_waiting_gps_fix">Αναμονή GPS...</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">Προβολή ιχνών OpenStreetMap</string>
 </resources>

@@ -27,11 +27,12 @@
   <string name="trackmgr">Gerenciar trilhas</string>
   <string name="trackmgr_tracklist">Lista de trilhas:</string>
   <string name="trackmgr_waypoints_count">Pontos de passagem:</string>
+  <string name="trackmgr_trackpoints_count">Trajeto:</string>
   <string name="trackmgr_empty">Você não tem nenhuma trilha.</string>
   <string name="trackmgr_newtrack_hint">Para gravar uma trilha,\npressione <b>Menu</b> e <b>Nova trilha</b></string>
   <string name="trackmgr_newtrack_error">Impossível criar uma nova trilha: {0}</string>
   <string name="trackmgr_continuetrack_hint">Você está gravando <b>trilha #{0}</b>\nEscolha ela na lista para continuar</string>
-  <string name="trackmgr_contextmenu_stop">Parar de gravar trilha</string>
+  <string name="trackmgr_contextmenu_stop">Parar gravação</string>
   <string name="trackmgr_contextmenu_resume">Continuar gravação</string>
   <string name="trackmgr_contextmenu_delete">Apagar</string>
   <string name="trackmgr_contextmenu_export">Exportar em GPX</string>
@@ -42,7 +43,7 @@
   <string name="trackmgr_delete_confirm">A trilha #{0} será apagada</string>
   <string name="trackmgr_deleteall_confirm">Todas as trilhas serão apagadas. Tem certeza?</string>
   <string name="trackmgr_exporting">Exportando trilha #{0}…</string>
-  <string name="trackmgr_export_error">Impossível exportar trilha: {0}</string>
+  <string name="trackmgr_export_error">Não foi possível exportar trilha: {0}</string>
   <string name="trackmgr_exportall_confirm">Todas as trilhas serão exportadas, o que poderá levar muito tempo. Tem certeza?</string>
   <!--Track Detail-->
   <string name="trackdetail">Detalhes da trilha</string>
@@ -61,12 +62,12 @@
   <string name="trackdetail_description_mandatory">Você precisa digitar uma descrição</string>
   <string name="osm_visibility_private">Privado</string>
   <string name="osm_visibility_public">Público</string>
-  <string name="osm_visibility_trackable">Gravável</string>
+  <string name="osm_visibility_trackable">Acompanhável</string>
   <string name="osm_visibility_identifiable">Identificável</string>
   <!--OSM upload-->
   <string name="osm_upload">Enviar para OpenStreetMap</string>
   <string name="osm_upload_ok">Salvar e enviar</string>
-  <string name="osm_upload_tmpfile_failed">Impossível exportar a trilha para um arquivo temporário</string>
+  <string name="osm_upload_tmpfile_failed">Não foi possível exportar a trilha para um arquivo temporário</string>
   <string name="osm_upload_oauth_failed">Impossível autenticar no OSM</string>
   <string name="osm_upload_sending">Enviando trilha #{0}…</string>
   <string name="osm_upload_waiting_response">Esperando servidor do OpenStreetMap responder...</string>
@@ -99,8 +100,10 @@
   <string name="error_create_track_dir">Impossível criar a pasta de trilhas %s</string>
   <string name="error_externalstorage_not_writable_hint">Por favor confira se o armazenamento externo está corretamente inserido e montado.</string>
   <string name="error_voicerec_failed">Gravação de voz falhou</string>
+  <string name="error_userlayout_parsing">Erro ao analisar arquivo de layout XML. Por favor, voltar para o layout padrão.</string>
   <!--GPX-->
   <string name="gpx_track_name">Gravado com OSMTracker para Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Atenção: valores HDOP não são o HDOP como retornado pelo dispositivo GPS. Eles são relativamente precisos na localização em metros.</string>
   <!--About screen-->
   <string name="about">Sobre</string>
   <string name="about_text">Para maiores informações, documentação e relatório de problemas, por favor visite o site:</string>
@@ -119,7 +122,9 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Precisão</string>
-  <string name="various_waiting_gps_fix">Esperando estabilização do GPS...</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">Exibindo trilhas do OpenStreetMap</string>
 </resources>

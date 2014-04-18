@@ -19,5 +19,8 @@
   <!--Track detail-->
   <!--Various-->
   <string name="various_unit_meters">м</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
 </resources>

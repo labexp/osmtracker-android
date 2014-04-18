@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Задайте 0 для мінімально можливого (прискорює розряд батарейки)</string>
   <string name="prefs_gps_logging_interval_seconds">секунд(и)</string>
   <string name="prefs_ui">Інтерфейс</string>
+  <string name="prefs_ui_picture_source">Типове джерело зображення</string>
+  <string name="prefs_ui_picture_source_summary">Зробити знімок камерою чи вибрати з галереї?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Камера</item>
+    <item>Галерея</item>
+    <item>Завжди запитувати</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Розміщення кнопок</string>
   <string name="prefs_ui_buttons_layout_summary">Виберіть варіант розміщення кнопок (див. док.)</string>
   <string name="prefs_ui_buttons_layout_defaut">Типово</string>

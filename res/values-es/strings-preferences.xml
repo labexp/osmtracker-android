@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Utilice 0 para el más breve posible (afecta a la vida de la batería)</string>
   <string name="prefs_gps_logging_interval_seconds">segundos</string>
   <string name="prefs_ui">Interfaz de usuario</string>
+  <string name="prefs_ui_picture_source">Origen de imágenes por defecto</string>
+  <string name="prefs_ui_picture_source_summary">¿Tomar imágenes de la cámara o la galería?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Cámara</item>
+    <item>Galería</item>
+    <item>Preguntar siempre</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Disposición de los botones</string>
   <string name="prefs_ui_buttons_layout_summary">Escoja una disposición personalizada de los botones (ver documentación)</string>
   <string name="prefs_ui_buttons_layout_defaut">Predeterminada</string>
@@ -64,5 +71,11 @@
   <string name="prefs_osm_clear_oauth_data">Borrar los datos de autenticación de OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Olvidar las credenciales y permisos de OSM. Forzar a que OSMTracker los vuelva a solicitar</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Deberá autorizar a OSMTracker para volver a subir las pistas. ¿Está seguro?</string>
+  <string name="prefs_map_tile">Proveedor de losetas de mapa</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>MAPNIK</item>
+    <item>CYCLEMAP</item>
+    <item>MAPQUESTOSM</item>
+  </string-array>
 </resources>

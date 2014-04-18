@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">0を指定すると可能な限り短い間隔 (バッテリー消費量大)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
   <string name="prefs_ui">ユーザーインターフェース</string>
+  <string name="prefs_ui_picture_source">デフォルトの画像ソース</string>
+  <string name="prefs_ui_picture_source_summary">カメラで撮影しますか？またはギャラリーから選択しますか？</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>カメラ</item>
+    <item>ギャラリー</item>
+    <item>毎回確認</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">ボタンレイアウト</string>
   <string name="prefs_ui_buttons_layout_summary">カスタムボタンレイアウトを選択してください（ドキュメント参照）</string>
   <string name="prefs_ui_buttons_layout_defaut">デフォルト</string>

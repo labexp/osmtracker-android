@@ -116,7 +116,9 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Presisjon</string>
-  <string name="various_waiting_gps_fix">Ventar på GPS-posisjon…</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap sporvising</string>
 </resources>

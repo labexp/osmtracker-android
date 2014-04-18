@@ -118,7 +118,9 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Přesnost</string>
-  <string name="various_waiting_gps_fix">Čekám na GPS signál...</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">Zobrazení trasy OpenStreetMap</string>
 </resources>

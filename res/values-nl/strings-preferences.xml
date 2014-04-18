@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Gebruik 0 voor de kortst mogelijke (beïnvloedt levensduur van de batterij)</string>
   <string name="prefs_gps_logging_interval_seconds">seconden</string>
   <string name="prefs_ui">Gebruikersinterface</string>
+  <string name="prefs_ui_picture_source">Standaard afbeeldingbron</string>
+  <string name="prefs_ui_picture_source_summary">Afbeeldingen nemen van camera of galerij?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Camera</item>
+    <item>Galerij</item>
+    <item>Altijd vragen</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Knop-voorinstellingen</string>
   <string name="prefs_ui_buttons_layout_summary">Een aangepaste set knoppen kiezen (zie documenten)</string>
   <string name="prefs_ui_buttons_layout_defaut">Standaard</string>

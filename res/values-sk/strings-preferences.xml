@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Použite 0 pre najkratší možný (Ovplyvní výdrž batérie)</string>
   <string name="prefs_gps_logging_interval_seconds">sekundy</string>
   <string name="prefs_ui">Užívateľské rozhranie</string>
+  <string name="prefs_ui_picture_source">Predvolený zdroj obrázkov</string>
+  <string name="prefs_ui_picture_source_summary">Zosnímať obrázky fotoaparátom alebo vybrať z galérie?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Fotoaparát</item>
+    <item>Galéria</item>
+    <item>Vždy sa opýtať</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Rozloženie tlačidiel</string>
   <string name="prefs_ui_buttons_layout_summary">Povoliť určenie vlastného rozloženia tlačidiel (Viď dokumenty)</string>
   <string name="prefs_ui_buttons_layout_defaut">Štandardné</string>
@@ -37,6 +44,7 @@
   <string name="prefs_display_always_on_summary">Obrazovka zostane zapnutá počas stopovania. Vypnite pre úsporu batérie</string>
   <string name="prefs_displaytrack_osm">OSM pozadie</string>
   <string name="prefs_displaytrack_osm_summary">Zobraziť OpenStreetMap pod stopou. Potrebuje dátové pripojenie</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Vždy zobrazovať pozadie OpenStreetMap? Vyžaduje aktívne dátové pripojenie.</string>
   <string name="prefs_output">Výstup GPX súboru</string>
   <string name="prefs_storage_dir">Adresár externého úložiska (SD)</string>
   <string name="prefs_storage_dir_hint">Použité až v ďalšej stope (nie v aktuálnej)</string>
@@ -60,5 +68,14 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">Vyplniť HDOP v GPX s odhadovanou hodnotou presnosti</string>
   <string name="prefs_sound_enabled">Zapnúť zvuky</string>
   <string name="prefs_sound_enabled_summary">Prehrávať zvuky pri spustení a ukončení nahrávania hlasovej stopy</string>
+  <string name="prefs_osm_clear_oauth_data">Vymazať autentifikáciu OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Vymaže prihlasovacie údaje a oprávnenia OSM uložené v telefóne a prinúti OSMTracker, aby si ich opätovne vyžiadal</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Znova sa pokúšate autorizovať OSMTracker, aby mohol nahrávať záznamy stôp. Ste si istý?</string>
+  <string name="prefs_map_tile">Poskytovateľ mapových podkladov</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>MAPNIK</item>
+    <item>CYCLEMAP</item>
+    <item>MAPQUESTOSM</item>
+  </string-array>
 </resources>

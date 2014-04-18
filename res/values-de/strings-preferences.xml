@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">0 für das kürzest mögliche Intervall</string>
   <string name="prefs_gps_logging_interval_seconds">Sekunden</string>
   <string name="prefs_ui">Benutzeroberfläche</string>
+  <string name="prefs_ui_picture_source">Standard Bild-Quelle</string>
+  <string name="prefs_ui_picture_source_summary">Bild von Kamera oder Galerie?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamera</item>
+    <item>Galerie</item>
+    <item>Immer fragen</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Tastenlayout</string>
   <string name="prefs_ui_buttons_layout_summary">Erlaube benutzerdefiniertes Tastenlayout (siehe Dokumentation)</string>
   <string name="prefs_ui_buttons_layout_defaut">Standard</string>
@@ -37,6 +44,7 @@
   <string name="prefs_display_always_on_summary">Bildschirm bleibt während des Trackings beleuchtet. Deaktivieren um Batterie zu sparen</string>
   <string name="prefs_displaytrack_osm">OSM Hintergrund</string>
   <string name="prefs_displaytrack_osm_summary">OpenStreetMap als Track-Hintergrund. Benötigt Datenverbindung</string>
+  <string name="prefs_displaytrack_osm_summary_ask">OpenStreetMap als Track-Hintergrund. Benötigt Datenverbindung</string>
   <string name="prefs_output">GPX Dateiausgabe</string>
   <string name="prefs_storage_dir">Externes Speicherverzeichnis (SD)</string>
   <string name="prefs_storage_dir_hint">Dies gilt nur für neue Tracks.</string>
@@ -63,5 +71,11 @@
   <string name="prefs_osm_clear_oauth_data">OSM-Anmeldedaten rücksetzen</string>
   <string name="prefs_osm_clear_oauth_data_summary">OSM-Anmeldedaten und -Rechte vergessen und OSMTracker neu danach fragen lassen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Du musst OSMTracker neu erlauben, Tracks hochladen zu dürfen. Bist Du sicher?</string>
+  <string name="prefs_map_tile">Hintergrund-Karte Anbieter</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>MAPNIK</item>
+    <item>CYCLEMAP</item>
+    <item>MAPQUESTOSM</item>
+  </string-array>
 </resources>

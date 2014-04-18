@@ -118,7 +118,9 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Zehaztasuna</string>
-  <string name="various_waiting_gps_fix">GPSa itxoiten...</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap ibilbidea</string>
 </resources>

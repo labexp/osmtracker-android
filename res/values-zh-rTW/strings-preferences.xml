@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">若使用 0 則會盡可能頻繁地記錄資料 (同時會影響電池續航時間)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
   <string name="prefs_ui">使用介面</string>
+  <string name="prefs_ui_picture_source">預設的圖片來源</string>
+  <string name="prefs_ui_picture_source_summary">使用相機拍照，或是從相簿選取？</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>相機</item>
+    <item>相簿</item>
+    <item>總是詢問我</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">按鍵配置</string>
   <string name="prefs_ui_buttons_layout_summary">選擇自訂的按鍵配置 (參見文件)</string>
   <string name="prefs_ui_buttons_layout_defaut">預設配置</string>
@@ -37,6 +44,7 @@
   <string name="prefs_display_always_on_summary">在記錄軌跡時，螢幕會保持開啟。關閉這個設定可節省用電量</string>
   <string name="prefs_displaytrack_osm">背景地圖</string>
   <string name="prefs_displaytrack_osm_summary">在軌跡底下顯示 OpenStreetMap 地圖。本功能需有可用的網路連結以傳輸資料</string>
+  <string name="prefs_displaytrack_osm_summary_ask">保持顯示 OpenStreetMap 底圖？此功能需要連線。</string>
   <string name="prefs_output">GPX 相關設定</string>
   <string name="prefs_storage_dir">外部儲存媒體 (SD) 資料夾位置</string>
   <string name="prefs_storage_dir_hint">設定值將在記錄下一筆軌跡資料時生效 (不是目前這筆)</string>
@@ -63,5 +71,11 @@
   <string name="prefs_osm_clear_oauth_data">重新設定 OSM 認證</string>
   <string name="prefs_osm_clear_oauth_data_summary">捨棄現存的 OSM 認證與權限資訊，強制 OSMTracker 重新取得它們</string>
   <string name="prefs_osm_clear_oauth_data_dialog">您必須重新認證 OSMTracker 方能繼續上傳軌跡資料，確定嗎？</string>
+  <string name="prefs_map_tile">地圖圖塊的提供來源</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>MAPNIK</item>
+    <item>CYCLEMAP</item>
+    <item>MAPQUESTOSM</item>
+  </string-array>
 </resources>

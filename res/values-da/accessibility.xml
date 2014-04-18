@@ -6,9 +6,9 @@
   <string name="acc.zoom_in">Zoom ind</string>
   <string name="acc.zoom_out">Zoom ud</string>
   <!--GPS status bar-->
-  <string name="acc.sat_indicator">Satellite signal styrke indikator</string>
-  <string name="acc.record_indicator">Optagelse status indikator</string>
+  <string name="acc.sat_indicator">Indikator for satellit-signalstyrke</string>
+  <string name="acc.record_indicator">Indikator for optagestatus</string>
   <!--Track list-->
-  <string name="acc.track_status">Track status indikator</string>
-  <string name="acc.upload_status">OpenStreetMap upload status indikator</string>
+  <string name="acc.track_status">Indikator for track-status </string>
+  <string name="acc.upload_status">Indikator for OpenStreetMap upload-status </string>
 </resources>

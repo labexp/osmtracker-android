@@ -70,6 +70,9 @@
   <!--Various-->
   <string name="various_unit_meters">ม</string>
   <string name="various_accuracy">ความแม่นยำ</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap แสดงเส้นทาง</string>
 </resources>

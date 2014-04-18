@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Установите 0 для минимально возможного (ускоряет разряд батереи)</string>
   <string name="prefs_gps_logging_interval_seconds">секунд(ы)</string>
   <string name="prefs_ui">Интерфейс</string>
+  <string name="prefs_ui_picture_source">Источник картинок по-умолчанию</string>
+  <string name="prefs_ui_picture_source_summary">Получить изображение с камеры или альбома?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Камера</item>
+    <item>Альбом</item>
+    <item>Всегда запрашивать</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Расположение кнопок</string>
   <string name="prefs_ui_buttons_layout_summary">Выбрать вариант расположения кнопок (См. документацию)</string>
   <string name="prefs_ui_buttons_layout_defaut">По умолчанию</string>
@@ -37,6 +44,7 @@
   <string name="prefs_display_always_on_summary">Экран всегда будет включен во время записи трека. Отключите для экономии заряда батареи</string>
   <string name="prefs_displaytrack_osm">Картооснова OSM</string>
   <string name="prefs_displaytrack_osm_summary">Отображать картооснову OpenStreetMap при отображении трека. Требует интернет-соединения</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Всегда показывать OpenStreetMap на фоне? Требуется подключение к сети.</string>
   <string name="prefs_output">Настройки GPX файлов</string>
   <string name="prefs_storage_dir">Сохранять в каталоге</string>
   <string name="prefs_storage_dir_hint">Будет использоваться для записи следующего трека (не для текущего)</string>
@@ -63,5 +71,11 @@
   <string name="prefs_osm_clear_oauth_data">Сбросить учетные данные OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Удалить учетные данные доступа к OSM и задать OSMTracker запросить их снова.</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Нужно будет заново авторизовать OSMTracker, чтобы закачивать треки. Вы уверены?</string>
+  <string name="prefs_map_tile">Поставщики картоосновы</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>MAPNIK</item>
+    <item>CYCLEMAP</item>
+    <item>MAPQUESTOSM</item>
+  </string-array>
 </resources>

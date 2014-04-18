@@ -14,6 +14,9 @@
   <string name="tracklogger_tracked">Записано: </string>
   <string name="tracklogger_gps_disabled">GPS отключен</string>
   <string name="tracklogger_gps_disabled_hint">GPS отключен. Вы хотите включить его?</string>
+  <string name="tracklogger_choose_gallery_camera">Галерея или камера? </string>
+  <string name="tracklogger_camera">Делать снимки с камеры</string>
+  <string name="tracklogger_gallery">Выбрать изображение из альбома</string>
   <!--Waypoint List-->
   <string name="wplist">Список путевых точек</string>
   <string name="wplist_latitude">Шир.: </string>
@@ -112,13 +115,16 @@
   <string name="notification_text">Нажмите для возврата на основной экран</string>
   <!--Display track-->
   <string name="displaytrack">Отобразить трек</string>
+  <string name="displaytrack_map">Отображать подложку карты</string>
   <string name="displaytrack_north">С</string>
   <!--Track detail-->
   <string name="trackdetail_save">Сохранить</string>
   <!--Various-->
   <string name="various_unit_meters">м</string>
   <string name="various_accuracy">Точность</string>
-  <string name="various_waiting_gps_fix">Ожидание фиксации GPS…</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">Отображение трека (OSM)</string>
 </resources>

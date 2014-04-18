@@ -122,7 +122,9 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Dokładność</string>
-  <string name="various_waiting_gps_fix">Ustalanie pozycji GPS…</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">Podgląd śladu w OpenStreetMap</string>
 </resources>

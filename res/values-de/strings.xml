@@ -14,6 +14,9 @@
   <string name="tracklogger_tracked">Tracked: </string>
   <string name="tracklogger_gps_disabled">GPS ist deaktiviert</string>
   <string name="tracklogger_gps_disabled_hint">GPS ist deaktiviert. Möchten Sie es aktivieren?</string>
+  <string name="tracklogger_choose_gallery_camera">Galerie oder Kamera?</string>
+  <string name="tracklogger_camera">Bild mit Kamera aufnehmen</string>
+  <string name="tracklogger_gallery">Bild aus Galerie auswählen</string>
   <!--Waypoint List-->
   <string name="wplist">Waypoint Liste</string>
   <string name="wplist_latitude">Lat: </string>
@@ -112,13 +115,16 @@
   <string name="notification_text">Hier tippen um den Hauptbildschirm aufzurufen</string>
   <!--Display track-->
   <string name="displaytrack">Zeige Track</string>
+  <string name="displaytrack_map">Karte als Hintergrund anzeigen</string>
   <string name="displaytrack_north">N</string>
   <!--Track detail-->
   <string name="trackdetail_save">Speichern</string>
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Genauigkeit</string>
-  <string name="various_waiting_gps_fix">Warte auf GPS Standortbestimmung</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap Track Anzeige</string>
 </resources>

@@ -6,7 +6,7 @@
   <string name="app_description">Windows Mobile版 OSMTracker の後継。あなたの旅の軌跡を記録し、ウェイポイントに印（音声録音、写真）をつけたり、GPX形式でエクスポートして、後でJOSMなどのOpen Street Map用ツールで編集したりできます。</string>
   <!--TrackLogger-->
   <string name="tracklogger">トラックログ</string>
-  <string name="tracklogger_waiting_gps">GPS準備待ち…</string>
+  <string name="tracklogger_waiting_gps">GPS位置が特定できるまでボタンは無効です...</string>
   <string name="tracklogger_voicerec_title">録音</string>
   <string name="tracklogger_voicerec_text">録音 {0}秒</string>
   <string name="tracklogger_voicerec_stop">停止</string>
@@ -122,7 +122,9 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">精度</string>
-  <string name="various_waiting_gps_fix">GPS測定待ち …</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap トラック表示</string>
 </resources>

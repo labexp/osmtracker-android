@@ -42,6 +42,8 @@
   <!--Track detail-->
   <!--Various-->
   <string name="various_accuracy">Doğruluk</string>
-  <string name="various_waiting_gps_fix">GPS düzeltme için bekleniyor...</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
 </resources>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <!--TrackLogger-->
+  <string name="tracklogger_voicerec_stop">توقف</string>
+  <string name="tracklogger_btnBack">عقب</string>
+  <string name="tracklogger_gps_disabled">GPS غیرفعال</string>
+  <string name="tracklogger_gps_disabled_hint">GPS غیرفعال است. آنرا فعال میکنید؟</string>
+  <!--Waypoint List-->
+  <!--Track Manager-->
+  <string name="trackmgr_contextmenu_delete">حذف</string>
+  <string name="trackmgr_contextmenu_display">نمایش</string>
+  <string name="trackmgr_contextmenu_details">جزئیات</string>
+  <!--Track Detail-->
+  <string name="trackdetail_startdate">زمان شروع:</string>
+  <string name="trackdetail_enddate">زمان خاتمه:</string>
+  <string name="trackdetail_startloc">شروع در:</string>
+  <string name="trackdetail_endloc">خاتمه در:</string>
+  <string name="trackdetail_description">توضیح</string>
+  <string name="osm_visibility_private">خصوصی</string>
+  <string name="osm_visibility_public">عمومی</string>
+  <string name="osm_visibility_trackable">قابل ردیابی</string>
+  <string name="osm_visibility_identifiable">قابل تعریف</string>
+  <!--OSM upload-->
+  <!--GPS Status & record bar-->
+  <!--Menu-->
+  <!--Errors-->
+  <!--GPX-->
+  <!--About screen-->
+  <!--Notification-->
+  <!--Display track-->
+  <!--Track detail-->
+  <string name="trackdetail_save">ذخیره</string>
+  <!--Various-->
+  <string name="various_accuracy">دقت</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
+  <!--OSM map view-->
+</resources>

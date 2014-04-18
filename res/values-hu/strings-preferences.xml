@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Állítson be 0-t a legrövidebb lehetségesként (az akkumulátor üzemidejét befolyásolja)</string>
   <string name="prefs_gps_logging_interval_seconds">másodperc</string>
   <string name="prefs_ui">Felhasználói felület</string>
+  <string name="prefs_ui_picture_source">Alapértelmezett képforrás</string>
+  <string name="prefs_ui_picture_source_summary">A képeket kamerából vagy galériából vegyük?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamera</item>
+    <item>Galéria</item>
+    <item>Mindig kérdez</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Gomb alapértelmezések</string>
   <string name="prefs_ui_buttons_layout_summary">Válasszon egy egyedi nyomógomb készletet (lásd dokumentáció)</string>
   <string name="prefs_ui_buttons_layout_defaut">Alapértelmezett</string>
