@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 	<ListPreference android:title="@string/prefs_voicerec_duration"
 		android:key="voicerec.duration" android:entryValues="@array/prefs_voicerec_durations"
-		android:defaultValue="unlimited (press again to stop)" android:entries="@array/prefs_voicerec_durations"></ListPreference>
+		android:defaultValue="2" android:entries="@array/prefs_voicerec_durations"></ListPreference>
 	<CheckBoxPreference android:key="sound_enabled" android:title="@string/prefs_sound_enabled"
 		android:summary="@string/prefs_sound_enabled_summary" android:defaultValue="true"></CheckBoxPreference>
 	<com.android.internal.preference.YesNoPreference android:key="osm.oauth.clear-data"
