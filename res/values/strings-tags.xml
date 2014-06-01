@@ -32,7 +32,7 @@
 	<string name="tag.restriction_120">Max 120</string>
 	<string name="tag.restriction_130">Max 130</string>
 	<string name="tag.restriction_no_exit">No exit</string>
-	<string name="tag.restriction_traffic_light">Traffic Light</string>
+	<string name="tag.restriction_traffic_light">Traffic light</string>
 	<string name="tag.restriction_one_way">One way</string>
 	<string name="tag.car_fuel_station">Fuel station</string>
 	<string name="tag.car_parking">Parking</string>
