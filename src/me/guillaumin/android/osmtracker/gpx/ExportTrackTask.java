@@ -88,7 +88,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	/**
 	 * Path to the exported GPX file
 	 */
-	private File trackFile;
+	protected File trackFile;
 	
 	/**
 	 * Dialog to display while exporting
@@ -138,7 +138,11 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 		dialog.show();
 	}
 	
-	
+	/**
+	 * Export the track to a new GPX file.
+	 * Calls {@link #exportTrackAsGpx(long)} which sets {@link #trackFile} to the file.
+	 * If any error occurs, sets {@link #errorMsg}.
+	 */
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		try {
@@ -180,6 +184,11 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 		}
 	}
 
+	/**
+	 * Export the track to a new GPX file.  Sets {@link #trackFile} to the file.
+	 * @param trackId  Track ID
+	 * @throws ExportTrackException  if any error occurs during export
+	 */
 	private void exportTrackAsGpx(long trackId) throws ExportTrackException {
 		File sdRoot = Environment.getExternalStorageDirectory();
 		
