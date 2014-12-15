@@ -1,7 +1,6 @@
 package me.guillaumin.android.osmtracker.activity;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
@@ -11,6 +10,7 @@ import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.layout.GpsStatusRecord;
 import me.guillaumin.android.osmtracker.layout.UserDefinedLayout;
 import me.guillaumin.android.osmtracker.listener.SensorListener;
+import me.guillaumin.android.osmtracker.receiver.MediaButtonReceiver;
 import me.guillaumin.android.osmtracker.service.gps.GPSLogger;
 import me.guillaumin.android.osmtracker.service.gps.GPSLoggerServiceConnection;
 import me.guillaumin.android.osmtracker.util.FileSystemUtils;
@@ -20,6 +20,8 @@ import me.guillaumin.android.osmtracker.view.VoiceRecDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -27,13 +29,14 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.location.LocationManager;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.provider.MediaStore.Images.ImageColumns;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -137,6 +140,10 @@ public class TrackLogger extends Activity {
 	 * sensor listener for the azimuth display
 	 */
 	private SensorListener sensorListener;
+
+	private AudioManager mAudioManager;
+
+	private ComponentName mediaButtonReceiver;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -172,6 +179,9 @@ public class TrackLogger extends Activity {
 		
 		// create sensor listener
 		sensorListener = new SensorListener();
+		
+		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		mediaButtonReceiver = new ComponentName(this, MediaButtonReceiver.class.getName());
 	}
 
 	@Override
@@ -247,6 +257,8 @@ public class TrackLogger extends Activity {
 			Toast.makeText(this, R.string.tracklogger_waiting_gps, Toast.LENGTH_LONG).show();
 		}
 
+		mAudioManager.registerMediaButtonEventReceiver(mediaButtonReceiver);
+
 		super.onResume();
 	}
 
@@ -292,6 +304,8 @@ public class TrackLogger extends Activity {
 		if (sensorListener!=null) {
 			sensorListener.unregister();
 		}
+
+		mAudioManager.unregisterMediaButtonEventReceiver(mediaButtonReceiver);
 
 		super.onPause();
 	}
@@ -602,9 +616,14 @@ public class TrackLogger extends Activity {
 	
 	@Override
 	protected void onNewIntent(Intent newIntent) {
-		if (newIntent.getExtras() != null && newIntent.getExtras().containsKey(Schema.COL_TRACK_ID)) {
-			currentTrackId = newIntent.getExtras().getLong(Schema.COL_TRACK_ID);
-			setIntent(newIntent);
+		if (newIntent.getExtras() != null) {
+			if (newIntent.getExtras().containsKey(Schema.COL_TRACK_ID)) {
+				currentTrackId = newIntent.getExtras().getLong(Schema.COL_TRACK_ID);
+				setIntent(newIntent);
+			}
+			if (newIntent.hasExtra("mediaButton") && gpsLogger != null && gpsLogger.isTracking()) {
+				this.showDialog(DIALOG_VOICE_RECORDING);
+			}
 		}
 		super.onNewIntent(newIntent);
 	}
