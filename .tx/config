@@ -1,6 +1,6 @@
 [main]
 host = https://www.transifex.com
-lang_map = cs_CZ: cs-rCZ, pt_PT: pt-rPT, zh_CN: zh-rCN, zh_TW: zh-rTW, pt_BR: pt-rBR, tr_TR: tr-rTR, fa_IR: fa-IR, ro_RO: ro-RO
+lang_map = cs_CZ: cs-rCZ, pt_PT: pt-rPT, zh_CN: zh-rCN, zh_TW: zh-rTW, pt_BR: pt-rBR, tr_TR: tr-rTR, fa_IR: fa-rIR, ro_RO: ro-rRO
 
 [osmtracker-android.strings]
 file_filter = res/values-<lang>/strings.xml
