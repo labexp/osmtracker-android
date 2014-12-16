@@ -150,12 +150,19 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 		return true;
 	}
 	
-	/*
 	@Override
 	protected void onProgressUpdate(Integer... values) {
-		dialog.setProgress(values[0]);
+		if (values.length == 1) {
+			// Standard progress update
+			dialog.incrementProgressBy(values[0]);
+		} else if (values.length == 2) {
+			// To initialise the dialog, 2 values are passed to onProgressUpdate()
+			// number of track points, number of waypoints  
+			dialog.setIndeterminate(false);
+			dialog.setProgress(0);
+			dialog.setMax(values[0] + values[1]);
+		}
 	}
-	*/
 
 	@Override
 	protected void onPostExecute(Boolean success) {
@@ -216,9 +223,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 					null, Schema.COL_TIMESTAMP + " asc");
 
 			if (null != cTrackPoints && null != cWayPoints) {
-				dialog.setIndeterminate(false);
-				dialog.setProgress(0);
-				dialog.setMax(cTrackPoints.getCount() + cWayPoints.getCount());
+				publishProgress(new Integer[] { cTrackPoints.getCount(), cWayPoints.getCount() });
 				
 				try {
 					writeGpxFile(cTrackPoints, cWayPoints, trackFile);
@@ -297,7 +302,6 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 		
 		fw.write("\t" + "<trk>" + "\n");
 		fw.write("\t\t" + "<name>" + CDATA_START + trackName + CDATA_END + "</name>" + "\n");
-		String buffer = "";
 		if (fillHDOP) {
 			fw.write("\t\t" + "<cmt>"
 					+ CDATA_START
@@ -347,7 +351,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			fw.write(out.toString());
 
 			if (i % dialogUpdateThreshold == 0) {
-				dialog.incrementProgressBy(dialogUpdateThreshold);
+				publishProgress(dialogUpdateThreshold);
 			}
 		}
 		
@@ -459,7 +463,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			fw.write(out.toString());
 
 			if (i % dialogUpdateThreshold == 0) {
-				dialog.incrementProgressBy(dialogUpdateThreshold);
+				publishProgress(dialogUpdateThreshold);
 			}
 		}
 	}
