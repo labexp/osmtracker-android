@@ -11,7 +11,7 @@
         </exec>
     </target>
 
-    <target name="-pre-build" depends="lint">
+    <target name="-post-compile" depends="lint">
 
       <echo message="Copying 'nb' resources to 'no' (See pull request #6)" />
       <copy todir="${resource.absolute.dir}/values-no" overwrite="true">
