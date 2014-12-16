@@ -13,8 +13,6 @@
   <string name="prefs_gps_logging_interval_summary">若使用 0 則會盡可能頻繁地記錄資料 (同時會影響電池續航時間)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
   <string name="prefs_ui">使用介面</string>
-  <string name="prefs_ui_picture_source">預設的圖片來源</string>
-  <string name="prefs_ui_picture_source_summary">使用相機拍照，或是從相簿選取？</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>相機</item>
     <item>相簿</item>
@@ -73,9 +71,4 @@
   <string name="prefs_osm_clear_oauth_data_dialog">您必須重新認證 OSMTracker 方能繼續上傳軌跡資料，確定嗎？</string>
   <string name="prefs_map_tile">地圖圖塊的提供來源</string>
   <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
-  </string-array>
 </resources>

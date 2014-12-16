@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Διάφορα</string>
-  <string name="tag.restriction">Περιορισμός</string>
+  <string name="tag.restriction">Περιορισμοί</string>
   <string name="tag.car">Αυτοκίνητο</string>
   <string name="tag.tourism">Τουρισμός</string>
   <string name="tag.amenity">Υποδομή</string>
   <string name="tag.amenity_more">Υποδομή (+)</string>
-  <string name="tag.way">Δρόμος</string>
+  <string name="tag.way">Διαδρομή</string>
   <string name="tag.track">Ίχνος</string>
   <string name="tag.landuse">Χρήση γης</string>
   <string name="tag.misc_bus_stop">Στάση λεωφορείου</string>
@@ -18,19 +18,19 @@
   <string name="tag.misc_toilets">Τουαλέτες</string>
   <string name="tag.misc_shelter">Καταφύγιο</string>
   <string name="tag.misc_surveillance">Επιτήρηση</string>
-  <string name="tag.restriction_20">Μέγιστο 20</string>
-  <string name="tag.restriction_30">Μέγιστο 30</string>
-  <string name="tag.restriction_40">Μέγιστο 40</string>
-  <string name="tag.restriction_50">Μέγιστο 50</string>
-  <string name="tag.restriction_60">Μέγιστο 60</string>
-  <string name="tag.restriction_70">Μέγιστο 70</string>
-  <string name="tag.restriction_80">Μέγιστο 80</string>
-  <string name="tag.restriction_90">Μέγιστο 90</string>
-  <string name="tag.restriction_100">Μέγιστο 100</string>
-  <string name="tag.restriction_110">Μέγιστο 110</string>
-  <string name="tag.restriction_120">Μέγιστο 120</string>
-  <string name="tag.restriction_130">Μέγιστο 130</string>
-  <string name="tag.restriction_no_exit">Αδιέξοδο</string>
+  <string name="tag.restriction_20">Μέγιστη 20</string>
+  <string name="tag.restriction_30">Μέγιστη 30</string>
+  <string name="tag.restriction_40">Μέγιστη 40</string>
+  <string name="tag.restriction_50">Μέγιστη 50</string>
+  <string name="tag.restriction_60">Μέγιστη 60</string>
+  <string name="tag.restriction_70">Μέγιστη 70</string>
+  <string name="tag.restriction_80">Μέγιστη 80</string>
+  <string name="tag.restriction_90">Μέγιστη 90</string>
+  <string name="tag.restriction_100">Μέγιστη 100</string>
+  <string name="tag.restriction_110">Μέγιστη 110</string>
+  <string name="tag.restriction_120">Μέγιστη 120</string>
+  <string name="tag.restriction_130">Μέγιστη 130</string>
+  <string name="tag.restriction_no_exit">Αδιέξοδος</string>
   <string name="tag.restriction_traffic_light">Φανάρι</string>
   <string name="tag.restriction_one_way">Μονόδρομος</string>
   <string name="tag.car_fuel_station">Βενζινάδικο</string>
@@ -42,7 +42,7 @@
   <string name="tag.tourism_information">Πληροφορίες</string>
   <string name="tag.tourism_picnic">Χώρος εκδρομής</string>
   <string name="tag.tourism_attraction">Αξιοθέατο</string>
-  <string name="tag.tourism_theme_park">Θεματικό πάρκο</string>
+  <string name="tag.tourism_theme_park">Πάρκο ψυχαγωγίας</string>
   <string name="tag.tourism_castle">Κάστρο</string>
   <string name="tag.tourism_monument">Μνημείο</string>
   <string name="tag.tourism_museum">Μουσείο</string>
@@ -54,9 +54,11 @@
   <string name="tag.amenity_marina">Μαρίνα</string>
   <string name="tag.amenity_sport">Άθλημα</string>
   <string name="tag.amenity_taxi">Ταξί</string>
-  <string name="tag.amenity_doctors">Νοσοκομείο,\nΓιατροί</string>
+  <string name="tag.amenity_doctors">Νοσοκομείο,
+Γιατροί</string>
   <string name="tag.amenity_recycling">Ανακύκλωση</string>
-  <string name="tag.amenity_place_of_worship">Χώρος\nλατρείας</string>
+  <string name="tag.amenity_place_of_worship">Χώρος
+λατρείας</string>
   <string name="tag.amenity_post_office">Ταχυδρομείο</string>
   <string name="tag.amenity_library">Βιβλιοθήκη</string>
   <string name="tag.amenitymore_school">Σχολείο</string>
@@ -97,7 +99,8 @@
   <string name="tag.landuse_basin">Λεκανοπέδιο</string>
   <string name="tag.landuse_reservoir">Ταμιευτήρας</string>
   <string name="tag.landuse_forest">Δάσος</string>
-  <string name="tag.landuse_allotments">κλήροι</string>
+  <string name="tag.landuse_allotments">Κλήροι</string>
   <string name="tag.landuse_cemetery">Κοιμητήριο</string>
-  <string name="tag.landuse_recreation_ground">Χώρος\nΑναψυχής</string>
+  <string name="tag.landuse_recreation_ground">Χώρος
+αναψυχής</string>
 </resources>

@@ -10,5 +10,5 @@
   <string name="acc.record_indicator">Δείκτης εγγραφής σε εξέλιξη</string>
   <!--Track list-->
   <string name="acc.track_status">Δείκτης κατάστασης ίχνους</string>
-  <string name="acc.upload_status">Δείκτης κατάστασης ανεβάσματος OpenStreetMap</string>
+  <string name="acc.upload_status">Δείκτης κατάστασης αποστολής στο OpenStreetMap</string>
 </resources>

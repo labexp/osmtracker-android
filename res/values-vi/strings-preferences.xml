@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">Nhà cung cấp mảnh bản đồ</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Bản đồ Xe đạp</item>
+    <item>MapQuest Mở</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Không xuất</item>
+    <item>Xuất trong chú thích</item>
+    <item>Xuất trong phần mở rộng</item>
+  </string-array>
+  <string name="prefs_compass_heading">Xuất Hướng La bàn</string>
+  <string name="prefs_compass_heading_summary">Chọn định dạng để xuất dữ liệu la bàn ra tập tin GPX</string>
 </resources>

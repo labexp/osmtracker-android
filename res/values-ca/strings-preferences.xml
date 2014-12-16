@@ -13,8 +13,8 @@
   <string name="prefs_gps_logging_interval_summary">Utilitza 0 com a interval màxim de registre GPS (Afecta en el consum de bateria)</string>
   <string name="prefs_gps_logging_interval_seconds">segons</string>
   <string name="prefs_ui">Interfície d\'usuari</string>
-  <string name="prefs_ui_picture_source">Selecciona la Imatge per defecte</string>
-  <string name="prefs_ui_picture_source_summary">Vols agafar les imatges de la càmera o de la galeria?</string>
+  <string name="prefs_ui_picture_source">Origen de fotos per defecte</string>
+  <string name="prefs_ui_picture_source_summary">Obtingues les fotos de la càmera o de la galeria?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Càmera</item>
     <item>Galeria</item>
@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">Proveidor de mapa</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Cap</item>
+    <item>en el comentari</item>
+    <item>en l\'extensió</item>
+  </string-array>
+  <string name="prefs_compass_heading">Exporta la Direcció de la Brúixola</string>
+  <string name="prefs_compass_heading_summary">Defineix si desar la informació de la brúixola en el fitxer GPX, i com fer-ho</string>
 </resources>

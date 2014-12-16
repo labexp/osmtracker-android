@@ -5,5 +5,7 @@
   <string name="prefs_gps">نظام تحديد الموقع</string>
   <string name="prefs_gps_os_settings">اعدادات تحديد الموقع</string>
   <string name="prefs_gps_os_settings_summary">عرض شاشة اعدادات نظام تحديد المواقع</string>
+  <string name="prefs_ui">واجهة المستخدم</string>
+  <string name="prefs_ui_buttons_layout_defaut">الافتراضي</string>
   <string name="prefs_map_tile_summary"></string>
 </resources>

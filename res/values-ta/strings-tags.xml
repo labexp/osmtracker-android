@@ -31,7 +31,6 @@
   <string name="tag.restriction_120">அதிகபட்சம் 120</string>
   <string name="tag.restriction_130">அதிகபட்சம் 130</string>
   <string name="tag.restriction_no_exit">வெளியேற வழி இல்லை</string>
-  <string name="tag.restriction_traffic_light">போக்குவரத்து‍ சமிக்கை விளக்கு</string>
   <string name="tag.restriction_one_way">ஒரு‍ வழிப் பாதை</string>
   <string name="tag.car_fuel_station">எரிபொருள் நிலையம்</string>
   <string name="tag.car_parking">வாகன நிறுத்துமிடம்</string>
@@ -54,14 +53,17 @@
   <string name="tag.amenity_marina">சிறுகலத் துறைமுகம்</string>
   <string name="tag.amenity_sport">விளையாட்டு‍</string>
   <string name="tag.amenity_taxi">வாடகை உந்து‍</string>
-  <string name="tag.amenity_doctors">மருத்துவமனை,\nமருத்துவர்கள்</string>
+  <string name="tag.amenity_doctors">மருத்துவமனை,
+மருத்துவர்கள்</string>
   <string name="tag.amenity_recycling">மறுசுழற்சி</string>
-  <string name="tag.amenity_place_of_worship">வழிபாட்டு\nஇடம்</string>
+  <string name="tag.amenity_place_of_worship">வழிபாட்டு
+இடம்</string>
   <string name="tag.amenity_post_office">அஞ்சல் அலுவலகம்</string>
   <string name="tag.amenity_library">நூலகம்</string>
   <string name="tag.amenitymore_school">பள்ளி</string>
   <string name="tag.amenitymore_police">காவல்</string>
-  <string name="tag.amenitymore_fire_station">தீயணைப்பு \nநிலையம்</string>
+  <string name="tag.amenitymore_fire_station">தீயணைப்பு 
+நிலையம்</string>
   <string name="tag.amenitymore_bank">வங்கி</string>
   <string name="tag.amenitymore_playground">விளையாட்டு‍ மைதானம்</string>
   <string name="tag.amenitymore_pub">கேளிக்கை விடுதி</string>
@@ -99,5 +101,6 @@
   <string name="tag.landuse_forest">காடு‍</string>
   <string name="tag.landuse_allotments">ஒதுக்கீடுகள்</string>
   <string name="tag.landuse_cemetery">மயானம்</string>
-  <string name="tag.landuse_recreation_ground">பொழுதுபோக்கு‍\nமைதானம்</string>
+  <string name="tag.landuse_recreation_ground">பொழுதுபோக்கு‍
+மைதானம்</string>
 </resources>

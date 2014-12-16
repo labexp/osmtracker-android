@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">Bruk 0 for kortest mulig mellomrom mellom sporpunkt (og kortest batteritid)</string>
   <string name="prefs_gps_logging_interval_seconds">sekund</string>
   <string name="prefs_ui">Brukergrensesnitt</string>
+  <string name="prefs_ui_picture_source">Standard fotokilde</string>
+  <string name="prefs_ui_picture_source_summary">Ta bilder med kamera eller hent fra album?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamera</item>
+    <item>Album</item>
+    <item>Spør alltid</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Knappesett</string>
   <string name="prefs_ui_buttons_layout_summary">Velg et annet knappesett (se dokumentasjon)</string>
   <string name="prefs_ui_buttons_layout_defaut">Standard</string>
@@ -37,6 +44,7 @@
   <string name="prefs_display_always_on_summary">Skjermen blir stående på under sporing. Slå av for å spare batteri</string>
   <string name="prefs_displaytrack_osm">Bakgrunnskart</string>
   <string name="prefs_displaytrack_osm_summary">Vis OpenStreetMap-kartet under sporet. Bruker datatilkobling</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Vis alltid OpenStreetMap bakgrunn?  Krever en nettverksforbindelse</string>
   <string name="prefs_output">GPX-innstillinger</string>
   <string name="prefs_storage_dir">Mappe på ekstern lagringsenhet (SD)</string>
   <string name="prefs_storage_dir_hint">Blir aktivert for neste spor</string>
@@ -62,6 +70,19 @@
   <string name="prefs_sound_enabled_summary">Spill av en lyd når lydopptak begynner og slutter</string>
   <string name="prefs_osm_clear_oauth_data">Fjern OSM-nøkkel</string>
   <string name="prefs_osm_clear_oauth_data_summary">Fjern brukerinformasjon og tilgangsinformasjon for OSM og få OSMTracker til å spørre om tilgang på nytt</string>
-  <string name="prefs_osm_clear_oauth_data_dialog">Du kommer til å måtte gi OSMTracker løyve til å laste opp spor til OSM igjen. Er du sikker?</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Du kommer til å måtte gi OSMTracker tillatelse til å laste opp spor til OSM igjen. Er du sikker?</string>
+  <string name="prefs_map_tile">Kartdata leverandør</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Ingen</item>
+    <item>i kommentar</item>
+    <item>i utvidelsen</item>
+  </string-array>
+  <string name="prefs_compass_heading">Eksporter kompasskurs</string>
+  <string name="prefs_compass_heading_summary">Bestemmer om og hvordan kompassdata skal eksporteres til GPX-filen.</string>
 </resources>

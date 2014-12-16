@@ -24,7 +24,6 @@
   <string name="tag.restriction_110">最大 110</string>
   <string name="tag.restriction_120">最大 120</string>
   <string name="tag.restriction_130">最大 130</string>
-  <string name="tag.restriction_traffic_light">交通灯</string>
   <string name="tag.restriction_one_way">单行道</string>
   <string name="tag.car_fuel_station">加油站</string>
   <string name="tag.car_parking">停车场</string>

@@ -18,14 +18,19 @@
   <string name="tag.misc_toilets">Banheiros</string>
   <string name="tag.misc_shelter">Abrigo</string>
   <string name="tag.misc_surveillance">Vigilância</string>
+  <string name="tag.restriction_20">Máximo 20</string>
   <string name="tag.restriction_30">Máx 30</string>
+  <string name="tag.restriction_40">Máximo 40</string>
   <string name="tag.restriction_50">Máx 50</string>
+  <string name="tag.restriction_60">Máximo 60</string>
+  <string name="tag.restriction_70">Máximo 70</string>
   <string name="tag.restriction_80">Máx 80</string>
+  <string name="tag.restriction_90">Máximo 90</string>
   <string name="tag.restriction_100">Máx 100</string>
   <string name="tag.restriction_110">Máx 110</string>
   <string name="tag.restriction_120">Máx 120</string>
+  <string name="tag.restriction_130">Máximo 130</string>
   <string name="tag.restriction_no_exit">Sem saída</string>
-  <string name="tag.restriction_traffic_light">Semáforo</string>
   <string name="tag.restriction_one_way">Mão única</string>
   <string name="tag.car_fuel_station">Posto de combustível</string>
   <string name="tag.car_parking">Estacionamento</string>
@@ -48,9 +53,11 @@
   <string name="tag.amenity_marina">Cais</string>
   <string name="tag.amenity_sport">Esporte</string>
   <string name="tag.amenity_taxi">Taxi</string>
-  <string name="tag.amenity_doctors">Hospital,\nDoutores</string>
+  <string name="tag.amenity_doctors">Hospital,
+Doutores</string>
   <string name="tag.amenity_recycling">Reciclagem</string>
-  <string name="tag.amenity_place_of_worship">Lugar de\noração</string>
+  <string name="tag.amenity_place_of_worship">Lugar de
+oração</string>
   <string name="tag.amenity_post_office">Correios</string>
   <string name="tag.amenity_library">Biblioteca</string>
   <string name="tag.amenitymore_school">Escola</string>
@@ -93,5 +100,6 @@
   <string name="tag.landuse_forest">Foresta</string>
   <string name="tag.landuse_allotments">Loteamento</string>
   <string name="tag.landuse_cemetery">Cemitério</string>
-  <string name="tag.landuse_recreation_ground">Parque\nrecreativo</string>
+  <string name="tag.landuse_recreation_ground">Parque
+recreativo</string>
 </resources>

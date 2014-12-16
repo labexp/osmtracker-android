@@ -10,5 +10,5 @@
   <string name="acc.record_indicator">Aufnahme-Fortschrittsanzeige</string>
   <!--Track list-->
   <string name="acc.track_status">Anzeige des Track-Status</string>
-  <string name="acc.upload_status">OSM-Upload-Statusanzeige</string>
+  <string name="acc.upload_status">OpenStreetMap-Upload-Statusanzeige</string>
 </resources>

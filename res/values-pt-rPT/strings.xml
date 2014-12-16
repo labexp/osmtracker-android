@@ -3,7 +3,6 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker para Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Inspirado pelo OSMTracker para Windows Mobile, permite o registo das suas viagens, marcação de pontos importantes (gravação de voz, fotografia) e exportação no formato GPX para uso posterior com ferramentas do OpenStreetMap como o JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Registo de caminhos</string>
   <string name="tracklogger_waiting_gps">À espera de ligação GPS para activar os botões...</string>
@@ -15,27 +14,29 @@
   <string name="tracklogger_gps_disabled">GPS inactivo</string>
   <string name="tracklogger_gps_disabled_hint">O GPS está inactivo. Quer activá-lo?</string>
   <string name="tracklogger_choose_gallery_camera">Galeria ou câmara?</string>
-  <string name="tracklogger_camera">Tirar fotografia com câmara</string>
-  <string name="tracklogger_gallery">Selecionar fotografia da galeria</string>
   <!--Waypoint List-->
   <string name="wplist">Lista de pontos de referência</string>
   <string name="wplist_latitude">Lat:</string>
   <string name="wplist_longitude">Long:</string>
   <string name="wplist_elevation">Elev:</string>
   <string name="wplist_accuracy">Exatidão:</string>
+  <string name="wplist_compass">Rumo Bússo.:</string>
+  <string name="wplist_compass_accuracy">Precis. Bússo.:</string>
   <!--Track Manager-->
   <string name="trackmgr">Gestor de caminhos</string>
   <string name="trackmgr_tracklist">Lista de caminhos</string>
   <string name="trackmgr_waypoints_count">Pontos de referência:</string>
   <string name="trackmgr_trackpoints_count">Pontos de caminhos:</string>
   <string name="trackmgr_empty">Não tem nenhum caminho.</string>
-  <string name="trackmgr_newtrack_hint">Para registar um caminho,\npressione <b>Menu</b>, depois <b>Novo caminho</b></string>
+  <string name="trackmgr_newtrack_hint">Para registar um caminho,
+pressione <b>Menu</b>, depois <b>Novo caminho</b></string>
   <string name="trackmgr_newtrack_error">Não foi possível criar o novo caminho: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Está neste momento a registar o <b>caminho #{0}</b>⏎\nEscolha-o na lista para continuar</string>
+  <string name="trackmgr_continuetrack_hint">Está neste momento a registar o <b>caminho #{0}</b>⏎
+Escolha-o na lista para continuar</string>
   <string name="trackmgr_contextmenu_stop">Parar registo</string>
   <string name="trackmgr_contextmenu_resume">Retomar registo</string>
   <string name="trackmgr_contextmenu_delete">Apagar</string>
-  <string name="trackmgr_contextmenu_export">Exportar para GPX</string>
+  <string name="trackmgr_contextmenu_export">Exportar como GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Enviar para OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Apresentar</string>
   <string name="trackmgr_contextmenu_details">Detalhes</string>
@@ -77,7 +78,6 @@
   <string name="osm_upload_sucess">Envio para o OpenStreetMap bem sucedido</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Gravar voz</string>
-  <string name="gpsstatus_record_stillimage">Tirar fotografia</string>
   <string name="gpsstatus_record_textnote">Nota de texto</string>
   <!--Menu-->
   <string name="menu_settings">Definições</string>
@@ -122,9 +122,13 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Exatidão</string>
+  <string name="various_accuracy_with_sats">Precisão {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Aguarde pelo rumo...</string>
+  <string name="various_heading_unknown">O rumo não pode ser determinado</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Apresentação de caminho OpenStreetMap</string>
 </resources>

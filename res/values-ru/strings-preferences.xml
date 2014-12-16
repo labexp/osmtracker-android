@@ -13,8 +13,8 @@
   <string name="prefs_gps_logging_interval_summary">Установите 0 для минимально возможного (ускоряет разряд батереи)</string>
   <string name="prefs_gps_logging_interval_seconds">секунд(ы)</string>
   <string name="prefs_ui">Интерфейс</string>
-  <string name="prefs_ui_picture_source">Источник картинок по-умолчанию</string>
-  <string name="prefs_ui_picture_source_summary">Получить изображение с камеры или альбома?</string>
+  <string name="prefs_ui_picture_source">Источник фото по-умолчанию</string>
+  <string name="prefs_ui_picture_source_summary">Сделать снимок или выбрать фото из галереи?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Камера</item>
     <item>Альбом</item>
@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">Поставщики картоосновы</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Нет</item>
+    <item>в комментарии</item>
+    <item>в расширении</item>
+  </string-array>
+  <string name="prefs_compass_heading">Экспорт направления из компаса</string>
+  <string name="prefs_compass_heading_summary">Определяет когда и как данные компаса могут быть экспортированы в файл GPX</string>
 </resources>

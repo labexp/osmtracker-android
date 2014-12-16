@@ -12,12 +12,13 @@
   <string name="tag.misc_bus_stop">Остановка</string>
   <string name="tag.misc_railway">Ж/Д</string>
   <string name="tag.misc_telephone">Телефон</string>
-  <string name="tag.misc_post_box">Почта</string>
+  <string name="tag.misc_post_box">Почтовый ящик</string>
   <string name="tag.misc_atm">Банкомат</string>
   <string name="tag.misc_bollard">Преграда</string>
   <string name="tag.misc_toilets">Туалет</string>
   <string name="tag.misc_shelter">Навес</string>
-  <string name="tag.misc_surveillance">Камера\nнаблюдения</string>
+  <string name="tag.misc_surveillance">Камера
+наблюдения</string>
   <string name="tag.restriction_20">Макс. 20</string>
   <string name="tag.restriction_30">Max 30</string>
   <string name="tag.restriction_40">Макс. 40</string>
@@ -30,17 +31,23 @@
   <string name="tag.restriction_110">Max 110</string>
   <string name="tag.restriction_120">Max 120</string>
   <string name="tag.restriction_130">Макс. 130</string>
-  <string name="tag.restriction_no_exit">Нет\nвыезда</string>
+  <string name="tag.restriction_no_exit">Нет
+выезда</string>
   <string name="tag.restriction_traffic_light">Светофор</string>
   <string name="tag.restriction_one_way">Одностороннее</string>
   <string name="tag.car_fuel_station">АЗС</string>
   <string name="tag.car_parking">Парковка</string>
-  <string name="tag.car_emergency_phone">Экстренный\nтелефон</string>
-  <string name="tag.car_turning_circle">Круг для\nразворота</string>
-  <string name="tag.car_speed_camera">Камера\nскорости</string>
-  <string name="tag.tourism_view_point">Смотровая\nплощадка</string>
+  <string name="tag.car_emergency_phone">Экстренный
+телефон</string>
+  <string name="tag.car_turning_circle">Круг для
+разворота</string>
+  <string name="tag.car_speed_camera">Камера
+скорости</string>
+  <string name="tag.tourism_view_point">Смотровая
+площадка</string>
   <string name="tag.tourism_information">Информация</string>
-  <string name="tag.tourism_picnic">Место для\nпикника</string>
+  <string name="tag.tourism_picnic">Место для
+пикника</string>
   <string name="tag.tourism_attraction">Достопримечательность</string>
   <string name="tag.tourism_theme_park">Аттракционы</string>
   <string name="tag.tourism_castle">Замок</string>
@@ -78,11 +85,14 @@
   <string name="tag.way_primary">Основное</string>
   <string name="tag.way_secondary">Вспомогательное</string>
   <string name="tag.way_tertiary">Третичное</string>
-  <string name="tag.way_residential">В жилом\nрайоне</string>
+  <string name="tag.way_residential">В жилом
+районе</string>
   <string name="tag.way_service">Служебное</string>
   <string name="tag.track_track">Трек</string>
-  <string name="tag.track_cycleway">Велосипед.\nдорожка</string>
-  <string name="tag.track_footway">Пешеход.\nдорожка</string>
+  <string name="tag.track_cycleway">Велосипед.
+дорожка</string>
+  <string name="tag.track_footway">Пешеход.
+дорожка</string>
   <string name="tag.track_bridleway">Верховая тропа</string>
   <string name="tag.track_steps">Ступени</string>
   <string name="tag.track_living_street">Жилая улица</string>

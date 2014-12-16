@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">地図タイルプロバイダー</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>なし</item>
+    <item>コメント内</item>
+    <item>拡張データ内</item>
+  </string-array>
+  <string name="prefs_compass_heading">コンパスの向きをエクスポート</string>
+  <string name="prefs_compass_heading_summary">コンパスのデータをGPXファイルに出力するか、または出力方法を指定します</string>
 </resources>

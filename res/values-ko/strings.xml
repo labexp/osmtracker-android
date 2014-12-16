@@ -3,10 +3,10 @@
   <!--Generic strings-->
   <string name="app_name">Android용 OSMTracker™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Windows Mobile의 OSMTracker에 영감을 받은, 이것은 여정을 추적할 수 있고 중요한 웨이 포인트(음성 녹음, 사진)를 표시할 수 있고, 나중에 JOSM과 같은 Open Street Map 도구를 사용하기 위해 GPX 형식으로 내보낼 수 있습니다.</string>
+  <string name="app_description">Windows Mobile의 OSMTracker에 영감을 받은, 이것은 여정을 추적할 수 있고 중요한 웨이 포인트(음성 녹음, 사진)을 표시할 수 있고, 나중에 JOSM과 같은 Open Street Map 도구를 사용하기 위해 GPX 형식으로 내보낼 수 있습니다.</string>
   <!--TrackLogger-->
   <string name="tracklogger">트랙 로거</string>
-  <string name="tracklogger_waiting_gps">버튼을 활성화하기 위해 GPS fix를 기다리는 중…</string>
+  <string name="tracklogger_waiting_gps">버튼을 활성화하기 위해 GPS 측정을 기다리는 중…</string>
   <string name="tracklogger_voicerec_title">음성 녹음</string>
   <string name="tracklogger_voicerec_text">{0}초 오디오 클립을 녹음 중입니다.</string>
   <string name="tracklogger_voicerec_stop">멈춤</string>
@@ -23,15 +23,19 @@
   <string name="wplist_longitude">경도:</string>
   <string name="wplist_elevation">고도:</string>
   <string name="wplist_accuracy">정확도:</string>
+  <string name="wplist_compass">나침반 방위:</string>
+  <string name="wplist_compass_accuracy">나침반 정확도:</string>
   <!--Track Manager-->
   <string name="trackmgr">트랙 관리자</string>
   <string name="trackmgr_tracklist">트랙 목록:</string>
   <string name="trackmgr_waypoints_count">웨이포인트:</string>
   <string name="trackmgr_trackpoints_count">트랙포인트:</string>
   <string name="trackmgr_empty">어떠한 트랙도 없습니다.</string>
-  <string name="trackmgr_newtrack_hint">트랙을 기록하려면,\n<b>메뉴</b>를 누르고 나서 <b>새 트랙</b>을 누르세요</string>
+  <string name="trackmgr_newtrack_hint">트랙을 기록하려면,
+<b>메뉴</b>를 누르고 나서 <b>새 트랙</b>을 누르세요</string>
   <string name="trackmgr_newtrack_error">새 트랙을 만들 수 없습니다: {0}</string>
-  <string name="trackmgr_continuetrack_hint">현재 <b>트랙 #{0}</b>를 기록하고 있습니다\n계속하려면 목록에서 그 트랙을 선택하세요</string>
+  <string name="trackmgr_continuetrack_hint">현재 <b>트랙 #{0}</b>를 기록하고 있습니다
+계속하려면 목록에서 그 트랙을 선택하세요</string>
   <string name="trackmgr_contextmenu_stop">트래킹 멈춤</string>
   <string name="trackmgr_contextmenu_resume">트래킹 재개</string>
   <string name="trackmgr_contextmenu_delete">삭제</string>
@@ -122,9 +126,14 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">정확도</string>
+  <string name="various_accuracy_with_sats">정확도 {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">GPS 측정을 기다리는 중… ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">방위 측정을 기다리는 중…</string>
+  <string name="various_heading_unknown">방위를 결정할 수 없습니다</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap 트랙 보기</string>
 </resources>

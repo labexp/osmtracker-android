@@ -13,8 +13,8 @@
   <string name="prefs_gps_logging_interval_summary">Állítson be 0-t a legrövidebb lehetségesként (az akkumulátor üzemidejét befolyásolja)</string>
   <string name="prefs_gps_logging_interval_seconds">másodperc</string>
   <string name="prefs_ui">Felhasználói felület</string>
-  <string name="prefs_ui_picture_source">Alapértelmezett képforrás</string>
-  <string name="prefs_ui_picture_source_summary">A képeket kamerából vagy galériából vegyük?</string>
+  <string name="prefs_ui_picture_source">Alapértelmezett fénykép forrás</string>
+  <string name="prefs_ui_picture_source_summary">A fotókat a kameráról vagy a galériából vegye?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Kamera</item>
     <item>Galéria</item>
@@ -47,7 +47,8 @@
   <string name="prefs_displaytrack_osm_summary_ask">Az OpenStreetMap háttér megjelenítése mindig? Adatkapcsolatot igényel.</string>
   <string name="prefs_output">GPX beállítások</string>
   <string name="prefs_storage_dir">Külső tároló (SD) könyvtár</string>
-  <string name="prefs_storage_dir_hint">A következő nyomkövetésnél lép életbe (nem az aktuálisnál)\n</string>
+  <string name="prefs_storage_dir_hint">A következő nyomkövetésnél lép életbe (nem az aktuálisnál)
+</string>
   <string name="prefs_output_one_dir_per_track">Egy könyvtár nyomvonalanként</string>
   <string name="prefs_output_one_dir_per_track_summary">Minden nyomkövetés és kapcsolódó fájljai egy saját könyvtárba mentése</string>
   <string name="prefs_output_filename">Fájlnév az elnevezett nyomvonalakhoz</string>
@@ -74,8 +75,15 @@
   <string name="prefs_map_tile">Térképcsempe szolgáltató</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Biciklis térkép</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Semmi</item>
+    <item>megjegyzésben</item>
+    <item>kiterjesztésben</item>
+  </string-array>
+  <string name="prefs_compass_heading">Az iránytű állásnak exportálása</string>
+  <string name="prefs_compass_heading_summary">Definiálja, hogy bekerüljön-e és hogyan az iránytű adat az exportált GPX fájlba</string>
 </resources>

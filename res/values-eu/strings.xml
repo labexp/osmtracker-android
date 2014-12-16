@@ -3,7 +3,6 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker Androiderako™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Windows Mobile-rako OSMTracker-ean inspiratua, non, zure ibilbideak jarraitzea ahalbidetzen dizun, bideko-puntu esanguratsuak markatu (ahots grabaketa, irudia) edota JOSM bezalako Open Street Map tresnetarako GPX formatura exportatu ditzakezu.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Ibilbide erregistroa</string>
   <string name="tracklogger_waiting_gps">GPSa itxaroten botoiak gaitzeko...</string>
@@ -26,9 +25,11 @@
   <string name="trackmgr_waypoints_count">Bide-puntuak:</string>
   <string name="trackmgr_trackpoints_count">Ibilbide-puntuak:</string>
   <string name="trackmgr_empty">Ez daukazu ibilbiderik.</string>
-  <string name="trackmgr_newtrack_hint">Ibilbidea grabatzeko,\nzapaldu <b>Menua</b> eta gero <b>Ibilbide berria</b></string>
+  <string name="trackmgr_newtrack_hint">Ibilbidea grabatzeko,
+zapaldu <b>Menua</b> eta gero <b>Ibilbide berria</b></string>
   <string name="trackmgr_newtrack_error">Ezin da ibilbide berria sortu: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Momentu honetan <b>#{0} ibilbidea</b> grabatzen ari zara\nAukeratu ezazu zerrendan aurrera jarraitzeko</string>
+  <string name="trackmgr_continuetrack_hint">Momentu honetan <b>#{0} ibilbidea</b> grabatzen ari zara
+Aukeratu ezazu zerrendan aurrera jarraitzeko</string>
   <string name="trackmgr_contextmenu_stop">Gelditu ibilbidea</string>
   <string name="trackmgr_contextmenu_resume">Berrekin ibilbidea</string>
   <string name="trackmgr_contextmenu_delete">Ezabatu</string>
@@ -74,7 +75,6 @@
   <string name="osm_upload_sucess">OpenStreetMap-era arrakastaz igo da</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Ahots grabazioa</string>
-  <string name="gpsstatus_record_stillimage">Atera argazkia</string>
   <string name="gpsstatus_record_textnote">Testu oharra</string>
   <!--Menu-->
   <string name="menu_settings">Ezarpenak</string>

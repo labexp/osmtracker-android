@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker voor Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Geïnspireerd door OSMTracker voor Windows Mobile, stelt OSMTracker u in staat om uw ritten op te nemen, belangrijke punten te markeren (stemopname, foto) en ze te exporteren in GPX-formaat om ze later te gebruiken met OpenStreetMap-tools zoals JOSM.</string>
+  <string name="app_description">Geïnspireerd door OSMTracker op Windows Mobile, stelt OSMTracker u in staat om uw routes op te nemen, belangrijke punten te markeren (geluidsopname, foto\'s), en alles te exporteren in GPX-formaat voor later gebruik met Open Street Map toools zoals JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Traject-logger</string>
   <string name="tracklogger_waiting_gps">Wachten op gps-fix om knoppen in te schakelen...</string>
@@ -16,13 +16,15 @@
   <string name="tracklogger_gps_disabled_hint">Gps is uitgeschakeld. Wilt u het inschakelen?</string>
   <string name="tracklogger_choose_gallery_camera">Galerij of camera?</string>
   <string name="tracklogger_camera">Foto nemen met camera</string>
-  <string name="tracklogger_gallery">Afbeelding selecteren van galerij</string>
+  <string name="tracklogger_gallery">Foto selecteren uit galerij</string>
   <!--Waypoint List-->
   <string name="wplist">Lijst van routepunten</string>
   <string name="wplist_latitude">Breedte:</string>
   <string name="wplist_longitude">Lengte:</string>
   <string name="wplist_elevation">Hoogte:</string>
   <string name="wplist_accuracy">Nauwkeurigheid:</string>
+  <string name="wplist_compass">Kompasrichting:</string>
+  <string name="wplist_compass_accuracy">Kompasnauwkeurigheid:</string>
   <!--Track Manager-->
   <string name="trackmgr">Trajectbeheerder</string>
   <string name="trackmgr_tracklist">Traject-lijst:</string>
@@ -31,7 +33,8 @@
   <string name="trackmgr_empty">U hebt geen trajecten.</string>
   <string name="trackmgr_newtrack_hint">Om een nieuw traject op te nemen, druk op <b>Menu</b> en <b>Nieuw traject</b></string>
   <string name="trackmgr_newtrack_error">Kan geen nieuw traject aanmaken: {0}</string>
-  <string name="trackmgr_continuetrack_hint">U bent op dit moment <b>traject #{0}</b> aan het opnemen.\nSelecteer dit traject in de lijst om door te gaan.</string>
+  <string name="trackmgr_continuetrack_hint">U bent op dit moment <b>traject #{0}</b> aan het opnemen.
+Selecteer dit traject in de lijst om door te gaan.</string>
   <string name="trackmgr_contextmenu_stop">Opnemen stoppen</string>
   <string name="trackmgr_contextmenu_resume">Opnemen hervatten</string>
   <string name="trackmgr_contextmenu_delete">Verwijderen</string>
@@ -77,7 +80,7 @@
   <string name="osm_upload_sucess">Uploaden naar OpenStreetMap geslaagd</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Stemopname</string>
-  <string name="gpsstatus_record_stillimage">Foto maken</string>
+  <string name="gpsstatus_record_stillimage">Foto nemen</string>
   <string name="gpsstatus_record_textnote">Notitie</string>
   <!--Menu-->
   <string name="menu_settings">Instellingen</string>
@@ -122,9 +125,14 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Nauwkeurigheid</string>
+  <string name="various_accuracy_with_sats">Nauwkeurigheid {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Wachten op gps-fix… ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Wachten voor richting...</string>
+  <string name="various_heading_unknown">De richting kan niet bepaald worden</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap trajectweergave</string>
 </resources>

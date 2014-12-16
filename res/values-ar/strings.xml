@@ -2,8 +2,12 @@
 <resources>
   <!--Generic strings-->
   <!--TrackLogger-->
+  <string name="tracklogger_voicerec_title">تسجيل صوتي</string>
+  <string name="tracklogger_gps_disabled">GPS تعطيل</string>
   <!--Waypoint List-->
   <!--Track Manager-->
+  <string name="trackmgr">مدير المسار</string>
+  <string name="trackmgr_tracklist">قائمة تتبع:</string>
   <!--Track Detail-->
   <!--OSM upload-->
   <!--GPS Status & record bar-->

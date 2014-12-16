@@ -31,7 +31,7 @@
   <string name="tag.restriction_120">Max 120</string>
   <string name="tag.restriction_130">Max 130</string>
   <string name="tag.restriction_no_exit">Út vége</string>
-  <string name="tag.restriction_traffic_light">Közlekedési lámpa</string>
+  <string name="tag.restriction_traffic_light">Közlekedési lámpák</string>
   <string name="tag.restriction_one_way">Egyirányú út</string>
   <string name="tag.car_fuel_station">Benzinkút</string>
   <string name="tag.car_parking">Parkoló</string>
@@ -54,8 +54,10 @@
   <string name="tag.amenity_marina">Marina</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxi</string>
-  <string name="tag.amenity_doctors">Kórház,\nOrvos</string>
-  <string name="tag.amenity_recycling">Hulladék\nújrahasznosítás</string>
+  <string name="tag.amenity_doctors">Kórház,
+Orvos</string>
+  <string name="tag.amenity_recycling">Hulladék
+újrahasznosítás</string>
   <string name="tag.amenity_place_of_worship">Templom</string>
   <string name="tag.amenity_post_office">Postahivatal</string>
   <string name="tag.amenity_library">Könyvtár</string>
@@ -99,5 +101,6 @@
   <string name="tag.landuse_forest">Erdő</string>
   <string name="tag.landuse_allotments">Veteményes kertek</string>
   <string name="tag.landuse_cemetery">Temető</string>
-  <string name="tag.landuse_recreation_ground">Rekreációs\nterület</string>
+  <string name="tag.landuse_recreation_ground">Rekreációs
+terület</string>
 </resources>

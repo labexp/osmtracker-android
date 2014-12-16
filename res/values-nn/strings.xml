@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
-  <string name="app_description">OSMTracker let deg spore reisene dine, merke av viktige punkt ved hjelp av eit notat, foto eller stemmeopptak. Sporet kan du så eksportere til GPX-formatet som så kan brukast med ulike OpenStreetMap-verkty som til dømes JOSM. OSMTracker er inspirert av OSMTracker for Windows Mobile.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Sporloggar</string>
   <string name="tracklogger_waiting_gps">Ventar på posisjon frå GPS for å aktivere knappane…</string>
@@ -26,7 +25,8 @@
   <string name="trackmgr_empty">Du har ingen spor.</string>
   <string name="trackmgr_newtrack_hint">Trykk på <b>Meny</b> og så <b>Nytt spor</b> for å spore.</string>
   <string name="trackmgr_newtrack_error">Kan ikkje lage spor: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Du tek no opp <b>spor nr. {0}</b>\nVelj det i lista for å halde fram med sporinga</string>
+  <string name="trackmgr_continuetrack_hint">Du tek no opp <b>spor nr. {0}</b>
+Velj det i lista for å halde fram med sporinga</string>
   <string name="trackmgr_contextmenu_stop">Stopp sporing</string>
   <string name="trackmgr_contextmenu_resume">Fortsett sporing</string>
   <string name="trackmgr_contextmenu_delete">Slett</string>
@@ -72,7 +72,6 @@
   <string name="osm_upload_sucess">Opplasting til OpenStreetMap var vellukka</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Stemmeopptak</string>
-  <string name="gpsstatus_record_stillimage">Ta bilde</string>
   <string name="gpsstatus_record_textnote">Tekstnotat</string>
   <!--Menu-->
   <string name="menu_settings">Innstillingar</string>

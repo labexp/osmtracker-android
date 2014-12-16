@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker för Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Inspirerad av OSMTracker för Windows Mobile. Låter dig spara din färdväg, notera intressanta     punkter (det går även att skapa röstnoteringar) och exportera dem i GPX-format för att sedan kunna använda dem i OpenStreetMap-verktyg som t ex JOSM.</string>
+  <string name="app_description">Inspirerad av OSMTracker för Windows Mobile. Låter dig spara din färdväg, notera intressanta platser (det går även att skapa röst- och bildnoteringar) och exportera dem i GPX-format för att sedan kunna använda dem i OpenStreetMap-verktyg som t.ex. JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Spårloggning</string>
   <string name="tracklogger_waiting_gps">Vissa knappar aktiveras när GPS-låsning har erhållits.</string>
@@ -23,15 +23,19 @@
   <string name="wplist_longitude">Long: </string>
   <string name="wplist_elevation">Höjd: </string>
   <string name="wplist_accuracy">Noggr.: </string>
+  <string name="wplist_compass">Ber. riktn.:</string>
+  <string name="wplist_compass_accuracy">Ber. noggr.:</string>
   <!--Track Manager-->
   <string name="trackmgr">Spårhantering</string>
   <string name="trackmgr_tracklist">Spårlista</string>
   <string name="trackmgr_waypoints_count">Vägpunkter: </string>
   <string name="trackmgr_trackpoints_count">Spårpunkter: </string>
   <string name="trackmgr_empty">Du har inga spår</string>
-  <string name="trackmgr_newtrack_hint">För att spela in ett spår,\ntryck <b>Meny</b> och sedan <b>Nytt spår</b></string>
+  <string name="trackmgr_newtrack_hint">För att spela in ett spår,
+tryck <b>Meny</b> och sedan <b>Nytt spår</b></string>
   <string name="trackmgr_newtrack_error">Kan inte skapa nytt spår: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Du spelar just nu in <b>spår #{0}</b>\nVälj spåret i listan för att fortsätta</string>
+  <string name="trackmgr_continuetrack_hint">Du spelar just nu in <b>spår #{0}</b>
+Välj spåret i listan för att fortsätta</string>
   <string name="trackmgr_contextmenu_stop">Stoppa inspelning</string>
   <string name="trackmgr_contextmenu_resume">Återuppta inspelning</string>
   <string name="trackmgr_contextmenu_delete">Radera</string>
@@ -122,9 +126,14 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Noggrannhet</string>
+  <string name="various_accuracy_with_sats">Noggrannhet {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Väntar på GPS-fix... ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Väntar på riktning...</string>
+  <string name="various_heading_unknown">Riktning kan inte bestämmas</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Spårvisning med OpenStreetMap</string>
 </resources>

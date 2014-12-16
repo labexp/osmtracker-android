@@ -13,6 +13,12 @@
   <string name="prefs_gps_logging_interval_summary">Použijte 0 pro nejkratší možný (má vliv na spotřebu baterie)</string>
   <string name="prefs_gps_logging_interval_seconds">sekundy</string>
   <string name="prefs_ui">Uživatelské rozhraní</string>
+  <string name="prefs_ui_picture_source">Výchozí zdroj fotografií</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Fotoaparát</item>
+    <item>Galerie</item>
+    <item>Vždy se zeptat</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Nastavení sad tlačítek</string>
   <string name="prefs_ui_buttons_layout_summary">Vybrat vlastní sadu tlačítek (viz. dokumentace)</string>
   <string name="prefs_ui_buttons_layout_defaut">Implicitní</string>
@@ -37,6 +43,7 @@
   <string name="prefs_display_always_on_summary">Obrazovka stále zapnutá během trasování. Deaktivace uspoří baterii.</string>
   <string name="prefs_displaytrack_osm">Podkladová mapa</string>
   <string name="prefs_displaytrack_osm_summary">Zobrazit mapu OpenStreetMap pod trasou. Je třeba datové spojení.</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Na pozadí vždy zobrazovat mapu OpenStreetMap? Vyžaduje datové spojení. </string>
   <string name="prefs_output">Nastavení GPX</string>
   <string name="prefs_storage_dir">Adresář externího úložiště (SD)</string>
   <string name="prefs_storage_dir_hint">Bude mít vliv pro příští trasu (ne současnou)</string>
@@ -63,5 +70,6 @@
   <string name="prefs_osm_clear_oauth_data">Smazat OSM autentizaci</string>
   <string name="prefs_osm_clear_oauth_data_summary">Zapomenout OSM údaje pro přihlášení a pověření a přiměj OSMTracker, aby se znovu zeptal</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Je třeba autorizace OSMTrackeru pro opakované nahrání. Jste si jisti?</string>
+  <string name="prefs_map_tile">Podkladová mapa</string>
   <string name="prefs_map_tile_summary"></string>
 </resources>

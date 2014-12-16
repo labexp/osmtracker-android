@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker pour Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Inspiré par OSMTracker pour Windows Mobile, permet d\'enregistrer vos parcours, de noter des points d\'interêt (mémo vocal, photo), d\'exporter au format GPX pour l\'utiliser avec les outils d\'Open Street Map comme JOSM.</string>
+  <string name="app_description">Inspiré par OSMTracker pour Windows Mobile, Permet d\'enregistrer vos parcours, de noter des points d\'interêt (mémo vocal, photo), d\'exporter au format GPX pour l\'utiliser avec les outils d\'Open Street Map comme JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Enregistrement</string>
   <string name="tracklogger_waiting_gps">En attente de fix GPS pour activer les boutons…</string>
@@ -15,23 +15,27 @@
   <string name="tracklogger_gps_disabled">GPS désactivé</string>
   <string name="tracklogger_gps_disabled_hint">Le GPS est désactivé. Voulez-vous l\'activer ?</string>
   <string name="tracklogger_choose_gallery_camera">Gallerie ou prendre une photo ?</string>
-  <string name="tracklogger_camera">Prendre une photo</string>
-  <string name="tracklogger_gallery">Choisir une photo de la gallerie</string>
+  <string name="tracklogger_camera">Prendre une photo avec l’appareil photo</string>
+  <string name="tracklogger_gallery">Sélectionner la photo à partir de la gallerie d’images</string>
   <!--Waypoint List-->
   <string name="wplist">Liste des points d\'interêt</string>
   <string name="wplist_latitude">Lat: </string>
   <string name="wplist_longitude">Long: </string>
   <string name="wplist_elevation">Alt: </string>
   <string name="wplist_accuracy">Préci: </string>
+  <string name="wplist_compass">Coord. comp.:</string>
+  <string name="wplist_compass_accuracy">Préci. comp.:</string>
   <!--Track Manager-->
   <string name="trackmgr">Gestionnaire de traces</string>
   <string name="trackmgr_tracklist">Liste des traces :</string>
   <string name="trackmgr_waypoints_count">Points d\'interêt :</string>
   <string name="trackmgr_trackpoints_count">Pts. de trace :</string>
   <string name="trackmgr_empty">Vous n\'avez pas de traces.</string>
-  <string name="trackmgr_newtrack_hint">Pour enregistrer une trace,\nchoisissez <b>Menu</b>, puis <b>Nouvelle trace</b>.</string>
+  <string name="trackmgr_newtrack_hint">Pour enregistrer une trace,
+choisissez <b>Menu</b>, puis <b>Nouvelle trace</b>.</string>
   <string name="trackmgr_newtrack_error">Impossible de créer une nouvelle trace : {0}</string>
-  <string name="trackmgr_continuetrack_hint">La <b>trace #{0}</b> est en cours d\'enregistrement.\nChoisissez la dans la liste pour continuer.</string>
+  <string name="trackmgr_continuetrack_hint">La <b>trace #{0}</b> est en cours d\'enregistrement.
+Choisissez la dans la liste pour continuer.</string>
   <string name="trackmgr_contextmenu_stop">Arrêter l\'enregistrement</string>
   <string name="trackmgr_contextmenu_resume">Reprendre l\'enregistrement</string>
   <string name="trackmgr_contextmenu_delete">Supprimer</string>
@@ -77,7 +81,7 @@
   <string name="osm_upload_sucess">Upload vers OpenStreetMap complété avec succès</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Mémo vocal</string>
-  <string name="gpsstatus_record_stillimage">Photographier</string>
+  <string name="gpsstatus_record_stillimage">Prendre une photo</string>
   <string name="gpsstatus_record_textnote">Note</string>
   <!--Menu-->
   <string name="menu_settings">Paramètres</string>
@@ -122,9 +126,14 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Précision</string>
+  <string name="various_accuracy_with_sats">Précision {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">En attente de fix GPS… ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">En attente de coordonnées...</string>
+  <string name="various_heading_unknown">Les coordonées n\'ont pas pu être déterminées</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Voir le tracé avec OpenStreetMap</string>
 </resources>

@@ -10,5 +10,5 @@
   <string name="acc.record_indicator">Indicador do progresso da gravação</string>
   <!--Track list-->
   <string name="acc.track_status">Indicador do status da trilha</string>
-  <string name="acc.upload_status">Indicador do status de envio para o OpenStreetMap</string>
+  <string name="acc.upload_status">Indicador do estado do envio para o OpenStreetMap</string>
 </resources>

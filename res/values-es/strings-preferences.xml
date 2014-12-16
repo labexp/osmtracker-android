@@ -13,8 +13,8 @@
   <string name="prefs_gps_logging_interval_summary">Utilice 0 para el más breve posible (afecta a la vida de la batería)</string>
   <string name="prefs_gps_logging_interval_seconds">segundos</string>
   <string name="prefs_ui">Interfaz de usuario</string>
-  <string name="prefs_ui_picture_source">Origen de imágenes por defecto</string>
-  <string name="prefs_ui_picture_source_summary">¿Tomar imágenes de la cámara o la galería?</string>
+  <string name="prefs_ui_picture_source">Fuente de fotos predeterminada</string>
+  <string name="prefs_ui_picture_source_summary">¿Tomar fotos desde la cámara o la galería?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Cámara</item>
     <item>Galería</item>
@@ -45,12 +45,12 @@
   <string name="prefs_displaytrack_osm">Mapa de fondo</string>
   <string name="prefs_displaytrack_osm_summary">Visualizar OpenStreetMap bajo la traza. Requiere una conexión de datos</string>
   <string name="prefs_displaytrack_osm_summary_ask">¿Mostrar siempre fondo OpenStreetMap? Requiere una conexión de datos.</string>
-  <string name="prefs_output">Salida del archivo GPX</string>
+  <string name="prefs_output">Configuraciones GPX</string>
   <string name="prefs_storage_dir">Carpeta de almacenamiento externo (SD)</string>
   <string name="prefs_storage_dir_hint">Se hará efectivo en la traza siguiente (no la actual)</string>
   <string name="prefs_output_one_dir_per_track">Una carpeta por cada traza</string>
-  <string name="prefs_output_one_dir_per_track_summary">Guarde cada rastro y los archivos asociados a su propia carpeta</string>
-  <string name="prefs_output_filename">Nombre del archivo para las trazas nominadas</string>
+  <string name="prefs_output_one_dir_per_track_summary">Guarda cada rastro y los archivos asociados en su propia carpeta</string>
+  <string name="prefs_output_filename">Nombre del archivo para las trazas con nombre</string>
   <string name="prefs_output_filename_summary">Modelo para el nombre del archivo si la traza tiene un nombre</string>
   <string-array name="prefs_output_filename_keys">
     <item>Nombre de la traza</item>
@@ -68,14 +68,21 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">Rellenar el HDOP en el GPX con un valor de aproximación de la precisión</string>
   <string name="prefs_sound_enabled">Habilitar el sonido</string>
   <string name="prefs_sound_enabled_summary">Reproducir sonidos cuando la grabación de voz comienza y termina</string>
-  <string name="prefs_osm_clear_oauth_data">Borrar los datos de autenticación de OSM</string>
-  <string name="prefs_osm_clear_oauth_data_summary">Olvidar las credenciales y permisos de OSM. Forzar a que OSMTracker los vuelva a solicitar</string>
+  <string name="prefs_osm_clear_oauth_data">Restablecer la autenticación OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Olvidar las credenciales y permisos de OSM, y forzar a que OSMTracker los vuelva a solicitar</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Deberá autorizar a OSMTracker para volver a subir las pistas. ¿Está seguro?</string>
-  <string name="prefs_map_tile">Proveedor de losetas de mapa</string>
+  <string name="prefs_map_tile">Proveedor de teselas del mapa</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Ninguno</item>
+    <item>en comentario</item>
+    <item>en extensión</item>
+  </string-array>
+  <string name="prefs_compass_heading">Exportar la dirección de la brújula</string>
+  <string name="prefs_compass_heading_summary">Define el si y cómo los datos de brújula deben ser exportados al archivo GPX</string>
 </resources>

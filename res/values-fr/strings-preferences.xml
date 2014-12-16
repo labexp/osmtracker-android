@@ -13,8 +13,8 @@
   <string name="prefs_gps_logging_interval_summary">Choisissez 0 pour le plus petit intervalle possible (consomme plus de batterie)</string>
   <string name="prefs_gps_logging_interval_seconds">seconds</string>
   <string name="prefs_ui">Interface utilisateur</string>
-  <string name="prefs_ui_picture_source">Source de photos</string>
-  <string name="prefs_ui_picture_source_summary">Appareil photo ou gallerie ?</string>
+  <string name="prefs_ui_picture_source">Source des photographies par défaut</string>
+  <string name="prefs_ui_picture_source_summary">Prendre des photographies à partir de l’appareil photo ou à partir de la gallerie d’images ?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Appareil photo</item>
     <item>Gallerie</item>
@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">Fournisseur de tuiles</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Aucun</item>
+    <item>En commentaire</item>
+    <item>En extention</item>
+  </string-array>
+  <string name="prefs_compass_heading">Exporter les directions du compas</string>
+  <string name="prefs_compass_heading_summary">Définit si et comment les données du compas devraient être exportés dans le fichier GPX</string>
 </resources>

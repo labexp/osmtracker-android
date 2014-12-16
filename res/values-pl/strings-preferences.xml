@@ -13,8 +13,8 @@
   <string name="prefs_gps_logging_interval_summary">Użyj 0 dla najkrótszego (wpływa na żywotność baterii)</string>
   <string name="prefs_gps_logging_interval_seconds">sekund</string>
   <string name="prefs_ui">Interfejs użytkownika</string>
-  <string name="prefs_ui_picture_source">Domyślne źródło obrazów</string>
-  <string name="prefs_ui_picture_source_summary">Wziąć zdjęcia z aparatu czy z galerii?</string>
+  <string name="prefs_ui_picture_source">Standardowe źródło zdjęć</string>
+  <string name="prefs_ui_picture_source_summary">Wykonywać zdjęcia aparatem czy pobierać z galerii?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Aparat</item>
     <item>Galeria</item>
@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">Dostawca Kafelków mapy</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Mapa rowerowa</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Brak</item>
+    <item>w komentarzu</item>
+    <item>w rozrzeszeniu</item>
+  </string-array>
+  <string name="prefs_compass_heading">Eksportuj kierunek z kompasu</string>
+  <string name="prefs_compass_heading_summary">Określa w jaki sposób dane kompasu powinny być zapisywane w pliku GPX</string>
 </resources>

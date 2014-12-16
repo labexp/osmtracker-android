@@ -31,7 +31,7 @@
   <string name="tag.restriction_120">Max 120</string>
   <string name="tag.restriction_130">Maks. 130</string>
   <string name="tag.restriction_no_exit">Ślepa</string>
-  <string name="tag.restriction_traffic_light">Sygnalizacja świet.</string>
+  <string name="tag.restriction_traffic_light">Światła uliczne</string>
   <string name="tag.restriction_one_way">Jednokierunkowa</string>
   <string name="tag.car_fuel_station">Stacja paliw</string>
   <string name="tag.car_parking">Parking</string>
@@ -54,9 +54,11 @@
   <string name="tag.amenity_marina">Port</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxi</string>
-  <string name="tag.amenity_doctors">Szpital,\nDoktor</string>
+  <string name="tag.amenity_doctors">Szpital,
+Doktor</string>
   <string name="tag.amenity_recycling">Recycling</string>
-  <string name="tag.amenity_place_of_worship">Miejsce\nkultu</string>
+  <string name="tag.amenity_place_of_worship">Miejsce
+kultu</string>
   <string name="tag.amenity_post_office">Poczta</string>
   <string name="tag.amenity_library">Biblioteka</string>
   <string name="tag.amenitymore_school">Szkoła</string>

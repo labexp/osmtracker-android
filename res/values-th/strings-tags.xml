@@ -25,7 +25,6 @@
   <string name="tag.restriction_110">สูงสุด 110</string>
   <string name="tag.restriction_120">สูงสุด 120</string>
   <string name="tag.restriction_no_exit">ทางตัน</string>
-  <string name="tag.restriction_traffic_light">ไฟจราจร</string>
   <string name="tag.restriction_one_way">เดินรถทางเดียว</string>
   <string name="tag.car_fuel_station">สถานีเชื้อเพลิง</string>
   <string name="tag.car_parking">ลานจอดรถ</string>

@@ -13,8 +13,8 @@
   <string name="prefs_gps_logging_interval_summary">Gebruik 0 voor de kortst mogelijke (beïnvloedt levensduur van de batterij)</string>
   <string name="prefs_gps_logging_interval_seconds">seconden</string>
   <string name="prefs_ui">Gebruikersinterface</string>
-  <string name="prefs_ui_picture_source">Standaard afbeeldingbron</string>
-  <string name="prefs_ui_picture_source_summary">Afbeeldingen nemen van camera of galerij?</string>
+  <string name="prefs_ui_picture_source">Standaard fotobron</string>
+  <string name="prefs_ui_picture_source_summary">Foto\'s nemen van camera of galerij?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Camera</item>
     <item>Galerij</item>
@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">Kaartvak-provider</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Geen</item>
+    <item>in opmerking</item>
+    <item>in extensie</item>
+  </string-array>
+  <string name="prefs_compass_heading">Kompasrichting exporteren</string>
+  <string name="prefs_compass_heading_summary">Definieert of en hoe de kompas-data geëxporteerd moet worden naar het GPX-bestand</string>
 </resources>

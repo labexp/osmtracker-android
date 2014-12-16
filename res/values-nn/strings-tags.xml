@@ -7,7 +7,8 @@
   <string name="tag.amenity">Fasilitetar 1</string>
   <string name="tag.amenity_more">Fasilitetar 2</string>
   <string name="tag.way">Veg</string>
-  <string name="tag.track">Grus-/\nskogsveg</string>
+  <string name="tag.track">Grus-/
+skogsveg</string>
   <string name="tag.landuse">Bruk av land</string>
   <string name="tag.misc_bus_stop">Busstopp</string>
   <string name="tag.misc_railway">Jernbane</string>
@@ -31,7 +32,6 @@
   <string name="tag.restriction_120">Maks 120</string>
   <string name="tag.restriction_130">Maks 130</string>
   <string name="tag.restriction_no_exit">Ingen utgang</string>
-  <string name="tag.restriction_traffic_light">Trafikkljos</string>
   <string name="tag.restriction_one_way">Einvegs</string>
   <string name="tag.car_fuel_station">Bensinstasjon</string>
   <string name="tag.car_parking">Parkering</string>
@@ -52,7 +52,8 @@
   <string name="tag.amenity_marina">Båthamn</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Drosje</string>
-  <string name="tag.amenity_doctors">Sjukehus,\nLege</string>
+  <string name="tag.amenity_doctors">Sjukehus,
+Lege</string>
   <string name="tag.amenity_recycling">Resirkulering</string>
   <string name="tag.amenity_place_of_worship">Gudshus</string>
   <string name="tag.amenity_post_office">Postkontor</string>
@@ -71,10 +72,14 @@
   <string name="tag.way_zebra_crossing">Fotgjengarovergang</string>
   <string name="tag.way_motorway">Motorveg</string>
   <string name="tag.way_trunk">Riksveg</string>
-  <string name="tag.way_primary">Skilta\nfylkesveg</string>
-  <string name="tag.way_secondary">Uskilta\nfylkesveg</string>
-  <string name="tag.way_tertiary">Lokal\nveg</string>
-  <string name="tag.way_residential">Bustadområde-\nveg</string>
+  <string name="tag.way_primary">Skilta
+fylkesveg</string>
+  <string name="tag.way_secondary">Uskilta
+fylkesveg</string>
+  <string name="tag.way_tertiary">Lokal
+veg</string>
+  <string name="tag.way_residential">Bustadområde-
+veg</string>
   <string name="tag.way_service">Tilkomstveg</string>
   <string name="tag.track_track">Grusveg</string>
   <string name="tag.track_cycleway">Sykkelveg</string>
@@ -95,5 +100,6 @@
   <string name="tag.landuse_forest">Skog</string>
   <string name="tag.landuse_allotments">Parsell</string>
   <string name="tag.landuse_cemetery">Gravplass</string>
-  <string name="tag.landuse_recreation_ground">Rekreasjons-\nplass</string>
+  <string name="tag.landuse_recreation_ground">Rekreasjons-
+plass</string>
 </resources>

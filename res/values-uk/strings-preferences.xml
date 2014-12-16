@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">Постачальник основи карти</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Ні</item>
+    <item>у коментарі</item>
+    <item>у розширенні</item>
+  </string-array>
+  <string name="prefs_compass_heading">Напрямок експорту компасу</string>
+  <string name="prefs_compass_heading_summary">Визначає, коли і як дані компасу можна експортувати у файл GPX</string>
 </resources>

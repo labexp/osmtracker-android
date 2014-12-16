@@ -99,5 +99,6 @@
   <string name="tag.landuse_forest">غابة</string>
   <string name="tag.landuse_allotments">تقسيمات</string>
   <string name="tag.landuse_cemetery">مقبرة</string>
-  <string name="tag.landuse_recreation_ground">استجمام\nأرض</string>
+  <string name="tag.landuse_recreation_ground">استجمام
+أرض</string>
 </resources>

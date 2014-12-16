@@ -13,8 +13,6 @@
   <string name="prefs_gps_logging_interval_summary">Použite 0 pre najkratší možný (Ovplyvní výdrž batérie)</string>
   <string name="prefs_gps_logging_interval_seconds">sekundy</string>
   <string name="prefs_ui">Užívateľské rozhranie</string>
-  <string name="prefs_ui_picture_source">Predvolený zdroj obrázkov</string>
-  <string name="prefs_ui_picture_source_summary">Zosnímať obrázky fotoaparátom alebo vybrať z galérie?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Fotoaparát</item>
     <item>Galéria</item>
@@ -73,9 +71,4 @@
   <string name="prefs_osm_clear_oauth_data_dialog">Znova sa pokúšate autorizovať OSMTracker, aby mohol nahrávať záznamy stôp. Ste si istý?</string>
   <string name="prefs_map_tile">Poskytovateľ mapových podkladov</string>
   <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
-  </string-array>
 </resources>

@@ -23,15 +23,19 @@
   <string name="wplist_longitude">Vĩ độ:</string>
   <string name="wplist_elevation">Cao độ:</string>
   <string name="wplist_accuracy">Độ chinh xác:</string>
+  <string name="wplist_compass">Hướng la bàn:</string>
+  <string name="wplist_compass_accuracy">Độ chính xác la bàn:</string>
   <!--Track Manager-->
   <string name="trackmgr">Trình quản lý tuyến đường</string>
   <string name="trackmgr_tracklist">Danh sách tuyến đường:</string>
   <string name="trackmgr_waypoints_count">Tọa độ điểm:</string>
   <string name="trackmgr_trackpoints_count">Điểm tuyến đường:</string>
   <string name="trackmgr_empty">Bạn chưa có tuyến đường.</string>
-  <string name="trackmgr_newtrack_hint">Để ghi tuyến đường mới,\nbấm <b>Trình đơn</b> rồi chọn <b>Tuyến đường mới</b></string>
+  <string name="trackmgr_newtrack_hint">Để ghi tuyến đường mới,
+bấm <b>Trình đơn</b> rồi chọn <b>Tuyến đường mới</b></string>
   <string name="trackmgr_newtrack_error">Không thể tạo tuyến đường mới: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Bạn hiện đang ghi <b>tuyến đường #{0}</b>\nChọn nó trong danh sách để tiếp tục</string>
+  <string name="trackmgr_continuetrack_hint">Bạn hiện đang ghi <b>tuyến đường #{0}</b>
+Chọn nó trong danh sách để tiếp tục</string>
   <string name="trackmgr_contextmenu_stop">Dừng theo dõi</string>
   <string name="trackmgr_contextmenu_resume">Tiếp tục theo dõi</string>
   <string name="trackmgr_contextmenu_delete">Xóa</string>
@@ -122,9 +126,14 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Độ chính xác</string>
+  <string name="various_accuracy_with_sats">Độ chính xác {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Đang đợi GPS tìm vị trí… ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Đang xác định hướng…</string>
+  <string name="various_heading_unknown">Không thể xác định hướng</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Hiển thị tuyến đường OpenStreetMap</string>
 </resources>

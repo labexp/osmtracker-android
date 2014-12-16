@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker для Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Как и OSMTracker для Windows Mobile, позволяет записывать Ваши путешествия, отмечая важнейшие точки (с записью аудио), экспортировать их в формат GPX для дальнейшего использования в редакторах Open Street Map, например в JOSM.</string>
+  <string name="app_description">Вдохновленная OSMTracker для Windows  Mobile, эта программа дает возможность отслеживать траектории Ваших путешествий, отмечать важные места (в том числе записывать голосовые заметки и делать фотографии), сохранять их в формате GPX для дальнейшего использования с инструментами Open Street Map, например в редакторе JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Регистратор треков</string>
   <string name="tracklogger_waiting_gps">Ожидание GPS фиксации для активации кнопок…</string>
@@ -15,23 +15,27 @@
   <string name="tracklogger_gps_disabled">GPS отключен</string>
   <string name="tracklogger_gps_disabled_hint">GPS отключен. Вы хотите включить его?</string>
   <string name="tracklogger_choose_gallery_camera">Галерея или камера? </string>
-  <string name="tracklogger_camera">Делать снимки с камеры</string>
-  <string name="tracklogger_gallery">Выбрать изображение из альбома</string>
+  <string name="tracklogger_camera">Сделать фото</string>
+  <string name="tracklogger_gallery">выбрать фото из галереи</string>
   <!--Waypoint List-->
   <string name="wplist">Список путевых точек</string>
   <string name="wplist_latitude">Шир.: </string>
   <string name="wplist_longitude">Долг.: </string>
   <string name="wplist_elevation">Выс: </string>
   <string name="wplist_accuracy">Точн.: </string>
+  <string name="wplist_compass">Выч. напр.:</string>
+  <string name="wplist_compass_accuracy">Выч. точн.:</string>
   <!--Track Manager-->
   <string name="trackmgr">Менеджер треков</string>
   <string name="trackmgr_tracklist">Список треков:</string>
   <string name="trackmgr_waypoints_count">Путевые точки: </string>
   <string name="trackmgr_trackpoints_count">Точки трека: </string>
   <string name="trackmgr_empty">У вас нет треков.</string>
-  <string name="trackmgr_newtrack_hint">Для записи трека,\nнажмите<b>Меню</b>, затем<b>Новый трек</b></string>
+  <string name="trackmgr_newtrack_hint">Для записи трека,
+нажмите<b>Меню</b>, затем<b>Новый трек</b></string>
   <string name="trackmgr_newtrack_error">Невозможно создать новый трек: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Сейчас вы записываете <b>трек #{0}</b>\nВыберите его в списке для продолжения</string>
+  <string name="trackmgr_continuetrack_hint">Сейчас вы записываете <b>трек #{0}</b>
+Выберите его в списке для продолжения</string>
   <string name="trackmgr_contextmenu_stop">Остановить запись</string>
   <string name="trackmgr_contextmenu_resume">Продолжить запись</string>
   <string name="trackmgr_contextmenu_delete">Удалить</string>
@@ -77,7 +81,7 @@
   <string name="osm_upload_sucess">Загрузка на OpenStreetMap завершена</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Запись аудио</string>
-  <string name="gpsstatus_record_stillimage">Фото</string>
+  <string name="gpsstatus_record_stillimage">Сделать фото</string>
   <string name="gpsstatus_record_textnote">Запись текста</string>
   <!--Menu-->
   <string name="menu_settings">Настройки</string>
@@ -122,9 +126,14 @@
   <!--Various-->
   <string name="various_unit_meters">м</string>
   <string name="various_accuracy">Точность</string>
+  <string name="various_accuracy_with_sats">Точность {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Ожидание фиксации GPS… ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Ожидание направления...</string>
+  <string name="various_heading_unknown">Направление не может быть определено</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Отображение трека (OSM)</string>
 </resources>

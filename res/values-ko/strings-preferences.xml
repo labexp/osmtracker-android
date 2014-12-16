@@ -14,7 +14,7 @@
   <string name="prefs_gps_logging_interval_seconds">초</string>
   <string name="prefs_ui">사용자 인터페이스</string>
   <string name="prefs_ui_picture_source">기본 사진 자료</string>
-  <string name="prefs_ui_picture_source_summary">카메라나 갤러리에서 사진을 찍겠습니까?</string>
+  <string name="prefs_ui_picture_source_summary">사진을 카메라에서 찍거나 갤러리에서 가져오겠습니까?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>카메라</item>
     <item>갤러리</item>
@@ -67,15 +67,22 @@
   <string name="prefs_output_gpx_hdop_approximation">HDOP 근사값 사용</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">GPX의 HDOP에 실제 위치에서의 근사값을 채웁니다</string>
   <string name="prefs_sound_enabled">소리 활성화</string>
-  <string name="prefs_sound_enabled_summary">음성 녹음을 시작하고 끝낼 때 소리 재생</string>
+  <string name="prefs_sound_enabled_summary">음성 녹음을 시작하고 끝낼 때 소리를 재생합니다</string>
   <string name="prefs_osm_clear_oauth_data">OSM 인증 재설정</string>
   <string name="prefs_osm_clear_oauth_data_summary">OSM 자격 증명과 권한을 잊고 강제로 OSMTracker에 다시 묻도록 합니다</string>
   <string name="prefs_osm_clear_oauth_data_dialog">트랙을 올리려면 OSMTracker를 다시 인증해야 합니다. 지우겠습니까?</string>
   <string name="prefs_map_tile">지도 타일 제공자</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>사이클 지도</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>없음</item>
+    <item>주석에서</item>
+    <item>확장에서</item>
+  </string-array>
+  <string name="prefs_compass_heading">나침반 방위 내보내기</string>
+  <string name="prefs_compass_heading_summary">나침반 데이터가 GPX 파일로 내보내져야 한다면과 어떻게 내보내야 하는지 정의합니다</string>
 </resources>

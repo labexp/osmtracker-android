@@ -12,8 +12,6 @@
   <string name="tracklogger_gps_disabled">ஜிபிஎஸ் செயலிழக்கச் செய்யப்பட்டுள்ளது</string>
   <string name="tracklogger_gps_disabled_hint">ஜிபிஎஸ் செயலிழக்கச் செய்யப்பட்டுள்ளது. நீங்கள் அதை செயலாக்க வேண்டுமா?</string>
   <string name="tracklogger_choose_gallery_camera">படத்தொகுப்பு அல்லது புகைப்படக் கருவி?</string>
-  <string name="tracklogger_camera">புகைப்படக் கருவியில் படம் எடு</string>
-  <string name="tracklogger_gallery">படத்தொகுப்பிலிருந்து படத்தை தேர்ந்தெடுக்கவும்</string>
   <!--Waypoint List-->
   <string name="wplist">பாதைப் புள்ளி பட்டியல்</string>
   <string name="wplist_longitude">நீண்ட</string>
@@ -25,9 +23,11 @@
   <string name="trackmgr_waypoints_count">வழிக் குறிப்பு</string>
   <string name="trackmgr_trackpoints_count">தடத்தின் புள்ளி</string>
   <string name="trackmgr_empty">உங்களுக்கு‍ எந்த வழித் தடங்களும் இல்லை.</string>
-  <string name="trackmgr_newtrack_hint">ஒரு தடத்தை பதிவு செய்ய,\nஅழுத்து‍<b>பட்டியல்</b>பிறகு‍<b>புதிய தடம்</b></string>
+  <string name="trackmgr_newtrack_hint">ஒரு தடத்தை பதிவு செய்ய,
+அழுத்து‍<b>பட்டியல்</b>பிறகு‍<b>புதிய தடம்</b></string>
   <string name="trackmgr_newtrack_error">புதிய தடத்தை உருவாக்க முடியவில்லை: {0}</string>
-  <string name="trackmgr_continuetrack_hint">நீங்கள் தற்போது பதிவு செய்கிறீர்கள்<b>தடம்#{0}</b>\nதொடர, பட்டியலில் இருந்து தேர்வு செய்யவும்</string>
+  <string name="trackmgr_continuetrack_hint">நீங்கள் தற்போது பதிவு செய்கிறீர்கள்<b>தடம்#{0}</b>
+தொடர, பட்டியலில் இருந்து தேர்வு செய்யவும்</string>
   <string name="trackmgr_contextmenu_stop">தடத்தை நிறுத்து‍</string>
   <string name="trackmgr_contextmenu_delete">நீக்கு</string>
   <string name="trackmgr_contextmenu_export">புவி நிலை காட்டி போல் ஏற்று‍</string>
@@ -56,7 +56,6 @@
   <string name="osm_upload_error">தடம் பதிவேற்றுவதில் பிழை </string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">குரல் பதிவு</string>
-  <string name="gpsstatus_record_stillimage">படம் எடு‍</string>
   <string name="gpsstatus_record_textnote">உரை குறிப்பு</string>
   <!--Menu-->
   <string name="menu_settings">அமைப்புகள்</string>

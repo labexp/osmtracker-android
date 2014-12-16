@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker для Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Як і OSMTracker для Windows Mobile, програма дозволяє записувати Ваші подорожі, відзначаючи найважливіші точки (із записом аудіо), експортувати їх у формат GPX для подальшого використання в редакторах Open Street Map, наприклад в JOSM.</string>
+  <string name="app_description">Як і OSMTracker для Windows Mobile, програма дозволяє записувати Ваші подорожі, відзначаючи найважливіші точки (із записом аудіо, фото), експортувати їх у формат GPX для подальшого використання в редакторах Open Street Map, наприклад в JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Реєстратор шляхів</string>
   <string name="tracklogger_waiting_gps">Очікування GPS фіксації для активації кнопок ...</string>
@@ -16,13 +16,15 @@
   <string name="tracklogger_gps_disabled_hint">GPS вимкнено. Бажаєте його включити?</string>
   <string name="tracklogger_choose_gallery_camera">Галерея чи камера?</string>
   <string name="tracklogger_camera">Зробити знімок камерою</string>
-  <string name="tracklogger_gallery">Вибрати зображення з галереї</string>
+  <string name="tracklogger_gallery">Вибрати фото з галереї</string>
   <!--Waypoint List-->
   <string name="wplist">Список дорожніх точок</string>
   <string name="wplist_latitude">Шир.:</string>
   <string name="wplist_longitude">Довг.:</string>
   <string name="wplist_elevation">Вис:</string>
   <string name="wplist_accuracy">Точн:</string>
+  <string name="wplist_compass">Обчисл. напрям:</string>
+  <string name="wplist_compass_accuracy">Точн. обч.:</string>
   <!--Track Manager-->
   <string name="trackmgr">Менеджер шляхів</string>
   <string name="trackmgr_tracklist">Список шляхів:</string>
@@ -31,7 +33,8 @@
   <string name="trackmgr_empty">У вас не має  шляхів.</string>
   <string name="trackmgr_newtrack_hint">Для запису шляху, натисніть<b>Меню</b>, потім<b>Новий шлях</b></string>
   <string name="trackmgr_newtrack_error">Неможливо створити новий шлях:{0}</string>
-  <string name="trackmgr_continuetrack_hint">Зараз ви записуєте <b>шлях #{0}</b>\nВиберіть його у списку для продовження</string>
+  <string name="trackmgr_continuetrack_hint">Зараз ви записуєте <b>шлях #{0}</b>
+Виберіть його у списку для продовження</string>
   <string name="trackmgr_contextmenu_stop">Зупинити запис</string>
   <string name="trackmgr_contextmenu_resume">Продовжити запис</string>
   <string name="trackmgr_contextmenu_delete">Вилучити</string>
@@ -122,9 +125,14 @@
   <!--Various-->
   <string name="various_unit_meters">м</string>
   <string name="various_accuracy">Точність</string>
+  <string name="various_accuracy_with_sats">Точність {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Очікування фіксації GPS…({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Очікуємо на напрямок…</string>
+  <string name="various_heading_unknown">Напрямок не можна визначити</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Відображення шляху OpenStreetMap</string>
 </resources>

@@ -31,7 +31,6 @@
   <string name="tag.restriction_120">Max 120</string>
   <string name="tag.restriction_130">Max 130</string>
   <string name="tag.restriction_no_exit">Irteerarik ez</string>
-  <string name="tag.restriction_traffic_light">Semaforoa</string>
   <string name="tag.restriction_one_way">Norantza bat</string>
   <string name="tag.car_fuel_station">Gasolindegia</string>
   <string name="tag.car_parking">Aparkalekua</string>
@@ -54,9 +53,11 @@
   <string name="tag.amenity_marina">Kostaldea</string>
   <string name="tag.amenity_sport">Kirola</string>
   <string name="tag.amenity_taxi">Taxia</string>
-  <string name="tag.amenity_doctors">Hospitalea,\nMedikuak</string>
+  <string name="tag.amenity_doctors">Hospitalea,
+Medikuak</string>
   <string name="tag.amenity_recycling">Berziklapena</string>
-  <string name="tag.amenity_place_of_worship">Gurtzeko\nlekua</string>
+  <string name="tag.amenity_place_of_worship">Gurtzeko
+lekua</string>
   <string name="tag.amenity_post_office">Posta bulegoa</string>
   <string name="tag.amenity_library">Liburutegia</string>
   <string name="tag.amenitymore_school">Eskola</string>
@@ -99,5 +100,6 @@
   <string name="tag.landuse_forest">Basoa</string>
   <string name="tag.landuse_allotments">Partzelak</string>
   <string name="tag.landuse_cemetery">Hilerria</string>
-  <string name="tag.landuse_recreation_ground">Aisialdirako\nlekua</string>
+  <string name="tag.landuse_recreation_ground">Aisialdirako
+lekua</string>
 </resources>

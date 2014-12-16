@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker for Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Windows Mobile版 OSMTracker の後継。あなたの旅の軌跡を記録し、ウェイポイントに印（音声録音、写真）をつけたり、GPX形式でエクスポートして、後でJOSMなどのOpen Street Map用ツールで編集したりできます。</string>
+  <string name="app_description">Windows Mobile版 OSMTracker の後継で、あなたの旅の軌跡を記録し、ウェイポイントに印（音声録音や写真）をつけたり、GPX形式でエクスポートして、後でJOSMなどのOpen Street Map用ツールで編集したりできます。</string>
   <!--TrackLogger-->
   <string name="tracklogger">トラックログ</string>
   <string name="tracklogger_waiting_gps">GPS位置が特定できるまでボタンは無効です...</string>
@@ -23,15 +23,19 @@
   <string name="wplist_longitude">経度: </string>
   <string name="wplist_elevation">標高: </string>
   <string name="wplist_accuracy">精度: </string>
+  <string name="wplist_compass">コンパスの向き:</string>
+  <string name="wplist_compass_accuracy">コンパスの精度:</string>
   <!--Track Manager-->
   <string name="trackmgr">トラック管理</string>
   <string name="trackmgr_tracklist">トラックリスト:</string>
   <string name="trackmgr_waypoints_count">ウェイポイント: </string>
   <string name="trackmgr_trackpoints_count">トラックポイント: </string>
   <string name="trackmgr_empty">トラックデータがありません。</string>
-  <string name="trackmgr_newtrack_hint">トラックを記録するには,\n<b>メニュー</b>の<b>新規トラック</b>を押してください。</string>
+  <string name="trackmgr_newtrack_hint">トラックを記録するには,
+<b>メニュー</b>の<b>新規トラック</b>を押してください。</string>
   <string name="trackmgr_newtrack_error">新しいトラックが作成できません: {0}</string>
-  <string name="trackmgr_continuetrack_hint">現在<b>トラック #{0}</b>を記録中\n続行するにはリストから選択して下さい。</string>
+  <string name="trackmgr_continuetrack_hint">現在<b>トラック #{0}</b>を記録中
+続行するにはリストから選択して下さい。</string>
   <string name="trackmgr_contextmenu_stop">トラッキングの停止</string>
   <string name="trackmgr_contextmenu_resume">トラッキングの再開</string>
   <string name="trackmgr_contextmenu_delete">削除</string>
@@ -122,9 +126,14 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">精度</string>
+  <string name="various_accuracy_with_sats">精度 {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">GPS測定待ち... ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">方位測定待ち...</string>
+  <string name="various_heading_unknown">方位が特定できませんでした</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap トラック表示</string>
 </resources>

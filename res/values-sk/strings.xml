@@ -3,7 +3,6 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker pre Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Inšpirovaný OSMTrackerom na Windows Mobile, vám umožňuje stopovať vaše výlety, označiť významné body (hlasovým záznamom, snímkou), exportovať ich do GPX formátu na neskoršie použitie s nástrojmi pre Open Street Map ako je JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Záznam prejdených trás</string>
   <string name="tracklogger_waiting_gps">Čaká sa na GPS polohu pre povolenie tlačidiel…</string>
@@ -15,8 +14,6 @@
   <string name="tracklogger_gps_disabled">GPS vypnuté</string>
   <string name="tracklogger_gps_disabled_hint">GPS je vypnuté. Chcete ho zapnúť ?</string>
   <string name="tracklogger_choose_gallery_camera">Z galérie alebo fotoaparátu?</string>
-  <string name="tracklogger_camera">Zosnímať fotoaparátom</string>
-  <string name="tracklogger_gallery">Vybrať obrázok z galérie</string>
   <!--Waypoint List-->
   <string name="wplist">Zoznam cestovných bodov</string>
   <string name="wplist_latitude">Z. šírka: </string>
@@ -29,9 +26,11 @@
   <string name="trackmgr_waypoints_count">Body trasy: </string>
   <string name="trackmgr_trackpoints_count">Trasové body: </string>
   <string name="trackmgr_empty">Nemáte zaznamenané žiadne prejdené trasy.</string>
-  <string name="trackmgr_newtrack_hint">Pre nahratie prejdenej trasy\nstlačte <b>Menu</b> a potom <b>Nová trasa</b></string>
+  <string name="trackmgr_newtrack_hint">Pre nahratie prejdenej trasy
+stlačte <b>Menu</b> a potom <b>Nová trasa</b></string>
   <string name="trackmgr_newtrack_error">Nedá sa vytvoriť nový záznam trasy: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Práve nahrávate <b>trasu #{0}</b>\nPre pokračovanie kliknite na ňu v zozname</string>
+  <string name="trackmgr_continuetrack_hint">Práve nahrávate <b>trasu #{0}</b>
+Pre pokračovanie kliknite na ňu v zozname</string>
   <string name="trackmgr_contextmenu_stop">Zastaviť záznam</string>
   <string name="trackmgr_contextmenu_resume">Pokračovať v zázname</string>
   <string name="trackmgr_contextmenu_delete">Vymazať</string>
@@ -77,7 +76,6 @@
   <string name="osm_upload_sucess">Nahrávanie OpenStreetMap bolo úspešné</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Hlasový záznam</string>
-  <string name="gpsstatus_record_stillimage">Odfotiť snímku</string>
   <string name="gpsstatus_record_textnote">Písomná poznámka</string>
   <!--Menu-->
   <string name="menu_settings">Nastavenia</string>

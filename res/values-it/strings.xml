@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker per Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Ispirato a OSMTracker di Windows Mobile, permette di tracciare i propri viaggi, segnare i punti di interesse importanti (disponibile la registrazione vocale e l\'aggiunta di foto), esportarli in formato GPX per un uso successivo con strumenti di Open Street Map come JOSM.</string>
+  <string name="app_description">Ispirato a OSMTracker di Windows Mobile, permette di tracciare i propri viaggi, segnare i punti di interesse importanti (registrazione vocale, foto), esportarli in formato GPX per un uso successivo con strumenti di Open Street Map come JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Registrazione traccia</string>
   <string name="tracklogger_waiting_gps">In attesa del GPS per abilitare i pulsanti…</string>
@@ -23,15 +23,19 @@
   <string name="wplist_longitude">Long: </string>
   <string name="wplist_elevation">Ele: </string>
   <string name="wplist_accuracy">Prec: </string>
+  <string name="wplist_compass">Direz. bussola:</string>
+  <string name="wplist_compass_accuracy">Prec. bussola:</string>
   <!--Track Manager-->
   <string name="trackmgr">Gestione tracce</string>
   <string name="trackmgr_tracklist">Elenco tracce:</string>
   <string name="trackmgr_waypoints_count">POI: </string>
   <string name="trackmgr_trackpoints_count">Punti traccia: </string>
   <string name="trackmgr_empty">Nessuna traccia disponibile.</string>
-  <string name="trackmgr_newtrack_hint">Per registrare una traccia,\npremi <b>Menu</b> poi <b>Nuova traccia</b></string>
+  <string name="trackmgr_newtrack_hint">Per registrare una traccia,
+premi <b>Menu</b> poi <b>Nuova traccia</b></string>
   <string name="trackmgr_newtrack_error">Impossibile creare una nuova traccia: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Stai già registrando la <b>traccia #{0}</b>\nSelezionala nell\'elenco per continuare</string>
+  <string name="trackmgr_continuetrack_hint">Stai già registrando la <b>traccia #{0}</b>
+Selezionala nell\'elenco per continuare</string>
   <string name="trackmgr_contextmenu_stop">Ferma registrazione</string>
   <string name="trackmgr_contextmenu_resume">Riprendi registrazione</string>
   <string name="trackmgr_contextmenu_delete">Elimina</string>
@@ -77,7 +81,7 @@
   <string name="osm_upload_sucess">Caricamento su OpenStreetMap riuscito</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Registra voce</string>
-  <string name="gpsstatus_record_stillimage">Cattura immagine</string>
+  <string name="gpsstatus_record_stillimage">Scatta foto</string>
   <string name="gpsstatus_record_textnote">Scrivi nota</string>
   <!--Menu-->
   <string name="menu_settings">Impostazioni</string>
@@ -122,9 +126,14 @@
   <!--Various-->
   <string name="various_unit_meters">m</string>
   <string name="various_accuracy">Precisione</string>
+  <string name="various_accuracy_with_sats">Precisione {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">In attesa aggancio GPS… ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">In attesa della direzione...</string>
+  <string name="various_heading_unknown">La direzione non può essere determinata</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Mostra traccia OpenStreetMap</string>
 </resources>

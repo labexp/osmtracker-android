@@ -54,7 +54,8 @@
   <string name="tag.amenity_marina">마리나</string>
   <string name="tag.amenity_sport">스포츠</string>
   <string name="tag.amenity_taxi">택시</string>
-  <string name="tag.amenity_doctors">병원,\n진료소</string>
+  <string name="tag.amenity_doctors">병원,
+진료소</string>
   <string name="tag.amenity_recycling">재활용</string>
   <string name="tag.amenity_place_of_worship">예배당</string>
   <string name="tag.amenity_post_office">우체국</string>
@@ -69,7 +70,8 @@
   <string name="tag.amenitymore_motel">모텔</string>
   <string name="tag.amenitymore_hostel">호스텔</string>
   <string name="tag.amenitymore_restaurant">음식점</string>
-  <string name="tag.amenitymore_fastfood">패스트\n푸드</string>
+  <string name="tag.amenitymore_fastfood">패스트
+푸드</string>
   <string name="tag.amenitymore_camp_site">캠프장</string>
   <string name="tag.way_bridge">다리</string>
   <string name="tag.way_zebra_crossing">횡단 보도</string>

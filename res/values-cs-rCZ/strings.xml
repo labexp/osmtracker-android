@@ -3,7 +3,6 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker pro Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Inspirován OSMTracker pro Windows Mobile, umožňuje trasovat vaše cesty, označit důležité body na cestě (hlasovou nahrávku, obrázek), exportovat je v GPX formátu pro pozdější použití s nástroji pro Open Street Map jako je JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Zaznamenávač tras</string>
   <string name="tracklogger_waiting_gps">Čekám na GPS signál pro odemknutí tlačítek...</string>
@@ -26,9 +25,11 @@
   <string name="trackmgr_waypoints_count">Waypoints:</string>
   <string name="trackmgr_trackpoints_count">Body trasy:</string>
   <string name="trackmgr_empty">Zatím nemáte žádné trasy.</string>
-  <string name="trackmgr_newtrack_hint">Pro záznam trasy,\nstiskněte <b>Menu</b> a potom <b>Nová trasa</b></string>
+  <string name="trackmgr_newtrack_hint">Pro záznam trasy,
+stiskněte <b>Menu</b> a potom <b>Nová trasa</b></string>
   <string name="trackmgr_newtrack_error">Není možné vytvořit novou trasu: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Nyní nahráváte <b>trasu #{0}</b>\nPro pokračování ji vyberte ze seznamu</string>
+  <string name="trackmgr_continuetrack_hint">Nyní nahráváte <b>trasu #{0}</b>
+Pro pokračování ji vyberte ze seznamu</string>
   <string name="trackmgr_contextmenu_stop">Zastavit trasování</string>
   <string name="trackmgr_contextmenu_resume">Obnovit trasování</string>
   <string name="trackmgr_contextmenu_delete">Smazat</string>
@@ -74,7 +75,6 @@
   <string name="osm_upload_sucess">Nahrání na OpenStreetMap bylo úspěšné</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Záznam zvuku</string>
-  <string name="gpsstatus_record_stillimage">Pořídit obrázek</string>
   <string name="gpsstatus_record_textnote">Textová poznámka</string>
   <!--Menu-->
   <string name="menu_settings">Nastavení</string>

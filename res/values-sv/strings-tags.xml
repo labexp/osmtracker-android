@@ -56,7 +56,8 @@
   <string name="tag.amenity_taxi">Taxi</string>
   <string name="tag.amenity_doctors">Sjukvård</string>
   <string name="tag.amenity_recycling">Återvinning</string>
-  <string name="tag.amenity_place_of_worship">Plats för\ntillbedjan</string>
+  <string name="tag.amenity_place_of_worship">Plats för
+tillbedjan</string>
   <string name="tag.amenity_post_office">Postkontor</string>
   <string name="tag.amenity_library">Bibliotek</string>
   <string name="tag.amenitymore_school">Skola</string>

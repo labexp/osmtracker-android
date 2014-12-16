@@ -13,8 +13,8 @@
   <string name="prefs_gps_logging_interval_summary">0 für das kürzest mögliche Intervall</string>
   <string name="prefs_gps_logging_interval_seconds">Sekunden</string>
   <string name="prefs_ui">Benutzeroberfläche</string>
-  <string name="prefs_ui_picture_source">Standard Bild-Quelle</string>
-  <string name="prefs_ui_picture_source_summary">Bild von Kamera oder Galerie?</string>
+  <string name="prefs_ui_picture_source">Standard Foto-Quelle</string>
+  <string name="prefs_ui_picture_source_summary">Foto von Kamera oder Galerie?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Kamera</item>
     <item>Galerie</item>
@@ -42,7 +42,7 @@
   </string-array>
   <string name="prefs_display_always_on">Bildschirm immer an</string>
   <string name="prefs_display_always_on_summary">Bildschirm bleibt während des Trackings beleuchtet. Deaktivieren um Batterie zu sparen</string>
-  <string name="prefs_displaytrack_osm">OSM Hintergrund</string>
+  <string name="prefs_displaytrack_osm">Hintergrundkarte</string>
   <string name="prefs_displaytrack_osm_summary">OpenStreetMap als Track-Hintergrund. Benötigt Datenverbindung</string>
   <string name="prefs_displaytrack_osm_summary_ask">OpenStreetMap als Track-Hintergrund. Benötigt Datenverbindung</string>
   <string name="prefs_output">GPX Dateiausgabe</string>
@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">Hintergrund-Karte Anbieter</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Kein</item>
+    <item>im Kommentar</item>
+    <item>in der Erweiterung</item>
+  </string-array>
+  <string name="prefs_compass_heading">Export der Kompass-Richtung</string>
+  <string name="prefs_compass_heading_summary">Definiert ob und wie die Kompass-Daten in die GPX-Datei exportiert werden</string>
 </resources>

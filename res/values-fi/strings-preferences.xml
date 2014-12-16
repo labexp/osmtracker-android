@@ -13,7 +13,7 @@
   <string name="prefs_gps_logging_interval_summary">Käytä 0 lyhimpään mahdolliseen (vaikuttaa akun kestoon)</string>
   <string name="prefs_gps_logging_interval_seconds">sekuntia</string>
   <string name="prefs_ui">Käyttöliittymä</string>
-  <string name="prefs_ui_picture_source">Kuvien oletuslähde</string>
+  <string name="prefs_ui_picture_source">Kuvan oletuslähde</string>
   <string name="prefs_ui_picture_source_summary">Otetaanko kuvat kamerasta vai galleriasta?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Kamerasta</item>
@@ -73,9 +73,6 @@
   <string name="prefs_osm_clear_oauth_data_dialog">Joudut antamaan OSMTrackerille uudestaan luvan jälkien lähettämiseen. Oletko varma?</string>
   <string name="prefs_map_tile">Kartan tarjoaja</string>
   <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Pyöräilykartta</item>
-    <item>MapQuest</item>
-  </string-array>
+  <string name="prefs_compass_heading">Vie kompassin suunta</string>
+  <string name="prefs_compass_heading_summary">Määrittää, viedäänkö ja millä tavoin kompassin tiedot GPX-tiedostoon</string>
 </resources>

@@ -1,25 +1,55 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="tag.misc">Varis</string>
   <string name="tag.restriction">Restricció</string>
   <string name="tag.car">Cotxe</string>
   <string name="tag.tourism">Turisme</string>
   <string name="tag.way">Via</string>
+  <string name="tag.track">Ruta</string>
   <string name="tag.landuse">Ús de terreny</string>
   <string name="tag.misc_bus_stop">Parada de bus</string>
+  <string name="tag.misc_railway">Via de tren</string>
   <string name="tag.misc_telephone">Telèfon</string>
+  <string name="tag.misc_post_box">Bústia</string>
   <string name="tag.misc_atm">Caixer</string>
+  <string name="tag.misc_bollard">Pilona</string>
   <string name="tag.misc_toilets">Lavabos</string>
   <string name="tag.misc_shelter">Sopluig</string>
+  <string name="tag.restriction_20">Max 20</string>
+  <string name="tag.restriction_30">Max 30</string>
+  <string name="tag.restriction_40">Max 40</string>
+  <string name="tag.restriction_50">Max 50</string>
+  <string name="tag.restriction_60">Max 60</string>
+  <string name="tag.restriction_70">Max 70</string>
+  <string name="tag.restriction_80">Max 80</string>
+  <string name="tag.restriction_90">Max 90</string>
+  <string name="tag.restriction_100">Max 100</string>
+  <string name="tag.restriction_110">Max 110</string>
+  <string name="tag.restriction_120">Max 120</string>
+  <string name="tag.restriction_130">Max 130</string>
   <string name="tag.restriction_no_exit">Sense sortida</string>
+  <string name="tag.restriction_traffic_light">Semàfor</string>
   <string name="tag.restriction_one_way">Un sentit</string>
   <string name="tag.car_fuel_station">Gasolinera</string>
   <string name="tag.car_parking">Aparcament</string>
+  <string name="tag.car_emergency_phone">Telèfon d\'emergència</string>
   <string name="tag.car_speed_camera">Radar</string>
+  <string name="tag.tourism_view_point">Mirador</string>
   <string name="tag.tourism_information">Informació</string>
+  <string name="tag.tourism_theme_park">Parc temàtic</string>
   <string name="tag.tourism_castle">Castell</string>
   <string name="tag.tourism_museum">Museu</string>
+  <string name="tag.tourism_cinema">Cinema</string>
+  <string name="tag.amenity_bench">Banc</string>
   <string name="tag.amenity_water">Aigua</string>
+  <string name="tag.amenity_pharmacy">Farmàcia</string>
   <string name="tag.amenity_shop">Botiga</string>
+  <string name="tag.amenity_taxi">Taxi</string>
+  <string name="tag.amenity_doctors">Hospital,
+Dispensari</string>
+  <string name="tag.amenity_place_of_worship">Lloc de
+culte</string>
+  <string name="tag.amenity_post_office">Oficina postal</string>
   <string name="tag.amenity_library">Biblioteca</string>
   <string name="tag.amenitymore_school">Escola</string>
   <string name="tag.amenitymore_police">Policia</string>

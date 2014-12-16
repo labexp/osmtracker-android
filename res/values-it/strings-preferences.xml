@@ -13,7 +13,7 @@
   <string name="prefs_gps_logging_interval_summary">Usa 0 per il più breve possibile (influisce sulla durata batteria)</string>
   <string name="prefs_gps_logging_interval_seconds">secondi</string>
   <string name="prefs_ui">Interfaccia utente</string>
-  <string name="prefs_ui_picture_source">Sorgente immagini</string>
+  <string name="prefs_ui_picture_source">Sorgente immagini predefinita</string>
   <string name="prefs_ui_picture_source_summary">Utilizzare le immagini della fotocamera o della galleria?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Fotocamera</item>
@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">Fornitore di Texture</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Nessuno</item>
+    <item>come commento</item>
+    <item>per esteso</item>
+  </string-array>
+  <string name="prefs_compass_heading">Esporta Direzione Bussola</string>
+  <string name="prefs_compass_heading_summary">Definisce se e come i dati della bussola devono essere esportati nel file GPX</string>
 </resources>

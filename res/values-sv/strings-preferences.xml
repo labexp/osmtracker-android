@@ -74,8 +74,15 @@
   <string name="prefs_map_tile">Tillhandahållare av kartrutor</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
-    <item>MAPNIK</item>
-    <item>CYCLEMAP</item>
-    <item>MAPQUESTOSM</item>
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Ingen</item>
+    <item>i kommentar</item>
+    <item>i extension</item>
+  </string-array>
+  <string name="prefs_compass_heading">Exportera kompassriktning</string>
+  <string name="prefs_compass_heading_summary">Definierar om och hur kompassdata ska exporteras till GPX-filen</string>
 </resources>
