@@ -10,12 +10,11 @@ import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.overlay.WayPointsOverlay;
 
+import org.osmdroid.api.IMapController;
 import org.osmdroid.contributor.util.constants.OpenStreetMapContributorConstants;
 import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.PathOverlay;
 import org.osmdroid.views.overlay.SimpleLocationOverlay;
@@ -99,7 +98,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	/**
 	 * Controller to interact with view
 	 */
-	private MapController osmViewController;
+	private IMapController osmViewController;
 	
 	/**
 	 * OSM view overlay that displays current location
@@ -455,7 +454,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 				osmView.post(new Runnable() {
 					@Override
 					public void run() {
-						osmViewController.zoomToSpan(new BoundingBoxE6(north, east, south, west));
+						osmViewController.zoomToSpan((int) (north-south), (int) (east-west));
 						osmViewController.setCenter(new GeoPoint((north + south) / 2, (east + west) / 2));
 						zoomedToTrackAlready = true;
 					}
