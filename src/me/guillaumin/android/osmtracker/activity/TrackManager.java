@@ -235,10 +235,14 @@ public class TrackManager extends ListActivity {
 						Cursor cursor = getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACK,
 								null, null, null, Schema.COL_START_DATE + " desc");
 						if (cursor.moveToFirst()) {
-							int id_col = cursor.getColumnIndex(Schema.COL_ID);
+							long[] ids = new long[cursor.getCount()];
+							int idCol = cursor.getColumnIndex(Schema.COL_ID);
+							int i=0;
 							do {
-								new ExportToStorageTask(TrackManager.this, cursor.getLong(id_col)).execute();
+								ids[i++] = cursor.getLong(idCol);
 							} while (cursor.moveToNext());
+							
+							new ExportToStorageTask(TrackManager.this, ids).execute();
 						}
 						cursor.close();
 					}

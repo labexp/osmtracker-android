@@ -40,7 +40,7 @@ import android.util.Log;
  * @author Nicolas Guillaumin
  *
  */
-public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean> {
+public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 	private static final String TAG = ExportTrackTask.class.getSimpleName();
 
@@ -81,14 +81,9 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	protected Context context;
 	
 	/**
-	 * Track ID to export
+	 * Track IDs to export
 	 */
-	protected long trackId;
-
-	/**
-	 * Path to the exported GPX file
-	 */
-	private File trackFile;
+	protected long[] trackIds;
 	
 	/**
 	 * Dialog to display while exporting
@@ -119,9 +114,9 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	 */
 	protected abstract boolean updateExportDate();
 
-	public ExportTrackTask(Context context, long trackId) {
+	public ExportTrackTask(Context context, long... trackIds) {
 		this.context = context;
-		this.trackId = trackId;
+		this.trackIds = trackIds;
 		pointDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
 	
@@ -129,12 +124,10 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	protected void onPreExecute() {
 		// Display dialog
 		dialog = new ProgressDialog(context);
-		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		dialog.setIndeterminate(true);
-		dialog.setTitle(
-				context.getResources().getString(R.string.trackmgr_exporting)
-				.replace("{0}", Long.toString(trackId)));
 		dialog.setCancelable(false);
+		dialog.setMessage(context.getResources().getString(R.string.trackmgr_exporting_prepare));
 		dialog.show();
 	}
 	
@@ -142,7 +135,9 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		try {
-			exportTrackAsGpx(trackId);
+			for (int i=0; i<trackIds.length; i++) {
+				exportTrackAsGpx(trackIds[i]);
+			}
 		} catch (ExportTrackException ete) {
 			errorMsg = ete.getMessage();
 			return false;
@@ -151,16 +146,26 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	}
 	
 	@Override
-	protected void onProgressUpdate(Integer... values) {
+	protected void onProgressUpdate(Long... values) {
 		if (values.length == 1) {
 			// Standard progress update
-			dialog.incrementProgressBy(values[0]);
-		} else if (values.length == 2) {
-			// To initialise the dialog, 2 values are passed to onProgressUpdate()
-			// number of track points, number of waypoints  
+			dialog.incrementProgressBy(values[0].intValue());
+		} else if (values.length == 3) {
+			// To initialise the dialog, 3 values are passed to onProgressUpdate()
+			// trackId, number of track points, number of waypoints
+			dialog.dismiss();
+			
+			dialog = new ProgressDialog(context);
+			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			dialog.setIndeterminate(false);
+			dialog.setCancelable(false);
 			dialog.setProgress(0);
-			dialog.setMax(values[0] + values[1]);
+			dialog.setMax(values[1].intValue() + values[2].intValue());
+			dialog.setTitle(
+					context.getResources().getString(R.string.trackmgr_exporting)
+					.replace("{0}", Long.toString(values[0])));
+			dialog.show();
+
 		}
 	}
 
@@ -181,9 +186,6 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 					}
 				})
 				.show();
-		} else {
-			// Force rescan of GPX file
-			context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(trackFile)));
 		}
 	}
 
@@ -214,7 +216,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			String filenameBase = buildGPXFilename(c);
 			c.close();
 			
-			trackFile = new File(trackGPXExportDirectory, filenameBase);
+			File trackFile = new File(trackGPXExportDirectory, filenameBase);
 
 			
 			Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
@@ -223,12 +225,12 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 					null, Schema.COL_TIMESTAMP + " asc");
 
 			if (null != cTrackPoints && null != cWayPoints) {
-				publishProgress(new Integer[] { cTrackPoints.getCount(), cWayPoints.getCount() });
+				publishProgress(new Long[] { trackId, (long) cTrackPoints.getCount(), (long) cWayPoints.getCount() });
 				
 				try {
 					writeGpxFile(cTrackPoints, cWayPoints, trackFile);
 					if (exportMediaFiles()) {
-						copyWaypointFiles(trackGPXExportDirectory);
+						copyWaypointFiles(trackId, trackGPXExportDirectory);
 					}
 					if (updateExportDate()) {
 						DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
@@ -239,6 +241,10 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 					cTrackPoints.close();
 					cWayPoints.close();
 				}
+
+				// Force rescan of GPX file
+				context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(trackFile)));
+
 			}
 		} else {
 			throw new ExportTrackException(context.getResources().getString(R.string.error_externalstorage_not_writable));
@@ -351,7 +357,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			fw.write(out.toString());
 
 			if (i % dialogUpdateThreshold == 0) {
-				publishProgress(dialogUpdateThreshold);
+				publishProgress((long) dialogUpdateThreshold);
 			}
 		}
 		
@@ -463,7 +469,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			fw.write(out.toString());
 
 			if (i % dialogUpdateThreshold == 0) {
-				publishProgress(dialogUpdateThreshold);
+				publishProgress((long) dialogUpdateThreshold);
 			}
 		}
 	}
@@ -472,7 +478,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 	 * Copy all files from the OSMTracker external storage location to gpxOutputDirectory
 	 * @param gpxOutputDirectory The directory to which the track is being exported
 	 */
-	private void copyWaypointFiles(File gpxOutputDirectory) {
+	private void copyWaypointFiles(long trackId, File gpxOutputDirectory) {
 		// Get the new location where files related to these waypoints are/should be stored		
 		File trackDir = DataHelper.getTrackDirectory(trackId);
 
@@ -497,7 +503,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
 				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
 		StringBuffer filenameBase = new StringBuffer();
-		final int colName = c.getColumnIndex(Schema.COL_NAME);
+		final int colName = c.getColumnIndexOrThrow(Schema.COL_NAME);
 		if ((! c.isNull(colName))
 			&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE)))
 		{
