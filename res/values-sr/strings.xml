@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">Пратилац за Андроид</string>
+  <string name="app_short_name">OSMTracker</string>
+  <!--TrackLogger-->
+  <string name="tracklogger_voicerec_stop">Заустави</string>
+  <string name="tracklogger_btnBack">Назад</string>
+  <string name="tracklogger_gps_disabled">GPS искључен</string>
+  <string name="tracklogger_gps_disabled_hint">GPS је искључен. Желите ли да га укључите?</string>
+  <string name="tracklogger_choose_gallery_camera">Галерија или камера?</string>
+  <string name="tracklogger_camera">Усликајте камером</string>
+  <string name="tracklogger_gallery">Изаберите слику из галерије</string>
+  <!--Waypoint List-->
+  <string name="wplist_latitude">Шир:</string>
+  <string name="wplist_longitude">Дуж:</string>
+  <string name="wplist_elevation">Вис:</string>
+  <string name="wplist_accuracy">Прец:</string>
+  <string name="wplist_compass">Компас:</string>
+  <string name="wplist_compass_accuracy">Комп. тачн.:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Менаџер праћења</string>
+  <string name="trackmgr_tracklist">Листа праћења:</string>
+  <string name="trackmgr_contextmenu_delete">Обриши</string>
+  <string name="trackmgr_contextmenu_export">Извези као GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Пошаљи на OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Приказ</string>
+  <string name="trackmgr_contextmenu_details">Детаљи</string>
+  <!--Track Detail-->
+  <string name="trackdetail_startdate">Почетак:</string>
+  <string name="trackdetail_enddate">Завршетак:</string>
+  <string name="trackdetail_startloc">Креће од:</string>
+  <string name="trackdetail_endloc">Завршава на:</string>
+  <string name="trackdetail_exportdate">Извезено:</string>
+  <string name="trackdetail_osm_upload_date">Послато на OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Извези као GPX</string>
+  <string name="trackdetail_export_notyet">(још није извезено)</string>
+  <string name="trackdetail_osm_upload_notyet">(још није послато)</string>
+  <string name="trackdetail_export_display">Приказ</string>
+  <string name="trackdetail_description">Опис</string>
+  <string name="trackdetail_tags">Ознаке (раздвој запетом)</string>
+  <string name="trackdetail_description_mandatory">Морате унети опис</string>
+  <string name="osm_visibility_private">Лично</string>
+  <string name="osm_visibility_public">Јавно</string>
+  <!--OSM upload-->
+  <string name="osm_upload_ok">Сачувај и пошаљи</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_stillimage">Сликај</string>
+  <string name="gpsstatus_record_textnote">Белешка</string>
+  <!--Menu-->
+  <string name="menu_settings">Поставке</string>
+  <string name="menu_about">О програму</string>
+  <string name="menu_displaytrack">Прикажи праћење</string>
+  <string name="menu_stoptracking">Заустави и сачувај</string>
+  <string name="menu_newtrack">Ново праћење</string>
+  <string name="menu_continue">Настави праћење</string>
+  <string name="menu_stopcurrenttrack">Заустави праћење</string>
+  <string name="menu_save">Сачувај</string>
+  <string name="menu_cancel">Откажи</string>
+  <!--Errors-->
+  <!--GPX-->
+  <!--About screen-->
+  <string name="about">О програму</string>
+  <!--Notification-->
+  <!--Display track-->
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Сачувај</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Прецизност</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <!--OSM map view-->
+</resources>
