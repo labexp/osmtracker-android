@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.regex.Pattern;
@@ -27,6 +28,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -242,8 +244,13 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 					cWayPoints.close();
 				}
 
-				// Force rescan of GPX file
-				context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(trackFile)));
+				// Force rescan of directory
+				ArrayList<String> files = new ArrayList<String>();
+				for (File file: trackGPXExportDirectory.listFiles())
+					files.add(file.getAbsolutePath());
+				String[] filesArray = new String[files.size()];
+				filesArray = files.toArray(filesArray);
+				MediaScannerConnection.scanFile(context, filesArray, null, null);
 
 			}
 		} else {
