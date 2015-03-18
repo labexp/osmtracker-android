@@ -246,11 +246,10 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 				// Force rescan of directory
 				ArrayList<String> files = new ArrayList<String>();
-				for (File file: trackGPXExportDirectory.listFiles())
+				for (File file: trackGPXExportDirectory.listFiles()) {
 					files.add(file.getAbsolutePath());
-				String[] filesArray = new String[files.size()];
-				filesArray = files.toArray(filesArray);
-				MediaScannerConnection.scanFile(context, filesArray, null, null);
+				}
+				MediaScannerConnection.scanFile(context, files.toArray(new String[0]), null, null);
 
 			}
 		} else {
