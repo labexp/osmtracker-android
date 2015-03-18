@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.media.MediaScannerConnection;
 import android.util.Log;
 
 public final class FileSystemUtils {
@@ -21,13 +20,13 @@ public final class FileSystemUtils {
 	private static final int DELETE_MAX_RECURSION_DEPTH = 1;
 	
 	/**
-	 * @brief Copies file sourceFile to the directory destination directory.
+	 * <p>Copies file sourceFile to the directory destination directory.</p>
 	 * 
-	 * After this method returns, the caller should trigger a media scan to ensure the copied files
+	 * <p>After this method returns, the caller should trigger a media scan to ensure the copied files
 	 * are known to the media scanner and visible over MTP. This can be done by broadcasting an
 	 * {@code Intent.ACTION_MEDIA_SCANNER_SCAN_FILE} with the URI of the new file, or by calling
 	 * {@code MediaScannerConnection.scanFile(file, null)}, passing the full path to the newly added
-	 * file as the {@code file} argument.
+	 * file as the {@code file} argument.</p>
 	 * 
 	 * @param destinationDirectory location where the file to be copied
 	 * @param sourceFile the location of the file to copy
@@ -73,12 +72,12 @@ public final class FileSystemUtils {
 	}
 
 	/**
-	 * @brief Copies all files within a directory to another directory
+	 * <p>Copies all files within a directory to another directory</p>
 	 * 
-	 * After this method returns, the caller should trigger a media scan to ensure the copied files
+	 * <p>After this method returns, the caller should trigger a media scan to ensure the copied files
 	 * are known to the media scanner and visible over MTP. This can be done by calling
 	 * {@code MediaScannerConnection.scanFile(context, files, null, null)}, passing an array of the
-	 * newly added files as the {@code files} argument.
+	 * newly added files as the {@code files} argument.</p>
 	 * 
 	 * @param destinationDirectory the target directory
 	 * @param sourceDirectory the source directory 
