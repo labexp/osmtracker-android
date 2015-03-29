@@ -56,6 +56,12 @@
 	<string name="trackdetail">Track Details</string>
 	<string name="trackdetail_startdate">Start time:</string>
 	<string name="trackdetail_enddate">End time:</string>
+	<string name="trackdetail_distance">Distance:</string>
+	<string name="trackdetail_distance_unit">Km</string>
+	<string name="trackdetail_elevation">Elevation(min/max):</string>
+	<string name="trackdetail_elevation_unit">m</string>
+	<string name="trackdetail_speed">Speed(min/max):</string>
+	<string name="trackdetail_speed_unit">Km/h</string>
 	<string name="trackdetail_startloc">Starts at:</string>
 	<string name="trackdetail_endloc">Ends at:</string>
 	<string name="trackdetail_exportdate">Exported:</string>

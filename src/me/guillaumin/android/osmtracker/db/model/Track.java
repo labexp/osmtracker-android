@@ -9,6 +9,7 @@ import java.util.List;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.util.DistanceUtil;
 import android.content.ContentResolver;
 import android.database.Cursor;
 
@@ -57,8 +58,12 @@ public class Track {
 	
 	private Long startDate=null, endDate=null;
 	private Float startLat=null, startLong=null, endLat=null, endLong=null;
+	private Float distance=0.0f;
+	private Float elevationMax=0.0f,elevationMin=0.0f;
+	private Float speedMax=0.0f,    speedMin=0.0f;
 	
 	private boolean extraInformationRead = false;
+	private boolean extraInformationRead_stats = false;
 	
 	private ContentResolver cr;
 	
@@ -121,6 +126,56 @@ public class Track {
 		}
 	}
 	
+  /**
+   *
+   * @todo: allow to exclude zero speed values
+   */
+  private void readExtraInformation_stats() {
+	if(!extraInformationRead_stats){
+	    Cursor cursor = cr.query(TrackContentProvider.trackPointsUri(trackId), null, null, null, null);
+		Float latitudeCurrent, longitudeCurrent, latitudePrev, longitudePrev;
+		
+	    Float elevationCurr, speedCurr;
+	    
+	    boolean avoidZeroSpeed = true;
+	    
+	    if(cursor != null && cursor.moveToFirst()) {
+	    	// Initialize the min/max values
+	        elevationMin  = elevationMax = cursor.getFloat(cursor.getColumnIndex(Schema.COL_ELEVATION));
+	        speedMax = cursor.getFloat(cursor.getColumnIndex(Schema.COL_SPEED));
+	        speedMin = (avoidZeroSpeed && speedMax == 0) ? Float.MAX_VALUE : speedMax;
+	        
+	        latitudePrev  = cursor.getFloat(cursor.getColumnIndex(Schema.COL_LATITUDE));
+	        longitudePrev = cursor.getFloat(cursor.getColumnIndex(Schema.COL_LONGITUDE));
+	      
+	        // Iterate over all points
+	        while (cursor.moveToNext()) {            
+	          latitudeCurrent = cursor.getFloat(cursor.getColumnIndex(Schema.COL_LATITUDE));
+	          longitudeCurrent = cursor.getFloat(cursor.getColumnIndex(Schema.COL_LONGITUDE));
+	          distance += DistanceUtil.getDistance(latitudePrev, longitudePrev, latitudeCurrent, longitudeCurrent);
+	          
+	          latitudePrev = latitudeCurrent;
+	          longitudePrev = longitudeCurrent;
+	          
+	          // Compute the Elevation
+	          elevationCurr = cursor.getFloat(cursor.getColumnIndex(Schema.COL_ELEVATION));
+	          elevationMin = Math.min(elevationMin, elevationCurr);
+	          elevationMax = Math.max(elevationMax, elevationCurr);
+	          
+	          // Compute the Speed
+	          speedCurr = cursor.getFloat(cursor.getColumnIndex(Schema.COL_SPEED));
+	          if (!avoidZeroSpeed || speedCurr > 0) {
+	        	speedMin = Math.min(speedMin, speedCurr);
+	          	speedMax = Math.max(speedMax, speedCurr);
+	          }
+	        }
+	      cursor.close();
+	      extraInformationRead_stats = true;
+	    }
+	}
+  }
+	
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -175,6 +230,32 @@ public class Track {
 	
 	public Integer getTpCount() {
 		return tpCount;
+	}
+	
+	public Float getDistance() {
+		readExtraInformation_stats();
+		return distance;
+	}
+	
+	public Float getElevationMin() {
+		readExtraInformation_stats();
+		return elevationMin;
+	}
+	
+	public Float getElevationMax() {
+		readExtraInformation_stats();
+		return elevationMax;
+	}
+
+	public Float getSpeedMax() {
+		readExtraInformation_stats();
+		return speedMax;
+	}
+
+	public Float getSpeedMin() {
+		readExtraInformation_stats();
+		// Avoid returning inconsistent min-speed if "avoidZeroSpeed" is set to true
+		return (speedMin > speedMax) ? 0.0f : speedMin;
 	}
 	
 	public String getName() {
