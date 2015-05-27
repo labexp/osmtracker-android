@@ -36,3 +36,20 @@ dependencies {
     compile files('libs/signpost-core-1.2.1.2.jar')
     compile files('libs/slf4j-android-1.5.8.jar')
 }
+
+task copyNorwegianValues(type: Copy) {
+    from 'src/main/res/values-nb/'
+    into 'src/main/res/values-no/'
+}
+
+task copyNorwegianXml(type: Copy) {
+    from 'src/main/res/xml-nb/'
+    into 'src/main/res/xml-no/'
+}
+
+android.applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+        // Copying 'nb' resources to 'no' (See pull request #6)
+        output.processResources.dependsOn([copyNorwegianValues, copyNorwegianXml])
+    }
+}
