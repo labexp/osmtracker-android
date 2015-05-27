@@ -3,32 +3,32 @@ host = https://www.transifex.com
 lang_map = cs_CZ: cs-rCZ, pt_PT: pt-rPT, zh_CN: zh-rCN, zh_TW: zh-rTW, pt_BR: pt-rBR, tr_TR: tr-rTR, fa_IR: fa-rIR, ro_RO: ro-rRO, es_CL: es-rCL, id_ID: id-rID
 
 [osmtracker-android.strings]
-file_filter = res/values-<lang>/strings.xml
-source_file = res/values/strings.xml
+file_filter = app/src/main/res/values-<lang>/strings.xml
+source_file = app/src/main/res/values/strings.xml
 source_lang = en
 type = ANDROID
 
 [osmtracker-android.accessibility]
-file_filter = res/values-<lang>/accessibility.xml
-source_file = res/values/accessibility.xml
+file_filter = app/src/main/res/values-<lang>/accessibility.xml
+source_file = app/src/main/res/values/accessibility.xml
 source_lang = en
 type = ANDROID
 
 [osmtracker-android.waypoints]
-file_filter = res/values-<lang>/waypoints.xml
-source_file = res/values/waypoints.xml
+file_filter = app/src/main/res/values-<lang>/waypoints.xml
+source_file = app/src/main/res/values/waypoints.xml
 source_lang = en
 type = ANDROID
 
 [osmtracker-android.strings-preferences]
-file_filter = res/values-<lang>/strings-preferences.xml
-source_file = res/values/strings-preferences.xml
+file_filter = app/src/main/res/values-<lang>/strings-preferences.xml
+source_file = app/src/main/res/values/strings-preferences.xml
 source_lang = en
 type = ANDROID
 
 [osmtracker-android.strings-tags]
-file_filter = res/values-<lang>/strings-tags.xml
-source_file = res/values/strings-tags.xml
+file_filter = app/src/main/res/values-<lang>/strings-tags.xml
+source_file = app/src/main/res/values/strings-tags.xml
 source_lang = en
 type = ANDROID
 

@@ -1,10 +1,11 @@
-bin
-.settings
+build
+.idea
+*.iml
+.gradle
 trash
-gen
 local.properties
 proguard-project.txt
 # -no resources are copied from -nb
-res/*-no
+app/src/main/res/*-no
 *.pl
 *.sh

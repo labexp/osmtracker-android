@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 16
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "me.guillaumin.android.osmtracker"
+        minSdkVersion 8
+        targetSdkVersion 16
+
+        testApplicationId "me.guillaumin.android.osmtracker.test"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+dependencies {
+    compile files('libs/apache-mime4j-core-0.7.2.jar')
+    compile files('libs/httpclient-4.2.1.jar')
+    compile files('libs/httpcore-4.2.1.jar')
+    compile files('libs/httpmime-4.2.1.jar')
+    compile files('libs/osmdroid-android-4.2.jar')
+    compile files('libs/signpost-commonshttp4-1.2.1.2.jar')
+    compile files('libs/signpost-core-1.2.1.2.jar')
+    compile files('libs/slf4j-android-1.5.8.jar')
+}
