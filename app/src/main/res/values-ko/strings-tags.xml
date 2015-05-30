@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">기타</string>
   <string name="tag.restriction">제한</string>
@@ -16,7 +16,7 @@
   <string name="tag.misc_atm">ATM</string>
   <string name="tag.misc_bollard">볼라드</string>
   <string name="tag.misc_toilets">화장실</string>
-  <string name="tag.misc_shelter">피난처</string>
+  <string name="tag.misc_shelter">대피소</string>
   <string name="tag.misc_surveillance">감시 카메라</string>
   <string name="tag.restriction_20">최대 20</string>
   <string name="tag.restriction_30">최대 30</string>
@@ -54,10 +54,7 @@
   <string name="tag.amenity_marina">마리나</string>
   <string name="tag.amenity_sport">스포츠</string>
   <string name="tag.amenity_taxi">택시</string>
-  <string name="tag.amenity_doctors">병원,
-진료소</string>
   <string name="tag.amenity_recycling">재활용</string>
-  <string name="tag.amenity_place_of_worship">예배당</string>
   <string name="tag.amenity_post_office">우체국</string>
   <string name="tag.amenity_library">도서관</string>
   <string name="tag.amenitymore_school">학교</string>
@@ -96,10 +93,9 @@
   <string name="tag.track_grade5">비탈 5</string>
   <string name="tag.landuse_farm">농장</string>
   <string name="tag.landuse_landfill">매립지</string>
-  <string name="tag.landuse_basin">분지</string>
+  <string name="tag.landuse_basin">웅덩이</string>
   <string name="tag.landuse_reservoir">저수지</string>
   <string name="tag.landuse_forest">숲</string>
   <string name="tag.landuse_allotments">텃밭</string>
   <string name="tag.landuse_cemetery">묘지</string>
-  <string name="tag.landuse_recreation_ground">광장</string>
 </resources>

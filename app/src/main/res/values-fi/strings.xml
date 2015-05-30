@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker Android™-laitteille</string>
   <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">OSMTrackerin (Windows Mobile) innoittama. Kirjaa reittisi, merkitse tärkeät kohteet (äänitallenne, kuva), tallenna GPX-muodossa myöhempää OpenStreetMap/JOSM-käyttöä varten.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Reittilokikirja</string>
   <string name="tracklogger_waiting_gps">Odotetaan GPS-sijaintia…</string>
@@ -30,11 +31,7 @@
   <string name="trackmgr_waypoints_count">Etapit: </string>
   <string name="trackmgr_trackpoints_count">Reittipisteet: </string>
   <string name="trackmgr_empty">Ei reittejä.</string>
-  <string name="trackmgr_newtrack_hint">Reitin tallennus:
-<b>Valikko, Uusi reitti</b></string>
   <string name="trackmgr_newtrack_error">Uuden reitin luonti ei onnistu: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Tallennat reittiä <b>#{0}</b>
-Valitse se listasta jatkaaksesi</string>
   <string name="trackmgr_contextmenu_stop">Lopeta seuranta</string>
   <string name="trackmgr_contextmenu_resume">Jatka reitin tallentamista</string>
   <string name="trackmgr_contextmenu_delete">Poista</string>

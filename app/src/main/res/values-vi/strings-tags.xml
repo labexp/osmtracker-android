@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Khác</string>
   <string name="tag.restriction">Hạn chế</string>
@@ -62,10 +62,7 @@ tưởng niệm</string>
   <string name="tag.amenity_marina">Bến tàu</string>
   <string name="tag.amenity_sport">Thể thao</string>
   <string name="tag.amenity_taxi">Tắc xi</string>
-  <string name="tag.amenity_doctors">Bệnh viện,
-Bác sĩ</string>
   <string name="tag.amenity_recycling">Tái sinh</string>
-  <string name="tag.amenity_place_of_worship">Nơi thờ phụng</string>
   <string name="tag.amenity_post_office">Bưu điện</string>
   <string name="tag.amenity_library">Thư viện</string>
   <string name="tag.amenitymore_school">Nhà trường</string>
@@ -108,5 +105,4 @@ Bác sĩ</string>
   <string name="tag.landuse_forest">Rừng trồng cây</string>
   <string name="tag.landuse_allotments">Khu vườn gia đình</string>
   <string name="tag.landuse_cemetery">Nghĩa địa</string>
-  <string name="tag.landuse_recreation_ground">Sân giải trí</string>
 </resources>

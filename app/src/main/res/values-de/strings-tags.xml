@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Verschiedenes</string>
   <string name="tag.restriction">Barrieren</string>
@@ -54,10 +54,7 @@
   <string name="tag.amenity_marina">Hafen</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxi</string>
-  <string name="tag.amenity_doctors">Krankenhaus,
-Doktor</string>
   <string name="tag.amenity_recycling">Recycling</string>
-  <string name="tag.amenity_place_of_worship">Gebetsstätte</string>
   <string name="tag.amenity_post_office">Postamt</string>
   <string name="tag.amenity_library">Bibliothek</string>
   <string name="tag.amenitymore_school">Schule</string>
@@ -108,5 +105,4 @@ genutzte Fläche</string>
   <string name="tag.landuse_forest">Forstwirtschaft</string>
   <string name="tag.landuse_allotments">Kleingarten</string>
   <string name="tag.landuse_cemetery">Friedhof</string>
-  <string name="tag.landuse_recreation_ground">Erholungsgebiet</string>
 </resources>

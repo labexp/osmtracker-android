@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker Android™</string>
@@ -31,11 +31,7 @@
   <string name="trackmgr_waypoints_count">Pkt nawigacji: </string>
   <string name="trackmgr_trackpoints_count">Pkt śladu: </string>
   <string name="trackmgr_empty">Nie masz żadnych śladów.</string>
-  <string name="trackmgr_newtrack_hint">Aby nagrać ślad,
-naciśnij <b>Menu</b> następnie <b>Nowy ślad</b></string>
   <string name="trackmgr_newtrack_error">Nie można utworzyć nowego śladu: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Właśnie tworzysz <b>ślad #{0}</b>
-Wybierz go z listy, aby kontynuować</string>
   <string name="trackmgr_contextmenu_stop">Zakończ rejestrację</string>
   <string name="trackmgr_contextmenu_resume">Wznów rejestrację</string>
   <string name="trackmgr_contextmenu_delete">Usuń</string>

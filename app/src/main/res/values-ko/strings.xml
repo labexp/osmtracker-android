@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">Android용 OSMTracker™</string>
@@ -31,11 +31,7 @@
   <string name="trackmgr_waypoints_count">웨이포인트:</string>
   <string name="trackmgr_trackpoints_count">트랙포인트:</string>
   <string name="trackmgr_empty">어떠한 트랙도 없습니다.</string>
-  <string name="trackmgr_newtrack_hint">트랙을 기록하려면,
-<b>메뉴</b>를 누르고 나서 <b>새 트랙</b>을 누르세요</string>
   <string name="trackmgr_newtrack_error">새 트랙을 만들 수 없습니다: {0}</string>
-  <string name="trackmgr_continuetrack_hint">현재 <b>트랙 #{0}</b>를 기록하고 있습니다
-계속하려면 목록에서 그 트랙을 선택하세요</string>
   <string name="trackmgr_contextmenu_stop">트래킹 멈춤</string>
   <string name="trackmgr_contextmenu_resume">트래킹 재개</string>
   <string name="trackmgr_contextmenu_delete">삭제</string>

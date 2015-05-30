@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Разно</string>
   <string name="tag.restriction">Ограничења</string>
@@ -54,11 +54,7 @@
   <string name="tag.amenity_marina">Марина</string>
   <string name="tag.amenity_sport">Спорт</string>
   <string name="tag.amenity_taxi">Такси</string>
-  <string name="tag.amenity_doctors">Болница,
-Лекари</string>
   <string name="tag.amenity_recycling">Рециклажа</string>
-  <string name="tag.amenity_place_of_worship">Верско
-место</string>
   <string name="tag.amenity_post_office">Пошта</string>
   <string name="tag.amenity_library">Библиотека</string>
   <string name="tag.amenitymore_school">Школа</string>
@@ -101,6 +97,4 @@
   <string name="tag.landuse_forest">Шума</string>
   <string name="tag.landuse_allotments">Баште</string>
   <string name="tag.landuse_cemetery">Гробље</string>
-  <string name="tag.landuse_recreation_ground">Место за
-рекреацију</string>
 </resources>

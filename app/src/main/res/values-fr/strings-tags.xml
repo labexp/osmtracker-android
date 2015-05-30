@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Divers</string>
   <string name="tag.restriction">Restriction</string>
@@ -58,11 +58,7 @@ demi-tour</string>
   <string name="tag.amenity_marina">Marine</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxi</string>
-  <string name="tag.amenity_doctors">Hôpital,
-Docteurs</string>
   <string name="tag.amenity_recycling">Recyclage</string>
-  <string name="tag.amenity_place_of_worship">Lieu de
-culte</string>
   <string name="tag.amenity_post_office">Bureau de
 poste</string>
   <string name="tag.amenity_library">Bibliothèque</string>
@@ -111,5 +107,4 @@ piéton</string>
   <string name="tag.landuse_forest">Forêt</string>
   <string name="tag.landuse_allotments">Lotissements</string>
   <string name="tag.landuse_cemetery">Cimetière</string>
-  <string name="tag.landuse_recreation_ground">Aire de jeu</string>
 </resources>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="tag.restriction">Ограничение</string>
+  <string name="tag.car">Автомобил</string>
+  <string name="tag.tourism">Туризъм</string>
+  <string name="tag.way">Път</string>
+  <string name="tag.misc_bus_stop">Автобусна спирка</string>
+  <string name="tag.misc_railway">Железопътна линия</string>
+  <string name="tag.misc_telephone">Телефон</string>
+  <string name="tag.misc_post_box">Пощенска кутия</string>
+  <string name="tag.misc_atm">Банкомат</string>
+  <string name="tag.misc_toilets">Тоалетни</string>
+  <string name="tag.restriction_traffic_light">Светофар</string>
+  <string name="tag.car_parking">Паркинг</string>
+  <string name="tag.amenity_shop">Магазин</string>
+  <string name="tag.amenity_taxi">Такси</string>
+  <string name="tag.amenitymore_school">Училище</string>
+  <string name="tag.amenitymore_police">Полиция</string>
+  <string name="tag.amenitymore_fire_station">Пожарна</string>
+  <string name="tag.amenitymore_bank">Банка</string>
+  <string name="tag.amenitymore_hotel">Хотел</string>
+  <string name="tag.amenitymore_motel">Мотел</string>
+  <string name="tag.amenitymore_hostel">Общежитие</string>
+  <string name="tag.amenitymore_restaurant">Ресторант</string>
+</resources>

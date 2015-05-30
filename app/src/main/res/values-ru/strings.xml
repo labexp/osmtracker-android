@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker для Android™</string>
@@ -31,11 +31,7 @@
   <string name="trackmgr_waypoints_count">Путевые точки: </string>
   <string name="trackmgr_trackpoints_count">Точки трека: </string>
   <string name="trackmgr_empty">У вас нет треков.</string>
-  <string name="trackmgr_newtrack_hint">Для записи трека,
-нажмите<b>Меню</b>, затем<b>Новый трек</b></string>
   <string name="trackmgr_newtrack_error">Невозможно создать новый трек: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Сейчас вы записываете <b>трек #{0}</b>
-Выберите его в списке для продолжения</string>
   <string name="trackmgr_contextmenu_stop">Остановить запись</string>
   <string name="trackmgr_contextmenu_resume">Продолжить запись</string>
   <string name="trackmgr_contextmenu_delete">Удалить</string>

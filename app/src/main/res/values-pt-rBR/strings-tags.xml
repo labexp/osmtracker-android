@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Vários</string>
   <string name="tag.restriction">Restrição</string>
@@ -54,11 +54,7 @@
   <string name="tag.amenity_marina">Marina</string>
   <string name="tag.amenity_sport">Esporte</string>
   <string name="tag.amenity_taxi">Táxi</string>
-  <string name="tag.amenity_doctors">Hospital,
-Clínica</string>
   <string name="tag.amenity_recycling">Reciclagem</string>
-  <string name="tag.amenity_place_of_worship">Lugar de
-adoração</string>
   <string name="tag.amenity_post_office">Correios</string>
   <string name="tag.amenity_library">Livraria</string>
   <string name="tag.amenitymore_school">Escola</string>
@@ -101,6 +97,4 @@ adoração</string>
   <string name="tag.landuse_forest">Floresta</string>
   <string name="tag.landuse_allotments">Loteamentos</string>
   <string name="tag.landuse_cemetery">Cemitério</string>
-  <string name="tag.landuse_recreation_ground">Lugar de
-recreação</string>
 </resources>

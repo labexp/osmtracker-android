@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Διάφορα</string>
   <string name="tag.restriction">Περιορισμοί</string>
@@ -54,11 +54,7 @@
   <string name="tag.amenity_marina">Μαρίνα</string>
   <string name="tag.amenity_sport">Άθλημα</string>
   <string name="tag.amenity_taxi">Ταξί</string>
-  <string name="tag.amenity_doctors">Νοσοκομείο,
-Γιατροί</string>
   <string name="tag.amenity_recycling">Ανακύκλωση</string>
-  <string name="tag.amenity_place_of_worship">Χώρος
-λατρείας</string>
   <string name="tag.amenity_post_office">Ταχυδρομείο</string>
   <string name="tag.amenity_library">Βιβλιοθήκη</string>
   <string name="tag.amenitymore_school">Σχολείο</string>
@@ -101,6 +97,4 @@
   <string name="tag.landuse_forest">Δάσος</string>
   <string name="tag.landuse_allotments">Κλήροι</string>
   <string name="tag.landuse_cemetery">Κοιμητήριο</string>
-  <string name="tag.landuse_recreation_ground">Χώρος
-αναψυχής</string>
 </resources>

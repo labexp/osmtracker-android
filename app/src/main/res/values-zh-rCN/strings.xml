@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker for Android™</string>
@@ -29,11 +29,7 @@
   <string name="trackmgr_waypoints_count">路点：</string>
   <string name="trackmgr_trackpoints_count">追踪点：</string>
   <string name="trackmgr_empty">您没有任何轨迹。</string>
-  <string name="trackmgr_newtrack_hint">要录制一条轨迹，
-请按<b>菜单</b>然后选择<b>新轨迹</b></string>
   <string name="trackmgr_newtrack_error">无法创建踪迹: {0}</string>
-  <string name="trackmgr_continuetrack_hint">你正在录制<b>第#{0}条轨迹</b>
-请从列表中选择以继续</string>
   <string name="trackmgr_contextmenu_stop">停止记录</string>
   <string name="trackmgr_contextmenu_resume">恢复追踪</string>
   <string name="trackmgr_contextmenu_delete">删除</string>

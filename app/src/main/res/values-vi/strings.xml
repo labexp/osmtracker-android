@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker dành cho Android™</string>
@@ -31,11 +31,7 @@
   <string name="trackmgr_waypoints_count">Tọa độ điểm:</string>
   <string name="trackmgr_trackpoints_count">Điểm tuyến đường:</string>
   <string name="trackmgr_empty">Bạn chưa có tuyến đường.</string>
-  <string name="trackmgr_newtrack_hint">Để ghi tuyến đường mới,
-bấm <b>Trình đơn</b> rồi chọn <b>Tuyến đường mới</b></string>
   <string name="trackmgr_newtrack_error">Không thể tạo tuyến đường mới: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Bạn hiện đang ghi <b>tuyến đường #{0}</b>
-Chọn nó trong danh sách để tiếp tục</string>
   <string name="trackmgr_contextmenu_stop">Dừng theo dõi</string>
   <string name="trackmgr_contextmenu_resume">Tiếp tục theo dõi</string>
   <string name="trackmgr_contextmenu_delete">Xóa</string>

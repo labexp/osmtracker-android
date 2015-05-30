@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Рознае</string>
   <string name="tag.restriction">Абмежаванне</string>
@@ -45,8 +45,6 @@
   <string name="tag.amenity_shop">Крама</string>
   <string name="tag.amenity_sport">Спорт</string>
   <string name="tag.amenity_taxi">Таксі</string>
-  <string name="tag.amenity_doctors">Бальніца,
-Лекары</string>
   <string name="tag.amenity_recycling">Сметніца</string>
   <string name="tag.amenity_post_office">Пошта</string>
   <string name="tag.amenity_library">Бібліятэка</string>

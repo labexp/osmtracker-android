@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker для Android™</string>
@@ -31,10 +31,7 @@
   <string name="trackmgr_waypoints_count">Дорожні точки:</string>
   <string name="trackmgr_trackpoints_count">Точки шляху:</string>
   <string name="trackmgr_empty">У вас не має  шляхів.</string>
-  <string name="trackmgr_newtrack_hint">Для запису шляху, натисніть<b>Меню</b>, потім<b>Новий шлях</b></string>
   <string name="trackmgr_newtrack_error">Неможливо створити новий шлях:{0}</string>
-  <string name="trackmgr_continuetrack_hint">Зараз ви записуєте <b>шлях #{0}</b>
-Виберіть його у списку для продовження</string>
   <string name="trackmgr_contextmenu_stop">Зупинити запис</string>
   <string name="trackmgr_contextmenu_resume">Продовжити запис</string>
   <string name="trackmgr_contextmenu_delete">Вилучити</string>

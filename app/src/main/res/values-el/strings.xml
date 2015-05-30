@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker για Android™</string>
@@ -31,11 +31,7 @@
   <string name="trackmgr_waypoints_count">Ενδιάμεσα σημεία:</string>
   <string name="trackmgr_trackpoints_count">Ίχνη:</string>
   <string name="trackmgr_empty">Δεν έχετε ίχνη.</string>
-  <string name="trackmgr_newtrack_hint">Για να γράψεις ένα ίχνος
-πάτα <b>Μενού</b> και μετά <b>Νέο ίχνος</b></string>
   <string name="trackmgr_newtrack_error">Αδύνατη η δημιουργία νέου ίχνους: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Αυτή τη στιγμή καταγράφετε το <b>ίχνος #{0}</b>
-Επιλέξτε το στον κατάλογο για συνέχεια</string>
   <string name="trackmgr_contextmenu_stop">Τερματισμός ίχνους</string>
   <string name="trackmgr_contextmenu_resume">Συνέχεια ίχνους</string>
   <string name="trackmgr_contextmenu_delete">Διαγραφή</string>

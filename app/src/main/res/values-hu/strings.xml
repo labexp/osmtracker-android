@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker Android™-ra</string>
@@ -31,11 +31,7 @@
   <string name="trackmgr_waypoints_count">Útpontok:</string>
   <string name="trackmgr_trackpoints_count">Nyompontok:</string>
   <string name="trackmgr_empty">Nincs egyetlen nyomvonala sem.</string>
-  <string name="trackmgr_newtrack_hint">Az új nyomvonal rögzítéséhez,
-nyomja meg a <b>Menü</b> majd az <b>Új nyomvonal</b> gombot</string>
   <string name="trackmgr_newtrack_error">Nem sikerült új nyomvonalat létrehozni: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Jelenleg a <b>{0}. nyomvonalat</b> rögzíti.
-Válassza ki a listából a folytatáshoz</string>
   <string name="trackmgr_contextmenu_stop">Nyomkövetés leállítása</string>
   <string name="trackmgr_contextmenu_resume">Nyomkövetés folytatása</string>
   <string name="trackmgr_contextmenu_delete">Törlés</string>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_short_name">OSMTracker</string>
@@ -23,8 +23,6 @@
   <string name="trackmgr_waypoints_count">Paradas:</string>
   <string name="trackmgr_trackpoints_count">Puntos de ruta:</string>
   <string name="trackmgr_empty">Non tén ningunha ruta.</string>
-  <string name="trackmgr_newtrack_hint">Para gravar unha pista,
-prema <b>Menú</b> e despois <b>Nova pista</b></string>
   <!--Track Detail-->
   <!--OSM upload-->
   <!--GPS Status & record bar-->

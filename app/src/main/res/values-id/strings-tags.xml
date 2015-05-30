@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Lain-lain</string>
   <string name="tag.restriction">Terbatas</string>
@@ -58,12 +58,8 @@ taman</string>
   <string name="tag.amenity_marina">Pelabuhan</string>
   <string name="tag.amenity_sport">Olahraga</string>
   <string name="tag.amenity_taxi">Taksi</string>
-  <string name="tag.amenity_doctors">Rumkit
-Dokter</string>
   <string name="tag.amenity_recycling">Bak
 sampah</string>
-  <string name="tag.amenity_place_of_worship">Tempat
-Ibadah</string>
   <string name="tag.amenity_post_office">Kantor pos</string>
   <string name="tag.amenity_library">Pustaka</string>
   <string name="tag.amenitymore_school">Sekolah</string>
@@ -119,6 +115,4 @@ penampungan</string>
   <string name="tag.landuse_forest">Hutan</string>
   <string name="tag.landuse_allotments">Perkebunan</string>
   <string name="tag.landuse_cemetery">Kuburan</string>
-  <string name="tag.landuse_recreation_ground">Kawasan
-rekreasi</string>
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Diğer</string>
   <string name="tag.restriction">Sınırlı</string>
@@ -54,10 +54,7 @@
   <string name="tag.amenity_marina">Yat limanı</string>
   <string name="tag.amenity_sport">Spor</string>
   <string name="tag.amenity_taxi">Taksi</string>
-  <string name="tag.amenity_doctors">Hastane,
-Doktorlar</string>
   <string name="tag.amenity_recycling">Geri dönüşüm</string>
-  <string name="tag.amenity_place_of_worship">İbadethane</string>
   <string name="tag.amenity_post_office">Postane</string>
   <string name="tag.amenity_library">Kütüphane</string>
   <string name="tag.amenitymore_school">Okul</string>
@@ -100,5 +97,4 @@ Doktorlar</string>
   <string name="tag.landuse_forest">Orman</string>
   <string name="tag.landuse_allotments">hisseler</string>
   <string name="tag.landuse_cemetery">Mezarlık</string>
-  <string name="tag.landuse_recreation_ground">dinlenme yeri</string>
 </resources>

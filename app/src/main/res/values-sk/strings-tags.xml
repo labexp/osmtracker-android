@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Rôzne</string>
   <string name="tag.restriction">Obmedzenie</string>
@@ -35,6 +35,7 @@ schránka</string>
   <string name="tag.restriction_120">Max 120</string>
   <string name="tag.restriction_130">Max. 130</string>
   <string name="tag.restriction_no_exit">Slepá ulica</string>
+  <string name="tag.restriction_traffic_light">Semafor</string>
   <string name="tag.restriction_one_way">Jednosmerka</string>
   <string name="tag.car_fuel_station">Čerpacia
 stanica</string>
@@ -61,11 +62,7 @@ park</string>
   <string name="tag.amenity_marina">Prístav</string>
   <string name="tag.amenity_sport">Šport</string>
   <string name="tag.amenity_taxi">Taxislužba</string>
-  <string name="tag.amenity_doctors">Nemocnica,
-Lekári</string>
   <string name="tag.amenity_recycling">Recyklácia</string>
-  <string name="tag.amenity_place_of_worship">Miesto
-uctievania</string>
   <string name="tag.amenity_post_office">Pošta</string>
   <string name="tag.amenity_library">Knižnica</string>
   <string name="tag.amenitymore_school">Škola</string>
@@ -120,6 +117,4 @@ odpadkov</string>
   <string name="tag.landuse_forest">Les</string>
   <string name="tag.landuse_allotments">Záhrady</string>
   <string name="tag.landuse_cemetery">Cintorín</string>
-  <string name="tag.landuse_recreation_ground">Rekreačné
-stredisko</string>
 </resources>

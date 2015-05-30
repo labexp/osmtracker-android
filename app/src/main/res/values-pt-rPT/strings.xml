@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker para Android™</string>
@@ -28,11 +28,7 @@
   <string name="trackmgr_waypoints_count">Pontos de referência:</string>
   <string name="trackmgr_trackpoints_count">Pontos de caminhos:</string>
   <string name="trackmgr_empty">Não tem nenhum caminho.</string>
-  <string name="trackmgr_newtrack_hint">Para registar um caminho,
-pressione <b>Menu</b>, depois <b>Novo caminho</b></string>
   <string name="trackmgr_newtrack_error">Não foi possível criar o novo caminho: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Está neste momento a registar o <b>caminho #{0}</b>⏎
-Escolha-o na lista para continuar</string>
   <string name="trackmgr_contextmenu_stop">Parar registo</string>
   <string name="trackmgr_contextmenu_resume">Retomar registo</string>
   <string name="trackmgr_contextmenu_delete">Apagar</string>

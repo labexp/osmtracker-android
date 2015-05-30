@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker per a Android™</string>
@@ -31,11 +31,7 @@
   <string name="trackmgr_waypoints_count">Waypints (Punts de ruta):</string>
   <string name="trackmgr_trackpoints_count">Punts:</string>
   <string name="trackmgr_empty">No teniu cap track.</string>
-  <string name="trackmgr_newtrack_hint">Enregistreu una ruta
-premeu <b>Menú</b> i després <b>Nova ruta</b></string>
   <string name="trackmgr_newtrack_error">No s\'ha pogut crear la ruta: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Esteu enregistrant la <b>ruta #{0}</b>
-Trieu-la a la llista per continuar</string>
   <string name="trackmgr_contextmenu_stop">Atura l\'enregistrament</string>
   <string name="trackmgr_contextmenu_resume">Reemprèn l\'enregistrament</string>
   <string name="trackmgr_contextmenu_delete">Esborra</string>

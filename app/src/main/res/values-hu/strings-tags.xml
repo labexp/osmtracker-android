@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Egyéb</string>
   <string name="tag.restriction">Korlátozások</string>
@@ -54,11 +54,8 @@
   <string name="tag.amenity_marina">Marina</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxi</string>
-  <string name="tag.amenity_doctors">Kórház,
-Orvos</string>
   <string name="tag.amenity_recycling">Hulladék
 újrahasznosítás</string>
-  <string name="tag.amenity_place_of_worship">Templom</string>
   <string name="tag.amenity_post_office">Postahivatal</string>
   <string name="tag.amenity_library">Könyvtár</string>
   <string name="tag.amenitymore_school">Iskola</string>
@@ -101,6 +98,4 @@ Orvos</string>
   <string name="tag.landuse_forest">Erdő</string>
   <string name="tag.landuse_allotments">Veteményes kertek</string>
   <string name="tag.landuse_cemetery">Temető</string>
-  <string name="tag.landuse_recreation_ground">Rekreációs
-terület</string>
 </resources>

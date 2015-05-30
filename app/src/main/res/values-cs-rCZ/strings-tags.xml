@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Různé</string>
   <string name="tag.restriction">Omezení</string>
@@ -54,9 +54,7 @@
   <string name="tag.amenity_marina">Přístav</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxi</string>
-  <string name="tag.amenity_doctors">Nemocnice, Lékaři</string>
   <string name="tag.amenity_recycling">Kontejner pro recyklaci</string>
-  <string name="tag.amenity_place_of_worship">Místo pro bohoslužbu</string>
   <string name="tag.amenity_post_office">Pošta</string>
   <string name="tag.amenity_library">Knihovna</string>
   <string name="tag.amenitymore_school">Škola</string>
@@ -99,5 +97,4 @@
   <string name="tag.landuse_forest">Les</string>
   <string name="tag.landuse_allotments">Zahrádkářská kolonie</string>
   <string name="tag.landuse_cemetery">Hřbitov</string>
-  <string name="tag.landuse_recreation_ground">Travnatá plocha pro relaxaci</string>
 </resources>

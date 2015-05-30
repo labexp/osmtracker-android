@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Varis</string>
   <string name="tag.restriction">Restricció</string>
@@ -52,11 +52,7 @@
   <string name="tag.amenity_marina">Marina</string>
   <string name="tag.amenity_sport">Esport</string>
   <string name="tag.amenity_taxi">Taxi</string>
-  <string name="tag.amenity_doctors">Hospital,
-Dispensari</string>
   <string name="tag.amenity_recycling">Reciclatge</string>
-  <string name="tag.amenity_place_of_worship">Lloc de
-culte</string>
   <string name="tag.amenity_post_office">Oficina postal</string>
   <string name="tag.amenity_library">Biblioteca</string>
   <string name="tag.amenitymore_school">Escola</string>

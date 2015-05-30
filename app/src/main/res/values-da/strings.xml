@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker til Android™</string>
@@ -28,10 +28,7 @@
   <string name="trackmgr_waypoints_count">Waypoints: </string>
   <string name="trackmgr_trackpoints_count">Track-punkter: </string>
   <string name="trackmgr_empty">Du har ingen tracks.</string>
-  <string name="trackmgr_newtrack_hint">For at gemme et track, tryk <b>Menu</b> og så <b>Nyt track</b></string>
   <string name="trackmgr_newtrack_error">Kunne ikke oprette nyt track: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Du optager aktuelt <b>track #{0}</b>
-Vælg det i listen for at fortsætte</string>
   <string name="trackmgr_contextmenu_stop">Stop tracking</string>
   <string name="trackmgr_contextmenu_resume">Gentoptag tracking</string>
   <string name="trackmgr_contextmenu_delete">Slet</string>

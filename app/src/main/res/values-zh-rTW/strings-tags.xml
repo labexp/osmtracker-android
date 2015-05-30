@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">其他</string>
   <string name="tag.restriction">限制</string>
@@ -43,8 +43,6 @@
   <string name="tag.amenity_pharmacy">藥局</string>
   <string name="tag.amenity_shop">購物</string>
   <string name="tag.amenity_taxi">計程車</string>
-  <string name="tag.amenity_doctors">醫院、
-醫師</string>
   <string name="tag.amenity_recycling">資源回收</string>
   <string name="tag.amenity_post_office">郵局</string>
   <string name="tag.amenity_library">圖書館</string>

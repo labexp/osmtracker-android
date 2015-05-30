@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker for Android™</string>
@@ -31,10 +31,7 @@
   <string name="trackmgr_waypoints_count">Rutepunkt: </string>
   <string name="trackmgr_trackpoints_count">Sporpunkt: </string>
   <string name="trackmgr_empty">Du har ingen spor.</string>
-  <string name="trackmgr_newtrack_hint">Trykk på <b>Meny</b> og så <b>Nytt spor</b> for å spore.</string>
   <string name="trackmgr_newtrack_error">Kan ikke lage spor: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Du tar nå opp <b>spor nr. {0}</b>
-Velg det i lista for å holde fram med sporinga</string>
   <string name="trackmgr_contextmenu_stop">Stopp sporing</string>
   <string name="trackmgr_contextmenu_resume">Fortsett sporing</string>
   <string name="trackmgr_contextmenu_delete">Slett</string>

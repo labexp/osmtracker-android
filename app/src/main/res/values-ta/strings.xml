@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">ஓஎஸ்எம் தடமறியும் ஆண்ட்ராய்டு த </string>
@@ -23,11 +23,7 @@
   <string name="trackmgr_waypoints_count">வழிக் குறிப்பு</string>
   <string name="trackmgr_trackpoints_count">தடத்தின் புள்ளி</string>
   <string name="trackmgr_empty">உங்களுக்கு‍ எந்த வழித் தடங்களும் இல்லை.</string>
-  <string name="trackmgr_newtrack_hint">ஒரு தடத்தை பதிவு செய்ய,
-அழுத்து‍<b>பட்டியல்</b>பிறகு‍<b>புதிய தடம்</b></string>
   <string name="trackmgr_newtrack_error">புதிய தடத்தை உருவாக்க முடியவில்லை: {0}</string>
-  <string name="trackmgr_continuetrack_hint">நீங்கள் தற்போது பதிவு செய்கிறீர்கள்<b>தடம்#{0}</b>
-தொடர, பட்டியலில் இருந்து தேர்வு செய்யவும்</string>
   <string name="trackmgr_contextmenu_stop">தடத்தை நிறுத்து‍</string>
   <string name="trackmgr_contextmenu_delete">நீக்கு</string>
   <string name="trackmgr_contextmenu_export">புவி நிலை காட்டி போல் ஏற்று‍</string>

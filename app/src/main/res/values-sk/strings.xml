@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker pre Android™</string>
@@ -26,11 +26,7 @@
   <string name="trackmgr_waypoints_count">Body trasy: </string>
   <string name="trackmgr_trackpoints_count">Trasové body: </string>
   <string name="trackmgr_empty">Nemáte zaznamenané žiadne prejdené trasy.</string>
-  <string name="trackmgr_newtrack_hint">Pre nahratie prejdenej trasy
-stlačte <b>Menu</b> a potom <b>Nová trasa</b></string>
   <string name="trackmgr_newtrack_error">Nedá sa vytvoriť nový záznam trasy: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Práve nahrávate <b>trasu #{0}</b>
-Pre pokračovanie kliknite na ňu v zozname</string>
   <string name="trackmgr_contextmenu_stop">Zastaviť záznam</string>
   <string name="trackmgr_contextmenu_resume">Pokračovať v zázname</string>
   <string name="trackmgr_contextmenu_delete">Vymazať</string>

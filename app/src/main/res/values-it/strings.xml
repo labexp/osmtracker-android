@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker per Android™</string>
@@ -31,11 +31,7 @@
   <string name="trackmgr_waypoints_count">POI: </string>
   <string name="trackmgr_trackpoints_count">Punti traccia: </string>
   <string name="trackmgr_empty">Nessuna traccia disponibile.</string>
-  <string name="trackmgr_newtrack_hint">Per registrare una traccia,
-premi <b>Menu</b> poi <b>Nuova traccia</b></string>
   <string name="trackmgr_newtrack_error">Impossibile creare una nuova traccia: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Stai già registrando la <b>traccia #{0}</b>
-Selezionala nell\'elenco per continuare</string>
   <string name="trackmgr_contextmenu_stop">Ferma registrazione</string>
   <string name="trackmgr_contextmenu_resume">Riprendi registrazione</string>
   <string name="trackmgr_contextmenu_delete">Elimina</string>

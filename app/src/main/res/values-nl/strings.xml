@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker voor Android™</string>
@@ -31,10 +31,7 @@
   <string name="trackmgr_waypoints_count">Routepunten:</string>
   <string name="trackmgr_trackpoints_count">Trajectpunten:</string>
   <string name="trackmgr_empty">U hebt geen trajecten.</string>
-  <string name="trackmgr_newtrack_hint">Om een nieuw traject op te nemen, druk op <b>Menu</b> en <b>Nieuw traject</b></string>
   <string name="trackmgr_newtrack_error">Kan geen nieuw traject aanmaken: {0}</string>
-  <string name="trackmgr_continuetrack_hint">U bent op dit moment <b>traject #{0}</b> aan het opnemen.
-Selecteer dit traject in de lijst om door te gaan.</string>
   <string name="trackmgr_contextmenu_stop">Opnemen stoppen</string>
   <string name="trackmgr_contextmenu_resume">Opnemen hervatten</string>
   <string name="trackmgr_contextmenu_delete">Verwijderen</string>

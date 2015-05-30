@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">Generici</string>
   <string name="tag.restriction">Limitazioni</string>
@@ -54,10 +54,7 @@
   <string name="tag.amenity_marina">Porto turistico</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxi</string>
-  <string name="tag.amenity_doctors">Ospedale,
-Ambulatorio</string>
   <string name="tag.amenity_recycling">Riciclaggio</string>
-  <string name="tag.amenity_place_of_worship">Luogo di culto</string>
   <string name="tag.amenity_post_office">Ufficio postale</string>
   <string name="tag.amenity_library">Biblioteca</string>
   <string name="tag.amenitymore_school">Scuola</string>
@@ -100,5 +97,4 @@ Ambulatorio</string>
   <string name="tag.landuse_forest">Foresta</string>
   <string name="tag.landuse_allotments">Orti pubblici</string>
   <string name="tag.landuse_cemetery">Cimitero</string>
-  <string name="tag.landuse_recreation_ground">Area di svago</string>
 </resources>

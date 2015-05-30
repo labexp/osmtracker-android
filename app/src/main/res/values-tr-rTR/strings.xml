@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">Android™ için OSMTracker</string>
@@ -26,8 +26,6 @@
   <string name="trackmgr_waypoints_count">Varış noktası:</string>
   <string name="trackmgr_empty">Hiç rotanız yok.
 </string>
-  <string name="trackmgr_newtrack_hint">rotayı kaydetmek için,
- <b>Menu</b> then <b>New track</b> basınız.</string>
   <string name="trackmgr_newtrack_error">Yeni rota oluşturma aktifleştirilmedi:{0}.</string>
   <string name="trackmgr_contextmenu_stop">Rotayı durdur</string>
   <string name="trackmgr_contextmenu_resume">Rotaya devam et</string>

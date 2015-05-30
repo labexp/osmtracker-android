@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">อื่น ๆ</string>
   <string name="tag.restriction">ข้อจำกัด</string>
@@ -47,9 +47,7 @@
   <string name="tag.amenity_marina">ท่าเรือเล็ก</string>
   <string name="tag.amenity_sport">กีฬา</string>
   <string name="tag.amenity_taxi">แท็กซี่</string>
-  <string name="tag.amenity_doctors">แพทย์</string>
   <string name="tag.amenity_recycling">รีไซเคิล</string>
-  <string name="tag.amenity_place_of_worship">ที่สักการะ</string>
   <string name="tag.amenity_post_office">ที่ทำการไปรษณีย์</string>
   <string name="tag.amenity_library">ห้องสมุด</string>
   <string name="tag.amenitymore_school">โรงเรียน</string>
@@ -92,5 +90,4 @@
   <string name="tag.landuse_forest">ป่า</string>
   <string name="tag.landuse_allotments">ที่จัดสรร</string>
   <string name="tag.landuse_cemetery">สุสาน</string>
-  <string name="tag.landuse_recreation_ground">ลานสันทนาการ</string>
 </resources>

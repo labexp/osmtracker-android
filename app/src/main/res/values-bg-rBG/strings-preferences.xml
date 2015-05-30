@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Настройки</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_logging_interval_seconds">секунди</string>
+  <string name="prefs_ui">Потребителски интерфейс</string>
+  <string name="prefs_voicerec_duration_seconds">секунди</string>
+  <string name="prefs_map_tile_summary"></string>
+</resources>

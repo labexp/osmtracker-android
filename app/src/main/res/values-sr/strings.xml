@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">Пратилац за Андроид</string>
@@ -31,11 +31,7 @@
   <string name="trackmgr_waypoints_count">Тачки пролаза:</string>
   <string name="trackmgr_trackpoints_count">Тачки праћења:</string>
   <string name="trackmgr_empty">Нема праћења.</string>
-  <string name="trackmgr_newtrack_hint">Да снимите праћење,
-притисните <b>Мени</b> па <b>Ново праћење</b></string>
   <string name="trackmgr_newtrack_error">Не могу да направим ново праћење: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Тренутно бележите <b>праћење #{0}</b>
-Изаберите га на листи за наставак</string>
   <string name="trackmgr_contextmenu_stop">Заустави праћење</string>
   <string name="trackmgr_contextmenu_resume">Настави праћење</string>
   <string name="trackmgr_contextmenu_delete">Обриши</string>
@@ -112,7 +108,7 @@
   <string name="about">О програму</string>
   <string name="about_text">За више информација, документацију и пријаве проблема, посетите страницу пројекта:</string>
   <string name="about_translate_text">Помогли у превођењу:</string>
-  <string name="about_debug_info">Инфо отклањања грешака</string>
+  <string name="about_debug_info">Подаци за отклањање грешака</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSM пратилац ради</string>
   <string name="notification_title">OSM пратилац прати (#{0})</string>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
   <string name="app_name">OSMTracker Androiderako™</string>
@@ -25,11 +25,7 @@
   <string name="trackmgr_waypoints_count">Bide-puntuak:</string>
   <string name="trackmgr_trackpoints_count">Ibilbide-puntuak:</string>
   <string name="trackmgr_empty">Ez daukazu ibilbiderik.</string>
-  <string name="trackmgr_newtrack_hint">Ibilbidea grabatzeko,
-zapaldu <b>Menua</b> eta gero <b>Ibilbide berria</b></string>
   <string name="trackmgr_newtrack_error">Ezin da ibilbide berria sortu: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Momentu honetan <b>#{0} ibilbidea</b> grabatzen ari zara
-Aukeratu ezazu zerrendan aurrera jarraitzeko</string>
   <string name="trackmgr_contextmenu_stop">Gelditu ibilbidea</string>
   <string name="trackmgr_contextmenu_resume">Berrekin ibilbidea</string>
   <string name="trackmgr_contextmenu_delete">Ezabatu</string>
