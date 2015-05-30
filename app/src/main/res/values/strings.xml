@@ -122,6 +122,9 @@
 	<string name="about_text">For more information, docs and issue report, please visit the project home page:</string>
 	<string name="about_translate_text">Help translating OSMTracker:</string>
 	<string name="about_debug_info">Debug info</string>
+	<string name="about_export_db">Export database</string>
+	<string name="about_exporting_db">Exporting database&#8230;</string>
+	<string name="about_export_db_result">Database export result: %s</string>
 
 	<!-- Notification -->
 	<string name="notification_ticker_text">OSMTracker is tracking</string>

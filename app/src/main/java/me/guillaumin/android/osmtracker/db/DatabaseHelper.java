@@ -99,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * Database name.
 	 */
-	private static final String DB_NAME = OSMTracker.class.getSimpleName();
+	public static final String DB_NAME = OSMTracker.class.getSimpleName();
 
 	/**
 	 * Database version.
