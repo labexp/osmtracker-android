@@ -48,14 +48,14 @@ android {
 }
 
 dependencies {
-    compile files('libs/apache-mime4j-core-0.7.2.jar')
-    compile files('libs/httpclient-4.2.1.jar')
-    compile files('libs/httpcore-4.2.1.jar')
-    compile files('libs/httpmime-4.2.1.jar')
-    compile files('libs/osmdroid-android-4.2.jar')
-    compile files('libs/signpost-commonshttp4-1.2.1.2.jar')
-    compile files('libs/signpost-core-1.2.1.2.jar')
-    compile files('libs/slf4j-android-1.5.8.jar')
+    compile 'org.apache.james:apache-mime4j-core:0.7.2'
+    compile 'org.apache.httpcomponents:httpclient:4.2.1'
+    compile 'org.apache.httpcomponents:httpcore:4.2.1'
+    compile 'org.apache.httpcomponents:httpmime:4.2.1'
+    compile 'org.osmdroid:osmdroid-android:4.2'
+    compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
+    compile 'oauth.signpost:signpost-core:1.2.1.2'
+    compile 'org.slf4j:slf4j-android:1.6.1-RC1'
 }
 
 task copyNorwegianValues(type: Copy) {
