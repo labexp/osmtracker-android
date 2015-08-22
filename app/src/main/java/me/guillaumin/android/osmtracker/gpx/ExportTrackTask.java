@@ -68,7 +68,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	private static final String TAG_GPX = "<gpx"
 		+ " xmlns=\"http://www.topografix.com/GPX/1/1\""
 		+ " version=\"1.1\""
-		+ " creator=\"OSMTracker for Android™ - http://osmtracker-android.googlecode.com/\""
+		+ " creator=\"OSMTracker for Android™ - https://github.com/nguillaumin/osmtracker-android\""
 		+ " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
 		+ " xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd \">";
 	
