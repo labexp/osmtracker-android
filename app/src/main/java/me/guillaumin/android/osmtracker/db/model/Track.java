@@ -57,6 +57,7 @@ public class Track {
 	
 	private Long startDate=null, endDate=null;
 	private Float startLat=null, startLong=null, endLat=null, endLong=null;
+	private Float lastSpeed;
 	
 	private boolean extraInformationRead = false;
 	
@@ -98,7 +99,7 @@ public class Track {
 		
 		return out;		
 	}
-	
+
 	private void readExtraInformation(){
 		if(!extraInformationRead){
 			Cursor startCursor = cr.query(TrackContentProvider.trackStartUri(trackId), null, null, null, null);
@@ -114,6 +115,7 @@ public class Track {
 				endDate = endCursor.getLong(endCursor.getColumnIndex(Schema.COL_TIMESTAMP));
 				endLat = endCursor.getFloat(endCursor.getColumnIndex(Schema.COL_LATITUDE));
 				endLong = endCursor.getFloat(endCursor.getColumnIndex(Schema.COL_LONGITUDE));
+				lastSpeed = endCursor.getFloat(endCursor.getColumnIndex(Schema.COL_SPEED));
 			}
 			endCursor.close();
 			
@@ -246,5 +248,10 @@ public class Track {
 		readExtraInformation();
 		return endLong;
 	}
-	
+
+	public Float getLastSpeed() {
+		readExtraInformation();
+		return lastSpeed;
+	}
+
 }
