@@ -18,8 +18,10 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.ContentObserver;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -71,6 +73,11 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 	 */
 	private ListView lv;
 	
+	/**
+	 * Observes changes on trackpoints
+	 */
+	private ContentObserver trackpointContentObserver;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState, R.layout.trackdetail, getIntent().getExtras().getLong(Schema.COL_TRACK_ID));
@@ -98,6 +105,16 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		// Do not show soft keyboard by default
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		
+		// Create content observer for trackpoints
+		trackpointContentObserver = new ContentObserver(new Handler()) {
+			@Override
+			public void onChange(boolean selfChange) {
+				pathChanged();
+			}
+		};
+		getContentResolver().registerContentObserver(
+				TrackContentProvider.trackPointsUri(trackId),
+				true, trackpointContentObserver);
 		// further work is done in onResume.
 	}
 
@@ -262,6 +279,13 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		startActivity(i);
 	}
 	
+	/**
+	 * On track path changed, update track info
+	 */
+	private void pathChanged() {
+		onResume();
+	}
+
 	/**
 	 * Extend SimpleAdapter so we can underline the clickable Waypoint count.
 	 * Always uses <tt>R.layout.trackdetail_item</tt> as its list item resource.
