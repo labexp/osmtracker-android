@@ -9,17 +9,22 @@ import java.util.Map;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.db.model.Track;
+import me.guillaumin.android.osmtracker.db.model.TrackStatistics;
 import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
 import me.guillaumin.android.osmtracker.util.MercatorProjection;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.ContentObserver;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -71,6 +76,11 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 	 */
 	private ListView lv;
 	
+	/**
+	 * Observes changes on trackpoints
+	 */
+	private ContentObserver trackpointContentObserver;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState, R.layout.trackdetail, getIntent().getExtras().getLong(Schema.COL_TRACK_ID));
@@ -98,6 +108,16 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		// Do not show soft keyboard by default
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		
+		// Create content observer for trackpoints
+		trackpointContentObserver = new ContentObserver(new Handler()) {
+			@Override
+			public void onChange(boolean selfChange) {
+				pathChanged();
+			}
+		};
+		getContentResolver().registerContentObserver(
+				TrackContentProvider.trackPointsUri(trackId),
+				true, trackpointContentObserver);
 		// further work is done in onResume.
 	}
 
@@ -123,6 +143,8 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		// Bind WP count, TP count, start date, etc.
 		// Fill name-field only if empty (in case changed by user/restored by onRestoreInstanceState) 
 		Track t = Track.build(trackId, cursor, cr, true);
+		//TrackStatistics stat = ((TrackManager)getBaseContext()).getTrackStatistics(trackId);
+		TrackStatistics stat = DataHelper.getTrackStatistics(trackId, cr);
 
 		bindTrack(t);		
 		
@@ -142,6 +164,21 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_trackpoints_count));
 		map.put(ITEM_VALUE, Integer.toString(t.getTpCount()));
+		data.add(map);
+
+		// Distance
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_distance));
+		map.put(ITEM_VALUE, TracklistAdapter.distanceToString(stat.totalLength(), getResources()));
+		data.add(map);
+
+		// Speed
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_speed));
+		map.put(ITEM_VALUE, TracklistAdapter.speedToString(stat.averageSpeed(), getResources()) + " " +
+				getResources().getString(R.string.trackdetail_speed_average) + ", " +
+				TracklistAdapter.speedToString(stat.maximumSpeed(), getResources()) + " " +
+				getResources().getString(R.string.trackdetail_speed_max));
 		data.add(map);
 
 		// Start date
@@ -262,6 +299,13 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		startActivity(i);
 	}
 	
+	/**
+	 * On track path changed, update track info
+	 */
+	private void pathChanged() {
+		onResume();
+	}
+
 	/**
 	 * Extend SimpleAdapter so we can underline the clickable Waypoint count.
 	 * Always uses <tt>R.layout.trackdetail_item</tt> as its list item resource.
