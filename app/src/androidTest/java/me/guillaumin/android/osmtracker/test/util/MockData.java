@@ -1,7 +1,10 @@
 package me.guillaumin.android.osmtracker.test.util;
 
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Random;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 import java.util.UUID;
 
 import me.guillaumin.android.osmtracker.db.DataHelper;
@@ -29,7 +32,7 @@ public class MockData {
 	public static long mockTrack(Context context) {
 		// Use same date for everything so that the generated
 		// GPX file will always be the same
-		Calendar c = Calendar.getInstance();
+		Calendar c = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.ENGLISH);
 		c.clear();
 		c.set(Calendar.YEAR, 2012);
 		c.set(Calendar.MONTH, Calendar.MARCH);

@@ -1,18 +1,5 @@
 package me.guillaumin.android.osmtracker.test.gpx;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import junit.framework.Assert;
-import me.guillaumin.android.osmtracker.OSMTracker;
-import me.guillaumin.android.osmtracker.activity.TrackManager;
-import me.guillaumin.android.osmtracker.db.DataHelper;
-import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
-import me.guillaumin.android.osmtracker.test.util.MockData;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
@@ -20,6 +7,21 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.test.ActivityInstrumentationTestCase2;
+
+import junit.framework.Assert;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import me.guillaumin.android.osmtracker.OSMTracker;
+import me.guillaumin.android.osmtracker.activity.TrackManager;
+import me.guillaumin.android.osmtracker.db.DataHelper;
+import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
+import me.guillaumin.android.osmtracker.test.util.MockData;
 
 public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackManager> {
 
@@ -36,14 +38,14 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 		// Delete file entry in media library
 		getActivity().getContentResolver().delete(
 				MediaStore.Files.getContentUri("external"),
-				MediaStore.Files.FileColumns.TITLE + " = ?",
-				new String[] {"gpx-test"});
+				MediaStore.Files.FileColumns.DATA + " LIKE ?",
+				new String[] {"%/osmtracker/gpx-test"});
 
 		Cursor cursor = getActivity().managedQuery(
 				MediaStore.Files.getContentUri("external"),
 				null,
-				MediaStore.Files.FileColumns.TITLE + " = ?",
-				new String[] {"gpx-test"},
+				MediaStore.Files.FileColumns.DATA + " LIKE ?",
+				new String[] {"%/osmtracker/gpx-test"},
 				null);
 		Assert.assertEquals(0, cursor.getCount());
 
@@ -63,10 +65,11 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 		e.putString(OSMTracker.Preferences.KEY_OUTPUT_FILENAME, OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME);
 		e.putBoolean(OSMTracker.Preferences.KEY_OUTPUT_DIR_PER_TRACK, false);
 		e.putBoolean(OSMTracker.Preferences.KEY_OUTPUT_GPX_HDOP_APPROXIMATION, true);
-		e.commit();
+		Assert.assertTrue(e.commit());
 	}
 	
-	public void test() throws Exception {		
+	public void test() throws Exception {
+
 		new ExportToStorageTask(getActivity(), trackId).execute().get();
 
 		// Ensure file contents are OK
@@ -85,8 +88,8 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 			c = getActivity().managedQuery(
 					MediaStore.Files.getContentUri("external"),
 					null,
-					MediaStore.Files.FileColumns.TITLE + " = ?",
-					new String[] {"gpx-test"},
+					MediaStore.Files.FileColumns.DATA + " LIKE ?",
+					new String[]{"%/osmtracker/gpx-test.gpx"},
 					null);
 			if (c.moveToFirst()) {
 				break;
@@ -99,6 +102,7 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 		Assert.assertEquals(1, c.getCount());
 		Assert.assertEquals(0, c.getInt(c.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE)));
 		Assert.assertEquals("gpx-test", c.getString(c.getColumnIndex(MediaStore.Files.FileColumns.TITLE)));
+
 	}
 
 	private static String readFully(InputStream is) throws IOException {
