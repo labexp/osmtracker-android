@@ -417,6 +417,9 @@ public class TrackManager extends ListActivity {
 		if (trackStorageDirectory.exists()) {
 			FileSystemUtils.delete(trackStorageDirectory, true);
 		}
+
+		// Delete the statistics
+		DataHelper.removeTrackStatistics(id);
 	}
 
 	/**

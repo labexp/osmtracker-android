@@ -9,9 +9,12 @@ import java.util.Map;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.db.model.Track;
+import me.guillaumin.android.osmtracker.db.model.TrackStatistics;
 import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
 import me.guillaumin.android.osmtracker.util.MercatorProjection;
 import android.content.ContentResolver;
@@ -125,6 +128,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		Track t = Track.build(trackId, cursor, cr, true);
 
 		bindTrack(t);		
+		TrackStatistics stat = DataHelper.getTrackStatistics(trackId, cr);
 		
 		String from[] = new String[]{ITEM_KEY, ITEM_VALUE};
 		int[] to = new int[] {R.id.trackdetail_item_key, R.id.trackdetail_item_value};
@@ -142,6 +146,21 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_trackpoints_count));
 		map.put(ITEM_VALUE, Integer.toString(t.getTpCount()));
+		data.add(map);
+
+		// Distance
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_distance));
+		map.put(ITEM_VALUE, TracklistAdapter.distanceToString(stat.totalLength(), getResources()));
+		data.add(map);
+
+		// Speed
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_speed));
+		map.put(ITEM_VALUE, TracklistAdapter.speedToString(stat.averageSpeed(), getResources()) + " " +
+				getResources().getString(R.string.trackdetail_speed_average) + ", " +
+				TracklistAdapter.speedToString(stat.maximumSpeed(), getResources()) + " " +
+				getResources().getString(R.string.trackdetail_speed_max));
 		data.add(map);
 
 		// Start date

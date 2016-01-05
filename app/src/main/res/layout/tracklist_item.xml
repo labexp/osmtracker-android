@@ -34,6 +34,24 @@
 			android:text="{y}" android:id="@+id/trackmgr_item_tps" android:layout_below="@id/trackmgr_item_nameordate"
 			android:layout_toRightOf="@id/trackmgr_item_trackpoints" style="@android:style/TextAppearance.Small" android:layout_width="wrap_content"></TextView>
 				
+		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_distance_label" android:layout_below="@+id/trackmgr_item_waypoints"
+				  android:textStyle="bold" android:layout_marginRight="3dp" style="@android:style/TextAppearance.Small" android:text="@string/trackmgr_distance"
+				  android:layout_width="wrap_content"></TextView>
+		<TextView android:layout_height="wrap_content"
+				  android:layout_marginRight="3dp"
+				  android:layout_below="@id/trackmgr_item_waypoints" android:id="@+id/trackmgr_item_distance"
+				  android:layout_toRightOf="@id/trackmgr_item_distance_label" android:text="{x}"
+				  style="@android:style/TextAppearance.Small" android:layout_width="wrap_content"></TextView>
+		<TextView android:layout_height="wrap_content"
+				  android:layout_marginRight="3dp"
+				  android:layout_below="@id/trackmgr_item_waypoints" android:id="@+id/trackmgr_item_at_speed_label"
+				  android:layout_toRightOf="@id/trackmgr_item_distance" android:text="@string/trackmgr_at_speed"
+				  style="@android:style/TextAppearance.Small" android:layout_width="wrap_content"></TextView>
+		<TextView android:layout_height="wrap_content"
+				  android:layout_below="@id/trackmgr_item_waypoints" android:id="@+id/trackmgr_item_speed"
+				  android:layout_toRightOf="@id/trackmgr_item_at_speed_label" android:text="{x}"
+				  style="@android:style/TextAppearance.Small" android:layout_width="wrap_content"></TextView>
+		
 	</RelativeLayout>
 	
 	<ImageView android:id="@+id/trackmgr_item_statusicon"
