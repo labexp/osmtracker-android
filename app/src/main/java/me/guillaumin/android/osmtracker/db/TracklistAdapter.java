@@ -3,7 +3,10 @@ package me.guillaumin.android.osmtracker.db;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.db.model.Track;
+import me.guillaumin.android.osmtracker.db.model.TrackStatistics;
+
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +23,31 @@ import android.widget.TextView;
  *
  */
 public class TracklistAdapter extends CursorAdapter {
+
+	public static String distanceToString(float distance, Resources resources) {
+		if (distance < 100)
+			return String.format("%d %s", Math.round(distance),
+					resources.getString(R.string.trackmgr_distance_meters));
+		else if (distance < 1000)
+			return String.format("%d %s", 10*Math.round(distance/10),
+					resources.getString(R.string.trackmgr_distance_meters));
+		else if (distance < 10000)
+			return String.format("%.1f %s", distance/1000,
+					resources.getString(R.string.trackmgr_distance_kilometers));
+		else
+			return String.format("%d %s", Math.round(distance/1000),
+					resources.getString(R.string.trackmgr_distance_kilometers));
+	}
+
+	public static String speedToString(float speed, Resources resources) {
+		float kmph = (float)3.6*speed;
+		if (kmph < 10)
+			return String.format("%.1g %s", kmph,
+					resources.getString(R.string.trackmgr_speed_kmph));
+		else
+			return String.format("%d %s", Math.round(kmph),
+					resources.getString(R.string.trackmgr_speed_kmph));
+	}
 
 	public TracklistAdapter(Context context, Cursor c) {
 		super(context, c);
@@ -53,6 +81,8 @@ public class TracklistAdapter extends CursorAdapter {
 		TextView vNameOrStartDate = (TextView) v.findViewById(R.id.trackmgr_item_nameordate);
 		TextView vWps = (TextView) v.findViewById(R.id.trackmgr_item_wps);
 		TextView vTps = (TextView) v.findViewById(R.id.trackmgr_item_tps);
+		TextView vDistance = (TextView) v.findViewById(R.id.trackmgr_item_distance);
+		TextView vSpeed = (TextView) v.findViewById(R.id.trackmgr_item_speed);
 		ImageView vStatus = (ImageView) v.findViewById(R.id.trackmgr_item_statusicon);
 		ImageView vUploadStatus = (ImageView) v.findViewById(R.id.trackmgr_item_upload_statusicon);
 
@@ -83,8 +113,12 @@ public class TracklistAdapter extends CursorAdapter {
 
 		// Bind WP count, TP count, name
 		Track t = Track.build(trackId, cursor, context.getContentResolver(), false);
+		//TrackStatistics stat = ((TrackManager) context).getTrackStatistics(trackId);
+		TrackStatistics stat = DataHelper.getTrackStatistics(trackId, context.getContentResolver());
 		vTps.setText(Integer.toString(t.getTpCount()));
 		vWps.setText(Integer.toString(t.getWpCount()));
+		vDistance.setText(distanceToString(stat.totalLength(), context.getResources()));
+		vSpeed.setText(speedToString(stat.averageSpeed(), context.getResources()));
 		vNameOrStartDate.setText(t.getName());
 
 		return v;

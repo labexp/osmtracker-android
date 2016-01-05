@@ -80,6 +80,50 @@
             android:layout_toLeftOf="@+id/trackmgr_item_trackpoints"
             android:text="{y}" >
         </TextView>
+
+        <TextView
+            android:id="@+id/trackmgr_item_distance_label"
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/trackmgr_item_waypoints"
+            android:text="@string/trackmgr_distance"
+            android:textStyle="bold" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/trackmgr_item_distance"
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trackmgr_item_waypoints"
+            android:layout_marginRight="3dp"
+            android:layout_toLeftOf="@+id/trackmgr_item_distance_label"
+            android:text="{x}" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/trackmgr_item_at_speed_label"
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trackmgr_item_waypoints"
+            android:layout_marginRight="3dp"
+            android:layout_toLeftOf="@+id/trackmgr_item_distance"
+            android:text="@string/trackmgr_at_speed" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/trackmgr_item_speed"
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trackmgr_item_waypoints"
+            android:layout_marginRight="3dp"
+            android:layout_toLeftOf="@+id/trackmgr_item_at_speed_label"
+            android:text="{x}" >
+        </TextView>
     </RelativeLayout>
 
     <TextView

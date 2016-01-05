@@ -34,7 +34,7 @@
 	<string name="trackmgr_waypoints_count">Waypoints: </string>
 	<string name="trackmgr_trackpoints_count">Trackpoints: </string>
 	<string name="trackmgr_distance">Distance: </string>
-	<string name="trackmgr_at_speed"> at </string>
+	<string name="trackmgr_at_speed">at</string>
 	<string name="trackmgr_distance_meters">m</string>
 	<string name="trackmgr_distance_kilometers">km</string>
 	<string name="trackmgr_speed_kmph">km/h</string>

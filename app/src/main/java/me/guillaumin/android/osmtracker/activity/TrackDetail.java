@@ -12,6 +12,7 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.db.model.Track;
 import me.guillaumin.android.osmtracker.db.model.TrackStatistics;
 import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
@@ -142,7 +143,8 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		// Bind WP count, TP count, start date, etc.
 		// Fill name-field only if empty (in case changed by user/restored by onRestoreInstanceState) 
 		Track t = Track.build(trackId, cursor, cr, true);
-		TrackStatistics stat = new TrackStatistics(trackId, cr);
+		//TrackStatistics stat = ((TrackManager)getBaseContext()).getTrackStatistics(trackId);
+		TrackStatistics stat = DataHelper.getTrackStatistics(trackId, cr);
 
 		bindTrack(t);		
 		
@@ -167,17 +169,15 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		// Distance
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_distance));
-		map.put(ITEM_VALUE, Float.toString(stat.totalLength()));
+		map.put(ITEM_VALUE, TracklistAdapter.distanceToString(stat.totalLength(), getResources()));
 		data.add(map);
 
 		// Speed
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_speed));
-		map.put(ITEM_VALUE, Float.toString((float)3.6 * stat.averageSpeed()) + " " +
-				getResources().getString(R.string.trackmgr_speed_kmph) + " " +
+		map.put(ITEM_VALUE, TracklistAdapter.speedToString(stat.averageSpeed(), getResources()) + " " +
 				getResources().getString(R.string.trackdetail_speed_average) + ", " +
-				Float.toString((float)3.6 * stat.maximumSpeed()) + " " +
-				getResources().getString(R.string.trackmgr_speed_kmph) + " " +
+				TracklistAdapter.speedToString(stat.maximumSpeed(), getResources()) + " " +
 				getResources().getString(R.string.trackdetail_speed_max));
 		data.add(map);
 
