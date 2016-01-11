@@ -2,12 +2,9 @@ package me.guillaumin.android.osmtracker.db;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.TreeMap;
-import java.lang.RuntimeException;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
-import me.guillaumin.android.osmtracker.db.model.TrackStatistics;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -67,9 +64,6 @@ public class DataHelper {
 	 * Context
 	 */
 	private Context context;
-
-	/** Statistics for all existing tracks */
-	private static TreeMap<Long, TrackStatistics> tracksStatistics = new TreeMap<Long, TrackStatistics> ();
 
 	/**
 	 * ContentResolver to interact with content provider
@@ -131,7 +125,6 @@ public class DataHelper {
 		}
 		
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
-		getTrackStatistics(trackId, contentResolver).update(location);
 		contentResolver.insert(Uri.withAppendedPath(trackUri, Schema.TBL_TRACKPOINT + "s"), values);
 	}
 
@@ -380,20 +373,4 @@ public class DataHelper {
 		return _return;
 	}
 
-	/**
-	 * Get statistics for a given track
-	 * If doesn't exists, create and calculate from the database
-	 */
-	public static TrackStatistics getTrackStatistics(long trackId, ContentResolver resolver) {
-		if (! tracksStatistics.containsKey(trackId))
-			tracksStatistics.put(trackId, new TrackStatistics(trackId, resolver)); // getContentResolver() if non-static member
-		return tracksStatistics.get(trackId);
-	}
-
-	/**
-	 * Remove statistics for a given track
-	 */
-	public static void removeTrackStatistics(long trackId) {
-		tracksStatistics.remove(trackId);
-	}
 }

@@ -253,8 +253,4 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		}
 	}
 
-	public TrackLogger getActivity() {
-		return activity;
-	}
-
 }

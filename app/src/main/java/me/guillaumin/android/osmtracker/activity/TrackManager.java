@@ -2,6 +2,7 @@ package me.guillaumin.android.osmtracker.activity;
 
 import java.io.File;
 import java.util.Date;
+import java.util.TreeMap;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
@@ -9,11 +10,13 @@ import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.db.TracklistAdapter;
+import me.guillaumin.android.osmtracker.db.model.TrackStatistics;
 import me.guillaumin.android.osmtracker.exception.CreateTrackException;
 import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
 import me.guillaumin.android.osmtracker.util.FileSystemUtils;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -57,6 +60,32 @@ public class TrackManager extends ListActivity {
 
 	/** The previous item visible, or -1; for scrolling back to its position in {@link #onResume()} */
 	private int prevItemVisible = -1;
+	
+	/** Statistics for all existing tracks */
+	private TreeMap<Long, TrackStatistics> tracksStatistics = new TreeMap<Long, TrackStatistics> ();
+
+	/**
+	 * Get statistics for a given track
+	 * If doesn't exists, create and calculate from the database
+	 */
+	public TrackStatistics getTrackStatistics(long trackId) {
+		TrackStatistics stat;
+		if (! tracksStatistics.containsKey(trackId)) {
+			stat = new TrackStatistics(trackId, getContentResolver());
+			tracksStatistics.put(trackId, stat);
+		} else {
+			stat = tracksStatistics.get(trackId);
+			stat.update();
+		}
+		return stat;
+	}
+
+	/**
+	 * Remove statistics for a given track
+	 */
+	public void removeTrackStatistics(long trackId) {
+		tracksStatistics.remove(trackId);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -419,7 +448,7 @@ public class TrackManager extends ListActivity {
 		}
 
 		// Delete the statistics
-		DataHelper.removeTrackStatistics(id);
+		removeTrackStatistics(id);
 	}
 
 	/**

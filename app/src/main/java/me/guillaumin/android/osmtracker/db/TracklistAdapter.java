@@ -4,6 +4,8 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.db.model.Track;
 import me.guillaumin.android.osmtracker.db.model.TrackStatistics;
+import me.guillaumin.android.osmtracker.activity.TrackManager;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -22,37 +24,52 @@ import android.widget.TextView;
  *
  */
 public class TracklistAdapter extends CursorAdapter {
+	
+	private static final float STOP_SHOWING_DECIMALS_AFTER = 20;
+	
+	/** The TrackManager who created us */
+	private TrackManager owner;
 
 	public static String distanceToString(float distance, Resources resources) {
-		if (distance < 100)
-			return String.format("%d %s", Math.round(distance),
-					resources.getString(R.string.trackmgr_distance_meters));
-		else if (distance < 1000)
-			return String.format("%d %s", 10*Math.round(distance/10),
-					resources.getString(R.string.trackmgr_distance_meters));
-		else if (distance < 10000)
-			return String.format("%.1f %s", distance/1000,
-					resources.getString(R.string.trackmgr_distance_kilometers));
-		else
-			return String.format("%d %s", Math.round(distance/1000),
-					resources.getString(R.string.trackmgr_distance_kilometers));
+		if (distance < 100) {
+			// Exact meters
+			return resources.getString(R.string.trackmgr_distance_in_meters).replace("{0}",
+					String.valueOf(Math.round(distance)));
+		} else if (distance < 1000) {
+			// Round to 10 meters
+			return resources.getString(R.string.trackmgr_distance_in_meters).replace("{0}",
+					String.valueOf(10 * Math.round(distance / 10)));
+		} else if (distance < STOP_SHOWING_DECIMALS_AFTER*1000) {
+			// Kilometers with 1 decimal
+			return resources.getString(R.string.trackmgr_distance_in_kilometers).replace("{0}",
+					String.format("%.1f", distance / 1000));
+		} else {
+			// Whole kilometers
+			return resources.getString(R.string.trackmgr_distance_in_kilometers).replace("{0}",
+					String.valueOf(Math.round(distance / 1000)));
+		}
 	}
 
 	public static String speedToString(float speed, Resources resources) {
-		float kmph = (float)3.6*speed;
-		if (kmph < 1)
-			return String.format("%.1g %s", kmph,
-					resources.getString(R.string.trackmgr_speed_kmph));
-		else if (kmph < 20)
-			return String.format("%.1f %s", kmph,
-					resources.getString(R.string.trackmgr_speed_kmph));
-		else
-			return String.format("%d %s", Math.round(kmph),
-					resources.getString(R.string.trackmgr_speed_kmph));
+		float kmph = (float)3.6*speed; // convert meters per second to kilometers per hour
+		if (kmph < 1) {
+			// Round to one non-zero digit
+			return resources.getString(R.string.trackmgr_speed_in_kmph).replace("{0}",
+					String.format("%.1g", kmph));
+		} else if (kmph < STOP_SHOWING_DECIMALS_AFTER) {
+			// Round to one decimal
+			return resources.getString(R.string.trackmgr_speed_in_kmph).replace("{0}",
+					String.format("%.1f", kmph));
+		} else {
+			// Round to integer
+			return resources.getString(R.string.trackmgr_speed_in_kmph).replace("{0}",
+					String.valueOf(Math.round(kmph)));
+		}
 	}
 
 	public TracklistAdapter(Context context, Cursor c) {
 		super(context, c);
+		owner = (TrackManager) context;
 	}
 
 	@Override
@@ -66,7 +83,7 @@ public class TracklistAdapter extends CursorAdapter {
 				vg, false);
 		return view;
 	}
-	
+
 	/**
 	 * Do the binding between data and item view.
 	 * 
@@ -115,7 +132,7 @@ public class TracklistAdapter extends CursorAdapter {
 
 		// Bind WP count, TP count, name
 		Track t = Track.build(trackId, cursor, context.getContentResolver(), false);
-		TrackStatistics stat = DataHelper.getTrackStatistics(trackId, context.getContentResolver());
+		TrackStatistics stat = owner.getTrackStatistics(trackId);
 		vTps.setText(Integer.toString(t.getTpCount()));
 		vWps.setText(Integer.toString(t.getWpCount()));
 		vDistance.setText(distanceToString(stat.totalLength(), context.getResources()));

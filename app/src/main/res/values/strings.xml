@@ -35,9 +35,9 @@
 	<string name="trackmgr_trackpoints_count">Trackpoints: </string>
 	<string name="trackmgr_distance">Distance: </string>
 	<string name="trackmgr_at_speed">at</string>
-	<string name="trackmgr_distance_meters">m</string>
-	<string name="trackmgr_distance_kilometers">km</string>
-	<string name="trackmgr_speed_kmph">km/h</string>
+	<string name="trackmgr_distance_in_meters">{0} m</string>
+	<string name="trackmgr_distance_in_kilometers">{0} km</string>
+	<string name="trackmgr_speed_in_kmph">{0} km/h</string>
 	<string name="trackmgr_empty">You don\'t have any tracks.</string>
 	<string name="trackmgr_newtrack_hint">To record a track,\npress <b>Menu</b> then <b>New track</b></string>
 	<string name="trackmgr_newtrack_error">Unable to create a new track: {0}</string>
