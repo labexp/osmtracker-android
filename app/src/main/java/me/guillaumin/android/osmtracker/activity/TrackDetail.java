@@ -98,9 +98,10 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState, R.layout.trackdetail, getIntent().getExtras().getLong(Schema.COL_TRACK_ID));
+		Bundle extras = getIntent().getExtras();
+		super.onCreate(savedInstanceState, R.layout.trackdetail, extras.getLong(Schema.COL_TRACK_ID));
 		
-		trackStatistics = new TrackStatistics(trackId, getContentResolver());
+		trackStatistics = new TrackStatistics(trackId, getContentResolver(), extras);
 
 		lv = (ListView) findViewById(R.id.trackdetail_list);
 

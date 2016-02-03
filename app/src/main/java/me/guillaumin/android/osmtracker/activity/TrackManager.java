@@ -380,6 +380,7 @@ public class TrackManager extends ListActivity {
 		case R.id.trackmgr_contextmenu_details:
 			i = new Intent(this, TrackDetail.class);
 			i.putExtra(Schema.COL_TRACK_ID, info.id);
+			i.putExtras(getTrackStatistics(info.id).getData());
 			startActivity(i);
 			break;
 		}
@@ -405,6 +406,7 @@ public class TrackManager extends ListActivity {
 			// show track info
 			i = new Intent(this, TrackDetail.class);
 			i.putExtra(Schema.COL_TRACK_ID, id);
+			i.putExtras(getTrackStatistics(id).getData());
 		}
 		startActivity(i);
 	}
