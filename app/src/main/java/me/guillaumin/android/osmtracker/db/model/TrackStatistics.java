@@ -22,7 +22,7 @@ public class TrackStatistics {
 	private long lastTime;
 	private int lastId;
 	private float timeMoving;
-	private ContentResolver contentResolver;
+	private final ContentResolver contentResolver;
 	
 	private static double square(double x) {
 		return x*x;
@@ -35,25 +35,14 @@ public class TrackStatistics {
 		final double R = 6370e3; // Earth radius
 		final double rad_per_deg = Math.PI/180; // radians per degree
 		
-		lat1 *= rad_per_deg;
-		long1 *= rad_per_deg;
-		lat2 *= rad_per_deg;
-		long2 *= rad_per_deg;
-		
 		double dLat = lat2-lat1;
 		double dLon = long2-long1;
 
-		double A = square(Math.sin(0.5*dLat)) + Math.cos(lat1) * Math.cos(lat2) * square(Math.sin(0.5*dLon));
+		double A = square(Math.sin(0.5*dLat*rad_per_deg)) + 
+		           Math.cos(lat1*rad_per_deg) * Math.cos(lat2*rad_per_deg) *
+		               square(Math.sin(0.5*dLon*rad_per_deg));
 		
 		return (float)(2 * R * Math.asin(Math.sqrt(A)));
-	}
-
-	public TrackStatistics () {
-		trackId = -1;
-		length = 0;
-		maxSpeed = 0;
-		pointCount = 0;
-		timeMoving = 0;
 	}
 
 	/**
@@ -65,11 +54,9 @@ public class TrackStatistics {
 	public TrackStatistics (final long trackId, ContentResolver cr) {
 		this.trackId = trackId;
 		contentResolver = cr;
-		length = 0;
-		maxSpeed = 0;
-		pointCount = 0;
-		timeMoving = 0;
 		
+		// pointCount, length, maxSpeed and timeMoving are all implicitly initialized to  
+		// zero, which is what we need
 		update();
 	}
 

@@ -4,6 +4,7 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.db.model.Track;
 import me.guillaumin.android.osmtracker.db.model.TrackStatistics;
+import me.guillaumin.android.osmtracker.db.model.TrackStatisticsCollection;
 import me.guillaumin.android.osmtracker.activity.TrackManager;
 
 import android.content.Context;
@@ -27,8 +28,7 @@ public class TracklistAdapter extends CursorAdapter {
 	
 	private static final float STOP_SHOWING_DECIMALS_AFTER = 20;
 	
-	/** The TrackManager who created us */
-	private TrackManager owner;
+	private TrackStatisticsCollection tracksStatistics;
 
 	public static String distanceToString(float distance, Resources resources) {
 		if (distance < 100) {
@@ -67,9 +67,9 @@ public class TracklistAdapter extends CursorAdapter {
 		}
 	}
 
-	public TracklistAdapter(Context context, Cursor c) {
+	public TracklistAdapter(Context context, Cursor c, TrackStatisticsCollection statistics) {
 		super(context, c);
-		owner = (TrackManager) context;
+		tracksStatistics = statistics;
 	}
 
 	@Override
@@ -132,7 +132,7 @@ public class TracklistAdapter extends CursorAdapter {
 
 		// Bind WP count, TP count, name
 		Track t = Track.build(trackId, cursor, context.getContentResolver(), false);
-		TrackStatistics stat = owner.getTrackStatistics(trackId);
+		TrackStatistics stat = tracksStatistics.get(trackId);
 		vTps.setText(Integer.toString(t.getTpCount()));
 		vWps.setText(Integer.toString(t.getWpCount()));
 		vDistance.setText(distanceToString(stat.totalLength(), context.getResources()));
