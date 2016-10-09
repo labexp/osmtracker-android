@@ -351,6 +351,8 @@ public class DataHelper {
 			if (trackPath != null) {
 				trackDir = new File(trackPath);
 			}
+		}
+		if (c != null && !c.isClosed()) {
 			c.close();
 			c = null;
 		}

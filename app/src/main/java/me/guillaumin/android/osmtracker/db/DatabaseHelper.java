@@ -230,7 +230,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					
 				}
 			}while(cursor.moveToNext());
-			
+		}
+		
+		//close cursor
+		if(cursor !=null && !cursor.isClosed()){
 			cursor.close();
 		}
 		
