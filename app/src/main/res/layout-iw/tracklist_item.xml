@@ -9,6 +9,15 @@
     android:paddingRight="3dp"
     android:paddingTop="5dp" >
 
+    <ImageView android:id="@+id/trackmgr_item_upload_statusicon"
+        android:layout_height="fill_parent" android:layout_width="wrap_content"
+        android:src="@android:drawable/stat_sys_upload_done"
+        android:paddingLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:paddingRight="3dp"
+        android:contentDescription="@string/acc.upload_status" />
+
     <ImageView
         android:id="@+id/trackmgr_item_statusicon"
         android:layout_width="wrap_content"
