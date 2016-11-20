@@ -7,7 +7,6 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 
-import org.osmdroid.DefaultResourceProxyImpl;
 import org.osmdroid.api.IMapView;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.overlay.ItemizedOverlay;
@@ -36,7 +35,7 @@ public class WayPointsOverlay extends ItemizedOverlay<OverlayItem> {
 			final long trackId
 			)
 	{
-		super(pDefaultMarker, new DefaultResourceProxyImpl(pContext));
+		super(pDefaultMarker);
 		
 		this.trackId = trackId;
 		this.pContentResolver = pContext.getContentResolver();

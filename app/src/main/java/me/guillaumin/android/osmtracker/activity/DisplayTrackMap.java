@@ -11,13 +11,12 @@ import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.overlay.WayPointsOverlay;
 
 import org.osmdroid.api.IMapController;
-import org.osmdroid.contributor.util.constants.OpenStreetMapContributorConstants;
 import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.PathOverlay;
-import org.osmdroid.views.overlay.SimpleLocationOverlay;
+import org.osmdroid.views.overlay.mylocation.SimpleLocationOverlay;
 
 import android.app.Activity;
 import android.content.ContentUris;
@@ -47,7 +46,7 @@ import android.view.View.OnClickListener;
  * @author Viesturs Zarins
  *
  */
-public class DisplayTrackMap extends Activity implements OpenStreetMapContributorConstants{
+public class DisplayTrackMap extends Activity {
 
 	private static final String TAG = DisplayTrackMap.class.getSimpleName();
 	
