@@ -44,6 +44,12 @@
 		    android:authorities="me.guillaumin.android.osmtracker.provider"
 		    android:exported="false" />
 
+		<provider
+			android:name="me.guillaumin.android.osmtracker.gpx.TrackFileProvider"
+			android:authorities="me.guillaumin.android.osmtracker.fileshareprovider"
+			android:exported="false"
+			android:grantUriPermissions="true"/>
+
 		<receiver android:name=".receiver.MediaButtonReceiver" >
 	        <intent-filter>
 	            <action android:name="android.intent.action.MEDIA_BUTTON" />               

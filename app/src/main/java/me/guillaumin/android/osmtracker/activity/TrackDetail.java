@@ -12,6 +12,7 @@ import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.db.model.Track;
+import me.guillaumin.android.osmtracker.gpx.ExportAndShareTask;
 import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
 import me.guillaumin.android.osmtracker.util.MercatorProjection;
 import android.content.ContentResolver;
@@ -237,6 +238,15 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			Map<String, String> data = (Map<String, String>) adapter.getItem(adapter.getCount()-1);
 			data.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
 			adapter.notifyDataSetChanged();
+			break;
+		case R.id.trackdetail_menu_share:
+			new ExportAndShareTask(this, trackId).execute();
+			// Pick last list item (Exported date) and update it
+			SimpleAdapter adapter1 = ((SimpleAdapter) lv.getAdapter());
+			@SuppressWarnings("unchecked")
+			Map<String, String> data1 = (Map<String, String>) adapter1.getItem(adapter1.getCount()-1);
+			data1.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
+			adapter1.notifyDataSetChanged();
 			break;
 		case R.id.trackdetail_menu_osm_upload:
 			i = new Intent(this, OpenStreetMapUpload.class);

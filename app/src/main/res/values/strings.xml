@@ -102,6 +102,7 @@
 	<string name="menu_save">Save</string>
 	<string name="menu_cancel">Cancel</string>
 	<string name="menu_export">Export as GPX</string>
+    <string name="menu_share">Share as GPX</string>
 	<string name="menu_osm_upload">OpenStreetMap upload</string>
 	<string name="menu_center_to_gps">Center to GPS</string>
 	<string name="menu_exportall">Export all as GPX</string>
@@ -112,6 +113,7 @@
 	<string name="error_externalstorage_not_writable_hint">Please check if ext. storage is correctly inserted and mounted.</string>
 	<string name="error_voicerec_failed">Voice recording has failed</string>
 	<string name="error_userlayout_parsing">Error while parsing XML layout file. Please revert to default layout.</string>
+	<string name="error_no_appropriate_activity">No application able to handle gpx file was found.</string>
 
 	<!-- GPX -->
 	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>

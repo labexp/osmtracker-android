@@ -25,6 +25,10 @@
         android:showAsAction="ifRoom|withText">
     </item>
     <item
+        android:id="@+id/trackdetail_menu_share"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="@string/menu_share"></item>
+    <item
         android:id="@+id/trackdetail_menu_osm_upload"
         android:icon="@android:drawable/ic_menu_upload"
         android:title="@string/menu_osm_upload">
