@@ -64,6 +64,7 @@
   <string name="osm_visibility_public">Общедоступный</string>
   <string name="osm_visibility_trackable">Отслеживаемый</string>
   <string name="osm_visibility_identifiable">Идентифицируемый</string>
+  <string name="sharetrack_choose_app">Выберите с помощью какого приложения передать трек</string>
   <!--OSM upload-->
   <string name="osm_upload">Загрузка на OpenStreetMap</string>
   <string name="osm_upload_ok">Сохранить и загрузить</string>

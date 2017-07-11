@@ -71,6 +71,7 @@
 	<string name="osm_visibility_public">Public</string>
 	<string name="osm_visibility_trackable">Trackable</string>
 	<string name="osm_visibility_identifiable">Identifiable</string>
+	<string name="sharetrack_choose_app">Choose an application to share the track</string>
 
 	<!-- OSM upload -->
 	<string name="osm_upload">OpenStreetMap upload</string>
