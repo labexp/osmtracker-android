@@ -192,29 +192,27 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	}
 
 	private void exportTrackAsGpx(long trackId) throws ExportTrackException {
-		File sdRoot = Environment.getExternalStorageDirectory();
-		
-		if (sdRoot.canWrite()) {
-			ContentResolver cr = context.getContentResolver();
-			
-			Cursor c = context.getContentResolver().query(ContentUris.withAppendedId(
-					TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
-					null, null);
+		ContentResolver cr = context.getContentResolver();
 
-			// Get the startDate of this track
-			// TODO: Maybe we should be pulling the track name instead?
-			// We'd need to consider the possibility that two tracks were given the same name
-			// We could possibly disambiguate by including the track ID in the Folder Name
-			// to avoid overwriting another track on one hand or needlessly creating additional
-			// directories to avoid overwriting.
-			Date startDate = new Date();
-			if (null != c && 1 <= c.getCount()) {
-				c.moveToFirst();
-				long startDateInMilliseconds = c.getLong(c.getColumnIndex(Schema.COL_START_DATE));
-				startDate.setTime(startDateInMilliseconds);
-			}
+		Cursor c = context.getContentResolver().query(ContentUris.withAppendedId(
+				TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
+				null, null);
 
-			File trackGPXExportDirectory = getExportDirectory(startDate);
+		// Get the startDate of this track
+		// TODO: Maybe we should be pulling the track name instead?
+		// We'd need to consider the possibility that two tracks were given the same name
+		// We could possibly disambiguate by including the track ID in the Folder Name
+		// to avoid overwriting another track on one hand or needlessly creating additional
+		// directories to avoid overwriting.
+		Date startDate = new Date();
+		if (null != c && 1 <= c.getCount()) {
+			c.moveToFirst();
+			long startDateInMilliseconds = c.getLong(c.getColumnIndex(Schema.COL_START_DATE));
+			startDate.setTime(startDateInMilliseconds);
+		}
+
+		File trackGPXExportDirectory = getExportDirectory(startDate);
+		if (trackGPXExportDirectory.canWrite()) {
 			String filenameBase = buildGPXFilename(c);
 			c.close();
 			
