@@ -41,6 +41,7 @@
 	<string name="trackmgr_contextmenu_resume">Resume tracking</string>
 	<string name="trackmgr_contextmenu_delete">Delete</string>
 	<string name="trackmgr_contextmenu_export">Export as GPX</string>
+	<string name="trackmgr_contextmenu_share">Share</string>
 	<string name="trackmgr_contextmenu_osm_upload">Upload to OpenStreetMap</string>
 	<string name="trackmgr_contextmenu_display">Display</string>
 	<string name="trackmgr_contextmenu_details">Details</string>
@@ -71,7 +72,7 @@
 	<string name="osm_visibility_public">Public</string>
 	<string name="osm_visibility_trackable">Trackable</string>
 	<string name="osm_visibility_identifiable">Identifiable</string>
-	<string name="sharetrack_choose_app">Choose an application to share the track</string>
+	<string name="sharetrack_choose_app">Choose an application to share the track with</string>
 
 	<!-- OSM upload -->
 	<string name="osm_upload">OpenStreetMap upload</string>
@@ -103,7 +104,7 @@
 	<string name="menu_save">Save</string>
 	<string name="menu_cancel">Cancel</string>
 	<string name="menu_export">Export as GPX</string>
-    <string name="menu_share">Share as GPX</string>
+	<string name="menu_share">Share</string>
 	<string name="menu_osm_upload">OpenStreetMap upload</string>
 	<string name="menu_center_to_gps">Center to GPS</string>
 	<string name="menu_exportall">Export all as GPX</string>
@@ -114,7 +115,7 @@
 	<string name="error_externalstorage_not_writable_hint">Please check if ext. storage is correctly inserted and mounted.</string>
 	<string name="error_voicerec_failed">Voice recording has failed</string>
 	<string name="error_userlayout_parsing">Error while parsing XML layout file. Please revert to default layout.</string>
-	<string name="error_no_appropriate_activity">No application able to handle gpx file was found.</string>
+	<string name="error_no_appropriate_activity">No application able to handle %s files was found.</string>
 
 	<!-- GPX -->
 	<string name="gpx_track_name">Tracked with OSMTracker for Android™</string>

@@ -209,7 +209,10 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
-		
+		SimpleAdapter adapter;
+		@SuppressWarnings("unchecked")
+		Map<String, String> data;
+
 		switch(item.getItemId()) {
 		case R.id.trackdetail_menu_save:
 			save();
@@ -233,20 +236,18 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		case R.id.trackdetail_menu_export:
 			new ExportToStorageTask(this, trackId).execute();
 			// Pick last list item (Exported date) and update it
-			SimpleAdapter adapter = ((SimpleAdapter) lv.getAdapter());
-			@SuppressWarnings("unchecked")
-			Map<String, String> data = (Map<String, String>) adapter.getItem(adapter.getCount()-1);
+			adapter = ((SimpleAdapter) lv.getAdapter());
+			data = (Map<String, String>) adapter.getItem(adapter.getCount()-1);
 			data.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
 			adapter.notifyDataSetChanged();
 			break;
 		case R.id.trackdetail_menu_share:
 			new ExportAndShareTask(this, trackId).execute();
 			// Pick last list item (Exported date) and update it
-			SimpleAdapter adapter1 = ((SimpleAdapter) lv.getAdapter());
-			@SuppressWarnings("unchecked")
-			Map<String, String> data1 = (Map<String, String>) adapter1.getItem(adapter1.getCount()-1);
-			data1.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
-			adapter1.notifyDataSetChanged();
+			adapter = ((SimpleAdapter) lv.getAdapter());
+			data = (Map<String, String>) adapter.getItem(adapter.getCount()-1);
+			data.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
+			adapter.notifyDataSetChanged();
 			break;
 		case R.id.trackdetail_menu_osm_upload:
 			i = new Intent(this, OpenStreetMapUpload.class);
@@ -308,5 +309,14 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		}
 
 	}  // inner class TrackDetailSimpleAdapter
+
+    /**
+     * Clean up the temp file after it was shared with external app
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        ExportAndShareTask.deleteSharedFile(requestCode);
+    }
 
 }  // public class TrackDetail

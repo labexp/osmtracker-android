@@ -6,6 +6,7 @@
 <item android:id="@+id/trackmgr_contextmenu_display" android:title="@string/trackmgr_contextmenu_display"></item>
 <item android:id="@+id/trackmgr_contextmenu_details" android:title="@string/trackmgr_contextmenu_details"></item>
 <item android:id="@+id/trackmgr_contextmenu_export" android:title="@string/trackmgr_contextmenu_export"></item>
+<item android:id="@+id/trackmgr_contextmenu_share" android:title="@string/trackmgr_contextmenu_share"></item>
 <item android:id="@+id/trackmgr_contextmenu_osm_upload" android:title="@string/trackmgr_contextmenu_osm_upload"></item>
 <item android:id="@+id/trackmgr_contextmenu_delete" android:title="@string/trackmgr_contextmenu_delete" ></item>
 </menu>

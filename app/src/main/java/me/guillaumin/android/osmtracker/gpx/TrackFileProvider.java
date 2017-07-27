@@ -12,10 +12,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
+ * Provide access to shared track files for external apps
+ *
+ * @author NoktaStrigo
+ *
  */
 
 public final class TrackFileProvider extends ContentProvider {
-    private static final String TAG = ExportToTempFileTask.class.getSimpleName();
+    private static final String TAG = TrackFileProvider.class.getSimpleName();
 
     @Override
     public boolean onCreate() {
@@ -74,7 +78,8 @@ public final class TrackFileProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        return "application/xml";
+        ExportAndShareTask.FileTypes type = ExportAndShareTask.sharedFiles.get(uri.getLastPathSegment()).fileType;
+        return (type == ExportAndShareTask.FileTypes.ZIP) ? "application/zip" : "application/xml";
     }
 
     @Override
@@ -94,28 +99,38 @@ public final class TrackFileProvider extends ContentProvider {
 
     @Override
     public String[] getStreamTypes(Uri uri, String mimeTypeFilter) {
-        String[] mimeTypes = {"application/xml", "application/gpx", "application/gpx+xml", "application/xml+gpx", "text/xml"};
+        ExportAndShareTask.FileTypes type = ExportAndShareTask.sharedFiles.get(uri.getLastPathSegment()).fileType;
+        String[] mimeTypes_gpx = {"application/xml", "application/gpx", "application/gpx+xml", "application/xml+gpx", "text/xml"};
+        String[] mimeTypes_zip = {"application/zip"};
+        String[] mimeTypes;
+        mimeTypes = (type == ExportAndShareTask.FileTypes.ZIP) ? mimeTypes_zip : mimeTypes_gpx;
+
         String mimeTypesFiltered = "";
-        for (String mimeType : mimeTypes)
-            if (mimeTypeFilter.contains(mimeType))
+        for (String mimeType : mimeTypes) {
+            if (mimeTypeFilter.contains(mimeType)) {
                 mimeTypesFiltered += " " + mimeType;
-        return mimeTypesFiltered.split(" ");
+            }
+        }
+        String[] s = mimeTypesFiltered.split(" ");
+        return s;
     }
 
     @Override
     public ParcelFileDescriptor openFile(Uri uri, String mode)
     {
         ParcelFileDescriptor fileDescriptor = null;
-        File sharedFile = ExportAndShareTask.sharedFiles.get(uri.getLastPathSegment());
-        if (sharedFile != null)
+        File sharedFile = ExportAndShareTask.sharedFiles.get(uri.getLastPathSegment()).file;
+        if (sharedFile != null) {
             try {
                 fileDescriptor = ParcelFileDescriptor.open(sharedFile, ParcelFileDescriptor.MODE_READ_ONLY);
             }
             catch (FileNotFoundException exception) {
                 Log.e(TAG, "Could not find temporary file", exception);
             }
-        else
+        }
+        else {
             Log.e(TAG, "Requested file is not shared");
+        }
         return fileDescriptor;
     }
 }
