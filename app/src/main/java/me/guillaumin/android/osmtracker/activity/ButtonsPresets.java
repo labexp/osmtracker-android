@@ -78,8 +78,8 @@ public class ButtonsPresets extends PreferenceActivity {
                     currentCheckBox.setChecked( currentCheckBox.getKey().equals(preference.getKey()) );
                 }
             }
-//            prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,""+preference.getTitle());
-//                    OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT;
+            prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
+                                   ""+preference.getKey()).commit();
             return true;
         }
 
