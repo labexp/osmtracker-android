@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:title="Buttons Presets">
+	<PreferenceCategory android:title="Default">
+		<CheckBoxPreference
+			android:key="default"
+			android:title="Default"
+			/>
+	</PreferenceCategory>
+
+	<PreferenceCategory android:title="Downloaded" android:key="lista">
+			<!--here go the downloaded layouts-->
+	</PreferenceCategory>
+	<PreferenceCategory android:title="Download more layouts">
+		<PreferenceScreen
+			android:title="Available Layouts">
+			<intent android:action="launch_availables"/>
+		</PreferenceScreen>
+	</PreferenceCategory>
+</PreferenceScreen>

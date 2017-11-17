@@ -31,6 +31,24 @@
 			</intent-filter>
 		</activity>
 		<activity android:name=".activity.About" android:label="@string/about" />
+		<activity android:name=".activity.ButtonsPresets">
+			<intent-filter>
+				<action android:name="launch_buttons_presets"/>
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".activity.AvailableLayouts">
+			<intent-filter>
+				<action android:name="launch_availables"/>
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".activity.ServerSettings">
+			<intent-filter>
+				<action android:name="launch_server_settings"/>
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
 		<activity android:name=".activity.DisplayTrack" android:label="@string/displaytrack" />
 		<activity android:name=".activity.DisplayTrackMap" android:label="@string/displaytrackmap" />
 

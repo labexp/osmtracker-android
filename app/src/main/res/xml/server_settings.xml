@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+     android:title="Server Settings">
+        <PreferenceCategory android:title="Default Server">
+            <CheckBoxPreference
+                android:title="Default"
+                />
+        </PreferenceCategory>
+        <PreferenceCategory android:title="Custom Server">
+            <CheckBoxPreference
+                android:title="Custom"
+                />
+            <EditTextPreference
+                android:title="URL"
+                android:defaultValue="https://github.com/LabExperimental-SIUA"
+                android:summary="Server URL To Fetch From"
+                />
+        </PreferenceCategory>
+</PreferenceScreen>
