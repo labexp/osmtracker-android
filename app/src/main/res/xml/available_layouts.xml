@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:title="Available Layouts">
+    <Preference
+        android:title="Hydrants"
+        />
+    <Preference
+        android:title="Public Transport"
+        />
+    <Preference
+        android:title="Accesibility"
+        />
+    <PreferenceCategory android:title="Setup Server">
+        <PreferenceScreen
+            android:title="Server Settings">
+            <intent android:action="launch_server_settings"/>
+        </PreferenceScreen>
+    </PreferenceCategory>
+</PreferenceScreen>
