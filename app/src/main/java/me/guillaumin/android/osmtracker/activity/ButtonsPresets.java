@@ -1,5 +1,6 @@
 package me.guillaumin.android.osmtracker.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,7 +11,9 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.File;
@@ -24,80 +27,92 @@ import me.guillaumin.android.osmtracker.R;
  * Created by emmanuel on 20/10/17.
  */
 
-public class ButtonsPresets extends PreferenceActivity {
+public class ButtonsPresets extends Activity {
 
-    CheckBoxChangedListener listener = new CheckBoxChangedListener();
-    String DEFAULT_CHECKBOX_KEY = "default";
-    public ArrayList<String> checkBoxNames = new ArrayList<String>();
+    CheckBoxChangedListener listener;
+    String DEFAULT_CHECKBOX_NAME;
+    public CheckBox selected;
     SharedPreferences prefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        Log.e(">","bien");
-        addPreferencesFromResource(R.xml.buttons_presets);
+        initializeAttributes();
+        LinearLayout rootLayout = (LinearLayout)findViewById(R.id.buttons_presets);
+        listLayouts(rootLayout);
+        checkCurrentLayout(rootLayout);
+
+    }
+    private void checkCurrentLayout(LinearLayout rootLayout){
+        String activeLayoutName = prefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+        for(int i=0 ; i<rootLayout.getChildCount() ; i++){
+            View current = rootLayout.getChildAt(i);
+            if(current instanceof CheckBox) {
+                CheckBox currentCast = (CheckBox) current;
+                if(activeLayoutName.contains(""+currentCast.getText())){ //For ignoring de .xml termination
+                    currentCast.setChecked(true);
+                    selected = currentCast;
+                }
+
+            }
+        }
+    }
+    private void initializeAttributes(){
+        setTitle("Buttons Presets");
+        setContentView(R.layout.buttons_presets);
+        DEFAULT_CHECKBOX_NAME = "default";
+        listener = new CheckBoxChangedListener();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    }
+
+    private void listLayouts(LinearLayout rootLayout){
         String storageDir = "/osmtracker";
         File layoutsDir = new File(Environment.getExternalStorageDirectory(), storageDir + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator);
+        int AT_START = 0; //the position to insert the view at
+        int fontSize = 20;
         if (layoutsDir.exists() && layoutsDir.canRead()) {
             String[] layoutFiles = layoutsDir.list(new FilenameFilter() {
-                                                        @Override
-                                                        public boolean accept(File dir, String filename) {
-                                                            return filename.endsWith(".xml");//Preferences.LAYOUT_FILE_EXTENSION);
-                                                        }
-                                                    });
-            PreferenceCategory seccion = (PreferenceCategory)findPreference("lista");
-            for(String name : layoutFiles){
-                checkBoxNames.add(name);
+                @Override
+                public boolean accept(File dir, String filename) {
+                    return filename.endsWith(".xml");//Preferences.LAYOUT_FILE_EXTENSION);
+                }
+            });
+            for(String name : layoutFiles) {
+                CheckBox c = new CheckBox(this);
+                c.setTextSize((float) fontSize);
+                c.setText(name.substring(0, name.indexOf(".")));
+                c.setOnClickListener(listener);
+                rootLayout.addView(c, AT_START);
             }
-            for(String name : checkBoxNames){
-                CheckBoxPreference c = new CheckBoxPreference(this);
-                c.setTitle(name.substring(0,name.indexOf(".")));
-                c.setKey(name);
-                c.setOnPreferenceChangeListener(listener);
-                c.setChecked(false);
-                seccion.addPreference(c);
-            }
-            checkBoxNames.add(DEFAULT_CHECKBOX_KEY);
-            ((CheckBoxPreference)findPreference(DEFAULT_CHECKBOX_KEY)).setOnPreferenceChangeListener(listener);
-
         }
+        CheckBox def = new CheckBox(this);
+        def.setTextSize((float)fontSize);
+        def.setText(DEFAULT_CHECKBOX_NAME);
+        def.setOnClickListener(listener);
+        rootLayout.addView(def,AT_START);
+
+    }
+    public void launch_availables(View v){ //For the button
+        startActivity(new Intent(this,AvailableLayouts.class));
     }
 
     //Class that manages the changes on the selected layout
-    private class CheckBoxChangedListener implements Preference.OnPreferenceChangeListener {
+    private class CheckBoxChangedListener implements View.OnClickListener {
         @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            if(preference.getKey().equals(DEFAULT_CHECKBOX_KEY)){
-//                notify("cancelado");
-                changeNotDefaultCheckBoxesState( ! (Boolean)newValue );
+        public void onClick(View view) {
+            CheckBox pressed = (CheckBox)view;
+            selected.setChecked(false);
+            pressed.setChecked(true);
+            selected=pressed;
+            String targetLayout = "";
+            if(selected.getText().equals(DEFAULT_CHECKBOX_NAME)){
+                targetLayout = DEFAULT_CHECKBOX_NAME;
+            }else {
+                targetLayout = selected.getText() + ".xml";
             }
-            else{
-                for(String name : checkBoxNames){
-                    CheckBoxPreference currentCheckBox = (CheckBoxPreference) findPreference(name);
-                    currentCheckBox.setChecked( currentCheckBox.getKey().equals(preference.getKey()) );
-                }
-            }
+//            Log.e("#","Layout changed to "+targetLayout);
             prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
-                                   ""+preference.getKey()).commit();
-            return true;
-        }
-
-        //For disabling the downloaded layouts when the default one is selected
-        private void changeNotDefaultCheckBoxesState(boolean newState){
-            for(String name : checkBoxNames) {
-                if(! name.equals(DEFAULT_CHECKBOX_KEY)) {
-                    CheckBoxPreference currentCheckBox = (CheckBoxPreference) findPreference(name);
-                    currentCheckBox.setEnabled(newState);
-                    currentCheckBox.setChecked(false);
-                }
-            }
-        }
-
-        //Utility function for showing messages through a Toast
-        void notify(String message){
-            Toast toast = Toast.makeText(getApplicationContext(), message , Toast.LENGTH_SHORT);
-            toast.show();
+                    targetLayout).commit();
         }
     }
 }
