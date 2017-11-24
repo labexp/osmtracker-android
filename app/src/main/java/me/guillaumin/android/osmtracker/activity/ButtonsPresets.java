@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
@@ -33,6 +34,16 @@ public class ButtonsPresets extends Activity {
     String DEFAULT_CHECKBOX_NAME;
     public CheckBox selected;
     SharedPreferences prefs;
+
+    /**
+     * Container for the file names and the presentation names
+     */
+    public static Hashtable<String, String> container = new Hashtable<String, String>();
+
+    /**
+     * File Extension for the layouts in different llanguages
+     */
+    public final static String LAYOUT_EXTENSION_ISO = "_xx.xml";
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -80,7 +91,8 @@ public class ButtonsPresets extends Activity {
             for(String name : layoutFiles) {
                 CheckBox c = new CheckBox(this);
                 c.setTextSize((float) fontSize);
-                c.setText(name.substring(0, name.indexOf(".")));
+                String newName = convertFileName(name);
+                c.setText(newName);
                 c.setOnClickListener(listener);
                 rootLayout.addView(c, AT_START);
             }
@@ -94,6 +106,31 @@ public class ButtonsPresets extends Activity {
     }
     public void launch_availables(View v){ //For the button
         startActivity(new Intent(this,AvailableLayouts.class));
+    }
+    
+    /**
+     * This method converts a xml file name to a simple name for presentation in the Downloaded Layouts
+     * section of the Buttons Presets Activity
+     */
+    public String convertFileName(String fileName){
+
+        String oldName = fileName.substring(0, fileName.length() - LAYOUT_EXTENSION_ISO.length());
+
+        String key = "";
+        int j = 0;
+        for(int i=0; i<oldName.length(); i++){
+            //if there is a "_", it is remove from the string
+            if(oldName.substring(j, i+1).equals("_")){
+                key += " ";
+            }else{
+                key += oldName.substring(j, i+1);
+            }
+            j++;
+        }
+
+        container.put(key, fileName);
+
+        return key;
     }
 
     //Class that manages the changes on the selected layout
