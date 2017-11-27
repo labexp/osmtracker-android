@@ -33,12 +33,13 @@ public class ButtonsPresets extends Activity {
     CheckBoxChangedListener listener;
     String DEFAULT_CHECKBOX_NAME;
     public CheckBox selected;
+    private CheckBox defaultCheckBox;
     SharedPreferences prefs;
 
     /**
      * Container for the file names and the presentation names
      */
-    public static Hashtable<String, String> container = new Hashtable<String, String>();
+    public static Hashtable<String, String> container;
 
     /**
      * File Extension for the layouts in different llanguages
@@ -56,17 +57,20 @@ public class ButtonsPresets extends Activity {
     }
     private void checkCurrentLayout(LinearLayout rootLayout){
         String activeLayoutName = prefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
-        for(int i=0 ; i<rootLayout.getChildCount() ; i++){
+        boolean found = false;
+        for(int i=0 ; i<rootLayout.getChildCount() && !found; i++){
             View current = rootLayout.getChildAt(i);
             if(current instanceof CheckBox) {
                 CheckBox currentCast = (CheckBox) current;
-                if(activeLayoutName.contains(""+currentCast.getText())){ //For ignoring de .xml termination
-                    currentCast.setChecked(true);
+                String currentName = container.get(currentCast.getText());
+                Log.e("#","lookin for:"+activeLayoutName+"curr: "+currentName);
+                if(activeLayoutName.contains(currentName)){ //For ignoring de .xml termination
                     selected = currentCast;
+                    found=true;
                 }
-
             }
         }
+        selected.setChecked(true);
     }
     private void initializeAttributes(){
         setTitle("Buttons Presets");
@@ -74,6 +78,7 @@ public class ButtonsPresets extends Activity {
         DEFAULT_CHECKBOX_NAME = "default";
         listener = new CheckBoxChangedListener();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        container = new Hashtable<String, String>();
     }
 
     private void listLayouts(LinearLayout rootLayout){
@@ -92,6 +97,7 @@ public class ButtonsPresets extends Activity {
                 CheckBox c = new CheckBox(this);
                 c.setTextSize((float) fontSize);
                 String newName = convertFileName(name);
+                container.put(newName, name);
                 c.setText(newName);
                 c.setOnClickListener(listener);
                 rootLayout.addView(c, AT_START);
@@ -101,6 +107,9 @@ public class ButtonsPresets extends Activity {
         def.setTextSize((float)fontSize);
         def.setText(DEFAULT_CHECKBOX_NAME);
         def.setOnClickListener(listener);
+        //this is the maping default->default
+        container.put(OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT,OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+        this.defaultCheckBox = def;
         rootLayout.addView(def,AT_START);
 
     }
@@ -127,9 +136,6 @@ public class ButtonsPresets extends Activity {
             }
             j++;
         }
-
-        container.put(key, fileName);
-
         return key;
     }
 
@@ -141,13 +147,7 @@ public class ButtonsPresets extends Activity {
             selected.setChecked(false);
             pressed.setChecked(true);
             selected=pressed;
-            String targetLayout = "";
-            if(selected.getText().equals(DEFAULT_CHECKBOX_NAME)){
-                targetLayout = DEFAULT_CHECKBOX_NAME;
-            }else {
-                targetLayout = selected.getText() + ".xml";
-            }
-//            Log.e("#","Layout changed to "+targetLayout);
+            String targetLayout = container.get(pressed.getText());
             prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
                     targetLayout).commit();
         }
