@@ -11,9 +11,15 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -35,38 +41,48 @@ public class ButtonsPresets extends Activity {
     public CheckBox selected;
     private CheckBox defaultCheckBox;
     SharedPreferences prefs;
-
-    /**
-     * Container for the file names and the presentation names
-     */
-    public static Hashtable<String, String> container;
-
-    /**
-     * File Extension for the layouts in different llanguages
-     */
-    public final static String LAYOUT_EXTENSION_ISO = "_xx.xml";
+    //Container for the file names and the presentation names
+    private static Hashtable<String, String> container;
+    //File Extension for the layouts in different languages
+    private final static String LAYOUT_EXTENSION_ISO = "_xx.xml";
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         initializeAttributes();
-        LinearLayout rootLayout = (LinearLayout)findViewById(R.id.buttons_presets);
+        LinearLayout rootLayout = (LinearLayout)findViewById(R.id.list_layouts); //root layout for the downloaded xml files
+        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.buttons_presets); //main layout for the default layout checkbox
         listLayouts(rootLayout);
-        checkCurrentLayout(rootLayout);
+        checkCurrentLayout(rootLayout, mainLayout);
 
     }
-    private void checkCurrentLayout(LinearLayout rootLayout){
+    private void checkCurrentLayout(LinearLayout rootLayout, LinearLayout mainLayout){
         String activeLayoutName = prefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
-        boolean found = false;
-        for(int i=0 ; i<rootLayout.getChildCount() && !found; i++){
-            View current = rootLayout.getChildAt(i);
-            if(current instanceof CheckBox) {
-                CheckBox currentCast = (CheckBox) current;
-                String currentName = container.get(currentCast.getText());
-                Log.e("#","lookin for:"+activeLayoutName+"curr: "+currentName);
-                if(activeLayoutName.contains(currentName)){ //For ignoring de .xml termination
-                    selected = currentCast;
-                    found=true;
+        boolean defLayout = false;
+
+        //first, we check if the default layout is activated
+        View defCheck = mainLayout.getChildAt(1); //the default checkbox in the activity
+        if(defCheck instanceof CheckBox){
+            CheckBox defCheckCast = (CheckBox) defCheck;
+            String defCheckName = container.get(defCheckCast.getText());
+            if (activeLayoutName.contains(defCheckName)) { //For ignoring de .xml termination
+                selected = defCheckCast;
+                defLayout = true;
+            }
+        }
+        //then, if the dafult layout isn't activated, we verify the other layouts
+        if(defLayout == false) {
+            boolean found = false;
+            for (int i = 0; i < rootLayout.getChildCount() && !found; i++) {
+                View current = rootLayout.getChildAt(i);
+                if (current instanceof CheckBox) {
+                    CheckBox currentCast = (CheckBox) current;
+                    String currentName = container.get(currentCast.getText());
+                    Log.e("#", "lookin for:" + activeLayoutName + "curr: " + currentName);
+                    if (activeLayoutName.contains(currentName)) { //For ignoring de .xml termination
+                        selected = currentCast;
+                        found = true;
+                    }
                 }
             }
         }
@@ -99,44 +115,48 @@ public class ButtonsPresets extends Activity {
                 String newName = convertFileName(name);
                 container.put(newName, name);
                 c.setText(newName);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                lp.setMargins(60, 0, 0, 0);
+                c.setLayoutParams(lp);
+                c.setPadding(10,20,10,20);
                 c.setOnClickListener(listener);
+                registerForContextMenu(c);
                 rootLayout.addView(c, AT_START);
             }
         }
-        CheckBox def = new CheckBox(this);
-        def.setTextSize((float)fontSize);
-        def.setText(DEFAULT_CHECKBOX_NAME);
-        def.setOnClickListener(listener);
+
+        defaultCheckBox = (CheckBox) findViewById(R.id.def_layout);
+        defaultCheckBox.setOnClickListener(listener);
         //this is the maping default->default
         container.put(OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT,OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
-        this.defaultCheckBox = def;
-        rootLayout.addView(def,AT_START);
-
+        //verify the size of the container, if it is greater than 1, we put invisible the message (in the downloaded layouts section)
+        if(container.size() > 1){
+            TextView empyText = (TextView) findViewById(R.id.btnpre_empty);
+            empyText.setVisibility(View.INVISIBLE);
+        }else{
+            TextView empyText = (TextView) findViewById(R.id.btnpre_empty);
+            empyText.setVisibility(View.VISIBLE);
+        }
     }
     public void launch_availables(View v){ //For the button
         startActivity(new Intent(this,AvailableLayouts.class));
     }
     
-    /**
-     * This method converts a xml file name to a simple name for presentation in the Downloaded Layouts
-     * section of the Buttons Presets Activity
-     */
+    //This method converts a xml file name to a simple name for presentation in the Downloaded Layouts section of the Buttons Presets Activity
     public String convertFileName(String fileName){
-
         String oldName = fileName.substring(0, fileName.length() - LAYOUT_EXTENSION_ISO.length());
-
-        String key = "";
+        StringBuilder key = new StringBuilder();
         int j = 0;
         for(int i=0; i<oldName.length(); i++){
             //if there is a "_", it is remove from the string
             if(oldName.substring(j, i+1).equals("_")){
-                key += " ";
+                key.append(" ");
             }else{
-                key += oldName.substring(j, i+1);
+                key.append(oldName.substring(j, i + 1));
             }
             j++;
         }
-        return key;
+        return key.toString();
     }
 
     //Class that manages the changes on the selected layout
@@ -151,5 +171,30 @@ public class ButtonsPresets extends Activity {
             prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
                     targetLayout).commit();
         }
+    }
+
+    //methods for the context menu for each checkbox
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        //inflate the menu for the view selected
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.btnprecb_context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.cb_update_and_install:
+                Toast mensaje = Toast.makeText(getApplicationContext(), "Update and Install options was pressed",
+                        Toast.LENGTH_LONG);
+                mensaje.show();
+                break;
+            case R.id.cb_delete:
+                Toast mensaje2 = Toast.makeText(getApplicationContext(), "Delete option was pressed",
+                        Toast.LENGTH_LONG);
+                mensaje2.show();
+        }
+        return super.onContextItemSelected(item);
     }
 }
