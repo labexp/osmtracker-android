@@ -19,32 +19,25 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.guillaumin.android.osmtracker.util.CustomLayoutsUtils;
+
 /**
  * Created by james on 07/12/17.
  */
 
-public class ListAvailableCustomLayoutsTask extends AsyncTask<Void, Integer, List<String>> {
+public class GetStringResponseTask extends AsyncTask<String, Integer, String> {
     private static final String TAG = "List Custom Layouts";
 
     @Override
-    protected List<String> doInBackground(Void... voids) {
+    protected String doInBackground(String... params) {
         // https://crunchify.com/in-java-how-to-read-github-file-contents-using-httpurlconnection-convert-stream-to-string-utility/
-
-        //TODO: get default server_URL (without metadata folder in it)
-        String server_url = "https://api.github.com/repos/LabExperimental-SIUA/osmtracker-android/contents/layouts/metadata?ref=layouts";
-
         try {
-            //URL url = new URL(urlString[0]);
-            URL url = new URL(server_url);
+            URL url = new URL(params[0]); //get the url passed as parameter must be built.
+
             // Open Url Connection
             HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
             InputStream stream = httpConnection.getInputStream();
-            String response = getStringFromStream(stream);
-
-            Log.i(TAG, response);
-
-            List<String> options = parseResponse(response);
-            return options;
+            return getStringFromStream(stream);
 
         } catch (Exception e) {
             Log.e(TAG, "Error. Exception: " + e.toString());
@@ -52,12 +45,14 @@ public class ListAvailableCustomLayoutsTask extends AsyncTask<Void, Integer, Lis
             return null;
         }
     }
-
-    // ConvertStreamToString() Utility
+    /**
+     * @param stream
+     * @return all the characters in the stream as a single String
+     * @throws IOException
+     */
     private String getStringFromStream(InputStream stream) throws IOException {
         if (stream != null) {
             Writer writer = new StringWriter();
-
             char[] buffer = new char[2048];
             try {
                 Reader reader = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
@@ -65,46 +60,12 @@ public class ListAvailableCustomLayoutsTask extends AsyncTask<Void, Integer, Lis
                 while ((counter = reader.read(buffer)) != -1) {
                     writer.write(buffer, 0, counter);
                 }
-            } finally {
+            }finally {
                 stream.close();
             }
             return writer.toString();
         } else {
-            // return "No Contents";
             throw new  IOException();
         }
     }
-
-
-    private List<String> parseResponse(String response) {
-        /*
-        parse the string (representation of a json) to get only the values associated with
-        key "name", which are the file names of the folder requested before.
-         */
-
-        List<String> options = new ArrayList<String>();
-
-
-        try {
-            // create JSON Object
-            JSONArray jsonArray = new JSONArray(response);
-
-            for (int i= 0; i < jsonArray.length(); i++) {
-                // create json object for every element of the array
-                JSONObject object = jsonArray.getJSONObject(i);
-                // get the value associated with
-                options.add( object.getString("name") );
-            }
-
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
-        }
-
-        return options;
-    }
-
-
 }

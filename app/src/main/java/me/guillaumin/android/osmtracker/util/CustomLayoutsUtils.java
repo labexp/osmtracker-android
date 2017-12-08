@@ -1,5 +1,15 @@
 package me.guillaumin.android.osmtracker.util;
 
+import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
+
 import me.guillaumin.android.osmtracker.activity.ButtonsPresets;
 import me.guillaumin.android.osmtracker.activity.Preferences;
 
@@ -27,4 +37,13 @@ public class CustomLayoutsUtils {
         }
         return subName.replace("_", " ");
     }
+
+    /**
+     * @param representation is the layout name shown in the UI
+     * @return the filename of the layout. Which is the input with the "meta_", "_" and ".xml"
+     */
+    public static String unconvertFileName(String representation){
+        return "meta_"+representation.replace(" ","_")+".xml";
+    }
+
 }
