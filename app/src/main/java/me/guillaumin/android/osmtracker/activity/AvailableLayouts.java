@@ -12,25 +12,47 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+
+import java.util.List;
+
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.layout.ListAvailableCustomLayoutsTask;
+import me.guillaumin.android.osmtracker.util.CustomLayoutsUtils;
 
 /**
  * Created by emmanuel on 10/11/17.
  */
 
 public class AvailableLayouts extends Activity {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Available Layouts");
         setContentView(R.layout.available_layouts);
+
+        // call task to downloand and parse the response to get the list of
+        // available layouts
+        new ListAvailableCustomLayoutsTask(){
+            protected void onPostExecute(List<String> options){
+                setAvailableLayouts(options);
+            }
+
+        }.execute();
+
+
+    }
+
+
+    public void setAvailableLayouts(List<String> options) {
         LinearLayout ly = (LinearLayout)findViewById(R.id.root_layout);
-        String[] options = {"Hydrants","Public Transport","Accesibility"};
         int AT_START = 0; //the position to insert the view at
         for(String option : options){
             TextView c = new TextView(this);
             c.setHeight(200);
-            c.setText(option +"(hold me)");
+            c.setText(CustomLayoutsUtils.convertFileName(option, false));
             c.setTextSize((float)30);
             registerForContextMenu(c);
             c.setOnLongClickListener(new View.OnLongClickListener() {
@@ -44,6 +66,7 @@ public class AvailableLayouts extends Activity {
             ly.addView(c,AT_START);
         }
     }
+
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
