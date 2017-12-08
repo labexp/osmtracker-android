@@ -38,7 +38,7 @@ public class Preferences extends PreferenceActivity {
 	/**
 	 * File extension for layout files
 	 */
-	private static final String LAYOUT_FILE_EXTENSION = ".xml";
+	public static final String LAYOUT_FILE_EXTENSION = ".xml";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

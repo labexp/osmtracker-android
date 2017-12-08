@@ -7,18 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.CheckBoxPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,11 +20,11 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.util.CustomLayoutsUtils;
 import me.guillaumin.android.osmtracker.util.FileSystemUtils;
 
 /**
@@ -46,8 +40,6 @@ public class ButtonsPresets extends Activity {
     private SharedPreferences prefs;
     //Container for the file names and the presentation names
     private static Hashtable<String, String> container;
-    //File Extension for the layouts in different languages
-    private final static String LAYOUT_EXTENSION_ISO = "_xx.xml";
     private final static String STORAGE_DIR = File.separator + OSMTracker.Preferences.VAL_STORAGE_DIR;
 
     @Override
@@ -83,7 +75,7 @@ public class ButtonsPresets extends Activity {
             for(String name : layoutFiles) {
                 CheckBox c = new CheckBox(this);
                 c.setTextSize((float) fontSize);
-                String newName = convertFileName(name);
+                String newName = CustomLayoutsUtils.convertFileName(name, true);
                 container.put(newName, name);
                 c.setText(newName);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -160,12 +152,6 @@ public class ButtonsPresets extends Activity {
     public void launch_availables(View v){ //For the button
         startActivity(new Intent(this,AvailableLayouts.class));
     }
-    
-    //This method converts a xml file name to a simple name for presentation in the Downloaded Layouts section of the Buttons Presets Activity
-    public String convertFileName(String fileName){
-        String newName = fileName.substring(0, fileName.length() - LAYOUT_EXTENSION_ISO.length());
-        return newName.replace("_", " ");
-    }
 
     //Class that manages the changes on the selected layout
     private class CheckBoxChangedListener implements View.OnClickListener {
@@ -215,7 +201,7 @@ public class ButtonsPresets extends Activity {
                         if(FileSystemUtils.delete(fileToDelete, false)){
                             Toast.makeText(getApplicationContext(), "The file was deleted successfully", Toast.LENGTH_SHORT).show();
 
-                            String iconDirName = fileName.substring(0, fileName.length() - LAYOUT_EXTENSION_ISO.length());
+                            String iconDirName = fileName.substring(0, fileName.length() - CustomLayoutsUtils.LAYOUT_EXTENSION_ISO.length());
                             File iconDirToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + iconDirName);
 
                             if(FileSystemUtils.delete(iconDirToDelete, true)){
