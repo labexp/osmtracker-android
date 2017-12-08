@@ -1,6 +1,8 @@
 package me.guillaumin.android.osmtracker.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ import java.util.Hashtable;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.util.FileSystemUtils;
 
 /**
  * Created by emmanuel on 20/10/17.
@@ -36,70 +39,38 @@ import me.guillaumin.android.osmtracker.R;
 
 public class ButtonsPresets extends Activity {
 
-    CheckBoxChangedListener listener;
-    String DEFAULT_CHECKBOX_NAME;
+    private CheckBox selectedCheckBox;
+    private CheckBoxChangedListener listener;
     public CheckBox selected;
     private CheckBox defaultCheckBox;
-    SharedPreferences prefs;
+    private SharedPreferences prefs;
     //Container for the file names and the presentation names
     private static Hashtable<String, String> container;
     //File Extension for the layouts in different languages
     private final static String LAYOUT_EXTENSION_ISO = "_xx.xml";
+    private final static String STORAGE_DIR = File.separator + OSMTracker.Preferences.VAL_STORAGE_DIR;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         initializeAttributes();
-        LinearLayout rootLayout = (LinearLayout)findViewById(R.id.list_layouts); //root layout for the downloaded xml files
+        LinearLayout rootLayout = (LinearLayout) findViewById(R.id.list_layouts);
         LinearLayout mainLayout = (LinearLayout) findViewById(R.id.buttons_presets); //main layout for the default layout checkbox
         listLayouts(rootLayout);
         checkCurrentLayout(rootLayout, mainLayout);
 
     }
-    private void checkCurrentLayout(LinearLayout rootLayout, LinearLayout mainLayout){
-        String activeLayoutName = prefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
-        boolean defLayout = false;
 
-        //first, we check if the default layout is activated
-        View defCheck = mainLayout.getChildAt(1); //the default checkbox in the activity
-        if(defCheck instanceof CheckBox){
-            CheckBox defCheckCast = (CheckBox) defCheck;
-            String defCheckName = container.get(defCheckCast.getText());
-            if (activeLayoutName.contains(defCheckName)) { //For ignoring de .xml termination
-                selected = defCheckCast;
-                defLayout = true;
-            }
-        }
-        //then, if the dafult layout isn't activated, we verify the other layouts
-        if(defLayout == false) {
-            boolean found = false;
-            for (int i = 0; i < rootLayout.getChildCount() && !found; i++) {
-                View current = rootLayout.getChildAt(i);
-                if (current instanceof CheckBox) {
-                    CheckBox currentCast = (CheckBox) current;
-                    String currentName = container.get(currentCast.getText());
-                    Log.e("#", "lookin for:" + activeLayoutName + "curr: " + currentName);
-                    if (activeLayoutName.contains(currentName)) { //For ignoring de .xml termination
-                        selected = currentCast;
-                        found = true;
-                    }
-                }
-            }
-        }
-        selected.setChecked(true);
-    }
     private void initializeAttributes(){
         setTitle("Buttons Presets");
         setContentView(R.layout.buttons_presets);
-        DEFAULT_CHECKBOX_NAME = "default";
         listener = new CheckBoxChangedListener();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         container = new Hashtable<String, String>();
     }
 
     private void listLayouts(LinearLayout rootLayout){
-        String storageDir = "/osmtracker";
-        File layoutsDir = new File(Environment.getExternalStorageDirectory(), storageDir + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator);
+        File layoutsDir = new File(Environment.getExternalStorageDirectory(), STORAGE_DIR + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator);
         int AT_START = 0; //the position to insert the view at
         int fontSize = 20;
         if (layoutsDir.exists() && layoutsDir.canRead()) {
@@ -138,25 +109,62 @@ public class ButtonsPresets extends Activity {
             empyText.setVisibility(View.VISIBLE);
         }
     }
+
+    private void checkCurrentLayout(LinearLayout rootLayout, LinearLayout mainLayout){
+        String activeLayoutName = prefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+        boolean defLayout = false;
+
+        //first, we check if the default layout is activated
+        View defCheck = mainLayout.getChildAt(1); //the default checkbox in the activity
+        if(defCheck instanceof CheckBox){
+            CheckBox defCheckCast = (CheckBox) defCheck;
+            String defCheckName = container.get(defCheckCast.getText());
+            if (activeLayoutName.contains(defCheckName)) { //For ignoring de .xml termination
+                selected = defCheckCast;
+                defLayout = true;
+            }
+        }
+
+        boolean found = false;
+        //then, if the dafult layout isn't activated, we verify the other layouts
+        if (!defLayout) {
+            for (int i = 0; i < rootLayout.getChildCount(); i++) {
+                View current = rootLayout.getChildAt(i);
+                if (current instanceof CheckBox) {
+                    CheckBox currentCast = (CheckBox) current;
+                    String currentName = container.get(currentCast.getText());
+                    Log.e("#", "lookin for:" + activeLayoutName + "curr: " + currentName);
+                    if (activeLayoutName.contains(currentName)) { //For ignoring de .xml termination
+                        selected = currentCast;
+                        found = true;
+                        break;
+                    }//end if (activeLayoutName.contains(currentName))
+                }//end if (current instanceof CheckBox)
+            }//end for
+
+            //if not found the active layout then set the default
+            if(!found){
+                selected = (CheckBox) defCheck;
+                String targetLayout = container.get(selected.getText());
+                prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
+                        targetLayout).commit();
+                //reload the activity
+                finish();
+                startActivity(getIntent());
+            }//end if(found == false)
+        }//end if (defLayout == false)
+
+        selected.setChecked(true);
+    }
+
     public void launch_availables(View v){ //For the button
         startActivity(new Intent(this,AvailableLayouts.class));
     }
     
     //This method converts a xml file name to a simple name for presentation in the Downloaded Layouts section of the Buttons Presets Activity
     public String convertFileName(String fileName){
-        String oldName = fileName.substring(0, fileName.length() - LAYOUT_EXTENSION_ISO.length());
-        StringBuilder key = new StringBuilder();
-        int j = 0;
-        for(int i=0; i<oldName.length(); i++){
-            //if there is a "_", it is remove from the string
-            if(oldName.substring(j, i+1).equals("_")){
-                key.append(" ");
-            }else{
-                key.append(oldName.substring(j, i + 1));
-            }
-            j++;
-        }
-        return key.toString();
+        String newName = fileName.substring(0, fileName.length() - LAYOUT_EXTENSION_ISO.length());
+        return newName.replace("_", " ");
     }
 
     //Class that manages the changes on the selected layout
@@ -180,6 +188,7 @@ public class ButtonsPresets extends Activity {
         //inflate the menu for the view selected
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.btnprecb_context_menu, menu);
+        selectedCheckBox = (CheckBox) v;
     }
 
     @Override
@@ -191,9 +200,45 @@ public class ButtonsPresets extends Activity {
                 mensaje.show();
                 break;
             case R.id.cb_delete:
-                Toast mensaje2 = Toast.makeText(getApplicationContext(), "Delete option was pressed",
-                        Toast.LENGTH_LONG);
-                mensaje2.show();
+                new AlertDialog.Builder(this).
+                setTitle(selectedCheckBox.getText())
+                .setMessage("Are you sure to delete the " + selectedCheckBox.getText() + " layout?")
+                .setCancelable(true)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String fileName = container.get(selectedCheckBox.getText());
+                        String rootDir = STORAGE_DIR + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator;
+                        File fileToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + fileName);
+
+                        if(FileSystemUtils.delete(fileToDelete, false)){
+                            Toast.makeText(getApplicationContext(), "The file was deleted successfully", Toast.LENGTH_SHORT).show();
+
+                            String iconDirName = fileName.substring(0, fileName.length() - LAYOUT_EXTENSION_ISO.length());
+                            File iconDirToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + iconDirName);
+
+                            if(FileSystemUtils.delete(iconDirToDelete, true)){
+                                Toast.makeText(getApplicationContext(), "The icon directory was deleted successfully", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(), "This file didn't have any icon directory associated", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            Toast.makeText(getApplicationContext(), "The file could not be delete", Toast.LENGTH_SHORT).show();
+                        }
+                        //reload the activity
+                        finish();
+                        startActivity(getIntent());
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).create().show();
+                break;
         }
         return super.onContextItemSelected(item);
     }
