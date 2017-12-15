@@ -1,5 +1,6 @@
 package me.guillaumin.android.osmtracker.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -178,33 +179,34 @@ public class ButtonsPresets extends Activity {
         selectedCheckBox = (CheckBox) v;
     }
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.cb_update_and_install:
-                /**
-                 *TODO: Define the params for DownloadCustomLayoutTask
-                 */
-                String info[]= {"transporte_publico", "_es"};
-
+                String name = selectedCheckBox.getText().toString().replace(" ", "_");
+                Log.i("#", name + ": " + container.get(selectedCheckBox.getText()));
+                String iso = getIso(container.get(selectedCheckBox.getText()));
+                String info[]= {name, iso};
                 new DownloadCustomLayoutTask(){
                     protected void onPostExecute(Boolean status){
                         if (status) {
                             Log.i("Download Custom Layout", "Ok");
+                            String targetLayout = container.get(selectedCheckBox.getText());
+                            prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
+                                    targetLayout).commit();
+                            finish();
+                            startActivity(getIntent());
+                            Toast.makeText(getApplicationContext(), "Layout was updated successfully", Toast.LENGTH_LONG).show();
                         }
                         else {
                             Log.e("Download Custom Layout", "Download error");
+                            Toast.makeText(getApplicationContext(), "Layout was not updated, try again later.", Toast.LENGTH_LONG).show();
                         }
                     }
-
-                }.execute(info); //The test is with the "Transporte publico" layout
-
-
-                // REFRESH THE ACTIVITY WHEN A NEW LAYOUT IS INSTALLED
-                //finish();
-                //startActivity(getIntent());
-
+                }.execute(info);
                 break;
+
             case R.id.cb_delete:
                 new AlertDialog.Builder(this).
                 setTitle(selectedCheckBox.getText())
@@ -247,5 +249,18 @@ public class ButtonsPresets extends Activity {
                 break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    //this method obtain the iso of any layout file name
+    private String getIso(String layoutName){
+        String tmp = layoutName.substring(0, layoutName.length() - Preferences.LAYOUT_FILE_EXTENSION.length());
+        String iso = "";
+        for (int i=0; i<tmp.length(); i++){
+            if(i >= tmp.length() - 3){
+                iso += tmp.charAt(i);
+                Log.i("#", "Looking into iso variable: " + iso);
+            }
+        }
+        return iso;
     }
 }

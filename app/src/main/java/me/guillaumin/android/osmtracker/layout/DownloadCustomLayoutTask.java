@@ -10,12 +10,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Set;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.Preferences;
 import me.guillaumin.android.osmtracker.util.CheckForSDCard;
-import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Created by aton1698 on 13/12/17.
@@ -28,7 +28,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
     protected Boolean doInBackground(String[] layoutNames) {
 
         //Change with the method "createLayoutUrl"
-        String layoutURL="https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico_es.xml";
+        String layoutURL="https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/"+layoutNames[0]+layoutNames[1]+".xml";
         String layoutPath = Environment.getExternalStorageDirectory() + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator;
 
         String iconsPath = Environment.getExternalStorageDirectory() + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator +
