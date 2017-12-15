@@ -1,23 +1,31 @@
 package me.guillaumin.android.osmtracker.activity;
 
-import android.app.ActionBar;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.json.JSONArray;
+import android.widget.Toast;
 
 import java.util.List;
 
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.layout.ListAvailableCustomLayoutsTask;
+import me.guillaumin.android.osmtracker.layout.URLValidatorTask;
 import me.guillaumin.android.osmtracker.util.CustomLayoutsUtils;
 
 /**
@@ -26,12 +34,20 @@ import me.guillaumin.android.osmtracker.util.CustomLayoutsUtils;
 
 public class AvailableLayouts extends Activity {
 
+    //this variable indicates if the default github configuration is activated
+    private boolean isDefChecked;
+    //the shared preferences file where the values are saved
+    private SharedPreferences checkboxActive;
+    //this is the editor for save values into the shared preferences file
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Available Layouts");
         setContentView(R.layout.available_layouts);
+        checkboxActive = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = checkboxActive.edit();
 
         // call task to downloand and parse the response to get the list of
         // available layouts
@@ -67,6 +83,137 @@ public class AvailableLayouts extends Activity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.srvsttg_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //this override method creates the github repository settings windows, and upload the values in the shared preferences file if those changed
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.srvsttg_config){
+            LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+            //this is for prevent any error with the inflater
+            assert inflater != null;
+            //This is the pop up that's appears when the config button in the top right corner is pressed
+            @SuppressLint("InflateParams") final View repositoryConfigWindow = inflater.inflate(R.layout.github_repository_settings, null);
+            //instancing the edit texts of the layout inflate
+            final EditText github_username = (EditText) repositoryConfigWindow.findViewById(R.id.github_username);
+            final EditText repository_name = (EditText) repositoryConfigWindow.findViewById(R.id.repository_name);
+            final EditText branch_name = (EditText) repositoryConfigWindow.findViewById(R.id.branch_name);
+            //instancing the checkbox option and setting the click listener
+            final CheckBox defaultServerCheckBox = (CheckBox) repositoryConfigWindow.findViewById(R.id.default_server);
+            final CheckBox customServerCheckBox = (CheckBox) repositoryConfigWindow.findViewById(R.id.custom_server);
+
+            //first, we verify if the default checkbox is activated, if true we put the default options into the edit texts and make them not editable
+            if(checkboxActive.getBoolean("defCheck", true)){
+                customServerCheckBox.setChecked(false);
+                customServerCheckBox.setEnabled(true);
+                defaultServerCheckBox.setChecked(true);
+                defaultServerCheckBox.setEnabled(false);
+                //setting the default options in the text fields
+                github_username.setText("LabExperimental-SIUA");
+                github_username.setEnabled(false);
+                repository_name.setText("osmtracker-android");
+                repository_name.setEnabled(false);
+                branch_name.setText("layouts");
+                branch_name.setEnabled(false);
+            }
+            //if the default checkbox isn't checked we put the shared preferences values into the edit texts
+            else{
+                defaultServerCheckBox.setChecked(false);
+                defaultServerCheckBox.setEnabled(true);
+                customServerCheckBox.setChecked(true);
+                customServerCheckBox.setEnabled(true);
+                //enabling the text options fields
+                github_username.setText(checkboxActive.getString("github_username", ""));
+                github_username.setEnabled(true);
+                repository_name.setText(checkboxActive.getString("repository_name", ""));
+                repository_name.setEnabled(true);
+                branch_name.setText(checkboxActive.getString("branch_name", ""));
+                branch_name.setEnabled(true);
+            }
+
+            defaultServerCheckBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    customServerCheckBox.setChecked(false);
+                    customServerCheckBox.setEnabled(true);
+                    defaultServerCheckBox.setChecked(true);
+                    defaultServerCheckBox.setEnabled(false);
+                    //setting the default options in the text fields
+                    github_username.setText("LabExperimental-SIUA");
+                    github_username.setEnabled(false);
+                    repository_name.setText("osmtracker-android");
+                    repository_name.setEnabled(false);
+                    branch_name.setText("layouts");
+                    branch_name.setEnabled(false);
+                    isDefChecked = true;
+                    //set true isDefChecked and save into the shared preferences file
+                    editor.putBoolean("defCheck", isDefChecked);
+                    editor.commit();
+                }
+            });
+            customServerCheckBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    defaultServerCheckBox.setChecked(false);
+                    defaultServerCheckBox.setEnabled(true);
+                    customServerCheckBox.setChecked(true);
+                    customServerCheckBox.setEnabled(false);
+                    //enabling the text options fields
+                    github_username.setText(checkboxActive.getString("github_username", ""));
+                    github_username.setEnabled(true);
+                    repository_name.setText(checkboxActive.getString("repository_name", ""));
+                    repository_name.setEnabled(true);
+                    branch_name.setText(checkboxActive.getString("branch_name", ""));
+                    branch_name.setEnabled(true);
+                    isDefChecked = false;
+                    //set false isDefChecked and save into the shared preferences file
+                    editor.putBoolean("defCheck", isDefChecked);
+                    editor.commit();
+                }
+            });
+            //creating the alert dialog with the github_repository_setting view
+            new AlertDialog.Builder(this)
+                    .setTitle("Github Repository Settings")
+                    .setView(repositoryConfigWindow)
+                    .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                        @SuppressLint("StaticFieldLeak")
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            final String[] repositoryCustomOptions = {github_username.getText().toString(), repository_name.getText().toString(), branch_name.getText().toString()};
+                            //we verify if the entered options are correct
+                            new URLValidatorTask(){
+                                protected void onPostExecute(Boolean result){
+                                    //validating the github repository
+                                    if(result){
+                                        Toast.makeText(AvailableLayouts.this, "The server is valid", Toast.LENGTH_SHORT).show();
+                                        //save the entered options into the shared preferences file
+                                        editor.putString("github_username", repositoryCustomOptions[0]);
+                                        editor.putString("repository_name", repositoryCustomOptions[1]);
+                                        editor.putString("branch_name", repositoryCustomOptions[2]);
+                                        editor.commit();
+                                    }else{
+                                        Toast.makeText(AvailableLayouts.this, "Invalid server", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }.execute(repositoryCustomOptions);
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .setCancelable(true)
+                    .create().show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -81,7 +228,5 @@ public class AvailableLayouts extends Activity {
 
     }
 
-    public void launch_server_settings(View v){
-        startActivity(new Intent(this, ServerSettings.class));
-    }
+
 }
