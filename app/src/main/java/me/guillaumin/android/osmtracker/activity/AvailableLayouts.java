@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -32,9 +33,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.layout.DownloadCustomLayoutTask;
 import me.guillaumin.android.osmtracker.layout.GetStringResponseTask;
 import me.guillaumin.android.osmtracker.layout.URLValidatorTask;
 import me.guillaumin.android.osmtracker.util.CustomLayoutsUtils;
@@ -331,10 +334,13 @@ public class AvailableLayouts extends Activity {
         return description;
     }
 
-    private void showDescriptionDialog(String title, String description){
+    private void showDescriptionDialog(String title, String description, String iso){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setTitle(title);
         b.setNegativeButton("Cancel",null);
+        this.downloadListener.setLayout(title);
+        this.downloadListener.context = this;
+        this.downloadListener.iso = iso;
         b.setPositiveButton("Download", this.downloadListener);
         b.setMessage(description);
         b.create().show();
@@ -354,7 +360,7 @@ public class AvailableLayouts extends Activity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String desc = getDescriptionFor(xmlFile,languages.get(options[i]));
-                showDescriptionDialog(layoutName,desc);
+                showDescriptionDialog(layoutName,desc,languages.get(options[i]));
             }
         });
         b.create().show();
@@ -371,10 +377,10 @@ public class AvailableLayouts extends Activity {
                 @Override
                 protected void onPostExecute(String response) {
                     String xmlFile = response;
-                    String localLang = "";//Locale.getDefault().getLanguage();
+                    String localLang = Locale.getDefault().getLanguage();
                     String description = getDescriptionFor(xmlFile, localLang);
                     if (description != null) {
-                        showDescriptionDialog(fileName,description);
+                        showDescriptionDialog(fileName,description,localLang);
                     } else {//List all other languages
                         HashMap<String, String> languages = getLanguagesFor(xmlFile);
                         showLanguageSelectionDialog(languages, xmlFile, text);
@@ -386,9 +392,37 @@ public class AvailableLayouts extends Activity {
     }
 
     private class DownloadListener implements AlertDialog.OnClickListener{
+        private String layout;
+        public String iso="";
+        public Context context;
+
+
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
             //Code for downloading the layout, must get the layout name here
+            Toast.makeText(this.context,"Trying to download "+this.layout+" "+this.iso,
+                    Toast.LENGTH_LONG).show();
+
+            String info[] = {this.layout, this.iso};
+            Log.e("#","Result "+info[0]+","+info[1]);
+
+            new DownloadCustomLayoutTask(){
+                protected void onPostExecute(Boolean status){
+                    String message="";
+                    if (status) {
+                        message = "Ok";
+                    }
+                    else {
+                        message = "Download error";
+                    }
+                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+                }
+
+            }.execute(info); //The test is with the "Transporte publico" layout
+        }
+
+        public void setLayout(String name){
+            this.layout = name;
         }
     }
 }
