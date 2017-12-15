@@ -24,6 +24,7 @@ import java.util.Hashtable;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
+import me.guillaumin.android.osmtracker.layout.DownloadCustomLayoutTask;
 import me.guillaumin.android.osmtracker.util.CustomLayoutsUtils;
 import me.guillaumin.android.osmtracker.util.FileSystemUtils;
 
@@ -181,9 +182,28 @@ public class ButtonsPresets extends Activity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.cb_update_and_install:
-                Toast mensaje = Toast.makeText(getApplicationContext(), "Update and Install options was pressed",
-                        Toast.LENGTH_LONG);
-                mensaje.show();
+                /**
+                 *TODO: Define the params for DownloadCustomLayoutTask
+                 */
+                String info[]= {"transporte_publico", "_es"};
+
+                new DownloadCustomLayoutTask(){
+                    protected void onPostExecute(Boolean status){
+                        if (status) {
+                            Log.i("Download Custom Layout", "Ok");
+                        }
+                        else {
+                            Log.e("Download Custom Layout", "Download error");
+                        }
+                    }
+
+                }.execute(info); //The test is with the "Transporte publico" layout
+
+
+                // REFRESH THE ACTIVITY WHEN A NEW LAYOUT IS INSTALLED
+                //finish();
+                //startActivity(getIntent());
+
                 break;
             case R.id.cb_delete:
                 new AlertDialog.Builder(this).
