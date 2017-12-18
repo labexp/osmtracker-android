@@ -1,6 +1,5 @@
 package me.guillaumin.android.osmtracker.activity;
 
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -29,7 +28,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +39,7 @@ import me.guillaumin.android.osmtracker.layout.DownloadCustomLayoutTask;
 import me.guillaumin.android.osmtracker.layout.GetStringResponseTask;
 import me.guillaumin.android.osmtracker.layout.URLValidatorTask;
 import me.guillaumin.android.osmtracker.util.CustomLayoutsUtils;
+import me.guillaumin.android.osmtracker.util.URLCreator;
 
 /**
  * Created by emmanuel on 10/11/17.
@@ -54,7 +53,6 @@ public class AvailableLayouts extends Activity {
     private SharedPreferences checkboxActive;
     //this is the editor for save values into the shared preferences file
     private SharedPreferences.Editor editor;
-    private DownloadListener downloadListener = new DownloadListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +63,8 @@ public class AvailableLayouts extends Activity {
         checkboxActive = PreferenceManager.getDefaultSharedPreferences(this);
         editor = checkboxActive.edit();
 
-        // call task to download and parse the response to get the list of
-        // available layouts
-
-        String url = "https://api.github.com/repos/LabExperimental-SIUA/osmtracker-android/contents/layouts/metadata?ref=layouts";
-        final InputStream res;
+        // call task to download and parse the response to get the list of available layouts
+        String url = URLCreator.createMetadataDirUrl(this);
         new GetStringResponseTask(){
             protected void onPostExecute(String response){
                 setAvailableLayouts(parseResponse(response));
@@ -78,8 +73,6 @@ public class AvailableLayouts extends Activity {
 
         }.execute(url);
     }
-
-    
 
 
     public void setAvailableLayouts(List<String> options) {
@@ -112,7 +105,7 @@ public class AvailableLayouts extends Activity {
             assert inflater != null;
             //This is the pop up that's appears when the config button in the top right corner is pressed
             @SuppressLint("InflateParams") final View repositoryConfigWindow = inflater.inflate(R.layout.github_repository_settings, null);
-            //instancing the edit texts of the layout inflate
+            //instancing the edit texts of the layoutName inflate
             final EditText github_username = (EditText) repositoryConfigWindow.findViewById(R.id.github_username);
             final EditText repository_name = (EditText) repositoryConfigWindow.findViewById(R.id.repository_name);
             final EditText branch_name = (EditText) repositoryConfigWindow.findViewById(R.id.branch_name);
@@ -303,7 +296,6 @@ public class AvailableLayouts extends Activity {
 
     /* xmlFile is the XML meta file parsed to string
     *  localeLanguage is the ISO code of the phone's locale language
-    *
     * Searches a description in the locale language and returns it if it is in xmlFile
     * or null if it is not there
     */
@@ -334,14 +326,11 @@ public class AvailableLayouts extends Activity {
         return description;
     }
 
-    private void showDescriptionDialog(String title, String description, String iso){
+    private void showDescriptionDialog(String layoutName, String description, String iso){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
-        b.setTitle(title);
+        b.setTitle(layoutName);
         b.setNegativeButton("Cancel",null);
-        this.downloadListener.setLayout(title);
-        this.downloadListener.context = this;
-        this.downloadListener.iso = iso;
-        b.setPositiveButton("Download", this.downloadListener);
+        b.setPositiveButton("Download", new DownloadListener(layoutName, iso, this));
         b.setMessage(description);
         b.create().show();
     }
@@ -369,10 +358,8 @@ public class AvailableLayouts extends Activity {
     private class ClickListener implements View.OnClickListener{
         @Override
         public void onClick(View view) {
-            final String text = ""+((TextView) view).getText();
-            final String fileName = CustomLayoutsUtils.unconvertFileName(text);
-
-            String url = "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/metadata/";
+            final String layoutName = ""+((TextView) view).getText();
+            String url = URLCreator.createMetadataFileURL(view.getContext(), layoutName);
             new GetStringResponseTask(){
                 @Override
                 protected void onPostExecute(String response) {
@@ -380,33 +367,38 @@ public class AvailableLayouts extends Activity {
                     String localLang = Locale.getDefault().getLanguage();
                     String description = getDescriptionFor(xmlFile, localLang);
                     if (description != null) {
-                        showDescriptionDialog(fileName,description,localLang);
+                        showDescriptionDialog(layoutName,description,localLang);
                     } else {//List all other languages
                         HashMap<String, String> languages = getLanguagesFor(xmlFile);
-                        showLanguageSelectionDialog(languages, xmlFile, text);
+                        showLanguageSelectionDialog(languages, xmlFile, layoutName);
 
                     }
                 }
-            }.execute(url+fileName);
+            }.execute(url);
         }
     }
 
     private class DownloadListener implements AlertDialog.OnClickListener{
-        private String layout;
-        public String iso="";
-        public Context context;
+        private String layoutName;
+        private String iso;
+        private Context context;
 
+        public DownloadListener(String layoutName, String iso, Context context) {
+            this.layoutName = layoutName;
+            this.iso = iso;
+            this.context = context;
+        }
 
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
-            //Code for downloading the layout, must get the layout name here
-            Toast.makeText(this.context,"Trying to download "+this.layout+" "+this.iso,
+            //Code for downloading the layoutName, must get the layoutName name here
+            Toast.makeText(this.context,"Trying to download "+this.layoutName +" "+this.iso,
                     Toast.LENGTH_LONG).show();
 
-            String info[] = {this.layout, this.iso};
+            String info[] = {this.layoutName, this.iso};
             Log.e("#","Result "+info[0]+","+info[1]);
 
-            new DownloadCustomLayoutTask(){
+            new DownloadCustomLayoutTask(this.context){
                 protected void onPostExecute(Boolean status){
                     String message="";
                     if (status) {
@@ -418,11 +410,7 @@ public class AvailableLayouts extends Activity {
                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
                 }
 
-            }.execute(info); //The test is with the "Transporte publico" layout
-        }
-
-        public void setLayout(String name){
-            this.layout = name;
+            }.execute(info); //The test is with the "Transporte publico" layoutName
         }
     }
 }
