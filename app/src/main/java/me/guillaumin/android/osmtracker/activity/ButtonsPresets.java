@@ -48,6 +48,11 @@ public class ButtonsPresets extends Activity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         initializeAttributes();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         LinearLayout rootLayout = (LinearLayout) findViewById(R.id.list_layouts);
         LinearLayout mainLayout = (LinearLayout) findViewById(R.id.buttons_presets); //main layout for the default layout checkbox
         listLayouts(rootLayout);
@@ -70,12 +75,18 @@ public class ButtonsPresets extends Activity {
         int AT_START = 0; //the position to insert the view at
         int fontSize = 20;
         if (layoutsDir.exists() && layoutsDir.canRead()) {
+            //Ask for the layout's filenames
             String[] layoutFiles = layoutsDir.list(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String filename) {
                     return filename.endsWith(".xml");//Preferences.LAYOUT_FILE_EXTENSION);
                 }
             });
+            //Remove all the layouts
+            while(rootLayout.getChildAt(0) instanceof CheckBox){
+                rootLayout.removeViewAt(0);
+            }
+            //Fill with the new ones
             for(String name : layoutFiles) {
                 CheckBox c = new CheckBox(this);
                 c.setTextSize((float) fontSize);
