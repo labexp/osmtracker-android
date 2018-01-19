@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -164,10 +165,6 @@ public class ButtonsPresets extends Activity {
         selected.setChecked(true);
     }
 
-    public void launch_availables(View v){ //For the button
-        startActivity(new Intent(this,AvailableLayouts.class));
-    }
-
     //Class that manages the changes on the selected layout
     private class CheckBoxChangedListener implements View.OnClickListener {
         @Override
@@ -275,5 +272,19 @@ public class ButtonsPresets extends Activity {
             }
         }
         return iso;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.launch_available_layouts_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.launch_available){
+            startActivity(new Intent(this,AvailableLayouts.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
