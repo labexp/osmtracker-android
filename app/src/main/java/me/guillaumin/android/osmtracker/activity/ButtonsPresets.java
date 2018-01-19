@@ -42,7 +42,7 @@ public class ButtonsPresets extends Activity {
     private SharedPreferences prefs;
     //Container for the file names and the presentation names
     private static Hashtable<String, String> container;
-    private final static String STORAGE_DIR = File.separator + OSMTracker.Preferences.VAL_STORAGE_DIR;
+    private static String storageDir;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -61,10 +61,12 @@ public class ButtonsPresets extends Activity {
         listener = new CheckBoxChangedListener();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         container = new Hashtable<String, String>();
+        storageDir = File.separator + prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR,
+                                                 OSMTracker.Preferences.VAL_STORAGE_DIR);
     }
 
     private void listLayouts(LinearLayout rootLayout){
-        File layoutsDir = new File(Environment.getExternalStorageDirectory(), STORAGE_DIR + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator);
+        File layoutsDir = new File(Environment.getExternalStorageDirectory(), storageDir + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator);
         int AT_START = 0; //the position to insert the view at
         int fontSize = 20;
         if (layoutsDir.exists() && layoutsDir.canRead()) {
@@ -217,7 +219,7 @@ public class ButtonsPresets extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String fileName = container.get(selectedCheckBox.getText());
-                        String rootDir = STORAGE_DIR + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator;
+                        String rootDir = storageDir + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator;
                         File fileToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + fileName);
 
                         if(FileSystemUtils.delete(fileToDelete, false)){

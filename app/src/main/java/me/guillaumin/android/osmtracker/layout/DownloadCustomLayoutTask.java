@@ -1,8 +1,10 @@
 package me.guillaumin.android.osmtracker.layout;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -42,12 +44,14 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
         String layoutName = layoutData[0];
         String layoutFolderName = layoutName.replace(" ", "_");
         String iso = layoutData[1];
+        SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(context);
+        String storage_dir =prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR);
 
         String layoutURL = URLCreator.createLayoutFileURL(context, layoutName, iso);
-        String layoutPath = Environment.getExternalStorageDirectory() + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator +
+        String layoutPath = Environment.getExternalStorageDirectory() + storage_dir + File.separator +
                 Preferences.LAYOUTS_SUBDIR + File.separator;
 
-        String iconsPath = Environment.getExternalStorageDirectory() + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator +
+        String iconsPath = Environment.getExternalStorageDirectory() + storage_dir + File.separator +
                 Preferences.LAYOUTS_SUBDIR + File.separator  + layoutFolderName + File.separator;
 
         Boolean status = false;
