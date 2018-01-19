@@ -7,6 +7,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -66,15 +68,26 @@ public class AvailableLayouts extends Activity {
 
         // call task to download and parse the response to get the list of available layouts
         String url = URLCreator.createMetadataDirUrl(this);
-        new GetStringResponseTask(){
-            protected void onPostExecute(String response){
-                setAvailableLayouts(parseResponse(response));
-                setTitle((""+getTitle()).replace(tag,"")); //when the request is done
-            }
+        if (isNetworkAvailable(this)) {
+            new GetStringResponseTask() {
+                protected void onPostExecute(String response) {
+                    setAvailableLayouts(parseResponse(response));
+                    setTitle(("" + getTitle()).replace(tag, "")); //when the request is done
+                }
 
-        }.execute(url);
+            }.execute(url);
+        } else {
+            Toast.makeText(getApplicationContext(),"Error: unable to connect to the Internet.",Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
     public void setAvailableLayouts(List<String> options) {
         LinearLayout ly = (LinearLayout)findViewById(R.id.root_layout);
