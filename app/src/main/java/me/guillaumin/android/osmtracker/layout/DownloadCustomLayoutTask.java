@@ -40,6 +40,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
     protected Boolean doInBackground(String[] layoutData) {
 
         String layoutName = layoutData[0];
+        String layoutFolderName = layoutName.replace(" ", "_");
         String iso = layoutData[1];
 
         String layoutURL = URLCreator.createLayoutFileURL(context, layoutName, iso);
@@ -47,7 +48,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
                 Preferences.LAYOUTS_SUBDIR + File.separator;
 
         String iconsPath = Environment.getExternalStorageDirectory() + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator +
-                Preferences.LAYOUTS_SUBDIR + File.separator  + layoutName + File.separator;
+                Preferences.LAYOUTS_SUBDIR + File.separator  + layoutFolderName + File.separator;
 
         Boolean status = false;
 

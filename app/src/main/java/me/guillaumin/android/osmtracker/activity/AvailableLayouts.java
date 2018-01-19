@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.layout.DownloadCustomLayoutTask;
 import me.guillaumin.android.osmtracker.layout.GetStringResponseTask;
@@ -120,11 +121,11 @@ public class AvailableLayouts extends Activity {
                 defaultServerCheckBox.setChecked(true);
                 defaultServerCheckBox.setEnabled(false);
                 //setting the default options in the text fields
-                github_username.setText("LabExperimental-SIUA");
+                github_username.setText(OSMTracker.Preferences.VAL_GITHUB_USERNAME);
                 github_username.setEnabled(false);
-                repository_name.setText("osmtracker-android");
+                repository_name.setText(OSMTracker.Preferences.VAL_REPOSITORY_NAME);
                 repository_name.setEnabled(false);
-                branch_name.setText("layouts");
+                branch_name.setText(OSMTracker.Preferences.VAL_BRANCH_NAME);
                 branch_name.setEnabled(false);
             }
             //if the default checkbox isn't checked we put the shared preferences values into the edit texts
@@ -134,11 +135,11 @@ public class AvailableLayouts extends Activity {
                 customServerCheckBox.setChecked(true);
                 customServerCheckBox.setEnabled(true);
                 //enabling the text options fields
-                github_username.setText(checkboxActive.getString("github_username", ""));
+                github_username.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
                 github_username.setEnabled(true);
-                repository_name.setText(checkboxActive.getString("repository_name", ""));
+                repository_name.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME,""));
                 repository_name.setEnabled(true);
-                branch_name.setText(checkboxActive.getString("branch_name", ""));
+                branch_name.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, ""));
                 branch_name.setEnabled(true);
             }
 
@@ -150,11 +151,11 @@ public class AvailableLayouts extends Activity {
                     defaultServerCheckBox.setChecked(true);
                     defaultServerCheckBox.setEnabled(false);
                     //setting the default options in the text fields
-                    github_username.setText("LabExperimental-SIUA");
+                    github_username.setText(OSMTracker.Preferences.VAL_GITHUB_USERNAME);
                     github_username.setEnabled(false);
-                    repository_name.setText("osmtracker-android");
+                    repository_name.setText(OSMTracker.Preferences.VAL_REPOSITORY_NAME);
                     repository_name.setEnabled(false);
-                    branch_name.setText("layouts");
+                    branch_name.setText(OSMTracker.Preferences.VAL_BRANCH_NAME);
                     branch_name.setEnabled(false);
                     isDefChecked = true;
                     //set true isDefChecked and save into the shared preferences file
@@ -170,11 +171,11 @@ public class AvailableLayouts extends Activity {
                     customServerCheckBox.setChecked(true);
                     customServerCheckBox.setEnabled(false);
                     //enabling the text options fields
-                    github_username.setText(checkboxActive.getString("github_username", ""));
+                    github_username.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
                     github_username.setEnabled(true);
-                    repository_name.setText(checkboxActive.getString("repository_name", ""));
+                    repository_name.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, ""));
                     repository_name.setEnabled(true);
-                    branch_name.setText(checkboxActive.getString("branch_name", ""));
+                    branch_name.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, ""));
                     branch_name.setEnabled(true);
                     isDefChecked = false;
                     //set false isDefChecked and save into the shared preferences file
@@ -198,9 +199,9 @@ public class AvailableLayouts extends Activity {
                                     if(result){
                                         Toast.makeText(AvailableLayouts.this, "The server is valid", Toast.LENGTH_SHORT).show();
                                         //save the entered options into the shared preferences file
-                                        editor.putString("github_username", repositoryCustomOptions[0]);
-                                        editor.putString("repository_name", repositoryCustomOptions[1]);
-                                        editor.putString("branch_name", repositoryCustomOptions[2]);
+                                        editor.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, repositoryCustomOptions[0]);
+                                        editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]);
+                                        editor.putString(OSMTracker.Preferences.KEY_BRANCH_NAME, repositoryCustomOptions[2]);
                                         editor.commit();
                                     }else{
                                         Toast.makeText(AvailableLayouts.this, "Invalid server", Toast.LENGTH_SHORT).show();
