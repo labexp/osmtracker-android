@@ -184,7 +184,7 @@ public class ButtonsPresets extends Activity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.cb_update_and_install:
-                String layoutName = selectedCheckBox.getText().toString().replace(" ", "_");
+                String layoutName = selectedCheckBox.getText().toString();
                 Log.i("#", layoutName + ": " + container.get(selectedCheckBox.getText()));
                 String iso = getIso(container.get(selectedCheckBox.getText()));
                 String info[]= {layoutName, iso};
@@ -256,7 +256,7 @@ public class ButtonsPresets extends Activity {
         String tmp = layoutName.substring(0, layoutName.length() - Preferences.LAYOUT_FILE_EXTENSION.length());
         String iso = "";
         for (int i=0; i<tmp.length(); i++){
-            if(i >= tmp.length() - 3){
+            if(i >= tmp.length() - 2){
                 iso += tmp.charAt(i);
                 Log.i("#", "Looking into iso variable: " + iso);
             }
