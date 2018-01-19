@@ -6,6 +6,8 @@ import android.util.Log;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import me.guillaumin.android.osmtracker.util.URLCreator;
+
 import static android.content.ContentValues.TAG;
 
 /**
@@ -20,11 +22,9 @@ public class URLValidatorTask extends AsyncTask<String, Integer, Boolean>{
          * params[1] = Repository Name
          * params[2] = Branch Name
          */
-        //TODO: get default server_URL (without metadata folder in it)
-        String server_url = "https://api.github.com/repos/" + params[0] + "/" + params[1] + "/contents/layouts/metadata?ref=" + params[2];
+        String server_url = URLCreator.createTestURL(params[0], params[1], params[2]);
         boolean status;
         try {
-            //URL url = new URL(urlString[0]);
             URL url = new URL(server_url);
             // Open Url Connection
             HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
