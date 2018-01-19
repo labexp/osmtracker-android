@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import me.guillaumin.android.osmtracker.OSMTracker;
+
 /**
  * Created by labexp on 13/12/17.
  */
@@ -111,9 +113,9 @@ public class URLCreator {
         //the shared preferences file where the values are saved
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        String username = preferences.getString("github_username", "");
-        String repo = preferences.getString("repository_name", "");
-        String branch = preferences.getString("branch_name", "");
+        String username = preferences.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, OSMTracker.Preferences.VAL_GITHUB_USERNAME);
+        String repo = preferences.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME);
+        String branch = preferences.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.VAL_BRANCH_NAME);
 
         String[] params = {username, repo, branch};
         return params;
