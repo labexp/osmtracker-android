@@ -1,8 +1,14 @@
 package me.guillaumin.android.osmtracker.layout;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,6 +22,8 @@ import java.util.Set;
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.Preferences;
 import me.guillaumin.android.osmtracker.util.CheckForSDCard;
+import me.guillaumin.android.osmtracker.util.CustomLayoutsUtils;
+import me.guillaumin.android.osmtracker.util.URLCreator;
 
 /**
  * Created by aton1698 on 13/12/17.
@@ -24,26 +32,40 @@ import me.guillaumin.android.osmtracker.util.CheckForSDCard;
 public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean> {
     private static final String TAG = "Download Custom Layout" ;
 
+    private Context context;
+
+    public DownloadCustomLayoutTask(Context context) {
+        this.context = context;
+    }
+
     @Override
-    protected Boolean doInBackground(String[] layoutNames) {
+    protected Boolean doInBackground(String[] layoutData) {
 
-        //Change with the method "createLayoutUrl"
-        String layoutURL="https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/"+layoutNames[0]+layoutNames[1]+".xml";
-        String layoutPath = Environment.getExternalStorageDirectory() + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator;
+        String layoutName = layoutData[0];
+        String layoutFolderName = layoutName.replace(" ", "_");
+        String iso = layoutData[1];
+        SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(context);
+        String storage_dir =prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR);
 
-        String iconsPath = Environment.getExternalStorageDirectory() + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator +
-                Preferences.LAYOUTS_SUBDIR+ File.separator  + layoutNames[0] + File.separator;
+        String layoutURL = URLCreator.createLayoutFileURL(context, layoutName, iso);
+        String layoutPath = Environment.getExternalStorageDirectory() + storage_dir + File.separator +
+                Preferences.LAYOUTS_SUBDIR + File.separator;
+
+        String iconsPath = Environment.getExternalStorageDirectory() + storage_dir + File.separator +
+                Preferences.LAYOUTS_SUBDIR + File.separator  + layoutFolderName + File.separator;
 
         Boolean status = false;
 
         try {
+            // download layout
             createDir(layoutPath);
-            downloadFile(layoutURL,layoutPath +File.separator + layoutNames[0]+ layoutNames[1] + Preferences.LAYOUT_FILE_EXTENSION);
+            downloadFile(layoutURL,layoutPath +File.separator + CustomLayoutsUtils.createFileName(layoutName, iso));
 
+            // TODO: download metadata file
 
+            // downloading icons
             createDir(iconsPath);
-            HashMap<String, String> iconsInfo;
-            iconsInfo = createIconsHash();
+            HashMap<String, String> iconsInfo = getIconsHash(layoutName);
 
             Set<String> keys = iconsInfo.keySet();
 
@@ -65,9 +87,11 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
 
         return status;
     }
+
+
     private void createDir(String dirPath) {
         /**
-         TODO: Change this code for the same functionality that it's used when an gpx is exported.
+         FIXME: Change this code for the same functionality that it's used when an gpx is exported.
          */
 
         //Get File if SD card is present
@@ -81,6 +105,8 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
             Log.e(TAG, "Directory Created.");
         }
     }
+
+
     private void downloadFile( String downloadUrl, String outputFile) throws Throwable {
 
         URL url = new URL(downloadUrl); //Create Download URl
@@ -104,26 +130,41 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
         }
     }
 
-    private HashMap<String,String> createIconsHash(){
-        /**
-         * Create a HashMap with the name and the download_url for each icon
-         * TODO: Update this functionality with the code which Altaros97 is developing
-         */
+    /**
+     *
+     * @param layoutName
+     * @return
+     */
+    private HashMap<String,String> getIconsHash(String layoutName) {
 
-        HashMap<String, String> iconsInfo = new HashMap<String, String>();
+        final HashMap<String,String> iconsHash = new HashMap<String, String>();
 
-        iconsInfo.put("App-05.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/App-05.png");
-        iconsInfo.put("App-06.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/App-06.png");
-        iconsInfo.put("App-07.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/App-07.png");
-        iconsInfo.put("App-08.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/App-08.png");
-        iconsInfo.put("alquiler.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/alquiler.png");
-        iconsInfo.put("bus_terminal.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/bus_terminal.png");
-        iconsInfo.put("ciclovia.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/ciclovia.png");
-        iconsInfo.put("estacion_tren.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/estacion_tren.png");
-        iconsInfo.put("parqueo_bici.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/parqueo_bici.png");
-        iconsInfo.put("taxi.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/taxi.png");
-        iconsInfo.put("transporte_publico.png", "https://raw.githubusercontent.com/LabExperimental-SIUA/osmtracker-android/layouts/layouts/transporte_publico/transporte_publico.png");
+        String link = URLCreator.createIconsDirUrl(context, layoutName);
+        System.out.println("Download icons hash from: " + link);
 
-        return iconsInfo;
+        try {
+            URL url = new URL(link);
+            HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
+            InputStream stream = httpConnection.getInputStream();
+            String response = CustomLayoutsUtils.getStringFromStream(stream);
+            JSONArray jsonArray = new JSONArray(response);
+
+            for (int i= 0; i < jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                iconsHash.put(object.getString("name"), object.getString("download_url"));
+            }
+
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+
+        return iconsHash;
+
     }
+
+
+
 }
