@@ -63,15 +63,9 @@ public class Preferences extends PreferenceActivity {
 				// Set summary with the directory value
 				preference.setSummary((String) newValue);
 				
-				// Re-populate layout list preference
-				populateLayoutPreference((String) newValue); 
-				
-				// Set layout to default layout
-				((ListPreference) findPreference(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT)).setValue(OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
 				return true;
 			}
 		});
-		populateLayoutPreference(storageDirPref.getText());
 
 		// Voice record duration
 		Preference pref = findPreference(OSMTracker.Preferences.KEY_VOICEREC_DURATION);
