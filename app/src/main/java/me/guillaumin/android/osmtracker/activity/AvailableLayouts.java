@@ -60,26 +60,29 @@ public class AvailableLayouts extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final String tag = "(Connecting...)"; //while it makes the request
-        setTitle("Available Layouts "+tag);
-        setContentView(R.layout.available_layouts);
         checkboxActive = PreferenceManager.getDefaultSharedPreferences(this);
         editor = checkboxActive.edit();
-
         // call task to download and parse the response to get the list of available layouts
-        String url = URLCreator.createMetadataDirUrl(this);
         if (isNetworkAvailable(this)) {
-            new GetStringResponseTask() {
-                protected void onPostExecute(String response) {
-                    setAvailableLayouts(parseResponse(response));
-                    setTitle(("" + getTitle()).replace(tag, "")); //when the request is done
-                }
-
-            }.execute(url);
+            retrieveAvailableLayouts();
         } else {
             Toast.makeText(getApplicationContext(),"Error: unable to connect to the Internet.",Toast.LENGTH_LONG).show();
             finish();
         }
+    }
+
+    public void retrieveAvailableLayouts(){
+        final String tag = "(Connecting...)"; //while it makes the request
+        setTitle("Available Layouts "+tag);
+        String url = URLCreator.createMetadataDirUrl(this);
+        new GetStringResponseTask() {
+            protected void onPostExecute(String response) {
+                setContentView(R.layout.available_layouts);
+                setAvailableLayouts(parseResponse(response));
+                setTitle(("" + getTitle()).replace(tag, "")); //when the request is done
+            }
+
+        }.execute(url);
     }
 
     public static boolean isNetworkAvailable(Context context) {
@@ -216,6 +219,7 @@ public class AvailableLayouts extends Activity {
                                         editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]);
                                         editor.putString(OSMTracker.Preferences.KEY_BRANCH_NAME, repositoryCustomOptions[2]);
                                         editor.commit();
+                                        retrieveAvailableLayouts();
                                     }else{
                                         Toast.makeText(AvailableLayouts.this, "Invalid server", Toast.LENGTH_SHORT).show();
                                     }
