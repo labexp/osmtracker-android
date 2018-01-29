@@ -2,6 +2,7 @@ package me.guillaumin.android.osmtracker.activity;
 
 import java.io.File;
 import java.util.Date;
+import java.util.TreeMap;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
@@ -9,6 +10,7 @@ import me.guillaumin.android.osmtracker.db.DataHelper;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
 import me.guillaumin.android.osmtracker.db.TracklistAdapter;
+import me.guillaumin.android.osmtracker.db.model.TrackStatisticsCollection;
 import me.guillaumin.android.osmtracker.exception.CreateTrackException;
 import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
 import me.guillaumin.android.osmtracker.util.FileSystemUtils;
@@ -57,6 +59,9 @@ public class TrackManager extends ListActivity {
 
 	/** The previous item visible, or -1; for scrolling back to its position in {@link #onResume()} */
 	private int prevItemVisible = -1;
+	
+	/** Statistics for all existing tracks */
+	private TrackStatisticsCollection tracksStatistics;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,7 @@ public class TrackManager extends ListActivity {
 		if (savedInstanceState != null) {
 			prevItemVisible = savedInstanceState.getInt(PREV_VISIBLE, -1);
 		}
+		tracksStatistics = new TrackStatisticsCollection(getContentResolver());
 	}
 
 	@Override
@@ -75,7 +81,7 @@ public class TrackManager extends ListActivity {
 				TrackContentProvider.CONTENT_URI_TRACK, null, null, null,
 				Schema.COL_START_DATE + " desc");
 		startManagingCursor(cursor);
-		setListAdapter(new TracklistAdapter(TrackManager.this, cursor));
+		setListAdapter(new TracklistAdapter(TrackManager.this, cursor, tracksStatistics));
 		getListView().setEmptyView(findViewById(R.id.trackmgr_empty));  // undo change from onPause
 
 		// Is any track active?
@@ -351,6 +357,7 @@ public class TrackManager extends ListActivity {
 		case R.id.trackmgr_contextmenu_details:
 			i = new Intent(this, TrackDetail.class);
 			i.putExtra(Schema.COL_TRACK_ID, info.id);
+			i.putExtras(tracksStatistics.get(info.id).getData());
 			startActivity(i);
 			break;
 		}
@@ -376,6 +383,7 @@ public class TrackManager extends ListActivity {
 			// show track info
 			i = new Intent(this, TrackDetail.class);
 			i.putExtra(Schema.COL_TRACK_ID, id);
+			i.putExtras(tracksStatistics.get(id).getData());
 		}
 		startActivity(i);
 	}
@@ -417,6 +425,9 @@ public class TrackManager extends ListActivity {
 		if (trackStorageDirectory.exists()) {
 			FileSystemUtils.delete(trackStorageDirectory, true);
 		}
+
+		// Delete the statistics
+		tracksStatistics.remove(id);
 	}
 
 	/**

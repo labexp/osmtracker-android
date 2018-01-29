@@ -11,15 +11,19 @@ import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.R;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider;
 import me.guillaumin.android.osmtracker.db.TrackContentProvider.Schema;
+import me.guillaumin.android.osmtracker.db.TracklistAdapter;
 import me.guillaumin.android.osmtracker.db.model.Track;
+import me.guillaumin.android.osmtracker.db.model.TrackStatistics;
 import me.guillaumin.android.osmtracker.gpx.ExportToStorageTask;
 import me.guillaumin.android.osmtracker.util.MercatorProjection;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.ContentObserver;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -70,10 +74,33 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 	 * List with track info
 	 */
 	private ListView lv;
+
+	/**
+	 * Adapter for the above list
+	 */
+	TrackDetailSimpleAdapter adapter = null;
 	
+	/**
+	 * Observes changes on trackpoints
+	 */
+	private ContentObserver trackpointContentObserver;
+
+	/**
+	 * Statistics for the track
+	 */
+	private TrackStatistics trackStatistics;
+
+	/**
+	 * Data for the track info
+	 */
+	private List<HashMap<String, String>> trackData = new ArrayList<HashMap<String, String>> ();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState, R.layout.trackdetail, getIntent().getExtras().getLong(Schema.COL_TRACK_ID));
+		Bundle extras = getIntent().getExtras();
+		super.onCreate(savedInstanceState, R.layout.trackdetail, extras.getLong(Schema.COL_TRACK_ID));
+		
+		trackStatistics = new TrackStatistics(trackId, getContentResolver(), extras);
 
 		lv = (ListView) findViewById(R.id.trackdetail_list);
 
@@ -98,19 +125,29 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		// Do not show soft keyboard by default
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		
+		// Create content observer for trackpoints
+		trackpointContentObserver = new ContentObserver(new Handler()) {
+			@Override
+			public void onChange(boolean selfChange) {
+				pathChanged();
+			}
+		};
+		getContentResolver().registerContentObserver(
+				TrackContentProvider.trackPointsUri(trackId),
+				true, trackpointContentObserver);
 		// further work is done in onResume.
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		
+	/**
+	 * Update trackData (doesn't update the list view though)
+	 */
+	private void updateTrack() {
 		// Query the track values
 		ContentResolver cr = getContentResolver();
 		Cursor cursor = cr.query(
 			ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
 			null, null, null, null);
-		
+
 		if (! cursor.moveToFirst())	{
 			// This shouldn't occur, it's here just in case.
 			// So, don't make each language translate/localize it.
@@ -119,54 +156,69 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			finish();
 			return;  // <--- Early return ---
 		}
+		
+		trackData.clear();
 
 		// Bind WP count, TP count, start date, etc.
 		// Fill name-field only if empty (in case changed by user/restored by onRestoreInstanceState) 
 		Track t = Track.build(trackId, cursor, cr, true);
+		trackStatistics.update();
 
 		bindTrack(t);		
-		
-		String from[] = new String[]{ITEM_KEY, ITEM_VALUE};
-		int[] to = new int[] {R.id.trackdetail_item_key, R.id.trackdetail_item_value};
 		
 		// Waypoint count
 		final int wpCount = t.getWpCount();
 		trackHasWaypoints = (wpCount > 0);
-		List<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
+
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_waypoints_count));
 		map.put(ITEM_VALUE, Integer.toString(wpCount));
-		data.add(WP_COUNT_INDEX, map);
+		trackData.add(WP_COUNT_INDEX, map);
 		
 		// Trackpoint count
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_trackpoints_count));
 		map.put(ITEM_VALUE, Integer.toString(t.getTpCount()));
-		data.add(map);
+		trackData.add(map);
+
+		// Distance
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_distance));
+		map.put(ITEM_VALUE, TracklistAdapter.distanceToString(trackStatistics.totalLength(), getResources()));
+		trackData.add(map);
+
+		// Speed
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_speed));
+		map.put(ITEM_VALUE, TracklistAdapter.speedToString(trackStatistics.averageSpeed(), getResources()) + " " +
+				getResources().getString(R.string.trackdetail_speed_average) + ", " +
+				TracklistAdapter.speedToString(trackStatistics.maximumSpeed(), getResources()) + " " +
+				getResources().getString(R.string.trackdetail_speed_max));
+		trackData.add(map);
 
 		// Start date
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_startdate));
 		map.put(ITEM_VALUE, t.getStartDateAsString());
-		data.add(map);
+		trackData.add(map);
 
 		// End date
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_enddate));
 		map.put(ITEM_VALUE, t.getEndDateAsString());
-		data.add(map);
+		trackData.add(map);
 
 		// Start point
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_startloc));
 		map.put(ITEM_VALUE, MercatorProjection.formatDegreesAsDMS(t.getStartLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getStartLong(), false));
-		data.add(map);
+		trackData.add(map);
 
 		// End point
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_endloc));
 		map.put(ITEM_VALUE, MercatorProjection.formatDegreesAsDMS(t.getEndLat(), true) + "  " + MercatorProjection.formatDegreesAsDMS(t.getEndLong(), false));
-		data.add(map);
+		trackData.add(map);
 
 		// OSM Upload date
 		map = new HashMap<String, String>();
@@ -176,7 +228,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		} else {
 			map.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(cursor.getLong(cursor.getColumnIndex(Schema.COL_EXPORT_DATE)))));
 		}
-		data.add(map);
+		trackData.add(map);
 		
 		// Exported date. Should be the last item in order to be refreshed
 		// if the user exports the track
@@ -187,11 +239,20 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		} else {
 			map.put(ITEM_VALUE, (DateFormat.getDateTimeInstance().format(new Date(cursor.getLong(cursor.getColumnIndex(Schema.COL_EXPORT_DATE))))));
 		}
-		data.add(map);
+		trackData.add(map);
 		
 		cursor.close();
-		
-		TrackDetailSimpleAdapter adapter = new TrackDetailSimpleAdapter(data, from, to);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		updateTrack();
+
+		String from[] = new String[]{ITEM_KEY, ITEM_VALUE};
+		int[] to = new int[] {R.id.trackdetail_item_key, R.id.trackdetail_item_value};
+		adapter = new TrackDetailSimpleAdapter(trackData, from, to);
 		lv.setAdapter(adapter);
 
 		// Click on Waypoint count to see the track's WaypointList
@@ -262,6 +323,16 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		startActivity(i);
 	}
 	
+	/**
+	 * On track path changed, update track info
+	 */
+	private void pathChanged() {
+		updateTrack();
+		// Update the list view
+		if (adapter != null)
+			adapter.notifyDataSetChanged();
+	}
+
 	/**
 	 * Extend SimpleAdapter so we can underline the clickable Waypoint count.
 	 * Always uses <tt>R.layout.trackdetail_item</tt> as its list item resource.
