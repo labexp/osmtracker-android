@@ -52,16 +52,23 @@ public class AvailableLayouts extends Activity {
 
     //this variable indicates if the default github configuration is activated
     private boolean isDefChecked;
-    //the shared preferences file where the values are saved
-    private SharedPreferences checkboxActive;
-    //this is the editor for save values into the shared preferences file
+    private SharedPreferences sharedPrefs;
     private SharedPreferences.Editor editor;
+
+    //options for repository settings
+    private EditText github_username;
+    private EditText repository_name;
+    private EditText branch_name;
+    private CheckBox defaultServerCheckBox;
+    private CheckBox customServerCheckBox;
+
+    public static final int ISO_CHARACTER_LENGTH = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkboxActive = PreferenceManager.getDefaultSharedPreferences(this);
-        editor = checkboxActive.edit();
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPrefs.edit();
         // call task to download and parse the response to get the list of available layouts
         if (isNetworkAvailable(this)) {
             retrieveAvailableLayouts();
@@ -72,19 +79,22 @@ public class AvailableLayouts extends Activity {
     }
 
     public void retrieveAvailableLayouts(){
-        final String tag = "(Connecting...)"; //while it makes the request
-        setTitle("Available Layouts "+tag);
+        final String waitingMessage = "(Connecting...)"; //while it makes the request
+        setTitle("Available Layouts "+waitingMessage);
         String url = URLCreator.createMetadataDirUrl(this);
         new GetStringResponseTask() {
             protected void onPostExecute(String response) {
                 setContentView(R.layout.available_layouts);
                 setAvailableLayouts(parseResponse(response));
-                setTitle(("" + getTitle()).replace(tag, "")); //when the request is done
+                setTitle(("" + getTitle()).replace(waitingMessage, "")); //when the request is done
             }
 
         }.execute(url);
     }
 
+    /**
+     * It's used for asking there is internet before doing any other networking
+     */
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -92,17 +102,21 @@ public class AvailableLayouts extends Activity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+
+    /**
+     * It receives a string list with the names of the layouts to be listed in the activity
+     */
     public void setAvailableLayouts(List<String> options) {
-        LinearLayout ly = (LinearLayout)findViewById(R.id.root_layout);
+        LinearLayout rootLayout = (LinearLayout)findViewById(R.id.root_layout);
         int AT_START = 0; //the position to insert the view at
         ClickListener listener = new ClickListener();
         for(String option : options){
-            TextView c = new TextView(this);
-            c.setHeight(200);
-            c.setText(CustomLayoutsUtils.convertFileName(option, false));
-            c.setTextSize((float)30);
-            c.setOnClickListener(listener);
-            ly.addView(c,AT_START);
+            TextView layoutTextView = new TextView(this);
+            layoutTextView.setHeight(200);
+            layoutTextView.setText(CustomLayoutsUtils.convertFileName(option, false));
+            layoutTextView.setTextSize((float)30);
+            layoutTextView.setOnClickListener(listener);
+            rootLayout.addView(layoutTextView,AT_START);
         }
     }
 
@@ -123,58 +137,28 @@ public class AvailableLayouts extends Activity {
             //This is the pop up that's appears when the config button in the top right corner is pressed
             @SuppressLint("InflateParams") final View repositoryConfigWindow = inflater.inflate(R.layout.github_repository_settings, null);
             //instancing the edit texts of the layoutName inflate
-            final EditText github_username = (EditText) repositoryConfigWindow.findViewById(R.id.github_username);
-            final EditText repository_name = (EditText) repositoryConfigWindow.findViewById(R.id.repository_name);
-            final EditText branch_name = (EditText) repositoryConfigWindow.findViewById(R.id.branch_name);
+            github_username = (EditText) repositoryConfigWindow.findViewById(R.id.github_username);
+            repository_name = (EditText) repositoryConfigWindow.findViewById(R.id.repository_name);
+            branch_name = (EditText) repositoryConfigWindow.findViewById(R.id.branch_name);
             //instancing the checkbox option and setting the click listener
-            final CheckBox defaultServerCheckBox = (CheckBox) repositoryConfigWindow.findViewById(R.id.default_server);
-            final CheckBox customServerCheckBox = (CheckBox) repositoryConfigWindow.findViewById(R.id.custom_server);
+            defaultServerCheckBox = (CheckBox) repositoryConfigWindow.findViewById(R.id.default_server);
+            customServerCheckBox = (CheckBox) repositoryConfigWindow.findViewById(R.id.custom_server);
 
             //first, we verify if the default checkbox is activated, if true we put the default options into the edit texts and make them not editable
-            if(checkboxActive.getBoolean("defCheck", true)){
-                customServerCheckBox.setChecked(false);
-                customServerCheckBox.setEnabled(true);
-                defaultServerCheckBox.setChecked(true);
-                defaultServerCheckBox.setEnabled(false);
-                //setting the default options in the text fields
-                github_username.setText(OSMTracker.Preferences.VAL_GITHUB_USERNAME);
-                github_username.setEnabled(false);
-                repository_name.setText(OSMTracker.Preferences.VAL_REPOSITORY_NAME);
-                repository_name.setEnabled(false);
-                branch_name.setText(OSMTracker.Preferences.VAL_BRANCH_NAME);
-                branch_name.setEnabled(false);
+            if(sharedPrefs.getBoolean("defCheck", true)){
+                toggleRepositoryOptions(true);
             }
             //if the default checkbox isn't checked we put the shared preferences values into the edit texts
             else{
-                defaultServerCheckBox.setChecked(false);
-                defaultServerCheckBox.setEnabled(true);
-                customServerCheckBox.setChecked(true);
-                customServerCheckBox.setEnabled(true);
-                //enabling the text options fields
-                github_username.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
-                github_username.setEnabled(true);
-                repository_name.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME,""));
-                repository_name.setEnabled(true);
-                branch_name.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, ""));
-                branch_name.setEnabled(true);
+                toggleRepositoryOptions(false);
             }
 
             defaultServerCheckBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    customServerCheckBox.setChecked(false);
-                    customServerCheckBox.setEnabled(true);
-                    defaultServerCheckBox.setChecked(true);
-                    defaultServerCheckBox.setEnabled(false);
-                    //setting the default options in the text fields
-                    github_username.setText(OSMTracker.Preferences.VAL_GITHUB_USERNAME);
-                    github_username.setEnabled(false);
-                    repository_name.setText(OSMTracker.Preferences.VAL_REPOSITORY_NAME);
-                    repository_name.setEnabled(false);
-                    branch_name.setText(OSMTracker.Preferences.VAL_BRANCH_NAME);
-                    branch_name.setEnabled(false);
+                    toggleRepositoryOptions(true);
                     isDefChecked = true;
-                    //set true isDefChecked and save into the shared preferences file
+                    //we save the status into the sharedPreferences file
                     editor.putBoolean("defCheck", isDefChecked);
                     editor.commit();
                 }
@@ -182,19 +166,9 @@ public class AvailableLayouts extends Activity {
             customServerCheckBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    defaultServerCheckBox.setChecked(false);
-                    defaultServerCheckBox.setEnabled(true);
-                    customServerCheckBox.setChecked(true);
-                    customServerCheckBox.setEnabled(false);
-                    //enabling the text options fields
-                    github_username.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
-                    github_username.setEnabled(true);
-                    repository_name.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, ""));
-                    repository_name.setEnabled(true);
-                    branch_name.setText(checkboxActive.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, ""));
-                    branch_name.setEnabled(true);
+                    toggleRepositoryOptions(false);
                     isDefChecked = false;
-                    //set false isDefChecked and save into the shared preferences file
+                    //we save the status into the sharedPreferences file
                     editor.putBoolean("defCheck", isDefChecked);
                     editor.commit();
                 }
@@ -239,33 +213,54 @@ public class AvailableLayouts extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+    * This toggles (default/custom) the states of repository settings options in function of boolean param
+    * status true: tries to activated default options
+    * status false: tries to activated custom options
+    * */
+    private void toggleRepositoryOptions(boolean status){
+        customServerCheckBox.setChecked(!status);
+        customServerCheckBox.setEnabled(status);
+        defaultServerCheckBox.setChecked(status);
+        defaultServerCheckBox.setEnabled(!status);
+        github_username.setEnabled(!status);
+        branch_name.setEnabled(!status);
+        repository_name.setEnabled(!status);
+
+        //setting the default options into text fields
+        if(status){
+            github_username.setText(OSMTracker.Preferences.VAL_GITHUB_USERNAME);
+            repository_name.setText(OSMTracker.Preferences.VAL_REPOSITORY_NAME);
+            branch_name.setText(OSMTracker.Preferences.VAL_BRANCH_NAME);
+        }
+        //setting the custom options into text fields
+        else{
+            github_username.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
+            repository_name.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME,""));
+            branch_name.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, ""));
+        }
+    }
+
+    /*
+    parse the string (representation of a json) to get only the values associated with
+    key "name", which are the file names of the folder requested before.
+    */
     private List<String> parseResponse(String response) {
-        /*
-        parse the string (representation of a json) to get only the values associated with
-        key "name", which are the file names of the folder requested before.
-         */
-
         List<String> options = new ArrayList<String>();
-
-
         try {
             // create JSON Object
             JSONArray jsonArray = new JSONArray(response);
-
             for (int i= 0; i < jsonArray.length(); i++) {
                 // create json object for every element of the array
                 JSONObject object = jsonArray.getJSONObject(i);
                 // get the value associated with
                 options.add( object.getString("name") );
             }
-
-
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
-
         return options;
     }
 
@@ -282,7 +277,7 @@ public class AvailableLayouts extends Activity {
             //step to lang start tag
             parser.next();
             //step to first iso start tag
-            while(!(eventType==XmlPullParser.START_TAG && parser.getName().length()==2)){
+            while(!(eventType==XmlPullParser.START_TAG && parser.getName().length()== ISO_CHARACTER_LENGTH)){
                 eventType = parser.next();
             }
             while(eventType != XmlPullParser.END_DOCUMENT){
@@ -428,7 +423,7 @@ public class AvailableLayouts extends Activity {
                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
                 }
 
-            }.execute(info); //The test is with the "Transporte publico" layoutName
+            }.execute(info);
         }
     }
 }

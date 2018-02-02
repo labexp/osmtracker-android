@@ -21,7 +21,6 @@ import java.util.Set;
 
 import me.guillaumin.android.osmtracker.OSMTracker;
 import me.guillaumin.android.osmtracker.activity.Preferences;
-import me.guillaumin.android.osmtracker.util.CheckForSDCard;
 import me.guillaumin.android.osmtracker.util.CustomLayoutsUtils;
 import me.guillaumin.android.osmtracker.util.URLCreator;
 
@@ -45,13 +44,13 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
         String layoutFolderName = layoutName.replace(" ", "_");
         String iso = layoutData[1];
         SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(context);
-        String storage_dir =prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR);
+        String storageDir =prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR);
 
         String layoutURL = URLCreator.createLayoutFileURL(context, layoutName, iso);
-        String layoutPath = Environment.getExternalStorageDirectory() + storage_dir + File.separator +
+        String layoutPath = Environment.getExternalStorageDirectory() + storageDir + File.separator +
                 Preferences.LAYOUTS_SUBDIR + File.separator;
 
-        String iconsPath = Environment.getExternalStorageDirectory() + storage_dir + File.separator +
+        String iconsPath = Environment.getExternalStorageDirectory() + storageDir + File.separator +
                 Preferences.LAYOUTS_SUBDIR + File.separator  + layoutFolderName + File.separator;
 
         Boolean status = false;
@@ -60,31 +59,22 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
             // download layout
             createDir(layoutPath);
             downloadFile(layoutURL,layoutPath +File.separator + CustomLayoutsUtils.createFileName(layoutName, iso));
-
-            // TODO: download metadata file
-
             // downloading icons
             createDir(iconsPath);
             HashMap<String, String> iconsInfo = getIconsHash(layoutName);
-
             Set<String> keys = iconsInfo.keySet();
-
             String currentKey;
             String currentValue;
-
             for(int i=0 ; i<keys.toArray().length ; i++){
                 currentKey= (String)keys.toArray()[i];
                 currentValue = iconsInfo.get(currentKey);
                 downloadFile(currentValue, iconsPath + File.separator + currentKey);
             }
-
             status = true;
-
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             status = false;
         }
-
         return status;
     }
 
@@ -96,7 +86,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
 
         //Get File if SD card is present
         File apkStorage = null;
-        if (new CheckForSDCard().isSDCardPresent()) {
+        if (isSDCardPresent()) {
             apkStorage = new File(dirPath);
         }
         //If File is not present create directory
@@ -106,12 +96,15 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
         }
     }
 
+    private boolean isSDCardPresent() {
+        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+    }
 
     private void downloadFile( String downloadUrl, String outputFile) throws Throwable {
 
         URL url = new URL(downloadUrl); //Create Download URl
-        HttpURLConnection c = (HttpURLConnection) url.openConnection(); //Open Url Connection
-        InputStream is = c.getInputStream(); //Get InputStream for connection
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection(); //Open Url Connection
+        InputStream is = connection.getInputStream(); //Get InputStream for connection
 
         if (is != null){
             FileOutputStream fos = new FileOutputStream(outputFile);//Get OutputStream for NewFile Location
@@ -156,7 +149,6 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
 
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
