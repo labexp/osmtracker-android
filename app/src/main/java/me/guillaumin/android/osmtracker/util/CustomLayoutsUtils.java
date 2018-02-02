@@ -1,7 +1,5 @@
 package me.guillaumin.android.osmtracker.util;
 
-import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +17,6 @@ import me.guillaumin.android.osmtracker.layout.GetStringResponseTask;
 
 public class CustomLayoutsUtils {
     //File Extension for the layouts in different languages
-    //FIXME: ¿needs to be public?
     public final static String LAYOUT_EXTENSION_ISO = "_xx.xml";
 
     /**
