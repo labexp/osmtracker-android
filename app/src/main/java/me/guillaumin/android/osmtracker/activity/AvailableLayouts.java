@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -373,9 +374,14 @@ public class AvailableLayouts extends Activity {
         public void onClick(View view) {
             final String layoutName = ""+((TextView) view).getText();
             String url = URLCreator.createMetadataFileURL(view.getContext(), layoutName);
+            final ProgressDialog dialog = new ProgressDialog(view.getContext());
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("Checking local language versions");
+            dialog.show();
             new GetStringResponseTask(){
                 @Override
                 protected void onPostExecute(String response) {
+                    dialog.dismiss();
                     String xmlFile = response;
                     String localLang = Locale.getDefault().getLanguage();
                     String description = getDescriptionFor(xmlFile, localLang);
@@ -384,7 +390,6 @@ public class AvailableLayouts extends Activity {
                     } else {//List all other languages
                         HashMap<String, String> languages = getLanguagesFor(xmlFile);
                         showLanguageSelectionDialog(languages, xmlFile, layoutName);
-
                     }
                 }
             }.execute(url);
@@ -410,7 +415,10 @@ public class AvailableLayouts extends Activity {
 
             String info[] = {this.layoutName, this.iso};
             Log.e("#","Result "+info[0]+","+info[1]);
-
+            final ProgressDialog dialog = new ProgressDialog(this.context);
+            dialog.setMessage("Downloading...");
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.show();
             new DownloadCustomLayoutTask(this.context){
                 protected void onPostExecute(Boolean status){
                     String message="";
@@ -421,8 +429,8 @@ public class AvailableLayouts extends Activity {
                         message = "Download error";
                     }
                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
                 }
-
             }.execute(info);
         }
     }

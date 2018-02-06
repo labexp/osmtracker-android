@@ -3,12 +3,14 @@ package me.guillaumin.android.osmtracker.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -170,17 +172,20 @@ public class ButtonsPresets extends Activity {
         selected.setChecked(true);
     }
 
+    private void selectLayout(CheckBox pressed){
+        selected.setChecked(false);
+        pressed.setChecked(true);
+        selected=pressed;
+        String targetLayout = layoutsFileNames.get(pressed.getText());
+        prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
+                targetLayout).commit();
+    }
+
     //Class that manages the changes on the selected layout
     private class CheckBoxChangedListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            CheckBox pressed = (CheckBox)view;
-            selected.setChecked(false);
-            pressed.setChecked(true);
-            selected=pressed;
-            String targetLayout = layoutsFileNames.get(pressed.getText());
-            prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
-                    targetLayout).commit();
+            selectLayout( (CheckBox)view );
         }
     }
 
@@ -202,13 +207,15 @@ public class ButtonsPresets extends Activity {
                 String layoutName = checkboxHeld.getText().toString();
                 String iso = getIso(layoutsFileNames.get(checkboxHeld.getText()));
                 String info[]= {layoutName, iso};
+                final ProgressDialog dialog = new ProgressDialog(checkboxHeld.getContext());
+                dialog.setMessage("Updating...");
+                dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                dialog.show();
                 new DownloadCustomLayoutTask(this){
                     protected void onPostExecute(Boolean status){
                         //if the download is correct we activate it
                         if (status) {
-                            String targetLayout = layoutsFileNames.get(checkboxHeld.getText());
-                            prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
-                                    targetLayout).commit();
+                            selectLayout(checkboxHeld);
                             //re-load the activity
                             refreshActivity();
                             Toast.makeText(getApplicationContext(), "Layout was updated successfully", Toast.LENGTH_LONG).show();
@@ -216,8 +223,10 @@ public class ButtonsPresets extends Activity {
                         else {
                             Toast.makeText(getApplicationContext(), "Layout was not updated, try again later.", Toast.LENGTH_LONG).show();
                         }
+                        dialog.dismiss();
                     }
                 }.execute(info);
+                checkboxHeld.setChecked(false);
                 break;
             //this case open a new confirm dialog to delete a layout, also, if the layout have a icon directory, it is deleted
             case R.id.cb_delete:
