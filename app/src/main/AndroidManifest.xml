@@ -31,7 +31,15 @@
 			</intent-filter>
 		</activity>
 		<activity android:name=".activity.About" android:label="@string/about" />
-		<activity android:name=".activity.DisplayTrack" android:label="@string/displaytrack" />
+		<activity android:name=".activity.ButtonsPresets">
+			<intent-filter>
+				<action android:name="launch_buttons_presets"/>
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".activity.AvailableLayouts">
+		</activity>
+        <activity android:name=".activity.DisplayTrack" android:label="@string/displaytrack" />
 		<activity android:name=".activity.DisplayTrackMap" android:label="@string/displaytrackmap" />
 
 		<service android:name=".service.gps.GPSLogger" android:exported="false">

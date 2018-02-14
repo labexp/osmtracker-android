@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/cb_update_and_install" android:title="Update &amp; Install"></item>
+    <item android:id="@+id/cb_delete" android:title="Delete"></item>
+
+</menu>
