@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -110,13 +112,19 @@ public class AvailableLayouts extends Activity {
         LinearLayout rootLayout = (LinearLayout)findViewById(R.id.root_layout);
         int AT_START = 0; //the position to insert the view at
         ClickListener listener = new ClickListener();
-        for(String option : options){
-            TextView layoutTextView = new TextView(this);
-            layoutTextView.setHeight(200);
-            layoutTextView.setText(CustomLayoutsUtils.convertFileName(option, false));
-            layoutTextView.setTextSize((float)30);
-            layoutTextView.setOnClickListener(listener);
-            rootLayout.addView(layoutTextView,AT_START);
+
+        for(String option : options) {
+            Button layoutButton = new Button(this);
+            layoutButton.setHeight(150);
+            layoutButton.setText(CustomLayoutsUtils.convertFileName(option, false));
+            layoutButton.setTextSize((float)22 );
+            layoutButton.setTextColor(Color.WHITE);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(110, 0, 110, 0);
+            layoutButton.setLayoutParams(layoutParams);
+            layoutButton.setPadding(10,20,10,20);
+            layoutButton.setOnClickListener(listener);
+            rootLayout.addView(layoutButton,AT_START);
         }
     }
 
