@@ -12,7 +12,6 @@ import org.osmtracker.osm.UploadToOpenStreetMapTask;
 import oauth.signpost.OAuth;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
-
 import android.content.ContentUris;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -86,10 +85,10 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 	 * @return
 	 */
 	private long getTrackId() {
-		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(TrackContentProvider.Schema.COL_TRACK_ID)) {
-			return getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
+		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(Schema.COL_TRACK_ID)) {
+			return getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
 		} else if (getIntent().getData().toString().startsWith(OAUTH_CALLBACK_URL)) {
-			return Long.parseLong(getIntent().getData().getQueryParameter(TrackContentProvider.Schema.COL_TRACK_ID));
+			return Long.parseLong(getIntent().getData().getQueryParameter(Schema.COL_TRACK_ID));
 		} else {
 			throw new IllegalArgumentException("Missing Track ID");
 		}

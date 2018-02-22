@@ -4,9 +4,9 @@ import java.text.DecimalFormat;
 
 import org.osmtracker.R;
 import org.osmtracker.db.TrackContentProvider;
-import org.osmtracker.db.TrackContentProvider.Schema;
 import org.osmtracker.util.ArrayUtils;
 import org.osmtracker.util.MercatorProjection;
+
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -267,8 +267,8 @@ public class DisplayTrackView extends TextView {
 		int i=0;
 		
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(), i++) {
-			coords[i][MercatorProjection.LONGITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE));
-			coords[i][MercatorProjection.LATITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE));
+			coords[i][MercatorProjection.LONGITUDE] = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE));
+			coords[i][MercatorProjection.LATITUDE] = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE));
 		}
 		c.close();
 		
@@ -280,8 +280,8 @@ public class DisplayTrackView extends TextView {
 		wayPointsCoords = new double[c.getCount()][2];
 		
 		for(c.moveToFirst(), i=0; !c.isAfterLast(); c.moveToNext(), i++) {
-			wayPointsCoords[i][MercatorProjection.LONGITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LONGITUDE));
-			wayPointsCoords[i][MercatorProjection.LATITUDE] = c.getDouble(c.getColumnIndex(Schema.COL_LATITUDE));
+			wayPointsCoords[i][MercatorProjection.LONGITUDE] = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE));
+			wayPointsCoords[i][MercatorProjection.LATITUDE] = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE));
 		}
 		c.close();
 		

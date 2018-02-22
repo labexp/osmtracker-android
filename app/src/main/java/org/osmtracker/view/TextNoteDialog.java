@@ -1,4 +1,4 @@
-package org.osmtracker.view;
+package me.guillaumin.android.osmtracker.view;
 
 import java.util.UUID;
 
@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+
 
 public class TextNoteDialog extends AlertDialog {
 	

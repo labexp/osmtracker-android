@@ -1,8 +1,8 @@
 package org.osmtracker.activity;
 
 import org.osmtracker.db.TrackContentProvider;
-import org.osmtracker.db.TrackContentProvider.Schema;
 import org.osmtracker.db.WaypointListAdapter;
+
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.widget.CursorAdapter;
@@ -17,10 +17,10 @@ public class WaypointList extends ListActivity {
 
 	@Override
 	protected void onResume() {
-		Long trackId = getIntent().getExtras().getLong(Schema.COL_TRACK_ID);
+		Long trackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 		
 		Cursor cursor = getContentResolver().query(TrackContentProvider.waypointsUri(trackId),
-				null, null, null, Schema.COL_TIMESTAMP + " desc");
+				null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " desc");
 		startManagingCursor(cursor);
 		setListAdapter(new WaypointListAdapter(WaypointList.this, cursor));
 		

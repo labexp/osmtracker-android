@@ -1,6 +1,7 @@
 package org.osmtracker.listener;
 
 import org.osmtracker.activity.TrackLogger;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 

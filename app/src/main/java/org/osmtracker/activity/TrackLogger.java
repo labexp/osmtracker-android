@@ -1,5 +1,25 @@
 package org.osmtracker.activity;
 
+import java.io.File;
+import java.util.Date;
+import java.util.ArrayList;
+
+import org.osmtracker.OSMTracker;
+import org.osmtracker.R;
+import org.osmtracker.db.DataHelper;
+import org.osmtracker.layout.GpsStatusRecord;
+import org.osmtracker.layout.UserDefinedLayout;
+import org.osmtracker.listener.SensorListener;
+import org.osmtracker.receiver.MediaButtonReceiver;
+import org.osmtracker.service.gps.GPSLogger;
+import org.osmtracker.service.gps.GPSLoggerServiceConnection;
+import org.osmtracker.util.CustomLayoutsUtils;
+import org.osmtracker.util.FileSystemUtils;
+import org.osmtracker.util.ThemeValidator;
+import org.osmtracker.view.TextNoteDialog;
+import org.osmtracker.view.VoiceRecDialog;
+import org.osmtracker.db.TrackContentProvider;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,27 +52,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import org.osmtracker.OSMTracker;
-import org.osmtracker.R;
-import org.osmtracker.db.DataHelper;
-import org.osmtracker.db.TrackContentProvider;
-import org.osmtracker.layout.GpsStatusRecord;
-import org.osmtracker.layout.UserDefinedLayout;
-import org.osmtracker.listener.SensorListener;
-import org.osmtracker.receiver.MediaButtonReceiver;
-import org.osmtracker.service.gps.GPSLogger;
-import org.osmtracker.service.gps.GPSLoggerServiceConnection;
-import org.osmtracker.util.CustomLayoutsUtils;
-import org.osmtracker.util.FileSystemUtils;
-import org.osmtracker.util.ThemeValidator;
-import org.osmtracker.view.TextNoteDialog;
-import org.osmtracker.view.VoiceRecDialog;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-
 
 /**
  * Main track logger activity. Communicate with the GPS service to display GPS
@@ -153,7 +152,7 @@ public class TrackLogger extends Activity {
 	private ComponentName mediaButtonReceiver;
 
 	private ArrayList<String> layoutNameTags = new ArrayList<String>();
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -234,7 +233,7 @@ public class TrackLogger extends Activity {
 	protected void onResume() {
 
 		setTitle(getResources().getString(R.string.tracklogger) + ": #" + currentTrackId);
-
+		
 		// set trackLogger to  keepScreenOn depending on the user's preference
 		View trackLoggerView = findViewById(R.id.tracklogger_root);
 		trackLoggerView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
@@ -336,7 +335,7 @@ public class TrackLogger extends Activity {
 			checkGPSFlag = false;
 		}
 	}
-	
+
 	@Override
 	protected void onPause() {
 

@@ -48,11 +48,11 @@ public class TrackDetailTest extends ActivityInstrumentationTestCase2<TrackDetai
 		Assert.assertEquals("Private", cursor.getString(cursor.getColumnIndex(Schema.COL_OSM_VISIBILITY)));
 		cursor.close();
 		
-		((EditText) getActivity().findViewById(R.id.trackdetail_item_name)).setText("test name");
-		((EditText) getActivity().findViewById(R.id.trackdetail_item_description)).setText("test description");
-		((EditText) getActivity().findViewById(R.id.trackdetail_item_tags)).setText("test tags");
-		((Spinner) getActivity().findViewById(R.id.trackdetail_item_osm_visibility)).setSelection(1);
-		((Button) getActivity().findViewById(R.id.trackdetail_btn_ok)).performClick();
+		((EditText) getActivity().findViewById(org.osmtracker.R.id.trackdetail_item_name)).setText("test name");
+		((EditText) getActivity().findViewById(org.osmtracker.R.id.trackdetail_item_description)).setText("test description");
+		((EditText) getActivity().findViewById(org.osmtracker.R.id.trackdetail_item_tags)).setText("test tags");
+		((Spinner) getActivity().findViewById(org.osmtracker.R.id.trackdetail_item_osm_visibility)).setSelection(1);
+		((Button) getActivity().findViewById(org.osmtracker.R.id.trackdetail_btn_ok)).performClick();
 
 		cursor = cr.query(
 				ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),

@@ -4,10 +4,10 @@ import org.osmtracker.OSMTracker;
 import org.osmtracker.R;
 import org.osmtracker.activity.OpenStreetMapUpload;
 import org.osmtracker.util.DialogUtils;
+
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
 import oauth.signpost.exception.OAuthException;
-
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;

@@ -74,7 +74,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState, R.layout.trackdetail, getIntent().getExtras().getLong(Schema.COL_TRACK_ID));
+		super.onCreate(savedInstanceState, R.layout.trackdetail, getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID));
 
 		lv = (ListView) findViewById(R.id.trackdetail_list);
 
@@ -172,10 +172,10 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		// OSM Upload date
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_osm_upload_date));
-		if (cursor.isNull(cursor.getColumnIndex(Schema.COL_OSM_UPLOAD_DATE))) {
+		if (cursor.isNull(cursor.getColumnIndex(TrackContentProvider.Schema.COL_OSM_UPLOAD_DATE))) {
 			map.put(ITEM_VALUE, getResources().getString(R.string.trackdetail_osm_upload_notyet));
 		} else {
-			map.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(cursor.getLong(cursor.getColumnIndex(Schema.COL_EXPORT_DATE)))));
+			map.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_EXPORT_DATE)))));
 		}
 		data.add(map);
 		
@@ -183,10 +183,10 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		// if the user exports the track
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackdetail_exportdate));
-		if (cursor.isNull(cursor.getColumnIndex(Schema.COL_EXPORT_DATE))) {
+		if (cursor.isNull(cursor.getColumnIndex(TrackContentProvider.Schema.COL_EXPORT_DATE))) {
 			map.put(ITEM_VALUE, getResources().getString(R.string.trackdetail_export_notyet));
 		} else {
-			map.put(ITEM_VALUE, (DateFormat.getDateTimeInstance().format(new Date(cursor.getLong(cursor.getColumnIndex(Schema.COL_EXPORT_DATE))))));
+			map.put(ITEM_VALUE, (DateFormat.getDateTimeInstance().format(new Date(cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_EXPORT_DATE))))));
 		}
 		data.add(map);
 		
@@ -227,7 +227,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			} else {
 				i = new Intent(this, DisplayTrack.class);
 			}
-			i.putExtra(Schema.COL_TRACK_ID, trackId);
+			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
 			startActivity(i);	
 			break;
 		case R.id.trackdetail_menu_export:
@@ -241,7 +241,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			break;
 		case R.id.trackdetail_menu_osm_upload:
 			i = new Intent(this, OpenStreetMapUpload.class);
-			i.putExtra(Schema.COL_TRACK_ID, trackId);
+			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
 			startActivity(i);
 			break;
 		}
@@ -259,7 +259,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		}
 
 		Intent i = new Intent(this, WaypointList.class);
-		i.putExtra(Schema.COL_TRACK_ID, trackId);
+		i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
 		startActivity(i);
 	}
 	

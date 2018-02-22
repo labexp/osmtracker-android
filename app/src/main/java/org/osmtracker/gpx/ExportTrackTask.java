@@ -18,7 +18,6 @@ import org.osmtracker.db.DataHelper;
 import org.osmtracker.db.TrackContentProvider;
 import org.osmtracker.exception.ExportTrackException;
 import org.osmtracker.util.FileSystemUtils;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;

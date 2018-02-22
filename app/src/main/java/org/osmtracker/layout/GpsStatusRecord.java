@@ -5,7 +5,6 @@ import java.text.DecimalFormat;
 import org.osmtracker.OSMTracker;
 import org.osmtracker.R;
 import org.osmtracker.activity.TrackLogger;
-
 import android.content.Context;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;

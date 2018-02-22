@@ -11,8 +11,10 @@ import org.osmtracker.OSMTracker;
 import org.osmtracker.R;
 import org.osmtracker.db.DataHelper;
 import org.osmtracker.util.DialogUtils;
-import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import org.osmtracker.db.model.Track;
+
+import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;

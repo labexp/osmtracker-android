@@ -10,6 +10,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.osmtracker.db.TrackContentProvider;
+
 /**
  * Listener for standard waypoint tag button.
  * Sends an Intent to track waypoint. Waypoint name is the
