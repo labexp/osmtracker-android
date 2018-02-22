@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent"
 	android:orientation="vertical" android:layout_height="fill_parent">
-	<me.guillaumin.android.osmtracker.layout.GpsStatusRecord
+	<org.osmtracker.layout.GpsStatusRecord
 		android:id="@+id/gpsStatus" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 

@@ -24,10 +24,10 @@
 	</string-array>
 
 	<string-array name="prefs_theme_values">
-		<item>me.guillaumin.android.osmtracker:style/DefaultTheme</item>
-		<item>me.guillaumin.android.osmtracker:style/DarkTheme</item>
-		<item>me.guillaumin.android.osmtracker:style/LightTheme</item>
-		<item>me.guillaumin.android.osmtracker:style/HighContrast</item>
+		<item>org.osmtracker:style/DefaultTheme</item>
+		<item>org.osmtracker:style/DarkTheme</item>
+		<item>org.osmtracker:style/LightTheme</item>
+		<item>org.osmtracker:style/HighContrast</item>
 	</string-array>
 
 	<string-array name="prefs_output_filename_values">
