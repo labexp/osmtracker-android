@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LAYOUTS IN CURRENT REPOSITORY:"
+        android:text="@string/prefs_ui_available_layout_main_section"
         android:padding="7dp"
         android:layout_marginLeft="10dp"/>
 

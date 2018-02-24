@@ -15,14 +15,14 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="50"
-            android:text="Default" />
+            android:text="@string/github_repository_settings_default_checkbox" />
 
         <CheckBox
             android:id="@+id/custom_server"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="50"
-            android:text="Custom" />
+            android:text="@string/github_repository_settings_custom_checkbox" />
 
     </LinearLayout>
 
@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Github username: "
+            android:text="@string/github_repository_settings_username"
             android:layout_weight="30"
             android:gravity="center"/>
 
@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Repository name: "
+            android:text="@string/github_repository_settings_repository_name"
             android:layout_weight="30"
             android:gravity="center"/>
 
@@ -79,7 +79,7 @@
         <TextView
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Branch name: "
+            android:text="@string/github_repository_settings_branch_name"
             android:layout_weight="30"
             android:gravity="center"/>
 

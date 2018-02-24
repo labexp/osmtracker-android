@@ -4,6 +4,6 @@
         android:id="@+id/launch_available"
         android:icon="@android:drawable/ic_input_add"
         android:showAsAction="always"
-        android:title="Available Layouts"
+        android:title="@string/prefs_ui_available_layout"
         android:visible="true" />
 </menu>
