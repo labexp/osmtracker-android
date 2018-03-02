@@ -76,20 +76,22 @@ public class AvailableLayouts extends Activity {
         if (isNetworkAvailable(this)) {
             retrieveAvailableLayouts();
         } else {
-            Toast.makeText(getApplicationContext(),"Error: unable to connect to the Internet.",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),getResources().getString(R.string.available_layouts_connection_error),Toast.LENGTH_LONG).show();
             finish();
         }
     }
 
     public void retrieveAvailableLayouts(){
-        final String waitingMessage = "(Connecting...)"; //while it makes the request
-        setTitle("Available Layouts "+waitingMessage);
+        //while it makes the request
+        final String waitingMessage = getResources().getString(R.string.available_layouts_connecting_message);
+        setTitle(getResources().getString(R.string.prefs_ui_available_layout) + waitingMessage);
         String url = URLCreator.createMetadataDirUrl(this);
         new GetStringResponseTask() {
             protected void onPostExecute(String response) {
                 setContentView(R.layout.available_layouts);
                 setAvailableLayouts(parseResponse(response));
-                setTitle(("" + getTitle()).replace(waitingMessage, "")); //when the request is done
+                //when the request is done
+                setTitle(getResources().getString(R.string.prefs_ui_available_layout));
             }
 
         }.execute(url);
@@ -131,7 +133,7 @@ public class AvailableLayouts extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.srvsttg_menu, menu);
+        getMenuInflater().inflate(R.menu.github_repository_settings_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -139,7 +141,7 @@ public class AvailableLayouts extends Activity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.srvsttg_config){
+        if(item.getItemId() == R.id.github_config){
             LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
             //this is for prevent any error with the inflater
             assert inflater != null;
@@ -184,9 +186,9 @@ public class AvailableLayouts extends Activity {
             });
             //creating the alert dialog with the github_repository_setting view
             new AlertDialog.Builder(this)
-                    .setTitle("Github Repository Settings")
+                    .setTitle(getResources().getString(R.string.prefs_ui_github_repository_settings))
                     .setView(repositoryConfigWindow)
-                    .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getResources().getString(R.string.menu_save), new DialogInterface.OnClickListener() {
                         @SuppressLint("StaticFieldLeak")
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -196,7 +198,7 @@ public class AvailableLayouts extends Activity {
                                 protected void onPostExecute(Boolean result){
                                     //validating the github repository
                                     if(result){
-                                        Toast.makeText(AvailableLayouts.this, "The server is valid", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AvailableLayouts.this, getResources().getString(R.string.github_repository_settings_valid_server), Toast.LENGTH_SHORT).show();
                                         //save the entered options into the shared preferences file
                                         editor.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, repositoryCustomOptions[0]);
                                         editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]);
@@ -204,13 +206,13 @@ public class AvailableLayouts extends Activity {
                                         editor.commit();
                                         retrieveAvailableLayouts();
                                     }else{
-                                        Toast.makeText(AvailableLayouts.this, "Invalid server", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AvailableLayouts.this, getResources().getString(R.string.github_repository_settings_invalid_server), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }.execute(repositoryCustomOptions);
                         }
                     })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getResources().getString(R.string.menu_cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
@@ -351,8 +353,8 @@ public class AvailableLayouts extends Activity {
     private void showDescriptionDialog(String layoutName, String description, String iso){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setTitle(layoutName);
-        b.setNegativeButton("Cancel",null);
-        b.setPositiveButton("Download", new DownloadListener(layoutName, iso, this));
+        b.setNegativeButton(getResources().getString(R.string.menu_cancel),null);
+        b.setPositiveButton(getResources().getString(R.string.available_layouts_description_dialog_positive_confirmation), new DownloadListener(layoutName, iso, this));
         b.setMessage(description);
         b.create().show();
     }
@@ -363,10 +365,10 @@ public class AvailableLayouts extends Activity {
         for(int i=0 ; i<keys.toArray().length ; i++){
             options[i] = (String)keys.toArray()[i];
         }
-        Toast.makeText(this,"Your language is not available select one from the list",
+        Toast.makeText(this,getResources().getString(R.string.available_layouts_not_available_language),
                         Toast.LENGTH_LONG).show();
         AlertDialog.Builder b = new AlertDialog.Builder(this);
-        b.setTitle("Available Languages");
+        b.setTitle(getResources().getString(R.string.available_layouts_language_dialog_title));
         b.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -384,7 +386,7 @@ public class AvailableLayouts extends Activity {
             String url = URLCreator.createMetadataFileURL(view.getContext(), layoutName);
             final ProgressDialog dialog = new ProgressDialog(view.getContext());
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("Checking local language versions");
+            dialog.setMessage(getResources().getString(R.string.available_layouts_checking_language_dialog));
             dialog.show();
             new GetStringResponseTask(){
                 @Override
@@ -418,23 +420,19 @@ public class AvailableLayouts extends Activity {
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
             //Code for downloading the layoutName, must get the layoutName name here
-            Toast.makeText(this.context,"Trying to download "+this.layoutName +" "+this.iso,
-                    Toast.LENGTH_LONG).show();
-
             String info[] = {this.layoutName, this.iso};
-            Log.e("#","Result "+info[0]+","+info[1]);
             final ProgressDialog dialog = new ProgressDialog(this.context);
-            dialog.setMessage("Downloading...");
+            dialog.setMessage(getResources().getString(R.string.available_layouts_downloading_dialog));
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             dialog.show();
             new DownloadCustomLayoutTask(this.context){
                 protected void onPostExecute(Boolean status){
                     String message="";
                     if (status) {
-                        message = "Ok";
+                        message = getResources().getString(R.string.available_layouts_successful_download);
                     }
                     else {
-                        message = "Download error";
+                        message = getResources().getString(R.string.available_layouts_unsuccessful_download);
                     }
                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
                     dialog.dismiss();

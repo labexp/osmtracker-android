@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DEFAULT LAYOUT"
+        android:text="@string/prefs_ui_buttons_layout_default_section"
         android:padding="7dp"
         android:layout_marginLeft="10dp"/>
 
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
-        android:text="default"
+        android:text="@string/prefs_ui_buttons_layout_defaut"
         android:layout_marginLeft="20dp"
         android:textSize="20sp"/>
 
@@ -27,7 +27,7 @@
         android:id="@+id/down_sec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DOWNLOADED LAYOUT"
+        android:text="@string/prefs_ui_buttons_layout_downloaded_section"
         android:padding="7dp"
         android:layout_marginLeft="10dp"/>
 
@@ -42,7 +42,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="You don't have downloaded layout files"
+            android:text="@string/prefs_ui_buttons_layout_empty_section"
             android:id="@+id/btnpre_empty"
             android:gravity="center"
             android:padding="7dp"/>

@@ -23,6 +23,12 @@
   <string name="prefs_ui_buttons_layout">Disposición de los botones</string>
   <string name="prefs_ui_buttons_layout_summary">Escoja una disposición personalizada de los botones (ver documentación)</string>
   <string name="prefs_ui_buttons_layout_defaut">Predeterminada</string>
+  <string name="prefs_ui_buttons_layout_default_section">LAYOUT PREDETERMINADO</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">LAYOUTS DESCARGADOS</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Usted no tiene layouts descargados</string>
+  <string name="prefs_ui_available_layout">Layouts Disponibles</string>
+  <string name="prefs_ui_available_layout_main_section">LAYOUTS EN EL REPOSITORIO ACTUAL:</string>
+  <string name="prefs_ui_github_repository_settings">Configuración del Repositorio Github</string>
   <string name="prefs_ui_orientation">Orientación</string>
   <string name="prefs_ui_orientation_summary">Orientación preferida para la pantalla de botones</string>
   <string-array name="prefs_ui_orientation_options_keys">

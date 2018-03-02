@@ -61,12 +61,14 @@ public class ButtonsPresets extends Activity {
         LinearLayout downloadedLayouts = (LinearLayout) findViewById(R.id.list_layouts);
         //main layout for the default layout checkbox
         LinearLayout defaultSection = (LinearLayout) findViewById(R.id.buttons_presets);
+        //restar the hashtable
+        layoutsFileNames = new Hashtable<String, String>();
         listLayouts(downloadedLayouts);
         checkCurrentLayout(downloadedLayouts, defaultSection);
     }
 
     private void initializeAttributes(){
-        setTitle("Buttons Presets");
+        setTitle(getResources().getString(R.string.prefs_ui_buttons_layout));
         setContentView(R.layout.buttons_presets);
         listener = new CheckBoxChangedListener();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -110,8 +112,8 @@ public class ButtonsPresets extends Activity {
 
         defaultCheckBox = (CheckBox) findViewById(R.id.def_layout);
         defaultCheckBox.setOnClickListener(listener);
-        //this is the maping default->default
-        layoutsFileNames.put(OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT,OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+        //this is the maping default(It depends on the language of the mobile)->default
+        layoutsFileNames.put(defaultCheckBox.getText().toString(),OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
         //verify the size of the layoutsFileNames, if it is greater than 1, we put invisible the message (in the downloaded layouts section)
         if(layoutsFileNames.size() > 1){
             TextView empyText = (TextView) findViewById(R.id.btnpre_empty);
@@ -208,7 +210,7 @@ public class ButtonsPresets extends Activity {
                 String iso = getIso(layoutsFileNames.get(checkboxHeld.getText()));
                 String info[]= {layoutName, iso};
                 final ProgressDialog dialog = new ProgressDialog(checkboxHeld.getContext());
-                dialog.setMessage("Updating...");
+                dialog.setMessage(getResources().getString(R.string.buttons_presets_updating_layout));
                 dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 dialog.show();
                 new DownloadCustomLayoutTask(this){
@@ -218,10 +220,10 @@ public class ButtonsPresets extends Activity {
                             selectLayout(checkboxHeld);
                             //re-load the activity
                             refreshActivity();
-                            Toast.makeText(getApplicationContext(), "Layout was updated successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_successful_update), Toast.LENGTH_LONG).show();
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Layout was not updated, try again later.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_unsuccessful_update), Toast.LENGTH_LONG).show();
                         }
                         dialog.dismiss();
                     }
@@ -232,10 +234,10 @@ public class ButtonsPresets extends Activity {
             case R.id.cb_delete:
                 new AlertDialog.Builder(this).
                 setTitle(checkboxHeld.getText())
-                .setMessage("Are you sure to delete the " + checkboxHeld.getText() + " layout?")
+                .setMessage(getResources().getString(R.string.buttons_presets_delete_message).replace("{0}", checkboxHeld.getText()))
                 .setCancelable(true)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getResources().getString(R.string.buttons_presets_delete_positive_confirmation), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String fileName = layoutsFileNames.get(checkboxHeld.getText());
@@ -243,25 +245,25 @@ public class ButtonsPresets extends Activity {
                         File fileToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + fileName);
 
                         if(FileSystemUtils.delete(fileToDelete, false)){
-                            Toast.makeText(getApplicationContext(), "The file was deleted successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_successful_delete), Toast.LENGTH_SHORT).show();
 
                             String iconDirName = fileName.substring(0, fileName.length() - CustomLayoutsUtils.LAYOUT_EXTENSION_ISO.length());
                             File iconDirToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + iconDirName);
 
                             if(FileSystemUtils.delete(iconDirToDelete, true)){
-                                Toast.makeText(getApplicationContext(), "The icon directory was deleted successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_icon_directory_deleted), Toast.LENGTH_SHORT).show();
                             }else{
-                                Toast.makeText(getApplicationContext(), "This file didn't have any icon directory associated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_icon_directory_does_not_exist), Toast.LENGTH_SHORT).show();
                             }
 
                         }else{
-                            Toast.makeText(getApplicationContext(), "The file could not be delete", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_unsuccessful_delete), Toast.LENGTH_SHORT).show();
                         }
                         //reload the activity
                         refreshActivity();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getResources().getString(R.string.menu_cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
