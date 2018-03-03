@@ -5,11 +5,11 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "me.guillaumin.android.osmtracker"
+        applicationId "org.osmtracker"
         minSdkVersion 8
         targetSdkVersion 16
 
-        testApplicationId "me.guillaumin.android.osmtracker.test"
+        testApplicationId "org.osmtracker.test"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
 
