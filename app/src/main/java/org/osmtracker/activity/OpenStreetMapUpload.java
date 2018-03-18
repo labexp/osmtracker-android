@@ -50,7 +50,9 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 	private static final CommonsHttpOAuthConsumer oAuthConsumer = new CommonsHttpOAuthConsumer(
 			OpenStreetMapConstants.OAuth.CONSUMER_KEY,
 			OpenStreetMapConstants.OAuth.CONSUMER_SECRET);
-	
+	private ExportToTempFileTask exportToTempFileTask;
+	private UploadToOpenStreetMapTask uploadToOpenStreetMapTask;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -126,6 +128,16 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 			new RetrieveAccessTokenTask(this, oAuthProvider, oAuthConsumer, verifier).execute();
 		}
 	}
+	@Override
+	protected void onPause(){
+		super.onPause();
+		if(exportToTempFileTask != null){
+			exportToTempFileTask.parentNotVisible();
+		}
+		if(uploadToOpenStreetMapTask != null){
+			uploadToOpenStreetMapTask.parentNotVisible();
+		}
+	}
 
 	/**
 	 * Either starts uploading directly if we are authenticated against OpenStreetMap,
@@ -150,15 +162,17 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 	 * Exports track on disk then upload to OSM.
 	 */
 	public void uploadToOsm() {
-		new ExportToTempFileTask(this, trackId) {
+		exportToTempFileTask = new ExportToTempFileTask(this, trackId) {
 			@Override
 			protected void executionCompleted() {
-				new UploadToOpenStreetMapTask(OpenStreetMapUpload.this, trackId, oAuthConsumer, this.getTmpFile(),
+				uploadToOpenStreetMapTask = new UploadToOpenStreetMapTask(OpenStreetMapUpload.this, trackId, oAuthConsumer, this.getTmpFile(),
 						this.getFilename(), etDescription.getText().toString(), etTags.getText().toString(),
-						Track.OSMVisibility.fromPosition(OpenStreetMapUpload.this.spVisibility.getSelectedItemPosition()))
-							.execute();
+						Track.OSMVisibility.fromPosition(OpenStreetMapUpload.this.spVisibility.getSelectedItemPosition()));
+				uploadToOpenStreetMapTask
+						.execute();
 			}
-		}.execute();
+		};
+		exportToTempFileTask.execute();
 	}
 
 }

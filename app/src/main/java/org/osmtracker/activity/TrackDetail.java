@@ -70,7 +70,8 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 	 * List with track info
 	 */
 	private ListView lv;
-	
+	private ExportToStorageTask exportToStorageTask;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState, R.layout.trackdetail, getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID));
@@ -197,6 +198,13 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		// Click on Waypoint count to see the track's WaypointList
 		lv.setOnItemClickListener(this);
 	}
+	@Override
+	public void onPause() {
+		super.onPause();
+		if(exportToStorageTask != null) {
+			exportToStorageTask.parentNotVisible();
+		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -230,7 +238,8 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			startActivity(i);	
 			break;
 		case R.id.trackdetail_menu_export:
-			new ExportToStorageTask(this, trackId).execute();
+			exportToStorageTask = new ExportToStorageTask(this, trackId);
+			exportToStorageTask.execute();
 			// Pick last list item (Exported date) and update it
 			SimpleAdapter adapter = ((SimpleAdapter) lv.getAdapter());
 			@SuppressWarnings("unchecked")

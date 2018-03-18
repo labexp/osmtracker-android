@@ -159,14 +159,18 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 	protected void onPostExecute(Void result) {
 		switch (resultCode) {
 		case -1:
-			dialog.dismiss();
+			if(dialog.isShowing()) {
+				dialog.dismiss();
+			}
 			// Internal error, the request didn't start at all
 			DialogUtils.showErrorDialog(activity,
 					activity.getResources().getString(R.string.osm_upload_error)
 						+ ": " + errorMsg);
 			break;
 		case HttpStatus.SC_OK:
-			dialog.dismiss();
+			if(dialog.isShowing()) {
+				dialog.dismiss();
+			}
 			// Success ! Update database and close activity
 			DataHelper.setTrackUploadDate(trackId, System.currentTimeMillis(), activity.getContentResolver());
 			
@@ -185,7 +189,9 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 			
 			break;
 		case HttpStatus.SC_UNAUTHORIZED:
-			dialog.dismiss();
+			if(dialog.isShowing()) {
+				dialog.dismiss();
+			}
 			// Authorization issue. Provide a way to clear credentials
 			new AlertDialog.Builder(activity)
 					.setTitle(android.R.string.dialog_alert_title)
@@ -195,7 +201,9 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 					.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();								
+							if(((AlertDialog)dialog).isShowing()) {
+								dialog.dismiss();
+							}
 						}
 					})
 					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -205,8 +213,9 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 							editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN);
 							editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET);
 							editor.commit();
-
-							dialog.dismiss();
+							if(((AlertDialog)dialog).isShowing()) {
+								dialog.dismiss();
+							}
 						}
 					}).create().show();
 
@@ -220,8 +229,9 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 				while ( (line = reader.readLine()) != null) {
 					sb.append(line).append(System.getProperty("line.separator"));
 				}
-				
-				dialog.dismiss();
+				if(dialog.isShowing()) {
+					dialog.dismiss();
+				}
 				
 				DialogUtils.showErrorDialog(activity,
 						activity.getResources().getString(R.string.osm_upload_bad_response)
@@ -255,5 +265,10 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 		}
 		
 		return null;
+	}
+	public void parentNotVisible(){
+		if(getStatus() == Status.FINISHED || getStatus() == Status.RUNNING) {
+			dialog.dismiss();
+		}
 	}
 }

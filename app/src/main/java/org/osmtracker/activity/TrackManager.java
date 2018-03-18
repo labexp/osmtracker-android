@@ -57,6 +57,7 @@ public class TrackManager extends ListActivity {
 
 	/** The previous item visible, or -1; for scrolling back to its position in {@link #onResume()} */
 	private int prevItemVisible = -1;
+	private ExportToStorageTask exportToStorageTask;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +117,9 @@ public class TrackManager extends ListActivity {
 
 	@Override
 	protected void onPause() {
+		if(exportToStorageTask!= null) {
+			exportToStorageTask.parentNotVisible();
+		}
 		// Remember position in listview (before any adapter change)
 		prevItemVisible = getListView().getFirstVisiblePosition();
 
@@ -242,7 +246,8 @@ public class TrackManager extends ListActivity {
 								ids[i++] = cursor.getLong(idCol);
 							} while (cursor.moveToNext());
 							
-							new ExportToStorageTask(TrackManager.this, ids).execute();
+							exportToStorageTask = new ExportToStorageTask(TrackManager.this, ids);
+							exportToStorageTask.execute();
 						}
 						cursor.close();
 					}
@@ -328,8 +333,9 @@ public class TrackManager extends ListActivity {
 				}).create().show();
 
 			break;
-		case R.id.trackmgr_contextmenu_export:	
-			new ExportToStorageTask(this, info.id).execute();
+		case R.id.trackmgr_contextmenu_export:
+			exportToStorageTask = new ExportToStorageTask(this, info.id);
+			exportToStorageTask.execute();
 			break;
 		case R.id.trackmgr_contextmenu_osm_upload:
 			i = new Intent(this, OpenStreetMapUpload.class);
