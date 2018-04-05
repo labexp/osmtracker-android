@@ -89,9 +89,9 @@ public class OSMTracker {
 		public final static String VAL_UI_MAP_TILE_MAPNIK = "MAPNIK";
 
 		//default values for repository settings
-		public final static String VAL_GITHUB_USERNAME = "LabExperimental-SIUA";
-		public final static String VAL_REPOSITORY_NAME = "osmtracker-android";
-		public final static String VAL_BRANCH_NAME = "layouts";
+		public final static String VAL_GITHUB_USERNAME = "labexp";
+		public final static String VAL_REPOSITORY_NAME = "osmtracker-fork";
+		public final static String VAL_BRANCH_NAME = "layouts_backup";
 		
 	};
 	

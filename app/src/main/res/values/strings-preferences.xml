@@ -36,7 +36,6 @@
 	<string name="prefs_ui_buttons_layout_downloaded_section">DOWNLOADED LAYOUT</string>
 	<string name="prefs_ui_buttons_layout_empty_section">You don\'t have downloaded layout files</string>
 	<string name="prefs_ui_available_layout">Available Layouts</string>
-	<string name="prefs_ui_available_layout_main_section">LAYOUTS IN CURRENT REPOSITORY:</string>
 	<string name="prefs_ui_github_repository_settings">Github Repository Settings</string>
 	<string name="prefs_ui_orientation">Orientation</string>
 	<string name="prefs_ui_orientation_summary">Preferred orientation for the button screen</string>
