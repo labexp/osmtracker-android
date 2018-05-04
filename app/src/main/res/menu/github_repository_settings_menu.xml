@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.AvailableLayouts">
+    tools:context="org.osmtracker.activity.AvailableLayouts">
 
     <item android:id="@+id/github_config"
         android:icon="@android:drawable/ic_menu_manage"
