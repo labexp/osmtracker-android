@@ -176,6 +176,7 @@
 	<string name="available_layouts_downloading_dialog">Downloading…</string>
 	<string name="available_layouts_successful_download">The layout was downloaded successfully</string>
 	<string name="available_layouts_unsuccessful_download">The layout can\'t be downloaded, try again later</string>
+	<string name="available_layouts_null_response_received">Error retrieving data from server</string>
 
 	<!-- Github Repository Settings -->
 	<string name="github_repository_settings_default_checkbox">Default</string>

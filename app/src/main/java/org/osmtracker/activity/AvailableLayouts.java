@@ -312,32 +312,15 @@ public class AvailableLayouts extends Activity {
             XmlPullParser parser = XmlPullParserFactory.newInstance().newPullParser();
             parser.setInput (new ByteArrayInputStream(xmlFile.getBytes()),"UTF-8");
             int eventType = parser.getEventType();
-            //step to lang start tag
-            parser.next();
-            //step to first iso start tag
-            while(!(eventType==XmlPullParser.START_TAG && parser.getName().length()== ISO_CHARACTER_LENGTH)){
-                eventType = parser.next();
-            }
             while(eventType != XmlPullParser.END_DOCUMENT){
-                //We are at the start tag of a iso
-                //Then look for the name tag inside it...
-                String iso = parser.getName();
-                String name=""; //The key,value pairs for the hashmap
-                while(!(eventType == XmlPullParser.START_TAG && parser.getName().equals("name"))){
-                    eventType = parser.next();
+                //Move to a <option> tag
+                if(parser.getEventType() == XmlPullParser.START_TAG
+                        && parser.getName().equals("option")){
+                    String name = parser.getAttributeValue(null,"name");
+                    String iso = parser.getAttributeValue(null,"iso");
+                    languages.put(name,iso);
                 }
-                parser.next();//step to the content of the <name> tag
-                name = parser.getText();
-                //Skip to the next language iso start tag
-                while(!(eventType == XmlPullParser.END_TAG && parser.getName().equals(iso))){
-                    eventType = parser.next();
-                }
-                languages.put(name,iso);
-                eventType = parser.next(); //step to the next iso tag
-                parser.next();
-                if(parser.getName().length()!=2) {//check it's a iso tag
-                    eventType =  XmlPullParser.END_DOCUMENT; //We're done here
-                }
+                eventType = parser.next();
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -356,17 +339,21 @@ public class AvailableLayouts extends Activity {
             XmlPullParser parser = XmlPullParserFactory.newInstance().newPullParser();
             parser.setInput (new ByteArrayInputStream(xmlFile.getBytes()),"UTF-8");
             int eventType = parser.getEventType();
-            boolean descriptionFound = false;
-            while(eventType != XmlPullParser.END_DOCUMENT && ! descriptionFound ){
-                if(eventType == XmlPullParser.START_TAG && parser.getName().equals(localeLanguage)){
-                    //We are at the start of the <es>, <en> tag, must look for the <desc> tag
-                    while(!(eventType == XmlPullParser.START_TAG && parser.getName().equals("desc"))){
-                        eventType = parser.next();
+
+            while(eventType != XmlPullParser.END_DOCUMENT
+                    && description == null ){
+                if(eventType == XmlPullParser.START_TAG
+                        && parser.getName().equals("option")){
+                    //We are in an option start tag
+                    //Ask for the option's iso
+                    String iso = parser.getAttributeValue("","iso");
+                    if(iso != null && iso.equals(localeLanguage)){
+                        //If the start tag has "iso" attribute and matches the locale language
+                        //Move to the content to the tag
+                        parser.next();
+                        //Save its content
+                        description = parser.getText();
                     }
-                    //We are at start of desc tag must get Text
-                    eventType = parser.next();//Step from the start of the tag to its content
-                    description = parser.getText();
-                    descriptionFound = true;
                 }
                 eventType = parser.next();
             }
