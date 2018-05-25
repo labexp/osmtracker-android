@@ -142,11 +142,11 @@ public class AvailableLayouts extends Activity {
         LinearLayout rootLayout = (LinearLayout)findViewById(R.id.root_layout);
         int AT_START = 0; //the position to insert the view at
         ClickListener listener = new ClickListener();
-
+        Log.e("#",options.toString());
         for(String option : options) {
             Button layoutButton = new Button(this);
             layoutButton.setHeight(150);
-            layoutButton.setText(CustomLayoutsUtils.convertFileName(option, false));
+            layoutButton.setText(CustomLayoutsUtils.convertFileName(option));
             layoutButton.setTextSize((float)22 );
             layoutButton.setTextColor(Color.WHITE);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -413,6 +413,7 @@ public class AvailableLayouts extends Activity {
                         showDescriptionDialog(layoutName,description,localLang);
                     } else {//List all other languages
                         HashMap<String, String> languages = getLanguagesFor(xmlFile);
+                        Log.e("#",languages.toString());
                         showLanguageSelectionDialog(languages, xmlFile, layoutName);
                     }
                 }
