@@ -3,8 +3,8 @@ package org.osmtracker.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
 import org.osmtracker.OSMTracker;
+import org.osmtracker.activity.Preferences;
 
 /**
  * Created by labexp on 13/12/17.
@@ -19,6 +19,9 @@ public class URLCreator {
 
     private static String RAW_CONTENT = "https://raw.githubusercontent.com/";
 
+    private static final int USERNAME = 0;
+    private static final int REPO = 1;
+    private static final int BRANCH = 2;
 
     /**
      * Returns the URL used to get the contents of the folder `/layouts/metadata`.
@@ -28,8 +31,8 @@ public class URLCreator {
      */
     public static String createMetadataDirUrl(Context context) {
     	String[] ghParams = getGithubParams(context);
-        String url = API_BASE + ghParams[0] + "/" + ghParams[1]
-                     + "/contents/layouts/metadata?ref=" + ghParams[2];
+        String url = API_BASE + ghParams[USERNAME] + "/" + ghParams[REPO]
+                     + "/contents/layouts/metadata?ref=" + ghParams[BRANCH];
         return url;
     }
 
@@ -45,7 +48,7 @@ public class URLCreator {
         String layoutFileName = CustomLayoutsUtils.unconvertFileName(layoutName);
 
         String[] ghParams = getGithubParams(context);
-        String url = RAW_CONTENT + ghParams[0] + "/" + ghParams[1] + "/" + ghParams[2]
+        String url = RAW_CONTENT + ghParams[USERNAME] + "/" + ghParams[REPO] + "/" + ghParams[BRANCH]
                 + "/layouts/metadata/" + layoutFileName;
 
         return url;
@@ -55,15 +58,14 @@ public class URLCreator {
      * Return a URL to download a file in the `/layouts/metadata/` folder.
      *
      * @param context {@link Context} to lookup for the preferences values
-     * @param layoutName The name of the layout to be included in the URL for download the file.
+     * @param layoutFolderName The name of the layout folder to be included in the URL for download the file.
      * @param iso String language code of the layout (ISO 639-1)
      * @return String
      */
-    public static String createLayoutFileURL(Context context, String layoutName, String iso){
+    public static String createLayoutFileURL(Context context, String layoutFolderName, String iso){
         String[] ghParams = getGithubParams(context);
-        String layoutFileName = CustomLayoutsUtils.createFileName(layoutName, iso);
-        String url = RAW_CONTENT + ghParams[0] + "/" + ghParams[1] + "/" + ghParams[2]
-                + "/layouts/" + layoutFileName;
+        String url = RAW_CONTENT + ghParams[USERNAME] + "/" + ghParams[REPO] + "/" + ghParams[BRANCH]
+                + "/layouts/" + layoutFolderName + "/" + iso + Preferences.LAYOUT_FILE_EXTENSION;
         return url;
     }
 
@@ -71,15 +73,14 @@ public class URLCreator {
      * Return a URL to download icon files in the `/layouts/$layoutName/` folder.
      *
      * @param context {@link Context} to lookup for the preferences values
-     * @param layoutName The name of the layout to be included in the URL
+     * @param layoutFolderName The name of the layout to be included in the URL
      * @return String
      */
-    public static String createIconsDirUrl(Context context, String layoutName){
+    public static String createIconsDirUrl(Context context, String layoutFolderName){
         String[] ghParams = getGithubParams(context);
-        String iconsDirName = layoutName.replace(" ", "_");
 
-        String url = API_BASE + ghParams[0] + "/" + ghParams[1]
-                + "/contents/layouts/" + iconsDirName + "?ref=" + ghParams[2];
+        String url = API_BASE + ghParams[USERNAME] + "/" + ghParams[REPO]
+                + "/contents/layouts/" + layoutFolderName + "/" + "icons" + "?ref=" + ghParams[BRANCH];
         return url;
     }
 

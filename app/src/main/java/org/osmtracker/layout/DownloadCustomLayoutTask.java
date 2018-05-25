@@ -46,7 +46,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
         SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(context);
         String storageDir =prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR);
 
-        String layoutURL = URLCreator.createLayoutFileURL(context, layoutName, iso);
+        String layoutURL = URLCreator.createLayoutFileURL(context, layoutFolderName, iso);
         String layoutPath = Environment.getExternalStorageDirectory() + storageDir + File.separator +
                 Preferences.LAYOUTS_SUBDIR + File.separator;
 
@@ -131,8 +131,8 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
     private HashMap<String,String> getIconsHash(String layoutName) {
 
         final HashMap<String,String> iconsHash = new HashMap<String, String>();
-
-        String link = URLCreator.createIconsDirUrl(context, layoutName);
+        String layoutFolderName = layoutName.replace(" ", "_");
+        String link = URLCreator.createIconsDirUrl(context, layoutFolderName);
         System.out.println("Download icons hash from: " + link);
 
         try {

@@ -90,8 +90,9 @@ public class OSMTracker {
 
 		//default values for repository settings
 		public final static String VAL_GITHUB_USERNAME = "labexp";
-		public final static String VAL_REPOSITORY_NAME = "osmtracker-fork";
-		public final static String VAL_BRANCH_NAME = "layouts_backup";
+		public final static String VAL_REPOSITORY_NAME = "osmtracker-android-layouts";
+		public final static String VAL_BRANCH_NAME = "master";
+
 		
 	};
 	
