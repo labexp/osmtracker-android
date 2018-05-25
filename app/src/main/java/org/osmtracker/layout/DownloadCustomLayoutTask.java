@@ -51,7 +51,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
                 Preferences.LAYOUTS_SUBDIR + File.separator;
 
         String iconsPath = Environment.getExternalStorageDirectory() + storageDir + File.separator +
-                Preferences.LAYOUTS_SUBDIR + File.separator  + layoutFolderName + File.separator;
+                Preferences.LAYOUTS_SUBDIR + File.separator  + layoutFolderName+"_icons" + File.separator;
 
         Boolean status = false;
 
@@ -132,6 +132,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
 
         final HashMap<String,String> iconsHash = new HashMap<String, String>();
         String layoutFolderName = layoutName.replace(" ", "_");
+
         String link = URLCreator.createIconsDirUrl(context, layoutFolderName);
         System.out.println("Download icons hash from: " + link);
 
