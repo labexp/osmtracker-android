@@ -30,6 +30,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.osmtracker.OSMTracker;
+import org.osmtracker.R;
+import org.osmtracker.layout.DownloadCustomLayoutTask;
+import org.osmtracker.layout.GetStringResponseTask;
+import org.osmtracker.layout.URLValidatorTask;
+import org.osmtracker.util.CustomLayoutsUtils;
+import org.osmtracker.util.URLCreator;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -39,13 +45,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-
-import org.osmtracker.R;
-import org.osmtracker.layout.DownloadCustomLayoutTask;
-import org.osmtracker.layout.GetStringResponseTask;
-import org.osmtracker.layout.URLValidatorTask;
-import org.osmtracker.util.CustomLayoutsUtils;
-import org.osmtracker.util.URLCreator;
 
 /**
  * Created by emmanuel on 10/11/17.
@@ -72,15 +71,37 @@ public class AvailableLayouts extends Activity {
         super.onCreate(savedInstanceState);
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPrefs.edit();
+        setTitle(getResources().getString(R.string.prefs_ui_available_layout));
         // call task to download and parse the response to get the list of available layouts
         if (isNetworkAvailable(this)) {
-            retrieveAvailableLayouts();
+            validateDefaultOptions();
         } else {
             Toast.makeText(getApplicationContext(),getResources().getString(R.string.available_layouts_connection_error),Toast.LENGTH_LONG).show();
             finish();
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
+    public void validateDefaultOptions(){
+        String usernameGitHub = sharedPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, OSMTracker.Preferences.KEY_GITHUB_USERNAME);
+        String repositoryName = sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.KEY_REPOSITORY_NAME);
+        String branchName = sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.KEY_BRANCH_NAME);
+        final String[] repositoryDefaultOptions = {usernameGitHub, repositoryName, branchName};
+        //we verify if the entered options are correct
+        new URLValidatorTask(){
+            protected void onPostExecute(Boolean result){
+                //validating the github repository
+                if(result){
+                    retrieveAvailableLayouts();
+                }else{
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.available_layouts_response_null_exception),Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+        }.execute(repositoryDefaultOptions);
+    }
+
+    @SuppressLint("StaticFieldLeak")
     public void retrieveAvailableLayouts(){
         //while it makes the request
         final String waitingMessage = getResources().getString(R.string.available_layouts_connecting_message);
@@ -88,10 +109,16 @@ public class AvailableLayouts extends Activity {
         String url = URLCreator.createMetadataDirUrl(this);
         new GetStringResponseTask() {
             protected void onPostExecute(String response) {
-                setContentView(R.layout.available_layouts);
-                setAvailableLayouts(parseResponse(response));
-                //when the request is done
-                setTitle(getResources().getString(R.string.prefs_ui_available_layout));
+                if(response == null){
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.available_layouts_response_null_exception),Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                else{
+                    setContentView(R.layout.available_layouts);
+                    setAvailableLayouts(parseResponse(response));
+                    //when the request is done
+                    setTitle(getResources().getString(R.string.prefs_ui_available_layout));
+                }
             }
 
         }.execute(url);

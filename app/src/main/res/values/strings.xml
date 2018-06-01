@@ -167,6 +167,7 @@
 
 	<!--Available Layouts messages -->
 	<string name="available_layouts_connection_error">Error: unable to connect to the Internet</string>
+	<string name="available_layouts_response_null_exception">Error: unable to connect to the default custom layouts repository</string>
 	<string name="available_layouts_connecting_message">(Connecting…)</string>
 	<string name="available_layouts_description_dialog_positive_confirmation">Download</string>
 	<string name="available_layouts_not_available_language">Your language is not available select one from the list</string>
