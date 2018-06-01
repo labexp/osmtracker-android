@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import org.osmtracker.OSMTracker;
+import org.osmtracker.activity.AvailableLayouts;
 import org.osmtracker.activity.Preferences;
 import org.osmtracker.layout.GetStringResponseTask;
 
@@ -14,7 +16,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
-import org.osmtracker.activity.AvailableLayouts;
 /**
  * Created by adma9717 on 12/8/17.
  */

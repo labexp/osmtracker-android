@@ -246,7 +246,8 @@ public class ButtonsPresets extends Activity {
                         if(FileSystemUtils.delete(fileToDelete, false)){
                             Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_successful_delete), Toast.LENGTH_SHORT).show();
 
-                            String iconDirName = fileName.substring(0, fileName.length() - CustomLayoutsUtils.LAYOUT_EXTENSION_ISO.length());
+                            String iconDirName = fileName.substring(0, fileName.length() - CustomLayoutsUtils.LAYOUT_EXTENSION_ISO.length())
+                                    + Preferences.ICONS_DIR_SUFFIX;
                             File iconDirToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + iconDirName);
 
                             if(FileSystemUtils.delete(iconDirToDelete, true)){

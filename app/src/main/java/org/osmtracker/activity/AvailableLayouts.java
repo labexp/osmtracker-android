@@ -83,9 +83,9 @@ public class AvailableLayouts extends Activity {
 
     @SuppressLint("StaticFieldLeak")
     public void validateDefaultOptions(){
-        String usernameGitHub = sharedPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, OSMTracker.Preferences.KEY_GITHUB_USERNAME);
-        String repositoryName = sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.KEY_REPOSITORY_NAME);
-        String branchName = sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.KEY_BRANCH_NAME);
+        String usernameGitHub = sharedPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, OSMTracker.Preferences.VAL_GITHUB_USERNAME);
+        String repositoryName = sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME);
+        String branchName = sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.VAL_BRANCH_NAME);
         final String[] repositoryDefaultOptions = {usernameGitHub, repositoryName, branchName};
         //we verify if the entered options are correct
         new URLValidatorTask(){
