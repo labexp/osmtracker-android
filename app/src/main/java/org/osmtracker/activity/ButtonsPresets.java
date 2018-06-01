@@ -20,15 +20,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.osmtracker.OSMTracker;
-
-import java.io.File;
-import java.io.FilenameFilter;
-import java.util.Hashtable;
-
 import org.osmtracker.R;
 import org.osmtracker.layout.DownloadCustomLayoutTask;
 import org.osmtracker.util.CustomLayoutsUtils;
 import org.osmtracker.util.FileSystemUtils;
+
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Hashtable;
 
 /**
  * Created by emmanuel on 20/10/17.
@@ -131,7 +130,7 @@ public class ButtonsPresets extends Activity {
      * It asks for the layout being used and checks it in the list
      */
     private void checkCurrentLayout(LinearLayout downloadedLayouts, LinearLayout defaultSection){
-        String activeLayoutName = prefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+        String activeLayoutName = CustomLayoutsUtils.getCurrentLayoutName(getApplicationContext());
         boolean defLayout = false;
 
         //first, we check if the default layout is activated

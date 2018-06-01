@@ -1,6 +1,12 @@
 package org.osmtracker.util;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import org.osmtracker.OSMTracker;
 import org.osmtracker.activity.Preferences;
+import org.osmtracker.layout.GetStringResponseTask;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,8 +15,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
-
-import org.osmtracker.layout.GetStringResponseTask;
 
 /**
  * Created by adma9717 on 12/8/17.
@@ -83,5 +87,23 @@ public class CustomLayoutsUtils {
         } else {
             throw new  IOException();
         }
+    }
+
+    /**
+     * Obtain the current inflated layout name and returns it.
+     *
+     * @param context current activity where this method is invoke
+     * @return the inflated layout name like a string = name_layout_xx.xml
+     */
+    public static String getCurrentLayoutName(Context context){
+        String layoutName = "";
+        try {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            layoutName = sharedPreferences.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return layoutName;
     }
 }
