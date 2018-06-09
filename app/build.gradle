@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 16
+    compileSdkVersion 26
     buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "net.osmtracker"
-        minSdkVersion 8
-        targetSdkVersion 16
+        minSdkVersion 11
+        targetSdkVersion 26
         multiDexEnabled true
 
         testApplicationId "net.osmtracker.test"

@@ -30,7 +30,7 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 	
 
 	public ExportTrackTaskTest() {
-		super("org.net.net.osmtracker", TrackManager.class);
+		super("net.osmtracker", TrackManager.class);
 	}
 	
 	@Override

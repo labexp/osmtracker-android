@@ -22,7 +22,7 @@ public class TrackDetailTest extends ActivityInstrumentationTestCase2<TrackDetai
 	private long trackId;
 	
 	public TrackDetailTest() {
-		super("org.net.net.osmtracker", TrackDetail.class);
+		super("net.osmtracker", TrackDetail.class);
 	}
 	
 	@Override
