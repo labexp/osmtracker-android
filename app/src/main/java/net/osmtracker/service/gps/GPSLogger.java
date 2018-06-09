@@ -7,6 +7,7 @@ import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.listener.SensorListener;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -21,6 +22,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -106,7 +108,11 @@ public class GPSLogger extends Service implements LocationListener {
 				if (extras != null) {
 					// because of the gps logging interval our last fix could be very old
 					// so we'll request the last known location from the gps provider
-					lastLocation = lmgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    try {
+                        lastLocation = lmgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    } catch (SecurityException se){
+						// TODO: manage this exception.
+                    }
 					if(lastLocation != null){
 						Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 						String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
@@ -205,7 +211,12 @@ public class GPSLogger extends Service implements LocationListener {
 
 		// Register ourselves for location updates
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+		try {
+            lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        } catch(SecurityException se){
+		    // TODO: manage this exception.
+        }
 		
 		//register for Orientation updates
 		sensorListener.register(this);
@@ -302,7 +313,16 @@ public class GPSLogger extends Service implements LocationListener {
 	/**
 	 * Builds the notification to display when tracking in background.
 	 */
-	private Notification getNotification() {
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private Notification getNotification() {
+        Notification n = new Notification.Builder(getApplicationContext())
+                .setContentTitle(getResources().getString(R.string.notification_title).replace("{0}", (currentTrackId > -1) ? Long.toString(currentTrackId) : "?"))
+                .setContentText(getResources().getString(R.string.notification_text))
+                .setSmallIcon(R.drawable.ic_stat_track)
+                //.setLargeIcon(R.drawable.ic_stat_track)
+                .build();
+
+	    /*
 		Notification n = new Notification(R.drawable.ic_stat_track, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
 			
 		Intent startTrackLogger = new Intent(this, TrackLogger.class);
@@ -314,6 +334,7 @@ public class GPSLogger extends Service implements LocationListener {
 				getResources().getString(R.string.notification_title).replace("{0}", (currentTrackId > -1) ? Long.toString(currentTrackId) : "?"),
 				getResources().getString(R.string.notification_text),
 				contentIntent);
+		*/
 		return n;
 	}
 	

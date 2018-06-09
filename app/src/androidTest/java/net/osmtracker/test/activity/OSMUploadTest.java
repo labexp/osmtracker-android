@@ -7,7 +7,7 @@ import android.test.ActivityInstrumentationTestCase2;
 public class OSMUploadTest extends ActivityInstrumentationTestCase2<OpenStreetMapUpload> {
 
 	public OSMUploadTest() {
-		super("org.net.net.osmtracker", OpenStreetMapUpload.class);
+		super("net.osmtracker", OpenStreetMapUpload.class);
 	}
 	
 	@Override

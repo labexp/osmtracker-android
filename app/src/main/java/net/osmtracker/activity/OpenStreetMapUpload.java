@@ -41,7 +41,7 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 	private static final String TAG = OpenStreetMapUpload.class.getSimpleName();
 
 	/** URL that the browser will call once the user is authenticated */
-	private static final String OAUTH_CALLBACK_URL = "net.net.osmtracker://osm-upload/oath-completed/?"+ TrackContentProvider.Schema.COL_TRACK_ID+"=";
+	private static final String OAUTH_CALLBACK_URL = "osmtracker://osm-upload/oath-completed/?"+ TrackContentProvider.Schema.COL_TRACK_ID+"=";
 	
 	private static final CommonsHttpOAuthProvider oAuthProvider = new CommonsHttpOAuthProvider(
 			OpenStreetMapConstants.OAuth.Urls.REQUEST_TOKEN_URL,
