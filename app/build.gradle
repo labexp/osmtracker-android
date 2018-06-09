@@ -7,12 +7,12 @@ android {
     buildToolsVersion "27.0.3"
 
     defaultConfig {
-        applicationId "org.osmtracker"
+        applicationId "net.osmtracker"
         minSdkVersion 8
         targetSdkVersion 16
         multiDexEnabled true
 
-        testApplicationId "org.osmtracker.test"
+        testApplicationId "net.osmtracker.test"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
 
