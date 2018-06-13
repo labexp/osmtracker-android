@@ -18,6 +18,8 @@ import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.exception.ExportTrackException;
 import net.osmtracker.util.FileSystemUtils;
+
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -25,11 +27,13 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.MediaScannerConnection;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 /**
@@ -42,6 +46,8 @@ import android.util.Log;
 public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 	private static final String TAG = ExportTrackTask.class.getSimpleName();
+
+	private static final int PR_WRITE_EXTERNAL_STORAGE = 1;
 
 	/**
 	 * Characters to replace in track filename, for use by {@link #buildGPXFilename(Cursor)}. <BR>
@@ -65,7 +71,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	private static final String TAG_GPX = "<gpx"
 		+ " xmlns=\"http://www.topografix.com/GPX/1/1\""
 		+ " version=\"1.1\""
-		+ " creator=\"OSMTracker for Android™ - https://github.com/nguillaumin/net.net.osmtracker-android\""
+		+ " creator=\"OSMTracker for Android™ - https://github.com/labexp/osmtracker-android\""
 		+ " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
 		+ " xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd \">";
 	
@@ -189,69 +195,80 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	}
 
 	private void exportTrackAsGpx(long trackId) throws ExportTrackException {
+
+		String state = Environment.getExternalStorageState();
+		Log.e(this.TAG, "estado del almacenamiento externo: " +state);
+
 		File sdRoot = Environment.getExternalStorageDirectory();
-		
-		if (sdRoot.canWrite()) {
-			ContentResolver cr = context.getContentResolver();
-			
-			Cursor c = context.getContentResolver().query(ContentUris.withAppendedId(
-					TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
-					null, null);
 
-			// Get the startDate of this track
-			// TODO: Maybe we should be pulling the track name instead?
-			// We'd need to consider the possibility that two tracks were given the same name
-			// We could possibly disambiguate by including the track ID in the Folder Name
-			// to avoid overwriting another track on one hand or needlessly creating additional
-			// directories to avoid overwriting.
-			Date startDate = new Date();
-			if (null != c && 1 <= c.getCount()) {
-				c.moveToFirst();
-				long startDateInMilliseconds = c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
-				startDate.setTime(startDateInMilliseconds);
-			}
+		if (ContextCompat.checkSelfPermission(context,
+				Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 
-			File trackGPXExportDirectory = getExportDirectory(startDate);
-			String filenameBase = buildGPXFilename(c);
-			c.close();
-			
-			File trackFile = new File(trackGPXExportDirectory, filenameBase);
+			Log.e(this.TAG, "valor de la expresión: " + sdRoot.canWrite());
 
-			
-			Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
-					null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
-			Cursor cWayPoints = cr.query(TrackContentProvider.waypointsUri(trackId), null, null,
-					null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+			if (sdRoot.canWrite()) {
+				ContentResolver cr = context.getContentResolver();
 
-			if (null != cTrackPoints && null != cWayPoints) {
-				publishProgress(new Long[] { trackId, (long) cTrackPoints.getCount(), (long) cWayPoints.getCount() });
-				
-				try {
-					writeGpxFile(cTrackPoints, cWayPoints, trackFile);
-					if (exportMediaFiles()) {
-						copyWaypointFiles(trackId, trackGPXExportDirectory);
-					}
-					if (updateExportDate()) {
-						DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
-					}
-				} catch (IOException ioe) {
-					throw new ExportTrackException(ioe.getMessage());
-				} finally {
-					cTrackPoints.close();
-					cWayPoints.close();
+				Cursor c = context.getContentResolver().query(ContentUris.withAppendedId(
+						TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
+						null, null);
+
+				// Get the startDate of this track
+				// TODO: Maybe we should be pulling the track name instead?
+				// We'd need to consider the possibility that two tracks were given the same name
+				// We could possibly disambiguate by including the track ID in the Folder Name
+				// to avoid overwriting another track on one hand or needlessly creating additional
+				// directories to avoid overwriting.
+				Date startDate = new Date();
+				if (null != c && 1 <= c.getCount()) {
+					c.moveToFirst();
+					long startDateInMilliseconds = c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
+					startDate.setTime(startDateInMilliseconds);
 				}
 
-				// Force rescan of directory
-				ArrayList<String> files = new ArrayList<String>();
-				for (File file: trackGPXExportDirectory.listFiles()) {
-					files.add(file.getAbsolutePath());
-				}
-				MediaScannerConnection.scanFile(context, files.toArray(new String[0]), null, null);
+				File trackGPXExportDirectory = getExportDirectory(startDate);
+				String filenameBase = buildGPXFilename(c);
+				c.close();
 
+				File trackFile = new File(trackGPXExportDirectory, filenameBase);
+
+
+				Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
+						null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+				Cursor cWayPoints = cr.query(TrackContentProvider.waypointsUri(trackId), null, null,
+						null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+
+				if (null != cTrackPoints && null != cWayPoints) {
+					publishProgress(new Long[]{trackId, (long) cTrackPoints.getCount(), (long) cWayPoints.getCount()});
+
+					try {
+						writeGpxFile(cTrackPoints, cWayPoints, trackFile);
+						if (exportMediaFiles()) {
+							copyWaypointFiles(trackId, trackGPXExportDirectory);
+						}
+						if (updateExportDate()) {
+							DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
+						}
+					} catch (IOException ioe) {
+						throw new ExportTrackException(ioe.getMessage());
+					} finally {
+						cTrackPoints.close();
+						cWayPoints.close();
+					}
+
+					// Force rescan of directory
+					ArrayList<String> files = new ArrayList<String>();
+					for (File file : trackGPXExportDirectory.listFiles()) {
+						files.add(file.getAbsolutePath());
+					}
+					MediaScannerConnection.scanFile(context, files.toArray(new String[0]), null, null);
+
+				}
+			} else {
+				throw new ExportTrackException(context.getResources().getString(R.string.error_externalstorage_not_writable));
 			}
-		} else {
-			throw new ExportTrackException(context.getResources().getString(R.string.error_externalstorage_not_writable));
 		}
+
 	}
 
 	/**

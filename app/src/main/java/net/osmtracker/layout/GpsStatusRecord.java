@@ -5,7 +5,11 @@ import java.text.DecimalFormat;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.activity.TrackLogger;
+
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.GpsStatus.Listener;
@@ -15,6 +19,9 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,7 +39,9 @@ import android.widget.TextView;
 public class GpsStatusRecord extends LinearLayout implements Listener, LocationListener {
 	
 	private final static String TAG = GpsStatusRecord.class.getSimpleName();
-	
+
+    final private int REQUEST_CODE_GPS_PERMISSIONS = 1;
+
 	/**
 	 * Formatter for accuracy display.
 	 */
@@ -108,8 +117,15 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	
 	public void requestLocationUpdates(boolean request) {
 		if (request) {
-			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,	this);
-			lmgr.addGpsStatusListener(this);
+
+            if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+                lmgr.addGpsStatusListener(this);
+            }
+			else {
+                    ActivityCompat.requestPermissions((Activity) activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            REQUEST_CODE_GPS_PERMISSIONS);
+                }
 		} else {
 			lmgr.removeUpdates(this);
 			lmgr.removeGpsStatusListener(this);
@@ -138,6 +154,9 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			if((event != GpsStatus.GPS_EVENT_SATELLITE_STATUS) || (lastGPSTimestampStatus + gpsLoggingInterval) < System.currentTimeMillis()){
 				lastGPSTimestampStatus = System.currentTimeMillis(); // save the time of this fix
 
+				if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+					break;
+				}
 				GpsStatus status = lmgr.getGpsStatus(null);
 
 				satCount = 0;
@@ -174,6 +193,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			break;
 		}
 	}
+
 
 	@Override
 	public void onLocationChanged(Location location) {
@@ -250,6 +270,19 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			recordStatus.setImageResource(R.drawable.record_red);
 		} else {
 			recordStatus.setImageResource(R.drawable.record_grey);
+		}
+	}
+
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		switch (requestCode) {
+			case REQUEST_CODE_GPS_PERMISSIONS:
+				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					requestLocationUpdates(true);
+					// do something
+					return;
+				} else {
+					requestLocationUpdates(false);
+				}
 		}
 	}
 

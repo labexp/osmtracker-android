@@ -7,7 +7,7 @@ import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.listener.SensorListener;
 
-import android.annotation.TargetApi;
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -16,16 +16,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.location.GpsSatellite;
-import android.location.GpsStatus;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Binder;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 /**
@@ -108,18 +107,16 @@ public class GPSLogger extends Service implements LocationListener {
 				if (extras != null) {
 					// because of the gps logging interval our last fix could be very old
 					// so we'll request the last known location from the gps provider
-                    try {
-                        lastLocation = lmgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    } catch (SecurityException se){
-						// TODO: manage this exception.
-                    }
-					if(lastLocation != null){
-						Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
-						String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
-						String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
-						String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
-						
-						dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy());
+					if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+						lastLocation = lmgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+						if (lastLocation != null) {
+							Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
+							String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
+							String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
+							String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
+
+							dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy());
+						}
 					}
 				}
 			} else if (OSMTracker.INTENT_UPDATE_WP.equals(intent.getAction())) {
@@ -212,10 +209,8 @@ public class GPSLogger extends Service implements LocationListener {
 		// Register ourselves for location updates
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		try {
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-        } catch(SecurityException se){
-		    // TODO: manage this exception.
         }
 		
 		//register for Orientation updates
@@ -286,7 +281,7 @@ public class GPSLogger extends Service implements LocationListener {
 			lastGPSTimestamp = System.currentTimeMillis(); // save the time of this fix
 		
 			lastLocation = location;
-			lastNbSatellites = countSatellites();
+			//lastNbSatellites = countSatellites();
 			
 			if (isTracking) {
 				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy());
@@ -298,6 +293,7 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Counts number of satellites used in last fix.
 	 * @return The number of satellites
 	 */
+	/*
 	private int countSatellites() {
 		int count = 0;
 		GpsStatus status = lmgr.getGpsStatus(null);
@@ -309,20 +305,12 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		return count;
 	}
+	*/
 	
 	/**
 	 * Builds the notification to display when tracking in background.
 	 */
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private Notification getNotification() {
-        Notification n = new Notification.Builder(getApplicationContext())
-                .setContentTitle(getResources().getString(R.string.notification_title).replace("{0}", (currentTrackId > -1) ? Long.toString(currentTrackId) : "?"))
-                .setContentText(getResources().getString(R.string.notification_text))
-                .setSmallIcon(R.drawable.ic_stat_track)
-                //.setLargeIcon(R.drawable.ic_stat_track)
-                .build();
-
-	    /*
 		Notification n = new Notification(R.drawable.ic_stat_track, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
 			
 		Intent startTrackLogger = new Intent(this, TrackLogger.class);
@@ -334,7 +322,6 @@ public class GPSLogger extends Service implements LocationListener {
 				getResources().getString(R.string.notification_title).replace("{0}", (currentTrackId > -1) ? Long.toString(currentTrackId) : "?"),
 				getResources().getString(R.string.notification_text),
 				contentIntent);
-		*/
 		return n;
 	}
 	

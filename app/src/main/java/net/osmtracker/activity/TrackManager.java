@@ -12,6 +12,7 @@ import net.osmtracker.exception.CreateTrackException;
 import net.osmtracker.gpx.ExportToStorageTask;
 import net.osmtracker.util.FileSystemUtils;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentUris;
@@ -19,10 +20,14 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -46,6 +51,9 @@ public class TrackManager extends ListActivity {
 	@SuppressWarnings("unused")
 	private static final String TAG = TrackManager.class.getSimpleName();
 
+	final private int RC_WRITE_PERMISSIONS_EXPORT_ALL = 1;
+	final private int RC_WRITE_PERMISSIONS_EXPORT_ONE = 2;
+
 	/** Bundle key for {@link #prevItemVisible} */
 	private static final String PREV_VISIBLE = "prev_visible";
 
@@ -57,6 +65,9 @@ public class TrackManager extends ListActivity {
 
 	/** The previous item visible, or -1; for scrolling back to its position in {@link #onResume()} */
 	private int prevItemVisible = -1;
+
+	/** Track Identifier to export after request for write permission **/
+	private long trackId = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -232,19 +243,7 @@ public class TrackManager extends ListActivity {
 				.setPositiveButton(R.string.menu_exportall, new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						Cursor cursor = getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACK,
-								null, null, null, TrackContentProvider.Schema.COL_START_DATE + " desc");
-						if (cursor.moveToFirst()) {
-							long[] ids = new long[cursor.getCount()];
-							int idCol = cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID);
-							int i=0;
-							do {
-								ids[i++] = cursor.getLong(idCol);
-							} while (cursor.moveToNext());
-							
-							new ExportToStorageTask(TrackManager.this, ids).execute();
-						}
-						cursor.close();
+						requestPermissionAndExport(TrackManager.this.RC_WRITE_PERMISSIONS_EXPORT_ALL);
 					}
 				})
 				.setNegativeButton(android.R.string.cancel, new OnClickListener() {
@@ -264,6 +263,63 @@ public class TrackManager extends ListActivity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+
+	private void requestPermissionAndExport(int typeCode){
+		if (ContextCompat.checkSelfPermission(this,
+				Manifest.permission.WRITE_EXTERNAL_STORAGE)  != PackageManager.PERMISSION_GRANTED) {
+
+			// Should we show an explanation?
+			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+					Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+				// Show an explanation to the user *asynchronously* -- don't block
+				// this thread waiting for the user's response! After the user
+				// sees the explanation, try again to request the permission.
+				// TODO: explain why we need permission.
+				Log.w(TAG, "we should explain why we need write permission_REQUEST");
+				Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+
+			} else {
+
+				// No explanation needed, we can request the permission.
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, typeCode);
+			}
+
+		}  else {
+			switch (typeCode) {
+				case RC_WRITE_PERMISSIONS_EXPORT_ALL:
+					exportAllTracks();
+
+				case RC_WRITE_PERMISSIONS_EXPORT_ONE:
+					exportOneTrack();
+			}
+		}
+	}
+
+	private void exportOneTrack(){
+		if (trackId != -1) {
+			new ExportToStorageTask(this, trackId).execute();
+			trackId = -1;
+		}
+	}
+
+	private void exportAllTracks(){
+		Cursor cursor = getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACK,
+				null, null, null, TrackContentProvider.Schema.COL_START_DATE + " desc");
+		if (cursor.moveToFirst()) {
+			long[] ids = new long[cursor.getCount()];
+			int idCol = cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID);
+			int i=0;
+			do {
+				ids[i++] = cursor.getLong(idCol);
+			} while (cursor.moveToNext());
+
+			new ExportToStorageTask(TrackManager.this, ids).execute();
+		}
+		cursor.close();
 	}
 
 	@Override
@@ -328,8 +384,9 @@ public class TrackManager extends ListActivity {
 				}).create().show();
 
 			break;
-		case R.id.trackmgr_contextmenu_export:	
-			new ExportToStorageTask(this, info.id).execute();
+		case R.id.trackmgr_contextmenu_export:
+			trackId = info.id;
+			requestPermissionAndExport(this.RC_WRITE_PERMISSIONS_EXPORT_ONE);
 			break;
 		case R.id.trackmgr_contextmenu_osm_upload:
 			i = new Intent(this, OpenStreetMapUpload.class);
@@ -475,5 +532,46 @@ public class TrackManager extends ListActivity {
 			
 		}
 	}
-	
+
+	public void onRequestPermissionsResult(int requestCode,
+										   String permissions[], int[] grantResults) {
+		switch (requestCode) {
+			case RC_WRITE_PERMISSIONS_EXPORT_ALL: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+					// permission was granted, yay!
+					exportAllTracks();
+
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					//TODO: add an informative message.
+					Log.w(TAG, "we should explain why we need write permission_EXPORT_ALL");
+					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+				}
+			}
+			case RC_WRITE_PERMISSIONS_EXPORT_ONE: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+					// permission was granted, yay!
+					exportOneTrack();
+
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					//TODO: add an informative message.
+					Log.w(TAG, "we should explain why we need write permission_EXPORT_ONE");
+					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+				}
+			}
+		}
+	}
+
+
 }
