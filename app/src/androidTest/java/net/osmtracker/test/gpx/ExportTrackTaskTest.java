@@ -39,17 +39,17 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 		getActivity().getContentResolver().delete(
 				MediaStore.Files.getContentUri("external"),
 				MediaStore.Files.FileColumns.DATA + " LIKE ?",
-				new String[] {"%/net.net.osmtracker/gpx-test"});
+				new String[] {"%/net.osmtracker/gpx-test"});
 
 		Cursor cursor = getActivity().managedQuery(
 				MediaStore.Files.getContentUri("external"),
 				null,
 				MediaStore.Files.FileColumns.DATA + " LIKE ?",
-				new String[] {"%/net.net.osmtracker/gpx-test"},
+				new String[] {"%/net.osmtracker/gpx-test"},
 				null);
 		Assert.assertEquals(0, cursor.getCount());
 
-		trackFile = new File(Environment.getExternalStorageDirectory(), "net.net.osmtracker/gpx-test.gpx");
+		trackFile = new File(Environment.getExternalStorageDirectory(), "net.osmtracker/gpx-test.gpx");
 		if (trackFile.exists()) {
 			Assert.assertTrue(trackFile.delete());
 		}
@@ -89,7 +89,7 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 					MediaStore.Files.getContentUri("external"),
 					null,
 					MediaStore.Files.FileColumns.DATA + " LIKE ?",
-					new String[]{"%/net.net.osmtracker/gpx-test.gpx"},
+					new String[]{"%/net.osmtracker/gpx-test.gpx"},
 					null);
 			if (c.moveToFirst()) {
 				break;

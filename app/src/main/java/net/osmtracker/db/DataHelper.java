@@ -369,7 +369,7 @@ public class DataHelper {
 		File _return = null;
 		
 		String trackStorageDirectory = Environment.getExternalStorageDirectory()  
-		+ "/net.net.osmtracker/data/files/track" + trackId;
+		+ "/net.osmtracker/data/files/track" + trackId;
 		
 		_return = new File(trackStorageDirectory);		
 		return _return;

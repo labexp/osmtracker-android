@@ -14,13 +14,18 @@ import net.osmtracker.db.model.Track;
 import net.osmtracker.gpx.ExportToStorageTask;
 import net.osmtracker.util.MercatorProjection;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,6 +52,8 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 
 	@SuppressWarnings("unused")
 	private static final String TAG = TrackDetail.class.getSimpleName();
+
+	final private int RC_WRITE_PERMISSIONS = 1;
 
 	/**
 	 * Key to bind the "key" of each item using SimpleListAdapter
@@ -230,14 +237,32 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			startActivity(i);	
 			break;
 		case R.id.trackdetail_menu_export:
-			new ExportToStorageTask(this, trackId).execute();
-			// Pick last list item (Exported date) and update it
-			SimpleAdapter adapter = ((SimpleAdapter) lv.getAdapter());
-			@SuppressWarnings("unchecked")
-			Map<String, String> data = (Map<String, String>) adapter.getItem(adapter.getCount()-1);
-			data.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
-			adapter.notifyDataSetChanged();
-			break;
+			if (ContextCompat.checkSelfPermission(this,
+					Manifest.permission.WRITE_EXTERNAL_STORAGE)  != PackageManager.PERMISSION_GRANTED) {
+
+				// Should we show an explanation?
+				if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+						Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+					// Show an expanation to the user *asynchronously* -- don't block
+					// this thread waiting for the user's response! After the user
+					// sees the explanation, try again to request the permission.
+					// TODO: explain why we need permission.
+					Log.w(TAG, "we should explain why we need write permission");
+
+				} else {
+
+					// No explanation needed, we can request the permission.
+					ActivityCompat.requestPermissions(this,
+							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+							RC_WRITE_PERMISSIONS);
+					break;
+				}
+
+			} else {
+				exportTrack();
+				break;
+			}
 		case R.id.trackdetail_menu_osm_upload:
 			i = new Intent(this, OpenStreetMapUpload.class);
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
@@ -245,6 +270,43 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+
+	/**
+	 * Invoke the export track task after external write permissions request.
+	 *
+	 */
+	private void exportTrack(){
+		new ExportToStorageTask(this, trackId).execute();
+		// Pick last list item (Exported date) and update it
+		SimpleAdapter adapter = ((SimpleAdapter) lv.getAdapter());
+		@SuppressWarnings("unchecked")
+		Map<String, String> data = (Map<String, String>) adapter.getItem(adapter.getCount() - 1);
+		data.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())));
+		adapter.notifyDataSetChanged();
+	}
+
+	public void onRequestPermissionsResult(int requestCode,
+										   String permissions[], int[] grantResults) {
+		switch (requestCode) {
+			case RC_WRITE_PERMISSIONS: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+					// permission was granted, yay!
+					exportTrack();
+
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					//TODO: add an informative message.
+				}
+				return;
+			}
+		}
 	}
 	
 	/**
