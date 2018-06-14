@@ -268,7 +268,7 @@ public class TrackManager extends ListActivity {
 
 	private void requestPermissionAndExport(int typeCode){
 		if (ContextCompat.checkSelfPermission(this,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE)  != PackageManager.PERMISSION_GRANTED) {
+				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
 			// Should we show an explanation?
 			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
