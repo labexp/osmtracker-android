@@ -47,8 +47,6 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 	private static final String TAG = ExportTrackTask.class.getSimpleName();
 
-	private static final int PR_WRITE_EXTERNAL_STORAGE = 1;
-
 	/**
 	 * Characters to replace in track filename, for use by {@link #buildGPXFilename(Cursor)}. <BR>
 	 * The characters are: (space) ' " / \ * ? ~ @ &lt; &gt; <BR>
@@ -197,14 +195,10 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	private void exportTrackAsGpx(long trackId) throws ExportTrackException {
 
 		String state = Environment.getExternalStorageState();
-		Log.e(this.TAG, "estado del almacenamiento externo: " +state);
-
 		File sdRoot = Environment.getExternalStorageDirectory();
 
 		if (ContextCompat.checkSelfPermission(context,
 				Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-
-			Log.e(this.TAG, "valor de la expresión: " + sdRoot.canWrite());
 
 			if (sdRoot.canWrite()) {
 				ContentResolver cr = context.getContentResolver();
