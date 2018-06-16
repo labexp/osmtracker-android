@@ -5,12 +5,17 @@ jdk: oraclejdk8
 
 android:
     components:
-        - build-tools-22.0.1
+        - tools
+        - platform-tools
+        - tools
+        - build-tools-27.0.3
         - android-16
+        - android-19
         - sys-img-armeabi-v7a-android-19
 
 before_script:
-     - echo no | android create avd --force -n test -c 100M -t android-16 --abi armeabi-v7a
+     - echo no | android create avd --force -n test -c 100M -t android-19 --abi armeabi-v7a
      - emulator -avd test -no-audio -no-window &
      - android-wait-for-emulator
      - adb shell input keyevent 82 &
+     - android list targets
