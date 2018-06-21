@@ -60,7 +60,7 @@ public class ButtonsPresets extends Activity {
         LinearLayout downloadedLayouts = (LinearLayout) findViewById(R.id.list_layouts);
         //main layout for the default layout checkbox
         LinearLayout defaultSection = (LinearLayout) findViewById(R.id.buttons_presets);
-        //restar the hashtable
+        //restart the hashtable
         layoutsFileNames = new Hashtable<String, String>();
         listLayouts(downloadedLayouts);
         checkCurrentLayout(downloadedLayouts, defaultSection);
@@ -96,7 +96,7 @@ public class ButtonsPresets extends Activity {
             for(String name : layoutFiles) {
                 CheckBox newCheckBox = new CheckBox(this);
                 newCheckBox.setTextSize((float) fontSize);
-                String newName = CustomLayoutsUtils.convertFileName(name, true);
+                String newName = CustomLayoutsUtils.convertFileName(name);
                 layoutsFileNames.put(newName, name);
                 newCheckBox.setText(newName);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -246,7 +246,8 @@ public class ButtonsPresets extends Activity {
                         if(FileSystemUtils.delete(fileToDelete, false)){
                             Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_successful_delete), Toast.LENGTH_SHORT).show();
 
-                            String iconDirName = fileName.substring(0, fileName.length() - CustomLayoutsUtils.LAYOUT_EXTENSION_ISO.length());
+                            String iconDirName = fileName.substring(0, fileName.length() - CustomLayoutsUtils.LAYOUT_EXTENSION_ISO.length())
+                                    + Preferences.ICONS_DIR_SUFFIX;
                             File iconDirToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + iconDirName);
 
                             if(FileSystemUtils.delete(iconDirToDelete, true)){

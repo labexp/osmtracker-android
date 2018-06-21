@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import org.osmtracker.OSMTracker;
+import org.osmtracker.activity.AvailableLayouts;
 import org.osmtracker.activity.Preferences;
 import org.osmtracker.layout.GetStringResponseTask;
 
@@ -15,7 +16,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
-
 /**
  * Created by adma9717 on 12/8/17.
  */
@@ -26,21 +26,20 @@ public class CustomLayoutsUtils {
 
     /**
      * @param fileName is the name of a .xml that you want to convert to presentation name
-     * @param iso 0 = meta 'file' name, 1 = layout 'file' name
      * @return a String presentation name, if the type isn't valid returns the same fileName parameter
      */
-    public static String convertFileName(String fileName, boolean iso) {
-        String subName = "";
-        //0 = metadata file name
+    public static String convertFileName(String fileName) {
+        //Remove de file extension
+        String subname = fileName.replace(Preferences.LAYOUT_FILE_EXTENSION,"");
 
-        if (iso) {
-            subName = fileName.substring(0, fileName.length() - LAYOUT_EXTENSION_ISO.length());
+        //Check if it has iso:
+        if(subname.matches("\\w+_..")){
+            //Remove "_es"
+            subname = subname.substring(0,subname.length() - (AvailableLayouts.ISO_CHARACTER_LENGTH+1));
         }
-        else{
-            String tmpName = fileName.substring(0, fileName.length() - Preferences.LAYOUT_FILE_EXTENSION.length());
-            subName = tmpName.replace("meta_", "");
-        }
-        return subName.replace("_", " ");
+
+        //Replace "_" to " "
+        return subname.replace("_"," ");
     }
 
     /**
@@ -48,7 +47,7 @@ public class CustomLayoutsUtils {
      * @return the filename of the layout. Which is the input with the "meta_", "_" and ".xml"
      */
     public static String unconvertFileName(String representation){
-        return "meta_"+representation.replace(" ","_")+".xml";
+        return representation.replace(" ","_") + Preferences.LAYOUT_FILE_EXTENSION;
     }
 
     /**

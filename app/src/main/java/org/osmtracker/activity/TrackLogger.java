@@ -209,7 +209,7 @@ public class TrackLogger extends Activity {
 		for(String layoutFileName : layoutNameTags){
 			//OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT -> 'default'
 			if(! layoutFileName.equals(OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT)){
-				fixedTags.add(CustomLayoutsUtils.convertFileName(layoutFileName, true));
+				fixedTags.add(CustomLayoutsUtils.convertFileName(layoutFileName));
 			}
 		}
 

@@ -40,6 +40,14 @@ public class Preferences extends PreferenceActivity {
 	 * File extension for layout files
 	 */
 	public static final String LAYOUT_FILE_EXTENSION = ".xml";
+
+	/**
+	 * The suffix that must be added to the layout's name for getting its icons directory
+	 * Example: water_supply       <- layout name
+	 *          water_supply_icons <- icon directory
+	 */
+
+	public static final String ICONS_DIR_SUFFIX = "_icons";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
