@@ -52,17 +52,21 @@ import java.util.Set;
 
 public class AvailableLayouts extends Activity {
 
+    private final static String TMP_SHARED_PREFERENCES_FILE = "org.osmtracker.tmpspfile";
+
     //this variable indicates if the default github configuration is activated
     private boolean isDefChecked;
     private SharedPreferences sharedPrefs;
     private SharedPreferences.Editor editor;
 
     //options for repository settings
-    private EditText github_username;
-    private EditText repository_name;
-    private EditText branch_name;
+    private EditText etxGithubUsername;
+    private EditText etxRepositoryName;
+    private EditText etxBranchName;
     private CheckBox defaultServerCheckBox;
     private CheckBox customServerCheckBox;
+
+    private boolean checkBoxPressed;
 
     public static final int ISO_CHARACTER_LENGTH = 2;
 
@@ -167,7 +171,7 @@ public class AvailableLayouts extends Activity {
     //this override method creates the github repository settings windows, and upload the values in the shared preferences file if those changed
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         if(item.getItemId() == R.id.github_config){
             LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
             //this is for prevent any error with the inflater
@@ -175,25 +179,42 @@ public class AvailableLayouts extends Activity {
             //This is the pop up that's appears when the config button in the top right corner is pressed
             @SuppressLint("InflateParams") final View repositoryConfigWindow = inflater.inflate(R.layout.github_repository_settings, null);
             //instancing the edit texts of the layoutName inflate
-            github_username = (EditText) repositoryConfigWindow.findViewById(R.id.github_username);
-            repository_name = (EditText) repositoryConfigWindow.findViewById(R.id.repository_name);
-            branch_name = (EditText) repositoryConfigWindow.findViewById(R.id.branch_name);
+            etxGithubUsername = (EditText) repositoryConfigWindow.findViewById(R.id.github_username);
+            etxRepositoryName = (EditText) repositoryConfigWindow.findViewById(R.id.repository_name);
+            etxBranchName = (EditText) repositoryConfigWindow.findViewById(R.id.branch_name);
             //instancing the checkbox option and setting the click listener
             defaultServerCheckBox = (CheckBox) repositoryConfigWindow.findViewById(R.id.default_server);
             customServerCheckBox = (CheckBox) repositoryConfigWindow.findViewById(R.id.custom_server);
 
-            //first, we verify if the default checkbox is activated, if true we put the default options into the edit texts and make them not editable
-            if(sharedPrefs.getBoolean("defCheck", true)){
-                toggleRepositoryOptions(true);
+            //internal private shared preferences to manage the incorrect server requested by the user
+            final SharedPreferences tmpSharedPref = getApplicationContext().getSharedPreferences(TMP_SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+            //flag to manage if the user put an invalid server
+            boolean isCallBack = tmpSharedPref.getBoolean("isCallBack", false);
+
+            //if the user put an invalid GitHub server, the user can edit the values again until the server is valid
+            if(!isCallBack){
+                //first, we verify if the default checkbox is activated, if true we put the default options into the edit texts and make them not editable
+                if(sharedPrefs.getBoolean("defCheck", true)){
+                    toggleRepositoryOptions(true);
+                }
+                //if the default checkbox isn't checked we put the shared preferences values into the edit texts
+                else{
+                    toggleRepositoryOptions(false);
+                }
             }
-            //if the default checkbox isn't checked we put the shared preferences values into the edit texts
             else{
                 toggleRepositoryOptions(false);
+                etxGithubUsername.setText(tmpSharedPref.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
+                etxRepositoryName.setText(tmpSharedPref.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, ""));
+                etxBranchName.setText(tmpSharedPref.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, ""));
             }
+
+            checkBoxPressed = false;
 
             defaultServerCheckBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    checkBoxPressed = true;
                     toggleRepositoryOptions(true);
                     isDefChecked = true;
                     //we save the status into the sharedPreferences file
@@ -204,6 +225,7 @@ public class AvailableLayouts extends Activity {
             customServerCheckBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    checkBoxPressed = true;
                     toggleRepositoryOptions(false);
                     isDefChecked = false;
                     //we save the status into the sharedPreferences file
@@ -219,7 +241,7 @@ public class AvailableLayouts extends Activity {
                         @SuppressLint("StaticFieldLeak")
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            final String[] repositoryCustomOptions = {github_username.getText().toString(), repository_name.getText().toString(), branch_name.getText().toString()};
+                            final String[] repositoryCustomOptions = {etxGithubUsername.getText().toString(), etxRepositoryName.getText().toString(), etxBranchName.getText().toString()};
                             //we verify if the entered options are correct
                             new URLValidatorTask(){
                                 protected void onPostExecute(Boolean result){
@@ -231,9 +253,17 @@ public class AvailableLayouts extends Activity {
                                         editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]);
                                         editor.putString(OSMTracker.Preferences.KEY_BRANCH_NAME, repositoryCustomOptions[2]);
                                         editor.commit();
+                                        //to avoid the request of invalid server at the beginning
+                                        tmpSharedPref.edit().putBoolean("isCallBack", false).commit();
                                         retrieveAvailableLayouts();
                                     }else{
                                         Toast.makeText(AvailableLayouts.this, getResources().getString(R.string.github_repository_settings_invalid_server), Toast.LENGTH_SHORT).show();
+                                        tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, repositoryCustomOptions[0]).commit();
+                                        tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]).commit();
+                                        tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_BRANCH_NAME, repositoryCustomOptions[2]).commit();
+                                        //to make a request at the beginning of pop-up
+                                        tmpSharedPref.edit().putBoolean("isCallBack", true).commit();
+                                        onOptionsItemSelected(item);
                                     }
                                 }
                             }.execute(repositoryCustomOptions);
@@ -242,6 +272,23 @@ public class AvailableLayouts extends Activity {
                     .setNegativeButton(getResources().getString(R.string.menu_cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            tmpSharedPref.edit().putBoolean("isCallBack", false).commit();
+                            if (checkBoxPressed){
+                                if(!isDefChecked){
+                                    toggleRepositoryOptions(true);
+                                    isDefChecked = true;
+                                    //save the status into the sharedPreferences file
+                                    editor.putBoolean("defCheck", isDefChecked);
+                                    editor.commit();
+                                }
+                                else{
+                                    toggleRepositoryOptions(false);
+                                    isDefChecked = false;
+                                    //save the status into the sharedPreferences file
+                                    editor.putBoolean("defCheck", isDefChecked);
+                                    editor.commit();
+                                }
+                            }
                             dialog.cancel();
                         }
                     })
@@ -261,21 +308,21 @@ public class AvailableLayouts extends Activity {
         customServerCheckBox.setEnabled(status);
         defaultServerCheckBox.setChecked(status);
         defaultServerCheckBox.setEnabled(!status);
-        github_username.setEnabled(!status);
-        branch_name.setEnabled(!status);
-        repository_name.setEnabled(!status);
+        etxGithubUsername.setEnabled(!status);
+        etxBranchName.setEnabled(!status);
+        etxRepositoryName.setEnabled(!status);
 
         //setting the default options into text fields
         if(status){
-            github_username.setText(OSMTracker.Preferences.VAL_GITHUB_USERNAME);
-            repository_name.setText(OSMTracker.Preferences.VAL_REPOSITORY_NAME);
-            branch_name.setText(OSMTracker.Preferences.VAL_BRANCH_NAME);
+            etxGithubUsername.setText(OSMTracker.Preferences.VAL_GITHUB_USERNAME);
+            etxRepositoryName.setText(OSMTracker.Preferences.VAL_REPOSITORY_NAME);
+            etxBranchName.setText(OSMTracker.Preferences.VAL_BRANCH_NAME);
         }
         //setting the custom options into text fields
         else{
-            github_username.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
-            repository_name.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME,""));
-            branch_name.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, ""));
+            etxGithubUsername.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
+            etxRepositoryName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME,""));
+            etxBranchName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, ""));
         }
     }
 
