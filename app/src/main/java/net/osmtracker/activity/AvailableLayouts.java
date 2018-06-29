@@ -1,4 +1,4 @@
-package org.osmtracker.activity;
+package net.osmtracker.activity;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -29,13 +29,13 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.osmtracker.OSMTracker;
-import org.osmtracker.R;
-import org.osmtracker.layout.DownloadCustomLayoutTask;
-import org.osmtracker.layout.GetStringResponseTask;
-import org.osmtracker.layout.URLValidatorTask;
-import org.osmtracker.util.CustomLayoutsUtils;
-import org.osmtracker.util.URLCreator;
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.layout.DownloadCustomLayoutTask;
+import net.osmtracker.layout.GetStringResponseTask;
+import net.osmtracker.layout.URLValidatorTask;
+import net.osmtracker.util.CustomLayoutsUtils;
+import net.osmtracker.util.URLCreator;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -52,7 +52,7 @@ import java.util.Set;
 
 public class AvailableLayouts extends Activity {
 
-    private final static String TMP_SHARED_PREFERENCES_FILE = "org.osmtracker.tmpspfile";
+    private final static String TMP_SHARED_PREFERENCES_FILE = "net.osmtracker.tmpspfile";
 
     //this variable indicates if the default github configuration is activated
     private boolean isDefChecked;

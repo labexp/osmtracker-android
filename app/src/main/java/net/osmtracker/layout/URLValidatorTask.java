@@ -1,4 +1,4 @@
-package org.osmtracker.layout;
+package net.osmtracker.layout;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -6,7 +6,7 @@ import android.util.Log;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.osmtracker.util.URLCreator;
+import net.osmtracker.util.URLCreator;
 
 import static android.content.ContentValues.TAG;
 

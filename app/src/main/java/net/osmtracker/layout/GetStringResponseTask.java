@@ -1,9 +1,9 @@
-package org.osmtracker.layout;
+package net.osmtracker.layout;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.osmtracker.util.CustomLayoutsUtils;
+import net.osmtracker.util.CustomLayoutsUtils;
 
 import java.net.URL;
 

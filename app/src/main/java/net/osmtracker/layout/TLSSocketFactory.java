@@ -1,4 +1,4 @@
-package org.osmtracker.layout;
+package net.osmtracker.layout;
 
 import java.io.IOException;
 import java.net.InetAddress;

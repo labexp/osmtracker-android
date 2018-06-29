@@ -1,5 +1,6 @@
-package org.osmtracker.activity;
+package net.osmtracker.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,9 +8,13 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,11 +24,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.osmtracker.OSMTracker;
-import org.osmtracker.R;
-import org.osmtracker.layout.DownloadCustomLayoutTask;
-import org.osmtracker.util.CustomLayoutsUtils;
-import org.osmtracker.util.FileSystemUtils;
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.layout.DownloadCustomLayoutTask;
+import net.osmtracker.util.CustomLayoutsUtils;
+import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -34,6 +39,11 @@ import java.util.Hashtable;
  */
 
 public class ButtonsPresets extends Activity {
+
+    @SuppressWarnings("unused")
+    private static final String TAG = Preferences.class.getSimpleName();
+
+    final private int RC_WRITE_PERMISSION = 1;
 
     private CheckBox checkboxHeld;
     private CheckBoxChangedListener listener;
@@ -53,7 +63,29 @@ public class ButtonsPresets extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        refreshActivity();
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                // TODO: explain why we need permission.
+                Log.w(TAG, "we should explain why we need read permission");
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSION);
+            }
+
+        }  else {
+            refreshActivity();
+        }
     }
 
     public void refreshActivity(){
@@ -297,4 +329,27 @@ public class ButtonsPresets extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case RC_WRITE_PERMISSION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    refreshActivity();
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    //TODO: add an informative message.
+                    Log.w(TAG, "we should explain why we need read permission");
+                }
+            }
+        }
+    }
+
 }

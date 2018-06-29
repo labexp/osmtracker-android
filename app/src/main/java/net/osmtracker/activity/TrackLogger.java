@@ -1,8 +1,8 @@
 package net.osmtracker.activity;
 
 import java.io.File;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -16,6 +16,7 @@ import net.osmtracker.service.gps.GPSLoggerServiceConnection;
 import net.osmtracker.util.CustomLayoutsUtils;
 import net.osmtracker.util.FileSystemUtils;
 import net.osmtracker.util.ThemeValidator;
+import net.osmtracker.view.TextNoteDialog;
 import net.osmtracker.view.VoiceRecDialog;
 import net.osmtracker.db.TrackContentProvider;
 
@@ -234,6 +235,7 @@ public class TrackLogger extends Activity {
 		values.put(TrackContentProvider.Schema.COL_TAGS, tags.toString());
 		getContentResolver().update(trackUri, values, null, null);
 	}
+
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
@@ -780,5 +782,38 @@ public class TrackLogger extends Activity {
 				if (grantResults.length == 2
 						&& grantResults[0] == PackageManager.PERMISSION_GRANTED
 						&& grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+
+					// permission was granted, yay!
+					new VoiceRecDialog(this, currentTrackId);
+
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					//TODO: add an informative message.
+				}
+				return;
+			}
+
+			case RC_STORAGE_CAMERA_PERMISSIONS: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length == 2
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED
+						&& grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+
+					// permission was granted, yay!
+					requestStillImage();
+
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					//TODO: add an informative message.
+				}
+				return;
+			}
+		}
+	}
+
 
 }

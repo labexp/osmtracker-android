@@ -1,13 +1,13 @@
-package org.osmtracker.util;
+package net.osmtracker.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import org.osmtracker.OSMTracker;
-import org.osmtracker.activity.AvailableLayouts;
-import org.osmtracker.activity.Preferences;
-import org.osmtracker.layout.GetStringResponseTask;
+import net.osmtracker.OSMTracker;
+import net.osmtracker.activity.AvailableLayouts;
+import net.osmtracker.activity.Preferences;
+import net.osmtracker.layout.GetStringResponseTask;
 
 import java.io.BufferedReader;
 import java.io.IOException;

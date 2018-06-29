@@ -1,4 +1,4 @@
-package org.osmtracker.layout;
+package net.osmtracker.layout;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,7 +9,7 @@ import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.osmtracker.OSMTracker;
+import net.osmtracker.OSMTracker;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,9 +20,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Set;
 
-import org.osmtracker.activity.Preferences;
-import org.osmtracker.util.CustomLayoutsUtils;
-import org.osmtracker.util.URLCreator;
+import net.osmtracker.activity.Preferences;
+import net.osmtracker.util.CustomLayoutsUtils;
+import net.osmtracker.util.URLCreator;
 
 /**
  * Created by aton1698 on 13/12/17.
