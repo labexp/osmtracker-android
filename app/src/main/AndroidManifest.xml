@@ -42,7 +42,7 @@
 		</activity>
 		<activity android:name="net.osmtracker.activity.AvailableLayouts">
 		</activity>
-
+    
 		<service android:name="net.osmtracker.service.gps.GPSLogger" android:exported="false">
 			<intent-filter>
 				<action android:name="osmtracker.intent.GPS_SERVICE" />

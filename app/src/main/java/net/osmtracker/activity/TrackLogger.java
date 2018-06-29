@@ -1,6 +1,7 @@
 package net.osmtracker.activity;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -22,12 +23,14 @@ import net.osmtracker.db.TrackContentProvider;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.ContentValues;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,6 +43,7 @@ import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
+
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
@@ -57,6 +61,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 
 /**
  * Main track logger activity. Communicate with the GPS service to display GPS
@@ -428,6 +433,7 @@ public class TrackLogger extends Activity {
 			// Start / Stop tracking	
 			if (gpsLogger.isTracking()) {
 				saveTagsForTrack();
+
 				Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
 				sendBroadcast(intent);
 				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(false);
@@ -814,6 +820,5 @@ public class TrackLogger extends Activity {
 			}
 		}
 	}
-
 
 }
