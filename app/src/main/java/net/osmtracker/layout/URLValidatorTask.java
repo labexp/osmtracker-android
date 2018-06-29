@@ -8,6 +8,7 @@ import java.net.URL;
 
 import net.osmtracker.util.URLCreator;
 
+import javax.net.ssl.HttpsURLConnection;
 import static android.content.ContentValues.TAG;
 
 /**
@@ -27,7 +28,9 @@ public class URLValidatorTask extends AsyncTask<String, Integer, Boolean>{
         try {
             URL url = new URL(server_url);
             // Open Url Connection
-            HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection.setDefaultSSLSocketFactory(new TLSSocketFactory());
+            HttpsURLConnection httpConnection = (HttpsURLConnection) url.openConnection();
+
 
             //If Connection response is OK then change the status to true
             if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
