@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="net.osmtracker"
-	android:versionName="0.6.12" android:versionCode="40" android:installLocation="auto">
+	android:versionName="0.7" android:versionCode="41" android:installLocation="auto">
 
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -34,7 +34,15 @@
 		<activity android:name="net.osmtracker.activity.About" android:label="@string/about" />
 		<activity android:name="net.osmtracker.activity.DisplayTrack" android:label="@string/displaytrack" />
 		<activity android:name="net.osmtracker.activity.DisplayTrackMap" android:label="@string/displaytrackmap" />
-
+		<activity android:name="net.osmtracker.activity.ButtonsPresets">
+			<intent-filter>
+				<action android:name="launch_buttons_presets"/>
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		<activity android:name="net.osmtracker.activity.AvailableLayouts">
+		</activity>
+    
 		<service android:name="net.osmtracker.service.gps.GPSLogger" android:exported="false">
 			<intent-filter>
 				<action android:name="osmtracker.intent.GPS_SERVICE" />
