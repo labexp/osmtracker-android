@@ -9,6 +9,7 @@ import net.osmtracker.listener.SensorListener;
 
 import android.Manifest;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -21,9 +22,11 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
@@ -56,6 +59,7 @@ public class GPSLogger extends Service implements LocationListener {
 	 * System notification id.
 	 */
 	private static final int NOTIFICATION_ID = 1;
+	private static String CHANNEL_ID = "GPSLogger_Channel";
 	
 	/**
 	 * Last known location
@@ -222,6 +226,7 @@ public class GPSLogger extends Service implements LocationListener {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.v(TAG, "Service onStartCommand(-,"+flags+","+startId+")");
+		createNotificationChannel();
 		startForeground(NOTIFICATION_ID, getNotification());
 		return Service.START_STICKY;
 	}
@@ -311,20 +316,40 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Builds the notification to display when tracking in background.
 	 */
     private Notification getNotification() {
-		Notification n = new Notification(R.drawable.ic_stat_track, getResources().getString(R.string.notification_ticker_text), System.currentTimeMillis());
-			
+
 		Intent startTrackLogger = new Intent(this, TrackLogger.class);
 		startTrackLogger.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, PendingIntent.FLAG_UPDATE_CURRENT);
-		n.flags = Notification.FLAG_FOREGROUND_SERVICE | Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
-		n.setLatestEventInfo(
-				getApplicationContext(),
-				getResources().getString(R.string.notification_title).replace("{0}", (currentTrackId > -1) ? Long.toString(currentTrackId) : "?"),
-				getResources().getString(R.string.notification_text),
-				contentIntent);
-		return n;
+
+
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+				.setSmallIcon(R.drawable.ic_stat_track)
+				.setContentTitle(getResources().getString(R.string.notification_title).replace("{0}", (currentTrackId > -1) ? Long.toString(currentTrackId) : "?"))
+				.setContentText(getResources().getString(R.string.notification_text))
+				.setPriority(NotificationCompat.PRIORITY_DEFAULT)
+				.setContentIntent(contentIntent)
+				.setAutoCancel(true);
+		return mBuilder.build();
 	}
-	
+
+	private void createNotificationChannel() {
+		// Create the NotificationChannel, but only on API 26+ because
+		// the NotificationChannel class is new and not in the support library
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			// FIXME: following two strings must be obtained from 'R.string' to support translations
+			CharSequence name = "GPS Logger";
+			String description = "Display when tracking in Background";
+			int importance = NotificationManager.IMPORTANCE_DEFAULT;
+			NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+			channel.setDescription(description);
+			// Register the channel with the system; you can't change the importance
+			// or other notification behaviors after this
+			NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+			notificationManager.createNotificationChannel(channel);
+		}
+	}
+
+
 	/**
 	 * Stops notifying the user that we're tracking in the background
 	 */
