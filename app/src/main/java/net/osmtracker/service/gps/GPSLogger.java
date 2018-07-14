@@ -339,7 +339,7 @@ public class GPSLogger extends Service implements LocationListener {
 			// FIXME: following two strings must be obtained from 'R.string' to support translations
 			CharSequence name = "GPS Logger";
 			String description = "Display when tracking in Background";
-			int importance = NotificationManager.IMPORTANCE_DEFAULT;
+			int importance = NotificationManager.IMPORTANCE_LOW;
 			NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
 			channel.setDescription(description);
 			// Register the channel with the system; you can't change the importance
