@@ -20,9 +20,14 @@
     <item>Galería</item>
     <item>Preguntar siempre</item>
   </string-array>
-  <string name="prefs_ui_buttons_layout">Disposición de los botones</string>
+  <string name="prefs_ui_buttons_layout">Disposición de botones</string>
   <string name="prefs_ui_buttons_layout_summary">Escoja una disposición personalizada de los botones (ver documentación)</string>
   <string name="prefs_ui_buttons_layout_defaut">Predeterminada</string>
+  <string name="prefs_ui_buttons_layout_default_section">PREDETERMINADA</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">DESCARGADAS</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Usted no tiene disposiciones descargadas aún</string>
+  <string name="prefs_ui_available_layout">Disposiciones para descargar</string>
+  <string name="prefs_ui_github_repository_settings">Configuración del Repositorio Github</string>
   <string name="prefs_ui_orientation">Orientación</string>
   <string name="prefs_ui_orientation_summary">Orientación preferida para la pantalla de botones</string>
   <string-array name="prefs_ui_orientation_options_keys">

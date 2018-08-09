@@ -1,6 +1,8 @@
 package net.osmtracker.activity;
 
 import java.io.File;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 import net.osmtracker.OSMTracker;
@@ -12,6 +14,7 @@ import net.osmtracker.listener.SensorListener;
 import net.osmtracker.receiver.MediaButtonReceiver;
 import net.osmtracker.service.gps.GPSLogger;
 import net.osmtracker.service.gps.GPSLoggerServiceConnection;
+import net.osmtracker.util.CustomLayoutsUtils;
 import net.osmtracker.util.FileSystemUtils;
 import net.osmtracker.util.ThemeValidator;
 import net.osmtracker.view.TextNoteDialog;
@@ -19,10 +22,15 @@ import net.osmtracker.view.VoiceRecDialog;
 import net.osmtracker.db.TrackContentProvider;
 
 import android.Manifest;
+import android.annotation.TargetApi;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
+import android.content.ContentUris;
+import android.content.ContentValues;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,6 +42,8 @@ import android.database.Cursor;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
+
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
@@ -153,14 +163,20 @@ public class TrackLogger extends Activity {
 	private AudioManager mAudioManager;
 
 	private ComponentName mediaButtonReceiver;
-	
+
+	private ArrayList<String> layoutNameTags = new ArrayList<String>();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		// Get the track id to work with
 		currentTrackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 		Log.v(TAG, "Starting for track id " + currentTrackId);
-			
+
+		//save the initial layout file name in tags array
+		String layoutName = CustomLayoutsUtils.getCurrentLayoutName(getApplicationContext());
+		layoutNameTags.add(layoutName);
+
 		gpsLoggerServiceIntent = new Intent(this, GPSLogger.class);
 		gpsLoggerServiceIntent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 
@@ -193,6 +209,40 @@ public class TrackLogger extends Activity {
 		mediaButtonReceiver = new ComponentName(this, MediaButtonReceiver.class.getName());
 	}
 
+	/**
+	 * It takes the string array layoutNameTags and convert each position in the array, then, create a string with all the tags separated with a comma.
+	 * Also, the default layout is excluded and the 'osmtracker' tag is added by default.
+	 */
+	private void saveTagsForTrack(){
+		StringBuilder tags = new StringBuilder();
+		ArrayList<String> fixedTags = new ArrayList<String>();
+
+		//covert the file name to simple layout name
+		for(String layoutFileName : layoutNameTags){
+			//OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT -> 'default'
+			if(! layoutFileName.equals(OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT)){
+				fixedTags.add(CustomLayoutsUtils.convertFileName(layoutFileName));
+			}
+		}
+
+		fixedTags.add("osmtracker");
+
+		//create the string with all tags
+		for(String simpleName : fixedTags){
+			tags.append(simpleName).append(",");
+		}
+
+		//obtain the current track id and initialize the values variable
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, currentTrackId);
+		ContentValues values = new ContentValues();
+
+		//set the values tag and update the table
+		values.put(TrackContentProvider.Schema.COL_TAGS, tags.toString());
+		getContentResolver().update(trackUri, values, null, null);
+	}
+
+
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onResume() {
 
@@ -267,6 +317,12 @@ public class TrackLogger extends Activity {
 		}
 
 		mAudioManager.registerMediaButtonEventReceiver(mediaButtonReceiver);
+
+		//save the layout file name if it change, in tags array
+		String layoutName = CustomLayoutsUtils.getCurrentLayoutName(getApplicationContext());
+		if(! layoutNameTags.contains(layoutName)){
+			layoutNameTags.add(layoutName);
+		}
 
 		super.onResume();
 	}
@@ -376,6 +432,8 @@ public class TrackLogger extends Activity {
 		case R.id.tracklogger_menu_stoptracking:
 			// Start / Stop tracking	
 			if (gpsLogger.isTracking()) {
+				saveTagsForTrack();
+
 				Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
 				sendBroadcast(intent);
 				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(false);
@@ -762,6 +820,5 @@ public class TrackLogger extends Activity {
 			}
 		}
 	}
-
 
 }

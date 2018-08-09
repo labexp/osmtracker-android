@@ -132,4 +132,41 @@
   <string name="various_heading_unknown">La cabecera no se puede determinar</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Visualización de traza OpenStreetMap</string>
+
+  <!-- Buttons Presets messages -->
+
+  <string name="buttons_presets_context_menu_update_install">Actualizar e instalar</string>
+  <string name="buttons_presets_context_menu_delete">Eliminar</string>
+  <string name="buttons_presets_updating_layout">Actualizando…</string>
+  <string name="buttons_presets_successful_update">Disposición actualizada con éxito</string>
+  <string name="buttons_presets_unsuccessful_update">Lo sentimos, la disposición no se pudo actualizar</string>
+  <string name="buttons_presets_delete_message">¿Está seguro que desea eliminar la disposición de {0}?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Sí</string>
+  <string name="buttons_presets_successful_delete">El archivo fue borrado con éxito</string>
+  <string name="buttons_presets_icon_directory_deleted">Iconos de la disposición eliminados con éxito</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Este archivo no tenía ningún directorio de iconos asociado</string>
+  <string name="buttons_presets_unsuccessful_delete">No se pudo eliminar el archivo</string>
+
+  <!-- Available Layouts messages -->
+  <string name="available_layouts_connection_error">Error: No se puede conectar a internet, por favor revise su conexión</string>
+  <string name="available_layouts_response_null_exception">Error: No se pudo conectar con el servidor de disposiciones personalizadas predeterminado</string>
+  <string name="available_layouts_connecting_message">(Conectando…)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Descargar</string>
+  <string name="available_layouts_not_available_language">Tu idioma no está disponible, por favor seleccione uno de la lista</string>
+  <string name="available_layouts_language_dialog_title">Lenguajes Disponibles</string>
+  <string name="available_layouts_checking_language_dialog">Verificando tu idioma</string>
+  <string name="available_layouts_downloading_dialog">Descargando…</string>
+  <string name="available_layouts_successful_download">La disposición fue descargada con éxito</string>
+  <string name="available_layouts_unsuccessful_download">No se pudo descargar la disposición, por favor intente más tarde</string>
+
+  <!-- Github Repository Settings -->
+  <string name="github_repository_settings_default_checkbox">Predeterminado</string>
+  <string name="github_repository_settings_custom_checkbox">Personalizado</string>
+  <string name="github_repository_settings_username">Nombre de usuario Github: </string>
+  <string name="github_repository_settings_repository_name">Nombre del Repositorio: </string>
+  <string name="github_repository_settings_branch_name">Nombre de la rama: </string>
+  <string name="github_repository_settings_valid_server">Repositorio de Github válido</string>
+  <string name="github_repository_settings_invalid_server">Repositorio de Github inválido</string>
+
+
 </resources>

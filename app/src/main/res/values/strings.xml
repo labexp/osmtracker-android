@@ -152,4 +152,39 @@
 	<!-- OSM map view -->
 	<string name="displaytrackmap">OpenStreetMap track display</string>
 
+	<!-- Buttons presets messages -->
+	<string name="buttons_presets_context_menu_update_install">Update &amp; Install</string>
+	<string name="buttons_presets_context_menu_delete">Delete</string>
+	<string name="buttons_presets_updating_layout">Updating…</string>
+	<string name="buttons_presets_successful_update">Layout was updated successfully</string>
+	<string name="buttons_presets_unsuccessful_update">Layout was not updated, try again later</string>
+	<string name="buttons_presets_delete_message">Are you sure to delete the {0} layout?</string>
+	<string name="buttons_presets_delete_positive_confirmation">Yes</string>
+	<string name="buttons_presets_successful_delete">The file was deleted successfully</string>
+	<string name="buttons_presets_icon_directory_deleted">The icon directory was deleted successfully</string>
+	<string name="buttons_presets_icon_directory_does_not_exist">This file didn\'t have any icon directory associated</string>
+	<string name="buttons_presets_unsuccessful_delete">The file could not be delete</string>
+
+	<!--Available Layouts messages -->
+	<string name="available_layouts_connection_error">Error: unable to connect to the Internet</string>
+	<string name="available_layouts_response_null_exception">Error: unable to connect to the default custom layouts repository</string>
+	<string name="available_layouts_connecting_message">(Connecting…)</string>
+	<string name="available_layouts_description_dialog_positive_confirmation">Download</string>
+	<string name="available_layouts_not_available_language">Your language is not available select one from the list</string>
+	<string name="available_layouts_language_dialog_title">Available Languages</string>
+	<string name="available_layouts_checking_language_dialog">Checking local language versions</string>
+	<string name="available_layouts_downloading_dialog">Downloading…</string>
+	<string name="available_layouts_successful_download">The layout was downloaded successfully</string>
+	<string name="available_layouts_unsuccessful_download">The layout can\'t be downloaded, try again later</string>
+	<string name="available_layouts_null_response_received">Error retrieving data from server</string>
+
+	<!-- Github Repository Settings -->
+	<string name="github_repository_settings_default_checkbox">Default</string>
+	<string name="github_repository_settings_custom_checkbox">Custom</string>
+	<string name="github_repository_settings_username">Github username: </string>
+	<string name="github_repository_settings_repository_name">Repository name: </string>
+	<string name="github_repository_settings_branch_name">Branch name: </string>
+	<string name="github_repository_settings_valid_server">Github Repository valid</string>
+	<string name="github_repository_settings_invalid_server">Github Repository invalid</string>
+
 </resources>

@@ -11,6 +11,7 @@ import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
 import net.osmtracker.util.DialogUtils;
+import net.osmtracker.db.model.Track;
 
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 
@@ -22,7 +23,6 @@ import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
-import net.osmtracker.db.model.Track;
 
 import android.app.Activity;
 import android.app.AlertDialog;

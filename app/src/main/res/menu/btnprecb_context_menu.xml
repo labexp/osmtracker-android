@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cb_update_and_install"
+        android:title="@string/buttons_presets_context_menu_update_install" />
+    <item
+        android:id="@+id/cb_delete"
+        android:title="@string/buttons_presets_context_menu_delete" />
+
+</menu>

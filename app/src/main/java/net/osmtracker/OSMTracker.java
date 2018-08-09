@@ -41,6 +41,11 @@ public class OSMTracker {
 		public final static String KEY_OSM_OAUTH_SECRET = "osm.oauth.secret";
 		public final static String KEY_OSM_OAUTH_CLEAR_DATA = "osm.oauth.clear-data";
 
+		//keys for repository settings
+		public final static String KEY_GITHUB_USERNAME = "github_username";
+		public final static String KEY_REPOSITORY_NAME = "repository_name";
+		public final static String KEY_BRANCH_NAME = "branch_name";
+
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
 		public final static String VAL_VOICEREC_DURATION = "2";
@@ -82,6 +87,11 @@ public class OSMTracker {
 		public final static String VAL_UI_ORIENTATION = VAL_UI_ORIENTATION_NONE;
 		
 		public final static String VAL_UI_MAP_TILE_MAPNIK = "MAPNIK";
+
+		//default values for repository settings
+		public final static String VAL_GITHUB_USERNAME = "labexp";
+		public final static String VAL_REPOSITORY_NAME = "osmtracker-android-layouts";
+		public final static String VAL_BRANCH_NAME = "master";
 		
 	};
 	
