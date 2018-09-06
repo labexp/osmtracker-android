@@ -1,0 +1,1 @@
+Everyone can contribute to the development of the app, and that's great!. Since we'll be using [gitflow](https://datasift.github.io/gitflow/IntroducingGitFlow.html), it's recommended to have feature branches that will eventually be merged back to the `develop` via pull requests, and later `develop` will be merged back to master when we're ready for a new release.
