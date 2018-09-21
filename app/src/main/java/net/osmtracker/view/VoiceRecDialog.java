@@ -102,7 +102,7 @@ public class VoiceRecDialog extends AlertDialog implements OnInfoListener{
 
 		this.setTitle(context.getResources().getString(R.string.tracklogger_voicerec_title));
 
-		this.setButton(1, context.getResources().getString(R.string.tracklogger_voicerec_stop), new DialogInterface.OnClickListener() {
+		this.setButton(DialogInterface.BUTTON_POSITIVE, context.getResources().getString(R.string.tracklogger_voicerec_stop), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// redundant with the safeClose that is triggered when the dialog closes
@@ -125,7 +125,7 @@ public class VoiceRecDialog extends AlertDialog implements OnInfoListener{
 
 		if (!isRecording) {
 			String recLen = preferences.getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION, OSMTracker.Preferences.VAL_VOICEREC_DURATION);
-			if (recLen.startsWith("unlimited")) recordingDuration=UNLIMITED_REC_LENGTH;
+			if (recLen.startsWith("Unlimited")) recordingDuration = UNLIMITED_REC_LENGTH;
 			else recordingDuration = Integer.parseInt(recLen);
 		} else {
 			if (recordingDuration <= 0)
