@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker for Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Terinspirasi dari OSMTracker pada Windows Mobile, yang memungkinkan Anda untuk melacak perjalanan, menandai titik secara signifikan (rekaman suara, foto), lalu diekspor ke dalam format GPX untuk digunakan pada Open Street Map tool seperti JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Catatan trek</string>
+  <string name="tracklogger_waiting_gps">Menunggu GPS terkunci untuk menampilkan tombol...</string>
+  <string name="tracklogger_voicerec_title">Perekaman suara</string>
+  <string name="tracklogger_voicerec_text">Merekam {0} klip audio.</string>
+  <string name="tracklogger_voicerec_stop">Stop</string>
+  <string name="tracklogger_btnBack">Kembali</string>
+  <string name="tracklogger_tracked">Terlacak</string>
+  <string name="tracklogger_gps_disabled">GPS mati</string>
+  <string name="tracklogger_gps_disabled_hint">GPS mati. Anda ingin hidupkan?</string>
+  <string name="tracklogger_choose_gallery_camera">Galeri atau kamera?</string>
+  <string name="tracklogger_camera">Ambil foto dengan kamera</string>
+  <string name="tracklogger_gallery">Pilih foto dari galeri</string>
+  <!--Waypoint List-->
+  <string name="wplist">Daftar posisi</string>
+  <string name="wplist_latitude">Lat: </string>
+  <string name="wplist_longitude">Long: </string>
+  <string name="wplist_elevation">Ele: </string>
+  <string name="wplist_accuracy">Akurasi: </string>
+  <string name="wplist_compass">Arah kompas:</string>
+  <string name="wplist_compass_accuracy">Akurasi kompas:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Pengaturan trek</string>
+  <string name="trackmgr_tracklist">Daftar trek:</string>
+  <string name="trackmgr_waypoints_count">Posisi:</string>
+  <string name="trackmgr_trackpoints_count">Trekpoin: </string>
+  <string name="trackmgr_empty">Anda tidak memiliki trek apapun.</string>
+  <string name="trackmgr_newtrack_error">Tidak dapat membuat trek baru: {0}</string>
+  <string name="trackmgr_contextmenu_stop">Stop pelacakan</string>
+  <string name="trackmgr_contextmenu_resume">Lanjutkan pelacakan</string>
+  <string name="trackmgr_contextmenu_delete">Hapus</string>
+  <string name="trackmgr_contextmenu_export">Ekspor sebagai GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Unggah ke OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Tampilkan</string>
+  <string name="trackmgr_contextmenu_details">Rincian</string>
+  <string name="trackmgr_contextmenu_title">Trek #{0}</string>
+  <string name="trackmgr_delete_confirm">Trek #{0} akan dihapus</string>
+  <string name="trackmgr_deleteall_confirm">Semua trek akan dihapus. Anda yakin?</string>
+  <string name="trackmgr_exporting">Mengekspor trek #{0}…</string>
+  <string name="trackmgr_export_error">Tidak dapat mengekspor trek: {0}</string>
+  <string name="trackmgr_exportall_confirm">Semua trek akan diekspor, yang akan memakan waktu. Anda yakin?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Rincian Trek</string>
+  <string name="trackdetail_startdate">Waktu mulai:</string>
+  <string name="trackdetail_enddate">Waktu selesai:</string>
+  <string name="trackdetail_startloc">Mulai pada:</string>
+  <string name="trackdetail_endloc">Selesai pada:</string>
+  <string name="trackdetail_exportdate">Diekspor pada:</string>
+  <string name="trackdetail_osm_upload_date">Diunggah ke OSM pada:</string>
+  <string name="trackdetail_btn_export">Ekspor sebagai GPX</string>
+  <string name="trackdetail_export_notyet">(Belum diekspor)</string>
+  <string name="trackdetail_osm_upload_notyet">(Belum diunggah)</string>
+  <string name="trackdetail_export_display">Tampilkan</string>
+  <string name="trackdetail_description">Keterangan</string>
+  <string name="trackdetail_tags">Tag (pisahkan dgn koma)</string>
+  <string name="trackdetail_description_mandatory">Anda harus berikan keterangan</string>
+  <string name="osm_visibility_private">Pribadi</string>
+  <string name="osm_visibility_public">Publik</string>
+  <string name="osm_visibility_trackable">Terlacak</string>
+  <string name="osm_visibility_identifiable">Teridentifikasi</string>
+  <!--OSM upload-->
+  <string name="osm_upload">Unggahan OpenSreetMap</string>
+  <string name="osm_upload_ok">Simpan dan unggah</string>
+  <string name="osm_upload_tmpfile_failed">Tidak dapat mengekspor trek ke berkas sementara</string>
+  <string name="osm_upload_oauth_failed">Tidak dapat mengotentifikasi ke OSM</string>
+  <string name="osm_upload_sending">Mengirim trek #{0}…</string>
+  <string name="osm_upload_waiting_response">Menunggu respon dari server OpenSreetMap...</string>
+  <string name="osm_upload_error">Kesalahan saat mengunggah trek</string>
+  <string name="osm_upload_bad_response">Terjadi kesalahan pada server OSM: ({0}) pesan {1}</string>
+  <string name="osm_upload_unauthorized">Kesalahan Otorisasi. </string>
+  <string name="osm_upload_sucess">Unggahan OpenStreetMap sukses</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Rekam suara</string>
+  <string name="gpsstatus_record_stillimage">Ambil foto</string>
+  <string name="gpsstatus_record_textnote">Catatan</string>
+  <!--Menu-->
+  <string name="menu_settings">Pengaturan</string>
+  <string name="menu_waypointlist">Posisi</string>
+  <string name="menu_about">Tentang</string>
+  <string name="menu_displaytrack">Tampilkan trek</string>
+  <string name="menu_stoptracking">Stop &amp; simpan</string>
+  <string name="menu_newtrack">Trek baru</string>
+  <string name="menu_deletetracks">Hapus semua trek</string>
+  <string name="menu_continue">Lanjutkan trek</string>
+  <string name="menu_stopcurrenttrack">Stop trek ini</string>
+  <string name="menu_save">Simpan</string>
+  <string name="menu_cancel">Batal</string>
+  <string name="menu_export">Ekspor sebagai GPX</string>
+  <string name="menu_osm_upload">Unggahan OpenStreetMap</string>
+  <string name="menu_center_to_gps">Ketengahkan GPS</string>
+  <string name="menu_exportall">Ekspor semua sebagai GPX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Tidak dapat menyimpan ke memori ekternal</string>
+  <string name="error_create_track_dir">Tidak dapat membuat folder trek %s</string>
+  <string name="error_externalstorage_not_writable_hint">Silakan periksa apakah kartu memori telah pada tempatnya.</string>
+  <string name="error_voicerec_failed">Perekaman suara gagal</string>
+  <string name="error_userlayout_parsing">Kesalahan saat parsing berkas layout XML. Mohon kembalikan ke layout baku.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Dilacak dengan OSMTracker for Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Peringatan: Nilai HDOP bukan HDOP dari perangkat GPS. Namun pendekatan dari akurasi lokasi dalam ukuran meter.</string>
+  <!--About screen-->
+  <string name="about">Tentang</string>
+  <string name="about_text">Untuk informasi lebih lanjut, dokumen, dan laporan masalah, silakan kunjungi halaman situs proyek:</string>
+  <string name="about_translate_text">Bantu menerjemahkan OSMTracker:</string>
+  <string name="about_debug_info">Debug info</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker melacak</string>
+  <string name="notification_title">OSMTracker melacak (#{0})</string>
+  <string name="notification_text">Tap disini untuk menampilkan layar utama</string>
+  <!--Display track-->
+  <string name="displaytrack">Tampilkan trek</string>
+  <string name="displaytrack_map">Tampilkan peta latar</string>
+  <string name="displaytrack_north">U</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Simpan</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Akurasi</string>
+  <string name="various_accuracy_with_sats">Akurasi {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Menunggu GPS mengunci… ({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Menunggu arah...</string>
+  <string name="various_heading_unknown">Arah tidak dapat ditentukan</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">Tampilan trek OpenStreetMap</string>
+</resources>

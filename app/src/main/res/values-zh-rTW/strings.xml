@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker for Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">軌跡記錄器</string>
+  <string name="tracklogger_voicerec_title">錄製語音</string>
+  <string name="tracklogger_voicerec_text">錄製一段{0}秒的聲音片段。</string>
+  <string name="tracklogger_voicerec_stop">停止</string>
+  <string name="tracklogger_btnBack">返回</string>
+  <string name="tracklogger_tracked">記錄了：</string>
+  <string name="tracklogger_gps_disabled">GPS 目前是關閉的</string>
+  <string name="tracklogger_gps_disabled_hint">GPS 目前是關閉的，您想要啟用它嗎？</string>
+  <string name="tracklogger_choose_gallery_camera">使用相簿或相機？</string>
+  <!--Waypoint List-->
+  <string name="wplist">航點(Waypoint)列表</string>
+  <string name="wplist_latitude">緯度：</string>
+  <string name="wplist_longitude">經度：</string>
+  <!--Track Manager-->
+  <string name="trackmgr">軌跡管理</string>
+  <string name="trackmgr_tracklist">軌跡列表：</string>
+  <string name="trackmgr_waypoints_count">航點：</string>
+  <string name="trackmgr_trackpoints_count">軌跡點：</string>
+  <string name="trackmgr_empty">您尚未有任何的軌跡紀錄資料。</string>
+  <string name="trackmgr_newtrack_error">無法開始記錄新軌跡： {0}</string>
+  <string name="trackmgr_contextmenu_stop">停止記錄</string>
+  <string name="trackmgr_contextmenu_resume">繼續記錄</string>
+  <string name="trackmgr_contextmenu_delete">刪除</string>
+  <string name="trackmgr_contextmenu_export">匯出 GPX 檔</string>
+  <string name="trackmgr_contextmenu_osm_upload">上傳至 OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">顯示</string>
+  <string name="trackmgr_contextmenu_details">詳細資訊</string>
+  <string name="trackmgr_contextmenu_title">軌跡 #{0}</string>
+  <string name="trackmgr_delete_confirm">軌跡 #{0} 將被刪除</string>
+  <string name="trackmgr_deleteall_confirm">所有的軌跡都會被刪除，您確定嗎？</string>
+  <string name="trackmgr_exporting">匯出軌跡 #{0}…</string>
+  <string name="trackmgr_export_error">無法匯出軌跡： {0}</string>
+  <string name="trackmgr_exportall_confirm">將匯出所有軌跡，可能會耗費不少時間。您確定嗎？</string>
+  <!--Track Detail-->
+  <string name="trackdetail">軌跡細節</string>
+  <string name="trackdetail_startdate">開始時間：</string>
+  <string name="trackdetail_enddate">結束時間：</string>
+  <string name="trackdetail_startloc">開始於：</string>
+  <string name="trackdetail_endloc">結束於：</string>
+  <string name="trackdetail_exportdate">匯出：</string>
+  <string name="trackdetail_osm_upload_date">上傳至 OpenStreetMap：</string>
+  <string name="trackdetail_btn_export">匯出為 GPX 檔</string>
+  <string name="trackdetail_export_notyet">(尚未匯出)</string>
+  <string name="trackdetail_osm_upload_notyet">(尚未上傳)</string>
+  <string name="trackdetail_export_display">顯示</string>
+  <string name="trackdetail_description">描述</string>
+  <string name="trackdetail_tags">標籤 (以半形逗號分隔)</string>
+  <string name="trackdetail_description_mandatory">您必須填寫描述欄</string>
+  <string name="osm_visibility_private">私人的</string>
+  <string name="osm_visibility_public">公開的</string>
+  <string name="osm_visibility_trackable">可追蹤的</string>
+  <string name="osm_visibility_identifiable">可辨識的</string>
+  <!--OSM upload-->
+  <string name="osm_upload">上傳至 OpenStreetMap</string>
+  <string name="osm_upload_ok">儲存並上傳</string>
+  <string name="osm_upload_tmpfile_failed">無法將此軌跡匯出到暫存檔</string>
+  <string name="osm_upload_oauth_failed">無法與 OSM 伺服器取得認證</string>
+  <string name="osm_upload_sending">發送軌跡 #{0}…</string>
+  <string name="osm_upload_waiting_response">等候 OpenStreetMap 伺服器回應…</string>
+  <string name="osm_upload_error">上傳軌跡的過程中發生錯誤</string>
+  <string name="osm_upload_bad_response">OSM 伺服器傳回錯誤: ({0}) 訊息 {1}</string>
+  <string name="osm_upload_unauthorized">認證錯誤。您想要清除現存的 OpenStreetMap 認證資料嗎？</string>
+  <string name="osm_upload_sucess">成功上傳至 OpenStreetMap</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">錄製語音</string>
+  <string name="gpsstatus_record_textnote">文字筆記</string>
+  <!--Menu-->
+  <string name="menu_settings">設定</string>
+  <string name="menu_waypointlist">航點</string>
+  <string name="menu_about">關於</string>
+  <string name="menu_displaytrack">顯示軌跡</string>
+  <string name="menu_stoptracking">停止並儲存</string>
+  <string name="menu_newtrack">新軌跡</string>
+  <string name="menu_deletetracks">刪除全部軌跡資料</string>
+  <string name="menu_save">儲存</string>
+  <string name="menu_cancel">取消</string>
+  <string name="menu_export">匯出為 GPX 檔</string>
+  <string name="menu_exportall">全部匯出為 GPX 檔</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">無法寫入外部儲存媒體。</string>
+  <string name="error_create_track_dir">無法建立軌跡資料夾 %s</string>
+  <string name="error_externalstorage_not_writable_hint">請檢查外部儲存媒體是否正確安置與掛載。</string>
+  <string name="error_voicerec_failed">語音錄製失敗</string>
+  <string name="error_userlayout_parsing">解析 XML 外觀配置檔時發生錯誤。請改用預設外觀。</string>
+  <!--GPX-->
+  <string name="gpx_track_name">使用 OSMTracker for Android™ 記錄</string>
+  <!--About screen-->
+  <string name="about">關於</string>
+  <string name="about_text">更多資訊、文件與問題回報，請洽本專案首頁：</string>
+  <string name="about_translate_text">請幫忙翻譯 OSMTracker：</string>
+  <string name="about_debug_info">除錯資訊</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker 記錄中</string>
+  <string name="notification_title">OSMTracker 記錄中 (#{0})</string>
+  <string name="notification_text">點擊這裡顯示主功能畫面</string>
+  <!--Display track-->
+  <string name="displaytrack">顯示軌跡</string>
+  <string name="displaytrack_map">顯示地圖背景</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">儲存</string>
+  <!--Various-->
+  <string name="various_accuracy">精確度</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
+  <!--OSM map view-->
+</resources>

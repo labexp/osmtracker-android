@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">Android용 OSMTracker™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Windows Mobile의 OSMTracker에 영감을 받은, 이것은 여정을 추적할 수 있고 중요한 웨이 포인트(음성 녹음, 사진)을 표시할 수 있고, 나중에 JOSM과 같은 Open Street Map 도구를 사용하기 위해 GPX 형식으로 내보낼 수 있습니다.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">트랙 로거</string>
+  <string name="tracklogger_waiting_gps">버튼을 활성화하기 위해 GPS 측정을 기다리는 중…</string>
+  <string name="tracklogger_voicerec_title">음성 녹음</string>
+  <string name="tracklogger_voicerec_text">{0}초 오디오 클립을 녹음 중입니다.</string>
+  <string name="tracklogger_voicerec_stop">멈춤</string>
+  <string name="tracklogger_btnBack">뒤로</string>
+  <string name="tracklogger_tracked">트랙됨:</string>
+  <string name="tracklogger_gps_disabled">GPS 비활성화됨</string>
+  <string name="tracklogger_gps_disabled_hint">GPS가 비활성화되어 있습니다. 활성화하겠습니까?</string>
+  <string name="tracklogger_choose_gallery_camera">갤러리나 카메라?</string>
+  <string name="tracklogger_camera">카메라로 사진 찍기</string>
+  <string name="tracklogger_gallery">갤러리에서 사진 선택</string>
+  <!--Waypoint List-->
+  <string name="wplist">웨이포인트 목록</string>
+  <string name="wplist_latitude">위도:</string>
+  <string name="wplist_longitude">경도:</string>
+  <string name="wplist_elevation">고도:</string>
+  <string name="wplist_accuracy">정확도:</string>
+  <string name="wplist_compass">나침반 방위:</string>
+  <string name="wplist_compass_accuracy">나침반 정확도:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">트랙 관리자</string>
+  <string name="trackmgr_tracklist">트랙 목록:</string>
+  <string name="trackmgr_waypoints_count">웨이포인트:</string>
+  <string name="trackmgr_trackpoints_count">트랙포인트:</string>
+  <string name="trackmgr_empty">어떠한 트랙도 없습니다.</string>
+  <string name="trackmgr_newtrack_error">새 트랙을 만들 수 없습니다: {0}</string>
+  <string name="trackmgr_contextmenu_stop">트래킹 멈춤</string>
+  <string name="trackmgr_contextmenu_resume">트래킹 재개</string>
+  <string name="trackmgr_contextmenu_delete">삭제</string>
+  <string name="trackmgr_contextmenu_export">GPX로 내보내기</string>
+  <string name="trackmgr_contextmenu_osm_upload">OpenStreetMap으로 올리기</string>
+  <string name="trackmgr_contextmenu_display">보기</string>
+  <string name="trackmgr_contextmenu_details">자세한 정보</string>
+  <string name="trackmgr_contextmenu_title">트랙 #{0}</string>
+  <string name="trackmgr_delete_confirm">트랙 #{0}이 삭제됩니다</string>
+  <string name="trackmgr_deleteall_confirm">모든 트랙이 삭제됩니다. 삭제하겠습니까?</string>
+  <string name="trackmgr_exporting">트랙 #{0}을 내보내는 중…</string>
+  <string name="trackmgr_export_error">트랙을 내보낼 수 없습니다: {0}</string>
+  <string name="trackmgr_exportall_confirm">모든 트랙을 내보내며, 시간이 오래 걸릴 수 있습니다. 내보내겠습니까?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">트랙 자세한 정보</string>
+  <string name="trackdetail_startdate">시작 시간:</string>
+  <string name="trackdetail_enddate">끝 시간:</string>
+  <string name="trackdetail_startloc">시작 지점:</string>
+  <string name="trackdetail_endloc">끝 지점:</string>
+  <string name="trackdetail_exportdate">내보냄:</string>
+  <string name="trackdetail_osm_upload_date">OpenStreetMap에 올림:</string>
+  <string name="trackdetail_btn_export">GPX로 내보내기</string>
+  <string name="trackdetail_export_notyet">(아직 내보내지 않았습니다)</string>
+  <string name="trackdetail_osm_upload_notyet">(아직 올리지 않았습니다)</string>
+  <string name="trackdetail_export_display">보기</string>
+  <string name="trackdetail_description">설명</string>
+  <string name="trackdetail_tags">태그 (쉼표로 구분)</string>
+  <string name="trackdetail_description_mandatory">설명을 입력해야 합니다</string>
+  <string name="osm_visibility_private">비공개</string>
+  <string name="osm_visibility_public">공개</string>
+  <string name="osm_visibility_trackable">추적 가능</string>
+  <string name="osm_visibility_identifiable">식별 가능</string>
+  <!--OSM upload-->
+  <string name="osm_upload">OpenStreetMap 올리기</string>
+  <string name="osm_upload_ok">저장하고 올리기</string>
+  <string name="osm_upload_tmpfile_failed">임시 파일로 트랙을 내보낼 수 없습니다</string>
+  <string name="osm_upload_oauth_failed">OSM에 인증할 수 없습니다</string>
+  <string name="osm_upload_sending">트랙 #{0}을 보내는 중…</string>
+  <string name="osm_upload_waiting_response">OpenStreetMap 서버 응답을 기다리는 중…</string>
+  <string name="osm_upload_error">트랙을 올리는 동안 오류</string>
+  <string name="osm_upload_bad_response">OSM 서버가 오류를 반환했습니다: ({0}) 메시지 {1}</string>
+  <string name="osm_upload_unauthorized">인증 오류입니다. 저장된 OpenStreetMap 자격 증명을 지우겠습니까?</string>
+  <string name="osm_upload_sucess">OpenStreetMap 올리기 성공</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">음성 녹음</string>
+  <string name="gpsstatus_record_stillimage">사진 찍기</string>
+  <string name="gpsstatus_record_textnote">텍스트 기록</string>
+  <!--Menu-->
+  <string name="menu_settings">설정</string>
+  <string name="menu_waypointlist">웨이포인트</string>
+  <string name="menu_about">정보</string>
+  <string name="menu_displaytrack">트랙 보기</string>
+  <string name="menu_stoptracking">멈춤 &amp; 저장</string>
+  <string name="menu_newtrack">새 트랙</string>
+  <string name="menu_deletetracks">모든 트랙 삭제</string>
+  <string name="menu_continue">트랙 계속</string>
+  <string name="menu_stopcurrenttrack">현재 트랙 멈춤</string>
+  <string name="menu_save">저장</string>
+  <string name="menu_cancel">취소</string>
+  <string name="menu_export">GPX로 내보내기</string>
+  <string name="menu_osm_upload">OpenStreetMap 올리기</string>
+  <string name="menu_center_to_gps">GPS를 가운데로 하기</string>
+  <string name="menu_exportall">GPX로 모두 내보내기</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">외부 저장소로 쓸 수 없습니다.</string>
+  <string name="error_create_track_dir">%s 트랙 폴더를 만들 수 없습니다</string>
+  <string name="error_externalstorage_not_writable_hint">외부 저장소가 올바르게 삽입되어 있고 마운트되어 있는지 확인하세요.</string>
+  <string name="error_voicerec_failed">음성 녹음에 실패했습니다</string>
+  <string name="error_userlayout_parsing">XML 레이아웃 파일을 구문 분석하는 동안 오류가 있습니다. 기본 레이아웃으로 되돌리세요.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Android용 OSMTracker™로 트랙됨</string>
+  <string name="gpx_hdop_approximation_cmt">경고: HDOP 값이 GPS 장치가 반환한 HDOP 값이지 않습니다. 이들은 미터 단위의 위치 정확도에서 근사하고 있습니다.</string>
+  <!--About screen-->
+  <string name="about">정보</string>
+  <string name="about_text">자세한 정보와 설명문서, 문제 보고서에 대해서는 프로젝트 홈 페이지를 방문하세요:</string>
+  <string name="about_translate_text">OSMTracker 번역을 도와주세요:</string>
+  <string name="about_debug_info">디버그 정보</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker가 트랙 중입니다</string>
+  <string name="notification_title">OSMTracker가 트랙 중입니다 (#{0})</string>
+  <string name="notification_text">주 화면을 보려면 여기를 탭하세요</string>
+  <!--Display track-->
+  <string name="displaytrack">트랙 보기</string>
+  <string name="displaytrack_map">배경 지도 보기</string>
+  <string name="displaytrack_north">북</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">저장</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">정확도</string>
+  <string name="various_accuracy_with_sats">정확도 {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">GPS 측정을 기다리는 중… ({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">방위 측정을 기다리는 중…</string>
+  <string name="various_heading_unknown">방위를 결정할 수 없습니다</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">OpenStreetMap 트랙 보기</string>
+</resources>

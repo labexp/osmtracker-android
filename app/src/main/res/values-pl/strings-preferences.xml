@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Ustawienia</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">Ustawienia GPS</string>
+  <string name="prefs_gps_os_settings_summary">Wyświetl ustawienia GPS w systemie</string>
+  <string name="prefs_check_gps_startup">Sprawdź status GPS przy starcie</string>
+  <string name="prefs_check_gps_startup_summary">Sprawdź przy starcie czy GPS jest aktywny, zaproponuj włączenie go</string>
+  <string name="prefs_gps_ignore_clock">Ignoruj zegar GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Ignoruj zegar GPS i korzystaj z zegara Androida dla znaczników czasu</string>
+  <string name="prefs_gps_logging_interval">GPS interwał logowania</string>
+  <string name="prefs_gps_logging_interval_summary">Użyj 0 dla najkrótszego (wpływa na żywotność baterii)</string>
+  <string name="prefs_gps_logging_interval_seconds">sekund</string>
+  <string name="prefs_ui">Interfejs użytkownika</string>
+  <string name="prefs_ui_picture_source">Standardowe źródło zdjęć</string>
+  <string name="prefs_ui_picture_source_summary">Wykonywać zdjęcia aparatem czy pobierać z galerii?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Aparat</item>
+    <item>Galeria</item>
+    <item>Zawsze pytaj</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Układ przycisków</string>
+  <string name="prefs_ui_buttons_layout_summary">Wybierz własny układ przycisków (zobacz dokumentację)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Domyślnie</string>
+  <string name="prefs_ui_orientation">Orientacja</string>
+  <string name="prefs_ui_orientation_summary">Preferowana orientacja przycisków na ekranie</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automatyczny</item>
+    <item>Pionowy</item>
+    <item>Poziomy</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Długość nagrania audio</string>
+  <string name="prefs_voicerec_duration_seconds">sekund</string>
+  <string name="prefs_theme">Temat graficzny ekranu głównego</string>
+  <string name="prefs_theme_summary">Wymaga ponownego uruchomienia aplikacji</string>
+  <string-array name="prefs_theme_keys">
+    <item>Domyślny systemowy</item>
+    <item>Domyślny ciemny</item>
+    <item>Domyślny jasny</item>
+    <item>Wysoki kontrast</item>
+  </string-array>
+  <string name="prefs_display_always_on">Ekran zawsze włączony</string>
+  <string name="prefs_display_always_on_summary">Ekran pozostanie włączony podczas śledzenia. Wyłącz by oszczędzić baterię.</string>
+  <string name="prefs_displaytrack_osm">Mapa tła</string>
+  <string name="prefs_displaytrack_osm_summary">Włącza mapy OSM w podglądzie śladu. Wymaga aktywnego połączenia z Internetem.</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Wyświetlać zawsze tło OpenStreetMap? Wymaga połączenia z internetem.</string>
+  <string name="prefs_output">Ustawienia GPX</string>
+  <string name="prefs_storage_dir">Folder na karcie pamięci</string>
+  <string name="prefs_storage_dir_hint">Zmiana zadziała przy następnym śladzie</string>
+  <string name="prefs_output_one_dir_per_track">Osobny folder dla każdego śladu</string>
+  <string name="prefs_output_one_dir_per_track_summary">Zapisuje każdy ślad wraz z powiązanymi plikami w oddzielnych folderach</string>
+  <string name="prefs_output_filename">Nazwy plików śladów</string>
+  <string name="prefs_output_filename_summary">Schemat dla nazwanych śladów</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Nazwa śladu</item>
+    <item>Nazwa, data i czas startu</item>
+    <item>Data i czas startu</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Precyzja w pliku GPX</string>
+  <string name="prefs_output_accuracy_summary">Dodaje informacje o dokładności w pliku GPX, w nazwie punktu lub w komantarzu punktu</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Brak</item>
+    <item>W nazwie punktu</item>
+    <item>W komentarzu punktu</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Użyj przybliżenia HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Używa przybliżonych wartości dokładności</string>
+  <string name="prefs_sound_enabled">Włącz dźwięk</string>
+  <string name="prefs_sound_enabled_summary">Odtwarza dźwięk przed nagrywaniem głosu</string>
+  <string name="prefs_osm_clear_oauth_data">Reset uwierzytelnień OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Usuń uwierzytelnienia i zezwolenia dla OSM, OSMTracker zapyta o nie ponownie.</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Będziesz musiał ponownie autoryzować OSMTracker by wysyłać ślady. Czy jesteś pewien?</string>
+  <string name="prefs_map_tile">Dostawca Kafelków mapy</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Mapa rowerowa</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Brak</item>
+    <item>w komentarzu</item>
+    <item>w rozrzeszeniu</item>
+  </string-array>
+  <string name="prefs_compass_heading">Eksportuj kierunek z kompasu</string>
+  <string name="prefs_compass_heading_summary">Określa w jaki sposób dane kompasu powinny być zapisywane w pliku GPX</string>
+</resources>

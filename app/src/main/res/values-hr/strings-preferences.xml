@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Postavke</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS postavke</string>
+  <string name="prefs_gps_os_settings_summary">Prikaži zaslon s GPS postavkama</string>
+  <string name="prefs_check_gps_startup">Provjeri GPS pri pokretanju</string>
+  <string name="prefs_gps_ignore_clock">Zanemari GPS sat</string>
+  <string name="prefs_map_tile_summary"></string>
+</resources>

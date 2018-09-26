@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/buttons_presets"
+    android:paddingTop="4dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/prefs_ui_buttons_layout_default_section"
+        android:padding="7dp"
+        android:layout_marginLeft="10dp"/>
+
+    <CheckBox
+        android:id="@+id/def_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:text="@string/prefs_ui_buttons_layout_defaut"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/down_sec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/prefs_ui_buttons_layout_downloaded_section"
+        android:padding="7dp"
+        android:layout_marginLeft="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/list_layouts"
+        android:layout_marginBottom="25dp">
+
+        <!--This text only appear when the user don't have any files downloaded-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/prefs_ui_buttons_layout_empty_section"
+            android:id="@+id/btnpre_empty"
+            android:gravity="center"
+            android:padding="7dp"/>
+
+    </LinearLayout>
+</LinearLayout>

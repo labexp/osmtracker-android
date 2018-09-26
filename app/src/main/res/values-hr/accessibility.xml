@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTracker logo</string>
+  <!--Zoom in/out in map view-->
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Indikator snage signala</string>
+  <!--Track list-->
+</resources>

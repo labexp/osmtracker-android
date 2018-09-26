@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker Android™-ra</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">A Windows Mobile-on elérhető OSMTracker inspirálta, amely lehetővé teszi utazásai követését, megjelölésés fontos pontokkal (hangrögzítés, fényképek) exportálhatja GPX formában a későbbi olyan Open Street Map eszközökkel történő használathoz, mint például a JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Nyomvonal rögzítő</string>
+  <string name="tracklogger_waiting_gps">Várakozás a GPS beállására a gombok engedélyezéséhez...</string>
+  <string name="tracklogger_voicerec_title">Hangrögzítés</string>
+  <string name="tracklogger_voicerec_text">{0} mp hangfájl rögzítése.</string>
+  <string name="tracklogger_voicerec_stop">Leállítás</string>
+  <string name="tracklogger_btnBack">Vissza</string>
+  <string name="tracklogger_tracked">Rögzítve:</string>
+  <string name="tracklogger_gps_disabled">GPS kikapcsolva</string>
+  <string name="tracklogger_gps_disabled_hint">A GPS ki van kapcsolva. Szeretné engedélyezni?</string>
+  <string name="tracklogger_choose_gallery_camera">Galéria vagy kamera?</string>
+  <string name="tracklogger_camera">Fénykép készítése a kamerával</string>
+  <string name="tracklogger_gallery">Fénykép kiválasztása galériából</string>
+  <!--Waypoint List-->
+  <string name="wplist">Útpont lista</string>
+  <string name="wplist_latitude">Szél:</string>
+  <string name="wplist_longitude">Hossz:</string>
+  <string name="wplist_elevation">Mag:</string>
+  <string name="wplist_accuracy">Pontos:</string>
+  <string name="wplist_compass">Irányt. állás:</string>
+  <string name="wplist_compass_accuracy">Irányt. pontosság:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Nyomvonal kezelő</string>
+  <string name="trackmgr_tracklist">Nyomvonal lista:</string>
+  <string name="trackmgr_waypoints_count">Útpontok:</string>
+  <string name="trackmgr_trackpoints_count">Nyompontok:</string>
+  <string name="trackmgr_empty">Nincs egyetlen nyomvonala sem.</string>
+  <string name="trackmgr_newtrack_error">Nem sikerült új nyomvonalat létrehozni: {0}</string>
+  <string name="trackmgr_contextmenu_stop">Nyomkövetés leállítása</string>
+  <string name="trackmgr_contextmenu_resume">Nyomkövetés folytatása</string>
+  <string name="trackmgr_contextmenu_delete">Törlés</string>
+  <string name="trackmgr_contextmenu_export">Exportálás GPX fájlként</string>
+  <string name="trackmgr_contextmenu_osm_upload">Feltöltés az OpenStreetMapre</string>
+  <string name="trackmgr_contextmenu_display">Megjelenítés</string>
+  <string name="trackmgr_contextmenu_details">Részletek</string>
+  <string name="trackmgr_contextmenu_title">{0}. nyomvonal </string>
+  <string name="trackmgr_delete_confirm"> {0}. nyomvonal törlésre kerül</string>
+  <string name="trackmgr_deleteall_confirm">Minden nyomvonal törlésre kerül. Biztosan ezt akarja?</string>
+  <string name="trackmgr_exporting">{0}. nyomvonal exportálása…</string>
+  <string name="trackmgr_export_error">{0}. nyomvonal exportálása sikertelen</string>
+  <string name="trackmgr_exportall_confirm">Minden nyomvonal exportálásra kerül, ami sokáig tarthat. Biztosan ezt akarja?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Nyomvonal részletek</string>
+  <string name="trackdetail_startdate">Kezdési időpont:</string>
+  <string name="trackdetail_enddate">Befejezés ideje:</string>
+  <string name="trackdetail_startloc">Kezdőpont:</string>
+  <string name="trackdetail_endloc">Végpont:</string>
+  <string name="trackdetail_exportdate">Exportálva:</string>
+  <string name="trackdetail_osm_upload_date">Feltöltve az OpenStreetMapre:</string>
+  <string name="trackdetail_btn_export">Exportálás GPX fájlként</string>
+  <string name="trackdetail_export_notyet">(Még nem exportált)</string>
+  <string name="trackdetail_osm_upload_notyet">(Még nem volt feltöltve)</string>
+  <string name="trackdetail_export_display">Megjelenítés</string>
+  <string name="trackdetail_description">Leírás</string>
+  <string name="trackdetail_tags">Címkék (vesszővel elválasztva)</string>
+  <string name="trackdetail_description_mandatory">Meg kell adnia egy leírást</string>
+  <string name="osm_visibility_private">Privát</string>
+  <string name="osm_visibility_public">Publikus</string>
+  <string name="osm_visibility_trackable">Követhető</string>
+  <string name="osm_visibility_identifiable">Azonosítható</string>
+  <!--OSM upload-->
+  <string name="osm_upload">OpenStreetMap feltöltés</string>
+  <string name="osm_upload_ok">Mentés és feltöltés</string>
+  <string name="osm_upload_tmpfile_failed">A nyomvonal exportálása az átmeneti fájlba nem sikerült</string>
+  <string name="osm_upload_oauth_failed">Az OSM bejelentkezés nem sikerült</string>
+  <string name="osm_upload_sending">{0}. nyomvonal küldése…</string>
+  <string name="osm_upload_waiting_response">Várakozás az OpenStreetMap szerver válaszára…</string>
+  <string name="osm_upload_error">Hiba a nyomvonal feltöltése közben</string>
+  <string name="osm_upload_bad_response">Az OSM szerver hibával tért vissza: ({0}) üzenet {1}</string>
+  <string name="osm_upload_unauthorized">Bejelentkezési hiba. Szeretné törölni a mentett OpenStreetMap bejelentkezési információkat?</string>
+  <string name="osm_upload_sucess">OpenStreetMap feltöltés sikeres</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Hangrögzítés</string>
+  <string name="gpsstatus_record_stillimage">Fényképezés</string>
+  <string name="gpsstatus_record_textnote">Szöveges megjegyzés</string>
+  <!--Menu-->
+  <string name="menu_settings">Beállítások</string>
+  <string name="menu_waypointlist">Útpontok</string>
+  <string name="menu_about">Névjegy</string>
+  <string name="menu_displaytrack">Nyomvonal megjelenítése</string>
+  <string name="menu_stoptracking">Leállítás &amp; mentés</string>
+  <string name="menu_newtrack">Új nyomvonal</string>
+  <string name="menu_deletetracks">Minden nyomvonal törlése</string>
+  <string name="menu_continue">Nyomvonal folytatása</string>
+  <string name="menu_stopcurrenttrack">Aktuális rögzítés leállítása</string>
+  <string name="menu_save">Mentés</string>
+  <string name="menu_cancel">Mégsem</string>
+  <string name="menu_export">Exportálás GPX fájlként</string>
+  <string name="menu_osm_upload">OpenStreetMap feltöltés</string>
+  <string name="menu_center_to_gps">GPS-hez központosítás</string>
+  <string name="menu_exportall">Minden exportálása GPX fájlba</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">A külső tárolóra írás nem sikerült.</string>
+  <string name="error_create_track_dir">%s nyomvonal mappa létrehozása sikertelen</string>
+  <string name="error_externalstorage_not_writable_hint">Kérem ellenőrizze, hogy a külső tároló csatlakoztatását.</string>
+  <string name="error_voicerec_failed">Hangrögzítés sikertelen</string>
+  <string name="error_userlayout_parsing">Hiba az XML séma fájl értelmezésekor. Kérjük térjen vissza az alapértelmezett sémához.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Figyelem: A HDOP értékek nem azok a HDOP értékek, amit a GPS eszköz ad vissza. Ezek becsült értékek a hely pontosságából, méterben.</string>
+  <!--About screen-->
+  <string name="about">Névjegy</string>
+  <string name="about_text">További információkért, dokumentációért és hibabejelentésért, kérjük tekintse meg a projekt honlapját:</string>
+  <string name="about_translate_text">Segítsen az OSMTracker fordításában:</string>
+  <string name="about_debug_info">Hibakeresési információ</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">Az OSMTracker rögzít</string>
+  <string name="notification_title">Az OSMTracker rögzít ({0}.)</string>
+  <string name="notification_text">Érintse meg itt a fő képernyő mgjelenítéséhez</string>
+  <!--Display track-->
+  <string name="displaytrack">Nyomvonal mutatása</string>
+  <string name="displaytrack_map">Háttér térkép megjelenítése</string>
+  <string name="displaytrack_north">É</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Mentés</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Pontosság</string>
+  <string name="various_accuracy_with_sats">Pontosság {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">GPS javításra vár... ({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Várakozás az irányra...</string>
+  <string name="various_heading_unknown">Az irány nem meghatározható</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">OpenStreetMap nyomvonal megjelenítés</string>
+</resources>

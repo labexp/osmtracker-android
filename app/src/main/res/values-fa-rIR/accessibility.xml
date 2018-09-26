@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">لوگوی OSMTracker</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">بزرگنمایی</string>
+  <string name="acc.zoom_out">کوچکنمایی</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">نشانگر قدرت سیگنال ماهواره</string>
+  <string name="acc.record_indicator">نشانگر ضبط در جریان</string>
+  <!--Track list-->
+  <string name="acc.track_status">نشانگر وضعیت مسیر</string>
+  <string name="acc.upload_status">نشانگر وضعیت بارگزاری به OpenStreetMap </string>
+</resources>

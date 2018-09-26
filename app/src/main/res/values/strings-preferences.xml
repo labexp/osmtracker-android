@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Preferences -->
+	<string name="prefs">Settings</string>
+
+	<string name="prefs_gps">GPS</string>
+
+	<string name="prefs_gps_os_settings">GPS settings</string>
+	<string name="prefs_gps_os_settings_summary">Display system GPS settings screen</string>
+
+	<string name="prefs_check_gps_startup">Check GPS at startup</string>
+	<string name="prefs_check_gps_startup_summary">Check if GPS is disabled at startup, and offer to enable it</string>
+
+	<string name="prefs_gps_ignore_clock">Ignore GPS clock</string>
+	<string name="prefs_gps_ignore_clock_summary">Ignore GPS clock and use Android clock for timestamps</string>
+
+	<string name="prefs_gps_logging_interval">GPS logging interval</string>
+	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (affects battery life)</string>
+	<string name="prefs_gps_logging_interval_seconds">seconds</string>
+
+	<string name="prefs_ui">User interface</string>
+	
+	<string name="prefs_ui_picture_source">Default photo source</string>
+	<string name="prefs_ui_picture_source_summary">Take photos from camera or gallery?</string>
+	<string-array name="prefs_ui_picture_source_keys">
+		<item>Camera</item>
+		<item>Gallery</item>
+		<item>Always ask</item>
+	</string-array>
+	
+	<string name="prefs_ui_buttons_layout">Buttons presets</string>
+	<string name="prefs_ui_buttons_layout_summary">Choose a custom set of buttons (see docs)</string>
+	<string name="prefs_ui_buttons_layout_default_section">DEFAULT LAYOUT</string>
+	<string name="prefs_ui_buttons_layout_defaut">Default</string>
+	<string name="prefs_ui_buttons_layout_downloaded_section">DOWNLOADED LAYOUT</string>
+	<string name="prefs_ui_buttons_layout_empty_section">You don\'t have downloaded layout files</string>
+	<string name="prefs_ui_available_layout">Available Layouts</string>
+	<string name="prefs_ui_github_repository_settings">Github Repository Settings</string>
+	<string name="prefs_ui_orientation">Orientation</string>
+	<string name="prefs_ui_orientation_summary">Preferred orientation for the button screen</string>
+	<string-array name="prefs_ui_orientation_options_keys">
+		<item>Automatic</item>
+		<item>Portrait</item>
+		<item>Landscape</item>
+	</string-array>
+	
+
+	<string name="prefs_voicerec_duration">Voice record duration</string>
+	<string name="prefs_voicerec_duration_seconds">seconds</string>
+	
+	<string name="prefs_theme">Main screen graphic theme</string>
+	<string name="prefs_theme_summary">Application restart required for change to take effect</string>
+	<string-array name="prefs_theme_keys">
+		<item>OS default</item>
+		<item>OS default (dark)</item>
+		<item>OS default (light)</item>
+		<item>High contrast</item>
+	</string-array>
+
+	<string name="prefs_display_always_on">Screen always on</string>
+	<string name="prefs_display_always_on_summary">Screen will stay on while tracking. Disable to save battery</string>
+
+	<string name="prefs_displaytrack_osm">Background map</string>
+	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap map under track. Needs a data connection</string>
+	<string name="prefs_displaytrack_osm_summary_ask">Always display OpenStreetMap background? Requires a data connection.</string>
+
+	<string name="prefs_output">GPX settings</string>
+	<string name="prefs_storage_dir">External storage (SD) directory</string>
+	<string name="prefs_storage_dir_hint">Effective for the next track (not the current one)</string>
+	<string name="prefs_output_one_dir_per_track">One directory per track</string>
+	<string name="prefs_output_one_dir_per_track_summary">Save each track and associated files to its own directory</string>
+	<string name="prefs_output_filename">Filename for named tracks</string>
+	<string name="prefs_output_filename_summary">Pattern for filename if the track has a name</string>
+	<string-array name="prefs_output_filename_keys">
+		<item>Track name</item>
+		<item>Name, start date and time</item>
+		<item>Start date and time</item>
+	</string-array>
+	
+	<string name="prefs_output_accuracy">Accuracy in GPX file</string>
+	<string name="prefs_output_accuracy_summary">Add accuracy info in the GPX file, with waypoint name or in waypoint comment</string>
+	<string-array name="prefs_output_accuracy_keys">
+		<item>None</item>
+		<item>With waypoint name</item>
+		<item>In waypoint comment</item>
+	</string-array>
+	
+	<string name="prefs_output_gpx_hdop_approximation">Use HDOP approximation</string>
+	<string name="prefs_output_gpx_hdop_approximation_summary">Fill HDOP in GPX with an approximation value from accuracy</string>
+
+	<string name="prefs_sound_enabled">Enable sound</string>
+	<string name="prefs_sound_enabled_summary">Play sounds when voice recording starts and ends</string>
+	
+	<string name="prefs_osm_clear_oauth_data">Reset OSM authentication</string>
+	<string name="prefs_osm_clear_oauth_data_summary">Forget OSM credentials and permissions and force OSMTracker to ask them again</string>
+	<string name="prefs_osm_clear_oauth_data_dialog">You\'ll have to authorize OSMTracker to upload tracks again. Are you sure?</string>
+	
+	<string name="prefs_map_tile">Map Tile provider</string>
+	<string name="prefs_map_tile_summary"></string>
+	<string-array name="prefs_map_tile_keys">
+		<item>Mapnik</item>
+		<item>Cycle Map</item>
+		<item>MapQuest Open</item>
+	</string-array>
+	<string-array name="prefs_compass_heading_keys">
+		<item >None</item>
+		<item >in comment</item>
+		<item >in extension</item>
+	</string-array>
+	<string name="prefs_compass_heading">Export Compass Heading</string>
+	<string name="prefs_compass_heading_summary">Defines if and how the compass data should be exported to the GPX file</string>
+
+</resources>

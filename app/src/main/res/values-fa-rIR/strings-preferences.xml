@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">تنظیمات</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">تنظیمات GPS </string>
+  <string name="prefs_gps_os_settings_summary">نمایش صفحه تنظیمات GPS سیستم</string>
+  <string name="prefs_check_gps_startup">بررسی GPS هنگام شروع</string>
+  <string name="prefs_check_gps_startup_summary">بررسی غیرفعال بودن GPS هنگام شروع برنامه و پیشنهاد برای فعالسازی آن</string>
+  <string name="prefs_gps_ignore_clock">نادیده گرفتن ساعت GPS</string>
+  <string name="prefs_gps_logging_interval">فواصل ثبت GPS</string>
+  <string name="prefs_gps_logging_interval_seconds">ثانیه</string>
+  <string name="prefs_ui">رابط کاربری</string>
+  <string name="prefs_ui_picture_source">منبع پیشفرض تصویر</string>
+  <string name="prefs_ui_buttons_layout">پیشفرض دکمه‌ها</string>
+  <string name="prefs_ui_buttons_layout_summary">انتخاب دکمه‌های دلخواه (مستندات را ببینید)</string>
+  <string name="prefs_ui_buttons_layout_defaut">پیش فرض</string>
+  <string name="prefs_ui_orientation">جهت</string>
+  <string name="prefs_voicerec_duration">مدت ضبط صدا</string>
+  <string name="prefs_voicerec_duration_seconds">ثانیه</string>
+  <string name="prefs_theme">قالب گرافیکی صفحه اصلی</string>
+  <string name="prefs_display_always_on">روشن ماندن صفحه</string>
+  <string name="prefs_displaytrack_osm">نقشه پیش‌زمینه</string>
+  <string name="prefs_output">تنظیمات GPS</string>
+  <string name="prefs_output_one_dir_per_track">یک شاخه برای هر مسیر</string>
+  <string name="prefs_output_one_dir_per_track_summary">هر مسیر و فایلهای پیوست آنرا در شاخه مجزا ذخیره کن</string>
+  <string name="prefs_output_accuracy">میزان دقت در فایل GPS</string>
+  <string name="prefs_sound_enabled">فعالسازی صدا</string>
+  <string name="prefs_map_tile_summary"></string>
+</resources>

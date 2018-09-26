@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Nastavenia</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">Nastavenia GPS</string>
+  <string name="prefs_gps_os_settings_summary">Zobraziť systémovú obrazovku s nastaveniami GPS</string>
+  <string name="prefs_check_gps_startup">Skontrolovať GPS po spustení</string>
+  <string name="prefs_check_gps_startup_summary">Skontrolovať, či je GPS vypnuté po spustení a navrhnúť jeho zapnutie</string>
+  <string name="prefs_gps_ignore_clock">Ignorovať čas GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Ignorovať čas GPS a použiť čas Androidu pre časové značky</string>
+  <string name="prefs_gps_logging_interval">Interval logovania GPS</string>
+  <string name="prefs_gps_logging_interval_summary">Použite 0 pre najkratší možný (Ovplyvní výdrž batérie)</string>
+  <string name="prefs_gps_logging_interval_seconds">sekundy</string>
+  <string name="prefs_ui">Užívateľské rozhranie</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Fotoaparát</item>
+    <item>Galéria</item>
+    <item>Vždy sa opýtať</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Rozloženie tlačidiel</string>
+  <string name="prefs_ui_buttons_layout_summary">Povoliť určenie vlastného rozloženia tlačidiel (Viď dokumenty)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Štandardné</string>
+  <string name="prefs_ui_orientation">Orientácia</string>
+  <string name="prefs_ui_orientation_summary">Preferovaná orientácia pre obrazovku s tlačidlami</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automaticky</item>
+    <item>Na výšku</item>
+    <item>Na šírku</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Dĺžka hlasového záznamu</string>
+  <string name="prefs_voicerec_duration_seconds">sekundy/sekúnd</string>
+  <string name="prefs_theme">Grafická téma hlavnej obrazovky</string>
+  <string name="prefs_theme_summary">Je potrebný reštart aplikácie na vykonanie zmien</string>
+  <string-array name="prefs_theme_keys">
+    <item>Štandardná OS</item>
+    <item>Štandardná OS (Tmavá)</item>
+    <item>Štandardná OS (Svetlá)</item>
+    <item>Vysoký kontrast</item>
+  </string-array>
+  <string name="prefs_display_always_on">Obrazovka vždy zapnutá</string>
+  <string name="prefs_display_always_on_summary">Obrazovka zostane zapnutá počas stopovania. Vypnite pre úsporu batérie</string>
+  <string name="prefs_displaytrack_osm">OSM pozadie</string>
+  <string name="prefs_displaytrack_osm_summary">Zobraziť OpenStreetMap pod stopou. Potrebuje dátové pripojenie</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Vždy zobrazovať pozadie OpenStreetMap? Vyžaduje aktívne dátové pripojenie.</string>
+  <string name="prefs_output">Výstup GPX súboru</string>
+  <string name="prefs_storage_dir">Adresár externého úložiska (SD)</string>
+  <string name="prefs_storage_dir_hint">Použité až v ďalšej stope (nie v aktuálnej)</string>
+  <string name="prefs_output_one_dir_per_track">Jeden adresár na stopu</string>
+  <string name="prefs_output_one_dir_per_track_summary">Uloží každú stopu a priradené súbory do jej vlastného adresára</string>
+  <string name="prefs_output_filename">Názov súboru pre pomenované stopy</string>
+  <string name="prefs_output_filename_summary">Vzor pre pomenovanie súboru ak má stopa názov</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Názov stopy</item>
+    <item>Názov, dátum a čas spustenia</item>
+    <item>Dátum a čas spustenia</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Presnosť v GPX súbore</string>
+  <string name="prefs_output_accuracy_summary">Povoliť informácie o presnosti v GPX súbore, s názvom cestovného bodu alebo v oddelenom poli</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Žiadna</item>
+    <item>S názvom cestovného bodu</item>
+    <item>V komentári cestovného bodu</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Použiť odhad HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Vyplniť HDOP v GPX s odhadovanou hodnotou presnosti</string>
+  <string name="prefs_sound_enabled">Zapnúť zvuky</string>
+  <string name="prefs_sound_enabled_summary">Prehrávať zvuky pri spustení a ukončení nahrávania hlasovej stopy</string>
+  <string name="prefs_osm_clear_oauth_data">Vymazať autentifikáciu OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Vymaže prihlasovacie údaje a oprávnenia OSM uložené v telefóne a prinúti OSMTracker, aby si ich opätovne vyžiadal</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Znova sa pokúšate autorizovať OSMTracker, aby mohol nahrávať záznamy stôp. Ste si istý?</string>
+  <string name="prefs_map_tile">Poskytovateľ mapových podkladov</string>
+  <string name="prefs_map_tile_summary"></string>
+</resources>

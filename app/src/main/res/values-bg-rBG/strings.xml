@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker за Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <!--TrackLogger-->
+  <!--Waypoint List-->
+  <!--Track Manager-->
+  <!--Track Detail-->
+  <string name="trackdetail_description_mandatory">Трябва да въведете описание</string>
+  <!--OSM upload-->
+  <!--GPS Status & record bar-->
+  <!--Menu-->
+  <string name="menu_settings">Настройки</string>
+  <string name="menu_save">Запис</string>
+  <string name="menu_cancel">Отказ</string>
+  <!--Errors-->
+  <!--GPX-->
+  <!--About screen-->
+  <!--Notification-->
+  <!--Display track-->
+  <!--Track detail-->
+  <!--Various-->
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
+  <!--OSM map view-->
+</resources>

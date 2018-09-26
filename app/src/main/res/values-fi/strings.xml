@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker Android™-laitteille</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">OSMTrackerin (Windows Mobile) innoittama. Kirjaa reittisi, merkitse tärkeät kohteet (äänitallenne, kuva), tallenna GPX-muodossa myöhempää OpenStreetMap/JOSM-käyttöä varten.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Reittilokikirja</string>
+  <string name="tracklogger_waiting_gps">Odotetaan GPS-sijaintia…</string>
+  <string name="tracklogger_voicerec_title">Äänitallennus</string>
+  <string name="tracklogger_voicerec_text">Tallennetaan {0} s äänitiedosto.</string>
+  <string name="tracklogger_voicerec_stop">Pysäytä</string>
+  <string name="tracklogger_btnBack">Takaisin</string>
+  <string name="tracklogger_tracked">Reitti: </string>
+  <string name="tracklogger_gps_disabled">GPS pois päältä</string>
+  <string name="tracklogger_gps_disabled_hint">GPS on pois päältä. Haluatko sen päälle?</string>
+  <string name="tracklogger_choose_gallery_camera">Galleria vai kamera?</string>
+  <string name="tracklogger_camera">Ota kuva kameralla</string>
+  <string name="tracklogger_gallery">Valitse kuva galleriasta</string>
+  <!--Waypoint List-->
+  <string name="wplist">Etappilista</string>
+  <string name="wplist_latitude">Lev:</string>
+  <string name="wplist_longitude">Pit:</string>
+  <string name="wplist_elevation">Kork:</string>
+  <string name="wplist_accuracy">Tark:</string>
+  <string name="wplist_compass">Lasket. suunt.:</string>
+  <string name="wplist_compass_accuracy">Lasket. tark.:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Reittimanageri</string>
+  <string name="trackmgr_tracklist">Reittilista:</string>
+  <string name="trackmgr_waypoints_count">Etapit: </string>
+  <string name="trackmgr_trackpoints_count">Reittipisteet: </string>
+  <string name="trackmgr_empty">Ei reittejä.</string>
+  <string name="trackmgr_newtrack_error">Uuden reitin luonti ei onnistu: {0}</string>
+  <string name="trackmgr_contextmenu_stop">Lopeta seuranta</string>
+  <string name="trackmgr_contextmenu_resume">Jatka reitin tallentamista</string>
+  <string name="trackmgr_contextmenu_delete">Poista</string>
+  <string name="trackmgr_contextmenu_export">Tallenna GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Lähetä OpenStreetMapiin</string>
+  <string name="trackmgr_contextmenu_display">Näytä</string>
+  <string name="trackmgr_contextmenu_details">Lisätietoja</string>
+  <string name="trackmgr_contextmenu_title">Reitti #{0}</string>
+  <string name="trackmgr_delete_confirm">Reitti #{0} poistetaan</string>
+  <string name="trackmgr_deleteall_confirm">Kaikki reiti poistetaan. Oletko varma?</string>
+  <string name="trackmgr_exporting">Tallennetaan reitti #{0}…</string>
+  <string name="trackmgr_export_error">Reittiä ei voitu tallentaa: {0}</string>
+  <string name="trackmgr_exportall_confirm">Kaikki reitit viedään, mutta siinä saattaa kestää kauan. Haluatko jatkaa?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Reitin tiedot</string>
+  <string name="trackdetail_startdate">Alkuaika:</string>
+  <string name="trackdetail_enddate">Loppuaika:</string>
+  <string name="trackdetail_startloc">Alkaa:</string>
+  <string name="trackdetail_endloc">Loppuu:</string>
+  <string name="trackdetail_exportdate">Viety:</string>
+  <string name="trackdetail_osm_upload_date">Lähetetty OpenStreetMapiin:</string>
+  <string name="trackdetail_btn_export">Vie GPX-muodossa</string>
+  <string name="trackdetail_export_notyet">(Ei viety vielä)</string>
+  <string name="trackdetail_osm_upload_notyet">(Ei lähetetty vielä)</string>
+  <string name="trackdetail_export_display">Näytä</string>
+  <string name="trackdetail_description">Kuvaus</string>
+  <string name="trackdetail_tags">Tunnisteet (pilkuin erotettu)</string>
+  <string name="trackdetail_description_mandatory">Sinun täytyy lisätä kuvaus</string>
+  <string name="osm_visibility_private">Yksityinen</string>
+  <string name="osm_visibility_public">Julkinen</string>
+  <string name="osm_visibility_trackable">Jäljitettävissä</string>
+  <string name="osm_visibility_identifiable">Tunnistettavissa</string>
+  <!--OSM upload-->
+  <string name="osm_upload">OpenStreetMap-lähetys</string>
+  <string name="osm_upload_ok">Tallenna ja lähetä</string>
+  <string name="osm_upload_tmpfile_failed">Reittiä ei voitu tallentaa väliaikaistiedostoon</string>
+  <string name="osm_upload_oauth_failed">Kirjautuminen OSM:iin epäonnistui</string>
+  <string name="osm_upload_sending">Lähetetään reittiä #{0}…</string>
+  <string name="osm_upload_waiting_response">Odotetaan OpenStreetMap-palvelimen vastausta…</string>
+  <string name="osm_upload_error">Virhe lähetettäessä reittiä</string>
+  <string name="osm_upload_bad_response">OSM-palvelin palautti virheen: ({0}) message {1} </string>
+  <string name="osm_upload_unauthorized">Virhe kirjautumisessa. Haluatko poistaa tallennetut OpenStreetMapin tunnukset?</string>
+  <string name="osm_upload_sucess">OpenStreetMap-lähetys onnistui</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Äänitallenne</string>
+  <string name="gpsstatus_record_stillimage">Ota kuva</string>
+  <string name="gpsstatus_record_textnote">Tekstitieto</string>
+  <!--Menu-->
+  <string name="menu_settings">Asetukset</string>
+  <string name="menu_waypointlist">Etapit</string>
+  <string name="menu_about">Tietoja</string>
+  <string name="menu_displaytrack">Näytä reitti</string>
+  <string name="menu_stoptracking">Lopeta &amp; tallenna</string>
+  <string name="menu_newtrack">Uusi reitti</string>
+  <string name="menu_deletetracks">Poista kaikki reitit</string>
+  <string name="menu_continue">Jatka reittiä</string>
+  <string name="menu_stopcurrenttrack">Pysäytä nykyinen reitti</string>
+  <string name="menu_save">Tallenna</string>
+  <string name="menu_cancel">Peru</string>
+  <string name="menu_export">Vie GPX-muodossa</string>
+  <string name="menu_osm_upload">OpenStreetMap-lähetys</string>
+  <string name="menu_center_to_gps">Keskitä GPS-sijaintiin</string>
+  <string name="menu_exportall">Vie kaikki GPX-muodossa</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Ulkoiselle muistikortille ei voitu kirjoittaa.</string>
+  <string name="error_create_track_dir">Ei voitu luoda reittikansiota %s</string>
+  <string name="error_externalstorage_not_writable_hint">Tarkista ulkoinen muisti.</string>
+  <string name="error_voicerec_failed">Äänitallennus epäonnistui</string>
+  <string name="error_userlayout_parsing">Virhe XML-layoutissa. Valitse oletuslayout.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Reititys: OSMTracker Android™-laitteille</string>
+  <string name="gpx_hdop_approximation_cmt">Varoitus: HDOP-arvot eivät ole GPS-laitteelta. Ne ovat arvioituja sijainnin tarkkuuksia (m), eikä niihin pidä luottaa.</string>
+  <!--About screen-->
+  <string name="about">Tietoja</string>
+  <string name="about_text">Lisätiedot, kuten dokumentit ja ongelmaraportointi, projektin verkkosivustolla:</string>
+  <string name="about_translate_text">Auta kääntämään OSMTrackeria:</string>
+  <string name="about_debug_info">Virheenjäljitys</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker on edelleen päällä</string>
+  <string name="notification_title">OSMTracker on edelleen päällä</string>
+  <string name="notification_text">Kosketa tähän näyttääksesi pääikkunan</string>
+  <!--Display track-->
+  <string name="displaytrack">Näytä reitti</string>
+  <string name="displaytrack_map">Näytä taustakartta</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Tallenna</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Tarkkuus</string>
+  <string name="various_accuracy_with_sats">Tarkkuus {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Odotetaan GPS-korjausta… ({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Odotetaan suuntaa…</string>
+  <string name="various_heading_unknown">Suuntaa ei voi määrittää</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">OpenStreetMap-reittinäyttö</string>
+</resources>

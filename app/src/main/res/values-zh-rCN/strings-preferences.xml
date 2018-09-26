@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">设置</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS设置</string>
+  <string name="prefs_gps_os_settings_summary">显示系统GPS设置界面</string>
+  <string name="prefs_check_gps_startup">开启时检查GPS状态</string>
+  <string name="prefs_check_gps_startup_summary">若开启时检查到GPS关闭，开启它</string>
+  <string name="prefs_gps_ignore_clock">忽略GPS授时</string>
+  <string name="prefs_gps_ignore_clock_summary">忽略GPS授时并使用系统时间作为时间戳</string>
+  <string name="prefs_gps_logging_interval">GPS记录间隔</string>
+  <string name="prefs_gps_logging_interval_summary">填0代表最小的可能时间间隔(会影响电池续航时长)</string>
+  <string name="prefs_gps_logging_interval_seconds">秒</string>
+  <string name="prefs_ui">用户界面</string>
+  <string name="prefs_ui_buttons_layout">按钮预设</string>
+  <string name="prefs_ui_buttons_layout_summary">选择一套自定义按钮(参见文档)</string>
+  <string name="prefs_ui_buttons_layout_defaut">默认</string>
+  <string name="prefs_ui_orientation">屏幕方向</string>
+  <string name="prefs_ui_orientation_summary">按钮界面的屏幕方向偏好</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>自动</item>
+    <item>竖屏</item>
+    <item>横屏</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">录音时长</string>
+  <string name="prefs_voicerec_duration_seconds">秒</string>
+  <string name="prefs_theme">主界面主题</string>
+  <string name="prefs_theme_summary">需重启应用使更改生效</string>
+  <string-array name="prefs_theme_keys">
+    <item>系统默认</item>
+    <item>系统默认(黑)</item>
+    <item>系统默认(白)</item>
+    <item>高对比度</item>
+  </string-array>
+  <string name="prefs_display_always_on">屏幕常亮</string>
+  <string name="prefs_display_always_on_summary">记录轨迹时屏幕常亮。关闭以节约电量</string>
+  <string name="prefs_displaytrack_osm">背景地图</string>
+  <string name="prefs_displaytrack_osm_summary">在轨迹下显示OpenStreetMap。需要数据连接</string>
+  <string name="prefs_output">GPX设置</string>
+  <string name="prefs_storage_dir">外部存储设备(SD卡)路径</string>
+  <string name="prefs_storage_dir_hint">下次追踪生效(本次无效)</string>
+  <string name="prefs_output_one_dir_per_track">每次追踪新建一个目录</string>
+  <string name="prefs_output_one_dir_per_track_summary">分别将每条追踪记录及相关文件到各自目录</string>
+  <string name="prefs_output_filename">已命名轨迹的文件名</string>
+  <string name="prefs_output_filename_summary">文件名格式（如果轨迹有名称）</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>轨迹名称</item>
+    <item>名称，起始日期与时间</item>
+    <item>起始日期与时间</item>
+  </string-array>
+  <string name="prefs_output_accuracy">GPX文件精度</string>
+  <string name="prefs_output_accuracy_summary">将精度信息连同路径点名或路径点注释添加至GPX文件</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>无</item>
+    <item>路径点名</item>
+    <item>路径点注释</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">使用HDOP估算</string>
+  <string name="prefs_sound_enabled">开启声音</string>
+  <string name="prefs_osm_clear_oauth_data">重设 OSM 验证</string>
+  <string name="prefs_map_tile_summary"></string>
+</resources>

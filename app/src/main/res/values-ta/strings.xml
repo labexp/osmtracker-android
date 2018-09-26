@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">ஓஎஸ்எம் தடமறியும் ஆண்ட்ராய்டு த </string>
+  <!--TrackLogger-->
+  <string name="tracklogger_waiting_gps">புவி நிலை காட்டி பொத்தான்கள் செயல்படுத்த காத்திருக்கிறது...</string>
+  <string name="tracklogger_voicerec_title">ஒலிப்பதிவு செய்தல்</string>
+  <string name="tracklogger_voicerec_text">ஒலிக் கீற்று‍ {0} கள் பதிவிடு.</string>
+  <string name="tracklogger_voicerec_stop">நிறுத்தம்</string>
+  <string name="tracklogger_btnBack">பின்னால்</string>
+  <string name="tracklogger_tracked">தடமறியப்பட்டது‍: </string>
+  <string name="tracklogger_gps_disabled">ஜிபிஎஸ் செயலிழக்கச் செய்யப்பட்டுள்ளது</string>
+  <string name="tracklogger_gps_disabled_hint">ஜிபிஎஸ் செயலிழக்கச் செய்யப்பட்டுள்ளது. நீங்கள் அதை செயலாக்க வேண்டுமா?</string>
+  <string name="tracklogger_choose_gallery_camera">படத்தொகுப்பு அல்லது புகைப்படக் கருவி?</string>
+  <!--Waypoint List-->
+  <string name="wplist">பாதைப் புள்ளி பட்டியல்</string>
+  <string name="wplist_longitude">நீண்ட</string>
+  <string name="wplist_elevation">ஏற்றம்</string>
+  <string name="wplist_accuracy">துல்லியம்</string>
+  <!--Track Manager-->
+  <string name="trackmgr">தடத்தின் மேலாளர்</string>
+  <string name="trackmgr_tracklist">தடத்தின் பட்டியல்</string>
+  <string name="trackmgr_waypoints_count">வழிக் குறிப்பு</string>
+  <string name="trackmgr_trackpoints_count">தடத்தின் புள்ளி</string>
+  <string name="trackmgr_empty">உங்களுக்கு‍ எந்த வழித் தடங்களும் இல்லை.</string>
+  <string name="trackmgr_newtrack_error">புதிய தடத்தை உருவாக்க முடியவில்லை: {0}</string>
+  <string name="trackmgr_contextmenu_stop">தடத்தை நிறுத்து‍</string>
+  <string name="trackmgr_contextmenu_delete">நீக்கு</string>
+  <string name="trackmgr_contextmenu_export">புவி நிலை காட்டி போல் ஏற்று‍</string>
+  <string name="trackmgr_contextmenu_osm_upload">திறந்த தெரு‍ வரைபடத்தில் தரவேற்று‍</string>
+  <string name="trackmgr_contextmenu_details">விவரங்கள்</string>
+  <string name="trackmgr_contextmenu_title">தடம் #{0}</string>
+  <string name="trackmgr_delete_confirm">தடம் #{0} நீக்கப்படும்</string>
+  <!--Track Detail-->
+  <string name="trackdetail">தடத்தின் விளக்கங்கள்</string>
+  <string name="trackdetail_startdate">தொடங்கும் நேரம்:</string>
+  <string name="trackdetail_enddate">முடிவு நேரம்‌:</string>
+  <string name="trackdetail_startloc">துவங்கும் நேரம்:</string>
+  <string name="trackdetail_endloc">முடியும் நேரம்:</string>
+  <string name="trackdetail_exportdate">ஏற்றுமதி செய்யப்பட்ட:</string>
+  <string name="trackdetail_osm_upload_date">திறந்த தெரு‍ வரைபடத்திற்கு‍ பதிவேற்றப்பட்டது:</string>
+  <string name="trackdetail_btn_export">புவி நிலை காட்டி‍ போல் ஏற்று‍</string>
+  <string name="trackdetail_description">விளக்கம்</string>
+  <string name="trackdetail_tags">இணைப்புப் புரி (காற்புள்ளியால் பிரிக்கப்பட்டது‍)</string>
+  <string name="trackdetail_description_mandatory">நீங்கள் கண்டிப்பாக விளக்கத்தை உள்ளிட வேண்டும்</string>
+  <string name="osm_visibility_private">தனிப்பட்ட</string>
+  <string name="osm_visibility_public">பொது‍</string>
+  <string name="osm_visibility_trackable">தடமறிய முடிந்தவை</string>
+  <string name="osm_visibility_identifiable">அடையாளம் காணக்கூடிய</string>
+  <!--OSM upload-->
+  <string name="osm_upload_ok">சேமி மற்றும் பதிவேற்றுக</string>
+  <string name="osm_upload_error">தடம் பதிவேற்றுவதில் பிழை </string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">குரல் பதிவு</string>
+  <string name="gpsstatus_record_textnote">உரை குறிப்பு</string>
+  <!--Menu-->
+  <string name="menu_settings">அமைப்புகள்</string>
+  <string name="menu_about">பற்றி</string>
+  <string name="menu_newtrack">புதிய தடம்</string>
+  <string name="menu_save">சேமி</string>
+  <string name="menu_cancel">ரத்து‍ செய்</string>
+  <!--Errors-->
+  <!--GPX-->
+  <!--About screen-->
+  <string name="about">பற்றி</string>
+  <string name="about_debug_info">தகவலை பிழைதிருத்து‍</string>
+  <!--Notification-->
+  <string name="notification_text">பிரதானத் திரையில் காண்பிக்க இங்கே தட்டவும்</string>
+  <!--Display track-->
+  <string name="displaytrack">தடத்தை காண்பி</string>
+  <string name="displaytrack_map">பின்புல வரைபடக் காட்சி</string>
+  <string name="displaytrack_north">காலகம்</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">சேமி</string>
+  <!--Various-->
+  <string name="various_unit_meters">மெகா</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
+  <!--OSM map view-->
+</resources>

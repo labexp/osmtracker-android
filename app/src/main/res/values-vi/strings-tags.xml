@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="tag.misc">Khác</string>
+  <string name="tag.restriction">Hạn chế</string>
+  <string name="tag.car">Xe</string>
+  <string name="tag.tourism">Du lịch</string>
+  <string name="tag.amenity">Tiện nghi</string>
+  <string name="tag.amenity_more">Tiện nghi (+)</string>
+  <string name="tag.way">Lối</string>
+  <string name="tag.track">Đường mòn</string>
+  <string name="tag.landuse">Kiểu sử dụng
+đất</string>
+  <string name="tag.misc_bus_stop">Trạm
+xe buýt</string>
+  <string name="tag.misc_railway">Đường sắt</string>
+  <string name="tag.misc_telephone">Điện thoại</string>
+  <string name="tag.misc_post_box">Hòm thư</string>
+  <string name="tag.misc_atm">Máy rút tiền</string>
+  <string name="tag.misc_bollard">Cột bê tông</string>
+  <string name="tag.misc_toilets">Phòng vệ sinh</string>
+  <string name="tag.misc_shelter">Chỗ che</string>
+  <string name="tag.misc_surveillance">Máy quay phim giám sát</string>
+  <string name="tag.restriction_20">Tối đa 20</string>
+  <string name="tag.restriction_30">Tối đa 30</string>
+  <string name="tag.restriction_40">Tối đa 40</string>
+  <string name="tag.restriction_50">Tối đa 50</string>
+  <string name="tag.restriction_60">Tối đa 60</string>
+  <string name="tag.restriction_70">Tối đa 70</string>
+  <string name="tag.restriction_80">Tối đa 80</string>
+  <string name="tag.restriction_90">Tối đa 90</string>
+  <string name="tag.restriction_100">Tối đa 100</string>
+  <string name="tag.restriction_110">Tối đa 110</string>
+  <string name="tag.restriction_120">Tối đa 120</string>
+  <string name="tag.restriction_130">Tối đa 130</string>
+  <string name="tag.restriction_no_exit">Không có
+lối ra</string>
+  <string name="tag.restriction_traffic_light">Đèn giao thông</string>
+  <string name="tag.restriction_one_way">Một chiều</string>
+  <string name="tag.car_fuel_station">Cây xăng</string>
+  <string name="tag.car_parking">Bãi đậu xe</string>
+  <string name="tag.car_emergency_phone">Điện thoại
+khẩn cấp</string>
+  <string name="tag.car_turning_circle">Cuối đường
+vòng tròn</string>
+  <string name="tag.car_speed_camera">Máy chụp ảnh
+xe chạy quá tốc độ</string>
+  <string name="tag.tourism_view_point">Điểm ngắm cảnh</string>
+  <string name="tag.tourism_information">Thông tin</string>
+  <string name="tag.tourism_picnic">Nơi ăn ngoài trời</string>
+  <string name="tag.tourism_attraction">Điểm thu hút
+du lịch</string>
+  <string name="tag.tourism_theme_park">Công viên chủ đề</string>
+  <string name="tag.tourism_castle">Lâu đài</string>
+  <string name="tag.tourism_monument">Công trình
+tưởng niệm</string>
+  <string name="tag.tourism_museum">Bảo tàng</string>
+  <string name="tag.tourism_cinema">Rạp phim</string>
+  <string name="tag.amenity_bench">Ghế</string>
+  <string name="tag.amenity_water">Nước uống</string>
+  <string name="tag.amenity_pharmacy">Nhà thuốc</string>
+  <string name="tag.amenity_shop">Tiệm</string>
+  <string name="tag.amenity_marina">Bến tàu</string>
+  <string name="tag.amenity_sport">Thể thao</string>
+  <string name="tag.amenity_taxi">Tắc xi</string>
+  <string name="tag.amenity_recycling">Tái sinh</string>
+  <string name="tag.amenity_post_office">Bưu điện</string>
+  <string name="tag.amenity_library">Thư viện</string>
+  <string name="tag.amenitymore_school">Nhà trường</string>
+  <string name="tag.amenitymore_police">Cảnh sát</string>
+  <string name="tag.amenitymore_fire_station">Cứu hỏa</string>
+  <string name="tag.amenitymore_bank">Ngân hàng</string>
+  <string name="tag.amenitymore_playground">Sân chơi</string>
+  <string name="tag.amenitymore_pub">Quán rượu pub</string>
+  <string name="tag.amenitymore_hotel">Khách sạn</string>
+  <string name="tag.amenitymore_motel">Khách sạn dọc đường</string>
+  <string name="tag.amenitymore_hostel">Nhà trọ</string>
+  <string name="tag.amenitymore_restaurant">Nhà hàng</string>
+  <string name="tag.amenitymore_fastfood">Nhà hàng ăn nhanh</string>
+  <string name="tag.amenitymore_camp_site">Nơi cắm trại</string>
+  <string name="tag.way_bridge">Cầu</string>
+  <string name="tag.way_zebra_crossing">Lối băng qua đường</string>
+  <string name="tag.way_motorway">Đường cao tốc</string>
+  <string name="tag.way_trunk">Xa lộ</string>
+  <string name="tag.way_primary">Đường chính</string>
+  <string name="tag.way_secondary">Đường lớn</string>
+  <string name="tag.way_tertiary">Phố</string>
+  <string name="tag.way_residential">Ngõ dân cư</string>
+  <string name="tag.way_service">Ngách</string>
+  <string name="tag.track_track">Đường mòn</string>
+  <string name="tag.track_cycleway">Đường xe đạp</string>
+  <string name="tag.track_footway">Đường dạo</string>
+  <string name="tag.track_bridleway">Đường mòn ngựa</string>
+  <string name="tag.track_steps">Cầu thang</string>
+  <string name="tag.track_living_street">Đường dân sinh</string>
+  <string name="tag.track_pedestrian">Đường đi bộ</string>
+  <string name="tag.track_grade1">Cấp 1</string>
+  <string name="tag.track_grade2">Cấp 2</string>
+  <string name="tag.track_grade3">Cấp 3</string>
+  <string name="tag.track_grade4">Cấp 4</string>
+  <string name="tag.track_grade5">Cấp 5</string>
+  <string name="tag.landuse_farm">Trại</string>
+  <string name="tag.landuse_landfill">Bãi rác</string>
+  <string name="tag.landuse_basin">Lưu vực</string>
+  <string name="tag.landuse_reservoir">Bể nước</string>
+  <string name="tag.landuse_forest">Rừng trồng cây</string>
+  <string name="tag.landuse_allotments">Khu vườn gia đình</string>
+  <string name="tag.landuse_cemetery">Nghĩa địa</string>
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Preferències</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">Preferències GPS</string>
+  <string name="prefs_gps_os_settings_summary">Mostra les preferències GPS</string>
+  <string name="prefs_check_gps_startup">Comprova l\'estat GPS en començar</string>
+  <string name="prefs_check_gps_startup_summary">Comprova si el GPS està desactivat en iniciar i ofereix activar-lo.</string>
+  <string name="prefs_gps_ignore_clock">Ignora el rellotge GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Ignora el rellotge GPS i utilitza el rellotge de l\'Androidper les marques de temps</string>
+  <string name="prefs_gps_logging_interval">Interval de registre del GPS</string>
+  <string name="prefs_gps_logging_interval_summary">Utilitza 0 com a interval màxim de registre GPS (Afecta en el consum de bateria)</string>
+  <string name="prefs_gps_logging_interval_seconds">segons</string>
+  <string name="prefs_ui">Interfície d\'usuari</string>
+  <string name="prefs_ui_picture_source">Origen de fotos per defecte</string>
+  <string name="prefs_ui_picture_source_summary">Obtingues les fotos de la càmera o de la galeria?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Càmera</item>
+    <item>Galeria</item>
+    <item>Pregunta- ho sempre</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Botons per defecte</string>
+  <string name="prefs_ui_buttons_layout_summary">Escull els botons personalitzats (veure documentació)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Per defecte</string>
+  <string name="prefs_ui_orientation">Orientació</string>
+  <string name="prefs_ui_orientation_summary">Orientació predefinida per als botons de pantalla</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automàtic</item>
+    <item>Vertical</item>
+    <item>Horitzontal</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Duració de la gravació de veu</string>
+  <string name="prefs_voicerec_duration_seconds">segons</string>
+  <string name="prefs_theme">Tema per a la pantalla principal </string>
+  <string name="prefs_theme_summary">Reinicia l\'aplicació per tal de que els canvis tinguin efecte</string>
+  <string-array name="prefs_theme_keys">
+    <item>El que marqui el SO per defecte</item>
+    <item>El que marqui el SO per defecte (fosc)</item>
+    <item>El que marqui el SO per defecte (lluminós)</item>
+    <item>Alt contrast</item>
+  </string-array>
+  <string name="prefs_display_always_on">Deixa la pantalla sempre encesa</string>
+  <string name="prefs_display_always_on_summary">La pantalla estarà encesa durant el track. Desactiva per estalviar bateria</string>
+  <string name="prefs_displaytrack_osm">Mapa de fons</string>
+  <string name="prefs_displaytrack_osm_summary">Mostra el mapa de OpenstreetMap sota el track. És necessari disposar de connexió de dades.</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Mostrar sempre de fons el mapa OpenStreetMap? Requereix connexió de dades.</string>
+  <string name="prefs_output">Preferències GPX</string>
+  <string name="prefs_storage_dir">Directori d\'emmagatzematge extern (SD)</string>
+  <string name="prefs_storage_dir_hint">Els canvis tindran efecte en el proper track (no en l\'actual)</string>
+  <string name="prefs_output_one_dir_per_track">Una carpeta per track</string>
+  <string name="prefs_output_one_dir_per_track_summary">Desa cada track i els fitxers corresponents a la seva propia carpeta</string>
+  <string name="prefs_output_filename">Nom de fitxer per el track</string>
+  <string name="prefs_output_filename_summary">Model de nom de fitxer si el track te un nom</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Nom del track</item>
+    <item>Nom, Hora d\'inici i de fi</item>
+    <item>Hora i data d\'inici i de fi</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Precisió en el fitxer GPX</string>
+  <string name="prefs_output_accuracy_summary">Afegeix informació de precisió en el fitxer GPX afegint waypoints o comentaris </string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Cap</item>
+    <item>Amb el nom del waypoint</item>
+    <item>Amb el comentari del waypoint</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Utilitza l\'aproximació HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Utilitza el valor de la precisió HDOP per posar-lo en el fitxer GPX</string>
+  <string name="prefs_sound_enabled">Activa so</string>
+  <string name="prefs_sound_enabled_summary">Reprodueix sons quan comença i acaba la gravació de veu</string>
+  <string name="prefs_osm_clear_oauth_data">Restableix l\'autenticació OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Oblida les credencials i permisos OSM i força OSMTracer a preguntar-los una altre vegada</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Hauràs d\'autoritzar OSMTracker per pujar els track la propera vegada. N\'estàs segur?</string>
+  <string name="prefs_map_tile">Proveidor de mapa</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Cap</item>
+    <item>en el comentari</item>
+    <item>en l\'extensió</item>
+  </string-array>
+  <string name="prefs_compass_heading">Exporta la Direcció de la Brúixola</string>
+  <string name="prefs_compass_heading_summary">Defineix si desar la informació de la brúixola en el fitxer GPX, i com fer-ho</string>
+</resources>

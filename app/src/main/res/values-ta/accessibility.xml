@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">ஓஎஸ்ஐ கண்காணிப்பின் இலட்சினை</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">பெரிதாக்கு</string>
+  <string name="acc.zoom_out">சிறிதாக்கு</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">செயற்கைக்கோள் சிக்னல் வலிமை காட்டி</string>
+  <string name="acc.record_indicator">முன்னேற்றம் பதிவு காட்டி </string>
+  <!--Track list-->
+  <string name="acc.track_status">கண்காணிக்கும் நிலை காட்டி</string>
+  <string name="acc.upload_status">திறந்த தெரு வரைபடம் பதிவேற்ற நிலை காட்டி</string>
+</resources>

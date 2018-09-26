@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTracker logo</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Pietuvināt</string>
+  <string name="acc.zoom_out">Attālināt</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Satelīta signāla stipruma indikators</string>
+  <string name="acc.record_indicator">Aktīvas ierakstīšanas indikators</string>
+  <!--Track list-->
+  <string name="acc.track_status">Takas statusa indikators</string>
+  <string name="acc.upload_status">OpenStreetMap augšupielādes statusa indikators</string>
+</resources>

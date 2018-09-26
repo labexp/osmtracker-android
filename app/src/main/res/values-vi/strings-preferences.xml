@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Tùy chọn</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">Tùy chọn GPS</string>
+  <string name="prefs_gps_os_settings_summary">Hiện màn hình tùy chọn GPS của hệ thống</string>
+  <string name="prefs_check_gps_startup">Kiểm tra GPS khi khởi động</string>
+  <string name="prefs_check_gps_startup_summary">Kiểm tra GPS có tắt khi khởi động và đề nghị bật nó lên</string>
+  <string name="prefs_gps_ignore_clock">Bỏ qua đồng hồ GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Bỏ qua đồng hồ GPS và lấy ngày giờ từ đồng hồ Android</string>
+  <string name="prefs_gps_logging_interval">Khoảng ghi GPS</string>
+  <string name="prefs_gps_logging_interval_summary">Sử dụng 0 để ghi liên tục (tốn pin)</string>
+  <string name="prefs_gps_logging_interval_seconds">giây</string>
+  <string name="prefs_ui">Giao diện người dùng</string>
+  <string name="prefs_ui_picture_source">Nguồn hình ảnh mặc định</string>
+  <string name="prefs_ui_picture_source_summary">Lấy hình ảnh từ máy ảnh hoặc thư viện?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Máy ảnh</item>
+    <item>Thư viện</item>
+    <item>Luôn hỏi</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Nút sẵn</string>
+  <string name="prefs_ui_buttons_layout_summary">Chọn bộ nút tùy biến (xem tài liệu)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Mặc định</string>
+  <string name="prefs_ui_orientation">Hướng</string>
+  <string name="prefs_ui_orientation_summary">Hướng ưa thích cho màn hình nút</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Tự động</item>
+    <item>Đứng</item>
+    <item>Ngang</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Thời gian ghi giọng nói</string>
+  <string name="prefs_voicerec_duration_seconds">giây</string>
+  <string name="prefs_theme">Hình dạng màn hình chính</string>
+  <string name="prefs_theme_summary">Tùy chọn sẽ được áp dụng sau khi khởi động lại ứng dụng</string>
+  <string-array name="prefs_theme_keys">
+    <item>Mặc định HĐH</item>
+    <item>Mặc định HĐH (tối)</item>
+    <item>Mặc định HĐH (sáng)</item>
+    <item>Tương phản cao</item>
+  </string-array>
+  <string name="prefs_display_always_on">Luôn bật màn hình</string>
+  <string name="prefs_display_always_on_summary">Màn hình sẽ bật lên luôn luôn trong việc theo dõi. Tắt để tiết kiệm pin.</string>
+  <string name="prefs_displaytrack_osm">Bản đồ nề</string>
+  <string name="prefs_displaytrack_osm_summary">Hiện bản đồ OpenStreetMap ở dưới tuyến đường (cần kết nối dữ liệu)</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Luôn hiện OpenStreetMap ở nền (cần kết nối dữ liệu)</string>
+  <string name="prefs_output">Tùy chọn GPX</string>
+  <string name="prefs_storage_dir">Thư mục bộ nhớ bên ngoài (SD)</string>
+  <string name="prefs_storage_dir_hint">Có hiệu lực vào tuyến đường sau (không phải tuyến đường hiện tại)</string>
+  <string name="prefs_output_one_dir_per_track">Mỗi tuyến đường một thư mục</string>
+  <string name="prefs_output_one_dir_per_track_summary">Lưu mỗi tuyến đường và các tập tin liên quan vào thư mục riêng</string>
+  <string name="prefs_output_filename">Tên tập tin của tuyến đường có tên</string>
+  <string name="prefs_output_filename_summary">Mẫu tên tập tin nếu tuyến đường có tên</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Tên tuyến đường</item>
+    <item>Tên, ngày giờ bắt đầu</item>
+    <item>Ngày giờ bắt đầu</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Độ chính xác trong tập tin GPX</string>
+  <string name="prefs_output_accuracy_summary">Ghi thông tin về độ chính xác vào tập tin GPX kèm tên hoặc lời ghi chép của tọa độ điểm</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Không có</item>
+    <item>Kèm tên tọa độ điểm</item>
+    <item>Trong lời ghi chép của tọa độ điểm</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Ước lượng HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Điền HDOP trong GPX với giá trị ước lượng theo độ chính xác</string>
+  <string name="prefs_sound_enabled">Bật âm thanh</string>
+  <string name="prefs_sound_enabled_summary">Chơi tiếng khi bắt đầu và kết thúc ghi âm giọng nói</string>
+  <string name="prefs_osm_clear_oauth_data">Đặt lại xác thực OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Quên các định danh và quyền lực OSM và bắt OSMTracker phải hỏi lại</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Để tải lên tuyến đường về sau, bạn sẽ phải xác thực OSMTracker. Bạn có muốn tiếp tục?</string>
+  <string name="prefs_map_tile">Nhà cung cấp mảnh bản đồ</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Bản đồ Xe đạp</item>
+    <item>MapQuest Mở</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Không xuất</item>
+    <item>Xuất trong chú thích</item>
+    <item>Xuất trong phần mở rộng</item>
+  </string-array>
+  <string name="prefs_compass_heading">Xuất Hướng La bàn</string>
+  <string name="prefs_compass_heading_summary">Chọn định dạng để xuất dữ liệu la bàn ra tập tin GPX</string>
+</resources>

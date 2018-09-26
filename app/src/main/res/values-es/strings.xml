@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker para Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Inspirado por OSMTracker en Windows Mobile, que permite realizar un seguimiento de sus viajes, marcar puntos de paso importantes (grabación de voz, fotos), exportarlos en formato GPX para su uso posterior con herramientas OpenStreetMap como JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Grabadora de trazas</string>
+  <string name="tracklogger_waiting_gps">Esperando la señal de GPS para habilitar los botones…</string>
+  <string name="tracklogger_voicerec_title">Grabación de voz</string>
+  <string name="tracklogger_voicerec_text">Grabando un sonido de {0} s.</string>
+  <string name="tracklogger_voicerec_stop">Detener</string>
+  <string name="tracklogger_btnBack">Atrás</string>
+  <string name="tracklogger_tracked">Trazado: </string>
+  <string name="tracklogger_gps_disabled">GPS desactivado</string>
+  <string name="tracklogger_gps_disabled_hint">El GPS está desactivado. ¿Desea activarlo?</string>
+  <string name="tracklogger_choose_gallery_camera">¿Galería o cámara?</string>
+  <string name="tracklogger_camera">Tomar foto con la cámara</string>
+  <string name="tracklogger_gallery">Seleccionar foto desde la galería</string>
+  <!--Waypoint List-->
+  <string name="wplist">Lista de puntos</string>
+  <string name="wplist_latitude">Lat.: </string>
+  <string name="wplist_longitude">Long.: </string>
+  <string name="wplist_elevation">Elev.: </string>
+  <string name="wplist_accuracy">Prec.: </string>
+  <string name="wplist_compass">Cab. brúj.:</string>
+  <string name="wplist_compass_accuracy">Pres. brúj.:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Administrador de trazas</string>
+  <string name="trackmgr_tracklist">Lista de trazas:</string>
+  <string name="trackmgr_waypoints_count">Puntos de ref.:</string>
+  <string name="trackmgr_trackpoints_count">P. de traza:</string>
+  <string name="trackmgr_empty">Usted no tiene ninguna traza.</string>
+  <string name="trackmgr_newtrack_error">No se puede crear una nueva traza: {0}</string>
+  <string name="trackmgr_contextmenu_stop">Detener el trazado</string>
+  <string name="trackmgr_contextmenu_resume">Reanudar el trazado</string>
+  <string name="trackmgr_contextmenu_delete">Eliminar</string>
+  <string name="trackmgr_contextmenu_export">Exportar como GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Subir a OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Visualizar</string>
+  <string name="trackmgr_contextmenu_details">Detalles</string>
+  <string name="trackmgr_contextmenu_title">Traza #{0}</string>
+  <string name="trackmgr_delete_confirm">La traza #{0} se eliminará.</string>
+  <string name="trackmgr_deleteall_confirm">Se eliminarán todos las trazas. ¿Está seguro?</string>
+  <string name="trackmgr_exporting">Exportando traza #{0}…</string>
+  <string name="trackmgr_export_error">No se puede exportar la traza: {0}</string>
+  <string name="trackmgr_exportall_confirm">Se exportarán todas las trazas, lo cual podría tardar mucho tiempo. ¿Está seguro?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Detalles de la traza</string>
+  <string name="trackdetail_startdate">Hora de inicio: </string>
+  <string name="trackdetail_enddate">Hora de fin: </string>
+  <string name="trackdetail_startloc">Se inicia en: </string>
+  <string name="trackdetail_endloc">Termina en: </string>
+  <string name="trackdetail_exportdate">Se exportó a: </string>
+  <string name="trackdetail_osm_upload_date">Subido a OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Exportar a GPX</string>
+  <string name="trackdetail_export_notyet">(aún no exportado)</string>
+  <string name="trackdetail_osm_upload_notyet">(aún no subido)</string>
+  <string name="trackdetail_export_display">Visualizar</string>
+  <string name="trackdetail_description">Descripción: </string>
+  <string name="trackdetail_tags">Etiquetas (delimitado por comas)</string>
+  <string name="trackdetail_description_mandatory">Debe introducir una descripción</string>
+  <string name="osm_visibility_private">Privado</string>
+  <string name="osm_visibility_public">Público</string>
+  <string name="osm_visibility_trackable">Trazable</string>
+  <string name="osm_visibility_identifiable">Identificable</string>
+  <!--OSM upload-->
+  <string name="osm_upload">Subir a OpenStreetMap</string>
+  <string name="osm_upload_ok">Guardar y subir</string>
+  <string name="osm_upload_tmpfile_failed">No se puede exportar la traza a un archivo temporal</string>
+  <string name="osm_upload_oauth_failed">No se pudo autenticar en OSM</string>
+  <string name="osm_upload_sending">Enviando traza #{0}…</string>
+  <string name="osm_upload_waiting_response">Esperando la respuesta del servidor OpenStreetMap…</string>
+  <string name="osm_upload_error">Error al subir la traza</string>
+  <string name="osm_upload_bad_response">El servidor OSM ha devuelto un error: ({0}) mensaje {1}</string>
+  <string name="osm_upload_unauthorized">Error de autorización. ¿Desea borrar las credenciales de OSM guardadas?</string>
+  <string name="osm_upload_sucess">La subida a OpenStreetMap tuvo éxito</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Grabar voz</string>
+  <string name="gpsstatus_record_stillimage">Tomar foto</string>
+  <string name="gpsstatus_record_textnote">Nota de texto</string>
+  <!--Menu-->
+  <string name="menu_settings">Configuración</string>
+  <string name="menu_waypointlist">Puntos</string>
+  <string name="menu_about">Acerca de</string>
+  <string name="menu_displaytrack">Mostrar la traza</string>
+  <string name="menu_stoptracking">Detener y guardar</string>
+  <string name="menu_newtrack">Nueva traza</string>
+  <string name="menu_deletetracks">Borrar todas las trazas</string>
+  <string name="menu_continue">Continuar el trazado</string>
+  <string name="menu_stopcurrenttrack">Detener la traza actual</string>
+  <string name="menu_save">Guardar</string>
+  <string name="menu_cancel">Cancelar</string>
+  <string name="menu_export">Exportar como GPX</string>
+  <string name="menu_osm_upload">Subir a OpenStreetMap</string>
+  <string name="menu_center_to_gps">Centrar a GPS</string>
+  <string name="menu_exportall">Exportar todas como GPX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">No se puede grabar en el almacenamiento externo.</string>
+  <string name="error_create_track_dir">No se puede crear la carpeta de traza %s.</string>
+  <string name="error_externalstorage_not_writable_hint">Compruebe que el almacenamiento externo está correctamente insertado y montado.</string>
+  <string name="error_voicerec_failed">La grabación de voz ha fallado</string>
+  <string name="error_userlayout_parsing">Error al analizar el archivo XML de disposición. Por favor, vuelva a la disposición predeterminada.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Trazado con OSMTracker para Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Advertencia: los valores HDOP no son los valores HDOP devueltos por el dispositivo GPS. Son valores aproximados de acuerdo a la precisión de la ubicación en metros.</string>
+  <!--About screen-->
+  <string name="about">Acerca de</string>
+  <string name="about_text">Para más información, documentos e informe de incidencias, visite la web del proyecto:</string>
+  <string name="about_translate_text">Ayúdanos a traducir OSMTracker:</string>
+  <string name="about_debug_info">Info. de depuración</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker está trazando</string>
+  <string name="notification_title">OSMTracker está trazando (#{0})</string>
+  <string name="notification_text">Pulse aquí para mostrar la pantalla principal</string>
+  <!--Display track-->
+  <string name="displaytrack">Visualizar traza</string>
+  <string name="displaytrack_map">Mostrar mapa de fondo</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Guardar</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Precisión</string>
+  <string name="various_accuracy_with_sats">Precisión {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Esperando por arreglo GPS… ({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Espere por la cabecera…</string>
+  <string name="various_heading_unknown">La cabecera no se puede determinar</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">Visualización de traza OpenStreetMap</string>
+
+  <!-- Buttons Presets messages -->
+
+  <string name="buttons_presets_context_menu_update_install">Actualizar e instalar</string>
+  <string name="buttons_presets_context_menu_delete">Eliminar</string>
+  <string name="buttons_presets_updating_layout">Actualizando…</string>
+  <string name="buttons_presets_successful_update">Disposición actualizada con éxito</string>
+  <string name="buttons_presets_unsuccessful_update">Lo sentimos, la disposición no se pudo actualizar</string>
+  <string name="buttons_presets_delete_message">¿Está seguro que desea eliminar la disposición de {0}?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Sí</string>
+  <string name="buttons_presets_successful_delete">El archivo fue borrado con éxito</string>
+  <string name="buttons_presets_icon_directory_deleted">Iconos de la disposición eliminados con éxito</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Este archivo no tenía ningún directorio de iconos asociado</string>
+  <string name="buttons_presets_unsuccessful_delete">No se pudo eliminar el archivo</string>
+
+  <!-- Available Layouts messages -->
+  <string name="available_layouts_connection_error">Error: No se puede conectar a internet, por favor revise su conexión</string>
+  <string name="available_layouts_response_null_exception">Error: No se pudo conectar con el servidor de disposiciones personalizadas predeterminado</string>
+  <string name="available_layouts_connecting_message">(Conectando…)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Descargar</string>
+  <string name="available_layouts_not_available_language">Tu idioma no está disponible, por favor seleccione uno de la lista</string>
+  <string name="available_layouts_language_dialog_title">Lenguajes Disponibles</string>
+  <string name="available_layouts_checking_language_dialog">Verificando tu idioma</string>
+  <string name="available_layouts_downloading_dialog">Descargando…</string>
+  <string name="available_layouts_successful_download">La disposición fue descargada con éxito</string>
+  <string name="available_layouts_unsuccessful_download">No se pudo descargar la disposición, por favor intente más tarde</string>
+
+  <!-- Github Repository Settings -->
+  <string name="github_repository_settings_default_checkbox">Predeterminado</string>
+  <string name="github_repository_settings_custom_checkbox">Personalizado</string>
+  <string name="github_repository_settings_username">Nombre de usuario Github: </string>
+  <string name="github_repository_settings_repository_name">Nombre del Repositorio: </string>
+  <string name="github_repository_settings_branch_name">Nombre de la rama: </string>
+  <string name="github_repository_settings_valid_server">Repositorio de Github válido</string>
+  <string name="github_repository_settings_invalid_server">Repositorio de Github inválido</string>
+
+
+</resources>

@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker para Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Gravador de trilhas</string>
+  <string name="tracklogger_waiting_gps">Aguardando pelo GPS para habilitar botões…</string>
+  <string name="tracklogger_voicerec_title">Gravação de voz</string>
+  <string name="tracklogger_voicerec_text">Gravando um {0}s clipe de áudio.</string>
+  <string name="tracklogger_voicerec_stop">Sarar</string>
+  <string name="tracklogger_btnBack">Voltar</string>
+  <string name="tracklogger_tracked">Registrado: </string>
+  <string name="tracklogger_gps_disabled">GPS desabilitado</string>
+  <string name="tracklogger_gps_disabled_hint">GPS está desabilitado. Você deseja habilitá-lo ?</string>
+  <!--Waypoint List-->
+  <string name="wplist">Lista de pontos da via</string>
+  <string name="wplist_latitude">Lat: </string>
+  <string name="wplist_longitude">Long: </string>
+  <string name="wplist_elevation">Ele: </string>
+  <string name="wplist_accuracy">Precisão: </string>
+  <!--Track Manager-->
+  <string name="trackmgr">Gerenciador de trilhas</string>
+  <string name="trackmgr_tracklist">Lista de trilhas:</string>
+  <string name="trackmgr_waypoints_count">Pontos do via: </string>
+  <string name="trackmgr_trackpoints_count">Pontos da trilha: </string>
+  <string name="trackmgr_empty">Você não possui nenhuma trilha.</string>
+  <string name="trackmgr_newtrack_error">Não é possível criar uma nova trilha: {0}</string>
+  <string name="trackmgr_contextmenu_stop">Parar registro</string>
+  <string name="trackmgr_contextmenu_resume">Continuar registro</string>
+  <string name="trackmgr_contextmenu_delete">Apagar</string>
+  <string name="trackmgr_contextmenu_export">Exportar como GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Fazer o upload para o OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Exibir</string>
+  <string name="trackmgr_contextmenu_details">Detalhes</string>
+  <string name="trackmgr_contextmenu_title">Trilha #{0}</string>
+  <string name="trackmgr_delete_confirm">Trilha #{0} será apagada</string>
+  <string name="trackmgr_deleteall_confirm">Todas as faixas serão excluídos. Você tem certeza?
+</string>
+  <string name="trackmgr_exporting">Exportando trilha #{0}…</string>
+  <string name="trackmgr_export_error">Não é possível exportar trilha: {0}</string>
+  <string name="trackmgr_exportall_confirm">Todas as faixas serão excluídos. Você tem certeza?
+</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Detalhes da trilha</string>
+  <string name="trackdetail_startdate">Hora de início:</string>
+  <string name="trackdetail_enddate">Hora de fim:</string>
+  <string name="trackdetail_startloc">Iniciou às:</string>
+  <string name="trackdetail_endloc">Finalizou às:</string>
+  <string name="trackdetail_exportdate">Exportada:</string>
+  <string name="trackdetail_osm_upload_date">Enviado para OpenStreetMap:
+</string>
+  <string name="trackdetail_btn_export">Exportada como GPX</string>
+  <string name="trackdetail_export_notyet">(Ainda não exportada)</string>
+  <string name="trackdetail_osm_upload_notyet">(Não foi enviado ainda)
+
+</string>
+  <string name="trackdetail_export_display">Exibir</string>
+  <string name="trackdetail_description">Descrição
+</string>
+  <string name="trackdetail_tags">Tags (separado por virgulas)</string>
+  <string name="trackdetail_description_mandatory">Você precisa entrar com alguma descrição</string>
+  <string name="osm_visibility_private">Privado</string>
+  <string name="osm_visibility_public">Público</string>
+  <string name="osm_visibility_trackable">Rastreável</string>
+  <string name="osm_visibility_identifiable">Identificável</string>
+  <!--OSM upload-->
+  <string name="osm_upload">OpenStreetMap enviado</string>
+  <string name="osm_upload_ok">Salvar e enviar</string>
+  <string name="osm_upload_tmpfile_failed">Não é possível exportar a faixa para um arquivo temporário
+</string>
+  <string name="osm_upload_oauth_failed">Não é possível autenticar-se
+</string>
+  <string name="osm_upload_sending">Enviando faixa #{0} ...</string>
+  <string name="osm_upload_waiting_response">Aguardando a resposta do servidor OpenStreetMap...</string>
+  <string name="osm_upload_error">Erro ao carregar faixa</string>
+  <string name="osm_upload_bad_response">O servidor OSM retornou um erro. ({0}) message {1}</string>
+  <string name="osm_upload_unauthorized">Erro de autorização. Gostaria de limpar as credenciais OpenStreetMap salvas?
+</string>
+  <string name="osm_upload_sucess">OpenStreetMap enviado com sucesso
+</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Gravar voz</string>
+  <string name="gpsstatus_record_textnote">Nota de texto</string>
+  <!--Menu-->
+  <string name="menu_settings">Configurações</string>
+  <string name="menu_waypointlist">Pontos da via</string>
+  <string name="menu_about">Sobre</string>
+  <string name="menu_displaytrack">Exibir trilha</string>
+  <string name="menu_stoptracking">Parar &amp; salvar</string>
+  <string name="menu_newtrack">Nova trilha</string>
+  <string name="menu_deletetracks">Excluir todas as faixas</string>
+  <string name="menu_continue">Continuar trilha</string>
+  <string name="menu_stopcurrenttrack">Parar faixa atual</string>
+  <string name="menu_save">Salvar</string>
+  <string name="menu_cancel">Cancelar</string>
+  <string name="menu_export">Exportar como GPX</string>
+  <string name="menu_osm_upload">Abrir OpenStreetMap uploader</string>
+  <string name="menu_center_to_gps">Centralizar para GPS</string>
+  <string name="menu_exportall">Exportar tudo como GPX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Não é possível gravar no armazenamento externo.</string>
+  <string name="error_create_track_dir">Não é possível criar faixa pasta %s</string>
+  <string name="error_externalstorage_not_writable_hint">Por favor, verifique se o dispositivo de armazenamento está inserido e montado.</string>
+  <string name="error_voicerec_failed">A gravação de voz falhou</string>
+  <string name="error_userlayout_parsing">Erro ao analisar arquivo XML. Por favor, retorne para o estilo padrão.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Registrado com OSMTracker para Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Aviso: Valores HDOP não são o HDOP retornado pelo dispositivo. Eles se aproximam da precisão da localização em metros e podem não ser usados na conta.</string>
+  <!--About screen-->
+  <string name="about">Sobre</string>
+  <string name="about_text">Para mais informações, documentos e sugestões, visite a página do projeto:</string>
+  <string name="about_translate_text">Marcos1153</string>
+  <string name="about_debug_info">Debug info</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker está registrando</string>
+  <string name="notification_title">OSMTracker está registrando (#{0})</string>
+  <string name="notification_text">Toque aqui para exibir a tela principal</string>
+  <!--Display track-->
+  <string name="displaytrack">Exibir trilha</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Salvar</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Precisão</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <!--parameters: (heading in degrees)-->
+  <!--OSM map view-->
+  <string name="displaytrackmap">Exibir trilha do OpenStreetMap</string>
+</resources>

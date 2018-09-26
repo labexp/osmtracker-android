@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Uzsādijumi</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS uzstādijumi</string>
+  <string name="prefs_gps_os_settings_summary">Parādīt sistēmas GPS uzstādijumus</string>
+  <string name="prefs_check_gps_startup">Pārbaudīt GPS ieslēdzot lietotni</string>
+  <string name="prefs_check_gps_startup_summary">Pārbaudīt vai GPS ir ieslēgts un piedāvāt to ieslēgt, kad lietotne ieslēdzas</string>
+  <string name="prefs_gps_ignore_clock">Ignorēt GPS pulksteni</string>
+  <string name="prefs_gps_ignore_clock_summary">Ignorēt GPS pulksteni un izmantot Android pulksteņa laiku</string>
+  <string name="prefs_gps_logging_interval">GPS ierakstu intervāls</string>
+  <string name="prefs_gps_logging_interval_summary">Izmantot 0, īsākajam iepējamajam (ietekmē baterijas patēriņu)</string>
+  <string name="prefs_gps_logging_interval_seconds">sekundes</string>
+  <string name="prefs_ui">Lietotāja saskarne</string>
+  <string name="prefs_ui_buttons_layout">Pogu iepriekšuzstādijumi</string>
+  <string name="prefs_ui_buttons_layout_summary">Izvēlieties personalizētu pogu kopu (skatiet dokumentāciju)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Noklusētais</string>
+  <string name="prefs_ui_orientation">Orientācija</string>
+  <string name="prefs_ui_orientation_summary">Vēlamā orientācija pogu izvēlnei</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automātiski</item>
+    <item>Portrets</item>
+    <item>Ainava</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Balss ieraksta garums</string>
+  <string name="prefs_map_tile_summary"></string>
+</resources>

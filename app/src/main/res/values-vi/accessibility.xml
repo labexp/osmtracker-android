@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">Biểu trưng OSMTracker</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Phóng to</string>
+  <string name="acc.zoom_out">Thu nhỏ</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Đèn sức tín hiệu</string>
+  <string name="acc.record_indicator">Đèn đang ghi</string>
+  <!--Track list-->
+  <string name="acc.track_status">Đèn trạng thái tuyến đường</string>
+  <string name="acc.upload_status">Đèn trạng thái tải lên OpenStreetMap</string>
+</resources>

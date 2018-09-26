@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Pengaturan</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">Pengaturan GPS</string>
+  <string name="prefs_gps_os_settings_summary">Tampilkan pengaturan layar sistem GPS</string>
+  <string name="prefs_check_gps_startup">Cek GPS saat mulai</string>
+  <string name="prefs_check_gps_startup_summary">Cek jika GPS mati saat memulai, dan tawarkan untuk menghidupkan</string>
+  <string name="prefs_gps_ignore_clock">Abaikan jam GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Jangan gunakan jam GPS, gunakan jam sistem Android</string>
+  <string name="prefs_gps_logging_interval">Interfal masuk GPS</string>
+  <string name="prefs_gps_logging_interval_summary">Gunakan 0 untuk kemungkinan terpendek (batrai boros)</string>
+  <string name="prefs_gps_logging_interval_seconds">detik</string>
+  <string name="prefs_ui">Tampilan pengguna</string>
+  <string name="prefs_ui_picture_source">Sumber baku foto</string>
+  <string name="prefs_ui_picture_source_summary">Ambil foto dari kamera atau galeri?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamera</item>
+    <item>Galeri</item>
+    <item>Selalu tanya</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Atur tombol</string>
+  <string name="prefs_ui_buttons_layout_summary">Pilih tombol buatan (lihat dokumentasi)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Baku</string>
+  <string name="prefs_ui_orientation">Orientasi</string>
+  <string name="prefs_ui_orientation_summary">Pilih orientasi untuk layar tombol</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Otomatis</item>
+    <item>Potret</item>
+    <item>Bentang</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Durasi rekaman suara</string>
+  <string name="prefs_voicerec_duration_seconds">detik</string>
+  <string name="prefs_theme">Gambar tema layar utama</string>
+  <string name="prefs_theme_summary">Muat ulang aplikasi untuk melihat perubahan</string>
+  <string-array name="prefs_theme_keys">
+    <item>OS baku</item>
+    <item>OS baku (gelap)</item>
+    <item>OS baku (terang)</item>
+    <item>Sangat kontras</item>
+  </string-array>
+  <string name="prefs_display_always_on">Layar selalu hidup</string>
+  <string name="prefs_display_always_on_summary">Layar akan selalu hidup saat melacak, Matikan untuk menghemat batrai</string>
+  <string name="prefs_displaytrack_osm">Peta latar belakang</string>
+  <string name="prefs_displaytrack_osm_summary">Tampilkan peta OpenSreetMap pada trek. Butuh koneksi internet</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Selalu tampilkan latar OpenSreetMap? Membutuhkan koneksi internet</string>
+  <string name="prefs_output">Pengaturan GPX</string>
+  <string name="prefs_storage_dir">Folder penyimpanan luar (kartu memori)</string>
+  <string name="prefs_storage_dir_hint">Efektif untuk trek selanjutnya (bukan trek yg ini)</string>
+  <string name="prefs_output_one_dir_per_track">Satu folder per trek</string>
+  <string name="prefs_output_one_dir_per_track_summary">Simpan setiap trek berikut berkas yg terkait dalam folder tersendiri</string>
+  <string name="prefs_output_filename">Judul berkas untuk nama trek</string>
+  <string name="prefs_output_filename_summary">Pola untuk nama file jika trek memiliki nama</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Nama trek</item>
+    <item>Nama, tanggal dan waktu mulai</item>
+    <item>Tanggal dan waktu mulai</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Akurasi dalam berkas GPX</string>
+  <string name="prefs_output_accuracy_summary">Tambahkan info akurasi dalam berkas GPX, dengan nama posisi atau pada komentar posisi</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Nihil</item>
+    <item>Dengan nama posisi</item>
+    <item>Dlm komentar posisi</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Gunakan perkiraan HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Isikan HDOP pada GPX dengan nilai perkiraan dari akurasi</string>
+  <string name="prefs_sound_enabled">Hidupkan suara</string>
+  <string name="prefs_sound_enabled_summary">Mainkan suara saat mulai merekam dan berakhir</string>
+  <string name="prefs_osm_clear_oauth_data">Kembalikan otentifikasi OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Lupakan izin identitas OSM dan paksa OSMTracker memintanya kembali</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Anda harus mengotorisasi OSMTracker kembali untuk mengunggah trek. Anda yakin?</string>
+  <string name="prefs_map_tile">Provider peta latar</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Nihil</item>
+    <item>dlm komentar</item>
+    <item>dlm ekstensi</item>
+  </string-array>
+  <string name="prefs_compass_heading">Ekspor Arah Kompas</string>
+  <string name="prefs_compass_heading_summary">Definisikan apa dan bagaimana data kompas diekspor ke berkas GPX</string>
+</resources>

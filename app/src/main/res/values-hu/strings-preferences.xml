@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Beállítások</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS beállítások</string>
+  <string name="prefs_gps_os_settings_summary">A rendszer GPS beállítások megjelenítése</string>
+  <string name="prefs_check_gps_startup">GPS ellenőrzése indításkor</string>
+  <string name="prefs_check_gps_startup_summary">A GPS ellenőrzése indításkor, és lehetőség a bekapcsolására</string>
+  <string name="prefs_gps_ignore_clock">GPS óra figyelmen kívül hagyása</string>
+  <string name="prefs_gps_ignore_clock_summary">A GPS óra figyelmen kívül hagyása és az Android óra használata az időbélyegzéshez</string>
+  <string name="prefs_gps_logging_interval">GPS rögzítés időköze</string>
+  <string name="prefs_gps_logging_interval_summary">Állítson be 0-t a legrövidebb lehetségesként (az akkumulátor üzemidejét befolyásolja)</string>
+  <string name="prefs_gps_logging_interval_seconds">másodperc</string>
+  <string name="prefs_ui">Felhasználói felület</string>
+  <string name="prefs_ui_picture_source">Alapértelmezett fénykép forrás</string>
+  <string name="prefs_ui_picture_source_summary">A fotókat a kameráról vagy a galériából vegye?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamera</item>
+    <item>Galéria</item>
+    <item>Mindig kérdez</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Gomb alapértelmezések</string>
+  <string name="prefs_ui_buttons_layout_summary">Válasszon egy egyedi nyomógomb készletet (lásd dokumentáció)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Alapértelmezett</string>
+  <string name="prefs_ui_orientation">Tájolás</string>
+  <string name="prefs_ui_orientation_summary">Az előnyben részesített tájolás a gombos képernyőhöz</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automatikus</item>
+    <item>Álló</item>
+    <item>Fekvő</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Hangrögzítés hosszúsága</string>
+  <string name="prefs_voicerec_duration_seconds">másodperc</string>
+  <string name="prefs_theme">Fő képernyő grafikus téma</string>
+  <string name="prefs_theme_summary">Az alkalmazás újraindítása szükséges a változások érvénybe lépéséhez</string>
+  <string-array name="prefs_theme_keys">
+    <item>Rendszer alapértelmezett</item>
+    <item>Rendszer alapértelmezett (sötét)</item>
+    <item>Rendszer alapértelmezett (világos)</item>
+    <item>Nagy kontrasztú</item>
+  </string-array>
+  <string name="prefs_display_always_on">Képernyő mindig bekapcsolva</string>
+  <string name="prefs_display_always_on_summary">A képernyő bekapcsolva marad nyomkövetéskor. Kapcsolja ki az akku jobb üzemidejéhez</string>
+  <string name="prefs_displaytrack_osm">Háttér térkép</string>
+  <string name="prefs_displaytrack_osm_summary">Az OpenStreetMap megjelenítése a nyomkövetés alatt. Adatkapcsolatot igényel</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Az OpenStreetMap háttér megjelenítése mindig? Adatkapcsolatot igényel.</string>
+  <string name="prefs_output">GPX beállítások</string>
+  <string name="prefs_storage_dir">Külső tároló (SD) könyvtár</string>
+  <string name="prefs_storage_dir_hint">A következő nyomkövetésnél lép életbe (nem az aktuálisnál)
+</string>
+  <string name="prefs_output_one_dir_per_track">Egy könyvtár nyomvonalanként</string>
+  <string name="prefs_output_one_dir_per_track_summary">Minden nyomkövetés és kapcsolódó fájljai egy saját könyvtárba mentése</string>
+  <string name="prefs_output_filename">Fájlnév az elnevezett nyomvonalakhoz</string>
+  <string name="prefs_output_filename_summary">Fájlnév minta, ha a nyomvonalnak neve van</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Nyomkövetés neve</item>
+    <item>Név, kezdeti dátum és időpont</item>
+    <item>Kezdeti dátum és időpont</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Pontosság a GPX fájlban</string>
+  <string name="prefs_output_accuracy_summary">Pontosság információ hozzáadása a GPX fájlhoz, útpont névvel vagy útpont megjegyzéssel</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>None</item>
+    <item>With waypoint name</item>
+    <item>In waypoint comment</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">A HDOP becslés használata</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Töltse ki a HDOP értéket a GPX fájlban egy becsült értékkel a pontosságból</string>
+  <string name="prefs_sound_enabled">Hang engedélyezése</string>
+  <string name="prefs_sound_enabled_summary">Hang lejátszása rögzítés indításakor és befejezésekor</string>
+  <string name="prefs_osm_clear_oauth_data">OSM authentikáció alaphelyzetbe állítása</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Az OSM belépési adatok és jogosultságok elfelejtése és az OSMTracker kényszerítése, hogy megkérdezze újra azokat</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Az OSMTrackert majd újból azonosítani kell a nyomvonalak feltöltéséhez. Biztosan ezt szeretné?</string>
+  <string name="prefs_map_tile">Térképcsempe szolgáltató</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Biciklis térkép</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Semmi</item>
+    <item>megjegyzésben</item>
+    <item>kiterjesztésben</item>
+  </string-array>
+  <string name="prefs_compass_heading">Az iránytű állásnak exportálása</string>
+  <string name="prefs_compass_heading_summary">Definiálja, hogy bekerüljön-e és hogyan az iránytű adat az exportált GPX fájlba</string>
+</resources>

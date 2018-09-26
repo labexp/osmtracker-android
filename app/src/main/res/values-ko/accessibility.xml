@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTracker 로고</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">확대</string>
+  <string name="acc.zoom_out">축소</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">위성 신호 강도 표시기</string>
+  <string name="acc.record_indicator">기록 진행 표시기</string>
+  <!--Track list-->
+  <string name="acc.track_status">추적 상태 표시기</string>
+  <string name="acc.upload_status">OpenStreetMap 올리기 상태 표시기</string>
+</resources>

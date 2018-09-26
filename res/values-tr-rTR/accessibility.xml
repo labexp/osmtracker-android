@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources>
-  <!--About screen-->
-  <!--Zoom in/out in map view-->
-  <string name="acc.zoom_in">Yakınlaş</string>
-  <string name="acc.zoom_out">Uzaklaş</string>
-  <!--GPS status bar-->
-  <!--Track list-->
-</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="prefs_ui_picture_source_values">
+		<item>camera</item>
+		<item>gallery</item>
+		<item>ask</item>
+	</string-array>
+
+	<string-array name="prefs_ui_orientation_options_values">
+		<item>none</item>
+		<item>portrait</item>
+		<item>landscape</item>
+	</string-array>
+
+	<string-array name="prefs_voicerec_durations">
+		<item>@string/unlimited_time_to_recording_option</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>10</item>
+		<item>20</item>
+		<item>30</item>
+	</string-array>
+
+	<string-array name="prefs_theme_values">
+		<item>net.osmtracker:style/DefaultTheme</item>
+		<item>net.osmtracker:style/DarkTheme</item>
+		<item>net.osmtracker:style/LightTheme</item>
+		<item>net.osmtracker:style/HighContrast</item>
+	</string-array>
+
+	<string-array name="prefs_output_filename_values">
+		<item>name</item>
+		<item>name_date</item>
+		<item>date</item>
+	</string-array>
+	
+	<string-array name="prefs_output_accuracy_values">
+		<item>none</item>
+		<item>wpt_name</item>
+		<item>wpt_cmt</item>
+	</string-array>
+	
+	<string-array name="prefs_map_tile_values">
+		<item>MAPNIK</item>
+		<item>CYCLEMAP</item>
+		<item>MAPQUESTOSM</item>
+	</string-array>
+	<string-array name="prefs_compass_heading_values">
+		<item >none</item>
+		<item >comment</item>
+		<item >extension</item>
+	</string-array>
+
+</resources>

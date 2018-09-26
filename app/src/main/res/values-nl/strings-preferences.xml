@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Instellingen</string>
+  <string name="prefs_gps">Gps</string>
+  <string name="prefs_gps_os_settings">Gps-instellingen</string>
+  <string name="prefs_gps_os_settings_summary">Gps-instellingscherm van systeem weergeven</string>
+  <string name="prefs_check_gps_startup">Gps controleren tijdens opstarten</string>
+  <string name="prefs_check_gps_startup_summary">Controleren of gps uitgeschakeld is tijdens opstarten, en aanbieden om het in te schakelen</string>
+  <string name="prefs_gps_ignore_clock">Gps-klok negeren</string>
+  <string name="prefs_gps_ignore_clock_summary">Gps-klok negeren en de Android-klok gebruiken voor tijdstempels</string>
+  <string name="prefs_gps_logging_interval">Gps-loginterval</string>
+  <string name="prefs_gps_logging_interval_summary">Gebruik 0 voor de kortst mogelijke (beïnvloedt levensduur van de batterij)</string>
+  <string name="prefs_gps_logging_interval_seconds">seconden</string>
+  <string name="prefs_ui">Gebruikersinterface</string>
+  <string name="prefs_ui_picture_source">Standaard fotobron</string>
+  <string name="prefs_ui_picture_source_summary">Foto\'s nemen van camera of galerij?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Camera</item>
+    <item>Galerij</item>
+    <item>Altijd vragen</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Knop-voorinstellingen</string>
+  <string name="prefs_ui_buttons_layout_summary">Een aangepaste set knoppen kiezen (zie documenten)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Standaard</string>
+  <string name="prefs_ui_orientation">Oriëntatie</string>
+  <string name="prefs_ui_orientation_summary">Voorkeursoriëntatie van het knoppenscherm</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automatisch</item>
+    <item>Staand</item>
+    <item>Liggend</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Duur stemopname</string>
+  <string name="prefs_voicerec_duration_seconds">seconden</string>
+  <string name="prefs_theme">Thema hoofdscherm</string>
+  <string name="prefs_theme_summary">Herstarten van de toepassing vereist om wijziging toe te passen</string>
+  <string-array name="prefs_theme_keys">
+    <item>OS standaard</item>
+    <item>OS standaard (donker)</item>
+    <item>OS standaard (licht)</item>
+    <item>Hoog contrast</item>
+  </string-array>
+  <string name="prefs_display_always_on">Scherm altijd aan</string>
+  <string name="prefs_display_always_on_summary">Scherm zal aan blijven tijdens opnemen. Uitschakelen om batterij te besparen</string>
+  <string name="prefs_displaytrack_osm">Achtergrondkaart</string>
+  <string name="prefs_displaytrack_osm_summary">OpenStreetMap-kaart weergeven onder traject. Heeft een dataverbinding nodig</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Altijd OpenStreetMap-achtergrond weergeven? Vereist een dataverbinding.</string>
+  <string name="prefs_output">GPX-instellingen</string>
+  <string name="prefs_storage_dir">Map externe opslag (SD)</string>
+  <string name="prefs_storage_dir_hint">Effectief voor het volgende traject (niet het huidige)</string>
+  <string name="prefs_output_one_dir_per_track">Een map per traject</string>
+  <string name="prefs_output_one_dir_per_track_summary">Elk traject en bijbehorende bestanden in eigen map opslaan</string>
+  <string name="prefs_output_filename">Bestandsnaam voor trajecten</string>
+  <string name="prefs_output_filename_summary">Patroon voor bestandsnaam als het traject een naam heeft</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Trajectnaam</item>
+    <item>Naam, begindatum en -tijd</item>
+    <item>Begindatum en -tijd</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Nauwkeurigheid in GPX-bestand</string>
+  <string name="prefs_output_accuracy_summary">Nauwkeurigheid toevoegen in GPX-bestand, met naam van routepunt of in routepunt-opmerking</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Geen</item>
+    <item>Met naam van routepunt</item>
+    <item>In routepunt-opmerking</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">HDOP-benadering gebruiken</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">HDOP in GPX vullen met een benaderingswaarde van nauwkeurigheid</string>
+  <string name="prefs_sound_enabled">Geluid inschakelen</string>
+  <string name="prefs_sound_enabled_summary">Geluiden afspelen wanneer opnemen begint en eindigt</string>
+  <string name="prefs_osm_clear_oauth_data">OSM-authenticatie herstellen</string>
+  <string name="prefs_osm_clear_oauth_data_summary">OSM-inloggegevens en toestemming vergeten en OSMTracker forceren om ze nogmaals op te vragen.</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">U zal OSMTracker terug moeten autoriseren om trajecten te uploaden. Bent u zeker?</string>
+  <string name="prefs_map_tile">Kaartvak-provider</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Geen</item>
+    <item>in opmerking</item>
+    <item>in extensie</item>
+  </string-array>
+  <string name="prefs_compass_heading">Kompasrichting exporteren</string>
+  <string name="prefs_compass_heading_summary">Definieert of en hoe de kompas-data geëxporteerd moet worden naar het GPX-bestand</string>
+</resources>

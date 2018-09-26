@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">設定</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPSの設定</string>
+  <string name="prefs_gps_os_settings_summary">システムのGPS設定画面を表示</string>
+  <string name="prefs_check_gps_startup">起動時にGPSをチェック</string>
+  <string name="prefs_check_gps_startup_summary">起動時にGPSが無効ならば有効にするよう提案</string>
+  <string name="prefs_gps_ignore_clock">GPS時刻を無視</string>
+  <string name="prefs_gps_ignore_clock_summary">タイムスタンプに、GPSの時計を参照せずにAndroidの時計を使用</string>
+  <string name="prefs_gps_logging_interval">GPS記録間隔</string>
+  <string name="prefs_gps_logging_interval_summary">0を指定すると可能な限り短い間隔 (バッテリー消費量大)</string>
+  <string name="prefs_gps_logging_interval_seconds">秒</string>
+  <string name="prefs_ui">ユーザーインターフェース</string>
+  <string name="prefs_ui_picture_source">デフォルトの画像ソース</string>
+  <string name="prefs_ui_picture_source_summary">カメラで撮影しますか？またはギャラリーから選択しますか？</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>カメラ</item>
+    <item>ギャラリー</item>
+    <item>毎回確認</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">ボタンレイアウト</string>
+  <string name="prefs_ui_buttons_layout_summary">カスタムボタンレイアウトを選択してください（ドキュメント参照）</string>
+  <string name="prefs_ui_buttons_layout_defaut">デフォルト</string>
+  <string name="prefs_ui_orientation">画面の方向</string>
+  <string name="prefs_ui_orientation_summary">ボタン画面の推奨方向</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>自動</item>
+    <item>縦長</item>
+    <item>横長</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">録音時間</string>
+  <string name="prefs_voicerec_duration_seconds">秒</string>
+  <string name="prefs_theme">スクリーン表示テーマ</string>
+  <string name="prefs_theme_summary">変更を反映するにはアプリの再起動が必要です</string>
+  <string-array name="prefs_theme_keys">
+    <item>OSデフォルト</item>
+    <item>OSデフォルト (ダーク)</item>
+    <item>OSデフォルト (ライト)</item>
+    <item>ハイコントラスト</item>
+  </string-array>
+  <string name="prefs_display_always_on">スクリーンを常時オン</string>
+  <string name="prefs_display_always_on_summary">トラッキング中はスクリーンを常時オン、省電力機能を無効にする</string>
+  <string name="prefs_displaytrack_osm">背景の地図</string>
+  <string name="prefs_displaytrack_osm_summary">トラックの背景にOpenStreetMapの地図を表示する。データ通信接続が必要</string>
+  <string name="prefs_displaytrack_osm_summary_ask">常に背景にOpenStreetMapを表示しますか？データ通信接続が必要です。</string>
+  <string name="prefs_output">GPX設定</string>
+  <string name="prefs_storage_dir">外部ストレージ(SD)ディレクトリ</string>
+  <string name="prefs_storage_dir_hint">次回から反映 (現在の分は適用外)</string>
+  <string name="prefs_output_one_dir_per_track">トラック別のディレクトリ</string>
+  <string name="prefs_output_one_dir_per_track_summary">各トラックと関連ファイルを個別のディレクトリに保存</string>
+  <string name="prefs_output_filename">トラック名をファイル名にする</string>
+  <string name="prefs_output_filename_summary">ファイル名のパターン</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>トラック名</item>
+    <item>トラック名_開始日時</item>
+    <item>開始日時</item>
+  </string-array>
+  <string name="prefs_output_accuracy">GPXファイルの補完</string>
+  <string name="prefs_output_accuracy_summary">GPXファイル内のウェイポイントやコメントを補完する</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>なし</item>
+    <item>ウェイポイント名称</item>
+    <item>ウェイポイントコメント</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">HDOP近似値を使用する</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">GPXファイルのHDOP値に実際の位置からの誤差を出力する</string>
+  <string name="prefs_sound_enabled">サウンド有効</string>
+  <string name="prefs_sound_enabled_summary">録音の開始と終了時に音を鳴らす</string>
+  <string name="prefs_osm_clear_oauth_data">OSMの認証情報をリセット</string>
+  <string name="prefs_osm_clear_oauth_data_summary">OSMの認証と許可を消去し、強制的にOSMTrackerが再び確認するようにする</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">再びトラックをアップロードするには、OSMTrackerの認証が必要です。続けますか？</string>
+  <string name="prefs_map_tile">地図タイルプロバイダー</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>なし</item>
+    <item>コメント内</item>
+    <item>拡張データ内</item>
+  </string-array>
+  <string name="prefs_compass_heading">コンパスの向きをエクスポート</string>
+  <string name="prefs_compass_heading_summary">コンパスのデータをGPXファイルに出力するか、または出力方法を指定します</string>
+</resources>

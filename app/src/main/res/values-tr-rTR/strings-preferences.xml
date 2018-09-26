@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Tercihler</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS ayarları</string>
+  <string name="prefs_check_gps_startup">Açılışta GPS kontrol et</string>
+  <string name="prefs_gps_ignore_clock">GPS saatini görmezden gel</string>
+  <string name="prefs_gps_ignore_clock_summary">GPS saatini görmezden gel ve zaman bilgisi olarak Android saatini kulllan</string>
+  <string name="prefs_gps_logging_interval_seconds">saniyeler</string>
+  <string name="prefs_ui">Kullanıcı arayüzü</string>
+  <string name="prefs_ui_buttons_layout_defaut">Varsayılan</string>
+  <string name="prefs_voicerec_duration_seconds">saniyeler</string>
+  <string name="prefs_display_always_on">Ekran her zaman açık kalsın</string>
+  <string name="prefs_displaytrack_osm">arkaplan haritası</string>
+  <string name="prefs_map_tile_summary"></string>
+</resources>

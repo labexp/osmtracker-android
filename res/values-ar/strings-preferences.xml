@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources>
-  <!--Preferences-->
-  <string name="prefs">الاعدادت</string>
-  <string name="prefs_gps">نظام تحديد الموقع</string>
-  <string name="prefs_gps_os_settings">اعدادات تحديد الموقع</string>
-  <string name="prefs_gps_os_settings_summary">عرض شاشة اعدادات نظام تحديد المواقع</string>
-  <string name="prefs_map_tile_summary"></string>
-</resources>

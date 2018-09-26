@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker для Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Рэгістратар трэкаў</string>
+  <string name="tracklogger_voicerec_title">Запіс голасу</string>
+  <string name="tracklogger_voicerec_stop">Стоп</string>
+  <string name="tracklogger_btnBack">Назад</string>
+  <string name="tracklogger_gps_disabled">GPS адключаны</string>
+  <string name="tracklogger_gps_disabled_hint">GPS выключаны. Хочаце ўключыць яго?</string>
+  <string name="tracklogger_choose_gallery_camera">Галерэя або камера?</string>
+  <!--Waypoint List-->
+  <string name="wplist">Спіс кропак шляха</string>
+  <string name="wplist_latitude">Шрт:</string>
+  <string name="wplist_longitude">Дгт:</string>
+  <string name="wplist_elevation">Вышыня:</string>
+  <string name="wplist_accuracy">Дакладнасць:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Менеджэр трэкаў</string>
+  <string name="trackmgr_tracklist">Спіс трэкаў:</string>
+  <string name="trackmgr_waypoints_count">Кропкі шляха:</string>
+  <string name="trackmgr_trackpoints_count">Кропкі трэка:</string>
+  <string name="trackmgr_empty">У вас няма ніякіх трэкаў.</string>
+  <string name="trackmgr_newtrack_error">Немагчыма стварыць новы трэк: {0}</string>
+  <string name="trackmgr_contextmenu_stop">Спыніць запіс трэку</string>
+  <string name="trackmgr_contextmenu_resume">Працягнуць запіс трэку</string>
+  <string name="trackmgr_contextmenu_delete">Выдаліць</string>
+  <string name="trackmgr_contextmenu_export">Экспарт у GPX</string>
+  <string name="trackmgr_contextmenu_display">Паказаць</string>
+  <string name="trackmgr_contextmenu_details">Дэталі</string>
+  <string name="trackmgr_contextmenu_title">Трэк #{0}</string>
+  <string name="trackmgr_delete_confirm">Трэк #{0} будзе выдалены</string>
+  <string name="trackmgr_exporting">Экспарт трэка #{0}…</string>
+  <!--Track Detail-->
+  <string name="trackdetail_startdate">Час пачатку:</string>
+  <string name="trackdetail_enddate">Час заканчэння:</string>
+  <string name="trackdetail_startloc">Пачатак у:</string>
+  <string name="trackdetail_endloc">Канец у:</string>
+  <string name="trackdetail_exportdate">Экспартавана:</string>
+  <string name="trackdetail_osm_upload_date">Загружана на OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Экспарт у GPX</string>
+  <string name="trackdetail_export_display">Паказаць</string>
+  <string name="trackdetail_description">Апісанне</string>
+  <string name="trackdetail_tags">Тэгі (праз коскі)</string>
+  <string name="trackdetail_description_mandatory">Вы павінны ўвесці апісанне</string>
+  <string name="osm_visibility_private">Прыватны</string>
+  <string name="osm_visibility_public">Грамадскі</string>
+  <!--OSM upload-->
+  <string name="osm_upload_ok">Захаваць і загрузіць</string>
+  <string name="osm_upload_sending">Адпраўка трэка #{0}...</string>
+  <string name="osm_upload_waiting_response">Чаканне адказу сервера OpenStreetMap...</string>
+  <string name="osm_upload_error">Памылка пры загрузцы трэка</string>
+  <string name="osm_upload_sucess">Загрузка на OpenStreetMap прайшла паспяхова</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Запіс голасу</string>
+  <string name="gpsstatus_record_textnote">Тэкставая нататка</string>
+  <!--Menu-->
+  <string name="menu_settings">Налады</string>
+  <string name="menu_displaytrack">Паказаць трэк</string>
+  <string name="menu_stoptracking">Спыніць і захаваць</string>
+  <string name="menu_newtrack">Новы трэк</string>
+  <string name="menu_deletetracks">Выдаліць усе трэкі</string>
+  <string name="menu_continue">Працягнуць трэк</string>
+  <string name="menu_stopcurrenttrack">Спыніць бягучы трэк</string>
+  <string name="menu_save">Захаваць</string>
+  <string name="menu_cancel">Скасаваць</string>
+  <string name="menu_export">Экспарт у GPX</string>
+  <string name="menu_center_to_gps">Цэнтраваць па GPS</string>
+  <string name="menu_exportall">Экспартаваць усё як GPX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Немагчыма запісаць на вонкавы носьбіт.</string>
+  <string name="error_voicerec_failed">Запіс голасу не атрымаўся</string>
+  <!--GPX-->
+  <!--About screen-->
+  <!--Notification-->
+  <!--Display track-->
+  <!--Track detail-->
+  <string name="trackdetail_save">Захаваць</string>
+  <!--Various-->
+  <string name="various_unit_meters">м</string>
+  <string name="various_accuracy">Дакладнасць</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading_unknown">Напрамак не можа быць вызначаны</string>
+  <!--OSM map view-->
+</resources>

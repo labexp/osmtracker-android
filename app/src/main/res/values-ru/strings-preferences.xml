@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Настройки</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">Настройки GPS</string>
+  <string name="prefs_gps_os_settings_summary">Открыть системные настройки GPS</string>
+  <string name="prefs_check_gps_startup">Проверять GPS при запуске</string>
+  <string name="prefs_check_gps_startup_summary">Проверять статус GPS при запуске, предлагать включить</string>
+  <string name="prefs_gps_ignore_clock">Игнорировать время GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Игнорировать время GPS и использовать время телефона для временных меток</string>
+  <string name="prefs_gps_logging_interval">Интервал сохранения GPS</string>
+  <string name="prefs_gps_logging_interval_summary">Установите 0 для минимально возможного (ускоряет разряд батереи)</string>
+  <string name="prefs_gps_logging_interval_seconds">секунд(ы)</string>
+  <string name="prefs_ui">Интерфейс</string>
+  <string name="prefs_ui_picture_source">Источник фото по-умолчанию</string>
+  <string name="prefs_ui_picture_source_summary">Сделать снимок или выбрать фото из галереи?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Камера</item>
+    <item>Альбом</item>
+    <item>Всегда запрашивать</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Расположение кнопок</string>
+  <string name="prefs_ui_buttons_layout_summary">Выбрать вариант расположения кнопок (См. документацию)</string>
+  <string name="prefs_ui_buttons_layout_defaut">По умолчанию</string>
+  <string name="prefs_ui_orientation">Ориентация</string>
+  <string name="prefs_ui_orientation_summary">Предпочтительная ориентация экрана с кнопками</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Автоматическая</item>
+    <item>Портретная</item>
+    <item>Ладншафтная</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Длительность записи аудио</string>
+  <string name="prefs_voicerec_duration_seconds">секунд(ы)</string>
+  <string name="prefs_theme">Основная тема оформления</string>
+  <string name="prefs_theme_summary">Изменения будут действовать после перезагрузки программы</string>
+  <string-array name="prefs_theme_keys">
+    <item>По умолчанию</item>
+    <item>Темная</item>
+    <item>Светлая</item>
+    <item>Высокий контраст</item>
+  </string-array>
+  <string name="prefs_display_always_on">Не отключать экран</string>
+  <string name="prefs_display_always_on_summary">Экран всегда будет включен во время записи трека. Отключите для экономии заряда батареи</string>
+  <string name="prefs_displaytrack_osm">Картооснова OSM</string>
+  <string name="prefs_displaytrack_osm_summary">Отображать картооснову OpenStreetMap при отображении трека. Требует интернет-соединения</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Всегда показывать OpenStreetMap на фоне? Требуется подключение к сети.</string>
+  <string name="prefs_output">Настройки GPX файлов</string>
+  <string name="prefs_storage_dir">Сохранять в каталоге</string>
+  <string name="prefs_storage_dir_hint">Будет использоваться для записи следующего трека (не для текущего)</string>
+  <string name="prefs_output_one_dir_per_track">Отдельная директория для трека</string>
+  <string name="prefs_output_one_dir_per_track_summary">Сохранять каждый трек и связанные файлы в отдельную директорию</string>
+  <string name="prefs_output_filename">Имя файлов для именованных треков</string>
+  <string name="prefs_output_filename_summary">Шаблон имени файла</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Имя трека</item>
+    <item>Имя, дата и время старта</item>
+    <item>Дата и время старта</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Точность в GPX файл</string>
+  <string name="prefs_output_accuracy_summary">Записывать информацию о точности в GPX файл, в название точки, или отдельным тэгом</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Нет</item>
+    <item>В имя точки</item>
+    <item>В комментарий точки</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Использовать аппроксимацию HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Заполнять тэг HDOP в GPX файле аппроксимированным значением точности</string>
+  <string name="prefs_sound_enabled">Включить звук</string>
+  <string name="prefs_sound_enabled_summary">Играть звук в момент начала и окончания записи аудио</string>
+  <string name="prefs_osm_clear_oauth_data">Сбросить учетные данные OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Удалить учетные данные доступа к OSM и задать OSMTracker запросить их снова.</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Нужно будет заново авторизовать OSMTracker, чтобы закачивать треки. Вы уверены?</string>
+  <string name="prefs_map_tile">Поставщики картоосновы</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Нет</item>
+    <item>в комментарии</item>
+    <item>в расширении</item>
+  </string-array>
+  <string name="prefs_compass_heading">Экспорт направления из компаса</string>
+  <string name="prefs_compass_heading_summary">Определяет когда и как данные компаса могут быть экспортированы в файл GPX</string>
+</resources>

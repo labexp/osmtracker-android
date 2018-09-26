@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker za Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Ta program, ki ga je navdihnil OSMTracker na sistemu Windows Mobile, vam  omogoča slediti svojim potovanjem, označiti pomembne točke sledi (glasovni posnetek, fotografije) in jih izvozizi v obliko GPX za kasnejšo uporabo z orodji Open Street Map, kot je JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Beležnik sledi</string>
+  <string name="tracklogger_waiting_gps">Počakajte na določitev lokacije GPS, da omogočite gumbe …</string>
+  <string name="tracklogger_voicerec_title">Glasovni posnetek</string>
+  <string name="tracklogger_voicerec_text">Snemanje {0}-sek. zvočnega izrezka.</string>
+  <string name="tracklogger_voicerec_stop">Ustavi</string>
+  <string name="tracklogger_btnBack">Nazaj</string>
+  <string name="tracklogger_tracked">Sledeno:</string>
+  <string name="tracklogger_gps_disabled">GPS onemogočen</string>
+  <string name="tracklogger_gps_disabled_hint">GPS je onemogočen. Ali ga želite omogočiti?</string>
+  <string name="tracklogger_choose_gallery_camera">Galerija ali fotoaparat?</string>
+  <string name="tracklogger_camera">Posnemi fotografijo s fotoaparatom</string>
+  <string name="tracklogger_gallery">Izberi fotografijo iz galerije</string>
+  <!--Waypoint List-->
+  <string name="wplist">Seznam točk sledi</string>
+  <string name="wplist_latitude">Zemlj. šir.:</string>
+  <string name="wplist_longitude">Zemlj. dol.:</string>
+  <string name="wplist_elevation">Nadm. viš.:</string>
+  <string name="wplist_accuracy">Natan.:</string>
+  <string name="wplist_compass">Smer komp.:</string>
+  <string name="wplist_compass_accuracy">Natan. komp.:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Upravitelj sledi</string>
+  <string name="trackmgr_tracklist">Seznam sledi:</string>
+  <string name="trackmgr_waypoints_count">Točke poti:</string>
+  <string name="trackmgr_trackpoints_count">Točke sledi:</string>
+  <string name="trackmgr_empty">Nimate sledi.</string>
+  <string name="trackmgr_newtrack_hint">Ta snemanje sledi\npritisnite <b>Meni</b> in potem <b>Nova sled</b></string>
+  <string name="trackmgr_newtrack_error">Ustvarjanje nove sledi ni mogoče: [0]</string>
+  <string name="trackmgr_continuetrack_hint">Trenutno snemate <b>sled št. {0}</b>\nIzberite jo na seznamu, da nadaljujete</string>
+  <string name="trackmgr_contextmenu_stop">Ustavi sledenje</string>
+  <string name="trackmgr_contextmenu_resume">Nadaljuj sledenje</string>
+  <string name="trackmgr_contextmenu_delete">Izbriši</string>
+  <string name="trackmgr_contextmenu_export">Izvozi kot GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Pošlji na OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Prikaži</string>
+  <string name="trackmgr_contextmenu_details">Podrobnosti</string>
+  <string name="trackmgr_contextmenu_title">Sled št. {0}</string>
+  <string name="trackmgr_delete_confirm">Sled št. {0} bo izbisana</string>
+  <string name="trackmgr_deleteall_confirm">Vse sledi bodo izbrisane. Ali ste prepričani?</string>
+  <string name="trackmgr_exporting">Izbvažanje sledi št. {0} </string>
+  <string name="trackmgr_exporting_prepare">Pripravljanje izvoza </string>
+  <string name="trackmgr_export_error">Izvoz sledi ni mogoč: {0}</string>
+  <string name="trackmgr_exportall_confirm">Vsa sledi bodo izvožene, kar lahko traja dolgo časa. Ali ste prepričani?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Podorobnosti sledi</string>
+  <string name="trackdetail_startdate">Začetni čas:</string>
+  <string name="trackdetail_enddate">Končni čas:</string>
+  <string name="trackdetail_startloc">Začetna lok.:</string>
+  <string name="trackdetail_endloc">Končna lok.:</string>
+  <string name="trackdetail_exportdate">Izvoženo:</string>
+  <string name="trackdetail_osm_upload_date">Poslano na OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Izvozi kot GPX</string>
+  <string name="trackdetail_export_notyet">(Še ni izvoženo)</string>
+  <string name="trackdetail_osm_upload_notyet">(Še ni poslano)</string>
+  <string name="trackdetail_export_display">Prikaži</string>
+  <string name="trackdetail_description">Opis</string>
+  <string name="trackdetail_tags">Oznake (ločene z vejico)</string>
+  <string name="trackdetail_description_mandatory">Vnesti morate opis</string>
+  <string name="osm_visibility_private">Zasebno</string>
+  <string name="osm_visibility_public">Javno</string>
+  <string name="osm_visibility_trackable">Sledljivo</string>
+  <string name="osm_visibility_identifiable">Prepoznavno</string>
+  <!--OSM upload-->
+  <string name="osm_upload">Pošiljanje OpenStreetMap</string>
+  <string name="osm_upload_ok">Shrani in pošlji</string>
+  <string name="osm_upload_tmpfile_failed">Sledi ni mogoče izvoziti v začasno datoeko</string>
+  <string name="osm_upload_oauth_failed">Ni se mogoče overiti z OSM-om</string>
+  <string name="osm_upload_sending">Pošiljanje sledi št. {0} </string>
+  <string name="osm_upload_waiting_response">Čakanje na odziv strežnika OpenStreetMap </string>
+  <string name="osm_upload_error">Napaka med pošiljanjem sledi</string>
+  <string name="osm_upload_bad_response">Strežnik OSM je vrnil napako: ({0}) sporočilo {1}</string>
+  <string name="osm_upload_unauthorized">Napaka pri pooblastitvi. Ali bi radi počistili shranjena poverila OpenStreetMap?</string>
+  <string name="osm_upload_sucess">Pošiljanje OpenStreetMap je uspelo</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Posnemi glas</string>
+  <string name="gpsstatus_record_stillimage">Posnemi fotografijo</string>
+  <string name="gpsstatus_record_textnote">Besedilna opomba</string>
+  <!--Menu-->
+  <string name="menu_settings">Nastavitve</string>
+  <string name="menu_waypointlist">Točke poti</string>
+  <string name="menu_about">O programu</string>
+  <string name="menu_displaytrack">Prikaži sled</string>
+  <string name="menu_stoptracking">Ustavi in shrani</string>
+  <string name="menu_newtrack">Nova sled</string>
+  <string name="menu_deletetracks">Izbriši vse sledi</string>
+  <string name="menu_continue">Nadaljuj sled</string>
+  <string name="menu_stopcurrenttrack">Ustavi trenutno sled</string>
+  <string name="menu_save">Shrani</string>
+  <string name="menu_cancel">Prekliči</string>
+  <string name="menu_export">Izvozi kot GPX</string>
+  <string name="menu_osm_upload">Pošiljanje OpenStreetMap</string>
+  <string name="menu_center_to_gps">Postavi GPS na sredino</string>
+  <string name="menu_exportall">Izvozi vse kot GPX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Zapis na zunanjo pomničniško napravo nni mogoč</string>
+  <string name="error_create_track_dir">Ustvarjanje mape sledi %s ni mogoče</string>
+  <string name="error_externalstorage_not_writable_hint">Preverite, ali je zunanja pom. naprava pravilno vstavljena in priklopljena.</string>
+  <string name="error_voicerec_failed">Snemanje glasu je spodletelo.</string>
+  <string name="error_userlayout_parsing">Napaka pri razčlenjevanju razporeditvene datoteke XML. Povrnite na privzeto razporeditev.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Sledeno s programom OSMTracker za Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Opozorilo: vrednosti HDOP niso HDOP, kot jih vrne naprava GPS. Približane so iz natančnosti lokacije v metrih.</string>
+  <!--About screen-->
+  <string name="about">O programu</string>
+  <string name="about_text">Za več podatkov, dokumentacijo in poročila o vprašanjih obiščite domačo stran projekta:</string>
+  <string name="about_translate_text">Pomagajte prevesti OSMTracker:</string>
+  <string name="about_debug_info">Podatki o razhroščevanju</string>
+  <string name="about_export_db">Izvozi podatkovno zbirko</string>
+  <string name="about_exporting_db">Izvažanje podatkovnr zbirke </string>
+  <string name="about_export_db_result">Rezultat izvoza podatkovne zbirke: %s</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker sledi</string>
+  <string name="notification_title">OSMTracker seldi (#{0})</string>
+  <string name="notification_text">Tapnite tukaj, da prikažete glavni zaslon</string>
+  <!--Display track-->
+  <string name="displaytrack">Prikaži sled</string>
+  <string name="displaytrack_map">Prikaži zemljevid ozadja</string>
+  <string name="displaytrack_north">S</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Shrani</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Natančnost</string>
+  <string name="various_accuracy_with_sats">Natančnost {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Čakanje na lokacijo GPS … ({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Počakajte na smer </string>
+  <string name="various_heading_unknown">Smeri ni mogoče določiti</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">Prikaz sledi OpenStreetMap</string>
+</resources>

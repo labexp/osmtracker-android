@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">Logo OSMTracker</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Apropa</string>
+  <string name="acc.zoom_out">Allunya</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Indicador de senyal de satèlit</string>
+  <string name="acc.record_indicator">Indicador de gravació en progrés</string>
+  <!--Track list-->
+  <string name="acc.track_status">Indicador d\'estat de Track</string>
+  <string name="acc.upload_status">Indicador de pujada de dades a OpenStreetMap</string>
+</resources>

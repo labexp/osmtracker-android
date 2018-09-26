@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Aplikacja zainspirowana OSMTrackerem dla Windows Mobile, pozwala śledzić Twoje podróże, oznaczać istotne w trasie punkty (nagrywając głos lub robiąc zdjęcia). Zapisane trasy można wyeksportować do formatu GPX w celu późniejszego użycia ich w narzędziach takich jak JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Zapisywanie śladu</string>
+  <string name="tracklogger_waiting_gps">Oczekiwanie na pozycję GPS, aby uaktywnić przyciski…</string>
+  <string name="tracklogger_voicerec_title">Nagrywanie głosu</string>
+  <string name="tracklogger_voicerec_text">Nagrywanie {0}s audio.</string>
+  <string name="tracklogger_voicerec_stop">Stop</string>
+  <string name="tracklogger_btnBack">Wróć</string>
+  <string name="tracklogger_tracked">Ślad: </string>
+  <string name="tracklogger_gps_disabled">GPS wyłączony</string>
+  <string name="tracklogger_gps_disabled_hint">GPS jest wyłączony. Czy chcesz go włączyć?</string>
+  <string name="tracklogger_choose_gallery_camera">Galeria czy aparat?</string>
+  <string name="tracklogger_camera">Zrób zdjęcie aparatem fotograficznym</string>
+  <string name="tracklogger_gallery">Wybierz zdjęcie z galerii</string>
+  <!--Waypoint List-->
+  <string name="wplist">Lista punktów nawigacji</string>
+  <string name="wplist_latitude">Szer: </string>
+  <string name="wplist_longitude">Dług: </string>
+  <string name="wplist_elevation">Wys: </string>
+  <string name="wplist_accuracy">Dokł: </string>
+  <string name="wplist_compass">Kierunek z kompasu:</string>
+  <string name="wplist_compass_accuracy">Dokładność kompasu: </string>
+  <!--Track Manager-->
+  <string name="trackmgr">Menadżer śladów</string>
+  <string name="trackmgr_tracklist">Lista śladów:</string>
+  <string name="trackmgr_waypoints_count">Pkt nawigacji: </string>
+  <string name="trackmgr_trackpoints_count">Pkt śladu: </string>
+  <string name="trackmgr_empty">Nie masz żadnych śladów.</string>
+  <string name="trackmgr_newtrack_error">Nie można utworzyć nowego śladu: {0}</string>
+  <string name="trackmgr_contextmenu_stop">Zakończ rejestrację</string>
+  <string name="trackmgr_contextmenu_resume">Wznów rejestrację</string>
+  <string name="trackmgr_contextmenu_delete">Usuń</string>
+  <string name="trackmgr_contextmenu_export">Eksport do GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Wyślij do OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Wyświetl</string>
+  <string name="trackmgr_contextmenu_details">Szczegóły</string>
+  <string name="trackmgr_contextmenu_title">Ślad #{0}</string>
+  <string name="trackmgr_delete_confirm">Ślad #{0} zostanie usunięty</string>
+  <string name="trackmgr_deleteall_confirm">Wszystkie dane zostaną usunięte. Czy na pewno?</string>
+  <string name="trackmgr_exporting">Eksport śladu #{0}…</string>
+  <string name="trackmgr_export_error">Nie można eksportować śladu: {0}</string>
+  <string name="trackmgr_exportall_confirm">Wszystkie ślady zostaną wysłane, może to zająć dużo czasu. Jesteś pewien?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Szczegóły śladu</string>
+  <string name="trackdetail_startdate">Start:</string>
+  <string name="trackdetail_enddate">Koniec:</string>
+  <string name="trackdetail_startloc">Start w:</string>
+  <string name="trackdetail_endloc">Koniec w:</string>
+  <string name="trackdetail_exportdate">Eksportuj:</string>
+  <string name="trackdetail_osm_upload_date">Wysłano do OpenStreetMap.</string>
+  <string name="trackdetail_btn_export">Eksportuj do GPX</string>
+  <string name="trackdetail_export_notyet">(Jeszcze nie wyeksportowano)</string>
+  <string name="trackdetail_osm_upload_notyet">(Jeszcze nie wysłano)</string>
+  <string name="trackdetail_export_display">Wyświetl</string>
+  <string name="trackdetail_description">Opis</string>
+  <string name="trackdetail_tags">Tagi (oddzielone przecinkami)</string>
+  <string name="trackdetail_description_mandatory">Musisz wpisać opis.</string>
+  <string name="osm_visibility_private">Prywatny</string>
+  <string name="osm_visibility_public">Publiczny</string>
+  <string name="osm_visibility_trackable">Niezidentyfikowany</string>
+  <string name="osm_visibility_identifiable">Zidentyfikowany</string>
+  <!--OSM upload-->
+  <string name="osm_upload">Wysyłanie do OSM</string>
+  <string name="osm_upload_ok">Zapisz i wyślij</string>
+  <string name="osm_upload_tmpfile_failed">Niepowiódł się eksport śladu do pliku tymczasowego.</string>
+  <string name="osm_upload_oauth_failed">Uwierzytelnianie w OSM nie powiodło się.</string>
+  <string name="osm_upload_sending">Wysyłanie śladu #{0}</string>
+  <string name="osm_upload_waiting_response">Oczekiwanie na odpowiedź serwera OSM...</string>
+  <string name="osm_upload_error">Podczas wysyłania śladu wystąpił błąd.</string>
+  <string name="osm_upload_bad_response">Serwer OSM zwrócił błąd ({0}) o treści {1}</string>
+  <string name="osm_upload_unauthorized">Błąd uwierzytelniania. Czy chcesz usunąć zapisane ustawienia uwierzytelniania OSM?</string>
+  <string name="osm_upload_sucess">Wysyłanie zakończone pomyślnie!</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Nagraj notkę 
+głosową</string>
+  <string name="gpsstatus_record_stillimage">Zrób zdjęcie</string>
+  <string name="gpsstatus_record_textnote">Notka</string>
+  <!--Menu-->
+  <string name="menu_settings">Ustawienia</string>
+  <string name="menu_waypointlist">Punkty nawigacji</string>
+  <string name="menu_about">O programie</string>
+  <string name="menu_displaytrack">Pokaż ślad</string>
+  <string name="menu_stoptracking">Zatrzymaj i zapisz</string>
+  <string name="menu_newtrack">Nowy ślad</string>
+  <string name="menu_deletetracks">Usuń wszystkie ślady</string>
+  <string name="menu_continue">Kontynuuj</string>
+  <string name="menu_stopcurrenttrack">Zakończ aktualny ślad</string>
+  <string name="menu_save">Zapisz</string>
+  <string name="menu_cancel">Anuluj</string>
+  <string name="menu_export">Eksport do GPX</string>
+  <string name="menu_osm_upload">Wysyłanie do OSM</string>
+  <string name="menu_center_to_gps">Centruj do GPS</string>
+  <string name="menu_exportall">Eksportuj wszystko do GPX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Nie można zapisać do pamięci zewnętrznej.</string>
+  <string name="error_create_track_dir">Nie można utworzyć folderu śladu %s.</string>
+  <string name="error_externalstorage_not_writable_hint">Proszę sprawdzić wew. pamięć czy jest prawidłowo zamontowana.</string>
+  <string name="error_voicerec_failed">Nagrywanie głosu nie powiodło się</string>
+  <string name="error_userlayout_parsing">Błąd podczas przetwarzania pliku XML. Proszę powrócić do domyślnego układu.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Ślad zapisany przez OSMTracker - Android™</string>
+  <string name="gpx_hdop_approximation_cmt">UWAGA: wartości HDOP nie są pobierane z urządzenia GPS. Są to dane orientacyjne podane w metrach.</string>
+  <!--About screen-->
+  <string name="about">O programie</string>
+  <string name="about_text">Więcej informacji, dokumentacja i zgłaszanie błędów, na stronie domowej projektu:</string>
+  <string name="about_translate_text">Pomóż przetłumaczyć OSMTracker!</string>
+  <string name="about_debug_info">Debug info</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker zapisuje ślad</string>
+  <string name="notification_title">OSMTracker zapisuje ślad (#{0})</string>
+  <string name="notification_text">Dotknij tutaj, aby wyświetlić ekran główny</string>
+  <!--Display track-->
+  <string name="displaytrack">Wyświetla ślad</string>
+  <string name="displaytrack_map">Wyświetl mapę w tle</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Zapisz</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Dokładność</string>
+  <string name="various_accuracy_with_sats">Dokładność: {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Czekam na GPS ({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Oczekuję na kierunek...</string>
+  <string name="various_heading_unknown">Kierunek nie może zostać określony</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">Podgląd śladu w OpenStreetMap</string>
+</resources>

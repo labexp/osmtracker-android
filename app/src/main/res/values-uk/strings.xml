@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker для Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Як і OSMTracker для Windows Mobile, програма дозволяє записувати Ваші подорожі, відзначаючи найважливіші точки (із записом аудіо, фото), експортувати їх у формат GPX для подальшого використання в редакторах Open Street Map, наприклад в JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Реєстратор шляхів</string>
+  <string name="tracklogger_waiting_gps">Очікування GPS фіксації для активації кнопок ...</string>
+  <string name="tracklogger_voicerec_title">Запис голосу</string>
+  <string name="tracklogger_voicerec_text">Записується аудіо: {0}с</string>
+  <string name="tracklogger_voicerec_stop">Стоп</string>
+  <string name="tracklogger_btnBack">Назад</string>
+  <string name="tracklogger_tracked">Відстежено</string>
+  <string name="tracklogger_gps_disabled">GPS вимкнено</string>
+  <string name="tracklogger_gps_disabled_hint">GPS вимкнено. Бажаєте його включити?</string>
+  <string name="tracklogger_choose_gallery_camera">Галерея чи камера?</string>
+  <string name="tracklogger_camera">Зробити знімок камерою</string>
+  <string name="tracklogger_gallery">Вибрати фото з галереї</string>
+  <!--Waypoint List-->
+  <string name="wplist">Список дорожніх точок</string>
+  <string name="wplist_latitude">Шир.:</string>
+  <string name="wplist_longitude">Довг.:</string>
+  <string name="wplist_elevation">Вис:</string>
+  <string name="wplist_accuracy">Точн:</string>
+  <string name="wplist_compass">Обчисл. напрям:</string>
+  <string name="wplist_compass_accuracy">Точн. обч.:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Менеджер шляхів</string>
+  <string name="trackmgr_tracklist">Список шляхів:</string>
+  <string name="trackmgr_waypoints_count">Дорожні точки:</string>
+  <string name="trackmgr_trackpoints_count">Точки шляху:</string>
+  <string name="trackmgr_empty">У вас не має  шляхів.</string>
+  <string name="trackmgr_newtrack_error">Неможливо створити новий шлях:{0}</string>
+  <string name="trackmgr_contextmenu_stop">Зупинити запис</string>
+  <string name="trackmgr_contextmenu_resume">Продовжити запис</string>
+  <string name="trackmgr_contextmenu_delete">Вилучити</string>
+  <string name="trackmgr_contextmenu_export">Експортувати як GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Завантажити на OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Показати</string>
+  <string name="trackmgr_contextmenu_details">Подробиці</string>
+  <string name="trackmgr_contextmenu_title">Шлях #{0}</string>
+  <string name="trackmgr_delete_confirm">Шлях #{0} буде видалено</string>
+  <string name="trackmgr_deleteall_confirm">Усі шляхи буде вилучено. Ви впевнені?</string>
+  <string name="trackmgr_exporting">Експорт шляху #{0}…</string>
+  <string name="trackmgr_export_error">Неможливо експортувати шлях:{0}…</string>
+  <string name="trackmgr_exportall_confirm">Буде експортовано усі шляхи, що може зайняти тривалий час.</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Подробиці шляху</string>
+  <string name="trackdetail_startdate">Час початку:</string>
+  <string name="trackdetail_enddate">Час закінчення:</string>
+  <string name="trackdetail_startloc">Початок:</string>
+  <string name="trackdetail_endloc">Кінець:</string>
+  <string name="trackdetail_exportdate">Експортовано:</string>
+  <string name="trackdetail_osm_upload_date">Завантажено на OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Експортувати в GPX</string>
+  <string name="trackdetail_export_notyet">(Ще не експортовано)</string>
+  <string name="trackdetail_osm_upload_notyet">(Ще не завантажено)</string>
+  <string name="trackdetail_export_display">Показати</string>
+  <string name="trackdetail_description">Опис</string>
+  <string name="trackdetail_tags">Мітки (через кому)</string>
+  <string name="trackdetail_description_mandatory">Вам необхідно ввести опис</string>
+  <string name="osm_visibility_private">Приватний</string>
+  <string name="osm_visibility_public">Загальнодоступний</string>
+  <string name="osm_visibility_trackable">Відстежуваний</string>
+  <string name="osm_visibility_identifiable">Індентифікований</string>
+  <!--OSM upload-->
+  <string name="osm_upload">Завантаження на OpenStreetMap</string>
+  <string name="osm_upload_ok">Зберегти і завантажити</string>
+  <string name="osm_upload_tmpfile_failed">Не вдалося експортувати шлях у тимчасовий файл</string>
+  <string name="osm_upload_oauth_failed">Не вдалося пройти перевірку істинності на OSM</string>
+  <string name="osm_upload_sending">Надсилається шлях #{0}...</string>
+  <string name="osm_upload_waiting_response">Очікування відповіді від сервера OpenStreetMap...</string>
+  <string name="osm_upload_error">Помилка завантаження шляху</string>
+  <string name="osm_upload_bad_response">Сервер OSM повернув помилку: ({0}) текст {1}</string>
+  <string name="osm_upload_unauthorized">Помилка авторизації. Видалити збережені облікові дані OpenStreetMap?</string>
+  <string name="osm_upload_sucess">Завантаження на OpenStreetMap завершено</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Запис звуку</string>
+  <string name="gpsstatus_record_stillimage">Зробити фото</string>
+  <string name="gpsstatus_record_textnote">Запис тексту</string>
+  <!--Menu-->
+  <string name="menu_settings">Налаштування</string>
+  <string name="menu_waypointlist">Дорожні точки</string>
+  <string name="menu_about">Про програму</string>
+  <string name="menu_displaytrack">Показати шлях</string>
+  <string name="menu_stoptracking">Зупинити і зберегти</string>
+  <string name="menu_newtrack">Новий шлях</string>
+  <string name="menu_deletetracks">Вилучити всі шляхи</string>
+  <string name="menu_continue">Продовжити шлях</string>
+  <string name="menu_stopcurrenttrack">Зупинити запис шляху</string>
+  <string name="menu_save">Зберегти</string>
+  <string name="menu_cancel">Скасувати</string>
+  <string name="menu_export">Експортувати в GFX</string>
+  <string name="menu_osm_upload">Завантаження на OpenStreetMap</string>
+  <string name="menu_center_to_gps">Центрувати по GPS</string>
+  <string name="menu_exportall">Експортувати усе в GFX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">Неможливо записати на зовнішній носій.</string>
+  <string name="error_create_track_dir">Неможливо створити теку шляху %s</string>
+  <string name="error_externalstorage_not_writable_hint">Перевірте, чи зовнішній носій вірно вставлений та змонтований</string>
+  <string name="error_voicerec_failed">Помилка запису аудіо</string>
+  <string name="error_userlayout_parsing">Помилка аналізу файлу розмітки XML. Верніться до типової розмітки.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Записано на OSMTracker для Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Увага: значення записувані в файл як HDOP - це не значення HDOP, одержувані від GPS пристрою. Це наближено обчислені значення, отримані з метровою точністю розташування.</string>
+  <!--About screen-->
+  <string name="about">Про програму:</string>
+  <string name="about_text">Детальна інформація, повідомлення про помилки знаходяться на офіційному сайті проекту:</string>
+  <string name="about_translate_text">Допомогти з перекладом OSMTracker:</string>
+  <string name="about_debug_info">Налагоджувальна інформація</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker запущено</string>
+  <string name="notification_title">OSMTracker запущено (#{0})</string>
+  <string name="notification_text">Натисніть тут для повернення на головний екран</string>
+  <!--Display track-->
+  <string name="displaytrack">Показати шлях</string>
+  <string name="displaytrack_map">Відображати основну карту</string>
+  <string name="displaytrack_north">Пн</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Зберегти</string>
+  <!--Various-->
+  <string name="various_unit_meters">м</string>
+  <string name="various_accuracy">Точність</string>
+  <string name="various_accuracy_with_sats">Точність {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Очікування фіксації GPS…({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Очікуємо на напрямок…</string>
+  <string name="various_heading_unknown">Напрямок не можна визначити</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">Відображення шляху OpenStreetMap</string>
+</resources>

@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker for Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Windows Mobile版 OSMTracker の後継で、あなたの旅の軌跡を記録し、ウェイポイントに印（音声録音や写真）をつけたり、GPX形式でエクスポートして、後でJOSMなどのOpen Street Map用ツールで編集したりできます。</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">トラックログ</string>
+  <string name="tracklogger_waiting_gps">GPS位置が特定できるまでボタンは無効です...</string>
+  <string name="tracklogger_voicerec_title">録音</string>
+  <string name="tracklogger_voicerec_text">録音 {0}秒</string>
+  <string name="tracklogger_voicerec_stop">停止</string>
+  <string name="tracklogger_btnBack">戻る</string>
+  <string name="tracklogger_tracked">トラック: </string>
+  <string name="tracklogger_gps_disabled">GPS無効</string>
+  <string name="tracklogger_gps_disabled_hint">GPSは無効です。有効にしますか？</string>
+  <string name="tracklogger_choose_gallery_camera">ギャラリーとカメラのどちらですか？</string>
+  <string name="tracklogger_camera">カメラで写真を撮る</string>
+  <string name="tracklogger_gallery">ギャラリーから写真を選択する</string>
+  <!--Waypoint List-->
+  <string name="wplist">ウェイポイントリスト</string>
+  <string name="wplist_latitude">緯度: </string>
+  <string name="wplist_longitude">経度: </string>
+  <string name="wplist_elevation">標高: </string>
+  <string name="wplist_accuracy">精度: </string>
+  <string name="wplist_compass">コンパスの向き:</string>
+  <string name="wplist_compass_accuracy">コンパスの精度:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">トラック管理</string>
+  <string name="trackmgr_tracklist">トラックリスト:</string>
+  <string name="trackmgr_waypoints_count">ウェイポイント: </string>
+  <string name="trackmgr_trackpoints_count">トラックポイント: </string>
+  <string name="trackmgr_empty">トラックデータがありません。</string>
+  <string name="trackmgr_newtrack_error">新しいトラックが作成できません: {0}</string>
+  <string name="trackmgr_contextmenu_stop">トラッキングの停止</string>
+  <string name="trackmgr_contextmenu_resume">トラッキングの再開</string>
+  <string name="trackmgr_contextmenu_delete">削除</string>
+  <string name="trackmgr_contextmenu_export">GPXにエクスポート</string>
+  <string name="trackmgr_contextmenu_osm_upload">OpenStreetMapへアップロード</string>
+  <string name="trackmgr_contextmenu_display">表示</string>
+  <string name="trackmgr_contextmenu_details">詳細</string>
+  <string name="trackmgr_contextmenu_title">トラック #{0}</string>
+  <string name="trackmgr_delete_confirm">トラック #{0} を削除します</string>
+  <string name="trackmgr_deleteall_confirm">全てのトラックを削除します。よろしいですか？</string>
+  <string name="trackmgr_exporting">トラック #{0} をエクスポート中…</string>
+  <string name="trackmgr_export_error">トラック {0} をエクスポートできません</string>
+  <string name="trackmgr_exportall_confirm">全てのトラックをエクスポートします。時間がかかる可能性があります。よろしいですか？</string>
+  <!--Track Detail-->
+  <string name="trackdetail">トラックの詳細</string>
+  <string name="trackdetail_startdate">開始時刻:</string>
+  <string name="trackdetail_enddate">終了時刻:</string>
+  <string name="trackdetail_startloc">開始位置:</string>
+  <string name="trackdetail_endloc">終了位置:</string>
+  <string name="trackdetail_exportdate">エクスポート時刻:</string>
+  <string name="trackdetail_osm_upload_date">OpenStreetMapアップロード時刻:</string>
+  <string name="trackdetail_btn_export">GPXでエクスポート</string>
+  <string name="trackdetail_export_notyet">（まだエクスポートしていません）</string>
+  <string name="trackdetail_osm_upload_notyet">（まだアップロードしていません）</string>
+  <string name="trackdetail_export_display">表示</string>
+  <string name="trackdetail_description">説明</string>
+  <string name="trackdetail_tags">タグ（カンマ区切り）</string>
+  <string name="trackdetail_description_mandatory">説明は必須項目です</string>
+  <string name="osm_visibility_private">非公開</string>
+  <string name="osm_visibility_public">公開</string>
+  <string name="osm_visibility_trackable">追跡可能</string>
+  <string name="osm_visibility_identifiable">識別可能</string>
+  <!--OSM upload-->
+  <string name="osm_upload">OpenStreetMapへのアップロード</string>
+  <string name="osm_upload_ok">保存してアップロード</string>
+  <string name="osm_upload_tmpfile_failed">トラックの一時ファイルへのエクスポートに失敗しました</string>
+  <string name="osm_upload_oauth_failed">OSMの認証に失敗しました</string>
+  <string name="osm_upload_sending">トラック {0} を送信しています...</string>
+  <string name="osm_upload_waiting_response">OpenStreetMapサーバーの応答を待っています...</string>
+  <string name="osm_upload_error">トラックのアップロード中にエラーが発生しました</string>
+  <string name="osm_upload_bad_response">OSMサーバーがエラーを返しました: ({0}) メッセージ {1}</string>
+  <string name="osm_upload_unauthorized">認証エラーです。保存されているOpenStreetMapの認証データをクリアしますか？</string>
+  <string name="osm_upload_sucess">OpenStreetMapへのアップロードに成功しました</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">音声録音</string>
+  <string name="gpsstatus_record_stillimage">写真撮影</string>
+  <string name="gpsstatus_record_textnote">テキスト</string>
+  <!--Menu-->
+  <string name="menu_settings">設定</string>
+  <string name="menu_waypointlist">ウェイポイント</string>
+  <string name="menu_about">概要</string>
+  <string name="menu_displaytrack">トラック表示</string>
+  <string name="menu_stoptracking">停止 &amp; 保存</string>
+  <string name="menu_newtrack">新規トラック</string>
+  <string name="menu_deletetracks">全てのトラックを削除</string>
+  <string name="menu_continue">トラックを続行</string>
+  <string name="menu_stopcurrenttrack">現在のトラックを停止</string>
+  <string name="menu_save">保存</string>
+  <string name="menu_cancel">取消</string>
+  <string name="menu_export">GPXでエクスポート</string>
+  <string name="menu_osm_upload">OpenStreetMapへのアップロード</string>
+  <string name="menu_center_to_gps">GPS位置を中央にする</string>
+  <string name="menu_exportall">全てをGPXでエクスポート</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">外部ストレージに書き込み出来ません。</string>
+  <string name="error_create_track_dir">‘%s’フォルダを作成できません。</string>
+  <string name="error_externalstorage_not_writable_hint">外部ストレージが挿入され、正しくマウントされていることを確認してください。</string>
+  <string name="error_voicerec_failed">音声録音に失敗しました</string>
+  <string name="error_userlayout_parsing">XMLレイアウトファイルが認識できません。デフォルトレイアウトに戻してください。</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
+  <string name="gpx_hdop_approximation_cmt">警告: HDOP値がGPS機器から返されたHDOP値と異なります。これは正しい位置からのメートル単位の距離です。</string>
+  <!--About screen-->
+  <string name="about">バージョン情報</string>
+  <string name="about_text">詳細情報,ドキュメント,議論については、ホームページを参照してください:</string>
+  <string name="about_translate_text">OSMTrackerの翻訳を支援してください。</string>
+  <string name="about_debug_info">デバッグ情報</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker トラッキング中</string>
+  <string name="notification_title">OSMTracker トラッキング中 (#{0})</string>
+  <string name="notification_text">表示するにはスクリーンをタップしてください</string>
+  <!--Display track-->
+  <string name="displaytrack">トラックを表示</string>
+  <string name="displaytrack_map">背景に地図を表示</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">保存</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">精度</string>
+  <string name="various_accuracy_with_sats">精度 {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">GPS測定待ち... ({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">方位測定待ち...</string>
+  <string name="various_heading_unknown">方位が特定できませんでした</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">OpenStreetMap トラック表示</string>
+</resources>

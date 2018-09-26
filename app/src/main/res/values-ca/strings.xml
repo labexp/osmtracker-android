@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker per a Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Isnpirat per OSMTracker per a Windows Mobile, us permet enregistrar els vostres viatges, marcar punts significatius (amb enregistrament de veu o fotografies) i exportar-ho a format GPX per poder utilitzar-ho després amb eines de l\'OpenStreetMap com ara el JOSM.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">Registre de ruta</string>
+  <string name="tracklogger_waiting_gps">Esperant fixar la posició gps per activar els botons..</string>
+  <string name="tracklogger_voicerec_title">Gravació de veu</string>
+  <string name="tracklogger_voicerec_text">Gravant un clip d\'àudio de {0}s.</string>
+  <string name="tracklogger_voicerec_stop">Atura</string>
+  <string name="tracklogger_btnBack">Enrere</string>
+  <string name="tracklogger_tracked">Tracked:</string>
+  <string name="tracklogger_gps_disabled">GPS desactivat</string>
+  <string name="tracklogger_gps_disabled_hint">El GPS està desactivat. Voleu activar-lo?</string>
+  <string name="tracklogger_choose_gallery_camera">Galeria o càmera?</string>
+  <string name="tracklogger_camera">Feu una foto amb la càmera</string>
+  <string name="tracklogger_gallery">Trieu una fotografia de la galeria</string>
+  <!--Waypoint List-->
+  <string name="wplist">Llista de punts de ruta (Waypoint)</string>
+  <string name="wplist_latitude">Lat:</string>
+  <string name="wplist_longitude">Long.</string>
+  <string name="wplist_elevation">Ele:</string>
+  <string name="wplist_accuracy">Precisió:</string>
+  <string name="wplist_compass">Deriva:</string>
+  <string name="wplist_compass_accuracy">Precisió brúixola:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">Gestor de tracks</string>
+  <string name="trackmgr_tracklist">Llista de track</string>
+  <string name="trackmgr_waypoints_count">Waypints (Punts de ruta):</string>
+  <string name="trackmgr_trackpoints_count">Punts:</string>
+  <string name="trackmgr_empty">No teniu cap track.</string>
+  <string name="trackmgr_newtrack_error">No s\'ha pogut crear la ruta: {0}</string>
+  <string name="trackmgr_contextmenu_stop">Atura l\'enregistrament</string>
+  <string name="trackmgr_contextmenu_resume">Reemprèn l\'enregistrament</string>
+  <string name="trackmgr_contextmenu_delete">Esborra</string>
+  <string name="trackmgr_contextmenu_export">Exporta com a GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Puja a OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Mostra</string>
+  <string name="trackmgr_contextmenu_details">Detalls</string>
+  <string name="trackmgr_contextmenu_title">Ruta #{0}</string>
+  <string name="trackmgr_delete_confirm">S\'esborrarà la Ruta #{0}</string>
+  <string name="trackmgr_deleteall_confirm">S\'esborraràn totes les rutes. Segur que ho voleu?</string>
+  <string name="trackmgr_exporting">Exportant la ruta #{0}...</string>
+  <string name="trackmgr_export_error">No s\'ha pogut exportar la ruta: {0}</string>
+  <string name="trackmgr_exportall_confirm">S\'exportaran totes les rutes. Això pot trigar bastant. Voleu continuar?</string>
+  <!--Track Detail-->
+  <string name="trackdetail">Detalls de la ruta</string>
+  <string name="trackdetail_startdate">Hora d\'inici:</string>
+  <string name="trackdetail_enddate">Hora de finalització:</string>
+  <string name="trackdetail_startloc">Comença a:</string>
+  <string name="trackdetail_endloc">S\'acaba a:</string>
+  <string name="trackdetail_exportdate">Exportada:</string>
+  <string name="trackdetail_osm_upload_date">Pujada a l\'OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Exporta com a GPX</string>
+  <string name="trackdetail_export_notyet">(Encara no s\'ha exportat)</string>
+  <string name="trackdetail_osm_upload_notyet">(Encara no s\'ha pujat)</string>
+  <string name="trackdetail_export_display">Mostra</string>
+  <string name="trackdetail_description">Descripció</string>
+  <string name="trackdetail_tags">Etiquetes (separades per coma)</string>
+  <string name="trackdetail_description_mandatory">Heu d\'escriure una descripció</string>
+  <string name="osm_visibility_private">Privat</string>
+  <string name="osm_visibility_public">Públic</string>
+  <string name="osm_visibility_trackable">Rastrejable</string>
+  <string name="osm_visibility_identifiable">Identificable</string>
+  <!--OSM upload-->
+  <string name="osm_upload">Puja a l\'OpenStreetMap</string>
+  <string name="osm_upload_ok">Desa i puja</string>
+  <string name="osm_upload_tmpfile_failed">No s\'ha pogut exportar la ruta a un fitxer temporal</string>
+  <string name="osm_upload_oauth_failed">No s\'ha pogut autentificar a l\'OSM</string>
+  <string name="osm_upload_sending">Enviant ruta #{0}...</string>
+  <string name="osm_upload_waiting_response">Esperant la resposta del servidor d\'OpenStreetMap...</string>
+  <string name="osm_upload_error">Hi ha hagut un error pujant la ruta</string>
+  <string name="osm_upload_bad_response">El servidor OSM ha retornat un error: ({0}) missagte {1}</string>
+  <string name="osm_upload_unauthorized">Error d\'autorització. Voleu esborrar les credencials d\'OpenStreetMap desades?</string>
+  <string name="osm_upload_sucess">S\'ha pujat correctament a l\'OpenStreetMap.</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Gravació de veu</string>
+  <string name="gpsstatus_record_stillimage">Preneu una foto</string>
+  <string name="gpsstatus_record_textnote">Nota de text</string>
+  <!--Menu-->
+  <string name="menu_settings">Configuració</string>
+  <string name="menu_waypointlist">Punts de ruta</string>
+  <string name="menu_about">Quant a</string>
+  <string name="menu_displaytrack">Mostra la ruta</string>
+  <string name="menu_stoptracking">Atura i desa</string>
+  <string name="menu_newtrack">Nova ruta</string>
+  <string name="menu_deletetracks">Esborra totes les rutes</string>
+  <string name="menu_continue">Continua la ruta</string>
+  <string name="menu_stopcurrenttrack">Atura la ruta actual</string>
+  <string name="menu_save">Desa</string>
+  <string name="menu_cancel">Cancel·la</string>
+  <string name="menu_export">Exporta com a GPX</string>
+  <string name="menu_osm_upload">Puja a l\'OpenStreetMap</string>
+  <string name="menu_center_to_gps">Centra al GPS</string>
+  <string name="menu_exportall">Exporta-ho tot a GPX</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">No s\'ha pogut escriure al emmagatzematge extern.</string>
+  <string name="error_create_track_dir">No s\'ha pogut crear la carpeta de rutes %s</string>
+  <string name="error_externalstorage_not_writable_hint">Si us plau, comproveu si l\'emmagatzematge extern està correctament inserit i muntat.</string>
+  <string name="error_voicerec_failed">Ha fallat l\'enregistrament de veu</string>
+  <!--GPX-->
+  <string name="gpx_track_name">Enregistrat amb OSMTracker per a  Android™</string>
+  <!--About screen-->
+  <string name="about">Quant a</string>
+  <string name="about_text">Per a més informació, docs i avís d\'errors, visiteu la pàgina web del projecte:</string>
+  <string name="about_translate_text">Ajuda a traduïr l\'OSMTracker:</string>
+  <string name="about_debug_info">Informació de depuració</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker està enregistrant</string>
+  <string name="notification_title">OSMTracker està enregistrant (#{0})</string>
+  <string name="notification_text">Toqueu aquí per veure la pantalla principal</string>
+  <!--Display track-->
+  <string name="displaytrack">Mostra ruta</string>
+  <string name="displaytrack_map">Mostra el mapa de fons</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">Desa</string>
+  <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Precisió</string>
+  <string name="various_accuracy_with_sats">Precisió {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Esperant posició GPS... ({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}º</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Espereu per direcció...</string>
+  <string name="various_heading_unknown">No s\'ha pogut determinar la direcció</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">Mostra ruta OpenStreetMap</string>
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">설정</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS 설정</string>
+  <string name="prefs_gps_os_settings_summary">시스템 GPS 설정 화면을 보여줍니다</string>
+  <string name="prefs_check_gps_startup">시작할 때 GPS 확인</string>
+  <string name="prefs_check_gps_startup_summary">GPS가 시작할 때 비활성화되어 있는지 확인하고 활성화할 수 있도록 제공합니다</string>
+  <string name="prefs_gps_ignore_clock">GPS 시계 무시</string>
+  <string name="prefs_gps_ignore_clock_summary">타임스탬프로 GPS 시계를 무시하고 Android 시계를 사용합니다</string>
+  <string name="prefs_gps_logging_interval">GPS 기록 간격</string>
+  <string name="prefs_gps_logging_interval_summary">가능한 짧게 하려면 0을 사용하세요 (배터리 수명에 영향을 줍니다)</string>
+  <string name="prefs_gps_logging_interval_seconds">초</string>
+  <string name="prefs_ui">사용자 인터페이스</string>
+  <string name="prefs_ui_picture_source">기본 사진 자료</string>
+  <string name="prefs_ui_picture_source_summary">사진을 카메라에서 찍거나 갤러리에서 가져오겠습니까?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>카메라</item>
+    <item>갤러리</item>
+    <item>항상 묻기</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">버튼 프리셋</string>
+  <string name="prefs_ui_buttons_layout_summary">사용자 지정 버튼 셋을 선택합니다 (설명문서를 참고하세요)</string>
+  <string name="prefs_ui_buttons_layout_defaut">기본값</string>
+  <string name="prefs_ui_orientation">화면 방향</string>
+  <string name="prefs_ui_orientation_summary">버튼 화면의 선호하는 방향</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>자동</item>
+    <item>세로</item>
+    <item>가로</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">음성 녹음 지속 시간</string>
+  <string name="prefs_voicerec_duration_seconds">초</string>
+  <string name="prefs_theme">주 화면 그래픽 테마</string>
+  <string name="prefs_theme_summary">바뀜을 적용하려면 애플리케이션을 다시 시작해야 합니다</string>
+  <string-array name="prefs_theme_keys">
+    <item>OS 기본값</item>
+    <item>OS 기본값 (어둡게)</item>
+    <item>OS 기본값 (밝게)</item>
+    <item>높은 명암</item>
+  </string-array>
+  <string name="prefs_display_always_on">화면 항상 켜기</string>
+  <string name="prefs_display_always_on_summary">화면이 트래킹하는 동안 항상 유지됩니다. 배터리를 절약하려면 비활성화하세요</string>
+  <string name="prefs_displaytrack_osm">배경 지도</string>
+  <string name="prefs_displaytrack_osm_summary">트랙 아래에 OpenStreetMap 지도를 보여줍니다. 데이터 연결이 필요합니다</string>
+  <string name="prefs_displaytrack_osm_summary_ask">OpenStreetMap 배경을 항상 보이겠습니까? 데이터 연결이 필요합니다.</string>
+  <string name="prefs_output">GPX 설정</string>
+  <string name="prefs_storage_dir">외부 저장소 (SD) 디렉터리</string>
+  <string name="prefs_storage_dir_hint">다음 트랙에 반영됩니다 (현재 것은 안됨)</string>
+  <string name="prefs_output_one_dir_per_track">트랙마다 디렉터리 하나</string>
+  <string name="prefs_output_one_dir_per_track_summary">자신의 디렉터리에 각 트랙과 관련 파일을 저장합니다</string>
+  <string name="prefs_output_filename">트랙 이름의 파일 이름</string>
+  <string name="prefs_output_filename_summary">트랙에 이름이 있으면 파일 이름의 패턴</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>트랙 이름</item>
+    <item>이름, 시작 날짜와 시간</item>
+    <item>시작 날짜와 시간</item>
+  </string-array>
+  <string name="prefs_output_accuracy">GPX 파일의 정확도</string>
+  <string name="prefs_output_accuracy_summary">GPX 파일에, 웨이포인트 이름이나 웨이포인트 주석에 정확성 정보를 추가합니다</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>없음</item>
+    <item>웨이포인트 이름</item>
+    <item>웨이포인트 주석</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">HDOP 근사값 사용</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">GPX의 HDOP에 실제 위치에서의 근사값을 채웁니다</string>
+  <string name="prefs_sound_enabled">소리 활성화</string>
+  <string name="prefs_sound_enabled_summary">음성 녹음을 시작하고 끝낼 때 소리를 재생합니다</string>
+  <string name="prefs_osm_clear_oauth_data">OSM 인증 재설정</string>
+  <string name="prefs_osm_clear_oauth_data_summary">OSM 자격 증명과 권한을 잊고 강제로 OSMTracker에 다시 묻도록 합니다</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">트랙을 올리려면 OSMTracker를 다시 인증해야 합니다. 지우겠습니까?</string>
+  <string name="prefs_map_tile">지도 타일 제공자</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>사이클 지도</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>없음</item>
+    <item>주석에서</item>
+    <item>확장에서</item>
+  </string-array>
+  <string name="prefs_compass_heading">나침반 방위 내보내기</string>
+  <string name="prefs_compass_heading_summary">나침반 데이터가 GPX 파일로 내보내져야 한다면과 어떻게 내보내야 하는지 정의합니다</string>
+</resources>

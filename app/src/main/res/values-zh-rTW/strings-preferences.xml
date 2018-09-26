@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">設定</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS 設定</string>
+  <string name="prefs_gps_os_settings_summary">顯示系統 GPS 設定功能頁</string>
+  <string name="prefs_check_gps_startup">在啟動時檢查 GPS 狀態</string>
+  <string name="prefs_check_gps_startup_summary">在程式啟動時檢查 GPS 是否關閉，並提示啟用它。</string>
+  <string name="prefs_gps_ignore_clock">忽略從 GPS 得到的時鐘數值</string>
+  <string name="prefs_gps_ignore_clock_summary">忽略從 GPS 得到的時鐘數值，改用 Android 系統本身的時鐘數值來計算時間戳記</string>
+  <string name="prefs_gps_logging_interval">GPS 記錄頻率</string>
+  <string name="prefs_gps_logging_interval_summary">若使用 0 則會盡可能頻繁地記錄資料 (同時會影響電池續航時間)</string>
+  <string name="prefs_gps_logging_interval_seconds">秒</string>
+  <string name="prefs_ui">使用介面</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>相機</item>
+    <item>相簿</item>
+    <item>總是詢問我</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">按鍵配置</string>
+  <string name="prefs_ui_buttons_layout_summary">選擇自訂的按鍵配置 (參見文件)</string>
+  <string name="prefs_ui_buttons_layout_defaut">預設配置</string>
+  <string name="prefs_ui_orientation">排列方向</string>
+  <string name="prefs_ui_orientation_summary">喜好的功能鈕介面排列方向</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>自動</item>
+    <item>直立</item>
+    <item>橫向</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">語音錄製長度</string>
+  <string name="prefs_voicerec_duration_seconds">秒</string>
+  <string name="prefs_theme">主功能畫面圖像主題</string>
+  <string name="prefs_theme_summary">需重新啟用程式，這項設定才會生效</string>
+  <string-array name="prefs_theme_keys">
+    <item>作業系統預設</item>
+    <item>作業系統預設 (暗)</item>
+    <item>作業系統預設 (亮)</item>
+    <item>高反差</item>
+  </string-array>
+  <string name="prefs_display_always_on">讓螢幕維持開啟</string>
+  <string name="prefs_display_always_on_summary">在記錄軌跡時，螢幕會保持開啟。關閉這個設定可節省用電量</string>
+  <string name="prefs_displaytrack_osm">背景地圖</string>
+  <string name="prefs_displaytrack_osm_summary">在軌跡底下顯示 OpenStreetMap 地圖。本功能需有可用的網路連結以傳輸資料</string>
+  <string name="prefs_displaytrack_osm_summary_ask">保持顯示 OpenStreetMap 底圖？此功能需要連線。</string>
+  <string name="prefs_output">GPX 相關設定</string>
+  <string name="prefs_storage_dir">外部儲存媒體 (SD) 資料夾位置</string>
+  <string name="prefs_storage_dir_hint">設定值將在記錄下一筆軌跡資料時生效 (不是目前這筆)</string>
+  <string name="prefs_output_one_dir_per_track">給每筆軌跡各配置一個專屬資料夾</string>
+  <string name="prefs_output_one_dir_per_track_summary">將每筆軌跡以及相關的檔案一起放在專屬的資料夾當中</string>
+  <string name="prefs_output_filename">軌跡資料檔命名</string>
+  <string name="prefs_output_filename_summary">軌跡資料檔的命名樣式</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>軌跡名稱</item>
+    <item>軌跡名稱，起始日期與時間</item>
+    <item>起始日期與時間</item>
+  </string-array>
+  <string name="prefs_output_accuracy">在 GPX 檔中附加精確度資訊</string>
+  <string name="prefs_output_accuracy_summary">將精確度資訊添加於 GPX 檔中的航點名稱，或是航點註解中</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>無</item>
+    <item>於航點名稱內</item>
+    <item>於航點註解中</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">使用 HDOP （水平2D坐標精度因子）近似值</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">在 GPX 檔中填入 HDOP 近似值</string>
+  <string name="prefs_sound_enabled">使用聲音</string>
+  <string name="prefs_sound_enabled_summary">當錄製語音期間可播放聲音</string>
+  <string name="prefs_osm_clear_oauth_data">重新設定 OSM 認證</string>
+  <string name="prefs_osm_clear_oauth_data_summary">捨棄現存的 OSM 認證與權限資訊，強制 OSMTracker 重新取得它們</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">您必須重新認證 OSMTracker 方能繼續上傳軌跡資料，確定嗎？</string>
+  <string name="prefs_map_tile">地圖圖塊的提供來源</string>
+  <string name="prefs_map_tile_summary"></string>
+</resources>

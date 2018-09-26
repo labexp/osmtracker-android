@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Asetukset</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS-asetukset</string>
+  <string name="prefs_gps_os_settings_summary">Näytä GPS-asetusten ikkuna</string>
+  <string name="prefs_check_gps_startup">Tarkista GPS käynnistettäessä</string>
+  <string name="prefs_check_gps_startup_summary">Tarkista jos GPS ei ole päällä käynnistettäessä ja kysy tarvittaessa</string>
+  <string name="prefs_gps_ignore_clock">Älä käytä GPS-aikaa</string>
+  <string name="prefs_gps_ignore_clock_summary">Käytä Androidin kelloa aikamerkinnöille</string>
+  <string name="prefs_gps_logging_interval">GPS-kirjauksen aikaväli</string>
+  <string name="prefs_gps_logging_interval_summary">Käytä 0 lyhimpään mahdolliseen (vaikuttaa akun kestoon)</string>
+  <string name="prefs_gps_logging_interval_seconds">sekuntia</string>
+  <string name="prefs_ui">Käyttöliittymä</string>
+  <string name="prefs_ui_picture_source">Kuvan oletuslähde</string>
+  <string name="prefs_ui_picture_source_summary">Otetaanko kuvat kamerasta vai galleriasta?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamerasta</item>
+    <item>Galleriasta</item>
+    <item>Kysy aina</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Painike-esiasetukset</string>
+  <string name="prefs_ui_buttons_layout_summary">Salli omat painikeasetukset (kts. dokumentit)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Oletus</string>
+  <string name="prefs_ui_orientation">Suuntaus</string>
+  <string name="prefs_ui_orientation_summary">Ensisijainen suuntaus nappinäkymään</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automaattinen</item>
+    <item>Pystysuuntainen</item>
+    <item>Vaakasuuntainen</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Äänitallenteen kesto</string>
+  <string name="prefs_voicerec_duration_seconds">sekuntia</string>
+  <string name="prefs_theme">Pääikkunan teema</string>
+  <string name="prefs_theme_summary">Käynnistä sovellus uudelleen, jotta asetukset tulevat voimaan</string>
+  <string-array name="prefs_theme_keys">
+    <item>Käyttöjärjestelmän oletus</item>
+    <item>Käyttöjärjestelmän oletus (Tumma)</item>
+    <item>Käyttöjärjestelmän oletus (Vaalea)</item>
+    <item>Korkea kontrasti</item>
+  </string-array>
+  <string name="prefs_display_always_on">Pidä näyttö aina päällä</string>
+  <string name="prefs_display_always_on_summary">Näyttö pysyy päällä seurannan ajan. Poista käytöstä säästääksesi akkua</string>
+  <string name="prefs_displaytrack_osm">OSM-tausta</string>
+  <string name="prefs_displaytrack_osm_summary">Näytä OpenStreetMap-kartta reitin alla. Tarvitset datayhteyden</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Näytetäänkö OpenStreetMap aina taustalla? Vaatii datayhteyden.</string>
+  <string name="prefs_output">GPX-asetukset</string>
+  <string name="prefs_storage_dir">Muistikortin (SD) kansio</string>
+  <string name="prefs_storage_dir_hint">Vaikuttaa seuraavaan reittiin (ei nykyiseen)</string>
+  <string name="prefs_output_one_dir_per_track">Yksi kansio per reitti</string>
+  <string name="prefs_output_one_dir_per_track_summary">Tallenna jokainen reitti ja siihen liittyvät tiedostot aina omaan kansioon</string>
+  <string name="prefs_output_filename">Tiedostonimi nimetyille seurannoille</string>
+  <string name="prefs_output_filename_summary">Tiedostonimen muoto jos reitillä on nimi</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Reitin nimi</item>
+    <item>Nimi, aloituspäivä ja aika</item>
+    <item>Aloituspäivä ja aika</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Tarkkuus GPX-tiedostossa</string>
+  <string name="prefs_output_accuracy_summary">Salli tarkkuusinfo GPX-tiedostossa waypoint-nimellä tai erillisellä kommentilla</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Ei mitään</item>
+    <item>Waypoint-nimi</item>
+    <item>Waypoint-kommentti</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Käytä HDOP-arviota</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Täytä HDOP GPX:ään tarkkuuden arviolla</string>
+  <string name="prefs_sound_enabled">Ota äänet käyttöön</string>
+  <string name="prefs_sound_enabled_summary">Anna äänimerkki äänitallennuksen alussa ja lopussa</string>
+  <string name="prefs_osm_clear_oauth_data">Nollaa OSM-kirjautuminen</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Unohda OSM-tunnukset ja oikeudet sekä pakota OSMTracker kysymään niitä uudestaan</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Joudut antamaan OSMTrackerille uudestaan luvan jälkien lähettämiseen. Oletko varma?</string>
+  <string name="prefs_map_tile">Kartan tarjoaja</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string name="prefs_compass_heading">Vie kompassin suunta</string>
+  <string name="prefs_compass_heading_summary">Määrittää, viedäänkö ja millä tavoin kompassin tiedot GPX-tiedostoon</string>
+</resources>

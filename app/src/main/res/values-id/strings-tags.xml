@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="tag.misc">Lain-lain</string>
+  <string name="tag.restriction">Terbatas</string>
+  <string name="tag.car">Mobil</string>
+  <string name="tag.tourism">Pariwisata</string>
+  <string name="tag.amenity">Fasilitas</string>
+  <string name="tag.amenity_more">Fasilitas (+)</string>
+  <string name="tag.way">Jalur</string>
+  <string name="tag.track">Trek</string>
+  <string name="tag.landuse">Kegunaan</string>
+  <string name="tag.misc_bus_stop">Halte</string>
+  <string name="tag.misc_railway">Rel kereta</string>
+  <string name="tag.misc_telephone">Telepon</string>
+  <string name="tag.misc_post_box">Kotak pos</string>
+  <string name="tag.misc_atm">ATM</string>
+  <string name="tag.misc_bollard">Tambatan kapal</string>
+  <string name="tag.misc_toilets">WC Umum</string>
+  <string name="tag.misc_shelter">Pondok</string>
+  <string name="tag.misc_surveillance">CCTV</string>
+  <string name="tag.restriction_20">Max 20</string>
+  <string name="tag.restriction_30">Max 30</string>
+  <string name="tag.restriction_40">Max 40</string>
+  <string name="tag.restriction_50">Max 50</string>
+  <string name="tag.restriction_60">Max 60</string>
+  <string name="tag.restriction_70">Max 70</string>
+  <string name="tag.restriction_80">Max 80</string>
+  <string name="tag.restriction_90">Max 90</string>
+  <string name="tag.restriction_100">Max 100</string>
+  <string name="tag.restriction_110">Max 110</string>
+  <string name="tag.restriction_120">Max 120</string>
+  <string name="tag.restriction_130">Max 130</string>
+  <string name="tag.restriction_no_exit">Buntu</string>
+  <string name="tag.restriction_traffic_light">Lampu merah</string>
+  <string name="tag.restriction_one_way">Satu arah</string>
+  <string name="tag.car_fuel_station">Pom bensin</string>
+  <string name="tag.car_parking">Parkiran</string>
+  <string name="tag.car_emergency_phone">Telpon umum</string>
+  <string name="tag.car_turning_circle">Bundaran putar</string>
+  <string name="tag.car_speed_camera">Kamera pengawas
+kecepatan</string>
+  <string name="tag.tourism_view_point">Panorama</string>
+  <string name="tag.tourism_information">Informasi</string>
+  <string name="tag.tourism_picnic">Tempat
+piknik</string>
+  <string name="tag.tourism_attraction">Atraksi</string>
+  <string name="tag.tourism_theme_park">Taman</string>
+  <string name="tag.tourism_castle">Istana/
+Kastil</string>
+  <string name="tag.tourism_monument">Monumen</string>
+  <string name="tag.tourism_museum">Museum</string>
+  <string name="tag.tourism_cinema">Bioskop</string>
+  <string name="tag.amenity_bench">Bangku
+taman</string>
+  <string name="tag.amenity_water">Perairan</string>
+  <string name="tag.amenity_pharmacy">Apotik</string>
+  <string name="tag.amenity_shop">Toko</string>
+  <string name="tag.amenity_marina">Pelabuhan</string>
+  <string name="tag.amenity_sport">Olahraga</string>
+  <string name="tag.amenity_taxi">Taksi</string>
+  <string name="tag.amenity_recycling">Bak
+sampah</string>
+  <string name="tag.amenity_post_office">Kantor pos</string>
+  <string name="tag.amenity_library">Pustaka</string>
+  <string name="tag.amenitymore_school">Sekolah</string>
+  <string name="tag.amenitymore_police">Polisi</string>
+  <string name="tag.amenitymore_fire_station">Pemadam
+kebakaran</string>
+  <string name="tag.amenitymore_bank">Bank</string>
+  <string name="tag.amenitymore_playground">Arena
+bermain</string>
+  <string name="tag.amenitymore_pub">Kafe</string>
+  <string name="tag.amenitymore_hotel">Hotel</string>
+  <string name="tag.amenitymore_motel">Penginapan</string>
+  <string name="tag.amenitymore_hostel">Losmen</string>
+  <string name="tag.amenitymore_restaurant">Restoran</string>
+  <string name="tag.amenitymore_fastfood">Berger
+Kentaki</string>
+  <string name="tag.amenitymore_camp_site">Perkemahan</string>
+  <string name="tag.way_bridge">Jembatan</string>
+  <string name="tag.way_zebra_crossing">Zebra cross</string>
+  <string name="tag.way_motorway">Jalur
+motor</string>
+  <string name="tag.way_trunk">Jalan
+tol</string>
+  <string name="tag.way_primary">Jalan
+utama</string>
+  <string name="tag.way_secondary">Jalan
+umum</string>
+  <string name="tag.way_tertiary">Jalan
+kecil</string>
+  <string name="tag.way_residential">Jalan
+perumahan</string>
+  <string name="tag.way_service">Gang</string>
+  <string name="tag.track_track">Trek</string>
+  <string name="tag.track_cycleway">Jalur
+sepeda</string>
+  <string name="tag.track_footway">Trotoar</string>
+  <string name="tag.track_bridleway">Jalan
+tanah</string>
+  <string name="tag.track_steps">Tangga</string>
+  <string name="tag.track_living_street">Jalanan
+ramai</string>
+  <string name="tag.track_pedestrian">Kaki lima</string>
+  <string name="tag.track_grade1">Kelas 1</string>
+  <string name="tag.track_grade2">Kelas 2</string>
+  <string name="tag.track_grade3">Kelas 3</string>
+  <string name="tag.track_grade4">Kelas 4</string>
+  <string name="tag.track_grade5">Kelas 5</string>
+  <string name="tag.landuse_farm">Pertanian</string>
+  <string name="tag.landuse_landfill">TPA sampah</string>
+  <string name="tag.landuse_basin">Kolam
+penampungan</string>
+  <string name="tag.landuse_reservoir">Waduk</string>
+  <string name="tag.landuse_forest">Hutan</string>
+  <string name="tag.landuse_allotments">Perkebunan</string>
+  <string name="tag.landuse_cemetery">Kuburan</string>
+</resources>
