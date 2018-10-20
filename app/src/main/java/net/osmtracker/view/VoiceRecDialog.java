@@ -25,7 +25,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-public class VoiceRecDialog extends AlertDialog implements OnInfoListener{
+public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	
 	private final static String TAG = VoiceRecDialog.class.getSimpleName();
 	
@@ -124,17 +124,29 @@ public class VoiceRecDialog extends AlertDialog implements OnInfoListener{
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
 		if (!isRecording) {
+			
 			String recLen = preferences.getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION, OSMTracker.Preferences.VAL_VOICEREC_DURATION);
-			if (recLen.startsWith("Unlimited")) recordingDuration = UNLIMITED_REC_LENGTH;
-			else recordingDuration = Integer.parseInt(recLen);
-		} else {
+
+			if (recLen.equals(context.getResources().getString(R.string.unlimited_time_to_recording_option))){
+
+				this.setMessage(null);
+				recordingDuration = UNLIMITED_REC_LENGTH;
+
+			}
+			else{
+
+				recordingDuration = Integer.parseInt(recLen);
+
+				this.setMessage(context.getResources().getString(R.string.tracklogger_voicerec_text)
+						.replace("{0}", recLen));
+			}
+
+		}
+		else {
+
 			if (recordingDuration <= 0)
 				recordingDuration = Integer.parseInt(OSMTracker.Preferences.VAL_VOICEREC_DURATION);
 		}
-
-		this.setMessage(
-				context.getResources().getString(R.string.tracklogger_voicerec_text)
-				.replace("{0}", String.valueOf(recordingDuration)));
 		
 		// we need to avoid screen orientation change during recording because this causes some strange behavior
 		try{
