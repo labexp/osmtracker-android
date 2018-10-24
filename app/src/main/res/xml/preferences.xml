@@ -21,6 +21,9 @@
 		<EditTextPreference android:key="gps.logging.interval"
 			android:title="@string/prefs_gps_logging_interval" android:summary="@string/prefs_gps_logging_interval_summary"
 			android:defaultValue="0" android:inputType="number"></EditTextPreference>
+		<EditTextPreference android:key="gps.logging.min_distance"
+			android:title="@string/prefs_gps_logging_min_distance" android:summary="@string/prefs_gps_logging_min_distance_summary"
+			android:defaultValue="0" android:inputType="number"></EditTextPreference>
 	</PreferenceCategory>
 	
 	<PreferenceCategory android:title="@string/prefs_output">

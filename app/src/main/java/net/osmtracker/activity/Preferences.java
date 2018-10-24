@@ -110,6 +110,23 @@ public class Preferences extends PreferenceActivity {
 			}
 		});
 
+		// Update GPS min. distance summary to the current value
+		pref = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE);
+		pref.setSummary(
+				prefs.getString(OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE)
+						+ " " + getResources().getString(R.string.prefs_gps_logging_min_distance_meters)
+						+ ". " + getResources().getString(R.string.prefs_gps_logging_min_distance_summary));
+		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				// Set summary with the interval and "seconds"
+				preference.setSummary(newValue
+						+ " " + getResources().getString(R.string.prefs_gps_logging_min_distance_meters)
+						+ ". " + getResources().getString(R.string.prefs_gps_logging_min_distance_summary));
+				return true;
+			}
+		});
+
 		pref = findPreference(OSMTracker.Preferences.KEY_GPS_OSSETTINGS);
 		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override

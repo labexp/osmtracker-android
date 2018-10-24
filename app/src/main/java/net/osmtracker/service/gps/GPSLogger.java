@@ -90,6 +90,7 @@ public class GPSLogger extends Service implements LocationListener {
 	 * the interval (in ms) to log GPS fixes defined in the preferences
 	 */
 	private long gpsLoggingInterval;
+	private long gpsLoggingMinDistance;
 	
 	/**
 	 * sensors for magnetic orientation
@@ -200,6 +201,8 @@ public class GPSLogger extends Service implements LocationListener {
 		//read the logging interval from preferences
 		gpsLoggingInterval = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
+		gpsLoggingMinDistance = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
+				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
 		
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
@@ -214,8 +217,8 @@ public class GPSLogger extends Service implements LocationListener {
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 		if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-        }
+			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, gpsLoggingInterval, gpsLoggingMinDistance, this);
+		}
 		
 		//register for Orientation updates
 		sensorListener.register(this);
