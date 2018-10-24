@@ -222,6 +222,9 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 				File trackGPXExportDirectory = getExportDirectory(startDate);
 				String filenameBase = buildGPXFilename(c);
+
+				String tags = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_TAGS));
+
 				c.close();
 
 				File trackFile = new File(trackGPXExportDirectory, filenameBase);
@@ -236,7 +239,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 					publishProgress(new Long[]{trackId, (long) cTrackPoints.getCount(), (long) cWayPoints.getCount()});
 
 					try {
-						writeGpxFile(cTrackPoints, cWayPoints, trackFile);
+						writeGpxFile(tags, cTrackPoints, cWayPoints, trackFile);
 						if (exportMediaFiles()) {
 							copyWaypointFiles(trackId, trackGPXExportDirectory);
 						}
@@ -272,7 +275,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * @param target Target GPX file
 	 * @throws IOException 
 	 */
-	private void writeGpxFile(Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
+	private void writeGpxFile(String tags, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
 		
 		String accuracyOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
@@ -292,7 +295,11 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			
 			writer.write(XML_HEADER + "\n");
 			writer.write(TAG_GPX + "\n");
-			
+
+			if (!tags.equals("")) {
+				writer.write("\t<extensions>" + tags + "</extensions>\n");
+			}
+
 			writeWayPoints(writer, cWayPoints, accuracyOutput, fillHDOP, compassOutput);
 			writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP, compassOutput);
 			
