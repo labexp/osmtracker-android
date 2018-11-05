@@ -89,6 +89,11 @@
 	<string name="gpsstatus_record_stillimage">Take photo</string>
 	<string name="gpsstatus_record_textnote">Text note</string>
 
+	<!-- edit_waypoint_dialog -->
+	<string name="edit_waypoint_tv_name">Name</string>
+	<string name="edit_waypoint_bt_ok">OK</string>
+	<string name="edit_waypoint_bt_cancel">Cancel</string>
+
 	<!-- Menu -->
 	<string name="menu_settings">Settings</string>
 	<string name="menu_waypointlist">Waypoints</string>
