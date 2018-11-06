@@ -4,6 +4,7 @@ import java.io.File;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -593,6 +594,7 @@ public class TrackLogger extends Activity {
 				File imageFile = popImageFile();
 				if (imageFile != null) {
 					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+					intent.putExtra(OSMTracker.INTENT_KEY_UUID, UUID.randomUUID().toString());
 					intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
 					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
@@ -615,6 +617,7 @@ public class TrackLogger extends Activity {
 					
 					// Send an intent to inform service to track the waypoint.
 					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+					intent.putExtra(OSMTracker.INTENT_KEY_UUID, UUID.randomUUID().toString());
 					intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
 					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());

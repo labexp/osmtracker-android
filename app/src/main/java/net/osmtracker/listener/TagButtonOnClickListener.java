@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import net.osmtracker.db.TrackContentProvider;
 
+import java.util.UUID;
+
 /**
  * Listener for standard waypoint tag button.
  * Sends an Intent to track waypoint. Waypoint name is the
@@ -36,6 +38,7 @@ public class TagButtonOnClickListener implements OnClickListener {
 		Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 		intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 		intent.putExtra(OSMTracker.INTENT_KEY_NAME, label);
+		intent.putExtra(OSMTracker.INTENT_KEY_UUID, UUID.randomUUID().toString());
 		view.getContext().sendBroadcast(intent);
 		
 		// Inform user that the waypoint was tracked
