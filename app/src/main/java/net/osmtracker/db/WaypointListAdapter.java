@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 /**
@@ -45,13 +46,13 @@ public class WaypointListAdapter extends CursorAdapter {
 
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
-		RelativeLayout rl = (RelativeLayout) view;
+		TableLayout rl = (TableLayout) view;
 		bind(cursor, rl, context);
 	}
 
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup vg) {
-		RelativeLayout rl = (RelativeLayout) LayoutInflater.from(vg.getContext()).inflate(R.layout.waypointlist_item,
+		TableLayout rl = (TableLayout) LayoutInflater.from(vg.getContext()).inflate(R.layout.waypointlist_item,
 				vg, false);
 		return bind(cursor, rl, context);
 	}
@@ -67,7 +68,7 @@ public class WaypointListAdapter extends CursorAdapter {
 	 *				Context, to get resources
 	 * @return The relative view with data bound.
 	 */
-	private View bind(Cursor cursor, RelativeLayout rl, Context context) {
+	private View bind(Cursor cursor, TableLayout rl, Context context) {
 		TextView vName = (TextView) rl.findViewById(R.id.wplist_item_name);
 		TextView vLocation = (TextView) rl.findViewById(R.id.wplist_item_location);
 		TextView vTimestamp = (TextView) rl.findViewById(R.id.wplist_item_timestamp);

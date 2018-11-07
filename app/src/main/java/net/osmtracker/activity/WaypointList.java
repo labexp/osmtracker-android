@@ -70,7 +70,7 @@ public class WaypointList extends ListActivity {
 		final String link = cursor1.getString(cursor1.getColumnIndex("link"));
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Edit waypoint text");
+		//builder.setMessage(l.getContext().getResources().getString(R.string.edit_waypoint_tv_name));
 		builder.setCancelable(true);
 
 		builder.setPositiveButton(l.getContext().getResources().getString(android.R.string.ok),

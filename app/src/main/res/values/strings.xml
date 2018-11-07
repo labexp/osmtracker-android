@@ -65,6 +65,7 @@
 	<string name="trackdetail_osm_upload_notyet">(Not uploaded yet)</string>
 	<string name="trackdetail_export_display">Display</string>
 	<string name="trackdetail_description">Description</string>
+	<string name="trackdetail_name">Track name</string>
 	<string name="trackdetail_tags">Tags (comma separated)</string>
 	<string name="trackdetail_description_mandatory">You must enter a description</string>
 	<string name="osm_visibility_private">Private</string>
@@ -90,7 +91,7 @@
 	<string name="gpsstatus_record_textnote">Text note</string>
 
 	<!-- edit_waypoint_dialog -->
-	<string name="edit_waypoint_tv_name">Name</string>
+	<string name="edit_waypoint_tv_name">Set waypoint name</string>
 	<string name="edit_waypoint_bt_ok">OK</string>
 	<string name="edit_waypoint_bt_cancel">Cancel</string>
 
@@ -152,6 +153,8 @@
 	<string name="various_heading_display">{0}&#176;</string> <!-- parameters: (heading in degrees) -->
 	<string name="various_heading">Wait for heading&#8230;</string>
 	<string name="various_heading_unknown">Heading can\'t be determined</string>
+	<string name="various_waiting_position">Position not available</string>
+	<string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
 	
 
 	<!-- OSM map view -->
