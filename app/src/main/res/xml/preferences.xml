@@ -40,7 +40,8 @@
 		<EditTextPreference android:key="gpx.incremental_waypoint_counter"
 			android:title="@string/prefs_incremental_waypoint_counter"
 			android:defaultValue="0"
-			android:summary="@string/prefs_incremental_waypoint_counter_summary" />
+			android:summary="@string/prefs_incremental_waypoint_counter_summary"
+			android:numeric="integer"/>
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/prefs_ui">
