@@ -287,7 +287,8 @@ public class UserDefinedLayoutReader {
 		} else if (XmlSchema.ATTR_VAL_INCREMENTAL_WAYPOINT.equals(buttonType)) {
 			button.setText(resources.getString(R.string.gpsstatus_record_incremental_waypoint));
 			buttonIcon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
-			button.setOnClickListener(new IncrementalWaypointOnclickListener(currentTrackId, context));
+			String incremental_waypoint_format = parser.getAttributeValue(null,XmlSchema.ATTR_FORMAT);
+			button.setOnClickListener(new IncrementalWaypointOnclickListener(currentTrackId, incremental_waypoint_format, context));
 		} else if ((XmlSchema.ATTR_VAL_VOICEREC.equals(buttonType))) {
 			// Voice record button
 			button.setText(resources.getString(R.string.gpsstatus_record_voicerec));
@@ -374,6 +375,7 @@ public class UserDefinedLayoutReader {
 		public static final String ATTR_TARGETLAYOUT = "targetlayout";
 		public static final String ATTR_ICON = "icon";
 		public static final String ATTR_ICONPOS = "iconpos";
+		public static final String ATTR_FORMAT = "format";
 
 		public static final String ATTR_VAL_TAG = "tag";
 		public static final String ATTR_VAL_PAGE = "page";

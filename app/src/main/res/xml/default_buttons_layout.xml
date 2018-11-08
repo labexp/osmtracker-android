@@ -2,7 +2,7 @@
 <layouts>
 	<layout name="root">
 		<row>
-			<button type="incwp" icon="button_tourism_attraction" label="Waypoint"/>
+			<button type="incwp" icon="button_tourism_attraction" label="Waypoint" format="WPT_%04d"/>
 		</row>
 
 		<row>

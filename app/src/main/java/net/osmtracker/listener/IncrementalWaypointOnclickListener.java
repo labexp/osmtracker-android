@@ -33,18 +33,20 @@ public class IncrementalWaypointOnclickListener implements OnClickListener {
     private long currentTrackId;
     private Context context;
     private final SharedPreferences prefs;
+    private String incremental_waypoint_format;
 
-    public IncrementalWaypointOnclickListener(long trackId, Context context) {
+    public IncrementalWaypointOnclickListener(long trackId, String incremental_waypoint_format, Context context) {
         currentTrackId = trackId;
         this.context = context;
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        this.incremental_waypoint_format = incremental_waypoint_format;
     }
 
     @Override
     public void onClick(View view) {
         Button button = (Button) view;
         Integer wpnum = Integer.parseInt(prefs.getString(OSMTracker.Preferences.KEY_INCREMENTAL_WAYPOINT_COUNTER,OSMTracker.Preferences.VAL_INCREMENTAL_WAYPOINT_COUNTER));
-        String wptext = String.format(context.getString(R.string.incremental_waypoint_name_format), wpnum);
+        String wptext = String.format(incremental_waypoint_format, wpnum);
         // Send an intent to inform service to track the waypoint.
         Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
         intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
