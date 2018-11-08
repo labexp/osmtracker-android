@@ -8,6 +8,7 @@ import net.osmtracker.R;
 import net.osmtracker.activity.TrackLogger;
 import net.osmtracker.layout.DisablableTableLayout;
 import net.osmtracker.layout.UserDefinedLayout;
+import net.osmtracker.listener.IncrementalWaypointOnclickListener;
 import net.osmtracker.listener.PageButtonOnClickListener;
 import net.osmtracker.listener.StillImageOnClickListener;
 import net.osmtracker.listener.TagButtonOnClickListener;
@@ -79,7 +80,7 @@ public class UserDefinedLayoutReader {
 	 * Lister bound to picture buttons
 	 */
 	private StillImageOnClickListener stillImageOnClickListener;
-	
+
 	/**
 	 * {@link Resources} to retrieve String resources
 	 */
@@ -283,7 +284,11 @@ public class UserDefinedLayoutReader {
 			button.setText(findLabel(parser.getAttributeValue(null, XmlSchema.ATTR_LABEL), resources));			
 			buttonIcon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
 			button.setOnClickListener(new TagButtonOnClickListener(currentTrackId));
-		} else if (XmlSchema.ATTR_VAL_VOICEREC.equals(buttonType)) {
+		} else if (XmlSchema.ATTR_VAL_INCREMENTAL_WAYPOINT.equals(buttonType)) {
+			button.setText(resources.getString(R.string.gpsstatus_record_incremental_waypoint));
+			buttonIcon = iconResolver.getIcon(parser.getAttributeValue(null, XmlSchema.ATTR_ICON));
+			button.setOnClickListener(new IncrementalWaypointOnclickListener(currentTrackId, context));
+		} else if ((XmlSchema.ATTR_VAL_VOICEREC.equals(buttonType))) {
 			// Voice record button
 			button.setText(resources.getString(R.string.gpsstatus_record_voicerec));
 			buttonIcon = resources.getDrawable(R.drawable.voice_32x32);
@@ -375,6 +380,7 @@ public class UserDefinedLayoutReader {
 		public static final String ATTR_VAL_VOICEREC = "voicerec";
 		public static final String ATTR_VAL_TEXTNOTE = "textnote";
 		public static final String ATTR_VAL_PICTURE = "picture";
+		public static final String ATTR_VAL_INCREMENTAL_WAYPOINT = "incwp";
 		
 		public static final String ATTR_VAL_ICONPOS_TOP = "top";
 		public static final String ATTR_VAL_ICONPOS_RIGHT = "right";

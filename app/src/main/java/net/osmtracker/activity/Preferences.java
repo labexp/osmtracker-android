@@ -166,6 +166,18 @@ public class Preferences extends PreferenceActivity {
 			}
 		});
 
+		// Counter value for incremental waypoints
+		pref = findPreference(OSMTracker.Preferences.KEY_INCREMENTAL_WAYPOINT_COUNTER);
+		String incremental_waypoint_counter_current = prefs.getString(OSMTracker.Preferences.KEY_INCREMENTAL_WAYPOINT_COUNTER,OSMTracker.Preferences.VAL_INCREMENTAL_WAYPOINT_COUNTER);
+		pref.setSummary(getResources().getString(R.string.prefs_incremental_waypoint_counter_summary) + ": " + incremental_waypoint_counter_current);
+		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				((EditTextPreference)preference).setSummary(getResources().getString(R.string.prefs_incremental_waypoint_counter_summary) + ": " + newValue.toString());
+				return true;
+			}
+		});
+
 	}
 	
 }

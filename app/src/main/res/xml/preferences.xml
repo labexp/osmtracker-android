@@ -37,6 +37,10 @@
 		<CheckBoxPreference android:key="gpx.hdop.approximation" android:title="@string/prefs_output_gpx_hdop_approximation"
 			android:summary="@string/prefs_output_gpx_hdop_approximation_summary" android:defaultValue="false"></CheckBoxPreference>
 		<ListPreference android:key="gpx.compass_heading" android:summary="@string/prefs_compass_heading_summary" android:title="@string/prefs_compass_heading" android:entryValues="@array/prefs_compass_heading_values" android:entries="@array/prefs_compass_heading_keys"/>
+		<EditTextPreference android:key="gpx.incremental_waypoint_counter"
+			android:title="@string/prefs_incremental_waypoint_counter"
+			android:defaultValue="0"
+			android:summary="@string/prefs_incremental_waypoint_counter_summary" />
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/prefs_ui">
