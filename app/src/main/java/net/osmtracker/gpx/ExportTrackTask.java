@@ -296,7 +296,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			writer.write(XML_HEADER + "\n");
 			writer.write(TAG_GPX + "\n");
 
-			if (!tags.equals("")) {
+			if (tags != null && !tags.equals("")) {
 				writer.write("\t<extensions>\n");
 				writer.write("\t\t<tags>" + tags + "</tags>\n");
 				writer.write("\t</extensions>\n");
