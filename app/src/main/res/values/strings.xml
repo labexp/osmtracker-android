@@ -93,6 +93,7 @@
 	<!-- edit_waypoint_dialog -->
 	<string name="edit_waypoint_tv_name">Set waypoint name</string>
 	<string name="edit_waypoint_bt_ok">OK</string>
+	<string name="edit_waypoint_bt_delete">Delete</string>
 	<string name="edit_waypoint_bt_cancel">Cancel</string>
 
 	<!-- Menu -->

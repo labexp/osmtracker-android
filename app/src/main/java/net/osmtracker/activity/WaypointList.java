@@ -14,6 +14,7 @@ import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.WaypointListAdapter;
+import net.osmtracker.listener.EditWaypointOnCancelListener;
 
 /**
  * Activity that lists the previous waypoints tracked by the user.
@@ -49,9 +50,11 @@ public class WaypointList extends ListActivity {
 		super.onPause();
 	}
 
+
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		final Cursor cursor1 = ((CursorAdapter)getListAdapter()).getCursor();
+
 		final DataHelper dataHelper = new DataHelper(l.getContext());
 
 		LayoutInflater inflater = this.getLayoutInflater();
@@ -73,12 +76,22 @@ public class WaypointList extends ListActivity {
 		//builder.setMessage(l.getContext().getResources().getString(R.string.edit_waypoint_tv_name));
 		builder.setCancelable(true);
 
-		builder.setPositiveButton(l.getContext().getResources().getString(android.R.string.ok),
+		builder.setPositiveButton(l.getContext().getResources().getString(R.string.edit_waypoint_bt_ok),
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						String new_text = edit_waypoint_et_name.getText().toString();
 						dataHelper.updateWayPoint(trackId,uuid,new_text,link);
+					}
+				}
+		);
+
+		builder.setNegativeButton(l.getContext().getResources().getString(R.string.edit_waypoint_bt_delete),
+				new EditWaypointOnCancelListener(cursor1) {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dataHelper.deleteWayPoint(uuid);
+						cursor1.requery();
 					}
 				}
 		);
@@ -89,4 +102,5 @@ public class WaypointList extends ListActivity {
 
 		super.onListItemClick(l, v, position, id);
 	}
+
 }
