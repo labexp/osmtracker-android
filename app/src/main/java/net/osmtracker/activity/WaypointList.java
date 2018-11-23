@@ -1,6 +1,7 @@
 package net.osmtracker.activity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -15,6 +16,7 @@ import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.WaypointListAdapter;
+import net.osmtracker.listener.ConfirmDeleteWaypointListener;
 import net.osmtracker.listener.EditWaypointOnDeleteListener;
 import net.osmtracker.listener.EditWaypointOnOkListener;
 
@@ -97,9 +99,26 @@ public class WaypointList extends ListActivity {
 			new EditWaypointOnDeleteListener(alert, cursor1) {
 				@Override
 				public void onClick(View view) {
-					dataHelper.deleteWayPoint(uuid);
-					cursor1.requery();
-					this.alert.dismiss();
+					AlertDialog.Builder confirm_delete_dialog_builder = new AlertDialog.Builder(alert.getContext());
+					confirm_delete_dialog_builder.setCancelable(true);
+					confirm_delete_dialog_builder.setTitle(R.string.delete_waypoint_confirm_dialog_title);
+					confirm_delete_dialog_builder.setPositiveButton(R.string.delete_waypoint_confirm_bt_ok, new ConfirmDeleteWaypointListener(alert) {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dataHelper.deleteWayPoint(uuid);
+							cursor1.requery();
+							alert.dismiss();
+						}
+					});
+					// Cancel does just nothing, but the listener must be there, so the button is shown
+					confirm_delete_dialog_builder.setNegativeButton(R.string.delete_waypoint_confirm_bt_cancel, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+
+						}
+					});
+					confirm_delete_dialog_builder.create();
+					confirm_delete_dialog_builder.show();
 				}
 			}
 		);

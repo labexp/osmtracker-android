@@ -95,6 +95,9 @@
 	<string name="edit_waypoint_bt_ok">OK</string>
 	<string name="edit_waypoint_bt_delete">Delete</string>
 	<string name="edit_waypoint_bt_cancel">Cancel</string>
+	<string name="delete_waypoint_confirm_dialog_title">Really delete???</string>
+	<string name="delete_waypoint_confirm_bt_ok">Yes, I want</string>
+	<string name="delete_waypoint_confirm_bt_cancel">No, don\'t</string>
 
 	<!-- Menu -->
 	<string name="menu_settings">Settings</string>
