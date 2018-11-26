@@ -1,7 +1,6 @@
 package net.osmtracker.activity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -17,8 +16,7 @@ import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.WaypointListAdapter;
 import net.osmtracker.listener.ConfirmDeleteWaypointListener;
-import net.osmtracker.listener.EditWaypointOnDeleteListener;
-import net.osmtracker.listener.EditWaypointOnOkListener;
+import net.osmtracker.listener.EditWaypointDialogOnClickListener;
 
 /**
  * Activity that lists the previous waypoints tracked by the user.
@@ -68,6 +66,7 @@ public class WaypointList extends ListActivity {
 
 		Button button_edit_waypoint_ok = edit_waypoint_dialog.findViewById(R.id.edit_waypoint_button_ok);
 		Button button_delete_waypoint = edit_waypoint_dialog.findViewById(R.id.edit_waypoint_button_delete);
+		Button button_edit_waypoint_cancel = edit_waypoint_dialog.findViewById(R.id.edit_waypoint_button_cancel);
 
 		String old_text = cursor1.getString(cursor1.getColumnIndex("name"));
 
@@ -85,7 +84,7 @@ public class WaypointList extends ListActivity {
 		AlertDialog alert = builder.create();
 
 		button_edit_waypoint_ok.setOnClickListener(
-			new EditWaypointOnOkListener(alert) {
+			new EditWaypointDialogOnClickListener(alert, null) {
 				@Override
 				public void onClick(View view) {
 					String new_text = edit_waypoint_et_name.getText().toString();
@@ -96,7 +95,7 @@ public class WaypointList extends ListActivity {
 		);
 
 		button_delete_waypoint.setOnClickListener(
-			new EditWaypointOnDeleteListener(alert, cursor1) {
+			new EditWaypointDialogOnClickListener(alert, cursor1) {
 				@Override
 				public void onClick(View view) {
 					AlertDialog.Builder confirm_delete_dialog_builder = new AlertDialog.Builder(alert.getContext());
@@ -114,7 +113,7 @@ public class WaypointList extends ListActivity {
 					confirm_delete_dialog_builder.setNegativeButton(R.string.delete_waypoint_confirm_bt_cancel, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-
+							alert.dismiss();
 						}
 					});
 					confirm_delete_dialog_builder.create();
@@ -122,6 +121,16 @@ public class WaypointList extends ListActivity {
 				}
 			}
 		);
+
+		button_edit_waypoint_cancel.setOnClickListener(
+				new EditWaypointDialogOnClickListener(alert, null) {
+					@Override
+					public void onClick(View view) {
+						this.alert.dismiss();
+					}
+				}
+		);
+
 
 		alert.setView(edit_waypoint_dialog);
 		alert.show();

@@ -35,6 +35,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/edit_waypoint_bt_delete" />
+
+                <Button
+                    android:id="@+id/edit_waypoint_button_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_waypoint_bt_cancel" />
         </LinearLayout>
 
 </LinearLayout>
