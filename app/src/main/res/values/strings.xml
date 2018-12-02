@@ -88,6 +88,7 @@
 	<string name="gpsstatus_record_voicerec">Voice record</string>
 	<string name="gpsstatus_record_stillimage">Take photo</string>
 	<string name="gpsstatus_record_textnote">Text note</string>
+	<string name="gpsstatus_record_incremental_waypoint">Incremental waypoint</string>
 
 	<!-- Menu -->
 	<string name="menu_settings">Settings</string>

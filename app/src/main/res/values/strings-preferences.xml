@@ -19,6 +19,9 @@
 	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (affects battery life)</string>
 	<string name="prefs_gps_logging_interval_seconds">seconds</string>
 
+	<string name="prefs_incremental_waypoint_counter">Incremental waypoint counter</string>
+	<string name="prefs_incremental_waypoint_counter_summary">Next value for incremental waypoints (normally you shouldn\'t change this)</string>
+
 	<string name="prefs_ui">User interface</string>
 	
 	<string name="prefs_ui_picture_source">Default photo source</string>

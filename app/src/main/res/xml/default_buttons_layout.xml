@@ -2,11 +2,14 @@
 <layouts>
 	<layout name="root">
 		<row>
+			<button type="incwp" icon="button_tourism_attraction" label="Waypoint" format="WPT_%04d"/>
+		</row>
+
+		<row>
 			<button type="voicerec" icon="voice_32x32" />
 			<button type="picture" icon="camera_32x32" />
 			<button type="textnote" icon="text_32x32" />
 		</row>
-		
 		<row>
 			<button type="page" label="@string/tag.misc" icon="button_misc" targetlayout="misc"  />
 			<button type="page" label="@string/tag.restriction" icon="button_restriction" targetlayout="restriction"  />

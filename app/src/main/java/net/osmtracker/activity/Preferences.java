@@ -52,7 +52,22 @@ public class Preferences extends PreferenceActivity {
 	 *          water_supply_icons <- icon directory
 	 */
 
+	/**
+	 * Utility to place cursor at end of EditTextPreference
+	 */
 	public static final String ICONS_DIR_SUFFIX = "_icons";
+
+	final OnPreferenceClickListener _moveCursorToEndClickListener =
+			new OnPreferenceClickListener()
+			{
+				@Override
+				public boolean onPreferenceClick(Preference preference)
+				{
+					EditTextPreference editPref = (EditTextPreference)preference;
+					editPref.getEditText().setSelection( editPref.getText().length() );
+					return true;
+				}
+			};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -163,6 +178,19 @@ public class Preferences extends PreferenceActivity {
 
 				preference.setEnabled(false);
 				return false;
+			}
+		});
+
+		// Counter value for incremental waypoints
+		((EditTextPreference)findPreference(OSMTracker.Preferences.KEY_INCREMENTAL_WAYPOINT_COUNTER)).setOnPreferenceClickListener(_moveCursorToEndClickListener);
+		pref = findPreference(OSMTracker.Preferences.KEY_INCREMENTAL_WAYPOINT_COUNTER);
+		String incremental_waypoint_counter_current = prefs.getString(OSMTracker.Preferences.KEY_INCREMENTAL_WAYPOINT_COUNTER,OSMTracker.Preferences.VAL_INCREMENTAL_WAYPOINT_COUNTER);
+		pref.setSummary(getResources().getString(R.string.prefs_incremental_waypoint_counter_summary) + ": " + incremental_waypoint_counter_current);
+		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				((EditTextPreference)preference).setSummary(getResources().getString(R.string.prefs_incremental_waypoint_counter_summary) + ": " + newValue.toString());
+				return true;
 			}
 		});
 

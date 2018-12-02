@@ -27,6 +27,7 @@ public class OSMTracker {
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
 		public final static String KEY_OUTPUT_DIR_PER_TRACK = "gpx.directory_per_track";
 		public final static String KEY_OUTPUT_COMPASS = "gpx.compass_heading";
+		public final static String KEY_INCREMENTAL_WAYPOINT_COUNTER ="gpx.incremental_waypoint_counter";
 		
 		public final static String KEY_UI_PICTURE_SOURCE = "ui.picture.source";
 		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
@@ -53,6 +54,7 @@ public class OSMTracker {
 		public final static boolean VAL_GPS_CHECKSTARTUP = true;
 		public final static boolean VAL_GPS_IGNORE_CLOCK = false;
 		public final static String VAL_GPS_LOGGING_INTERVAL = "0";
+		public final static String VAL_INCREMENTAL_WAYPOINT_COUNTER = "0";
 		
 		public final static String VAL_OUTPUT_FILENAME_NAME = "name";
 		public final static String VAL_OUTPUT_FILENAME_NAME_DATE = "name_date";
