@@ -8,7 +8,11 @@
 	<com.android.internal.preference.YesNoPreference android:key="osm.oauth.clear-data"
 		android:title="@string/prefs_osm_clear_oauth_data" android:summary="@string/prefs_osm_clear_oauth_data_summary"
 		android:dialogMessage="@string/prefs_osm_clear_oauth_data_dialog" android:dialogIcon="@android:drawable/ic_dialog_alert" />
-	
+    <EditTextPreference android:key="gpx.incremental_waypoint_counter"
+        android:title="@string/prefs_incremental_waypoint_counter"
+        android:defaultValue="0"
+        android:summary="@string/prefs_incremental_waypoint_counter_summary"
+        android:numeric="integer"/>
 	<PreferenceCategory android:title="@string/prefs_gps">
 		<Preference android:summary="@string/prefs_gps_os_settings_summary"
 			android:title="@string/prefs_gps_os_settings" android:key="gps.ossettings"></Preference>
@@ -37,11 +41,6 @@
 		<CheckBoxPreference android:key="gpx.hdop.approximation" android:title="@string/prefs_output_gpx_hdop_approximation"
 			android:summary="@string/prefs_output_gpx_hdop_approximation_summary" android:defaultValue="false"></CheckBoxPreference>
 		<ListPreference android:key="gpx.compass_heading" android:summary="@string/prefs_compass_heading_summary" android:title="@string/prefs_compass_heading" android:entryValues="@array/prefs_compass_heading_values" android:entries="@array/prefs_compass_heading_keys"/>
-		<EditTextPreference android:key="gpx.incremental_waypoint_counter"
-			android:title="@string/prefs_incremental_waypoint_counter"
-			android:defaultValue="0"
-			android:summary="@string/prefs_incremental_waypoint_counter_summary"
-			android:numeric="integer"/>
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/prefs_ui">
