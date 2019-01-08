@@ -76,7 +76,11 @@ public class TracklistAdapter extends CursorAdapter {
 		if (cursor.isNull(cursor.getColumnIndex(TrackContentProvider.Schema.COL_OSM_UPLOAD_DATE))) {
 			vUploadStatus.setVisibility(View.GONE);
 		}		
-		
+		else{
+			vUploadStatus.setImageResource(android.R.drawable.stat_sys_upload_done);
+			vUploadStatus.setVisibility(View.VISIBLE);
+		}
+
 		// Bind id
 		long trackId = cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID));
 		String strTrackId = Long.toString(trackId);
