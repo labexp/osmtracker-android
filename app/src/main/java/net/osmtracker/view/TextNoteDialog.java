@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager.LayoutParams;
 import android.widget.EditText;
 
 import net.osmtracker.db.TrackContentProvider;
@@ -109,6 +110,8 @@ public class TextNoteDialog extends AlertDialog {
 			intent.putExtra(OSMTracker.INTENT_KEY_NAME, context.getResources().getString(R.string.gpsstatus_record_textnote));
 			context.sendBroadcast(intent);
 		}
+
+		getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 		
 		super.onStart();
 	}
