@@ -214,7 +214,24 @@ public class TrackLogger extends Activity {
 	 * Also, the default layout is excluded and the 'osmtracker' tag is added by default.
 	 */
 	private void saveTagsForTrack(){
+		//obtain the current track id and initialize the values variable
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, currentTrackId);
+		ContentValues values = new ContentValues();
+
+		//Checking for previously saved tags
+		Cursor cursor = getContentResolver().query( trackUri, null, null, null, null);
+		StringBuilder previouslySavedTags = new StringBuilder();
+		int index = cursor.getColumnIndex(TrackContentProvider.Schema.COL_TAGS);
+
+		while (cursor.moveToNext()) {
+			if(cursor.getString(index) != null)
+				previouslySavedTags.append(cursor.getString(index) + ",");
+		}
+		
 		StringBuilder tags = new StringBuilder();
+
+		tags.append(previouslySavedTags);
+
 		ArrayList<String> fixedTags = new ArrayList<String>();
 
 		//covert the file name to simple layout name
@@ -232,9 +249,6 @@ public class TrackLogger extends Activity {
 			tags.append(simpleName).append(",");
 		}
 
-		//obtain the current track id and initialize the values variable
-		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, currentTrackId);
-		ContentValues values = new ContentValues();
 
 		//set the values tag and update the table
 		values.put(TrackContentProvider.Schema.COL_TAGS, tags.toString());
