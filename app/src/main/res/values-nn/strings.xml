@@ -117,4 +117,7 @@
   <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap sporvising</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

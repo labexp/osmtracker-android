@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker voor Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Geïnspireerd door OSMTracker op Windows Mobile, stelt OSMTracker u in staat om uw routes op te nemen, belangrijke punten te markeren (geluidsopname, foto\'s), en alles te exporteren in GPX-formaat voor later gebruik met Open Street Map toools zoals JOSM.</string>
+  <string name="app_description">Geïnspireerd door OSMTracker op Windows Mobile, stelt OSMTracker u in staat om uw routes op te nemen, belangrijke referentiepunten te markeren (geluidsopname, foto\'s), en alles te exporteren in GPX-formaat voor later gebruik met Open Street Map tools zoals JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Traject-logger</string>
   <string name="tracklogger_waiting_gps">Wachten op gps-fix om knoppen in te schakelen...</string>
@@ -13,12 +13,12 @@
   <string name="tracklogger_btnBack">Terug</string>
   <string name="tracklogger_tracked">Opgenomen:</string>
   <string name="tracklogger_gps_disabled">Gps uitgeschakeld</string>
-  <string name="tracklogger_gps_disabled_hint">Gps is uitgeschakeld. Wilt u het inschakelen?</string>
+  <string name="tracklogger_gps_disabled_hint">Gps is uitgeschakeld. Inschakelen?</string>
   <string name="tracklogger_choose_gallery_camera">Galerij of camera?</string>
   <string name="tracklogger_camera">Foto nemen met camera</string>
   <string name="tracklogger_gallery">Foto selecteren uit galerij</string>
   <!--Waypoint List-->
-  <string name="wplist">Lijst van routepunten</string>
+  <string name="wplist">Lijst van referentiepunten</string>
   <string name="wplist_latitude">Breedte:</string>
   <string name="wplist_longitude">Lengte:</string>
   <string name="wplist_elevation">Hoogte:</string>
@@ -28,10 +28,14 @@
   <!--Track Manager-->
   <string name="trackmgr">Trajectbeheerder</string>
   <string name="trackmgr_tracklist">Traject-lijst:</string>
-  <string name="trackmgr_waypoints_count">Routepunten:</string>
+  <string name="trackmgr_waypoints_count">Referentiepunten:</string>
   <string name="trackmgr_trackpoints_count">Trajectpunten:</string>
   <string name="trackmgr_empty">U hebt geen trajecten.</string>
+  <string name="trackmgr_newtrack_hint">Druk op <b>Menu</b> en <b>Nieuw traject</b> 
+om een traject op te nemen</string>
   <string name="trackmgr_newtrack_error">Kan geen nieuw traject aanmaken: {0}</string>
+  <string name="trackmgr_continuetrack_hint">U bent nu <b>traject #{0}</b> aan het opnemen.
+Selecteer het in de lijst om door te gaan.</string>
   <string name="trackmgr_contextmenu_stop">Opnemen stoppen</string>
   <string name="trackmgr_contextmenu_resume">Opnemen hervatten</string>
   <string name="trackmgr_contextmenu_delete">Verwijderen</string>
@@ -43,6 +47,7 @@
   <string name="trackmgr_delete_confirm">Traject #{0} zal verwijderd worden</string>
   <string name="trackmgr_deleteall_confirm">Alle trajecten zullen verwijderd worden. Bent u zeker?</string>
   <string name="trackmgr_exporting">Traject #{0} exporteren…</string>
+  <string name="trackmgr_exporting_prepare">Exporteren voorbereiden...</string>
   <string name="trackmgr_export_error">Kan traject niet exporteren: {0}</string>
   <string name="trackmgr_exportall_confirm">Alle trajecten zullen geëxporteerd worden, wat lang kan duren. Bent u zeker?</string>
   <!--Track Detail-->
@@ -81,7 +86,7 @@
   <string name="gpsstatus_record_textnote">Notitie</string>
   <!--Menu-->
   <string name="menu_settings">Instellingen</string>
-  <string name="menu_waypointlist">Routepunten</string>
+  <string name="menu_waypointlist">Referentiepunten</string>
   <string name="menu_about">Over</string>
   <string name="menu_displaytrack">Traject weergeven</string>
   <string name="menu_stoptracking">Stoppen &amp; opslaan</string>
@@ -109,6 +114,9 @@
   <string name="about_text">Bezoek de project-webpagina voor meer informatie, documenten en melden van problemen.</string>
   <string name="about_translate_text">Help OSMTracker vertalen:</string>
   <string name="about_debug_info">Debug-info</string>
+  <string name="about_export_db">Database exporteren</string>
+  <string name="about_exporting_db">Database exporteren...</string>
+  <string name="about_export_db_result">Resultaat exporteren database: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker is aan het opnemen</string>
   <string name="notification_title">OSMTracker is (#{0}) aan het opnemen</string>
@@ -129,7 +137,39 @@
   <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Wachten voor richting...</string>
-  <string name="various_heading_unknown">De richting kan niet bepaald worden</string>
+  <string name="various_heading_unknown">Richting kan niet bepaald worden</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap trajectweergave</string>
+  <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Bijwerken en installeren</string>
+  <string name="buttons_presets_context_menu_delete">Verwijderen</string>
+  <string name="buttons_presets_updating_layout">Bijwerken...</string>
+  <string name="buttons_presets_successful_update">Lay-out werd succesvol bijgewerkt</string>
+  <string name="buttons_presets_unsuccessful_update">Lay-out werd niet bijgewerkt, probeer het later opnieuw</string>
+  <string name="buttons_presets_delete_message">Weet u zeker dat u lay-out {0} wilt verwijderen?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Ja</string>
+  <string name="buttons_presets_successful_delete">Het bestand werd succesvol verwijderd</string>
+  <string name="buttons_presets_icon_directory_deleted">De pictogram-map werd succesvol verwijderd</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Dit bestand was niet verbonden aan een pictogram-map</string>
+  <string name="buttons_presets_unsuccessful_delete">Het bestand kon niet verwijderd worden</string>
+  <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Fout: kon niet verbinden met het Internet</string>
+  <string name="available_layouts_response_null_exception">Fout: kon niet verbinden met de standaard aangepaste lay-outs repository</string>
+  <string name="available_layouts_connecting_message">(Verbinden...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Downloaden</string>
+  <string name="available_layouts_not_available_language">Uw taal is niet beschikbaar. Selecteer een uit de lijst</string>
+  <string name="available_layouts_language_dialog_title">Beschikbare talen</string>
+  <string name="available_layouts_checking_language_dialog">Lokale taalversies controleren</string>
+  <string name="available_layouts_downloading_dialog">Downloaden...</string>
+  <string name="available_layouts_successful_download">De lay-out werd succesvol gedownload</string>
+  <string name="available_layouts_unsuccessful_download">De lay-out kan niet gedownload worden, probeer het later opnieuw</string>
+  <string name="available_layouts_null_response_received">Fout bij ophalen van data van server</string>
+  <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Standaard</string>
+  <string name="github_repository_settings_custom_checkbox">Aangepast</string>
+  <string name="github_repository_settings_username">Github-gebruikersnaam:</string>
+  <string name="github_repository_settings_repository_name">Repository-naam:</string>
+  <string name="github_repository_settings_branch_name">Branch-naam</string>
+  <string name="github_repository_settings_valid_server">Github-repository geldig</string>
+  <string name="github_repository_settings_invalid_server">Github-repository ongeldig</string>
 </resources>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">Logo e OSMGjurmues-it</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Zmadho pamjen</string>
+  <string name="acc.zoom_out">Zvogëlo pamjen</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Treguesi \"Fortësia e sinjalit satelitorë\"</string>
+  <string name="acc.record_indicator">Treguesi \"Duke inçizuar\"</string>
+  <!--Track list-->
+  <string name="acc.track_status">Treguesi \"Gjëndja e gjurmës\"</string>
+  <string name="acc.upload_status">Treguesi \"Gjëndja e ngarkimit në OpenStreetMap\"</string>
+</resources>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">הגדרות</string>
+  <string name="prefs_gps">ג\'י.פי.אס</string>
+  <string name="prefs_gps_os_settings">הגדרות ג\'י.פי.אס</string>
+  <string name="prefs_gps_os_settings_summary">הצג מסך הגדרות ג\'י.פי.אס של המערכת</string>
+  <string name="prefs_check_gps_startup">בדוק ג\'י.פי.אס בהפעלה</string>
+  <string name="prefs_check_gps_startup_summary">בדוק אם ג\'י.פי.אס כבוי בהפעלה, והצע להפעיל אותו</string>
+  <string name="prefs_gps_ignore_clock">התעלם משעון ג\'י.פי.אס</string>
+  <string name="prefs_gps_ignore_clock_summary">התעלם משעון ג\'י.פי.אס והשתמש בשעון מערכת האנדרואיד עבור חותמות זמן</string>
+  <string name="prefs_gps_logging_interval">מרווח רישום ג\'י.פי.אס</string>
+  <string name="prefs_gps_logging_interval_summary">השתמש ב- 0 עבור הקצר ביותר (משפיע על אורך חיי הסוללה)</string>
+  <string name="prefs_gps_logging_interval_seconds">שניות</string>
+  <string name="prefs_ui">ממשק משתמש</string>
+  <string name="prefs_ui_picture_source">מקור ברירת מחדל של תמונות</string>
+  <string name="prefs_ui_picture_source_summary">לקחת תמונה מהמצלמה או מהגלריה?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>מצלמה</item>
+    <item>גלריה</item>
+    <item>שאל תמיד</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">הגדרות לחצנים</string>
+  <string name="prefs_ui_buttons_layout_summary">בחר רשימת לחצנים מותאמת אישית (ראה תיעוד)</string>
+  <string name="prefs_ui_buttons_layout_defaut">ברירת מחדל</string>
+  <string name="prefs_ui_orientation">כיוון</string>
+  <string name="prefs_ui_orientation_summary">כיוון מועדף של המסך</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>אוטומטי</item>
+    <item>לאורך</item>
+    <item>לרוחב</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">אורך הקלטה קולית</string>
+  <string name="prefs_voicerec_duration_seconds">שניות</string>
+  <string name="prefs_theme">תבנית התצוגה של המסך הראשי</string>
+  <string name="prefs_theme_summary">אתחול האפליקציה נדרש על מנת לבצע את השינויים</string>
+  <string-array name="prefs_theme_keys">
+    <item>ברירת מחדל של מערכת ההפעלה</item>
+    <item>ברירת מחדל של מערכת ההפעלה (כהה)</item>
+    <item>ברירת מחדל של מערכת ההפעלה (בהיר)</item>
+    <item>ניגודיות גבוהה</item>
+  </string-array>
+  <string name="prefs_display_always_on">מסך דולק תמיד</string>
+  <string name="prefs_display_always_on_summary">המסך ישאר דולק בעת הקלטת מסלול. בטל כדי לחסוך בסוללה</string>
+  <string name="prefs_displaytrack_osm">מפת רקע</string>
+  <string name="prefs_displaytrack_osm_summary">הצג את מפת OpenStreetMap כרקע למסלול. דורש חיבור לאינטרנט</string>
+  <string name="prefs_displaytrack_osm_summary_ask">הצג תמיד את OpenStreetMap ברקע המסלול? דורש חיבור לאינטרנט.</string>
+  <string name="prefs_output">הגדרות GPX</string>
+  <string name="prefs_storage_dir">תיקיית אכסון חיצוני (SD)</string>
+  <string name="prefs_storage_dir_hint">יחל במסלול הבא (לא במסלול הנוכחי)</string>
+  <string name="prefs_output_one_dir_per_track">תיקייה אחת לכל מסלול</string>
+  <string name="prefs_output_one_dir_per_track_summary">שמור כל מסלול והקבצים הנלווים לו בתיקייה נפרדת</string>
+  <string name="prefs_output_filename">שם קובץ למסלולים בעלי שם</string>
+  <string name="prefs_output_filename_summary">תבנית לשם הקובץ, אם למסלול יש שם</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>שם המסלול</item>
+    <item>שם, תאריך וזמן התחלה</item>
+    <item>תאריך וזמן התחלה</item>
+  </string-array>
+  <string name="prefs_output_accuracy">שמור את הדיוק בקובץ ה-GPX</string>
+  <string name="prefs_output_accuracy_summary">הוסף את הדיוק לקובץ ה-GPX בשם נקודת הציון או כהערה לנקודת הציון</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>ללא שמירה</item>
+    <item>בשם נקודת הציון</item>
+    <item>כהערה לנקודת הציון</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">השתמש בהערכת HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">קבע את ה HDOP בקובץ ה-GPX כהערכה שמבוססת על הדיוק</string>
+  <string name="prefs_sound_enabled">אפשר צלילים</string>
+  <string name="prefs_sound_enabled_summary">השמע צלילים בתחילת הקלטה ובסיומה</string>
+  <string name="prefs_osm_clear_oauth_data">איפוס אימות פרטי משתמש OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">מחק את אימות פרטי משתמש OSM ואלץ את הכנסתם מחדש</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">ידרש אימות מחדש כדי לשוב ולהעלות מסלולים. את/ה בטוח/ה?</string>
+  <string name="prefs_map_tile">מקור מפת הרקע</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>ללא שמירה</item>
+    <item>כהערה</item>
+    <item>כהרחבה</item>
+  </string-array>
+  <string name="prefs_compass_heading">שמירת כיוון המצפן</string>
+  <string name="prefs_compass_heading_summary">מגדיר האם וכיצד ישמר כיוון המצפן בקובץ ה-GPX</string>
+</resources>

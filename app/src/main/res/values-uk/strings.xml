@@ -31,7 +31,9 @@
   <string name="trackmgr_waypoints_count">Дорожні точки:</string>
   <string name="trackmgr_trackpoints_count">Точки шляху:</string>
   <string name="trackmgr_empty">У вас не має  шляхів.</string>
+  <string name="trackmgr_newtrack_hint">Для запису доріжки\nнатисніть <b>Меню</b>, а потім <b>Нова доріжка</b></string>
   <string name="trackmgr_newtrack_error">Неможливо створити новий шлях:{0}</string>
+  <string name="trackmgr_continuetrack_hint">Наразі ви записуєте <b>доріжку #{0}</b>\nВиберіть її у списку для продовження</string>
   <string name="trackmgr_contextmenu_stop">Зупинити запис</string>
   <string name="trackmgr_contextmenu_resume">Продовжити запис</string>
   <string name="trackmgr_contextmenu_delete">Вилучити</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">Шлях #{0} буде видалено</string>
   <string name="trackmgr_deleteall_confirm">Усі шляхи буде вилучено. Ви впевнені?</string>
   <string name="trackmgr_exporting">Експорт шляху #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Підготовка експорту…</string>
   <string name="trackmgr_export_error">Неможливо експортувати шлях:{0}…</string>
   <string name="trackmgr_exportall_confirm">Буде експортовано усі шляхи, що може зайняти тривалий час.</string>
   <!--Track Detail-->
@@ -109,6 +112,9 @@
   <string name="about_text">Детальна інформація, повідомлення про помилки знаходяться на офіційному сайті проекту:</string>
   <string name="about_translate_text">Допомогти з перекладом OSMTracker:</string>
   <string name="about_debug_info">Налагоджувальна інформація</string>
+  <string name="about_export_db">Експортувати базу даних</string>
+  <string name="about_exporting_db">Експортується база даних…</string>
+  <string name="about_export_db_result">Результат експорту бази даних: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker запущено</string>
   <string name="notification_title">OSMTracker запущено (#{0})</string>
@@ -132,4 +138,7 @@
   <string name="various_heading_unknown">Напрямок не можна визначити</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Відображення шляху OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

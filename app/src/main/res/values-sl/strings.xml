@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker za Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Ta program, ki ga je navdihnil OSMTracker na sistemu Windows Mobile, vam  omogoča slediti svojim potovanjem, označiti pomembne točke sledi (glasovni posnetek, fotografije) in jih izvozizi v obliko GPX za kasnejšo uporabo z orodji Open Street Map, kot je JOSM.</string>
+  <string name="app_description">Ta program, ki ga je navdihnil OSMTracker na sistemu Windows Mobile, vam  omogoča slediti svojim potovanjem, označiti pomembne točke (glasovni posnetek, fotografije) in jih izvoziti v obliko GPX za kasnejšo uporabo z orodji Open Street Map, kot je JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Beležnik sledi</string>
   <string name="tracklogger_waiting_gps">Počakajte na določitev lokacije GPS, da omogočite gumbe …</string>
@@ -18,7 +18,7 @@
   <string name="tracklogger_camera">Posnemi fotografijo s fotoaparatom</string>
   <string name="tracklogger_gallery">Izberi fotografijo iz galerije</string>
   <!--Waypoint List-->
-  <string name="wplist">Seznam točk sledi</string>
+  <string name="wplist">Seznam točk</string>
   <string name="wplist_latitude">Zemlj. šir.:</string>
   <string name="wplist_longitude">Zemlj. dol.:</string>
   <string name="wplist_elevation">Nadm. viš.:</string>
@@ -28,10 +28,10 @@
   <!--Track Manager-->
   <string name="trackmgr">Upravitelj sledi</string>
   <string name="trackmgr_tracklist">Seznam sledi:</string>
-  <string name="trackmgr_waypoints_count">Točke poti:</string>
+  <string name="trackmgr_waypoints_count">Točke:</string>
   <string name="trackmgr_trackpoints_count">Točke sledi:</string>
   <string name="trackmgr_empty">Nimate sledi.</string>
-  <string name="trackmgr_newtrack_hint">Ta snemanje sledi\npritisnite <b>Meni</b> in potem <b>Nova sled</b></string>
+  <string name="trackmgr_newtrack_hint">Za snemanje sledi\npritisnite <b>Meni</b> in potem <b>Nova sled</b></string>
   <string name="trackmgr_newtrack_error">Ustvarjanje nove sledi ni mogoče: [0]</string>
   <string name="trackmgr_continuetrack_hint">Trenutno snemate <b>sled št. {0}</b>\nIzberite jo na seznamu, da nadaljujete</string>
   <string name="trackmgr_contextmenu_stop">Ustavi sledenje</string>
@@ -84,7 +84,7 @@
   <string name="gpsstatus_record_textnote">Besedilna opomba</string>
   <!--Menu-->
   <string name="menu_settings">Nastavitve</string>
-  <string name="menu_waypointlist">Točke poti</string>
+  <string name="menu_waypointlist">Točke</string>
   <string name="menu_about">O programu</string>
   <string name="menu_displaytrack">Prikaži sled</string>
   <string name="menu_stoptracking">Ustavi in shrani</string>
@@ -109,7 +109,7 @@
   <string name="gpx_hdop_approximation_cmt">Opozorilo: vrednosti HDOP niso HDOP, kot jih vrne naprava GPS. Približane so iz natančnosti lokacije v metrih.</string>
   <!--About screen-->
   <string name="about">O programu</string>
-  <string name="about_text">Za več podatkov, dokumentacijo in poročila o vprašanjih obiščite domačo stran projekta:</string>
+  <string name="about_text">Za več podatkov, dokumentacijo in poročil o težavah obiščite domačo stran projekta:</string>
   <string name="about_translate_text">Pomagajte prevesti OSMTracker:</string>
   <string name="about_debug_info">Podatki o razhroščevanju</string>
   <string name="about_export_db">Izvozi podatkovno zbirko</string>
@@ -117,8 +117,8 @@
   <string name="about_export_db_result">Rezultat izvoza podatkovne zbirke: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker sledi</string>
-  <string name="notification_title">OSMTracker seldi (#{0})</string>
-  <string name="notification_text">Tapnite tukaj, da prikažete glavni zaslon</string>
+  <string name="notification_title">OSMTracker sledi (št. {0})</string>
+  <string name="notification_text">Tapnite tukaj, da prikažete gl. zaslon</string>
   <!--Display track-->
   <string name="displaytrack">Prikaži sled</string>
   <string name="displaytrack_map">Prikaži zemljevid ozadja</string>
@@ -138,4 +138,7 @@
   <string name="various_heading_unknown">Smeri ni mogoče določiti</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Prikaz sledi OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

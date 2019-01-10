@@ -31,7 +31,9 @@
   <string name="trackmgr_waypoints_count">Etapit: </string>
   <string name="trackmgr_trackpoints_count">Reittipisteet: </string>
   <string name="trackmgr_empty">Ei reittejä.</string>
+  <string name="trackmgr_newtrack_hint">Tallentaaksesi reitini,\npaina <b>Valikko</b> <b>Uusi reitti</b></string>
   <string name="trackmgr_newtrack_error">Uuden reitin luonti ei onnistu: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Tallennat parhaillaan <b>reittiä #{0}</b>\nValitse se listasta jatkaaksesi</string>
   <string name="trackmgr_contextmenu_stop">Lopeta seuranta</string>
   <string name="trackmgr_contextmenu_resume">Jatka reitin tallentamista</string>
   <string name="trackmgr_contextmenu_delete">Poista</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">Reitti #{0} poistetaan</string>
   <string name="trackmgr_deleteall_confirm">Kaikki reiti poistetaan. Oletko varma?</string>
   <string name="trackmgr_exporting">Tallennetaan reitti #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Valmistellaan viemistä…</string>
   <string name="trackmgr_export_error">Reittiä ei voitu tallentaa: {0}</string>
   <string name="trackmgr_exportall_confirm">Kaikki reitit viedään, mutta siinä saattaa kestää kauan. Haluatko jatkaa?</string>
   <!--Track Detail-->
@@ -109,6 +112,9 @@
   <string name="about_text">Lisätiedot, kuten dokumentit ja ongelmaraportointi, projektin verkkosivustolla:</string>
   <string name="about_translate_text">Auta kääntämään OSMTrackeria:</string>
   <string name="about_debug_info">Virheenjäljitys</string>
+  <string name="about_export_db">Vie tietokanta</string>
+  <string name="about_exporting_db">Viedään tietokantaa…</string>
+  <string name="about_export_db_result">Tietokannan viennin tulos: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker on edelleen päällä</string>
   <string name="notification_title">OSMTracker on edelleen päällä</string>
@@ -132,4 +138,7 @@
   <string name="various_heading_unknown">Suuntaa ei voi määrittää</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap-reittinäyttö</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

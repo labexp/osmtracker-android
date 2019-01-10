@@ -31,7 +31,9 @@
   <string name="trackmgr_waypoints_count">POI: </string>
   <string name="trackmgr_trackpoints_count">Punti traccia: </string>
   <string name="trackmgr_empty">Nessuna traccia disponibile.</string>
+  <string name="trackmgr_newtrack_hint">Per registrare una traccia,\npremi <b>Menu</b> poi <b>Nuova traccia</b></string>
   <string name="trackmgr_newtrack_error">Impossibile creare una nuova traccia: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Stai già registrando la <b>traccia #{0}</b>\nSelezionala nell\'elenco per continuare</string>
   <string name="trackmgr_contextmenu_stop">Ferma registrazione</string>
   <string name="trackmgr_contextmenu_resume">Riprendi registrazione</string>
   <string name="trackmgr_contextmenu_delete">Elimina</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">La traccia #{0} sarà eliminata</string>
   <string name="trackmgr_deleteall_confirm">Tutte le tracce saranno eliminate. Sei sicuro?</string>
   <string name="trackmgr_exporting">Esportazione traccia #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Preparazione esportazione...</string>
   <string name="trackmgr_export_error">Impossibile esportare la traccia: {0}</string>
   <string name="trackmgr_exportall_confirm">Tutti i tracciati verranno esportati, ma questo può richiedere un po\' di tempo. Sei sicuro?</string>
   <!--Track Detail-->
@@ -109,6 +112,9 @@
   <string name="about_text">Per maggiori informazioni e segnalazioni di problemi visita la pagina principale del progetto:</string>
   <string name="about_translate_text">Aiuta a tradurre OSMTracker:</string>
   <string name="about_debug_info">Info debug</string>
+  <string name="about_export_db">Esporta database</string>
+  <string name="about_exporting_db">Esportazione database...</string>
+  <string name="about_export_db_result">Risultato esportazione database: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker sta registrando</string>
   <string name="notification_title">OSMTracker sta registrando (#{0})</string>
@@ -132,4 +138,36 @@
   <string name="various_heading_unknown">La direzione non può essere determinata</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Mostra traccia OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Aggiorna &amp; installa</string>
+  <string name="buttons_presets_context_menu_delete">Elimina</string>
+  <string name="buttons_presets_updating_layout">Aggiornamento...</string>
+  <string name="buttons_presets_successful_update">Il formato è stato aggiornato con successo</string>
+  <string name="buttons_presets_unsuccessful_update">Il formato non è stato aggiornato, riprovare più tardi</string>
+  <string name="buttons_presets_delete_message">Vuoi veramente eliminare il formato {0}?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Sì</string>
+  <string name="buttons_presets_successful_delete">Il file è stato eliminato con successo</string>
+  <string name="buttons_presets_icon_directory_deleted">La directory delle icone è stata eliminata con successo</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Il file non aveva alcuna directory delle icone associata</string>
+  <string name="buttons_presets_unsuccessful_delete">Non è stato possibile eliminare il file</string>
+  <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Errore: impossibile connettersi a Internet</string>
+  <string name="available_layouts_response_null_exception">Errore: impossibile connettersi al repository predefinito dei formati personalizzati</string>
+  <string name="available_layouts_connecting_message">(Connessione in corso...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Scarica</string>
+  <string name="available_layouts_not_available_language">La tua lingua non è disponibile, selezionane una dalla lista</string>
+  <string name="available_layouts_language_dialog_title">Lingue disponibili</string>
+  <string name="available_layouts_checking_language_dialog">Controllo delle versioni della lingua locale</string>
+  <string name="available_layouts_downloading_dialog">Scaricamento in corso...</string>
+  <string name="available_layouts_successful_download">Il formato è stato scaricato con successo</string>
+  <string name="available_layouts_unsuccessful_download">Non è stato possibile scaricare il formato, riprovare più tardi</string>
+  <string name="available_layouts_null_response_received">Errore durante il trasferimento dei dati dal server</string>
+  <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Predefinito</string>
+  <string name="github_repository_settings_custom_checkbox">Personalizzato</string>
+  <string name="github_repository_settings_username">Utente Github:</string>
+  <string name="github_repository_settings_repository_name">Nome repository:</string>
+  <string name="github_repository_settings_branch_name">Nome branch:</string>
+  <string name="github_repository_settings_valid_server">Repository Github valido</string>
+  <string name="github_repository_settings_invalid_server">Repository Github non valido</string>
 </resources>
