@@ -7,6 +7,7 @@ import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -22,6 +23,10 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 /**
@@ -126,6 +131,36 @@ public class Preferences extends PreferenceActivity {
 				return true;
 			}
 		});
+
+		// don't allow the logging_min_distance to be empty
+		final EditText et = ((EditTextPreference)pref).getEditText();
+		final EditTextPreference etp = (EditTextPreference)pref;
+		et.addTextChangedListener(
+				new TextWatcher() {
+					@Override
+					public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+					}
+
+					@Override
+					public void onTextChanged(CharSequence s, int start, int before, int count) {
+						if (s.length() >= 0) {
+							try {
+								Button bt_ok = ((AlertDialog) etp.getDialog()).getButton(AlertDialog.BUTTON_POSITIVE);
+								if (s.length() == 0) {
+									bt_ok.setEnabled(false);
+								} else {
+									((AlertDialog) etp.getDialog()).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+								}
+							} catch (Exception ex) {
+							}
+						}
+					}
+
+					@Override
+					public void afterTextChanged(Editable s) {
+					}
+				}
+		);
 
 		pref = findPreference(OSMTracker.Preferences.KEY_GPS_OSSETTINGS);
 		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
