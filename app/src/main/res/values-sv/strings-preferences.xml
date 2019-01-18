@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">Inställningar</string>
@@ -22,16 +22,21 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Knapplayout</string>
   <string name="prefs_ui_buttons_layout_summary">Tillåt egendefinierade knapplayouter (se dokumentationen).</string>
+  <string name="prefs_ui_buttons_layout_default_section">STANDARDLAYOUT</string>
   <string name="prefs_ui_buttons_layout_defaut">Standard</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">NEDLADDAD LAYOUT</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Du har inga nedladdade layoutfiler</string>
+  <string name="prefs_ui_available_layout">Tillgängliga layouter</string>
+  <string name="prefs_ui_github_repository_settings">Inställningar för Github Repository</string>
   <string name="prefs_ui_orientation">Orientering</string>
   <string name="prefs_ui_orientation_summary">Orientering av knappskärmen du föredrar</string>
   <string-array name="prefs_ui_orientation_options_keys">
     <item>Automatisk</item>
-    <item>Porträtt</item>
-    <item>Landskap</item>
+    <item>Stående</item>
+    <item>Liggande</item>
   </string-array>
   <string name="prefs_voicerec_duration">Längd på röstnoteringar</string>
-  <string name="prefs_voicerec_duration_seconds">sekunder.</string>
+  <string name="prefs_voicerec_duration_seconds">sekunder</string>
   <string name="prefs_theme">Utseende/tema</string>
   <string name="prefs_theme_summary">Applikationen måste startas om innan ändringarna syns.</string>
   <string-array name="prefs_theme_keys">

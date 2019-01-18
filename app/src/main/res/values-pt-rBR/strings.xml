@@ -7,11 +7,11 @@
   <!--TrackLogger-->
   <string name="tracklogger">Registro da trilha</string>
   <string name="tracklogger_waiting_gps">Aguardando estabilização do GPS para ativar botões...</string>
-  <string name="tracklogger_voicerec_title">Gravação de voz</string>
+  <string name="tracklogger_voicerec_title">Gravar voz</string>
   <string name="tracklogger_voicerec_text">Gravando um {0}s trecho de áudio.</string>
   <string name="tracklogger_voicerec_stop">Parar</string>
   <string name="tracklogger_btnBack">Voltar</string>
-  <string name="tracklogger_tracked">Gravada:</string>
+  <string name="tracklogger_tracked">Gravado:</string>
   <string name="tracklogger_gps_disabled">GPS desativado</string>
   <string name="tracklogger_gps_disabled_hint">O GPS está desativado. Deseja ativá-lo?</string>
   <string name="tracklogger_choose_gallery_camera">Galeria ou câmera?</string>
@@ -31,7 +31,9 @@
   <string name="trackmgr_waypoints_count">Pontos de referência:</string>
   <string name="trackmgr_trackpoints_count">Trajeto:</string>
   <string name="trackmgr_empty">Você não tem nenhuma trilha.</string>
+  <string name="trackmgr_newtrack_hint">Para gravar uma trilha,\npressione <b>Menu</b> e então <b>Nova trilha</b></string>
   <string name="trackmgr_newtrack_error">Impossível criar uma nova trilha: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Você está gravando a <b>trilha #{0}</b>\nSelecione ela na lista para continuar</string>
   <string name="trackmgr_contextmenu_stop">Parar gravação</string>
   <string name="trackmgr_contextmenu_resume">Continuar gravação</string>
   <string name="trackmgr_contextmenu_delete">Apagar</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">A trilha #{0} será apagada</string>
   <string name="trackmgr_deleteall_confirm">Todas as trilhas serão apagadas. Tem certeza?</string>
   <string name="trackmgr_exporting">Exportando trilha #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Preparando para exportar...</string>
   <string name="trackmgr_export_error">Não foi possível exportar trilha: {0}</string>
   <string name="trackmgr_exportall_confirm">Todas as trilhas serão exportadas, o que poderá levar muito tempo. Tem certeza?</string>
   <!--Track Detail-->
@@ -76,7 +79,7 @@
   <string name="osm_upload_unauthorized">Erro de autorização. Gostaria de limpar as credencias do OpenStreetMaps salvas?</string>
   <string name="osm_upload_sucess">Enviado com sucesso para o OpenStreetMap</string>
   <!--GPS Status & record bar-->
-  <string name="gpsstatus_record_voicerec">Gravação de voz</string>
+  <string name="gpsstatus_record_voicerec">Gravar voz</string>
   <string name="gpsstatus_record_stillimage">Tirar foto</string>
   <string name="gpsstatus_record_textnote">Nota</string>
   <!--Menu-->
@@ -109,6 +112,9 @@
   <string name="about_text">Para maiores informações, documentação e relatório de problemas, por favor visite o site:</string>
   <string name="about_translate_text">Ajudar na tradução do OSMTracker:</string>
   <string name="about_debug_info">Informação de depuração</string>
+  <string name="about_export_db">Exportar banco de dados</string>
+  <string name="about_exporting_db">Exportando banco de dados...</string>
+  <string name="about_export_db_result">Resultado da exportação do banco de dados: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker está gravando trilha</string>
   <string name="notification_title">OSMTracker está gravando trilha (#{0})</string>
@@ -132,4 +138,7 @@
   <string name="various_heading_unknown">O rumo não pôde ser determinado</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Exibindo trilhas do OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

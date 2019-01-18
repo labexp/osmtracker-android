@@ -31,7 +31,9 @@
   <string name="trackmgr_waypoints_count">Тачки пролаза:</string>
   <string name="trackmgr_trackpoints_count">Тачки праћења:</string>
   <string name="trackmgr_empty">Нема праћења.</string>
+  <string name="trackmgr_newtrack_hint">Да снимите путању,\nпритисните <b>Мени</b> и онда <b>Нова путања</b></string>
   <string name="trackmgr_newtrack_error">Не могу да направим ново праћење: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Тренутно снимате <b>путању #{0}</b>\nИзаберите је у листи да наставите</string>
   <string name="trackmgr_contextmenu_stop">Заустави праћење</string>
   <string name="trackmgr_contextmenu_resume">Настави праћење</string>
   <string name="trackmgr_contextmenu_delete">Обриши</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">Праћење #{0} биће избрисано</string>
   <string name="trackmgr_deleteall_confirm">Сва праћења биће обрисана. Сигурни сте?</string>
   <string name="trackmgr_exporting">Извозим праћење #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Припремам извоз...</string>
   <string name="trackmgr_export_error">Не могу да извезем праћење: {0}</string>
   <string name="trackmgr_exportall_confirm">Биће извезена сва праћења. То може да потраје. Сигурни сте?</string>
   <!--Track Detail-->
@@ -109,6 +112,9 @@
   <string name="about_text">За више информација, документацију и пријаве проблема, посетите страницу пројекта:</string>
   <string name="about_translate_text">Помогли у превођењу:</string>
   <string name="about_debug_info">Подаци за отклањање грешака</string>
+  <string name="about_export_db">Извоз базе података</string>
+  <string name="about_exporting_db">Извозим базу података...</string>
+  <string name="about_export_db_result">Резултат извоза: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSM пратилац ради</string>
   <string name="notification_title">OSM пратилац прати (#{0})</string>
@@ -132,4 +138,7 @@
   <string name="various_heading_unknown">Правац се не може одредити</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap приказ праћења</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

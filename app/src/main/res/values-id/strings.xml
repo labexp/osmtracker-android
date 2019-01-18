@@ -132,4 +132,7 @@
   <string name="various_heading_unknown">Arah tidak dapat ditentukan</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Tampilan trek OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

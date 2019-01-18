@@ -8,7 +8,7 @@
   <string name="tracklogger">Grabadora de trazas</string>
   <string name="tracklogger_waiting_gps">Esperando la señal de GPS para habilitar los botones…</string>
   <string name="tracklogger_voicerec_title">Grabación de voz</string>
-  <string name="tracklogger_voicerec_text">Grabando un sonido de {0} s.</string>
+  <string name="tracklogger_voicerec_text">Grabando un audio de {0} s.</string>
   <string name="tracklogger_voicerec_stop">Detener</string>
   <string name="tracklogger_btnBack">Atrás</string>
   <string name="tracklogger_tracked">Trazado: </string>
@@ -31,7 +31,9 @@
   <string name="trackmgr_waypoints_count">Puntos de ref.:</string>
   <string name="trackmgr_trackpoints_count">P. de traza:</string>
   <string name="trackmgr_empty">Usted no tiene ninguna traza.</string>
+  <string name="trackmgr_newtrack_hint">Para grabar una traza,\npresione el símbolo (+)  </string>
   <string name="trackmgr_newtrack_error">No se puede crear una nueva traza: {0}</string>
+  <string name="trackmgr_continuetrack_hint">En este momento está grabando la <b>traza #{0}</b>\nElíjalo en la lista para continuar</string>
   <string name="trackmgr_contextmenu_stop">Detener el trazado</string>
   <string name="trackmgr_contextmenu_resume">Reanudar el trazado</string>
   <string name="trackmgr_contextmenu_delete">Eliminar</string>
@@ -43,20 +45,21 @@
   <string name="trackmgr_delete_confirm">La traza #{0} se eliminará.</string>
   <string name="trackmgr_deleteall_confirm">Se eliminarán todos las trazas. ¿Está seguro?</string>
   <string name="trackmgr_exporting">Exportando traza #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Preparando la exportación...</string>
   <string name="trackmgr_export_error">No se puede exportar la traza: {0}</string>
   <string name="trackmgr_exportall_confirm">Se exportarán todas las trazas, lo cual podría tardar mucho tiempo. ¿Está seguro?</string>
   <!--Track Detail-->
   <string name="trackdetail">Detalles de la traza</string>
   <string name="trackdetail_startdate">Hora de inicio: </string>
-  <string name="trackdetail_enddate">Hora de fin: </string>
-  <string name="trackdetail_startloc">Se inicia en: </string>
-  <string name="trackdetail_endloc">Termina en: </string>
-  <string name="trackdetail_exportdate">Se exportó a: </string>
+  <string name="trackdetail_enddate">Hora de finalización: </string>
+  <string name="trackdetail_startloc">Inicia en: </string>
+  <string name="trackdetail_endloc">Termina en:</string>
+  <string name="trackdetail_exportdate">Se exportó a:</string>
   <string name="trackdetail_osm_upload_date">Subido a OpenStreetMap:</string>
   <string name="trackdetail_btn_export">Exportar a GPX</string>
   <string name="trackdetail_export_notyet">(aún no exportado)</string>
   <string name="trackdetail_osm_upload_notyet">(aún no subido)</string>
-  <string name="trackdetail_export_display">Visualizar</string>
+  <string name="trackdetail_export_display">Mostrar</string>
   <string name="trackdetail_description">Descripción: </string>
   <string name="trackdetail_tags">Etiquetas (delimitado por comas)</string>
   <string name="trackdetail_description_mandatory">Debe introducir una descripción</string>
@@ -109,6 +112,9 @@
   <string name="about_text">Para más información, documentos e informe de incidencias, visite la web del proyecto:</string>
   <string name="about_translate_text">Ayúdanos a traducir OSMTracker:</string>
   <string name="about_debug_info">Info. de depuración</string>
+  <string name="about_export_db">Exportar base de datos</string>
+  <string name="about_exporting_db">Exportando base de datos...</string>
+  <string name="about_export_db_result">Resultado de exportar la base de datos: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker está trazando</string>
   <string name="notification_title">OSMTracker está trazando (#{0})</string>
@@ -131,42 +137,37 @@
   <string name="various_heading">Espere por la cabecera…</string>
   <string name="various_heading_unknown">La cabecera no se puede determinar</string>
   <!--OSM map view-->
-  <string name="displaytrackmap">Visualización de traza OpenStreetMap</string>
-
-  <!-- Buttons Presets messages -->
-
+  <string name="displaytrackmap">Vista de la traza en OpenStreetMap</string>
+  <!--Buttons presets messages-->
   <string name="buttons_presets_context_menu_update_install">Actualizar e instalar</string>
   <string name="buttons_presets_context_menu_delete">Eliminar</string>
   <string name="buttons_presets_updating_layout">Actualizando…</string>
   <string name="buttons_presets_successful_update">Disposición actualizada con éxito</string>
-  <string name="buttons_presets_unsuccessful_update">Lo sentimos, la disposición no se pudo actualizar</string>
+  <string name="buttons_presets_unsuccessful_update">La disposición no se pudo actualizar, intente de nuevo más tarde</string>
   <string name="buttons_presets_delete_message">¿Está seguro que desea eliminar la disposición de {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Sí</string>
   <string name="buttons_presets_successful_delete">El archivo fue borrado con éxito</string>
   <string name="buttons_presets_icon_directory_deleted">Iconos de la disposición eliminados con éxito</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Este archivo no tenía ningún directorio de iconos asociado</string>
   <string name="buttons_presets_unsuccessful_delete">No se pudo eliminar el archivo</string>
-
-  <!-- Available Layouts messages -->
-  <string name="available_layouts_connection_error">Error: No se puede conectar a internet, por favor revise su conexión</string>
+  <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Error: No se puede conectar a Internet, por favor revise su conexión</string>
   <string name="available_layouts_response_null_exception">Error: No se pudo conectar con el servidor de disposiciones personalizadas predeterminado</string>
   <string name="available_layouts_connecting_message">(Conectando…)</string>
   <string name="available_layouts_description_dialog_positive_confirmation">Descargar</string>
   <string name="available_layouts_not_available_language">Tu idioma no está disponible, por favor seleccione uno de la lista</string>
   <string name="available_layouts_language_dialog_title">Lenguajes Disponibles</string>
-  <string name="available_layouts_checking_language_dialog">Verificando tu idioma</string>
+  <string name="available_layouts_checking_language_dialog">Verificación de versiones de idioma local</string>
   <string name="available_layouts_downloading_dialog">Descargando…</string>
   <string name="available_layouts_successful_download">La disposición fue descargada con éxito</string>
   <string name="available_layouts_unsuccessful_download">No se pudo descargar la disposición, por favor intente más tarde</string>
-
-  <!-- Github Repository Settings -->
+  <string name="available_layouts_null_response_received">Error al recuperar datos del servidor</string>
+  <!--Github Repository Settings-->
   <string name="github_repository_settings_default_checkbox">Predeterminado</string>
   <string name="github_repository_settings_custom_checkbox">Personalizado</string>
-  <string name="github_repository_settings_username">Nombre de usuario Github: </string>
+  <string name="github_repository_settings_username">Nombre de usuario GitHub: </string>
   <string name="github_repository_settings_repository_name">Nombre del Repositorio: </string>
   <string name="github_repository_settings_branch_name">Nombre de la rama: </string>
-  <string name="github_repository_settings_valid_server">Repositorio de Github válido</string>
-  <string name="github_repository_settings_invalid_server">Repositorio de Github inválido</string>
-
-
+  <string name="github_repository_settings_valid_server">Repositorio de GitHub válido</string>
+  <string name="github_repository_settings_invalid_server">Repositorio de GitHub inválido</string>
 </resources>

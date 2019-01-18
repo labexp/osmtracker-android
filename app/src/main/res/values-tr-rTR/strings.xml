@@ -100,4 +100,7 @@
   <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

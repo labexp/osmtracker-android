@@ -1,26 +1,78 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
+  <string name="app_name">متتبع أواسام للأندرويد™</string>
+  <string name="app_short_name">متتبع أواسام</string>
   <!--TrackLogger-->
   <string name="tracklogger_voicerec_title">تسجيل صوتي</string>
+  <string name="tracklogger_voicerec_stop">إيقاف</string>
+  <string name="tracklogger_btnBack">العودة</string>
   <string name="tracklogger_gps_disabled">GPS تعطيل</string>
+  <string name="tracklogger_camera">أخذ صورة بآلة التصوير</string>
+  <string name="tracklogger_gallery">إختيار صورة من المعرض</string>
   <!--Waypoint List-->
+  <string name="wplist_latitude">خط عرض :</string>
+  <string name="wplist_longitude">خط طول :</string>
+  <string name="wplist_elevation">الإرتفاع :</string>
+  <string name="wplist_accuracy">الدقة :</string>
   <!--Track Manager-->
   <string name="trackmgr">مدير المسار</string>
   <string name="trackmgr_tracklist">قائمة تتبع:</string>
+  <string name="trackmgr_waypoints_count">نقاط الطريق :</string>
+  <string name="trackmgr_trackpoints_count">نقاط المسار :</string>
+  <string name="trackmgr_empty">لا توجد بحوزتك أية مسارات.</string>
+  <string name="trackmgr_contextmenu_stop">إيقاف تقفِّي المسار</string>
+  <string name="trackmgr_contextmenu_resume">مواصلة تقفِّي المسار</string>
+  <string name="trackmgr_contextmenu_delete">حذف</string>
+  <string name="trackmgr_contextmenu_osm_upload">إرفع إلى خريطة الشارع المفتوح</string>
+  <string name="trackmgr_contextmenu_display">العرض</string>
+  <string name="trackmgr_contextmenu_details">تفاصيل</string>
+  <string name="trackmgr_contextmenu_title">المسار #{0}</string>
   <!--Track Detail-->
+  <string name="trackdetail">تفاصيل المسار :</string>
+  <string name="trackdetail_startdate">لحظة البداية :</string>
+  <string name="trackdetail_enddate">لحظة النهاية :</string>
+  <string name="trackdetail_description">الوصف</string>
+  <string name="trackdetail_tags">الأوسمة (فاصلة بعد كل وسم)</string>
+  <string name="osm_visibility_private">خاص</string>
+  <string name="osm_visibility_public">عمومي</string>
   <!--OSM upload-->
+  <string name="osm_upload">إرفع إلى خريطة الشارع المفتوح</string>
   <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">تسجيل صوتي</string>
+  <string name="gpsstatus_record_stillimage">أخذ صورة</string>
+  <string name="gpsstatus_record_textnote">ملاحظة</string>
   <!--Menu-->
+  <string name="menu_settings">الإعدادات</string>
+  <string name="menu_about">عن</string>
+  <string name="menu_displaytrack">عرض المسار</string>
+  <string name="menu_newtrack">مسار جديد</string>
+  <string name="menu_deletetracks">حذف جميع المسارات</string>
+  <string name="menu_save">احتفاظ</string>
+  <string name="menu_cancel">إلغاء</string>
+  <string name="menu_osm_upload">إرفع إلى خريطة الشارع المفتوح</string>
   <!--Errors-->
   <!--GPX-->
   <!--About screen-->
+  <string name="about">عن</string>
+  <string name="about_translate_text">ساعدنا على ترجمة OSMTracker :</string>
+  <string name="about_export_db">تصدير قاعدة البيانات</string>
+  <string name="about_exporting_db">جارٍ تصدير قاعدة البيانات ...</string>
   <!--Notification-->
+  <string name="notification_text">إضغط هنا لعرض الشاشة الرئسية</string>
   <!--Display track-->
+  <string name="displaytrack">عرض المسار</string>
   <!--Track detail-->
+  <string name="trackdetail_save">احتفاظ</string>
   <!--Various-->
+  <string name="various_accuracy">الدقة</string>
+  <string name="various_accuracy_with_sats">الدقة {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

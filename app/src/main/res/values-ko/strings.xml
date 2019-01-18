@@ -31,18 +31,21 @@
   <string name="trackmgr_waypoints_count">웨이포인트:</string>
   <string name="trackmgr_trackpoints_count">트랙포인트:</string>
   <string name="trackmgr_empty">어떠한 트랙도 없습니다.</string>
+  <string name="trackmgr_newtrack_hint">트랙을 기록하려면,\n <b>메뉴</b>를 누르고 <b>새 트랙</b>을 누르세요</string>
   <string name="trackmgr_newtrack_error">새 트랙을 만들 수 없습니다: {0}</string>
+  <string name="trackmgr_continuetrack_hint">현재  <b>트랙 #{0}</b>을 기록하고 있습니다\n계속하려면 목록에서 그것을 선택하세요</string>
   <string name="trackmgr_contextmenu_stop">트래킹 멈춤</string>
   <string name="trackmgr_contextmenu_resume">트래킹 재개</string>
   <string name="trackmgr_contextmenu_delete">삭제</string>
   <string name="trackmgr_contextmenu_export">GPX로 내보내기</string>
   <string name="trackmgr_contextmenu_osm_upload">OpenStreetMap으로 올리기</string>
-  <string name="trackmgr_contextmenu_display">보기</string>
+  <string name="trackmgr_contextmenu_display">표시</string>
   <string name="trackmgr_contextmenu_details">자세한 정보</string>
   <string name="trackmgr_contextmenu_title">트랙 #{0}</string>
   <string name="trackmgr_delete_confirm">트랙 #{0}이 삭제됩니다</string>
   <string name="trackmgr_deleteall_confirm">모든 트랙이 삭제됩니다. 삭제하겠습니까?</string>
   <string name="trackmgr_exporting">트랙 #{0}을 내보내는 중…</string>
+  <string name="trackmgr_exporting_prepare">내보내기 준비 중…</string>
   <string name="trackmgr_export_error">트랙을 내보낼 수 없습니다: {0}</string>
   <string name="trackmgr_exportall_confirm">모든 트랙을 내보내며, 시간이 오래 걸릴 수 있습니다. 내보내겠습니까?</string>
   <!--Track Detail-->
@@ -56,7 +59,7 @@
   <string name="trackdetail_btn_export">GPX로 내보내기</string>
   <string name="trackdetail_export_notyet">(아직 내보내지 않았습니다)</string>
   <string name="trackdetail_osm_upload_notyet">(아직 올리지 않았습니다)</string>
-  <string name="trackdetail_export_display">보기</string>
+  <string name="trackdetail_export_display">표시</string>
   <string name="trackdetail_description">설명</string>
   <string name="trackdetail_tags">태그 (쉼표로 구분)</string>
   <string name="trackdetail_description_mandatory">설명을 입력해야 합니다</string>
@@ -83,7 +86,7 @@
   <string name="menu_settings">설정</string>
   <string name="menu_waypointlist">웨이포인트</string>
   <string name="menu_about">정보</string>
-  <string name="menu_displaytrack">트랙 보기</string>
+  <string name="menu_displaytrack">트랙 표시</string>
   <string name="menu_stoptracking">멈춤 &amp; 저장</string>
   <string name="menu_newtrack">새 트랙</string>
   <string name="menu_deletetracks">모든 트랙 삭제</string>
@@ -109,13 +112,16 @@
   <string name="about_text">자세한 정보와 설명문서, 문제 보고서에 대해서는 프로젝트 홈 페이지를 방문하세요:</string>
   <string name="about_translate_text">OSMTracker 번역을 도와주세요:</string>
   <string name="about_debug_info">디버그 정보</string>
+  <string name="about_export_db">데이터베이스 내보내기</string>
+  <string name="about_exporting_db">데이터베이스를 내보내는 중…</string>
+  <string name="about_export_db_result">데이터베이스 내보내기 결과: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker가 트랙 중입니다</string>
   <string name="notification_title">OSMTracker가 트랙 중입니다 (#{0})</string>
-  <string name="notification_text">주 화면을 보려면 여기를 탭하세요</string>
+  <string name="notification_text">주 화면을 표시하려면 여기를 탭하세요</string>
   <!--Display track-->
-  <string name="displaytrack">트랙 보기</string>
-  <string name="displaytrack_map">배경 지도 보기</string>
+  <string name="displaytrack">트랙 표시</string>
+  <string name="displaytrack_map">배경 지도 표시</string>
   <string name="displaytrack_north">북</string>
   <!--Track detail-->
   <string name="trackdetail_save">저장</string>
@@ -131,5 +137,8 @@
   <string name="various_heading">방위 측정을 기다리는 중…</string>
   <string name="various_heading_unknown">방위를 결정할 수 없습니다</string>
   <!--OSM map view-->
-  <string name="displaytrackmap">OpenStreetMap 트랙 보기</string>
+  <string name="displaytrackmap">OpenStreetMap 트랙 표시</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>
