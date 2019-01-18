@@ -12,6 +12,10 @@
   <string name="prefs_gps_logging_interval">GPS-Protokollierungsintervall</string>
   <string name="prefs_gps_logging_interval_summary">Verwenden Sie 0 für das kürzestmögliche Intervall (beeinflusst die Batterielebensdauer)</string>
   <string name="prefs_gps_logging_interval_seconds">Sekunden</string>
+  <string name="prefs_gps_logging_min_distance">GPS Distanz Trackpoints</string>
+  <string name="prefs_gps_logging_min_distance_summary">Min. Abstand zweier Trackpoints</string>
+  <string name="prefs_gps_logging_min_distance_meters">Meter</string>
+
   <string name="prefs_ui">Benutzeroberfläche</string>
   <string name="prefs_ui_picture_source">Standard-Fotoquelle</string>
   <string name="prefs_ui_picture_source_summary">Fotos von Kamera oder Galerie nehmen?</string>
