@@ -1,5 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
+  <string name="prefs">Nustatymai</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS nustatymai</string>
+  <string name="prefs_ui_picture_source">Numatytasis nuotraukų šaltinis</string>
+  <string name="prefs_voicerec_duration">Balso įrašo trukmė</string>
+  <string-array name="prefs_theme_keys">
+    <item>OS numatytoji</item>
+    <item>OS numatytoji (tamsi)</item>
+    <item>OS numatytoji  (šviesi)</item>
+    <item>Raiški</item>
+  </string-array>
+  <string name="prefs_output">GPX nustatymai</string>
+  <string name="prefs_sound_enabled">Įjungti garsą</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
 </resources>

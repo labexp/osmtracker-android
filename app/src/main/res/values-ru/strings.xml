@@ -16,7 +16,7 @@
   <string name="tracklogger_gps_disabled_hint">GPS отключен. Вы хотите включить его?</string>
   <string name="tracklogger_choose_gallery_camera">Галерея или камера? </string>
   <string name="tracklogger_camera">Сделать фото</string>
-  <string name="tracklogger_gallery">выбрать фото из галереи</string>
+  <string name="tracklogger_gallery">Выбрать фото из галереи</string>
   <!--Waypoint List-->
   <string name="wplist">Список путевых точек</string>
   <string name="wplist_latitude">Шир.: </string>
@@ -31,9 +31,11 @@
   <string name="trackmgr_waypoints_count">Путевые точки: </string>
   <string name="trackmgr_trackpoints_count">Точки трека: </string>
   <string name="trackmgr_empty">У вас нет треков.</string>
+  <string name="trackmgr_newtrack_hint">Чтобы записать трек,\nнажмите <b>Меню</b> затем <b>Новый трек</b></string>
   <string name="trackmgr_newtrack_error">Невозможно создать новый трек: {0}</string>
-  <string name="trackmgr_contextmenu_stop">Остановить запись</string>
-  <string name="trackmgr_contextmenu_resume">Продолжить запись</string>
+  <string name="trackmgr_continuetrack_hint">В данный момент вы записываете <b>трек #{0}</b>\nДля продолжения выберите его в списке</string>
+  <string name="trackmgr_contextmenu_stop">Остановить запись трека</string>
+  <string name="trackmgr_contextmenu_resume">Продолжить запись трека</string>
   <string name="trackmgr_contextmenu_delete">Удалить</string>
   <string name="trackmgr_contextmenu_export">Экспортировать в GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Загрузить на OpenStreetMap</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">Трек #{0} будет удалён</string>
   <string name="trackmgr_deleteall_confirm">Все треки будут удалены. Вы уверены?</string>
   <string name="trackmgr_exporting">Экспорт трека #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Подготовка экспорта...</string>
   <string name="trackmgr_export_error">Невозможно экспортировать трек: {0}</string>
   <string name="trackmgr_exportall_confirm">Будут экспортированы все треки, что может занять продолжительное время. Вы уверены?</string>
   <!--Track Detail-->
@@ -109,6 +112,9 @@
   <string name="about_text">Подробная информация, сообщения об ошибках находятся на официальном сайте проекта:</string>
   <string name="about_translate_text">Помочь с переводом OSMTracker:</string>
   <string name="about_debug_info">Отладочная информация</string>
+  <string name="about_export_db">Экспорт базы данных</string>
+  <string name="about_exporting_db">Экспорт базы данных...</string>
+  <string name="about_export_db_result">Результат экспорта базы данных: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker запущен</string>
   <string name="notification_title">OSMTracker запущен (#{0})</string>
@@ -132,4 +138,26 @@
   <string name="various_heading_unknown">Направление не может быть определено</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Отображение трека (OSM)</string>
+  <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Обновить &amp; Установить</string>
+  <string name="buttons_presets_context_menu_delete">Удалить</string>
+  <string name="buttons_presets_updating_layout">Обновление...</string>
+  <string name="buttons_presets_delete_positive_confirmation">Да</string>
+  <string name="buttons_presets_successful_delete">Файл успешно удалён</string>
+  <string name="buttons_presets_icon_directory_deleted">Иконка каталога успешно удалена</string>
+  <string name="buttons_presets_unsuccessful_delete">Файл нельзя удалить</string>
+  <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Ошибка: нет подключения к интернету</string>
+  <string name="available_layouts_connecting_message">(Соединение...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Скачать</string>
+  <string name="available_layouts_not_available_language">Ваш язык недоступен, выберите один из списка</string>
+  <string name="available_layouts_language_dialog_title">Доступные Языки</string>
+  <string name="available_layouts_checking_language_dialog">Проверка доступности языка</string>
+  <string name="available_layouts_downloading_dialog">Загрузка...</string>
+  <string name="available_layouts_null_response_received">Ошибка получения данных с сервера</string>
+  <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">По-умолчанию</string>
+  <string name="github_repository_settings_custom_checkbox">Пользовательские</string>
+  <string name="github_repository_settings_username">Логин Github:</string>
+  <string name="github_repository_settings_repository_name">Имя репозитория:</string>
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">Instellingen</string>
@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Knop-voorinstellingen</string>
   <string name="prefs_ui_buttons_layout_summary">Een aangepaste set knoppen kiezen (zie documenten)</string>
+  <string name="prefs_ui_buttons_layout_default_section">STANDAARD LAY-OUT</string>
   <string name="prefs_ui_buttons_layout_defaut">Standaard</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">GEDOWNLOADE LAY-OUT</string>
+  <string name="prefs_ui_buttons_layout_empty_section">U heeft geen gedownloade lay-outbestanden</string>
+  <string name="prefs_ui_available_layout">Beschikbare lay-outs</string>
+  <string name="prefs_ui_github_repository_settings">Instellingen van Github-Repository</string>
   <string name="prefs_ui_orientation">Oriëntatie</string>
   <string name="prefs_ui_orientation_summary">Voorkeursoriëntatie van het knoppenscherm</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -58,11 +63,11 @@
     <item>Begindatum en -tijd</item>
   </string-array>
   <string name="prefs_output_accuracy">Nauwkeurigheid in GPX-bestand</string>
-  <string name="prefs_output_accuracy_summary">Nauwkeurigheid toevoegen in GPX-bestand, met naam van routepunt of in routepunt-opmerking</string>
+  <string name="prefs_output_accuracy_summary">Nauwkeurigheid toevoegen in GPX-bestand, met naam van referentiepunt of in referentiepunt-opmerking</string>
   <string-array name="prefs_output_accuracy_keys">
     <item>Geen</item>
-    <item>Met naam van routepunt</item>
-    <item>In routepunt-opmerking</item>
+    <item>Met naam van referentiepunt</item>
+    <item>In referentiepunt-opmerking</item>
   </string-array>
   <string name="prefs_output_gpx_hdop_approximation">HDOP-benadering gebruiken</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">HDOP in GPX vullen met een benaderingswaarde van nauwkeurigheid</string>
@@ -84,5 +89,5 @@
     <item>in extensie</item>
   </string-array>
   <string name="prefs_compass_heading">Kompasrichting exporteren</string>
-  <string name="prefs_compass_heading_summary">Definieert of en hoe de kompas-data geëxporteerd moet worden naar het GPX-bestand</string>
+  <string name="prefs_compass_heading_summary">Bepaalt of en hoe de kompas-data geëxporteerd moet worden naar het GPX-bestand</string>
 </resources>

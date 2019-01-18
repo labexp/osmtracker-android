@@ -1,22 +1,58 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
+  <string name="app_name">OSMTracker for Android™</string>
+  <string name="app_short_name">OSMTracker</string>
   <!--TrackLogger-->
+  <string name="tracklogger_voicerec_title">Balso įrašymas</string>
+  <string name="tracklogger_voicerec_stop">Stabdyti</string>
+  <string name="tracklogger_btnBack">Atgal</string>
+  <string name="tracklogger_gps_disabled">GPS išjungtas</string>
+  <string name="tracklogger_gps_disabled_hint">GPS išjungtas.Ar norite įjungti?</string>
+  <string name="tracklogger_choose_gallery_camera">Galerija ar kamera?</string>
+  <string name="tracklogger_camera">Fotografuoti</string>
+  <string name="tracklogger_gallery">Pasirinkti nuotrauką iš galerijos</string>
   <!--Waypoint List-->
+  <string name="wplist_latitude">Plat.</string>
+  <string name="wplist_longitude">Ilg.</string>
   <!--Track Manager-->
+  <string name="trackmgr_contextmenu_delete">Ištrinti</string>
+  <string name="trackmgr_contextmenu_export">Eksportuoti kaip GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Siųsti į OpenStreetMap</string>
   <!--Track Detail-->
+  <string name="trackdetail_osm_upload_date">Nusiųsta į OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Eksportuoti kaip GPX</string>
+  <string name="trackdetail_tags">Žymos (atskirtos kableliu)</string>
+  <string name="trackdetail_description_mandatory">Pridėkite aprašymą</string>
+  <string name="osm_visibility_public">Viešas</string>
   <!--OSM upload-->
+  <string name="osm_upload_oauth_failed">Nepavyksta prisijungti prie OSM</string>
+  <string name="osm_upload_waiting_response">Laukiama OpenStreetMap serverio atsakymo…</string>
   <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Balso įrašymas</string>
+  <string name="gpsstatus_record_stillimage">Fotografuoti</string>
   <!--Menu-->
+  <string name="menu_settings">Nustatymai</string>
+  <string name="menu_about">Apie</string>
+  <string name="menu_save">Išsaugoti</string>
+  <string name="menu_cancel">Atšaukti</string>
+  <string name="menu_export">Eksportuoti kaip GPX</string>
   <!--Errors-->
   <!--GPX-->
   <!--About screen-->
+  <string name="about">Apie</string>
+  <string name="about_translate_text">Pagelbėkite išversti OSMTracker:</string>
   <!--Notification-->
   <!--Display track-->
   <!--Track detail-->
+  <string name="trackdetail_save">Išsaugoti</string>
   <!--Various-->
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

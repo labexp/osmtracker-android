@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">설정</string>
   <string name="prefs_gps">GPS</string>
   <string name="prefs_gps_os_settings">GPS 설정</string>
-  <string name="prefs_gps_os_settings_summary">시스템 GPS 설정 화면을 보여줍니다</string>
+  <string name="prefs_gps_os_settings_summary">시스템 GPS 설정 화면을 표시합니다</string>
   <string name="prefs_check_gps_startup">시작할 때 GPS 확인</string>
   <string name="prefs_check_gps_startup_summary">GPS가 시작할 때 비활성화되어 있는지 확인하고 활성화할 수 있도록 제공합니다</string>
   <string name="prefs_gps_ignore_clock">GPS 시계 무시</string>
@@ -21,7 +21,7 @@
     <item>항상 묻기</item>
   </string-array>
   <string name="prefs_ui_buttons_layout">버튼 프리셋</string>
-  <string name="prefs_ui_buttons_layout_summary">사용자 지정 버튼 셋을 선택합니다 (설명문서를 참고하세요)</string>
+  <string name="prefs_ui_buttons_layout_summary">사용자 지정 버튼 셋을 선택합니다 (설명문서를 보세요)</string>
   <string name="prefs_ui_buttons_layout_defaut">기본값</string>
   <string name="prefs_ui_orientation">화면 방향</string>
   <string name="prefs_ui_orientation_summary">버튼 화면의 선호하는 방향</string>
@@ -43,8 +43,8 @@
   <string name="prefs_display_always_on">화면 항상 켜기</string>
   <string name="prefs_display_always_on_summary">화면이 트래킹하는 동안 항상 유지됩니다. 배터리를 절약하려면 비활성화하세요</string>
   <string name="prefs_displaytrack_osm">배경 지도</string>
-  <string name="prefs_displaytrack_osm_summary">트랙 아래에 OpenStreetMap 지도를 보여줍니다. 데이터 연결이 필요합니다</string>
-  <string name="prefs_displaytrack_osm_summary_ask">OpenStreetMap 배경을 항상 보이겠습니까? 데이터 연결이 필요합니다.</string>
+  <string name="prefs_displaytrack_osm_summary">트랙 아래에 OpenStreetMap 지도를 표시합니다. 데이터 연결이 필요합니다</string>
+  <string name="prefs_displaytrack_osm_summary_ask">OpenStreetMap 배경을 항상 표시하겠습니까? 데이터 연결이 필요합니다.</string>
   <string name="prefs_output">GPX 설정</string>
   <string name="prefs_storage_dir">외부 저장소 (SD) 디렉터리</string>
   <string name="prefs_storage_dir_hint">다음 트랙에 반영됩니다 (현재 것은 안됨)</string>

@@ -3,6 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker til Android™</string>
   <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Inspireret af OSMTracker på Windows Mobile, der giver dig mulighed for at tracke dine rejser, markerer betydelige waypoints (Tale optagelse, fotos), eksportere dem i GPX format til senere brug sammen med Open Street Map værktøjer som JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Track logger</string>
   <string name="tracklogger_waiting_gps">Venter på GPS fix før knapper aktiveres…</string>
@@ -14,6 +15,8 @@
   <string name="tracklogger_gps_disabled">GPS slukket</string>
   <string name="tracklogger_gps_disabled_hint">GPS er slukket. Vil du tænde den?</string>
   <string name="tracklogger_choose_gallery_camera">Galleri eller kamera?</string>
+  <string name="tracklogger_camera">Tag foto med kamera</string>
+  <string name="tracklogger_gallery">Vælg foto fra galleri</string>
   <!--Waypoint List-->
   <string name="wplist">Waypoint-liste</string>
   <string name="wplist_latitude">Bred: </string>
@@ -28,7 +31,9 @@
   <string name="trackmgr_waypoints_count">Waypoints: </string>
   <string name="trackmgr_trackpoints_count">Track-punkter: </string>
   <string name="trackmgr_empty">Du har ingen tracks.</string>
+  <string name="trackmgr_newtrack_hint">For at optage et track,\nklik <b>Menu</b> og derefter <b>Nyt track</b></string>
   <string name="trackmgr_newtrack_error">Kunne ikke oprette nyt track: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Du optager i øjeblikket <b>track #{0}</b>\nVælg det på listen for at fortsætte</string>
   <string name="trackmgr_contextmenu_stop">Stop tracking</string>
   <string name="trackmgr_contextmenu_resume">Gentoptag tracking</string>
   <string name="trackmgr_contextmenu_delete">Slet</string>
@@ -40,6 +45,7 @@
   <string name="trackmgr_delete_confirm">Track #{0} bliver slettet</string>
   <string name="trackmgr_deleteall_confirm">Alle tracks bliver slettet. Er du sikker?</string>
   <string name="trackmgr_exporting">Eksporterer track #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Forbereder eksport...</string>
   <string name="trackmgr_export_error">Kunne ikke eksportere track: {0}</string>
   <string name="trackmgr_exportall_confirm">Alle tracks bliver eksporteret. Det kan tage noget tid. Er du sikker?</string>
   <!--Track Detail-->
@@ -74,6 +80,7 @@
   <string name="osm_upload_sucess">OpenStreetMap upload lykkedes</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Tale-optagelse</string>
+  <string name="gpsstatus_record_stillimage">Tag foto</string>
   <string name="gpsstatus_record_textnote">Tekstnote</string>
   <!--Menu-->
   <string name="menu_settings">Indstillinger</string>
@@ -105,6 +112,9 @@
   <string name="about_text">For more information, dokumentation og support besøg venligst projektets hjemmeside:</string>
   <string name="about_translate_text">Hjælp med at oversætte OSMTracker:</string>
   <string name="about_debug_info">Debug info</string>
+  <string name="about_export_db">Eksport database</string>
+  <string name="about_exporting_db">Eksporter database...</string>
+  <string name="about_export_db_result">Database eksport resultat: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker tracker aktuelt</string>
   <string name="notification_title">OSMTracker tracker (#{0})</string>
@@ -128,4 +138,7 @@
   <string name="various_heading_unknown">Retning kan ikke findes</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap track visning</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

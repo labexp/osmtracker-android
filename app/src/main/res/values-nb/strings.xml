@@ -31,7 +31,9 @@
   <string name="trackmgr_waypoints_count">Rutepunkt: </string>
   <string name="trackmgr_trackpoints_count">Sporpunkt: </string>
   <string name="trackmgr_empty">Du har ingen spor.</string>
+  <string name="trackmgr_newtrack_hint">For å spore,\npress <b>Meny</b> og så <b>Nytt spor</b></string>
   <string name="trackmgr_newtrack_error">Kan ikke lage spor: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Du tar nå opp <b>spor #{0}</b>\nVelg det i listen for å fortsette med sporingen|</string>
   <string name="trackmgr_contextmenu_stop">Stopp sporing</string>
   <string name="trackmgr_contextmenu_resume">Fortsett sporing</string>
   <string name="trackmgr_contextmenu_delete">Slett</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">Spor nr. {0} vil bli slettet</string>
   <string name="trackmgr_deleteall_confirm">Alle spor vil bli slettet. Er du sikker?</string>
   <string name="trackmgr_exporting">Eksporterer spor nr. {0}…</string>
+  <string name="trackmgr_exporting_prepare">Forbereder eksport... </string>
   <string name="trackmgr_export_error">Kan ikke eksportere spor nr.: {0}</string>
   <string name="trackmgr_exportall_confirm">Alle spor vil bli eksportert, noe som kan ta lang tid. Er du sikker?</string>
   <!--Track Detail-->
@@ -109,6 +112,9 @@
   <string name="about_text">Besøk prosjekthjemmesiden for mer informasjon, dokumentasjon og feilrapportering:</string>
   <string name="about_translate_text">Hjelp med oversettelse av OSMTracker:</string>
   <string name="about_debug_info">Feilsøkingsinfo</string>
+  <string name="about_export_db">Eksporter database</string>
+  <string name="about_exporting_db">Eksporterer database...</string>
+  <string name="about_export_db_result">Resultat av database eksport: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker sporer</string>
   <string name="notification_title">OSMTracker sporer (nr. {0})</string>
@@ -132,4 +138,7 @@
   <string name="various_heading_unknown">Kurs kan ikke fastslås.</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap sporvising</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

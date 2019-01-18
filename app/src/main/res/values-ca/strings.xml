@@ -31,7 +31,9 @@
   <string name="trackmgr_waypoints_count">Waypints (Punts de ruta):</string>
   <string name="trackmgr_trackpoints_count">Punts:</string>
   <string name="trackmgr_empty">No teniu cap track.</string>
+  <string name="trackmgr_newtrack_hint">Per a enregistrar una traça,\npitgeu <b>Menú</b> i després <b>Traça nova</b></string>
   <string name="trackmgr_newtrack_error">No s\'ha pogut crear la ruta: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Esteu enregistrant la <b>traça núm. {0}</b>\nTrieu-la al llistat per a continuar</string>
   <string name="trackmgr_contextmenu_stop">Atura l\'enregistrament</string>
   <string name="trackmgr_contextmenu_resume">Reemprèn l\'enregistrament</string>
   <string name="trackmgr_contextmenu_delete">Esborra</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">S\'esborrarà la Ruta #{0}</string>
   <string name="trackmgr_deleteall_confirm">S\'esborraràn totes les rutes. Segur que ho voleu?</string>
   <string name="trackmgr_exporting">Exportant la ruta #{0}...</string>
+  <string name="trackmgr_exporting_prepare">S\'està preparant l\'exportació...</string>
   <string name="trackmgr_export_error">No s\'ha pogut exportar la ruta: {0}</string>
   <string name="trackmgr_exportall_confirm">S\'exportaran totes les rutes. Això pot trigar bastant. Voleu continuar?</string>
   <!--Track Detail-->
@@ -100,13 +103,18 @@
   <string name="error_create_track_dir">No s\'ha pogut crear la carpeta de rutes %s</string>
   <string name="error_externalstorage_not_writable_hint">Si us plau, comproveu si l\'emmagatzematge extern està correctament inserit i muntat.</string>
   <string name="error_voicerec_failed">Ha fallat l\'enregistrament de veu</string>
+  <string name="error_userlayout_parsing">S\'ha produït un error en processar el fitxer XML de disposició. Torneu a la disposició predeterminada. </string>
   <!--GPX-->
   <string name="gpx_track_name">Enregistrat amb OSMTracker per a  Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Atenció: els valors HDOP no són els HDOP retornats per l\'aparell GPS. Són aproximats a partir de la precisió de la ubicació en metres.</string>
   <!--About screen-->
   <string name="about">Quant a</string>
   <string name="about_text">Per a més informació, docs i avís d\'errors, visiteu la pàgina web del projecte:</string>
   <string name="about_translate_text">Ajuda a traduïr l\'OSMTracker:</string>
   <string name="about_debug_info">Informació de depuració</string>
+  <string name="about_export_db">Exporta la base de dades</string>
+  <string name="about_exporting_db">S\'està exportant la base de dades...</string>
+  <string name="about_export_db_result">Resultat de l\'exportació de la base de dades: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker està enregistrant</string>
   <string name="notification_title">OSMTracker està enregistrant (#{0})</string>
@@ -130,4 +138,7 @@
   <string name="various_heading_unknown">No s\'ha pogut determinar la direcció</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Mostra ruta OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

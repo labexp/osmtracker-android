@@ -27,15 +27,17 @@
   <string name="wplist_compass_accuracy">Ber. noggr.:</string>
   <!--Track Manager-->
   <string name="trackmgr">Spårhantering</string>
-  <string name="trackmgr_tracklist">Spårlista</string>
+  <string name="trackmgr_tracklist">Spårlista:</string>
   <string name="trackmgr_waypoints_count">Vägpunkter: </string>
   <string name="trackmgr_trackpoints_count">Spårpunkter: </string>
-  <string name="trackmgr_empty">Du har inga spår</string>
+  <string name="trackmgr_empty">Du har inga spår.</string>
+  <string name="trackmgr_newtrack_hint">För att spela in ett nytt spår,\ntryck <b>Meny</b> och sedan <b>Nytt spår</b></string>
   <string name="trackmgr_newtrack_error">Kan inte skapa nytt spår: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Du spelar just nu in <b>spår #{0}</b>\nVälj det i listan för att fortsätta</string>
   <string name="trackmgr_contextmenu_stop">Stoppa inspelning</string>
   <string name="trackmgr_contextmenu_resume">Återuppta inspelning</string>
   <string name="trackmgr_contextmenu_delete">Radera</string>
-  <string name="trackmgr_contextmenu_export">Export till GPX</string>
+  <string name="trackmgr_contextmenu_export">Exportera som GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Ladda upp till OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Visa spår på skärm</string>
   <string name="trackmgr_contextmenu_details">Visa detaljer</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">Spår #{0} kommer att raderas</string>
   <string name="trackmgr_deleteall_confirm">Alla spår kommer att tas bort. Är du säker?</string>
   <string name="trackmgr_exporting">Exporterar spår #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Förbereder export...</string>
   <string name="trackmgr_export_error">Kan inte exportera spår: {0}</string>
   <string name="trackmgr_exportall_confirm">Alla spår kommer att exporteras vilket kan ta lång tid. Är du säker?</string>
   <!--Track Detail-->
@@ -52,8 +55,8 @@
   <string name="trackdetail_startloc">Startpunkt:</string>
   <string name="trackdetail_endloc">Slutpunkt:</string>
   <string name="trackdetail_exportdate">Exporterad:</string>
-  <string name="trackdetail_osm_upload_date">Ladda upp till OpenStreetMap</string>
-  <string name="trackdetail_btn_export">Exportera GPX</string>
+  <string name="trackdetail_osm_upload_date">Uppladdad till OpenStreetMap</string>
+  <string name="trackdetail_btn_export">Exportera som GPX</string>
   <string name="trackdetail_export_notyet">(Inte exporterad ännu)</string>
   <string name="trackdetail_osm_upload_notyet">(inte uppladdad än)</string>
   <string name="trackdetail_export_display">Visa</string>
@@ -73,7 +76,7 @@
   <string name="osm_upload_waiting_response">Väntar på att OpenStreetMap-servern ska svara...</string>
   <string name="osm_upload_error">Fel vid uppladdning av spår</string>
   <string name="osm_upload_bad_response">OSM-servern returnerade ett fel: ({0}) meddelande {1}</string>
-  <string name="osm_upload_unauthorized">Inloggningsfel. Vill du ta bort sparas inloggningsdata till OpenStreetMap</string>
+  <string name="osm_upload_unauthorized">Inloggningsfel. Vill du ta bort sparade inloggningsdata till OpenStreetMap</string>
   <string name="osm_upload_sucess">Uppladdning till OpenStreetMap klar</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Röstnotering</string>
@@ -91,12 +94,12 @@
   <string name="menu_stopcurrenttrack">Stoppa aktuellt spår</string>
   <string name="menu_save">Spara</string>
   <string name="menu_cancel">Avbryt</string>
-  <string name="menu_export">Exportera GPX</string>
+  <string name="menu_export">Exportera som GPX</string>
   <string name="menu_osm_upload">OpenStreetMap-uppladdning</string>
   <string name="menu_center_to_gps">Centrera till GPS</string>
   <string name="menu_exportall">Exportera alla som GPX</string>
   <!--Errors-->
-  <string name="error_externalstorage_not_writable">Det gick inte att skriva till lagringsutrymmet.</string>
+  <string name="error_externalstorage_not_writable">Det gick inte att skriva till det minneskortet.</string>
   <string name="error_create_track_dir">Kunde inte skapa spårmapp %s</string>
   <string name="error_externalstorage_not_writable_hint">Kontrollera att minneskortet är korrekt isatt och fungerar.</string>
   <string name="error_voicerec_failed">Röstinspelningen misslyckades</string>
@@ -109,9 +112,12 @@
   <string name="about_text">För mer information, dokumentation och felrapportering, besök projektets hemsida:</string>
   <string name="about_translate_text">Hjälp till att översätta OSMTracker:</string>
   <string name="about_debug_info">Felsökningsinfo</string>
+  <string name="about_export_db">Exportera databas</string>
+  <string name="about_exporting_db">Exporterar databas...</string>
+  <string name="about_export_db_result">Resultat av databasexport: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker körs fortfarande</string>
-  <string name="notification_title">OSMTracker körs fortfarande</string>
+  <string name="notification_title">OSMTracker körs fortfarande  (#{0})</string>
   <string name="notification_text">Tryck för att visa startskärmen</string>
   <!--Display track-->
   <string name="displaytrack">Visa spår</string>
@@ -132,4 +138,36 @@
   <string name="various_heading_unknown">Riktning kan inte bestämmas</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Spårvisning med OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Uppdatera &amp; installera</string>
+  <string name="buttons_presets_context_menu_delete">Ta bort</string>
+  <string name="buttons_presets_updating_layout">Uppdaterar...</string>
+  <string name="buttons_presets_successful_update">Layout har uppdaterats</string>
+  <string name="buttons_presets_unsuccessful_update">Layout uppdaterades ej, försök igen senare</string>
+  <string name="buttons_presets_delete_message">Är du säker på att du vill ta bort layouten {0}?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Ja</string>
+  <string name="buttons_presets_successful_delete">Filen har tagits bort</string>
+  <string name="buttons_presets_icon_directory_deleted">ikon-katalog har tagits bort</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Denna fil har inte någon ikon-katalog associerad</string>
+  <string name="buttons_presets_unsuccessful_delete">Filen kunde inte tas bort</string>
+  <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Fel: kunde inte ansluta till internet</string>
+  <string name="available_layouts_response_null_exception">Fel: kunde inte ansluta till standard-repository för anpassade layouter</string>
+  <string name="available_layouts_connecting_message">(Ansluter...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Ladda ned</string>
+  <string name="available_layouts_not_available_language">Ditt språk finns inte tillgängligt, välj ett från listan</string>
+  <string name="available_layouts_language_dialog_title">Tillgängliga språk</string>
+  <string name="available_layouts_checking_language_dialog">Kontrollerar lokal språkversioner</string>
+  <string name="available_layouts_downloading_dialog">Laddar ned...</string>
+  <string name="available_layouts_successful_download">Layouten har laddats ned</string>
+  <string name="available_layouts_unsuccessful_download">Layouten kan inte laddas ned, försök igen senare</string>
+  <string name="available_layouts_null_response_received">Fel vid hämtning av data från server</string>
+  <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Standard</string>
+  <string name="github_repository_settings_custom_checkbox">Anpassad</string>
+  <string name="github_repository_settings_username">Github-användare: </string>
+  <string name="github_repository_settings_repository_name">Repository-namn:</string>
+  <string name="github_repository_settings_branch_name">Branch-namn: </string>
+  <string name="github_repository_settings_valid_server">Github Repository giltigt</string>
+  <string name="github_repository_settings_invalid_server">Github Repository felaktigt</string>
 </resources>

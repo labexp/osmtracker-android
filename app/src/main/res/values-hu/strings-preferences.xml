@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">Beállítások</string>
@@ -18,13 +18,13 @@
   <string-array name="prefs_ui_picture_source_keys">
     <item>Kamera</item>
     <item>Galéria</item>
-    <item>Mindig kérdez</item>
+    <item>Mindig kérdezzen rá</item>
   </string-array>
-  <string name="prefs_ui_buttons_layout">Gomb alapértelmezések</string>
-  <string name="prefs_ui_buttons_layout_summary">Válasszon egy egyedi nyomógomb készletet (lásd dokumentáció)</string>
+  <string name="prefs_ui_buttons_layout">Gomb-előbeállítások</string>
+  <string name="prefs_ui_buttons_layout_summary">Válasszon egy egyedi gombkészletet (lásd dokumentáció)</string>
   <string name="prefs_ui_buttons_layout_defaut">Alapértelmezett</string>
   <string name="prefs_ui_orientation">Tájolás</string>
-  <string name="prefs_ui_orientation_summary">Az előnyben részesített tájolás a gombos képernyőhöz</string>
+  <string name="prefs_ui_orientation_summary">Előnyben részesített tájolás a gombos képernyőhöz</string>
   <string-array name="prefs_ui_orientation_options_keys">
     <item>Automatikus</item>
     <item>Álló</item>
@@ -32,8 +32,8 @@
   </string-array>
   <string name="prefs_voicerec_duration">Hangrögzítés hosszúsága</string>
   <string name="prefs_voicerec_duration_seconds">másodperc</string>
-  <string name="prefs_theme">Fő képernyő grafikus téma</string>
-  <string name="prefs_theme_summary">Az alkalmazás újraindítása szükséges a változások érvénybe lépéséhez</string>
+  <string name="prefs_theme">Főképernyő grafikus témája</string>
+  <string name="prefs_theme_summary">A változások érvénybe lépéséhez újra kell indítani az alkalmazást</string>
   <string-array name="prefs_theme_keys">
     <item>Rendszer alapértelmezett</item>
     <item>Rendszer alapértelmezett (sötét)</item>
@@ -42,7 +42,7 @@
   </string-array>
   <string name="prefs_display_always_on">Képernyő mindig bekapcsolva</string>
   <string name="prefs_display_always_on_summary">A képernyő bekapcsolva marad nyomkövetéskor. Kapcsolja ki az akku jobb üzemidejéhez</string>
-  <string name="prefs_displaytrack_osm">Háttér térkép</string>
+  <string name="prefs_displaytrack_osm">Háttértérkép</string>
   <string name="prefs_displaytrack_osm_summary">Az OpenStreetMap megjelenítése a nyomkövetés alatt. Adatkapcsolatot igényel</string>
   <string name="prefs_displaytrack_osm_summary_ask">Az OpenStreetMap háttér megjelenítése mindig? Adatkapcsolatot igényel.</string>
   <string name="prefs_output">GPX beállítások</string>

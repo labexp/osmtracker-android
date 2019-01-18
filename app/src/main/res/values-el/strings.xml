@@ -31,7 +31,11 @@
   <string name="trackmgr_waypoints_count">Ενδιάμεσα σημεία:</string>
   <string name="trackmgr_trackpoints_count">Ίχνη:</string>
   <string name="trackmgr_empty">Δεν έχετε ίχνη.</string>
+  <string name="trackmgr_newtrack_hint">Για να γράψεις ένα ίχνος,\n
+πάτα <b>Μενού</b> και μετά <b>Νέο ίχνος</b></string>
   <string name="trackmgr_newtrack_error">Αδύνατη η δημιουργία νέου ίχνους: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Αυτή τη στιγμή καταγράφετε το <b>ίχνος #{0}</b>\n
+Επιλέξτε το στον κατάλογο για συνέχεια</string>
   <string name="trackmgr_contextmenu_stop">Τερματισμός ίχνους</string>
   <string name="trackmgr_contextmenu_resume">Συνέχεια ίχνους</string>
   <string name="trackmgr_contextmenu_delete">Διαγραφή</string>
@@ -43,6 +47,7 @@
   <string name="trackmgr_delete_confirm">Το ίχνος #{0} θα διαγραφεί</string>
   <string name="trackmgr_deleteall_confirm">Όλα τα ίχνη θα διαγραφούν. Είστε σίγουροι;</string>
   <string name="trackmgr_exporting">Εξαγωγή ίχνους #{0}...</string>
+  <string name="trackmgr_exporting_prepare">Προετοιμασία εξαγωγής...</string>
   <string name="trackmgr_export_error">Αδύνατη η εξαγωγή του ίχνους: {0}</string>
   <string name="trackmgr_exportall_confirm">Όλα τα ίχνη θα εξαχθούν, κάτι που μπορεί να πάρει ώρα. Είστε σίγουρος;</string>
   <!--Track Detail-->
@@ -109,6 +114,9 @@
   <string name="about_text">Για περισσότερες πληροφορίες, εγχειρίδια και αναφορές λαθών, επισκεφθείτε τη σελίδα της εφαρμογής:</string>
   <string name="about_translate_text">Βοηθήστε στη μετάφραση του OSMTracker:</string>
   <string name="about_debug_info">Πληροφορίες εντοπισμού σφαλμάτων</string>
+  <string name="about_export_db">Εξαγωγή βάσης δεδομένων</string>
+  <string name="about_exporting_db">Γίνεται εξαγωγή βάσης δεδομένων...</string>
+  <string name="about_export_db_result">Αποτέλεσμα εξαγωγής βάσης δεδομένων: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">Το OSMTracker ιχνηλατεί</string>
   <string name="notification_title">Το OSMTracker ιχνηλατεί (#{0})</string>
@@ -132,4 +140,7 @@
   <string name="various_heading_unknown">Δεν ήταν δυνατό να προσδιοριστεί η κατεύθυνση</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Προβολή ιχνών OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>
