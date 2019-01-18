@@ -31,8 +31,8 @@
   <string name="trackmgr_waypoints_count">Puntos de ref.:</string>
   <string name="trackmgr_trackpoints_count">P. de traza:</string>
   <string name="trackmgr_empty">Usted no tiene ninguna traza.</string>
-  <string name="trackmgr_newtrack_hint">Para grabar una traza,\npresione el símbolo (+)  </string>
   <string name="trackmgr_newtrack_error">No se puede crear una nueva traza: {0}</string>
+  <string name="trackmgr_newtrack_hint">Para iniciar una traza, presione </string>
   <string name="trackmgr_continuetrack_hint">En este momento está grabando la <b>traza #{0}</b>\nElíjalo en la lista para continuar</string>
   <string name="trackmgr_contextmenu_stop">Detener el trazado</string>
   <string name="trackmgr_contextmenu_resume">Reanudar el trazado</string>
