@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">הלוגו של OSMTracker</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">הגדל</string>
+  <string name="acc.zoom_out">הקטן</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">מד עוצמת אות לוויני</string>
+  <string name="acc.record_indicator">מד הקלטה בפעולה</string>
+  <!--Track list-->
+  <string name="acc.track_status">מד מצב מסלול</string>
+  <string name="acc.upload_status">מד מצב העלאה ל-OpenStreetMap</string>
+</resources>

@@ -14,6 +14,7 @@
   <string name="tag.misc_telephone">تلفن</string>
   <string name="tag.misc_post_box">صندوق پست</string>
   <string name="tag.misc_atm">خودپرداز</string>
+  <string name="tag.misc_bollard">تیرک مهار</string>
   <string name="tag.misc_toilets">دستشویی</string>
   <string name="tag.misc_shelter">پناهگاه</string>
   <string name="tag.misc_surveillance">نظارت</string>
@@ -30,6 +31,7 @@
   <string name="tag.restriction_120">حداکثر سرعت ۱۲۰</string>
   <string name="tag.restriction_130">حداکثر سرعت ۱۳۰</string>
   <string name="tag.restriction_no_exit">بن‌بست</string>
+  <string name="tag.restriction_traffic_light">چراغ راهنمایی و رانندگی</string>
   <string name="tag.restriction_one_way">یکطرفه</string>
   <string name="tag.car_fuel_station">پمپ بنزین</string>
   <string name="tag.car_parking">پارکینگ</string>
@@ -42,7 +44,7 @@
   <string name="tag.tourism_attraction">جاذبه‌ها</string>
   <string name="tag.tourism_theme_park">پارک تفریحی</string>
   <string name="tag.tourism_castle">قلعه</string>
-  <string name="tag.tourism_monument">کوهستان</string>
+  <string name="tag.tourism_monument">یادمان</string>
   <string name="tag.tourism_museum">موزه</string>
   <string name="tag.tourism_cinema">سینما</string>
   <string name="tag.amenity_bench">نمیکت</string>
@@ -52,7 +54,9 @@
   <string name="tag.amenity_marina">دریایی</string>
   <string name="tag.amenity_sport">ورزشی</string>
   <string name="tag.amenity_taxi">تاکسی</string>
+  <string name="tag.amenity_doctors">بیمارستان،\nپزشکان</string>
   <string name="tag.amenity_recycling">بازیافت</string>
+  <string name="tag.amenity_place_of_worship">مکان /n عبادت</string>
   <string name="tag.amenity_post_office">اداره پست</string>
   <string name="tag.amenity_library">کتابخانه</string>
   <string name="tag.amenitymore_school">مدرسه</string>
@@ -68,19 +72,21 @@
   <string name="tag.amenitymore_fastfood">فست فود</string>
   <string name="tag.amenitymore_camp_site">اردوگاه</string>
   <string name="tag.way_bridge">پل</string>
-  <string name="tag.way_zebra_crossing">خط‌کشی عابر پیاده</string>
+  <string name="tag.way_zebra_crossing">خط‌کشی راه‌راه پیاده</string>
   <string name="tag.way_motorway">آزادراه</string>
   <string name="tag.way_trunk">بزرگراه</string>
-  <string name="tag.way_primary">خیابان اولیه</string>
-  <string name="tag.way_secondary">خیابان ثانویه</string>
-  <string name="tag.way_residential">خیابان مسکونی</string>
+  <string name="tag.way_primary">شریانی اصلی</string>
+  <string name="tag.way_secondary">شریانی فرعی</string>
+  <string name="tag.way_tertiary">جمع‌وپخش‌کننده</string>
+  <string name="tag.way_residential">مسکونی</string>
+  <string name="tag.way_service">دسترسی</string>
   <string name="tag.track_track">جاده خاکی</string>
   <string name="tag.track_cycleway">مسیر دوچرخه</string>
-  <string name="tag.track_footway">پیادهرو</string>
+  <string name="tag.track_footway">راه پیاده</string>
   <string name="tag.track_bridleway">مسیر مال‌رو</string>
   <string name="tag.track_steps">پله</string>
   <string name="tag.track_living_street">خیابان محلی</string>
-  <string name="tag.track_pedestrian">پیاده‌رو</string>
+  <string name="tag.track_pedestrian">پیاده‌راه عریض</string>
   <string name="tag.track_grade1">درجه ۱</string>
   <string name="tag.track_grade2">درجه ۲</string>
   <string name="tag.track_grade3">درجه ۳</string>
@@ -90,6 +96,8 @@
   <string name="tag.landuse_landfill">محل دفن زباله</string>
   <string name="tag.landuse_basin">حوضچه</string>
   <string name="tag.landuse_reservoir">مخزن</string>
-  <string name="tag.landuse_forest">جنگا</string>
+  <string name="tag.landuse_forest">جنگل</string>
+  <string name="tag.landuse_allotments">باغ‌های تخصیص‌یافته</string>
   <string name="tag.landuse_cemetery">گورستان</string>
+  <string name="tag.landuse_recreation_ground">زمین بازی \nو ورزش</string>
 </resources>

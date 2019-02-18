@@ -31,7 +31,9 @@
   <string name="trackmgr_waypoints_count">Pkt nawigacji: </string>
   <string name="trackmgr_trackpoints_count">Pkt śladu: </string>
   <string name="trackmgr_empty">Nie masz żadnych śladów.</string>
+  <string name="trackmgr_newtrack_hint">Aby nagrać ślad, naciśnij <b>Menu</b> następnie <b>Nowy ślad</b></string>
   <string name="trackmgr_newtrack_error">Nie można utworzyć nowego śladu: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Właśnie tworzysz <b>ślad #{0}</b> Wybierz go z listy, aby kontynuować</string>
   <string name="trackmgr_contextmenu_stop">Zakończ rejestrację</string>
   <string name="trackmgr_contextmenu_resume">Wznów rejestrację</string>
   <string name="trackmgr_contextmenu_delete">Usuń</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">Ślad #{0} zostanie usunięty</string>
   <string name="trackmgr_deleteall_confirm">Wszystkie dane zostaną usunięte. Czy na pewno?</string>
   <string name="trackmgr_exporting">Eksport śladu #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Przygotowanie eksportu...</string>
   <string name="trackmgr_export_error">Nie można eksportować śladu: {0}</string>
   <string name="trackmgr_exportall_confirm">Wszystkie ślady zostaną wysłane, może to zająć dużo czasu. Jesteś pewien?</string>
   <!--Track Detail-->
@@ -110,6 +113,9 @@ głosową</string>
   <string name="about_text">Więcej informacji, dokumentacja i zgłaszanie błędów, na stronie domowej projektu:</string>
   <string name="about_translate_text">Pomóż przetłumaczyć OSMTracker!</string>
   <string name="about_debug_info">Debug info</string>
+  <string name="about_export_db">Eksportuj bazę danych</string>
+  <string name="about_exporting_db">Eksportuję bazę danych...</string>
+  <string name="about_export_db_result">Rezultat eksportu bazy danych: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker zapisuje ślad</string>
   <string name="notification_title">OSMTracker zapisuje ślad (#{0})</string>
@@ -133,4 +139,7 @@ głosową</string>
   <string name="various_heading_unknown">Kierunek nie może zostać określony</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Podgląd śladu w OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

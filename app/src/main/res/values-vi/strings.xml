@@ -31,7 +31,9 @@
   <string name="trackmgr_waypoints_count">Tọa độ điểm:</string>
   <string name="trackmgr_trackpoints_count">Điểm tuyến đường:</string>
   <string name="trackmgr_empty">Bạn chưa có tuyến đường.</string>
+  <string name="trackmgr_newtrack_hint">Để ghi tuyến đường mới,\nbấm <b>Trình đơn</b> rồi <b>Tuyến đường mới</b></string>
   <string name="trackmgr_newtrack_error">Không thể tạo tuyến đường mới: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Bạn hiện đang ghi <b>tuyến đường #{0}</b>\nChọn nó trong danh sách để tiếp tục</string>
   <string name="trackmgr_contextmenu_stop">Dừng theo dõi</string>
   <string name="trackmgr_contextmenu_resume">Tiếp tục theo dõi</string>
   <string name="trackmgr_contextmenu_delete">Xóa</string>
@@ -43,6 +45,7 @@
   <string name="trackmgr_delete_confirm">Tuyến đường #{0} sẽ bị xóa</string>
   <string name="trackmgr_deleteall_confirm">Bạn có chắc chắn muốn xóa tất cả các tuyến đường?</string>
   <string name="trackmgr_exporting">Đang xuất tuyến đường #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Đang chuẩn bị xuất…</string>
   <string name="trackmgr_export_error">Không thể xuất tuyến đường: {0}</string>
   <string name="trackmgr_exportall_confirm">Việc xuất tất cả các tuyến đường sẽ được xuất có thể mất nhiều thời gian. Bạn có chắc chắn muốn tiếp tục?</string>
   <!--Track Detail-->
@@ -109,6 +112,9 @@
   <string name="about_text">Để biết thêm thông tin, đọc tài liệu, và báo cáo lỗi, xin vui lòng ghé vào trang chủ dự án:</string>
   <string name="about_translate_text">Giúp biên dịch OSMTracker:</string>
   <string name="about_debug_info">Thông tin gỡ lỗi</string>
+  <string name="about_export_db">Xuất cơ sở dữ liệu</string>
+  <string name="about_exporting_db">Đang xuất cơ sở dữ liệu…</string>
+  <string name="about_export_db_result">Kết quả xuất cơ sở dữ liệu: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker đang theo dõi</string>
   <string name="notification_title">OSMTracker đang theo dõi (#{0})</string>
@@ -132,4 +138,7 @@
   <string name="various_heading_unknown">Không thể xác định hướng</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Hiển thị tuyến đường OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">设置</string>
@@ -13,6 +13,13 @@
   <string name="prefs_gps_logging_interval_summary">填0代表最小的可能时间间隔(会影响电池续航时长)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
   <string name="prefs_ui">用户界面</string>
+  <string name="prefs_ui_picture_source">默认图片源</string>
+  <string name="prefs_ui_picture_source_summary">拍照还是从相册中选择图片？</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>相机</item>
+    <item>图库</item>
+    <item>总是询问</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">按钮预设</string>
   <string name="prefs_ui_buttons_layout_summary">选择一套自定义按钮(参见文档)</string>
   <string name="prefs_ui_buttons_layout_defaut">默认</string>
@@ -37,6 +44,7 @@
   <string name="prefs_display_always_on_summary">记录轨迹时屏幕常亮。关闭以节约电量</string>
   <string name="prefs_displaytrack_osm">背景地图</string>
   <string name="prefs_displaytrack_osm_summary">在轨迹下显示OpenStreetMap。需要数据连接</string>
+  <string name="prefs_displaytrack_osm_summary_ask">总是显示 OpenStreetMap 背景？需要数据连接。</string>
   <string name="prefs_output">GPX设置</string>
   <string name="prefs_storage_dir">外部存储设备(SD卡)路径</string>
   <string name="prefs_storage_dir_hint">下次追踪生效(本次无效)</string>
@@ -58,6 +66,14 @@
   </string-array>
   <string name="prefs_output_gpx_hdop_approximation">使用HDOP估算</string>
   <string name="prefs_sound_enabled">开启声音</string>
+  <string name="prefs_sound_enabled_summary">在录音开始、结束时发出声响</string>
   <string name="prefs_osm_clear_oauth_data">重设 OSM 验证</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">你将要再次授权 OSMTracker 来上传轨迹。确定吗？</string>
+  <string name="prefs_map_tile">地图提供商</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
 </resources>

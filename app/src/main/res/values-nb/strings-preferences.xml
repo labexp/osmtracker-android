@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">Innstillinger</string>
@@ -44,7 +44,7 @@
   <string name="prefs_display_always_on_summary">Skjermen blir stående på under sporing. Slå av for å spare batteri</string>
   <string name="prefs_displaytrack_osm">Bakgrunnskart</string>
   <string name="prefs_displaytrack_osm_summary">Vis OpenStreetMap-kartet under sporet. Bruker datatilkobling</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Vis alltid OpenStreetMap bakgrunn?  Krever en nettverksforbindelse</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Vis alltid bakgrunn fra OpenStreetMap?  Krever en nettverksforbindelse.</string>
   <string name="prefs_output">GPX-innstillinger</string>
   <string name="prefs_storage_dir">Mappe på ekstern lagringsenhet (SD)</string>
   <string name="prefs_storage_dir_hint">Blir aktivert for neste spor</string>

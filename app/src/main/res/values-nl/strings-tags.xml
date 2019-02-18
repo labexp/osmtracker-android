@@ -4,16 +4,19 @@
   <string name="tag.restriction">Beperking</string>
   <string name="tag.car">Auto</string>
   <string name="tag.tourism">Toerisme</string>
-  <string name="tag.amenity">Voorziening</string>
+  <string name="tag.amenity">Voor-
+ziening</string>
   <string name="tag.amenity_more">Voorziening (+)</string>
   <string name="tag.way">Weg</string>
-  <string name="tag.track">Traject</string>
-  <string name="tag.landuse">Landgebruik</string>
+  <string name="tag.track">Pad</string>
+  <string name="tag.landuse">Land-
+gebruik</string>
   <string name="tag.misc_bus_stop">Bushalte</string>
   <string name="tag.misc_railway">Spoorweg</string>
   <string name="tag.misc_telephone">Telefoon</string>
   <string name="tag.misc_post_box">Postbus</string>
-  <string name="tag.misc_atm">Geldautomaat</string>
+  <string name="tag.misc_atm">Geld-
+automaat</string>
   <string name="tag.misc_bollard">Inzinkbare paal</string>
   <string name="tag.misc_toilets">Toiletten</string>
   <string name="tag.misc_shelter">Onderdak</string>
@@ -30,17 +33,25 @@
   <string name="tag.restriction_110">Max 110</string>
   <string name="tag.restriction_120">Max 120</string>
   <string name="tag.restriction_130">Max 130</string>
-  <string name="tag.restriction_no_exit">Doodlopend</string>
-  <string name="tag.restriction_traffic_light">Verkeerslicht</string>
-  <string name="tag.restriction_one_way">Eénrichtingsverkeer</string>
-  <string name="tag.car_fuel_station">Tankstation</string>
-  <string name="tag.car_parking">Parkeerplaats</string>
-  <string name="tag.car_emergency_phone">Noodtelefoon</string>
-  <string name="tag.car_turning_circle">Draaicirkel</string>
+  <string name="tag.restriction_no_exit">Dood-
+lopend</string>
+  <string name="tag.restriction_traffic_light">Verkeers-
+licht</string>
+  <string name="tag.restriction_one_way">Eén
+richting</string>
+  <string name="tag.car_fuel_station">Tank-
+station</string>
+  <string name="tag.car_parking">Parkeer-
+plaats</string>
+  <string name="tag.car_emergency_phone">Nood-
+telefoon</string>
+  <string name="tag.car_turning_circle">Draai-
+cirkel</string>
   <string name="tag.car_speed_camera">Flitspaal</string>
-  <string name="tag.tourism_view_point">Uitkijkupunt</string>
+  <string name="tag.tourism_view_point">Uitkijk-
+punt</string>
   <string name="tag.tourism_information">Informatie</string>
-  <string name="tag.tourism_picnic">Picknickplaats</string>
+  <string name="tag.tourism_picnic">Picknick-site</string>
   <string name="tag.tourism_attraction">Attractie</string>
   <string name="tag.tourism_theme_park">Pretpark</string>
   <string name="tag.tourism_castle">Kasteel</string>
@@ -54,8 +65,13 @@
   <string name="tag.amenity_marina">Jachthaven</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxi</string>
-  <string name="tag.amenity_recycling">Recycling</string>
-  <string name="tag.amenity_post_office">Postkantoor</string>
+  <string name="tag.amenity_doctors">Hospitaal,
+dokters</string>
+  <string name="tag.amenity_recycling">Recyclage</string>
+  <string name="tag.amenity_place_of_worship">Plaats van
+aanbidding</string>
+  <string name="tag.amenity_post_office">Post-
+kantoor</string>
   <string name="tag.amenity_library">Bibliotheek</string>
   <string name="tag.amenitymore_school">School</string>
   <string name="tag.amenitymore_police">Politie</string>
@@ -96,5 +112,8 @@
   <string name="tag.landuse_reservoir">Reservoir</string>
   <string name="tag.landuse_forest">Bos</string>
   <string name="tag.landuse_allotments">Percelen</string>
-  <string name="tag.landuse_cemetery">Begraafplaats</string>
+  <string name="tag.landuse_cemetery">Begraaf-
+plaats</string>
+  <string name="tag.landuse_recreation_ground">Ontspannings-
+gebied</string>
 </resources>

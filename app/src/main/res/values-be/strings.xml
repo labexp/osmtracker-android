@@ -87,4 +87,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading_unknown">Напрамак не можа быць вызначаны</string>
   <!--OSM map view-->
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

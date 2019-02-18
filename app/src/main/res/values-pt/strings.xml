@@ -129,4 +129,7 @@
   <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <string name="displaytrackmap">Exibir trilha do OpenStreetMap</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

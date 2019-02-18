@@ -35,6 +35,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CursorAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,15 +70,28 @@ public class TrackManager extends ListActivity {
 	/** Track Identifier to export after request for write permission **/
 	private long trackId = -1;
 
+	private ImageButton btnNewTrack;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.trackmanager);	
+		setContentView(R.layout.trackmanager);
 		getListView().setEmptyView(findViewById(R.id.trackmgr_empty));
 		registerForContextMenu(getListView());
 		if (savedInstanceState != null) {
 			prevItemVisible = savedInstanceState.getInt(PREV_VISIBLE, -1);
 		}
+		//initialize the bottom start track
+		btnNewTrack = (ImageButton) findViewById(R.id.trackmgr_hint_icon);
+		//set a listener that makes the same functionality of (+) button in the main menu of this screen
+		btnNewTrack.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startTrackLogger();
+				//makes the button invisible when is an active track
+				btnNewTrack.setVisibility(View.INVISIBLE);
+			}
+		});
 	}
 
 	@Override
@@ -109,6 +123,8 @@ public class TrackManager extends ListActivity {
 				}
 			}
 		} else {
+			//set the button to start a new track visible when there isn't an active track
+			btnNewTrack.setVisibility(View.VISIBLE);
 			((TextView) findViewById(R.id.trackmgr_hint)).setText(R.string.trackmgr_newtrack_hint);
 
 			// Scroll to the previous listview position,
@@ -188,19 +204,7 @@ public class TrackManager extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.trackmgr_menu_newtrack:
-			// Start track logger activity
-			try {
-				Intent i = new Intent(this, TrackLogger.class);
-				// New track
-				currentTrackId = createNewTrack();
-				i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
-				startActivity(i);
-			} catch (CreateTrackException cte) {
-				Toast.makeText(this,
-						getResources().getString(R.string.trackmgr_newtrack_error).replace("{0}", cte.getMessage()),
-						Toast.LENGTH_LONG)
-						.show();
-			}
+			startTrackLogger();
 			break;
 		case R.id.trackmgr_menu_continuetrack:
 			Intent i = new Intent(this, TrackLogger.class);
@@ -263,6 +267,25 @@ public class TrackManager extends ListActivity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * This method prepare the new track and set an id, then start a new TrackLogger with the new track id
+	 */
+	private void startTrackLogger(){
+		// Start track logger activity
+		try {
+			Intent i = new Intent(this, TrackLogger.class);
+			// New track
+			currentTrackId = createNewTrack();
+			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
+			startActivity(i);
+		} catch (CreateTrackException cte) {
+			Toast.makeText(this,
+					getResources().getString(R.string.trackmgr_newtrack_error).replace("{0}", cte.getMessage()),
+					Toast.LENGTH_LONG)
+					.show();
+		}
 	}
 
 
