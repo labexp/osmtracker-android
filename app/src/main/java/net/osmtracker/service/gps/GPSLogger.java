@@ -121,6 +121,8 @@ public class GPSLogger extends Service implements LocationListener {
 							String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
 
 							dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy());
+							// If there is a waypoint in the track, there should also be a trackpoint
+							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy());
 						}
 					}
 				}
