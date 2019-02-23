@@ -185,6 +185,8 @@ public class DisplayTrackMap extends Activity {
 		
 		selectTileSource();
 
+		setTileDpiScaling();
+
 		createOverlays();
 
 		// Create content observer for trackpoints
@@ -216,6 +218,13 @@ public class DisplayTrackMap extends Activity {
 	public void selectTileSource() {
 		String mapTile = prefs.getString(OSMTracker.Preferences.KEY_UI_MAP_TILE, OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPNIK);
 		osmView.setTileSource(selectMapTile(mapTile));
+	}
+
+	/**
+	 * Make text on map better readable on high DPI displays
+	 */
+	public void setTileDpiScaling () {
+		osmView.setTilesScaledToDpi(true);
 	}
 	
 	/**
@@ -267,6 +276,8 @@ public class DisplayTrackMap extends Activity {
 		pathChanged();
 
 		selectTileSource();
+
+		setTileDpiScaling();
 		
 		// Refresh way points
 		// wayPointsOverlay.refresh();
