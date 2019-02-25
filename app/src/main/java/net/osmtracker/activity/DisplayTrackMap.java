@@ -27,6 +27,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -358,7 +359,12 @@ public class DisplayTrackMap extends Activity {
 	 * Creates overlays over the OSM view
 	 */
 	private void createOverlays() {
-		pathOverlay = new PathOverlay(Color.BLUE, this);
+		DisplayMetrics metrics = new DisplayMetrics();
+		this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+		// set with to hopefully DPI independent 0.5mm
+ 		pathOverlay = new PathOverlay(Color.BLUE, (float)(metrics.densityDpi / 25.4 / 2),this);
+
 		osmView.getOverlays().add(pathOverlay);
 		
 		myLocationOverlay = new SimpleLocationOverlay(this);
