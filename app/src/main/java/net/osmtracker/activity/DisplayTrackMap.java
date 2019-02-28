@@ -16,6 +16,7 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.PathOverlay;
 import org.osmdroid.views.overlay.mylocation.SimpleLocationOverlay;
+import org.osmdroid.views.overlay.ScaleBarOverlay;
 
 import android.app.Activity;
 import android.content.ContentUris;
@@ -112,6 +113,11 @@ public class DisplayTrackMap extends Activity {
 	 * OSM view overlay that displays waypoints 
 	 */
 	private WayPointsOverlay wayPointsOverlay;
+
+	/**
+	 * OSM view overlay for the map scale bar
+	 */
+	private ScaleBarOverlay scaleBarOverlay;
 	
 	/**
 	 * Current track id
@@ -354,6 +360,9 @@ public class DisplayTrackMap extends Activity {
 		
 		wayPointsOverlay = new WayPointsOverlay(this, currentTrackId);
 		osmView.getOverlays().add(wayPointsOverlay);
+
+		scaleBarOverlay = new ScaleBarOverlay(osmView);
+		osmView.getOverlays().add(scaleBarOverlay);
 	}
 	
 	/**
