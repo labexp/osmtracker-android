@@ -49,6 +49,11 @@ android {
             abortOnError false
         }
     }
+
+    defaultConfig {
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
 }
 
 dependencies {
@@ -60,6 +65,14 @@ dependencies {
     implementation 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
     implementation 'org.slf4j:slf4j-android:1.7.25'
     implementation "com.android.support:support-compat:27.1.1"
+
+    // Required for local unit tests (JUnit 4 framework)
+    testImplementation 'junit:junit:4.12'
+
+    // Required for instrumented tests
+    androidTestImplementation "com.android.support.test:runner:1.0.0"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.0"
+
 }
 
 task copyNorwegianValues(type: Copy) {
