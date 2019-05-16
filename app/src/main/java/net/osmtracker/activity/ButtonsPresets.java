@@ -104,8 +104,7 @@ public class ButtonsPresets extends Activity {
         listener = new CheckBoxChangedListener();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         layoutsFileNames = new Hashtable<String, String>();
-        storageDir = File.separator + prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR,
-                                                 OSMTracker.Preferences.VAL_STORAGE_DIR);
+        storageDir = File.separator + OSMTracker.Preferences.VAL_STORAGE_DIR;
     }
 
     private void listLayouts(LinearLayout rootLayout){

@@ -279,8 +279,7 @@ public class TrackLogger extends Activity {
 		
 		// Try to inflate the buttons layout
 		try {
-			String userLayout = prefs.getString(
-					OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+			String userLayout = prefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
 			if (OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT.equals(userLayout)) {
 				// Using default buttons layout
 				mainLayout = new UserDefinedLayout(this, currentTrackId, null);
@@ -288,9 +287,7 @@ public class TrackLogger extends Activity {
 				// Using user buttons layout
 				File layoutFile = new File(
 						Environment.getExternalStorageDirectory(),
-						prefs.getString(
-								OSMTracker.Preferences.KEY_STORAGE_DIR,
-								OSMTracker.Preferences.VAL_STORAGE_DIR)
+						OSMTracker.Preferences.VAL_STORAGE_DIR
 						+ File.separator + Preferences.LAYOUTS_SUBDIR
 						+ File.separator + userLayout);
 				mainLayout = new UserDefinedLayout(this, currentTrackId, layoutFile);
