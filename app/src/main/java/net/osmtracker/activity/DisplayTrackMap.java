@@ -18,16 +18,20 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.PathOverlay;
 import org.osmdroid.views.overlay.mylocation.SimpleLocationOverlay;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -152,18 +156,23 @@ public class DisplayTrackMap extends Activity {
 	 */
 	private SharedPreferences prefs = null;
 
+	/**
+	* Read storage REQUEST code
+	*/
+	final private int RC_READ_STORAGE = 1;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		// loading the preferences
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
+
 		setContentView(R.layout.displaytrackmap);
-		
+
 		currentTrackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 		setTitle(getTitle() + ": #" + currentTrackId);
-		
+
 		// Initialize OSM view
 		Configuration.getInstance().load(this, prefs);
 		osmView = (MapView) findViewById(R.id.displaytrackmap_osmView);
@@ -171,7 +180,7 @@ public class DisplayTrackMap extends Activity {
 		// we'll use osmView to define if the screen is always on or not
 		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
 		osmViewController = osmView.getController();
-		
+
 		// Check if there is a saved zoom level
 		if(savedInstanceState != null) {
 			osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
@@ -184,7 +193,7 @@ public class DisplayTrackMap extends Activity {
 			SharedPreferences settings = getPreferences(MODE_PRIVATE);
 			osmViewController.setZoom(settings.getInt(LAST_ZOOM, DEFAULT_ZOOM));
 		}
-		
+
 		selectTileSource();
 
 		createOverlays();
@@ -196,7 +205,7 @@ public class DisplayTrackMap extends Activity {
 				pathChanged();
 			}
 		};
-		
+
 		// Register listeners for zoom buttons
 		findViewById(R.id.displaytrackmap_imgZoomIn).setOnClickListener( new OnClickListener() {
 			@Override
@@ -217,6 +226,7 @@ public class DisplayTrackMap extends Activity {
 	 */
 	public void selectTileSource() {
 		String mapTile = prefs.getString(OSMTracker.Preferences.KEY_UI_MAP_TILE, OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPNIK);
+		Log.e("TileMapName", mapTile);
 		osmView.setTileSource(selectMapTile(mapTile));
 	}
 	
@@ -229,11 +239,12 @@ public class DisplayTrackMap extends Activity {
 	 */
 	private ITileSource selectMapTile(String mapTile) {
 		try {
+			Log.e("TrySuccess", "TrySuccess");
 			Field f = TileSourceFactory.class.getField(mapTile);
 			return (ITileSource) f.get(null); 
 		} catch (Exception e) {
 			Log.e(TAG, "Invalid tile source '"+mapTile+"'", e);
-			return TileSourceFactory.MAPNIK;
+			return TileSourceFactory.DEFAULT_TILE_SOURCE;
 		}
 	}
 
@@ -251,31 +262,83 @@ public class DisplayTrackMap extends Activity {
 
 	@Override
 	protected void onResume() {
-		
+
+		super.onResume();
+
+//		if (!writeExternalStoragePermissionGranted()){
+//			Log.e("DisplayTrackMapWrite", "Permission asked");
+//			ActivityCompat.requestPermissions(this,
+//					new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_READ_STORAGE);
+//		}
+//		else resumeActivity();
+
+//		if (!readExternalStoragePermissionGranted()){
+//			Log.e("DisplayTrackMapRead", "Permission asked");
+//			ActivityCompat.requestPermissions(this,
+//					new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+//		}
+
+		resumeActivity();
+
+	}
+
+	private void resumeActivity(){
 		// setKeepScreenOn depending on user's preferences
 		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
-		
+
 		// Register content observer for any trackpoint changes
 		getContentResolver().registerContentObserver(
 				TrackContentProvider.trackPointsUri(currentTrackId),
 				true, trackpointContentObserver);
-		
+
 		// Forget the last waypoint read from the DB
-		// This ensures that all waypoints for the track will be reloaded 
+		// This ensures that all waypoints for the track will be reloaded
 		// from the database to populate the path layout
 		lastTrackPointIdProcessed = null;
-		
+
 		// Reload path
 		pathChanged();
 
 		selectTileSource();
-		
+
 		// Refresh way points
-		// wayPointsOverlay.refresh();
-		
-		super.onResume();
+		wayPointsOverlay.refresh();
+
 	}
-	
+
+	private boolean readExternalStoragePermissionGranted(){
+		Log.e("CHECKING", "Read");
+		return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+	}
+
+	private boolean writeExternalStoragePermissionGranted(){
+		Log.e("CHECKING", "Write");
+		return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+										   String permissions[], int[] grantResults) {
+		switch (requestCode) {
+			case RC_READ_STORAGE: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+					// permission was granted, yay! Do the
+					Log.e("RESULT", "Permission Granted");
+					resumeActivity();
+
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					Log.e("RESULT", "Permission not Granted");
+				}
+			}
+		}
+	}
+
 	@Override
 	protected void onPause() {
 		// Unregister content observer
