@@ -18,20 +18,16 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.PathOverlay;
 import org.osmdroid.views.overlay.mylocation.SimpleLocationOverlay;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -156,11 +152,6 @@ public class DisplayTrackMap extends Activity {
 	 */
 	private SharedPreferences prefs = null;
 
-	/**
-	* Read storage REQUEST code
-	*/
-	final private int RC_READ_STORAGE = 1;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -226,7 +217,7 @@ public class DisplayTrackMap extends Activity {
 	 */
 	public void selectTileSource() {
 		String mapTile = prefs.getString(OSMTracker.Preferences.KEY_UI_MAP_TILE, OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPNIK);
-		Log.e("TileMapName", mapTile);
+		Log.e("TileMapName active", mapTile);
 		osmView.setTileSource(selectMapTile(mapTile));
 	}
 	
@@ -239,11 +230,11 @@ public class DisplayTrackMap extends Activity {
 	 */
 	private ITileSource selectMapTile(String mapTile) {
 		try {
-			Log.e("TrySuccess", "TrySuccess");
 			Field f = TileSourceFactory.class.getField(mapTile);
 			return (ITileSource) f.get(null); 
 		} catch (Exception e) {
 			Log.e(TAG, "Invalid tile source '"+mapTile+"'", e);
+			Log.e(TAG, "Default tile source selected: '" + TileSourceFactory.DEFAULT_TILE_SOURCE.name() +"'");
 			return TileSourceFactory.DEFAULT_TILE_SOURCE;
 		}
 	}
@@ -264,20 +255,6 @@ public class DisplayTrackMap extends Activity {
 	protected void onResume() {
 
 		super.onResume();
-
-//		if (!writeExternalStoragePermissionGranted()){
-//			Log.e("DisplayTrackMapWrite", "Permission asked");
-//			ActivityCompat.requestPermissions(this,
-//					new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_READ_STORAGE);
-//		}
-//		else resumeActivity();
-
-//		if (!readExternalStoragePermissionGranted()){
-//			Log.e("DisplayTrackMapRead", "Permission asked");
-//			ActivityCompat.requestPermissions(this,
-//					new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-//		}
-
 		resumeActivity();
 
 	}
@@ -304,39 +281,6 @@ public class DisplayTrackMap extends Activity {
 		// Refresh way points
 		wayPointsOverlay.refresh();
 
-	}
-
-	private boolean readExternalStoragePermissionGranted(){
-		Log.e("CHECKING", "Read");
-		return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-	}
-
-	private boolean writeExternalStoragePermissionGranted(){
-		Log.e("CHECKING", "Write");
-		return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-	}
-
-	@Override
-	public void onRequestPermissionsResult(int requestCode,
-										   String permissions[], int[] grantResults) {
-		switch (requestCode) {
-			case RC_READ_STORAGE: {
-				// If request is cancelled, the result arrays are empty.
-				if (grantResults.length > 0
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-					// permission was granted, yay! Do the
-					Log.e("RESULT", "Permission Granted");
-					resumeActivity();
-
-				} else {
-
-					// permission denied, boo! Disable the
-					// functionality that depends on this permission.
-					Log.e("RESULT", "Permission not Granted");
-				}
-			}
-		}
 	}
 
 	@Override
