@@ -238,7 +238,6 @@ public class TrackManager extends ListActivity {
 						dialog.cancel();
 					}
 				}).create().show();
-
 			break;
 		case R.id.trackmgr_menu_exportall:
 			// Confirm
@@ -561,6 +560,7 @@ public class TrackManager extends ListActivity {
 					Log.w(TAG, "we should explain why we need write permission_EXPORT_ALL");
 					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
 				}
+				break;
 			}
 			case RC_WRITE_PERMISSIONS_EXPORT_ONE: {
 				// If request is cancelled, the result arrays are empty.
@@ -578,6 +578,7 @@ public class TrackManager extends ListActivity {
 					Log.w(TAG, "we should explain why we need write permission_EXPORT_ONE");
 					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
 				}
+				break;
 			}
 			case RC_WRITE_STORAGE_DISPLAY_TRACK: {
 				// If request is cancelled, the result arrays are empty.
@@ -586,7 +587,6 @@ public class TrackManager extends ListActivity {
 					Log.e("Result", "Permission granted");
 					// permission was granted, yay!
 					displayTrack(trackSelected);
-
 				} else {
 
 					// permission denied, boo! Disable the
