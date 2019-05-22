@@ -10,6 +10,7 @@ import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.overlay.WayPointsOverlay;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
@@ -154,22 +155,23 @@ public class DisplayTrackMap extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		// loading the preferences
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
+
 		setContentView(R.layout.displaytrackmap);
-		
+
 		currentTrackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 		setTitle(getTitle() + ": #" + currentTrackId);
-		
+
 		// Initialize OSM view
+		Configuration.getInstance().load(this, prefs);
 		osmView = (MapView) findViewById(R.id.displaytrackmap_osmView);
 		osmView.setMultiTouchControls(true);  // pinch to zoom
 		// we'll use osmView to define if the screen is always on or not
 		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
 		osmViewController = osmView.getController();
-		
+
 		// Check if there is a saved zoom level
 		if(savedInstanceState != null) {
 			osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
@@ -182,7 +184,7 @@ public class DisplayTrackMap extends Activity {
 			SharedPreferences settings = getPreferences(MODE_PRIVATE);
 			osmViewController.setZoom(settings.getInt(LAST_ZOOM, DEFAULT_ZOOM));
 		}
-		
+
 		selectTileSource();
 
 		createOverlays();
@@ -194,7 +196,7 @@ public class DisplayTrackMap extends Activity {
 				pathChanged();
 			}
 		};
-		
+
 		// Register listeners for zoom buttons
 		findViewById(R.id.displaytrackmap_imgZoomIn).setOnClickListener( new OnClickListener() {
 			@Override
@@ -215,6 +217,7 @@ public class DisplayTrackMap extends Activity {
 	 */
 	public void selectTileSource() {
 		String mapTile = prefs.getString(OSMTracker.Preferences.KEY_UI_MAP_TILE, OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPNIK);
+		Log.e("TileMapName active", mapTile);
 		osmView.setTileSource(selectMapTile(mapTile));
 	}
 	
@@ -231,7 +234,8 @@ public class DisplayTrackMap extends Activity {
 			return (ITileSource) f.get(null); 
 		} catch (Exception e) {
 			Log.e(TAG, "Invalid tile source '"+mapTile+"'", e);
-			return TileSourceFactory.MAPNIK;
+			Log.e(TAG, "Default tile source selected: '" + TileSourceFactory.DEFAULT_TILE_SOURCE.name() +"'");
+			return TileSourceFactory.DEFAULT_TILE_SOURCE;
 		}
 	}
 
@@ -249,31 +253,36 @@ public class DisplayTrackMap extends Activity {
 
 	@Override
 	protected void onResume() {
-		
+
+		super.onResume();
+		resumeActivity();
+
+	}
+
+	private void resumeActivity(){
 		// setKeepScreenOn depending on user's preferences
 		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
-		
+
 		// Register content observer for any trackpoint changes
 		getContentResolver().registerContentObserver(
 				TrackContentProvider.trackPointsUri(currentTrackId),
 				true, trackpointContentObserver);
-		
+
 		// Forget the last waypoint read from the DB
-		// This ensures that all waypoints for the track will be reloaded 
+		// This ensures that all waypoints for the track will be reloaded
 		// from the database to populate the path layout
 		lastTrackPointIdProcessed = null;
-		
+
 		// Reload path
 		pathChanged();
 
 		selectTileSource();
-		
+
 		// Refresh way points
-		// wayPointsOverlay.refresh();
-		
-		super.onResume();
+		wayPointsOverlay.refresh();
+
 	}
-	
+
 	@Override
 	protected void onPause() {
 		// Unregister content observer
