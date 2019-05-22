@@ -242,23 +242,12 @@ public class TrackManager extends ListActivity {
 			break;
 		case R.id.trackmgr_menu_exportall:
 			// Confirm
-			new AlertDialog.Builder(this)
-				.setTitle(R.string.menu_exportall)
-				.setMessage(getResources().getString(R.string.trackmgr_exportall_confirm))
-				.setCancelable(true)
-				.setIcon(android.R.drawable.ic_dialog_alert)
-				.setPositiveButton(R.string.menu_exportall, new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						requestPermissionAndExport(TrackManager.this.RC_WRITE_PERMISSIONS_EXPORT_ALL);
-					}
-				})
-				.setNegativeButton(android.R.string.cancel, new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				}).create().show();
+			if (!writeExternalStoragePermissionGranted()){
+				Log.e("DisplayTrackMapWrite", "Permission asked");
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_EXPORT_ALL);
+			}
+			else exportAllTracks();
 			break;
 		case R.id.trackmgr_menu_settings:
 			// Start settings activity
@@ -288,40 +277,6 @@ public class TrackManager extends ListActivity {
 					getResources().getString(R.string.trackmgr_newtrack_error).replace("{0}", cte.getMessage()),
 					Toast.LENGTH_LONG)
 					.show();
-		}
-	}
-
-
-	private void requestPermissionAndExport(int typeCode){
-		if (ContextCompat.checkSelfPermission(this,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-			// Should we show an explanation?
-			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-					Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-				// Show an explanation to the user *asynchronously* -- don't block
-				// this thread waiting for the user's response! After the user
-				// sees the explanation, try again to request the permission.
-				// TODO: explain why we need permission.
-				Log.w(TAG, "we should explain why we need write permission_REQUEST");
-				Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
-
-			} else {
-
-				// No explanation needed, we can request the permission.
-				ActivityCompat.requestPermissions(this,
-						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, typeCode);
-			}
-
-		}  else {
-			switch (typeCode) {
-				case RC_WRITE_PERMISSIONS_EXPORT_ALL:
-					exportAllTracks();
-
-				case RC_WRITE_PERMISSIONS_EXPORT_ONE:
-					exportOneTrack();
-			}
 		}
 	}
 
@@ -414,7 +369,13 @@ public class TrackManager extends ListActivity {
 
 		case R.id.trackmgr_contextmenu_export:
 			trackId = info.id;
-			requestPermissionAndExport(this.RC_WRITE_PERMISSIONS_EXPORT_ONE);
+//			requestPermissionAndExport(this.RC_WRITE_PERMISSIONS_EXPORT_ONE);
+			if (!writeExternalStoragePermissionGranted()){
+				Log.e("DisplayTrackMapWrite", "Permission asked");
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_EXPORT_ONE);
+			}
+			else exportOneTrack();
 			break;
 
 		case R.id.trackmgr_contextmenu_osm_upload:
