@@ -52,6 +52,7 @@ public class TrackManager extends ListActivity {
 	@SuppressWarnings("unused")
 	private static final String TAG = TrackManager.class.getSimpleName();
 
+	final private int RC_WRITE_PERMISSIONS_UPLOAD = 4;
 	final private int RC_WRITE_STORAGE_DISPLAY_TRACK = 3;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ALL = 1;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ONE = 2;
@@ -378,9 +379,12 @@ public class TrackManager extends ListActivity {
 			break;
 
 		case R.id.trackmgr_contextmenu_osm_upload:
-			i = new Intent(this, OpenStreetMapUpload.class);
-			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, info.id);
-			startActivity(i);
+			if (!writeExternalStoragePermissionGranted()){
+				Log.e("DisplayTrackMapWrite", "Permission asked");
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_UPLOAD);
+			}
+			else uploadTrack(trackSelected);
 			break;
 
 		case R.id.trackmgr_contextmenu_display:
@@ -400,6 +404,13 @@ public class TrackManager extends ListActivity {
 		}
 
 		return super.onContextItemSelected(item);
+	}
+
+	private void uploadTrack(MenuItem item){
+		final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		Intent i = new Intent(this, OpenStreetMapUpload.class);
+		i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, info.id);
+		startActivity(i);
 	}
 
 	private void displayTrack(MenuItem item){
@@ -593,6 +604,24 @@ public class TrackManager extends ListActivity {
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "Permission not granted");
+					Toast.makeText(this, "To display the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+			case RC_WRITE_PERMISSIONS_UPLOAD: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					Log.e("Result", "Permission granted");
+					// permission was granted, yay!
+					uploadTrack(trackSelected);
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					//TODO: add an informative message.
+					Log.w(TAG, "Permission not granted");
+					Toast.makeText(this, "To upload the track to OSM we need access to the storage.", Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
