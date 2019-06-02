@@ -75,7 +75,13 @@ public class GPSLogger extends Service implements LocationListener {
 	 * LocationManager
 	 */
 	private LocationManager lmgr;
-	
+
+	/**
+	 * True if we've requested location updates from {@link #lmgr}.
+	 * False if runtime permission wasn't granted.
+	 */
+	private boolean lmgrRequested;
+
 	/**
 	 * Current Track ID
 	 */
@@ -147,6 +153,8 @@ public class GPSLogger extends Service implements LocationListener {
 					Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 					startTracking(trackId);
 				}
+			} else if (OSMTracker.INTENT_REREG_LOC_LISTENER.equals(intent.getAction()) ) {
+				reregisterLocationListener();
 			} else if (OSMTracker.INTENT_STOP_TRACKING.equals(intent.getAction()) ) {
 				stopTrackingAndSave();
 			}
@@ -210,6 +218,7 @@ public class GPSLogger extends Service implements LocationListener {
 		filter.addAction(OSMTracker.INTENT_UPDATE_WP);
 		filter.addAction(OSMTracker.INTENT_DELETE_WP);
 		filter.addAction(OSMTracker.INTENT_START_TRACKING);
+		filter.addAction(OSMTracker.INTENT_REREG_LOC_LISTENER);
 		filter.addAction(OSMTracker.INTENT_STOP_TRACKING);
 		registerReceiver(receiver, filter);
 
@@ -218,6 +227,9 @@ public class GPSLogger extends Service implements LocationListener {
 
 		if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, gpsLoggingInterval, gpsLoggingMinDistance, this);
+			lmgrRequested = true;
+		} else {
+			Log.d(TAG, "No permission.ACCESS_FINE_LOCATION, not requesting loc updates");
 		}
 		
 		//register for Orientation updates
@@ -255,6 +267,24 @@ public class GPSLogger extends Service implements LocationListener {
 		sensorListener.unregister();
 
 		super.onDestroy();
+	}
+
+	/**
+	 * Re-register as a location listener.
+	 * Needed after user grants permission.ACCESS_FINE_LOCATION.
+	 */
+	private void reregisterLocationListener()
+	{
+		if (lmgrRequested)
+			lmgr.removeUpdates(this);
+
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, gpsLoggingInterval, gpsLoggingMinDistance, this);
+			lmgrRequested = true;
+			Log.d(TAG, "Now requesting loc updates");
+		} else {
+			Log.d(TAG, "No permission.ACCESS_FINE_LOCATION, not requesting loc updates");
+		}
 	}
 
 	/**

@@ -124,6 +124,12 @@ public class OSMTracker {
 	public final static String INTENT_START_TRACKING = OSMTracker.PACKAGE_NAME + ".intent.START_TRACKING";
 
 	/**
+	 * Intent to re-register our {@code GPSLogger} service as a location listener.
+	 * Needed after a new track recording begins and then user grants permission.ACCESS_FINE_LOCATION.
+	 */
+	public final static String INTENT_REREG_LOC_LISTENER = OSMTracker.PACKAGE_NAME + ".intent.REREG_LOC_LISTENER";
+
+	/**
 	 * Intent to stop tracking
 	 */
 	public final static String INTENT_STOP_TRACKING = OSMTracker.PACKAGE_NAME + ".intent.STOP_TRACKING";

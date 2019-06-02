@@ -40,8 +40,6 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	
 	private final static String TAG = GpsStatusRecord.class.getSimpleName();
 
-    final private int REQUEST_CODE_GPS_PERMISSIONS = 1;
-
 	/**
 	 * Formatter for accuracy display.
 	 */
@@ -124,7 +122,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
             }
 			else {
                     ActivityCompat.requestPermissions((Activity) activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                            REQUEST_CODE_GPS_PERMISSIONS);
+                            TrackLogger.RC_GPS_PERMISSIONS);
                 }
 		} else {
 			lmgr.removeUpdates(this);
@@ -270,19 +268,6 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 			recordStatus.setImageResource(R.drawable.record_red);
 		} else {
 			recordStatus.setImageResource(R.drawable.record_grey);
-		}
-	}
-
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-		switch (requestCode) {
-			case REQUEST_CODE_GPS_PERMISSIONS:
-				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					requestLocationUpdates(true);
-					// do something
-					return;
-				} else {
-					requestLocationUpdates(false);
-				}
 		}
 	}
 

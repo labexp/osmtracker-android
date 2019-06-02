@@ -76,7 +76,14 @@ public class TrackLogger extends Activity {
 	private static final String TAG = TrackLogger.class.getSimpleName();
 
 	final private int RC_STORAGE_AUDIO_PERMISSIONS = 1;
+
 	final private int RC_STORAGE_CAMERA_PERMISSIONS = 2;
+
+	/**
+	 * Request GPS permissions; used by {@link GpsStatusRecord} widget
+	 * which calls {@code ActivityCompat.requestPermissions} if needed
+	 */
+	final static public int RC_GPS_PERMISSIONS = 3;
 
 	/**
 	 * Request code for callback after the camera application had taken a
@@ -845,6 +852,18 @@ public class TrackLogger extends Activity {
 					// permission denied, boo! Disable the
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
+				}
+				return;
+			}
+
+			case RC_GPS_PERMISSIONS: {
+				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(true);
+					sendBroadcast(new Intent(OSMTracker.INTENT_REREG_LOC_LISTENER));
+				} else {
+					// permission denied!
+					//TODO: add an informative message.
+					((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(false);
 				}
 				return;
 			}
