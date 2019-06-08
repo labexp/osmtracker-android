@@ -298,9 +298,9 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			writer.write(TAG_GPX + "\n");
 
 			if (tags != null && !tags.equals("")) {
-				writer.write("<extensions>\n");
-				writer.write("<tags>" + tags + "</tags>\n");
-				writer.write("</extensions>\n");
+				writer.write("<metadata>\n");
+				writer.write("<keywords>" + tags + "</keywords>\n");
+				writer.write("</metadata>\n");
 			}
 
 			if (track_description != null && !track_description.equals("")) {
