@@ -297,17 +297,21 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			writer.write(XML_HEADER + "\n");
 			writer.write(TAG_GPX + "\n");
 
-			if (tags != null && !tags.equals("")) {
-				writer.write("<metadata>\n");
-				for (String tag: tags.split(",")) {
-					writer.write("<keywords>" + tag + "</keywords>\n");
+			if ((tags != null && !tags.equals("")) || (track_description != null && !track_description.equals(""))) {
+				writer.write("\t<metadata>\n");
+				if (tags != null && !tags.equals("")) {
+					for (String tag : tags.split(",")) {
+						writer.write("\t\t<keywords>" + tag.trim() + "</keywords>\n");
+					}
 				}
-				writer.write("</metadata>\n");
+
+				if (track_description != null && !track_description.equals("")) {
+					writer.write("\t\t<desc>" + track_description + "</desc>\n");
+				}
+
+				writer.write("\t</metadata>\n");
 			}
 
-			if (track_description != null && !track_description.equals("")) {
-				writer.write("<desc>" + track_description + "</desc>\n");
-			}
 
 			writeWayPoints(writer, cWayPoints, accuracyOutput, fillHDOP, compassOutput);
 			writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP, compassOutput);
