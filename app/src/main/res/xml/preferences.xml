@@ -98,13 +98,13 @@
 			android:title="@string/prefs_displaytrack_osm"
 			android:summary="@string/prefs_displaytrack_osm_summary"
 			android:defaultValue="false" />
-		<ListPreference
+		<!--<ListPreference
 			android:entries="@array/prefs_map_tile_keys"
 			android:title="@string/prefs_map_tile"
 			android:entryValues="@array/prefs_map_tile_values"
 			android:key="ui.map.tile"
 			android:summary="@string/prefs_map_tile_summary"
-			android:defaultValue="MAPNIK" />
+			android:defaultValue="MAPNIK" />-->
 		<ListPreference
 			android:defaultValue="none"
 			android:key="ui.orientation"

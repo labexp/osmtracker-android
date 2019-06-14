@@ -221,7 +221,8 @@ public class DisplayTrackMap extends Activity {
 	public void selectTileSource() {
 		String mapTile = prefs.getString(OSMTracker.Preferences.KEY_UI_MAP_TILE, OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPNIK);
 		Log.e("TileMapName active", mapTile);
-		osmView.setTileSource(selectMapTile(mapTile));
+		//osmView.setTileSource(selectMapTile(mapTile));
+		osmView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
 	}
 
     /**
@@ -232,23 +233,23 @@ public class DisplayTrackMap extends Activity {
     }
 
 	
-	/**
-	 * Returns a ITileSource for the map according to the selected mapTile
-	 * String. The default is mapnik.
-	 * 
-	 * @param mapTile String that is the name of the tile provider
-	 * @return ITileSource with the selected Tile-Source
-	 */
-	private ITileSource selectMapTile(String mapTile) {
-		try {
-			Field f = TileSourceFactory.class.getField(mapTile);
-			return (ITileSource) f.get(null); 
-		} catch (Exception e) {
-			Log.e(TAG, "Invalid tile source '"+mapTile+"'", e);
-			Log.e(TAG, "Default tile source selected: '" + TileSourceFactory.DEFAULT_TILE_SOURCE.name() +"'");
-			return TileSourceFactory.DEFAULT_TILE_SOURCE;
-		}
-	}
+//	/**
+//	 * Returns a ITileSource for the map according to the selected mapTile
+//	 * String. The default is mapnik.
+//	 *
+//	 * @param mapTile String that is the name of the tile provider
+//	 * @return ITileSource with the selected Tile-Source
+//	 */
+//	private ITileSource selectMapTile(String mapTile) {
+//		try {
+//			Field f = TileSourceFactory.class.getField(mapTile);
+//			return (ITileSource) f.get(null);
+//		} catch (Exception e) {
+//			Log.e(TAG, "Invalid tile source '"+mapTile+"'", e);
+//			Log.e(TAG, "Default tile source selected: '" + TileSourceFactory.DEFAULT_TILE_SOURCE.name() +"'");
+//			return TileSourceFactory.DEFAULT_TILE_SOURCE;
+//		}
+//	}
 
 
 	@Override
