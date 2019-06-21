@@ -56,6 +56,8 @@ public class TrackManager extends ListActivity {
 	final private int RC_WRITE_STORAGE_DISPLAY_TRACK = 3;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ALL = 1;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ONE = 2;
+	final private int RC_GPS_PERMISSION = 5;
+
 
 	MenuItem trackSelected;
 
@@ -74,6 +76,10 @@ public class TrackManager extends ListActivity {
 	/** Track Identifier to export after request for write permission **/
 	private long trackId = -1;
 
+	/** This variable is used to communicate between code trying to start TrackLogger and the code that
+	 * actually starts it when have GPS permissions */
+	private Intent TrackLoggerStartIntent = null;
+
 	private ImageButton btnNewTrack;
 
 	@Override
@@ -91,7 +97,7 @@ public class TrackManager extends ListActivity {
 		btnNewTrack.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startTrackLogger();
+				startTrackLoggerForNewTrack();
 				//makes the button invisible when is an active track
 				btnNewTrack.setVisibility(View.INVISIBLE);
 			}
@@ -208,13 +214,13 @@ public class TrackManager extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.trackmgr_menu_newtrack:
-			startTrackLogger();
+			startTrackLoggerForNewTrack();
 			break;
 		case R.id.trackmgr_menu_continuetrack:
 			Intent i = new Intent(this, TrackLogger.class);
 			i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
-			startActivity(i);
+			tryStartTrackLogger(i);
 			break;
 		case R.id.trackmgr_menu_stopcurrenttrack:
 			stopActiveTrack();
@@ -261,17 +267,45 @@ public class TrackManager extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+
+	/**
+	 * Starts TrackLogger Activity if GPS Permission is granted
+	 * If there's no GPS Permission, then requests it and the OnPermissionResult will call this method again if granted
+	 */
+	private void tryStartTrackLogger(Intent intent){
+		// If GPS Permission Granted
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+			Log.i("#","Granted on try");
+			startActivity(intent);
+		} else{
+			// Permission is not granted
+			Log.i("#","Not Granted on try");
+			this.TrackLoggerStartIntent = intent;
+			// Should we show an explanation?
+			if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+				Log.i("#","Should explain");
+				Toast.makeText(this, "Can't continue without GPS permission", Toast.LENGTH_LONG).show();
+			}
+
+			// No explanation needed, just request the permission.
+			Log.i("#","Should not explain");
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, RC_GPS_PERMISSION);
+
+		}
+	}
+
+
 	/**
 	 * This method prepare the new track and set an id, then start a new TrackLogger with the new track id
 	 */
-	private void startTrackLogger(){
+	private void startTrackLoggerForNewTrack(){
 		// Start track logger activity
 		try {
 			Intent i = new Intent(this, TrackLogger.class);
 			// New track
 			currentTrackId = createNewTrack();
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
-			startActivity(i);
+			tryStartTrackLogger(i);
 		} catch (CreateTrackException cte) {
 			Toast.makeText(this,
 					getResources().getString(R.string.trackmgr_newtrack_error).replace("{0}", cte.getMessage()),
@@ -341,7 +375,7 @@ public class TrackManager extends ListActivity {
 			setActiveTrack(info.id);
 			i = new Intent(this, TrackLogger.class);
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, info.id);
-			startActivity(i);
+			tryStartTrackLogger(i);
 			break;
 
 		case R.id.trackmgr_contextmenu_delete:
@@ -448,12 +482,14 @@ public class TrackManager extends ListActivity {
 			i = new Intent(this, TrackLogger.class);
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 			i.putExtra(TrackLogger.STATE_IS_TRACKING, true);
+			tryStartTrackLogger(i);
+
 		} else {
 			// show track info
 			i = new Intent(this, TrackDetail.class);
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, id);
+			startActivity(i);
 		}
-		startActivity(i);
 	}
 
 	/**
@@ -622,6 +658,17 @@ public class TrackManager extends ListActivity {
 					//TODO: add an informative message.
 					Log.w(TAG, "Permission not granted");
 					Toast.makeText(this, "To upload the track to OSM we need access to the storage.", Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+			case RC_GPS_PERMISSION:{
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED){
+					Log.i("#","GPS Permission granted");
+					tryStartTrackLogger(this.TrackLoggerStartIntent);
+				}
+				else{
+					Log.i("#","GPS Permission denied");
 				}
 				break;
 			}
