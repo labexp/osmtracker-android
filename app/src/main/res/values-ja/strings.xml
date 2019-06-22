@@ -31,7 +31,10 @@
   <string name="trackmgr_waypoints_count">ウェイポイント: </string>
   <string name="trackmgr_trackpoints_count">トラックポイント: </string>
   <string name="trackmgr_empty">トラックデータがありません。</string>
+  <string name="trackmgr_newtrack_hint">トラックを記録するには、\n<b>メニュー</b>、<b>新規トラック</b>を押してください</string>
   <string name="trackmgr_newtrack_error">新しいトラックが作成できません: {0}</string>
+  <string name="trackmgr_continuetrack_hint">現在<b>トラック #{0}</b>を記録中
+続行するにはリストから選択して下さい。</string>
   <string name="trackmgr_contextmenu_stop">トラッキングの停止</string>
   <string name="trackmgr_contextmenu_resume">トラッキングの再開</string>
   <string name="trackmgr_contextmenu_delete">削除</string>
@@ -43,6 +46,7 @@
   <string name="trackmgr_delete_confirm">トラック #{0} を削除します</string>
   <string name="trackmgr_deleteall_confirm">全てのトラックを削除します。よろしいですか？</string>
   <string name="trackmgr_exporting">トラック #{0} をエクスポート中…</string>
+  <string name="trackmgr_exporting_prepare">エクスポートの準備中です...</string>
   <string name="trackmgr_export_error">トラック {0} をエクスポートできません</string>
   <string name="trackmgr_exportall_confirm">全てのトラックをエクスポートします。時間がかかる可能性があります。よろしいですか？</string>
   <!--Track Detail-->
@@ -109,6 +113,9 @@
   <string name="about_text">詳細情報,ドキュメント,議論については、ホームページを参照してください:</string>
   <string name="about_translate_text">OSMTrackerの翻訳を支援してください。</string>
   <string name="about_debug_info">デバッグ情報</string>
+  <string name="about_export_db">データベースをエクスポート</string>
+  <string name="about_exporting_db">データベースをエクスポート中...</string>
+  <string name="about_export_db_result">データベースのエクスポート結果: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker トラッキング中</string>
   <string name="notification_title">OSMTracker トラッキング中 (#{0})</string>
@@ -132,4 +139,7 @@
   <string name="various_heading_unknown">方位が特定できませんでした</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap トラック表示</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

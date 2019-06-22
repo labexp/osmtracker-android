@@ -35,6 +35,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CursorAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,8 +52,12 @@ public class TrackManager extends ListActivity {
 	@SuppressWarnings("unused")
 	private static final String TAG = TrackManager.class.getSimpleName();
 
+	final private int RC_WRITE_PERMISSIONS_UPLOAD = 4;
+	final private int RC_WRITE_STORAGE_DISPLAY_TRACK = 3;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ALL = 1;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ONE = 2;
+
+	MenuItem trackSelected;
 
 	/** Bundle key for {@link #prevItemVisible} */
 	private static final String PREV_VISIBLE = "prev_visible";
@@ -69,15 +74,28 @@ public class TrackManager extends ListActivity {
 	/** Track Identifier to export after request for write permission **/
 	private long trackId = -1;
 
+	private ImageButton btnNewTrack;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.trackmanager);	
+		setContentView(R.layout.trackmanager);
 		getListView().setEmptyView(findViewById(R.id.trackmgr_empty));
 		registerForContextMenu(getListView());
 		if (savedInstanceState != null) {
 			prevItemVisible = savedInstanceState.getInt(PREV_VISIBLE, -1);
 		}
+		//initialize the bottom start track
+		btnNewTrack = (ImageButton) findViewById(R.id.trackmgr_hint_icon);
+		//set a listener that makes the same functionality of (+) button in the main menu of this screen
+		btnNewTrack.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startTrackLogger();
+				//makes the button invisible when is an active track
+				btnNewTrack.setVisibility(View.INVISIBLE);
+			}
+		});
 	}
 
 	@Override
@@ -109,6 +127,8 @@ public class TrackManager extends ListActivity {
 				}
 			}
 		} else {
+			//set the button to start a new track visible when there isn't an active track
+			btnNewTrack.setVisibility(View.VISIBLE);
 			((TextView) findViewById(R.id.trackmgr_hint)).setText(R.string.trackmgr_newtrack_hint);
 
 			// Scroll to the previous listview position,
@@ -188,19 +208,7 @@ public class TrackManager extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.trackmgr_menu_newtrack:
-			// Start track logger activity
-			try {
-				Intent i = new Intent(this, TrackLogger.class);
-				// New track
-				currentTrackId = createNewTrack();
-				i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
-				startActivity(i);
-			} catch (CreateTrackException cte) {
-				Toast.makeText(this,
-						getResources().getString(R.string.trackmgr_newtrack_error).replace("{0}", cte.getMessage()),
-						Toast.LENGTH_LONG)
-						.show();
-			}
+			startTrackLogger();
 			break;
 		case R.id.trackmgr_menu_continuetrack:
 			Intent i = new Intent(this, TrackLogger.class);
@@ -231,27 +239,15 @@ public class TrackManager extends ListActivity {
 						dialog.cancel();
 					}
 				}).create().show();
-
 			break;
 		case R.id.trackmgr_menu_exportall:
 			// Confirm
-			new AlertDialog.Builder(this)
-				.setTitle(R.string.menu_exportall)
-				.setMessage(getResources().getString(R.string.trackmgr_exportall_confirm))
-				.setCancelable(true)
-				.setIcon(android.R.drawable.ic_dialog_alert)
-				.setPositiveButton(R.string.menu_exportall, new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						requestPermissionAndExport(TrackManager.this.RC_WRITE_PERMISSIONS_EXPORT_ALL);
-					}
-				})
-				.setNegativeButton(android.R.string.cancel, new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				}).create().show();
+			if (!writeExternalStoragePermissionGranted()){
+				Log.e("DisplayTrackMapWrite", "Permission asked");
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_EXPORT_ALL);
+			}
+			else exportAllTracks();
 			break;
 		case R.id.trackmgr_menu_settings:
 			// Start settings activity
@@ -265,37 +261,22 @@ public class TrackManager extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-
-	private void requestPermissionAndExport(int typeCode){
-		if (ContextCompat.checkSelfPermission(this,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-			// Should we show an explanation?
-			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-					Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-				// Show an explanation to the user *asynchronously* -- don't block
-				// this thread waiting for the user's response! After the user
-				// sees the explanation, try again to request the permission.
-				// TODO: explain why we need permission.
-				Log.w(TAG, "we should explain why we need write permission_REQUEST");
-				Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
-
-			} else {
-
-				// No explanation needed, we can request the permission.
-				ActivityCompat.requestPermissions(this,
-						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, typeCode);
-			}
-
-		}  else {
-			switch (typeCode) {
-				case RC_WRITE_PERMISSIONS_EXPORT_ALL:
-					exportAllTracks();
-
-				case RC_WRITE_PERMISSIONS_EXPORT_ONE:
-					exportOneTrack();
-			}
+	/**
+	 * This method prepare the new track and set an id, then start a new TrackLogger with the new track id
+	 */
+	private void startTrackLogger(){
+		// Start track logger activity
+		try {
+			Intent i = new Intent(this, TrackLogger.class);
+			// New track
+			currentTrackId = createNewTrack();
+			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
+			startActivity(i);
+		} catch (CreateTrackException cte) {
+			Toast.makeText(this,
+					getResources().getString(R.string.trackmgr_newtrack_error).replace("{0}", cte.getMessage()),
+					Toast.LENGTH_LONG)
+					.show();
 		}
 	}
 
@@ -346,14 +327,15 @@ public class TrackManager extends ListActivity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		
 		Intent i;
-		
+		trackSelected = item;
+
 		switch(item.getItemId()) {
 		case R.id.trackmgr_contextmenu_stop:
 			// stop the active track
 			stopActiveTrack();
 			break;
+
 		case R.id.trackmgr_contextmenu_resume:
 			// let's activate the track and start the TrackLogger activity
 			setActiveTrack(info.id);
@@ -361,6 +343,7 @@ public class TrackManager extends ListActivity {
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, info.id);
 			startActivity(i);
 			break;
+
 		case R.id.trackmgr_contextmenu_delete:
 			
 			// Confirm and delete selected track
@@ -382,36 +365,72 @@ public class TrackManager extends ListActivity {
 						dialog.cancel();
 					}
 				}).create().show();
-
 			break;
+
 		case R.id.trackmgr_contextmenu_export:
 			trackId = info.id;
-			requestPermissionAndExport(this.RC_WRITE_PERMISSIONS_EXPORT_ONE);
-			break;
-		case R.id.trackmgr_contextmenu_osm_upload:
-			i = new Intent(this, OpenStreetMapUpload.class);
-			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, info.id);
-			startActivity(i);
-			break;
-		case R.id.trackmgr_contextmenu_display:
-			// Start display track activity, with or without OSM background
-			boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
-					OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
-			if (useOpenStreetMapBackground) {
-				i = new Intent(this, DisplayTrackMap.class);
-			} else {
-				i = new Intent(this, DisplayTrack.class);
+//			requestPermissionAndExport(this.RC_WRITE_PERMISSIONS_EXPORT_ONE);
+			if (!writeExternalStoragePermissionGranted()){
+				Log.e("DisplayTrackMapWrite", "Permission asked");
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_EXPORT_ONE);
 			}
-			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, info.id);
-			startActivity(i);
+			else exportOneTrack();
 			break;
+
+		case R.id.trackmgr_contextmenu_osm_upload:
+			if (!writeExternalStoragePermissionGranted()){
+				Log.e("DisplayTrackMapWrite", "Permission asked");
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_UPLOAD);
+			}
+			else uploadTrack(trackSelected);
+			break;
+
+		case R.id.trackmgr_contextmenu_display:
+			if (!writeExternalStoragePermissionGranted()){
+				Log.e("DisplayTrackMapWrite", "Permission asked");
+				ActivityCompat.requestPermissions(this,
+					new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_STORAGE_DISPLAY_TRACK);
+			}
+			else displayTrack(trackSelected);
+			break;
+
 		case R.id.trackmgr_contextmenu_details:
 			i = new Intent(this, TrackDetail.class);
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, info.id);
 			startActivity(i);
 			break;
 		}
+
 		return super.onContextItemSelected(item);
+	}
+
+	private void uploadTrack(MenuItem item){
+		final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		Intent i = new Intent(this, OpenStreetMapUpload.class);
+		i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, info.id);
+		startActivity(i);
+	}
+
+	private void displayTrack(MenuItem item){
+		Log.e(TAG, "On Display Track");
+		// Start display track activity, with or without OSM background
+		final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		Intent i;
+		boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
+		if (useOpenStreetMapBackground) {
+			i = new Intent(this, DisplayTrackMap.class);
+		} else {
+			i = new Intent(this, DisplayTrack.class);
+		}
+		i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, info.id);
+		startActivity(i);
+	}
+
+	private boolean writeExternalStoragePermissionGranted(){
+		Log.e("CHECKING", "Write");
+		return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
 	}
 
 	/**
@@ -552,6 +571,7 @@ public class TrackManager extends ListActivity {
 					Log.w(TAG, "we should explain why we need write permission_EXPORT_ALL");
 					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
 				}
+				break;
 			}
 			case RC_WRITE_PERMISSIONS_EXPORT_ONE: {
 				// If request is cancelled, the result arrays are empty.
@@ -569,6 +589,41 @@ public class TrackManager extends ListActivity {
 					Log.w(TAG, "we should explain why we need write permission_EXPORT_ONE");
 					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
 				}
+				break;
+			}
+			case RC_WRITE_STORAGE_DISPLAY_TRACK: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					Log.e("Result", "Permission granted");
+					// permission was granted, yay!
+					displayTrack(trackSelected);
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					//TODO: add an informative message.
+					Log.w(TAG, "Permission not granted");
+					Toast.makeText(this, "To display the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+			case RC_WRITE_PERMISSIONS_UPLOAD: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					Log.e("Result", "Permission granted");
+					// permission was granted, yay!
+					uploadTrack(trackSelected);
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					//TODO: add an informative message.
+					Log.w(TAG, "Permission not granted");
+					Toast.makeText(this, "To upload the track to OSM we need access to the storage.", Toast.LENGTH_LONG).show();
+				}
+				break;
 			}
 		}
 	}

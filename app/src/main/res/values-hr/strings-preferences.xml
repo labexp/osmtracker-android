@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">Postavke</string>
@@ -6,6 +6,74 @@
   <string name="prefs_gps_os_settings">GPS postavke</string>
   <string name="prefs_gps_os_settings_summary">Prikaži zaslon s GPS postavkama</string>
   <string name="prefs_check_gps_startup">Provjeri GPS pri pokretanju</string>
+  <string name="prefs_check_gps_startup_summary">Provjerava je li GPS je onemogućen pri pokretanju i nudi uključivanje </string>
   <string name="prefs_gps_ignore_clock">Zanemari GPS sat</string>
+  <string name="prefs_gps_ignore_clock_summary">Ignoriraj GPS sat i koristi Android sat za vremenske oznake</string>
+  <string name="prefs_gps_logging_interval">Interval GPS bilježenja</string>
+  <string name="prefs_gps_logging_interval_summary">Koristite 0 za najkraći mogući (utječe na trajanje baterije)</string>
+  <string name="prefs_gps_logging_interval_seconds">sekundi</string>
+  <string name="prefs_ui">Korisničko sučelje</string>
+  <string name="prefs_ui_picture_source">Zadani izvor fotografija</string>
+  <string name="prefs_ui_picture_source_summary">Iskoristite fotografije iz fotoaparata ili galerije?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Fotoaparat</item>
+    <item>Galerija</item>
+    <item>Uvijek pitaj</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout_defaut">Zadano</string>
+  <string name="prefs_ui_orientation">Orijentacija</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automatski</item>
+    <item>Portret</item>
+    <item>Pejzaž</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Trajanje glasovnog zapisa</string>
+  <string name="prefs_voicerec_duration_seconds">sekundi</string>
+  <string name="prefs_theme">Tema glavnog zaslona</string>
+  <string name="prefs_theme_summary">Potrebno je ponovno pokrenuti aplikaciju kako bi nastupile promjene</string>
+  <string-array name="prefs_theme_keys">
+    <item>OS zadano</item>
+    <item>OS zadano (tamno)</item>
+    <item>OS zadano (svijetlo)</item>
+    <item>Visoki kontrast</item>
+  </string-array>
+  <string name="prefs_display_always_on">Zaslon uvijek uključen</string>
+  <string name="prefs_display_always_on_summary">Zaslon će ostati uključen za vrijeme bilježenja. Isključite da biste uštedjeli bateriju</string>
+  <string name="prefs_displaytrack_osm">Pozadinska karta</string>
+  <string name="prefs_displaytrack_osm_summary">Prikaži OpenStreetMap kartu ispod traga. Zahtjeva internet vezu</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Uvijek prikaži OpenStreetMap pozadinu? Zahtijeva internet vezu.</string>
+  <string name="prefs_output">GPX postavke</string>
+  <string name="prefs_storage_dir">Memorijska kartica (SD) mapa</string>
+  <string name="prefs_storage_dir_hint">Primijeniti će se na sljedeći zapis (ne na trenutni)</string>
+  <string name="prefs_output_one_dir_per_track">Jedna mapa po zapisu</string>
+  <string name="prefs_output_one_dir_per_track_summary">Spremite svaki zapis i povezane datoteke na svoju mapu</string>
+  <string name="prefs_output_filename">Ime za naziv zapisa</string>
+  <string name="prefs_output_filename_summary">Uzorak za datoteke, ako zapis ima ime</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Naziv zapisa</item>
+    <item>Ime, datum početka i vrijeme</item>
+    <item>Datum i vrijeme</item>
+  </string-array>
+  <string name="prefs_output_accuracy">GPX preciznost</string>
+  <string name="prefs_output_accuracy_summary">Dodaj informacije o točnosti u GPX datoteci, s nazivom međutočke ili u komentaru međutočke</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Ništa</item>
+    <item>S nazivom međutočke</item>
+    <item>U komentaru međutočke</item>
+  </string-array>
+  <string name="prefs_sound_enabled">Uključi zvuk</string>
+  <string name="prefs_sound_enabled_summary">Zvučna obavijest kada kada snimanje glasa počinje i završava</string>
+  <string name="prefs_osm_clear_oauth_data">Reset OSM provjere autentičnosti</string>
+  <string name="prefs_map_tile">Pružatelj karte</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Ništa</item>
+    <item>u komentaru</item>
+    <item>u produžetku</item>
+  </string-array>
 </resources>

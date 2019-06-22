@@ -23,13 +23,17 @@
   <string name="wplist_longitude">经度：</string>
   <string name="wplist_elevation">海拔：</string>
   <string name="wplist_accuracy">精度：</string>
+  <string name="wplist_compass">指南针朝向：</string>
+  <string name="wplist_compass_accuracy">指南针精度：</string>
   <!--Track Manager-->
   <string name="trackmgr">轨迹管理器</string>
   <string name="trackmgr_tracklist">轨迹列表：</string>
   <string name="trackmgr_waypoints_count">路点：</string>
   <string name="trackmgr_trackpoints_count">追踪点：</string>
   <string name="trackmgr_empty">您没有任何轨迹。</string>
+  <string name="trackmgr_newtrack_hint">要录制轨迹，\n按下 <b>菜单</b> 然后 <b>新建轨迹</b></string>
   <string name="trackmgr_newtrack_error">无法创建踪迹: {0}</string>
+  <string name="trackmgr_continuetrack_hint">你正在录制 <b>轨迹 #{0}</b>\n在列表中选择它以继续</string>
   <string name="trackmgr_contextmenu_stop">停止记录</string>
   <string name="trackmgr_contextmenu_resume">恢复追踪</string>
   <string name="trackmgr_contextmenu_delete">删除</string>
@@ -41,6 +45,7 @@
   <string name="trackmgr_delete_confirm">踪迹#{0}将被删除</string>
   <string name="trackmgr_deleteall_confirm">确定删除所有踪迹吗?</string>
   <string name="trackmgr_exporting">导出踪迹#{0}…</string>
+  <string name="trackmgr_exporting_prepare">正准备导出…</string>
   <string name="trackmgr_export_error">不能导出踪迹: {0}</string>
   <string name="trackmgr_exportall_confirm">所有已录制的轨迹都将被导出，这要花费较长的时间。您确定要这样做？</string>
   <!--Track Detail-->
@@ -107,6 +112,9 @@
   <string name="about_text">更多详细信息、文档和报告，请参阅项目主页：</string>
   <string name="about_translate_text">帮助翻译 OSMTracker:</string>
   <string name="about_debug_info">调试信息</string>
+  <string name="about_export_db">导出数据库</string>
+  <string name="about_exporting_db">正导出数据库…</string>
+  <string name="about_export_db_result">数据库导出结果：%s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker 正在记录轨迹</string>
   <string name="notification_title">OSMTracker 正在记录踪迹 (#{0})</string>
@@ -130,4 +138,7 @@
   <string name="various_heading_unknown">前进方向无法确定</string>
   <!--OSM map view-->
   <string name="displaytrackmap">以 OpenStreetMap 显示轨迹</string>
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

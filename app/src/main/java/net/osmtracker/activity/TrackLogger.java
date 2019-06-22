@@ -4,6 +4,7 @@ import java.io.File;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -92,6 +93,11 @@ public class TrackLogger extends Activity {
 	 * Bundle state key for tracking flag.
 	 */
 	public static final String STATE_IS_TRACKING = "isTracking";
+
+    /**
+     * The character to separate the tags of a track
+     */
+	public static final String TAG_SEPARATOR = ",";
 	
 	/**
 	 * Bundle state key button state.
@@ -164,7 +170,11 @@ public class TrackLogger extends Activity {
 
 	private ComponentName mediaButtonReceiver;
 
-	private ArrayList<String> layoutNameTags = new ArrayList<String>();
+
+	/*
+	 *  Avoid taking care of duplicated elements
+	 */
+	private HashSet<String> layoutNameTags = new HashSet<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -214,30 +224,55 @@ public class TrackLogger extends Activity {
 	 * Also, the default layout is excluded and the 'osmtracker' tag is added by default.
 	 */
 	private void saveTagsForTrack(){
-		StringBuilder tags = new StringBuilder();
-		ArrayList<String> fixedTags = new ArrayList<String>();
-
-		//covert the file name to simple layout name
-		for(String layoutFileName : layoutNameTags){
-			//OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT -> 'default'
-			if(! layoutFileName.equals(OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT)){
-				fixedTags.add(CustomLayoutsUtils.convertFileName(layoutFileName));
-			}
-		}
-
-		fixedTags.add("osmtracker");
-
-		//create the string with all tags
-		for(String simpleName : fixedTags){
-			tags.append(simpleName).append(",");
-		}
-
-		//obtain the current track id and initialize the values variable
+		// Obtain the current track id and initialize the values variable
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, currentTrackId);
 		ContentValues values = new ContentValues();
 
+		// A set with all tags to save
+		HashSet<String> tagsToSave = new HashSet<>();
+
+		// Get and add previously saved tags to the set
+		Cursor cursor = getContentResolver().query( trackUri, null, null, null, null);
+		int tagsIndex = cursor.getColumnIndex(TrackContentProvider.Schema.COL_TAGS);
+		String previouslySavedTags = null;
+		while (cursor.moveToNext()) {
+			if(cursor.getString(tagsIndex) != null) {
+				previouslySavedTags = cursor.getString(tagsIndex);
+			}
+		}
+		if(previouslySavedTags != null){
+			for (String tag : previouslySavedTags.split(TAG_SEPARATOR)){
+				tagsToSave.add(tag);
+			}
+		}
+
+
+		// Add the names of the layouts that were used in the track to the set
+
+		for(String layoutFileName : layoutNameTags){
+			//OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT -> 'default'
+			if(! layoutFileName.equals(OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT)){
+				// Covert the file name to simple layout name
+				tagsToSave.add(CustomLayoutsUtils.convertFileName(layoutFileName));
+			}
+		}
+
+		// Check if the osmtracker tag has already been added
+		String trackerTag = "osmtracker";
+		tagsToSave.add(trackerTag);
+
+
+		// Create the string with all tags
+		StringBuilder tagsString = new StringBuilder();
+
+		for(String tag : tagsToSave){
+			tagsString.append(tag).append(TAG_SEPARATOR);
+		}
+		int lastIndex = tagsString.length()-1;
+		tagsString.deleteCharAt(lastIndex);
+
 		//set the values tag and update the table
-		values.put(TrackContentProvider.Schema.COL_TAGS, tags.toString());
+		values.put(TrackContentProvider.Schema.COL_TAGS, tagsString.toString());
 		getContentResolver().update(trackUri, values, null, null);
 	}
 
@@ -265,8 +300,7 @@ public class TrackLogger extends Activity {
 		
 		// Try to inflate the buttons layout
 		try {
-			String userLayout = prefs.getString(
-					OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+			String userLayout = prefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
 			if (OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT.equals(userLayout)) {
 				// Using default buttons layout
 				mainLayout = new UserDefinedLayout(this, currentTrackId, null);
@@ -274,9 +308,7 @@ public class TrackLogger extends Activity {
 				// Using user buttons layout
 				File layoutFile = new File(
 						Environment.getExternalStorageDirectory(),
-						prefs.getString(
-								OSMTracker.Preferences.KEY_STORAGE_DIR,
-								OSMTracker.Preferences.VAL_STORAGE_DIR)
+						OSMTracker.Preferences.VAL_STORAGE_DIR
 						+ File.separator + Preferences.LAYOUTS_SUBDIR
 						+ File.separator + userLayout);
 				mainLayout = new UserDefinedLayout(this, currentTrackId, layoutFile);
@@ -320,9 +352,7 @@ public class TrackLogger extends Activity {
 
 		//save the layout file name if it change, in tags array
 		String layoutName = CustomLayoutsUtils.getCurrentLayoutName(getApplicationContext());
-		if(! layoutNameTags.contains(layoutName)){
-			layoutNameTags.add(layoutName);
-		}
+		layoutNameTags.add(layoutName);
 
 		super.onResume();
 	}

@@ -10,6 +10,7 @@ import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.overlay.WayPointsOverlay;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
@@ -27,6 +28,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -154,22 +156,23 @@ public class DisplayTrackMap extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		// loading the preferences
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
+
 		setContentView(R.layout.displaytrackmap);
-		
+
 		currentTrackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 		setTitle(getTitle() + ": #" + currentTrackId);
-		
+
 		// Initialize OSM view
+		Configuration.getInstance().load(this, prefs);
 		osmView = (MapView) findViewById(R.id.displaytrackmap_osmView);
 		osmView.setMultiTouchControls(true);  // pinch to zoom
 		// we'll use osmView to define if the screen is always on or not
 		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
 		osmViewController = osmView.getController();
-		
+
 		// Check if there is a saved zoom level
 		if(savedInstanceState != null) {
 			osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
@@ -182,8 +185,10 @@ public class DisplayTrackMap extends Activity {
 			SharedPreferences settings = getPreferences(MODE_PRIVATE);
 			osmViewController.setZoom(settings.getInt(LAST_ZOOM, DEFAULT_ZOOM));
 		}
-		
+
 		selectTileSource();
+
+        setTileDpiScaling();
 
 		createOverlays();
 
@@ -194,7 +199,7 @@ public class DisplayTrackMap extends Activity {
 				pathChanged();
 			}
 		};
-		
+
 		// Register listeners for zoom buttons
 		findViewById(R.id.displaytrackmap_imgZoomIn).setOnClickListener( new OnClickListener() {
 			@Override
@@ -215,25 +220,36 @@ public class DisplayTrackMap extends Activity {
 	 */
 	public void selectTileSource() {
 		String mapTile = prefs.getString(OSMTracker.Preferences.KEY_UI_MAP_TILE, OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPNIK);
-		osmView.setTileSource(selectMapTile(mapTile));
+		Log.e("TileMapName active", mapTile);
+		//osmView.setTileSource(selectMapTile(mapTile));
+		osmView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
 	}
+
+    /**
+     * Make text on map better readable on high DPI displays
+     */
+    public void setTileDpiScaling () {
+        osmView.setTilesScaledToDpi(true);
+    }
+
 	
-	/**
-	 * Returns a ITileSource for the map according to the selected mapTile
-	 * String. The default is mapnik.
-	 * 
-	 * @param mapTile String that is the name of the tile provider
-	 * @return ITileSource with the selected Tile-Source
-	 */
-	private ITileSource selectMapTile(String mapTile) {
-		try {
-			Field f = TileSourceFactory.class.getField(mapTile);
-			return (ITileSource) f.get(null); 
-		} catch (Exception e) {
-			Log.e(TAG, "Invalid tile source '"+mapTile+"'", e);
-			return TileSourceFactory.MAPNIK;
-		}
-	}
+//	/**
+//	 * Returns a ITileSource for the map according to the selected mapTile
+//	 * String. The default is mapnik.
+//	 *
+//	 * @param mapTile String that is the name of the tile provider
+//	 * @return ITileSource with the selected Tile-Source
+//	 */
+//	private ITileSource selectMapTile(String mapTile) {
+//		try {
+//			Field f = TileSourceFactory.class.getField(mapTile);
+//			return (ITileSource) f.get(null);
+//		} catch (Exception e) {
+//			Log.e(TAG, "Invalid tile source '"+mapTile+"'", e);
+//			Log.e(TAG, "Default tile source selected: '" + TileSourceFactory.DEFAULT_TILE_SOURCE.name() +"'");
+//			return TileSourceFactory.DEFAULT_TILE_SOURCE;
+//		}
+//	}
 
 
 	@Override
@@ -249,31 +265,38 @@ public class DisplayTrackMap extends Activity {
 
 	@Override
 	protected void onResume() {
-		
+
+		super.onResume();
+		resumeActivity();
+
+	}
+
+	private void resumeActivity(){
 		// setKeepScreenOn depending on user's preferences
 		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
-		
+
 		// Register content observer for any trackpoint changes
 		getContentResolver().registerContentObserver(
 				TrackContentProvider.trackPointsUri(currentTrackId),
 				true, trackpointContentObserver);
-		
+
 		// Forget the last waypoint read from the DB
-		// This ensures that all waypoints for the track will be reloaded 
+		// This ensures that all waypoints for the track will be reloaded
 		// from the database to populate the path layout
 		lastTrackPointIdProcessed = null;
-		
+
 		// Reload path
 		pathChanged();
 
 		selectTileSource();
+
+		setTileDpiScaling();
 		
 		// Refresh way points
-		// wayPointsOverlay.refresh();
-		
-		super.onResume();
+		wayPointsOverlay.refresh();
+
 	}
-	
+
 	@Override
 	protected void onPause() {
 		// Unregister content observer
@@ -346,7 +369,12 @@ public class DisplayTrackMap extends Activity {
 	 * Creates overlays over the OSM view
 	 */
 	private void createOverlays() {
-		pathOverlay = new PathOverlay(Color.BLUE, this);
+		DisplayMetrics metrics = new DisplayMetrics();
+		this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+		// set with to hopefully DPI independent 0.5mm
+ 		pathOverlay = new PathOverlay(Color.BLUE, (float)(metrics.densityDpi / 25.4 / 2),this);
+
 		osmView.getOverlays().add(pathOverlay);
 		
 		myLocationOverlay = new SimpleLocationOverlay(this);

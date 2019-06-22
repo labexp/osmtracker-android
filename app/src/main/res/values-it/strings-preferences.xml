@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">Impostazioni</string>
@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Formato tasti</string>
   <string name="prefs_ui_buttons_layout_summary">Permette di definire un formato personalizzato dei tasti (vedi manuale)</string>
+  <string name="prefs_ui_buttons_layout_default_section">DEFAULT LAYOUT</string>
   <string name="prefs_ui_buttons_layout_defaut">Predefinito</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">LAYOUT SCARICATO</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Non hai scaricato file di layout</string>
+  <string name="prefs_ui_available_layout">Layout disponibili</string>
+  <string name="prefs_ui_github_repository_settings">Impostazioni del Github Repository</string>
   <string name="prefs_ui_orientation">Orientamento</string>
   <string name="prefs_ui_orientation_summary">Orientamento preferito per i tasti dello schermo</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -43,7 +48,7 @@
   <string name="prefs_display_always_on">Schermo sempre attivo</string>
   <string name="prefs_display_always_on_summary">Lo schermo rimarrà attivo durante la registrazione della traccia. Disattiva per risparmiare la batteria</string>
   <string name="prefs_displaytrack_osm">Sfondo OSM</string>
-  <string name="prefs_displaytrack_osm_summary">Mostra OpenStreetMap sotto la traccia. E\' necessaria una connessione dati</string>
+  <string name="prefs_displaytrack_osm_summary">Mostra OpenStreetMap sotto la traccia. È necessaria una connessione dati</string>
   <string name="prefs_displaytrack_osm_summary_ask">Mostra sempre lo sfondo OpenStreetMap? Richiede una connessione dati.</string>
   <string name="prefs_output">Salvataggio file GPX</string>
   <string name="prefs_storage_dir">Directory memoria esterna (SD)</string>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">Настройки</string>
@@ -11,7 +11,7 @@
   <string name="prefs_gps_ignore_clock_summary">Игнорировать время GPS и использовать время телефона для временных меток</string>
   <string name="prefs_gps_logging_interval">Интервал сохранения GPS</string>
   <string name="prefs_gps_logging_interval_summary">Установите 0 для минимально возможного (ускоряет разряд батереи)</string>
-  <string name="prefs_gps_logging_interval_seconds">секунд(ы)</string>
+  <string name="prefs_gps_logging_interval_seconds">секунд</string>
   <string name="prefs_ui">Интерфейс</string>
   <string name="prefs_ui_picture_source">Источник фото по-умолчанию</string>
   <string name="prefs_ui_picture_source_summary">Сделать снимок или выбрать фото из галереи?</string>
@@ -23,6 +23,7 @@
   <string name="prefs_ui_buttons_layout">Расположение кнопок</string>
   <string name="prefs_ui_buttons_layout_summary">Выбрать вариант расположения кнопок (См. документацию)</string>
   <string name="prefs_ui_buttons_layout_defaut">По умолчанию</string>
+  <string name="prefs_ui_github_repository_settings">Настройки репозитория Github</string>
   <string name="prefs_ui_orientation">Ориентация</string>
   <string name="prefs_ui_orientation_summary">Предпочтительная ориентация экрана с кнопками</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -31,7 +32,7 @@
     <item>Ладншафтная</item>
   </string-array>
   <string name="prefs_voicerec_duration">Длительность записи аудио</string>
-  <string name="prefs_voicerec_duration_seconds">секунд(ы)</string>
+  <string name="prefs_voicerec_duration_seconds">секунд</string>
   <string name="prefs_theme">Основная тема оформления</string>
   <string name="prefs_theme_summary">Изменения будут действовать после перезагрузки программы</string>
   <string-array name="prefs_theme_keys">
@@ -44,7 +45,7 @@
   <string name="prefs_display_always_on_summary">Экран всегда будет включен во время записи трека. Отключите для экономии заряда батареи</string>
   <string name="prefs_displaytrack_osm">Картооснова OSM</string>
   <string name="prefs_displaytrack_osm_summary">Отображать картооснову OpenStreetMap при отображении трека. Требует интернет-соединения</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Всегда показывать OpenStreetMap на фоне? Требуется подключение к сети.</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Отображать картооснову OpenStreetMap при отображении трека? Требует интернет-соединения</string>
   <string name="prefs_output">Настройки GPX файлов</string>
   <string name="prefs_storage_dir">Сохранять в каталоге</string>
   <string name="prefs_storage_dir_hint">Будет использоваться для записи следующего трека (не для текущего)</string>

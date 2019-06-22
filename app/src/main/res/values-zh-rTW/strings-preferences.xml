@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">設定</string>
   <string name="prefs_gps">GPS</string>
   <string name="prefs_gps_os_settings">GPS 設定</string>
-  <string name="prefs_gps_os_settings_summary">顯示系統 GPS 設定功能頁</string>
+  <string name="prefs_gps_os_settings_summary">顯示系統 GPS 設定畫面</string>
   <string name="prefs_check_gps_startup">在啟動時檢查 GPS 狀態</string>
-  <string name="prefs_check_gps_startup_summary">在程式啟動時檢查 GPS 是否關閉，並提示啟用它。</string>
-  <string name="prefs_gps_ignore_clock">忽略從 GPS 得到的時鐘數值</string>
-  <string name="prefs_gps_ignore_clock_summary">忽略從 GPS 得到的時鐘數值，改用 Android 系統本身的時鐘數值來計算時間戳記</string>
+  <string name="prefs_check_gps_startup_summary">啟動時檢查 GPS 是否關閉並提示開啟。</string>
+  <string name="prefs_gps_ignore_clock">忽略 GPS 的時間</string>
+  <string name="prefs_gps_ignore_clock_summary">忽略 GPS 的時間，改用 Android 系統時間</string>
   <string name="prefs_gps_logging_interval">GPS 記錄頻率</string>
-  <string name="prefs_gps_logging_interval_summary">若使用 0 則會盡可能頻繁地記錄資料 (同時會影響電池續航時間)</string>
+  <string name="prefs_gps_logging_interval_summary">使用 0 會盡可能的記錄資料 (會影響電池續航力)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
-  <string name="prefs_ui">使用介面</string>
+  <string name="prefs_ui">使用者介面</string>
+  <string name="prefs_ui_picture_source">預設照片來源</string>
+  <string name="prefs_ui_picture_source_summary">拍張照或從相簿挑選？</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>相機</item>
     <item>相簿</item>
@@ -20,9 +22,14 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">按鍵配置</string>
   <string name="prefs_ui_buttons_layout_summary">選擇自訂的按鍵配置 (參見文件)</string>
-  <string name="prefs_ui_buttons_layout_defaut">預設配置</string>
+  <string name="prefs_ui_buttons_layout_default_section">預設樣式</string>
+  <string name="prefs_ui_buttons_layout_defaut">預設</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">下載樣式</string>
+  <string name="prefs_ui_buttons_layout_empty_section">你沒有下載樣式檔</string>
+  <string name="prefs_ui_available_layout">可用的樣式</string>
+  <string name="prefs_ui_github_repository_settings">Github 程式庫設定</string>
   <string name="prefs_ui_orientation">排列方向</string>
-  <string name="prefs_ui_orientation_summary">喜好的功能鈕介面排列方向</string>
+  <string name="prefs_ui_orientation_summary">偏好的功能鈕介面排列方向</string>
   <string-array name="prefs_ui_orientation_options_keys">
     <item>自動</item>
     <item>直立</item>
@@ -62,7 +69,7 @@
     <item>於航點名稱內</item>
     <item>於航點註解中</item>
   </string-array>
-  <string name="prefs_output_gpx_hdop_approximation">使用 HDOP （水平2D坐標精度因子）近似值</string>
+  <string name="prefs_output_gpx_hdop_approximation">使用 HDOP 近似值</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">在 GPX 檔中填入 HDOP 近似值</string>
   <string name="prefs_sound_enabled">使用聲音</string>
   <string name="prefs_sound_enabled_summary">當錄製語音期間可播放聲音</string>
@@ -71,4 +78,16 @@
   <string name="prefs_osm_clear_oauth_data_dialog">您必須重新認證 OSMTracker 方能繼續上傳軌跡資料，確定嗎？</string>
   <string name="prefs_map_tile">地圖圖塊的提供來源</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>無</item>
+    <item>於註解</item>
+    <item>於副檔名</item>
+  </string-array>
+  <string name="prefs_compass_heading">匯出羅盤方位</string>
+  <string name="prefs_compass_heading_summary">定義羅盤資料要如何匯出到 GPX 檔案</string>
 </resources>

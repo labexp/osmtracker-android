@@ -1,14 +1,29 @@
 package net.osmtracker.test.gpx;
 
+import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.os.Environment;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
 
 import junit.framework.Assert;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.activity.TrackManager;
+import net.osmtracker.db.DataHelper;
+import net.osmtracker.gpx.ExportToStorageTask;
+import net.osmtracker.test.util.MockData;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,39 +32,42 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import net.osmtracker.OSMTracker;
-import net.osmtracker.activity.TrackManager;
-import net.osmtracker.db.DataHelper;
-import net.osmtracker.gpx.ExportToStorageTask;
-import net.osmtracker.test.util.MockData;
+import android.support.test.rule.GrantPermissionRule;
 
+@RunWith(AndroidJUnit4.class)
 public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackManager> {
 
 	private long trackId;
 	private File trackFile;
-	
+
+	@Rule
+	public GrantPermissionRule mRuntimePermissionRuleWrite = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+	@Rule
+	public GrantPermissionRule mRuntimePermissionRuleRead = GrantPermissionRule.grant(Manifest.permission.READ_EXTERNAL_STORAGE);
 
 	public ExportTrackTaskTest() {
 		super("net.osmtracker", TrackManager.class);
 	}
-	
-	@Override
-	protected void setUp() throws Exception {
+
+	@Before
+	public void setUp() throws Exception {
+		injectInstrumentation(InstrumentationRegistry.getInstrumentation());
 		// Delete file entry in media library
 		getActivity().getContentResolver().delete(
 				MediaStore.Files.getContentUri("external"),
 				MediaStore.Files.FileColumns.DATA + " LIKE ?",
-				new String[] {"%/net.osmtracker/gpx-test"});
+				new String[] {"%/osmtracker/gpx-test"});
 
 		Cursor cursor = getActivity().managedQuery(
 				MediaStore.Files.getContentUri("external"),
 				null,
 				MediaStore.Files.FileColumns.DATA + " LIKE ?",
-				new String[] {"%/net.osmtracker/gpx-test"},
+				new String[] {"%/osmtracker/gpx-test"},
 				null);
 		Assert.assertEquals(0, cursor.getCount());
 
-		trackFile = new File(Environment.getExternalStorageDirectory(), "net.osmtracker/gpx-test.gpx");
+		trackFile = new File(Environment.getExternalStorageDirectory(), "osmtracker/gpx-test.gpx");
 		if (trackFile.exists()) {
 			Assert.assertTrue(trackFile.delete());
 		}
@@ -67,9 +85,11 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 		e.putBoolean(OSMTracker.Preferences.KEY_OUTPUT_GPX_HDOP_APPROXIMATION, true);
 		Assert.assertTrue(e.commit());
 	}
-	
+
+	@Test
 	public void test() throws Exception {
 
+		Looper.prepare();
 		new ExportToStorageTask(getActivity(), trackId).execute().get();
 
 		// Ensure file contents are OK
@@ -89,7 +109,7 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 					MediaStore.Files.getContentUri("external"),
 					null,
 					MediaStore.Files.FileColumns.DATA + " LIKE ?",
-					new String[]{"%/net.osmtracker/gpx-test.gpx"},
+					new String[]{"%/osmtracker/gpx-test.gpx"},
 					null);
 			if (c.moveToFirst()) {
 				break;

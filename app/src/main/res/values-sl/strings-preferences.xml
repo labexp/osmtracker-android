@@ -10,7 +10,7 @@
   <string name="prefs_gps_ignore_clock">Prezri uro GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Prezri uro GPS in uporabi Androidovo uro za časovne žige</string>
   <string name="prefs_gps_logging_interval">Razmik beleženja GPS</string>
-  <string name="prefs_gps_logging_interval_summary">Uporabite 0 za najmanjši možni (vpliva na porabo energije)</string>
+  <string name="prefs_gps_logging_interval_summary">Uporabite 0 za najmanjši možni razmik (vpliva na porabo energije)</string>
   <string name="prefs_gps_logging_interval_seconds">sekund</string>
   <string name="prefs_ui">Uporabniški vmesnik</string>
   <string name="prefs_ui_picture_source">Privzeti vir fotografij</string>
@@ -21,7 +21,7 @@
     <item>Vedno vprašaj</item>
   </string-array>
   <string name="prefs_ui_buttons_layout">Prednastavitve gumbov</string>
-  <string name="prefs_ui_buttons_layout_summary">Izberi nabor gumbov po meri (glej dokum.)</string>
+  <string name="prefs_ui_buttons_layout_summary">Izberite nabor gumbov po meri (glejte dokumentacijo)</string>
   <string name="prefs_ui_buttons_layout_defaut">Privzeto</string>
   <string name="prefs_ui_orientation">Usmerjenost</string>
   <string name="prefs_ui_orientation_summary">Priljubljena usmerjenost za zaslon z gumbi</string>
@@ -46,11 +46,11 @@
   <string name="prefs_displaytrack_osm_summary">Prikaži zemljevid OpenStreetMap pod sledjo. Zahteva podatkovno povezavo</string>
   <string name="prefs_displaytrack_osm_summary_ask">Vedno prikaži ozadje OpenStreetMap? Zahteva podatkovno povezavo.</string>
   <string name="prefs_output">Nastavitve GPX</string>
-  <string name="prefs_storage_dir">Mapa zunanje pomnilniške naprave (SD)</string>
+  <string name="prefs_storage_dir">Mapa zunanje pom. naprave (SD)</string>
   <string name="prefs_storage_dir_hint">Uveljavljeno za naslednjo sled (ne trenutno)</string>
   <string name="prefs_output_one_dir_per_track">Ena mapa na sled</string>
   <string name="prefs_output_one_dir_per_track_summary">Shrani vsako sled in povezane datoteke v svojo mapo</string>
-  <string name="prefs_output_filename">Ime datoteke za poimenivane sledi</string>
+  <string name="prefs_output_filename">Ime datoteke za poimen. sledi</string>
   <string name="prefs_output_filename_summary">Vzorec imena datoteke, če ima sled ime</string>
   <string-array name="prefs_output_filename_keys">
     <item>Ime sledi</item>
@@ -58,13 +58,13 @@
     <item>Začetni datum in čas</item>
   </string-array>
   <string name="prefs_output_accuracy">Natančnost v datoteki GPX</string>
-  <string name="prefs_output_accuracy_summary">Dodaj podatke o natančnosti v datoteko GPX z imenom točke sledi ali v pripombi točke sledi</string>
+  <string name="prefs_output_accuracy_summary">Dodaj podatke o natančnosti z imenom točke ali v njeni pripombi v datoteko GPX</string>
   <string-array name="prefs_output_accuracy_keys">
     <item>Brez</item>
-    <item>Z imenom točke sledi</item>
-    <item>V pripombi točke sledi</item>
+    <item>Z imenom točke</item>
+    <item>V pripombi točke</item>
   </string-array>
-  <string name="prefs_output_gpx_hdop_approximation">Uporabi probližek HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation">Uporabi približek HDOP</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Zapolni HDOP v GPX-u z vrednostjo približka iz natančnosti</string>
   <string name="prefs_sound_enabled">Omogoči zvok</string>
   <string name="prefs_sound_enabled_summary">Predvajaj zvok, ko se snemanje glasu začne in konča</string>

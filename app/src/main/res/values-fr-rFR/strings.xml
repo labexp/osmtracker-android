@@ -2,21 +2,42 @@
 <resources>
   <!--Generic strings-->
   <!--TrackLogger-->
+  <string name="tracklogger_voicerec_title">Enregistrement vocal</string>
+  <string name="tracklogger_voicerec_stop">Stop</string>
+  <string name="tracklogger_btnBack">Retour</string>
   <!--Waypoint List-->
   <!--Track Manager-->
+  <string name="trackmgr_contextmenu_delete">Effacer</string>
+  <string name="trackmgr_contextmenu_export">Exporter comme GPX</string>
+  <string name="trackmgr_contextmenu_display">Afficher</string>
+  <string name="trackmgr_contextmenu_details">Détails</string>
   <!--Track Detail-->
+  <string name="trackdetail_btn_export">Exporter comme GPX</string>
+  <string name="trackdetail_export_display">Afficher</string>
   <!--OSM upload-->
   <!--GPS Status & record bar-->
   <!--Menu-->
+  <string name="menu_settings">Paramètres</string>
+  <string name="menu_about">A Propos</string>
+  <string name="menu_save">Sauvegarder</string>
+  <string name="menu_cancel">Annuler</string>
+  <string name="menu_export">Exporter comme GPX</string>
   <!--Errors-->
   <!--GPX-->
   <!--About screen-->
+  <string name="about">A Propos</string>
+  <string name="about_export_db">Exporter la base de données</string>
+  <string name="about_exporting_db">Export en cours de la base de données...</string>
   <!--Notification-->
   <!--Display track-->
   <!--Track detail-->
+  <string name="trackdetail_save">Sauvegarder</string>
   <!--Various-->
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
   <!--parameters: (used sats, visible sats)-->
   <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
+  <!--Buttons presets messages-->
+  <!--Available Layouts messages-->
+  <!--Github Repository Settings-->
 </resources>

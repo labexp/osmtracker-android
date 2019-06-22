@@ -3,27 +3,37 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker for Android™</string>
   <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">受到 Windows Mobile 的啟發，此 APP 可讓您記錄您的旅程，標記明顯的地標 (透過錄音、照片)，並匯出成為 GPX 格式供 Open Streep Map 工具使用，如：JOSM。</string>
   <!--TrackLogger-->
   <string name="tracklogger">軌跡記錄器</string>
-  <string name="tracklogger_voicerec_title">錄製語音</string>
-  <string name="tracklogger_voicerec_text">錄製一段{0}秒的聲音片段。</string>
+  <string name="tracklogger_waiting_gps">等待 GPS 修正以開啟按鈕...</string>
+  <string name="tracklogger_voicerec_title">錄音</string>
+  <string name="tracklogger_voicerec_text">錄製一段 {0} 秒的聲音片段。</string>
   <string name="tracklogger_voicerec_stop">停止</string>
   <string name="tracklogger_btnBack">返回</string>
   <string name="tracklogger_tracked">記錄了：</string>
   <string name="tracklogger_gps_disabled">GPS 目前是關閉的</string>
-  <string name="tracklogger_gps_disabled_hint">GPS 目前是關閉的，您想要啟用它嗎？</string>
+  <string name="tracklogger_gps_disabled_hint">GPS 目前是關閉的，您想要開啟它嗎？</string>
   <string name="tracklogger_choose_gallery_camera">使用相簿或相機？</string>
+  <string name="tracklogger_camera">使用相機拍照</string>
+  <string name="tracklogger_gallery">從相簿中選擇照片</string>
   <!--Waypoint List-->
-  <string name="wplist">航點(Waypoint)列表</string>
+  <string name="wplist">航點清單</string>
   <string name="wplist_latitude">緯度：</string>
   <string name="wplist_longitude">經度：</string>
+  <string name="wplist_elevation">海拔：</string>
+  <string name="wplist_accuracy">精確度：</string>
+  <string name="wplist_compass">羅盤方位：</string>
+  <string name="wplist_compass_accuracy">羅盤精確度：</string>
   <!--Track Manager-->
   <string name="trackmgr">軌跡管理</string>
-  <string name="trackmgr_tracklist">軌跡列表：</string>
+  <string name="trackmgr_tracklist">軌跡清單：</string>
   <string name="trackmgr_waypoints_count">航點：</string>
   <string name="trackmgr_trackpoints_count">軌跡點：</string>
   <string name="trackmgr_empty">您尚未有任何的軌跡紀錄資料。</string>
+  <string name="trackmgr_newtrack_hint">要錄製軌跡請點選<b>選單</b>，然後點選<b>新軌跡</b></string>
   <string name="trackmgr_newtrack_error">無法開始記錄新軌跡： {0}</string>
+  <string name="trackmgr_continuetrack_hint">您目前正在錄製 <b>軌跡 #{0}</b>\n請於清單中選擇該軌跡以繼續</string>
   <string name="trackmgr_contextmenu_stop">停止記錄</string>
   <string name="trackmgr_contextmenu_resume">繼續記錄</string>
   <string name="trackmgr_contextmenu_delete">刪除</string>
@@ -35,6 +45,7 @@
   <string name="trackmgr_delete_confirm">軌跡 #{0} 將被刪除</string>
   <string name="trackmgr_deleteall_confirm">所有的軌跡都會被刪除，您確定嗎？</string>
   <string name="trackmgr_exporting">匯出軌跡 #{0}…</string>
+  <string name="trackmgr_exporting_prepare">準備輸出...</string>
   <string name="trackmgr_export_error">無法匯出軌跡： {0}</string>
   <string name="trackmgr_exportall_confirm">將匯出所有軌跡，可能會耗費不少時間。您確定嗎？</string>
   <!--Track Detail-->
@@ -52,8 +63,8 @@
   <string name="trackdetail_description">描述</string>
   <string name="trackdetail_tags">標籤 (以半形逗號分隔)</string>
   <string name="trackdetail_description_mandatory">您必須填寫描述欄</string>
-  <string name="osm_visibility_private">私人的</string>
-  <string name="osm_visibility_public">公開的</string>
+  <string name="osm_visibility_private">私人</string>
+  <string name="osm_visibility_public">公開</string>
   <string name="osm_visibility_trackable">可追蹤的</string>
   <string name="osm_visibility_identifiable">可辨識的</string>
   <!--OSM upload-->
@@ -69,6 +80,7 @@
   <string name="osm_upload_sucess">成功上傳至 OpenStreetMap</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">錄製語音</string>
+  <string name="gpsstatus_record_stillimage">拍照</string>
   <string name="gpsstatus_record_textnote">文字筆記</string>
   <!--Menu-->
   <string name="menu_settings">設定</string>
@@ -77,10 +89,14 @@
   <string name="menu_displaytrack">顯示軌跡</string>
   <string name="menu_stoptracking">停止並儲存</string>
   <string name="menu_newtrack">新軌跡</string>
-  <string name="menu_deletetracks">刪除全部軌跡資料</string>
+  <string name="menu_deletetracks">刪除全部軌跡</string>
+  <string name="menu_continue">繼續軌跡</string>
+  <string name="menu_stopcurrenttrack">停止目前軌跡</string>
   <string name="menu_save">儲存</string>
   <string name="menu_cancel">取消</string>
   <string name="menu_export">匯出為 GPX 檔</string>
+  <string name="menu_osm_upload">上傳到 OpenStreetMap</string>
+  <string name="menu_center_to_gps">以 GPS 為中心</string>
   <string name="menu_exportall">全部匯出為 GPX 檔</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">無法寫入外部儲存媒體。</string>
@@ -90,11 +106,15 @@
   <string name="error_userlayout_parsing">解析 XML 外觀配置檔時發生錯誤。請改用預設外觀。</string>
   <!--GPX-->
   <string name="gpx_track_name">使用 OSMTracker for Android™ 記錄</string>
+  <string name="gpx_hdop_approximation_cmt">警告：HDOP值並非GPS裝置回報的HDOP，HDOP值會與實際地點差大約幾公尺。</string>
   <!--About screen-->
   <string name="about">關於</string>
   <string name="about_text">更多資訊、文件與問題回報，請洽本專案首頁：</string>
   <string name="about_translate_text">請幫忙翻譯 OSMTracker：</string>
   <string name="about_debug_info">除錯資訊</string>
+  <string name="about_export_db">匯出資料庫</string>
+  <string name="about_exporting_db">匯出資料庫中...</string>
+  <string name="about_export_db_result">資料庫匯出結果：%s</string>
   <!--Notification-->
   <string name="notification_ticker_text">OSMTracker 記錄中</string>
   <string name="notification_title">OSMTracker 記錄中 (#{0})</string>
@@ -102,12 +122,52 @@
   <!--Display track-->
   <string name="displaytrack">顯示軌跡</string>
   <string name="displaytrack_map">顯示地圖背景</string>
+  <string name="displaytrack_north">北</string>
   <!--Track detail-->
   <string name="trackdetail_save">儲存</string>
   <!--Various-->
+  <string name="various_unit_meters">公尺</string>
   <string name="various_accuracy">精確度</string>
+  <string name="various_accuracy_with_sats">精準度 {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">等待 GPS 修正… ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">等待方位…</string>
+  <string name="various_heading_unknown">無法偵測方位</string>
   <!--OSM map view-->
+  <string name="displaytrackmap">OpenStreetMap 軌跡畫面</string>
+  <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">更新與安裝</string>
+  <string name="buttons_presets_context_menu_delete">刪除</string>
+  <string name="buttons_presets_updating_layout">更新中...</string>
+  <string name="buttons_presets_successful_update">樣式已經成功更新</string>
+  <string name="buttons_presets_unsuccessful_update">樣式還未更新，請稍後再試一次</string>
+  <string name="buttons_presets_delete_message">你確定要刪除 {0} 樣式嗎？</string>
+  <string name="buttons_presets_delete_positive_confirmation">是</string>
+  <string name="buttons_presets_successful_delete">檔案已經成功刪除</string>
+  <string name="buttons_presets_icon_directory_deleted">圖標目錄已經成功刪除</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">檔案並沒有與任何圖標目錄相關</string>
+  <string name="buttons_presets_unsuccessful_delete">檔案無法被刪除</string>
+  <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">錯誤：無法連線到網路</string>
+  <string name="available_layouts_response_null_exception">錯誤：無法連線到預設客製樣式庫</string>
+  <string name="available_layouts_connecting_message">(連線中...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">下載</string>
+  <string name="available_layouts_not_available_language">你使用的語言並不能用，請從清單選擇一個</string>
+  <string name="available_layouts_language_dialog_title">可用語言</string>
+  <string name="available_layouts_checking_language_dialog">檢查本地語言版本</string>
+  <string name="available_layouts_downloading_dialog">下載中...</string>
+  <string name="available_layouts_successful_download">樣式已經成功下載</string>
+  <string name="available_layouts_unsuccessful_download">樣式無法下載，請稍後再試一次</string>
+  <string name="available_layouts_null_response_received">從伺服器取得資料出現錯誤</string>
+  <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">預設</string>
+  <string name="github_repository_settings_custom_checkbox">客製</string>
+  <string name="github_repository_settings_username">Github 使用者名稱：</string>
+  <string name="github_repository_settings_repository_name">程式庫名稱：</string>
+  <string name="github_repository_settings_branch_name">分支名稱：</string>
+  <string name="github_repository_settings_valid_server">Github 程式庫有效</string>
+  <string name="github_repository_settings_invalid_server">Github 程式庫無效</string>
 </resources>

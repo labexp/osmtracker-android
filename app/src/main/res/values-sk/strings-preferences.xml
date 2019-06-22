@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">Nastavenia</string>
@@ -13,6 +13,8 @@
   <string name="prefs_gps_logging_interval_summary">Použite 0 pre najkratší možný (Ovplyvní výdrž batérie)</string>
   <string name="prefs_gps_logging_interval_seconds">sekundy</string>
   <string name="prefs_ui">Užívateľské rozhranie</string>
+  <string name="prefs_ui_picture_source">Predvolený zdroj fotografií</string>
+  <string name="prefs_ui_picture_source_summary">Zachytiť fotografie fotoaparátom alebo vybrať z galérie?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Fotoaparát</item>
     <item>Galéria</item>
@@ -20,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Rozloženie tlačidiel</string>
   <string name="prefs_ui_buttons_layout_summary">Povoliť určenie vlastného rozloženia tlačidiel (Viď dokumenty)</string>
+  <string name="prefs_ui_buttons_layout_default_section">PREDVOLENÉ ROZLOŽENIE</string>
   <string name="prefs_ui_buttons_layout_defaut">Štandardné</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">STIAHNUTÉ ROZLOŽENIE</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Nemáte stiahnuté žiadne súbory s rozloženiami.</string>
+  <string name="prefs_ui_available_layout">Dostupné rozloženia</string>
+  <string name="prefs_ui_github_repository_settings">Nastavenia repozitára Github</string>
   <string name="prefs_ui_orientation">Orientácia</string>
   <string name="prefs_ui_orientation_summary">Preferovaná orientácia pre obrazovku s tlačidlami</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -71,4 +78,16 @@
   <string name="prefs_osm_clear_oauth_data_dialog">Znova sa pokúšate autorizovať OSMTracker, aby mohol nahrávať záznamy stôp. Ste si istý?</string>
   <string name="prefs_map_tile">Poskytovateľ mapových podkladov</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Žiadne</item>
+    <item>V komentári</item>
+    <item>V rozšírení</item>
+  </string-array>
+  <string name="prefs_compass_heading">Exportovať smerovanie kompasu</string>
+  <string name="prefs_compass_heading_summary">Určiť, či a ako sa majú exportovať údaje kompasu do súboru GPX</string>
 </resources>

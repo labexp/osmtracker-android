@@ -1,11 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
   <string name="prefs">الاعدادت</string>
   <string name="prefs_gps">نظام تحديد الموقع</string>
   <string name="prefs_gps_os_settings">اعدادات تحديد الموقع</string>
   <string name="prefs_gps_os_settings_summary">عرض شاشة اعدادات نظام تحديد المواقع</string>
+  <string name="prefs_check_gps_startup">تفحص GPS عند البدأ</string>
+  <string name="prefs_gps_ignore_clock">تجاهل ساعة GPS</string>
+  <string name="prefs_gps_logging_interval_seconds">ثوان</string>
   <string name="prefs_ui">واجهة المستخدم</string>
+  <string name="prefs_ui_picture_source">مصدر الصورة اﻹفتراضي</string>
+  <string name="prefs_ui_buttons_layout">تعيين الأزرار</string>
   <string name="prefs_ui_buttons_layout_defaut">الافتراضي</string>
+  <string name="prefs_ui_orientation">الإتجاه</string>
+  <string name="prefs_voicerec_duration">مدة التسجيل الصوتي</string>
+  <string name="prefs_voicerec_duration_seconds">ثوان</string>
+  <string name="prefs_theme">سمة الشاشة الرئيسية</string>
+  <string name="prefs_output">إعدادات GPX</string>
+  <string name="prefs_storage_dir">دليل المخزن الخارجي (SD)</string>
+  <string name="prefs_output_one_dir_per_track">دليل واحد لكل مسار</string>
+  <string name="prefs_output_accuracy">الدقة في ملف GPX</string>
+  <string name="prefs_sound_enabled">فعل الصوت</string>
+  <string name="prefs_map_tile">مزود الخرائط القرميدية</string>
   <string name="prefs_map_tile_summary"></string>
+  <string name="prefs_compass_heading">صدر وجهة البوصلة</string>
 </resources>
