@@ -447,6 +447,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_OSM_UPLOAD_DATE = "osm_upload_date";
 		public static final String COL_COMPASS = "compass_heading";
 		public static final String COL_COMPASS_ACCURACY = "compass_accuracy";
+		public static final String COL_ATMOSPHERIC_PRESSURE = "atmospheric_pressure";
 		
 		// virtual colums that are used in some sqls but dont exist in database
 		public static final String COL_TRACKPOINT_COUNT = "tp_count";
