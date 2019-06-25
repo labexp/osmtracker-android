@@ -222,6 +222,10 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 				File trackGPXExportDirectory = getExportDirectory(startDate);
 				String filenameBase = buildGPXFilename(c);
+
+				String tags = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_TAGS));
+				String track_description = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_DESCRIPTION));
+
 				c.close();
 
 				File trackFile = new File(trackGPXExportDirectory, filenameBase);
@@ -236,7 +240,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 					publishProgress(new Long[]{trackId, (long) cTrackPoints.getCount(), (long) cWayPoints.getCount()});
 
 					try {
-						writeGpxFile(cTrackPoints, cWayPoints, trackFile);
+						writeGpxFile(tags, track_description, cTrackPoints, cWayPoints, trackFile);
 						if (exportMediaFiles()) {
 							copyWaypointFiles(trackId, trackGPXExportDirectory);
 						}
@@ -272,7 +276,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * @param target Target GPX file
 	 * @throws IOException 
 	 */
-	private void writeGpxFile(Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
+	private void writeGpxFile(String tags, String track_description, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
 		
 		String accuracyOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
@@ -292,7 +296,23 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			
 			writer.write(XML_HEADER + "\n");
 			writer.write(TAG_GPX + "\n");
-			
+
+			if ((tags != null && !tags.equals("")) || (track_description != null && !track_description.equals(""))) {
+				writer.write("\t<metadata>\n");
+				if (tags != null && !tags.equals("")) {
+					for (String tag : tags.split(",")) {
+						writer.write("\t\t<keywords>" + tag.trim() + "</keywords>\n");
+					}
+				}
+
+				if (track_description != null && !track_description.equals("")) {
+					writer.write("\t\t<desc>" + track_description + "</desc>\n");
+				}
+
+				writer.write("\t</metadata>\n");
+			}
+
+
 			writeWayPoints(writer, cWayPoints, accuracyOutput, fillHDOP, compassOutput);
 			writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP, compassOutput);
 			
