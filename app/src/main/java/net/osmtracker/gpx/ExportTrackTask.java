@@ -513,11 +513,19 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				out.append("<hdop>" + (c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>");
 			}
 
-			if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) &&
-					! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
+				String buff = "";
+				buff += "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>";
+				buff += "<compass_accuracy>" + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>";
+
+			if (true) { //should be set via preference
+				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
+				String pressure_formatted = String.format("%.1f", pressure);
+				buff += "<pressure_hpa>" + pressure_formatted + "</pressure_hpa>";
+			}
+
+			if(! buff.equals("")) {
 				out.append("<extensions>");
-				out.append("<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>");
-				out.append("<compass_accuracy>" + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>");
+				out.append(buff);
 				out.append("</extensions>");
 			}
 
