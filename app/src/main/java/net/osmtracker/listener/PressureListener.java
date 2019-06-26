@@ -20,7 +20,7 @@ public class PressureListener implements SensorEventListener {
     /**
      * TAG for this class
      */
-    private static final String TAG = SensorListener.class.getSimpleName();
+    private static final String TAG = PressureListener.class.getSimpleName();
 
     private SensorManager sensorService;
     private boolean use_pressure;
