@@ -231,6 +231,9 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		//register for Orientation updates
 		sensorListener.register(this);
+
+		// register for atmospheric pressure updates
+		pressureListener.register(this);
 				
 		super.onCreate();
 	}
@@ -262,6 +265,7 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		// stop sensors
 		sensorListener.unregister();
+		pressureListener.unregister();
 
 		super.onDestroy();
 	}

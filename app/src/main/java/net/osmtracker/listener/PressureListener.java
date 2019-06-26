@@ -24,7 +24,7 @@ public class PressureListener implements SensorEventListener {
 
     private SensorManager sensorService;
     private boolean use_pressure;
-    private static  float last_atmospheric_pressure_hPa = 0;
+    private float last_atmospheric_pressure_hPa = 0;
 
     public PressureListener(boolean use_pressure) {
         this.use_pressure = use_pressure;
