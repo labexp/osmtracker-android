@@ -513,9 +513,12 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				out.append("<hdop>" + (c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>");
 			}
 
-				String buff = "";
+			String buff = "";
+			if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) &&
+					! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
 				buff += "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>";
 				buff += "<compass_accuracy>" + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>";
+			}
 
 			if (true) { //should be set via preference
 				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
