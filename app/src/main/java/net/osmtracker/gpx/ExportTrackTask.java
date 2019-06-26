@@ -402,7 +402,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			if (true) { //should be set via preference
 				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
 				String pressure_formatted = String.format("%.1f", pressure);
-				buff += "<pressure_hpa>" + pressure_formatted + "</pressure_hpa>";
+				buff += "<baro>" + pressure_formatted + "</baro>";
 			}
 			if(! buff.equals("")) {
 				out.append("<extensions>");
@@ -520,7 +520,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			if (true) { //should be set via preference
 				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
 				String pressure_formatted = String.format("%.1f", pressure);
-				buff += "<pressure_hpa>" + pressure_formatted + "</pressure_hpa>";
+				buff += "<baro>" + pressure_formatted + "</baro>";
 			}
 
 			if(! buff.equals("")) {
