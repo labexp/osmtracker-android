@@ -9,8 +9,9 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.rule.GrantPermissionRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.ActivityInstrumentationTestCase2;
 
 import junit.framework.Assert;
 
@@ -32,10 +33,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import android.support.test.rule.GrantPermissionRule;
-
 @RunWith(AndroidJUnit4.class)
-public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackManager> {
+public class ExportTrackTaskTest extends ActivityTestRule<TrackManager> {
 
 	private long trackId;
 	private File trackFile;
@@ -47,12 +46,12 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 	public GrantPermissionRule mRuntimePermissionRuleRead = GrantPermissionRule.grant(Manifest.permission.READ_EXTERNAL_STORAGE);
 
 	public ExportTrackTaskTest() {
-		super("net.osmtracker", TrackManager.class);
+		super(TrackManager.class);
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		injectInstrumentation(InstrumentationRegistry.getInstrumentation());
+		InstrumentationRegistry.registerInstance(InstrumentationRegistry.getInstrumentation(), null);
 		// Delete file entry in media library
 		getActivity().getContentResolver().delete(
 				MediaStore.Files.getContentUri("external"),
@@ -96,7 +95,7 @@ public class ExportTrackTaskTest extends ActivityInstrumentationTestCase2<TrackM
 		Assert.assertTrue(trackFile.exists());
 		Assert.assertEquals(
 				readFully(
-						getInstrumentation().getContext().getAssets().open("gpx/gpx-test.gpx")),
+						InstrumentationRegistry.getInstrumentation().getContext().getAssets().open("gpx/gpx-test.gpx")),
 				readFully(new FileInputStream(trackFile)));
 
 		// Ensure the media library has been refreshed

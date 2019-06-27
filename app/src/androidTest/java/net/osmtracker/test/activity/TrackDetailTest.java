@@ -1,5 +1,16 @@
 package net.osmtracker.test.activity;
 
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.Intent;
+import android.database.Cursor;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.annotation.UiThreadTest;
+import android.support.test.rule.ActivityTestRule;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+
 import junit.framework.Assert;
 
 import net.osmtracker.activity.TrackDetail;
@@ -7,37 +18,26 @@ import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.TrackContentProvider.Schema;
 import net.osmtracker.test.util.MockData;
 
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.Intent;
-import android.database.Cursor;
-import android.test.ActivityInstrumentationTestCase2;
-import android.test.UiThreadTest;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-
-public class TrackDetailTest extends ActivityInstrumentationTestCase2<TrackDetail> {
+public class TrackDetailTest extends ActivityTestRule<TrackDetail> {
 
 	private long trackId;
 	
 	public TrackDetailTest() {
-		super("net.osmtracker", TrackDetail.class);
+		super(TrackDetail.class);
 	}
-	
-	@Override
+
 	protected void setUp() throws Exception {
-		trackId = MockData.mockTrack(getInstrumentation().getContext());
+		trackId = MockData.mockTrack(InstrumentationRegistry.getInstrumentation().getContext());
 		
 		Intent i = new Intent();
 		i.putExtra(Schema.COL_TRACK_ID, trackId);
-		setActivityIntent(i);
+		launchActivity(i);
 	}
 	
 	@UiThreadTest
 	public void testSave() {
 		
-		ContentResolver cr = getInstrumentation().getContext().getContentResolver();
+		ContentResolver cr = InstrumentationRegistry.getInstrumentation().getContext().getContentResolver();
 		Cursor cursor = cr.query(
 				ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
 				null, null, null, null);
