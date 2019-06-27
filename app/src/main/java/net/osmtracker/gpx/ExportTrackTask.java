@@ -399,13 +399,12 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				buff += "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>";
 				buff += "<compass_accuracy>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>";
 			}
-			if (true) { //should be set via preference
-				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
-                if (pressure != 0) {
-                    String pressure_formatted = String.format("%.1f", pressure);
-                    buff += "<baro>" + pressure_formatted + "</baro>";
-                }
+			double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
+			if (pressure != 0) {
+				String pressure_formatted = String.format("%.1f", pressure);
+				buff += "<baro>" + pressure_formatted + "</baro>";
 			}
+
 			if(! buff.equals("")) {
 				out.append("<extensions>");
 				out.append(buff);
@@ -522,12 +521,10 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				buff += "<compass_accuracy>" + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>";
 			}
 
-			if (true) { //should be set via preference
-				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
-				if (pressure != 0) {
-					String pressure_formatted = String.format("%.1f", pressure);
-					buff += "<baro>" + pressure_formatted + "</baro>";
-				}
+			double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
+			if (pressure != 0) {
+				String pressure_formatted = String.format("%.1f", pressure);
+				buff += "<baro>" + pressure_formatted + "</baro>";
 			}
 
 			if(! buff.equals("")) {
