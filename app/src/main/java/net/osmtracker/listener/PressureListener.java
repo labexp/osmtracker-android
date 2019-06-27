@@ -23,12 +23,8 @@ public class PressureListener implements SensorEventListener {
     private static final String TAG = PressureListener.class.getSimpleName();
 
     private SensorManager sensorService;
-    private boolean use_pressure;
     private float last_atmospheric_pressure_hPa = 0;
 
-    public PressureListener(boolean use_pressure) {
-        this.use_pressure = use_pressure;
-    }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -40,11 +36,11 @@ public class PressureListener implements SensorEventListener {
 
     }
 
-    public boolean register (Context context) {
+    public boolean register (Context context, boolean use_barometer) {
 
         boolean result = true;
 
-        if (use_pressure) {
+        if (use_barometer) {
             sensorService = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 
             Sensor pressureSens = sensorService.getDefaultSensor(Sensor.TYPE_PRESSURE);

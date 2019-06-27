@@ -222,7 +222,7 @@ public class TrackLogger extends Activity {
 		sensorListener = new SensorListener();
 
 		// create pressure listener
-		pressureListener = new PressureListener(true);
+		pressureListener = new PressureListener();
 		
 		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		mediaButtonReceiver = new ComponentName(this, MediaButtonReceiver.class.getName());
@@ -353,7 +353,7 @@ public class TrackLogger extends Activity {
 		sensorListener.register(this);
 
 		// connect the pressure listener
-		pressureListener.register(this);
+		pressureListener.register(this, prefs.getBoolean(OSMTracker.Preferences.KEY_USE_BAROMETER,false));
 
 		setEnabledActionButtons(buttonsEnabled);
 		if(!buttonsEnabled){

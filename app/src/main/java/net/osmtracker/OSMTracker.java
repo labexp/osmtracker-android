@@ -26,6 +26,7 @@ public class OSMTracker {
 		public final static String KEY_OUTPUT_FILENAME = "gpx.filename";
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
+		public final static String KEY_USE_BAROMETER = "gpx.use_barometer";
 		public final static String KEY_OUTPUT_DIR_PER_TRACK = "gpx.directory_per_track";
 		public final static String KEY_OUTPUT_COMPASS = "gpx.compass_heading";
 		
@@ -72,6 +73,7 @@ public class OSMTracker {
 		public final static String VAL_OUTPUT_COMPASS = VAL_OUTPUT_COMPASS_NONE;
 		
 		public final static boolean VAL_OUTPUT_GPX_HDOP_APPROXIMATION = false;
+		public final static boolean VAL_USE_BAROMETER = false;
 		public final static boolean VAL_OUTPUT_GPX_OUTPUT_DIR_PER_TRACK = true;
 
 		public final static String VAL_UI_PICTURE_SOURCE_CAMERA = "camera";
