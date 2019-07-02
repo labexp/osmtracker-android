@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    useLibrary 'org.apache.http.legacy'
     compileSdkVersion 28
     buildToolsVersion = '28.0.3'
 
@@ -57,9 +59,14 @@ android {
 }
 
 dependencies {
+
     implementation 'org.apache.james:apache-mime4j-core:0.7.2'
-    implementation 'org.apache.httpcomponents:httpcore:4.4.10'
-    implementation 'org.apache.httpcomponents:httpmime:4.5.6'
+
+    implementation ('org.apache.httpcomponents:httpmime:4.3.6'){
+        exclude group:'org.apache.httpcomponents', module:'httpclient'
+    }
+    implementation 'org.apache.httpcomponents:httpclient-android:4.3.5'
+
     implementation 'org.osmdroid:osmdroid-android:6.1.0'
     implementation 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
     implementation 'org.slf4j:slf4j-android:1.7.25'
@@ -73,6 +80,7 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
     androidTestImplementation "com.android.support.test:rules:1.0.2"
 
+    compileOnly 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 }
 
 task copyNorwegianValues(type: Copy) {
