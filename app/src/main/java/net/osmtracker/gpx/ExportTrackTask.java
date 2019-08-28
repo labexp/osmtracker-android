@@ -225,6 +225,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 				String tags = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_TAGS));
 				String track_description = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_DESCRIPTION));
+				String track_name = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
 
 				c.close();
 
@@ -240,7 +241,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 					publishProgress(new Long[]{trackId, (long) cTrackPoints.getCount(), (long) cWayPoints.getCount()});
 
 					try {
-						writeGpxFile(tags, track_description, cTrackPoints, cWayPoints, trackFile);
+						writeGpxFile(track_name, tags, track_description, cTrackPoints, cWayPoints, trackFile);
 						if (exportMediaFiles()) {
 							copyWaypointFiles(trackId, trackGPXExportDirectory);
 						}
@@ -276,7 +277,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * @param target Target GPX file
 	 * @throws IOException 
 	 */
-	private void writeGpxFile(String tags, String track_description, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
+	private void writeGpxFile(String trackName, String tags, String track_description, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
 		
 		String accuracyOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
@@ -299,6 +300,11 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 			if ((tags != null && !tags.equals("")) || (track_description != null && !track_description.equals(""))) {
 				writer.write("\t<metadata>\n");
+				// Write the track's name to a tag
+				if(trackName != null && !trackName.equals("")) {
+					writer.write("\t\t<name>"+ trackName +"</name>\n");
+				}
+
 				if (tags != null && !tags.equals("")) {
 					for (String tag : tags.split(",")) {
 						writer.write("\t\t<keywords>" + tag.trim() + "</keywords>\n");
