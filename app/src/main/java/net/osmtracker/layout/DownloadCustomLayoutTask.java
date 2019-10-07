@@ -44,7 +44,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
         String layoutFolderName = layoutName.replace(" ", "_");
         String iso = layoutData[1];
         SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(context);
-        String storageDir =prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR);
+        String storageDir = File.separator + OSMTracker.Preferences.VAL_STORAGE_DIR;
 
         String layoutURL = URLCreator.createLayoutFileURL(context, layoutFolderName, iso);
         String layoutPath = Environment.getExternalStorageDirectory() + storageDir + File.separator +
