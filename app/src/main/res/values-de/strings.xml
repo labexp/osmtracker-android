@@ -31,7 +31,7 @@
   <string name="trackmgr_waypoints_count">Wegpunkte: </string>
   <string name="trackmgr_trackpoints_count">Routenpunkte: </string>
   <string name="trackmgr_empty">Sie haben keine Routen.</string>
-  <string name="trackmgr_newtrack_hint">Drücken Sie <b>Menü</b>\n und anschließend<b>Neue Route</b>, um eine neue Route aufzunehmen</string>
+  <string name="trackmgr_newtrack_hint">Drücken Sie <b>Menü</b>\n und anschließend <b>Neue Route</b>, um eine neue Route aufzunehmen</string>
   <string name="trackmgr_newtrack_error">Neue Route kann nicht erstellt werden: {0}</string>
   <string name="trackmgr_continuetrack_hint">Aktuell wird <b>Route #{0}</b> aufgezeichnet.\nWählen Sie diese aus der Liste aus, um fortzufahren.</string>
   <string name="trackmgr_contextmenu_stop">Routenverfolgung stoppen</string>
