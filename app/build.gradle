@@ -78,7 +78,7 @@ dependencies {
 
     // Required for local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.1.0'
+    testImplementation 'org.mockito:mockito-core:2.7.22'
 
     testImplementation 'org.powermock:powermock-core:1.7.0RC2'
     testImplementation 'org.powermock:powermock-module-junit4:1.7.0RC2'
