@@ -17,7 +17,7 @@ public class ArrayUtilsTest {
     public void findMin() {
 
         double min = ArrayUtils.findMin(data, 0);
-        assertTrue(min == 1);
+        assertTrue(min == 4);
 
     }
 
