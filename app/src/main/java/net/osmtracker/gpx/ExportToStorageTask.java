@@ -65,7 +65,7 @@ public class ExportToStorageTask extends ExportTrackTask {
 				trackName = c.getString(i);
 			}
 			if(trackName != null && trackName.length() >= 1) {
-				trackName = trackName.replace("/", "");
+				trackName = trackName.replace("/", "_");
 				perTrackDirectory = File.separator + trackName.trim() + "_" + trackIsoDate;
 			}
 			else
