@@ -1,24 +1,5 @@
 package net.osmtracker.gpx;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.TimeZone;
-import java.util.regex.Pattern;
-
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-import net.osmtracker.db.DataHelper;
-import net.osmtracker.db.TrackContentProvider;
-import net.osmtracker.exception.ExportTrackException;
-import net.osmtracker.util.FileSystemUtils;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -35,6 +16,25 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.db.DataHelper;
+import net.osmtracker.db.TrackContentProvider;
+import net.osmtracker.exception.ExportTrackException;
+import net.osmtracker.util.FileSystemUtils;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.regex.Pattern;
 
 /**
  * Base class to writes a GPX file and export
@@ -290,39 +290,33 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				OSMTracker.Preferences.VAL_OUTPUT_COMPASS);
 		
 		Log.v(TAG, "write preferences: compass:" + compassOutput);
-		
+
 		Writer writer = null;
 		try {
+
 			writer = new BufferedWriter(new FileWriter(target));
-			
+
 			writer.write(XML_HEADER + "\n");
 			writer.write(TAG_GPX + "\n");
 
-			if ((tags != null && !tags.equals("")) || (track_description != null && !track_description.equals(""))) {
-				writer.write("\t<metadata>\n");
-				// Write the track's name to a tag
-				if(trackName != null && !trackName.equals("")) {
-					writer.write("\t\t<name>"+ trackName +"</name>\n");
-				}
+			writer.write("\t<metadata>\n");
 
-				if (tags != null && !tags.equals("")) {
-					for (String tag : tags.split(",")) {
-						writer.write("\t\t<keywords>" + tag.trim() + "</keywords>\n");
-					}
-				}
+			// Write the track's name to a tag
+			if((trackName != null && !trackName.equals(""))) writer.write("\t\t<name>"+ trackName +"</name>\n");
 
-				if (track_description != null && !track_description.equals("")) {
-					writer.write("\t\t<desc>" + track_description + "</desc>\n");
-				}
-
-				writer.write("\t</metadata>\n");
+			if (tags != null && !tags.equals("")) {
+				for (String tag : tags.split(","))
+					writer.write("\t\t<keywords>" + tag.trim() + "</keywords>\n");
 			}
 
+			if ((track_description != null && !track_description.equals(""))) writer.write("\t\t<desc>" + track_description + "</desc>\n");
+
+			writer.write("\t</metadata>\n");
 
 			writeWayPoints(writer, cWayPoints, accuracyOutput, fillHDOP, compassOutput);
 			writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP, compassOutput);
-			
 			writer.write("</gpx>");
+
 		} finally {
 			if (writer != null) {
 				writer.close();

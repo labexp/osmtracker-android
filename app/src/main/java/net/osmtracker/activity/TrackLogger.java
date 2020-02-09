@@ -248,7 +248,6 @@ public class TrackLogger extends Activity {
 
 
 		// Add the names of the layouts that were used in the track to the set
-
 		for(String layoutFileName : layoutNameTags){
 			//OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT -> 'default'
 			if(! layoutFileName.equals(OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT)){
@@ -260,7 +259,6 @@ public class TrackLogger extends Activity {
 		// Check if the osmtracker tag has already been added
 		String trackerTag = "osmtracker";
 		tagsToSave.add(trackerTag);
-
 
 		// Create the string with all tags
 		StringBuilder tagsString = new StringBuilder();

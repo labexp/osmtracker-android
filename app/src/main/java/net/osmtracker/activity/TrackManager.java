@@ -1,24 +1,11 @@
 package net.osmtracker.activity;
 
-import java.io.File;
-import java.util.Date;
-
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-import net.osmtracker.db.DataHelper;
-import net.osmtracker.db.TrackContentProvider;
-import net.osmtracker.db.TracklistAdapter;
-import net.osmtracker.exception.CreateTrackException;
-import net.osmtracker.gpx.ExportToStorageTask;
-import net.osmtracker.util.FileSystemUtils;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -39,6 +26,19 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.db.DataHelper;
+import net.osmtracker.db.TrackContentProvider;
+import net.osmtracker.db.TracklistAdapter;
+import net.osmtracker.exception.CreateTrackException;
+import net.osmtracker.gpx.ExportToStorageTask;
+import net.osmtracker.util.FileSystemUtils;
+
+import java.io.File;
+import java.text.DateFormat;
+import java.util.Date;
 
 /**
  * Lists existing tracks.
@@ -79,8 +79,9 @@ public class TrackManager extends ListActivity {
 	/** This variable is used to communicate between code trying to start TrackLogger and the code that
 	 * actually starts it when have GPS permissions */
 	private Intent TrackLoggerStartIntent = null;
-
 	private ImageButton btnNewTrack;
+
+	private static final DateFormat DATE_FORMAT = DateFormat.getDateTimeInstance();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -265,6 +266,25 @@ public class TrackManager extends ListActivity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * This method prepare the new track and set an id, then start a new TrackLogger with the new track id
+	 */
+	private void startTrackLogger(){
+		// Start track logger activity
+		try {
+			Intent i = new Intent(this, TrackLogger.class);
+			// New track
+			currentTrackId = createNewTrack();
+			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
+			startActivity(i);
+		} catch (CreateTrackException cte) {
+			Toast.makeText(this,
+					getResources().getString(R.string.trackmgr_newtrack_error).replace("{0}", cte.getMessage()),
+					Toast.LENGTH_LONG)
+					.show();
+		}
 	}
 
 
@@ -502,7 +522,7 @@ public class TrackManager extends ListActivity {
 		
 		// Create entry in TRACK table
 		ContentValues values = new ContentValues();
-		values.put(TrackContentProvider.Schema.COL_NAME, "");
+		values.put(TrackContentProvider.Schema.COL_NAME, DATE_FORMAT.format(new Date(startDate.getTime())));
 		values.put(TrackContentProvider.Schema.COL_START_DATE, startDate.getTime());
 		values.put(TrackContentProvider.Schema.COL_ACTIVE, TrackContentProvider.Schema.VAL_TRACK_ACTIVE);
 		Uri trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI_TRACK, values);
