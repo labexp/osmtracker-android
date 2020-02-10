@@ -1,18 +1,18 @@
 package net.osmtracker.gpx;
 
-import java.io.File;
-import java.util.Date;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
 import net.osmtracker.exception.ExportTrackException;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Environment;
-import android.preference.PreferenceManager;
-import android.util.Log;
+import java.io.File;
+import java.util.Date;
 
 /**
  * Exports to the external storage / SD card

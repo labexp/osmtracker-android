@@ -30,6 +30,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -116,6 +117,8 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * @return
 	 */
 	protected abstract boolean updateExportDate();
+
+	private static final DateFormat DATE_FORMAT = DateFormat.getDateTimeInstance();
 
 	public ExportTrackTask(Context context, long... trackIds) {
 		this.context = context;
@@ -230,7 +233,6 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				c.close();
 
 				File trackFile = new File(trackGPXExportDirectory, filenameBase);
-
 
 				Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
 						null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
@@ -536,25 +538,36 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		final String filenameOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
 				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
-		StringBuffer filenameBase = new StringBuffer();
+
+		StringBuilder filenameBase = new StringBuilder();
 		final int colName = c.getColumnIndexOrThrow(TrackContentProvider.Schema.COL_NAME);
+
+		String tname = c.getString(colName);
+
 		if ((! c.isNull(colName))
-			&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE)))
-		{
-			final String tname_raw =
-				c.getString(colName).trim().replace(':', ';');
-			final String sanitized =
-				FILENAME_CHARS_BLACKLIST_PATTERN.matcher(tname_raw).replaceAll("_");
+			&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE))) {
+
+			final String tname_raw = tname.trim().replace(':', ';');
+			final String sanitized = FILENAME_CHARS_BLACKLIST_PATTERN.matcher(tname_raw).replaceAll("_");
+
 			filenameBase.append(sanitized);
 		}
+
 		if ((filenameBase.length() == 0)
-			|| ! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME))
-		{
-			final long startDate = c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
-			if (filenameBase.length() > 0)
+			|| ! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME)) {
+
+			final long startDateLong = c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
+
+			Date startDate = new Date(startDateLong);
+			String defaultTrackName = DATE_FORMAT.format(new Date(startDate.getTime()));
+
+			// Check if the current name = defaultTrackName which is a date format
+			if (!tname.equals(defaultTrackName)) {
 				filenameBase.append('_');
-			filenameBase.append(DataHelper.FILENAME_FORMATTER.format(new Date(startDate)));
+				filenameBase.append(DataHelper.FILENAME_FORMATTER.format(new Date(startDateLong)));
+			}
 		}
+
 		filenameBase.append(DataHelper.EXTENSION_GPX);
 		return filenameBase.toString();
 	}
