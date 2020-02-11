@@ -35,6 +35,7 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Base class to writes a GPX file and export
@@ -189,6 +190,8 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 					}
 				})
 				.show();
+		}else{
+			Toast.makeText(this.context, R.string.various_export_finished, Toast.LENGTH_SHORT).show();
 		}
 	}
 
