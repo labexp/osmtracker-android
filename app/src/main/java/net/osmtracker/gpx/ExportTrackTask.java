@@ -31,7 +31,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.net.URLEncoder;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -118,8 +117,6 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * @return
 	 */
 	protected abstract boolean updateExportDate();
-
-	private static final DateFormat DATE_FORMAT = DateFormat.getDateTimeInstance();
 
 	public ExportTrackTask(Context context, long... trackIds) {
 		this.context = context;
@@ -562,9 +559,9 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			final long startDateLong = c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
 
 			Date startDate = new Date(startDateLong);
-			String defaultTrackName = DATE_FORMAT.format(new Date(startDate.getTime()));
+			String defaultTrackName = DataHelper.FILENAME_FORMATTER.format(new Date(startDate.getTime()));
 
-			// Check if the current name = defaultTrackName which is a date format
+			// Don't repeat dates if the track name = date format
 			if (!tname.equals(defaultTrackName)) {
 				filenameBase.append('_');
 				filenameBase.append(DataHelper.FILENAME_FORMATTER.format(new Date(startDateLong)));
