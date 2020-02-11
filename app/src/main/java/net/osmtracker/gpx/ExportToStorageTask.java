@@ -2,6 +2,7 @@ package net.osmtracker.gpx;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.util.Log;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
+import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.exception.ExportTrackException;
 
 import java.io.File;
@@ -44,10 +46,31 @@ public class ExportToStorageTask extends ExportTrackTask {
 		// not allow the directory to be created if required
 		String exportDirectoryPath = userGPXExportDirectoryName.trim();
 		String perTrackDirectory = "";
+
 		if (directoryPerTrack) {
-			// If the user wants a directory per track, then create a name for the destination directory
-			// based on the start date of the track
-			perTrackDirectory = File.separator + DataHelper.FILENAME_FORMATTER.format(startDate);
+
+			// At least use the start date as the folder name
+			String trackIsoDate =  DataHelper.FILENAME_FORMATTER.format(startDate);
+			String trackName = "";
+
+			// Get the name of the track with the received start date
+			String selection = TrackContentProvider.Schema.COL_START_DATE + " = ?";
+			String[] args = {String.valueOf(startDate.getTime())};
+
+			Cursor c = context.getContentResolver().query(
+					TrackContentProvider.CONTENT_URI_TRACK, null, selection, args, null);
+
+			if(c != null && c.moveToFirst()){
+				int i = c.getColumnIndex(TrackContentProvider.Schema.COL_NAME);
+				trackName = c.getString(i);
+			}
+			if(trackName != null && trackName.length() >= 1) {
+				trackName = trackName.replace("/", "_");
+				perTrackDirectory = File.separator + trackName.trim() + "_" + trackIsoDate;
+			}
+			else
+				perTrackDirectory = File.separator + trackIsoDate;
+
 		}
 		
 		// Create a file based on the path we've generated above

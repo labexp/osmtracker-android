@@ -1,9 +1,5 @@
 package net.osmtracker.activity;
 
-import net.osmtracker.R;
-import net.osmtracker.db.TrackContentProvider;
-import net.osmtracker.db.model.Track;
-
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -12,6 +8,10 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import net.osmtracker.R;
+import net.osmtracker.db.TrackContentProvider;
+import net.osmtracker.db.model.Track;
 
 /**
  * Base class for activities that edit track details.
