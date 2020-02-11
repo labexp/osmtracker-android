@@ -38,6 +38,7 @@ import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -522,8 +523,9 @@ public class TrackManager extends ListActivity {
 		
 		// Create entry in TRACK table
 		ContentValues values = new ContentValues();
-		values.put(TrackContentProvider.Schema.COL_NAME, DATE_FORMAT.format(new Date(startDate.getTime())));
-		values.put(TrackContentProvider.Schema.COL_START_DATE, startDate.getTime());
+		//values.put(TrackContentProvider.Schema.COL_NAME, DATE_FORMAT.format(new Date(startDate.getTime())));
+        values.put(TrackContentProvider.Schema.COL_NAME, DataHelper.FILENAME_FORMATTER.format(new Date()));
+        values.put(TrackContentProvider.Schema.COL_START_DATE, startDate.getTime());
 		values.put(TrackContentProvider.Schema.COL_ACTIVE, TrackContentProvider.Schema.VAL_TRACK_ACTIVE);
 		Uri trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI_TRACK, values);
 		long trackId = ContentUris.parseId(trackUri);
