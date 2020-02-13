@@ -553,21 +553,6 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			filenameBase.append(sanitized);
 		}
 
-		if ((filenameBase.length() == 0)
-			|| ! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME)) {
-
-			final long startDateLong = c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
-
-			Date startDate = new Date(startDateLong);
-			String defaultTrackName = DataHelper.FILENAME_FORMATTER.format(new Date(startDate.getTime()));
-
-			// Don't repeat dates if the track name = date format
-			if (!tname.equals(defaultTrackName)) {
-				filenameBase.append('_');
-				filenameBase.append(DataHelper.FILENAME_FORMATTER.format(new Date(startDateLong)));
-			}
-		}
-
 		filenameBase.append(DataHelper.EXTENSION_GPX);
 		return filenameBase.toString();
 	}

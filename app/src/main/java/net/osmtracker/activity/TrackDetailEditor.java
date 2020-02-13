@@ -3,6 +3,7 @@ package net.osmtracker.activity;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -10,8 +11,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import net.osmtracker.R;
+import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.model.Track;
+
+import java.util.Date;
 
 /**
  * Base class for activities that edit track details.
@@ -86,11 +90,32 @@ public abstract class TrackDetailEditor extends Activity {
 		
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 		ContentValues values = new ContentValues();
-		
+
+		Cursor cursor = getContentResolver().query(trackUri, null, null,
+				null, null);
+
+		long startDateLong = 0;
+		String tname = "";
+		if (cursor != null && cursor.moveToFirst()) {
+			startDateLong = cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
+			tname = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
+			cursor.close();
+		}
+
+		// Saved track startDate
+		Date startDate = new Date(startDateLong);
+
 		// Save name field, if changed, to db.
 		// String class required for equals to work, and for trim().
 		String enteredName = etName.getText().toString().trim();
-		if ((enteredName.length() > 0)) {
+
+		// Get default track name
+        String defaultDate = DataHelper.FILENAME_FORMATTER.format(startDate);
+
+        // If no changes were made don't append the date
+		if ((enteredName.length() > 0 && !enteredName.equals(tname))) {
+			// Append date to avoid duplicated tracks names
+			enteredName += "_" + defaultDate;
 			values.put(TrackContentProvider.Schema.COL_NAME, enteredName);
 		}
 		
