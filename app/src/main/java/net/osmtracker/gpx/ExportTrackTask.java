@@ -234,7 +234,6 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 				File trackFile = new File(trackGPXExportDirectory, filenameBase);
 
-
 				Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
 						null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
 				Cursor cWayPoints = cr.query(TrackContentProvider.waypointsUri(trackId), null, null,
@@ -539,25 +538,21 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		final String filenameOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
 				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
-		StringBuffer filenameBase = new StringBuffer();
+
+		StringBuilder filenameBase = new StringBuilder();
 		final int colName = c.getColumnIndexOrThrow(TrackContentProvider.Schema.COL_NAME);
+
+		String tname = c.getString(colName);
+
 		if ((! c.isNull(colName))
-			&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE)))
-		{
-			final String tname_raw =
-				c.getString(colName).trim().replace(':', ';');
-			final String sanitized =
-				FILENAME_CHARS_BLACKLIST_PATTERN.matcher(tname_raw).replaceAll("_");
+			&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE))) {
+
+			final String tname_raw = tname.trim().replace(':', ';');
+			final String sanitized = FILENAME_CHARS_BLACKLIST_PATTERN.matcher(tname_raw).replaceAll("_");
+
 			filenameBase.append(sanitized);
 		}
-		if ((filenameBase.length() == 0)
-			|| ! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME))
-		{
-			final long startDate = c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
-			if (filenameBase.length() > 0)
-				filenameBase.append('_');
-			filenameBase.append(DataHelper.FILENAME_FORMATTER.format(new Date(startDate)));
-		}
+
 		filenameBase.append(DataHelper.EXTENSION_GPX);
 		return filenameBase.toString();
 	}

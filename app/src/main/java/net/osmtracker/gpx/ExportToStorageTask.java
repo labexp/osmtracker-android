@@ -9,7 +9,6 @@ import android.util.Log;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
-import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.exception.ExportTrackException;
 
@@ -49,8 +48,6 @@ public class ExportToStorageTask extends ExportTrackTask {
 
 		if (directoryPerTrack) {
 
-			// At least use the start date as the folder name
-			String trackIsoDate =  DataHelper.FILENAME_FORMATTER.format(startDate);
 			String trackName = "";
 
 			// Get the name of the track with the received start date
@@ -59,17 +56,15 @@ public class ExportToStorageTask extends ExportTrackTask {
 
 			Cursor c = context.getContentResolver().query(
 					TrackContentProvider.CONTENT_URI_TRACK, null, selection, args, null);
-
+			
 			if(c != null && c.moveToFirst()){
 				int i = c.getColumnIndex(TrackContentProvider.Schema.COL_NAME);
 				trackName = c.getString(i);
 			}
 			if(trackName != null && trackName.length() >= 1) {
 				trackName = trackName.replace("/", "_");
-				perTrackDirectory = File.separator + trackName.trim() + "_" + trackIsoDate;
+				perTrackDirectory = File.separator + trackName.trim();
 			}
-			else
-				perTrackDirectory = File.separator + trackIsoDate;
 
 		}
 		
