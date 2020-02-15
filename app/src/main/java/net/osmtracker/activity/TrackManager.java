@@ -7,13 +7,16 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -422,14 +425,16 @@ public class TrackManager extends ListActivity {
 			break;
 
 		case R.id.trackmgr_contextmenu_export:
-			trackId = info.id;
-//			requestPermissionAndExport(this.RC_WRITE_PERMISSIONS_EXPORT_ONE);
 			if (!writeExternalStoragePermissionGranted()){
 				Log.e("DisplayTrackMapWrite", "Permission asked");
 				ActivityCompat.requestPermissions(this,
 						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_EXPORT_ONE);
 			}
 			else exportOneTrack();
+			break;
+
+		case R.id.trackmgr_contextmenu_share:
+			shareTrack(info.id);
 			break;
 
 		case R.id.trackmgr_contextmenu_osm_upload:
@@ -533,6 +538,52 @@ public class TrackManager extends ListActivity {
 		
 		return trackId;
 	}
+
+	/**
+	 * Allows user to share gpx file from storage to another app
+	 * @param trackId track identifier
+	 */
+	private void shareTrack(long trackId) {
+
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+
+		Cursor cursor = getContentResolver().query(trackUri, null, null,
+				null, null);
+
+		String trackName = "";
+		if(cursor != null && cursor.moveToFirst()) {
+			trackName = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
+			cursor.close();
+		}
+
+		File sdRoot = Environment.getExternalStorageDirectory();
+
+		// The location where the user has specified gpx files and associated content to be written
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		String userGPXExportDirectoryName = prefs.getString(
+				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
+
+		// Build storage track path for file creation
+		String completeGPXTrackPath = sdRoot + userGPXExportDirectoryName.trim() +
+				File.separator + trackName.trim()  + File.separator +
+				trackName.trim() + DataHelper.EXTENSION_GPX;
+
+		// Get track gpx file
+		File trackGPX = new File(completeGPXTrackPath);
+
+		// Get gpx content URI
+		Uri trackUriContent = FileProvider.getUriForFile(this,
+				DataHelper.FILE_PROVIDER_AUTHORITY,
+				trackGPX);
+
+		// Sharing intent
+		Intent shareIntent = new Intent();
+		shareIntent.setAction(Intent.ACTION_SEND);
+		shareIntent.putExtra(Intent.EXTRA_STREAM, trackUriContent);
+		shareIntent.setType(DataHelper.MIME_GPX_TYPE);
+		startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.trackmgr_contextmenu_share)));
+
+	}
 	
 	/**
 	 * Deletes the track with the specified id from DB and SD card
@@ -562,13 +613,14 @@ public class TrackManager extends ListActivity {
 			stopActiveTrack();
 		}
 
-		if (cursor.moveToFirst()) {
+		if (cursor != null && cursor.moveToFirst()) {
 			int id_col = cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID);
 			do {
 				deleteTrack(cursor.getLong(id_col));
 			} while (cursor.moveToNext());
+			cursor.close();
 		}
-		cursor.close();
+
 	}
 
 	/**
