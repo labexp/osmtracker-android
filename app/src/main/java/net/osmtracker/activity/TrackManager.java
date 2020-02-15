@@ -7,12 +7,10 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -425,6 +423,7 @@ public class TrackManager extends ListActivity {
 			break;
 
 		case R.id.trackmgr_contextmenu_export:
+			trackId = info.id;
 			if (!writeExternalStoragePermissionGranted()){
 				Log.e("DisplayTrackMapWrite", "Permission asked");
 				ActivityCompat.requestPermissions(this,
@@ -545,31 +544,8 @@ public class TrackManager extends ListActivity {
 	 */
 	private void shareTrack(long trackId) {
 
-		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
-
-		Cursor cursor = getContentResolver().query(trackUri, null, null,
-				null, null);
-
-		String trackName = "";
-		if(cursor != null && cursor.moveToFirst()) {
-			trackName = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
-			cursor.close();
-		}
-
-		File sdRoot = Environment.getExternalStorageDirectory();
-
-		// The location where the user has specified gpx files and associated content to be written
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		String userGPXExportDirectoryName = prefs.getString(
-				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
-
-		// Build storage track path for file creation
-		String completeGPXTrackPath = sdRoot + userGPXExportDirectoryName.trim() +
-				File.separator + trackName.trim()  + File.separator +
-				trackName.trim() + DataHelper.EXTENSION_GPX;
-
 		// Get track gpx file
-		File trackGPX = new File(completeGPXTrackPath);
+		File trackGPX = DataHelper.getGPXTrackFile(trackId, getContentResolver(), this);
 
 		// Get gpx content URI
 		Uri trackUriContent = FileProvider.getUriForFile(this,
