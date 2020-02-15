@@ -1,10 +1,5 @@
 package net.osmtracker.db;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-
-import net.osmtracker.OSMTracker;
-
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -16,6 +11,11 @@ import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
+import net.osmtracker.OSMTracker;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
 
 /**
  * Data helper for dialoging with content resolver and filesystem.
@@ -41,6 +41,16 @@ public class DataHelper {
 	 * JPG file extension
 	 */
 	public static final String EXTENSION_JPG = ".jpg";
+
+	/**
+	 * GPX Files MIME standard for sharing
+	 */
+	public static final String MIME_GPX_TYPE = "application/gpx+xml";
+
+	/**
+	 * APP sign plus FileProvider = authority
+	 */
+	public static final String FILE_PROVIDER_AUTHORITY = "net.osmtracker.fileprovider";
 
 	/**
 	 * Number of tries to rename a media file for the current track if there are
