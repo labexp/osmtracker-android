@@ -5,7 +5,7 @@
 		android:id="@+id/tracklogger_menu_stoptracking"
 		android:title="@string/menu_stoptracking"
 		android:icon="@android:drawable/ic_menu_save"
-		app:showAsAction="ifRoom|withText" />
+		android:showAsAction="ifRoom|withText" />
 	<item
 		android:id="@+id/tracklogger_menu_waypointlist"
 		android:title="@string/menu_waypointlist"
