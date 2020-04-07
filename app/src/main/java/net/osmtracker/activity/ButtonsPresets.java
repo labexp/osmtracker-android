@@ -302,7 +302,11 @@ public class ButtonsPresets extends Activity {
         return super.onContextItemSelected(item);
     }
 
-    //this method obtain the iso of any layout file name
+    /**
+     * This method obtain the iso of any layout file name
+     * Assumes that layoutName looks like a filename => name_xx.ext
+     * Example: given "foo_es.xml" return only "es"
+     */
     private String getIso(String layoutName){
         String tmp = layoutName.substring(0, layoutName.length() - Preferences.LAYOUT_FILE_EXTENSION.length());
         String iso = "";
