@@ -15,6 +15,9 @@
 	<string name="prefs_gps_ignore_clock">Ignore GPS clock</string>
 	<string name="prefs_gps_ignore_clock_summary">Ignore GPS clock and use Android clock for timestamps</string>
 
+	<string name="prefs_use_barometer">Log barometric pressure [hPa]</string>
+	<string name="prefs_use_barometer_summary">Toggling requires track restart</string>
+
 	<string name="prefs_gps_logging_interval">GPS logging interval</string>
 	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (affects battery life)</string>
 	<string name="prefs_gps_logging_interval_seconds">seconds</string>

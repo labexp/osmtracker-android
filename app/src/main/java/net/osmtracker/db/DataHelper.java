@@ -93,8 +93,10 @@ public class DataHelper {
 	 * @param accuracy
 	 * 			  accuracy of the compass reading (as SensorManager.SENSOR_STATUS_ACCURACY*),
 	 * 			  ignored if azimuth is invalid.
+	 * @param pressure
+	 *            atmospheric pressure
 	 */
-	public void track(long trackId, Location location, float azimuth, int accuracy) {
+	public void track(long trackId, Location location, float azimuth, int accuracy, float pressure) {
 		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location + " azimuth: " + azimuth + ", accuracy: " + accuracy);
 		ContentValues values = new ContentValues();
 		values.put(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
@@ -123,7 +125,11 @@ public class DataHelper {
 			values.put(TrackContentProvider.Schema.COL_COMPASS, azimuth);
 			values.put(TrackContentProvider.Schema.COL_COMPASS_ACCURACY, accuracy);
 		}
-		
+
+		if (pressure != 0) {
+			values.put(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE, pressure);
+		}
+
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 		contentResolver.insert(Uri.withAppendedPath(trackUri, TrackContentProvider.Schema.TBL_TRACKPOINT + "s"), values);
 	}
@@ -149,7 +155,7 @@ public class DataHelper {
 	 * 			  accuracy of the compass reading (as SensorManager.SENSOR_STATUS_ACCURACY*),
 	 * 			  ignored if azimuth is invalid.
 	 */
-	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid, float azimuth, int accuracy) {
+	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid, float azimuth, int accuracy, float pressure) {
 		Log.v(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid + ", link='" + link + "', location=" + location + ", azimuth=" + azimuth + ", accuracy="+accuracy);
 
 		// location should not be null, but sometime is.
@@ -190,6 +196,10 @@ public class DataHelper {
 			if (azimuth >= AZIMUTH_MIN && azimuth < AZIMUTH_MAX) {
 				values.put(TrackContentProvider.Schema.COL_COMPASS, azimuth);
 				values.put(TrackContentProvider.Schema.COL_COMPASS_ACCURACY, accuracy);
+			}
+
+			if (pressure != 0) {
+				values.put(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE, pressure);
 			}
 
 			Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
