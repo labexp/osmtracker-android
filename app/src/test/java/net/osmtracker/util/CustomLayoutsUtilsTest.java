@@ -2,6 +2,7 @@ package net.osmtracker.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
@@ -12,6 +13,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,8 +32,11 @@ public class CustomLayoutsUtilsTest {
 
     Context mockContext;
     SharedPreferences mockPrefs;
+    AssetManager mockAssetManager;
+    InputStream resultStream;
+    InputStream expectedStream;
 
-    public void setupMocks(){
+    public void setupMocks() {
         // Create SharedPreferences mock
         mockPrefs = mock(SharedPreferences.class);
         when(mockPrefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
@@ -44,6 +49,18 @@ public class CustomLayoutsUtilsTest {
         mockStatic(PreferenceManager.class);
 
         when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
+
+        mockAssetManager = mock(AssetManager.class);
+
+        try {
+            resultStream = new FileInputStream("./src/test/assets/gpx/gpx-test.gpx");
+            expectedStream = new FileInputStream("./src/test/assets/gpx/gpx-test.gpx");
+            when(mockContext.getAssets()).thenReturn(mockAssetManager);
+            when(mockAssetManager.open("result.gpx")).thenReturn(resultStream);
+            when(mockAssetManager.open("expected.gpx")).thenReturn(expectedStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -67,15 +84,14 @@ public class CustomLayoutsUtilsTest {
         assertEquals(result, expected);
     }
 
-    /* Not working...
-    @Test
+     @Test
     public void getStringFromStream() throws IOException {
         setupMocks();
-        InputStream is = mockContext.getAssets().open("gpx/gpx-test.gpx");
+        InputStream is = mockAssetManager.open("result.gpx");
         String result = CustomLayoutsUtils.getStringFromStream(is);
         is.close();
 
-        is = mockContext.getAssets().open("gpx/gpx-test.gpx");
+        is = mockAssetManager.open("expected.gpx");
         StringBuilder textBuilder = new StringBuilder();
         try (Reader reader = new BufferedReader(new InputStreamReader
                 (is, Charset.forName(StandardCharsets.UTF_8.name())))) {
@@ -89,7 +105,6 @@ public class CustomLayoutsUtilsTest {
 
         assertEquals(result, expected);
     }
-     */
 
     @Test
     public void getCurrentLayoutName() {
