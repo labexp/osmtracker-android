@@ -84,7 +84,7 @@ public class CustomLayoutsUtilsTest {
         assertEquals(result, expected);
     }
 
-     @Test
+    @Test
     public void getStringFromStream() throws IOException {
         setupMocks();
         InputStream is = mockAssetManager.open("result.gpx");
