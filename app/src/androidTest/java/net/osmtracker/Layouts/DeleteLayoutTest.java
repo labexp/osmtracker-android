@@ -64,7 +64,7 @@ public class DeleteLayoutTest {
      * Checks that:
      *  - The UI option doesn't appear anymore
      *  - The XML file is deleted
-     *  - Toasts are shown to inform about what happened
+     *  - A Toast is shown to inform about what happened
      *  - The icons directory is deleted
      */
     @Test
@@ -78,11 +78,10 @@ public class DeleteLayoutTest {
 
         deleteLayout(layoutName);
 
-        // Check the informative Toasts are shown
-//        checkToastIsShownWith("The file was deleted successfully"); //TODO: uncomment this when solve Toast overlapping
-        checkToastIsShownWith("The icon directory was deleted successfully");
+        // Check the informative Toast is shown
+        checkToastIsShownWith("The file was deleted successfully");
 
-//        // Check the layout doesn't appear anymore
+        // Check the layout doesn't appear anymore
         onView(withText(layoutName)).check(doesNotExist());
 
         // List files after the deletion
