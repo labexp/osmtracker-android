@@ -9,6 +9,7 @@ import net.osmtracker.OSMTracker;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.util.io.IOUtil;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -18,8 +19,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.mock;
@@ -92,18 +96,12 @@ public class CustomLayoutsUtilsTest {
         is.close();
 
         is = mockAssetManager.open("expected.gpx");
-        StringBuilder textBuilder = new StringBuilder();
-        try (Reader reader = new BufferedReader(new InputStreamReader
-                (is, Charset.forName(StandardCharsets.UTF_8.name())))) {
-            int c = 0;
-            while ((c = reader.read()) != -1) {
-                textBuilder.append((char) c);
-            }
-        }
+        Scanner s = new Scanner(is).useDelimiter("\\A");
+        String expected = s.hasNext() ? s.next() : "";
         is.close();
-        String expected = textBuilder.toString();
+        System.out.println(expected);
 
-        assertEquals(result, expected);
+        assertEquals(expected, result);
     }
 
     @Test
