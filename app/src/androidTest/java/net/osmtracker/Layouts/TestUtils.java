@@ -1,6 +1,7 @@
 package net.osmtracker.Layouts;
 
 import android.os.Environment;
+import android.support.test.InstrumentationRegistry;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -107,4 +108,9 @@ public class TestUtils {
         onView(withText(text)).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
     }
+
+    public static String getStringResource(int resourceId){
+        return InstrumentationRegistry.getTargetContext().getResources().getString(resourceId);
+    }
+
 }
