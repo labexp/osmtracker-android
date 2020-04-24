@@ -44,6 +44,29 @@ public class TestUtils {
         return newFile;
     }
 
+    /**
+     * Install a mock layout in the phone
+     *  - Creates the xml, the icons directory and some empty png files inside
+     */
+    public static void injectMockLayout(String layoutName) {
+        File layoutsDir = getLayoutsDirectory();
+
+        // Create a mock layout file
+        File newLayout = createFile(layoutsDir,layoutName+"_es.xml");
+        writeToFile(newLayout, MockData.MOCK_LAYOUT_CONTENT);
+
+        // Create the icons directory
+        File iconsDir = createDirectory(layoutsDir, layoutName+"_icons");
+
+        // And put some mock files inside
+        int pngsToCreate = 4;
+        File png;
+        for (int i = 1; i <= pngsToCreate; i++) {
+            png = createFile(iconsDir, i+".png");
+            writeToFile(png, "foo");
+        }
+    }
+
 
     /**
      * Write content to a file

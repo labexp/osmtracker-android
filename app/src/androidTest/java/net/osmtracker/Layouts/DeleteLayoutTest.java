@@ -4,8 +4,11 @@ import android.Manifest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.rule.GrantPermissionRule;
 
+import net.osmtracker.activity.ButtonsPresets;
 import net.osmtracker.activity.TrackManager;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -30,7 +33,7 @@ public class DeleteLayoutTest {
     // Must start in TrackManager and navigate to ButtonsPresets because the files
     // of the layout need to be installed before ButtonsPresets loads
     @Rule
-    public ActivityTestRule<TrackManager> mRule = new ActivityTestRule<>(TrackManager.class);
+    public ActivityTestRule<ButtonsPresets> mRule = new ActivityTestRule<>(ButtonsPresets.class);
 
     // Storage permissions are required
     @Rule
@@ -38,6 +41,8 @@ public class DeleteLayoutTest {
     @Rule
     public GrantPermissionRule writePermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
+
+    private static String layoutName = "mock";
 
     /**
      * Assumes being at TrackManager Activity
@@ -58,6 +63,10 @@ public class DeleteLayoutTest {
         onView(withText("YES")).perform(click());
     }
 
+    @BeforeClass
+    public static void injectLayout(){
+        injectMockLayout(layoutName);
+    }
 
     /**
      * Injects a mock layout and deletes it
@@ -69,12 +78,6 @@ public class DeleteLayoutTest {
      */
     @Test
     public void layoutDeletionTest(){
-        String layoutName = "mock";
-
-        // Make sure there is at least one layout installed
-        injectMockLayout(layoutName);
-
-        navigateToButtonsPresets();
 
         deleteLayout(layoutName);
 
@@ -96,26 +99,5 @@ public class DeleteLayoutTest {
     }
 
 
-    /**
-     * Install a mock layout in the phone
-     *  - Creates the xml, the icons directory and some empty png files inside
-     */
-    public void injectMockLayout(String layoutName) {
-        File layoutsDir = getLayoutsDirectory();
 
-        // Create a mock layout file
-        File newLayout = createFile(layoutsDir,layoutName+"_es.xml");
-        writeToFile(newLayout, MockData.MOCK_LAYOUT_CONTENT);
-
-        // Create the icons directory
-        File iconsDir = createDirectory(layoutsDir, layoutName+"_icons");
-
-        // And put some mock files inside
-        int pngsToCreate = 4;
-        File png;
-        for (int i = 1; i <= pngsToCreate; i++) {
-            png = createFile(iconsDir, i+".png");
-            writeToFile(png, "foo");
-        }
-    }
 }
