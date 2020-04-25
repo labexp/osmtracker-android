@@ -9,20 +9,12 @@ import net.osmtracker.OSMTracker;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.internal.util.io.IOUtil;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
