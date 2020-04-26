@@ -433,7 +433,16 @@ public class TrackManager extends ListActivity {
 			break;
 
 		case R.id.trackmgr_contextmenu_share:
-			shareTrack(info.id);
+			trackId = info.id;
+			if (!writeExternalStoragePermissionGranted()){
+				Log.e("DisplayTrackMapWrite", "Permission asked");
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_EXPORT_ONE);
+			}
+			else {
+				exportOneTrack();
+				shareTrack(info.id);
+			}
 			break;
 
 		case R.id.trackmgr_contextmenu_osm_upload:
