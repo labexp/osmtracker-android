@@ -114,8 +114,8 @@ public abstract class TrackDetailEditor extends Activity {
 
         // If no changes were made don't append the date
 		if ((enteredName.length() > 0 && !enteredName.equals(tname))) {
-			// Append date to avoid duplicated tracks names
-			enteredName += "_" + defaultDate;
+			// Append date to avoid duplicated tracks names only if is not included already
+			if(!enteredName.contains(defaultDate)) enteredName += "_" + defaultDate;
 			values.put(TrackContentProvider.Schema.COL_NAME, enteredName);
 		}
 		
