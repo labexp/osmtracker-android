@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
  * @author Nicolas Guillaumin
  *
  */
-public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
+public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 
 	private static final String TAG = ExportTrackTask.class.getSimpleName();
 
