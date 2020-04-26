@@ -42,6 +42,7 @@
 	<string name="trackmgr_contextmenu_delete">Delete</string>
 	<string name="trackmgr_contextmenu_export">Export as GPX</string>
 	<string name="trackmgr_contextmenu_share">Share track</string>
+	<string name="trackmgr_contextmenu_export_and_share">Export as GPX and share</string>
 	<string name="trackmgr_contextmenu_osm_upload">Upload to OpenStreetMap</string>
 	<string name="trackmgr_contextmenu_display">Display</string>
 	<string name="trackmgr_contextmenu_details">Details</string>
