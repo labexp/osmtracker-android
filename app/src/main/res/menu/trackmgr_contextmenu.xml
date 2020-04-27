@@ -18,7 +18,10 @@
         android:title="@string/trackmgr_contextmenu_export" />
     <item
         android:id="@+id/trackmgr_contextmenu_share"
-        android:title="@string/trackmgr_contextmenu_export_and_share" />
+        android:title="@string/trackmgr_contextmenu_share" />
+<!--    <item-->
+<!--        android:id="@+id/trackmgr_contextmenu_export_and_share"-->
+<!--        android:title="@string/trackmgr_contextmenu_export_and_share" />-->
     <item
         android:id="@+id/trackmgr_contextmenu_osm_upload"
         android:title="@string/trackmgr_contextmenu_osm_upload" />

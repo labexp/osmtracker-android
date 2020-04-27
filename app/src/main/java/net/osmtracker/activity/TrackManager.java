@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -35,6 +36,7 @@ import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.TracklistAdapter;
 import net.osmtracker.exception.CreateTrackException;
 import net.osmtracker.gpx.ExportToStorageTask;
+import net.osmtracker.gpx.ExportToTempFileTask;
 import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
@@ -432,17 +434,23 @@ public class TrackManager extends ListActivity {
 			else exportOneTrack();
 			break;
 
+//		case R.id.trackmgr_contextmenu_export_and_share:
+//			trackId = info.id;
+//			if (!writeExternalStoragePermissionGranted()){
+//				Log.e("DisplayTrackMapWrite", "Permission asked");
+//				ActivityCompat.requestPermissions(this,
+//						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_EXPORT_ONE);
+//			}
+//			else {
+//				exportOneTrack();
+//				// Get track gpx file
+//				File trackGPX = DataHelper.getGPXTrackFile(info.id, getContentResolver(), this);
+//				shareFile(trackGPX);
+//			}
+//			break;
+
 		case R.id.trackmgr_contextmenu_share:
-			trackId = info.id;
-			if (!writeExternalStoragePermissionGranted()){
-				Log.e("DisplayTrackMapWrite", "Permission asked");
-				ActivityCompat.requestPermissions(this,
-						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_EXPORT_ONE);
-			}
-			else {
-				exportOneTrack();
-				shareTrack(info.id);
-			}
+			prepareAndShareTrack(info.id);
 			break;
 
 		case R.id.trackmgr_contextmenu_osm_upload:
@@ -547,19 +555,27 @@ public class TrackManager extends ListActivity {
 		return trackId;
 	}
 
+	private void prepareAndShareTrack(long trackId) {
+		final Context context = this;
+		// Create temp file that will remain in cache
+		new ExportToTempFileTask(this, trackId){
+			@Override
+			protected void executionCompleted(){
+				shareFile(this.getTmpFile());
+			}
+		}.execute();
+	}
+
 	/**
 	 * Allows user to share gpx file from storage to another app
 	 * @param trackId track identifier
 	 */
-	private void shareTrack(long trackId) {
-
-		// Get track gpx file
-		File trackGPX = DataHelper.getGPXTrackFile(trackId, getContentResolver(), this);
+	private void shareFile(File tmpGPXFile) {
 
 		// Get gpx content URI
 		Uri trackUriContent = FileProvider.getUriForFile(this,
 				DataHelper.FILE_PROVIDER_AUTHORITY,
-				trackGPX);
+                tmpGPXFile);
 
 		// Sharing intent
 		Intent shareIntent = new Intent();
