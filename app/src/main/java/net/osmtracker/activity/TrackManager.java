@@ -558,7 +558,7 @@ public class TrackManager extends ListActivity {
 	private void prepareAndShareTrack(long trackId) {
 		final Context context = this;
 		// Create temp file that will remain in cache
-		new ExportToTempFileTask(this, trackId){
+		new ExportToTempFileTask(this, trackId, getContentResolver()){
 			@Override
 			protected void executionCompleted(){
 				shareFile(this.getTmpFile());
