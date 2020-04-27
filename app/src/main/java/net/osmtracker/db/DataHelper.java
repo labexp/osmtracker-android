@@ -386,16 +386,8 @@ public class DataHelper {
 	}
 
 	public static File getGPXTrackFile(long trackId, ContentResolver contentResolver, Context context) {
-		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 
-		Cursor cursor = contentResolver.query(trackUri, null, null,
-				null, null);
-
-		String trackName = "";
-		if(cursor != null && cursor.moveToFirst()) {
-			trackName = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
-			cursor.close();
-		}
+		String trackName = getTrackNameInDB(trackId, contentResolver);
 
 		File sdRoot = Environment.getExternalStorageDirectory();
 
@@ -410,6 +402,19 @@ public class DataHelper {
 				trackName.trim() + DataHelper.EXTENSION_GPX;
 
 		return new File(completeGPXTrackPath);
+	}
+
+	public static String getTrackNameInDB(long trackId, ContentResolver contentResolver) {
+		String trackName = "";
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+		Cursor cursor = contentResolver.query(trackUri, null, null,
+				null, null);
+		if(cursor != null && cursor.moveToFirst()) {
+			trackName = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
+			cursor.close();
+		}
+
+		return trackName;
 	}
 
 }
