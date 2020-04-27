@@ -450,7 +450,7 @@ public class TrackManager extends ListActivity {
 //			break;
 
 		case R.id.trackmgr_contextmenu_share:
-			prepareAndShareTrack(info.id);
+			prepareAndShareTrack(info.id, this);
 			break;
 
 		case R.id.trackmgr_contextmenu_osm_upload:
@@ -555,13 +555,15 @@ public class TrackManager extends ListActivity {
 		return trackId;
 	}
 
-	private void prepareAndShareTrack(long trackId) {
-		final Context context = this;
+	// This should be static because contains an AsyncTask
+	// AsyncTasks has to live inside a static environment
+	// That's why the Context is passed as a parameter
+	private static void prepareAndShareTrack(long trackId, Context context) {
 		// Create temp file that will remain in cache
-		new ExportToTempFileTask(this, trackId, getContentResolver()){
+		new ExportToTempFileTask(context, trackId, context.getContentResolver()){
 			@Override
 			protected void executionCompleted(){
-				shareFile(this.getTmpFile());
+				shareFile(this.getTmpFile(), context);
 			}
 		}.execute();
 	}
@@ -570,10 +572,10 @@ public class TrackManager extends ListActivity {
 	 * Allows user to share gpx file from storage to another app
 	 * @param trackId track identifier
 	 */
-	private void shareFile(File tmpGPXFile) {
+	private static void shareFile(File tmpGPXFile, Context context) {
 
 		// Get gpx content URI
-		Uri trackUriContent = FileProvider.getUriForFile(this,
+		Uri trackUriContent = FileProvider.getUriForFile(context,
 				DataHelper.FILE_PROVIDER_AUTHORITY,
                 tmpGPXFile);
 
@@ -582,7 +584,7 @@ public class TrackManager extends ListActivity {
 		shareIntent.setAction(Intent.ACTION_SEND);
 		shareIntent.putExtra(Intent.EXTRA_STREAM, trackUriContent);
 		shareIntent.setType(DataHelper.MIME_GPX_TYPE);
-		startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.trackmgr_contextmenu_share)));
+		context.startActivity(Intent.createChooser(shareIntent, context.getResources().getText(R.string.trackmgr_contextmenu_share)));
 
 	}
 	
