@@ -1,4 +1,4 @@
-package net.osmtracker.Layouts;
+package net.osmtracker.layouts;
 
 import android.Manifest;
 import android.support.test.rule.ActivityTestRule;
@@ -20,11 +20,11 @@ import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.matcher.PreferenceMatchers.withTitleText;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static net.osmtracker.Layouts.TestUtils.checkToastIsShownWith;
-import static net.osmtracker.Layouts.TestUtils.getLayoutsDirectory;
-import static net.osmtracker.Layouts.TestUtils.getStringResource;
-import static net.osmtracker.Layouts.TestUtils.injectMockLayout;
-import static net.osmtracker.Layouts.TestUtils.listFiles;
+import static net.osmtracker.layouts.TestUtils.checkToastIsShownWith;
+import static net.osmtracker.layouts.TestUtils.getLayoutsDirectory;
+import static net.osmtracker.layouts.TestUtils.getStringResource;
+import static net.osmtracker.layouts.TestUtils.injectMockLayout;
+import static net.osmtracker.layouts.TestUtils.listFiles;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.junit.Assert.assertFalse;
 import static org.apache.commons.io.FileUtils.deleteDirectory;

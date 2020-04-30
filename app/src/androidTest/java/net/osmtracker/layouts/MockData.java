@@ -1,4 +1,4 @@
-package net.osmtracker.Layouts;
+package net.osmtracker.layouts;
 
 public class MockData {
     public static String MOCK_LAYOUT_CONTENT =

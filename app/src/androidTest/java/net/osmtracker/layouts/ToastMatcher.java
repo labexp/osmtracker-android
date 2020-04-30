@@ -1,4 +1,4 @@
-package net.osmtracker.Layouts;
+package net.osmtracker.layouts;
 
 import android.os.IBinder;
 import android.support.test.espresso.Root;

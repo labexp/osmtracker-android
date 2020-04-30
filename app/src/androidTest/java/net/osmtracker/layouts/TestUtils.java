@@ -1,4 +1,4 @@
-package net.osmtracker.Layouts;
+package net.osmtracker.layouts;
 
 import android.os.Environment;
 import android.support.test.InstrumentationRegistry;
