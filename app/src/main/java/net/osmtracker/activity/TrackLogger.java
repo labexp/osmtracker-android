@@ -351,7 +351,7 @@ public class TrackLogger extends Activity {
 		sensorListener.register(this);
 
 		// connect the pressure listener
-		pressureListener.register(this, prefs.getBoolean(OSMTracker.Preferences.KEY_USE_BAROMETER,false));
+		pressureListener.register(this, prefs.getBoolean(OSMTracker.Preferences.KEY_USE_BAROMETER,OSMTracker.Preferences.VAL_USE_BAROMETER));
 
 		setEnabledActionButtons(buttonsEnabled);
 		if(!buttonsEnabled){

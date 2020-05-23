@@ -219,7 +219,7 @@ public class GPSLogger extends Service implements LocationListener {
 		gpsLoggingMinDistance = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
 		use_barometer =  PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
-				OSMTracker.Preferences.KEY_USE_BAROMETER, false);
+				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
 
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
