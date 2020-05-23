@@ -38,7 +38,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ TrackContentProvider.Schema.COL_ACCURACY + " double null,"
 		+ TrackContentProvider.Schema.COL_TIMESTAMP + " long not null,"
 		+ TrackContentProvider.Schema.COL_COMPASS + " double null,"
-		+ TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null"+ ")";
+		+ TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null,"
+		+ TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null" + ")";
 
 	/**
 	 * SQL for creating index TRACKPOINT_idx (track id)
@@ -66,7 +67,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ TrackContentProvider.Schema.COL_LINK + " text,"
 		+ TrackContentProvider.Schema.COL_NBSATELLITES + " integer not null,"
 		+ TrackContentProvider.Schema.COL_COMPASS + " double null,"
-		+ TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null"+ ")";
+		+ TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null,"
+		+ TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null"	+ ")";
 
 	/**
 	 * SQL for creating index WAYPOINT_idx (track id)

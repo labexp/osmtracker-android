@@ -11,6 +11,11 @@
 		android:title="@string/prefs_sound_enabled"
 		android:summary="@string/prefs_sound_enabled_summary"
 		android:defaultValue="true" />
+	<CheckBoxPreference
+		android:key="gpx.use_barometer"
+		android:title="@string/prefs_use_barometer"
+		android:summary="@string/prefs_use_barometer_summary"
+		android:defaultValue="false" />
 	<com.android.internal.preference.YesNoPreference android:key="osm.oauth.clear-data"
 		android:title="@string/prefs_osm_clear_oauth_data" android:summary="@string/prefs_osm_clear_oauth_data_summary"
 		android:dialogMessage="@string/prefs_osm_clear_oauth_data_dialog" android:dialogIcon="@android:drawable/ic_dialog_alert" />

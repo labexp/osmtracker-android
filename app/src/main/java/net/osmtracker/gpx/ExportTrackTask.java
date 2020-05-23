@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
 /**
  * Base class to writes a GPX file and export
  * track media (Photos, Sounds)
- * 
+ *
  * @author Nicolas Guillaumin
  *
  */
@@ -54,41 +54,41 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * In addition, ':' will be replaced by ';', before calling this pattern.
 	 */
 	private final static Pattern FILENAME_CHARS_BLACKLIST_PATTERN =
-		Pattern.compile("[ '\"/\\\\*?~@<>]");  // must double-escape \
+			Pattern.compile("[ '\"/\\\\*?~@<>]");  // must double-escape \
 
 	/**
 	 * XML header.
 	 */
 	private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
-	
+
 	private static final String CDATA_START = "<![CDATA[";
 	private static final String CDATA_END = "]]>";
-	
+
 	/**
 	 * GPX opening tag
 	 */
 	private static final String TAG_GPX = "<gpx"
-		+ " xmlns=\"http://www.topografix.com/GPX/1/1\""
-		+ " version=\"1.1\""
-		+ " creator=\"OSMTracker for Android™ - https://github.com/labexp/osmtracker-android\""
-		+ " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
-		+ " xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd \">";
-	
+			+ " xmlns=\"http://www.topografix.com/GPX/1/1\""
+			+ " version=\"1.1\""
+			+ " creator=\"OSMTracker for Android™ - https://github.com/labexp/osmtracker-android\""
+			+ " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
+			+ " xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd \">";
+
 	/**
 	 * Date format for a point timestamp.
 	 */
 	private SimpleDateFormat pointDateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-	
+
 	/**
 	 * {@link Context} to get resources
 	 */
 	protected Context context;
-	
+
 	/**
 	 * Track IDs to export
 	 */
 	protected long[] trackIds;
-	
+
 	/**
 	 * Dialog to display while exporting
 	 */
@@ -105,13 +105,13 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * @throws ExportTrackException
 	 */
 	protected abstract File getExportDirectory(Date startDate) throws ExportTrackException;
-	
+
 	/**
 	 * Whereas to export the media files or not
 	 * @return
 	 */
 	protected abstract boolean exportMediaFiles();
-	
+
 	/**
 	 * Whereas to update the track export date in the database at the end or not
 	 * @return
@@ -123,7 +123,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		this.trackIds = trackIds;
 		pointDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
-	
+
 	@Override
 	protected void onPreExecute() {
 		// Display dialog
@@ -134,8 +134,8 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		dialog.setMessage(context.getResources().getString(R.string.trackmgr_exporting_prepare));
 		dialog.show();
 	}
-	
-	
+
+
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		try {
@@ -148,7 +148,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		}
 		return true;
 	}
-	
+
 	@Override
 	protected void onProgressUpdate(Long... values) {
 		if (values.length == 1) {
@@ -158,7 +158,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			// To initialise the dialog, 3 values are passed to onProgressUpdate()
 			// trackId, number of track points, number of waypoints
 			dialog.dismiss();
-			
+
 			dialog = new ProgressDialog(context);
 			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			dialog.setIndeterminate(false);
@@ -167,7 +167,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			dialog.setMax(values[1].intValue() + values[2].intValue());
 			dialog.setTitle(
 					context.getResources().getString(R.string.trackmgr_exporting)
-					.replace("{0}", Long.toString(values[0])));
+							.replace("{0}", Long.toString(values[0])));
 			dialog.show();
 
 		}
@@ -178,18 +178,18 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		dialog.dismiss();
 		if (!success) {
 			new AlertDialog.Builder(context)
-				.setTitle(android.R.string.dialog_alert_title)
-				.setMessage(context.getResources()
-						.getString(R.string.trackmgr_export_error)
-						.replace("{0}", errorMsg))
-				.setIcon(android.R.drawable.ic_dialog_alert)
-				.setNeutralButton(android.R.string.ok, new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();						
-					}
-				})
-				.show();
+					.setTitle(android.R.string.dialog_alert_title)
+					.setMessage(context.getResources()
+							.getString(R.string.trackmgr_export_error)
+							.replace("{0}", errorMsg))
+					.setIcon(android.R.drawable.ic_dialog_alert)
+					.setNeutralButton(android.R.string.ok, new OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					})
+					.show();
 		}else{
 			Toast.makeText(this.context, R.string.various_export_finished, Toast.LENGTH_SHORT).show();
 		}
@@ -277,10 +277,10 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * @param cTrackPoints Cursor to track points.
 	 * @param cWayPoints Cursor to way points.
 	 * @param target Target GPX file
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	private void writeGpxFile(String trackName, String tags, String track_description, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
-		
+
 		String accuracyOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
 				OSMTracker.Preferences.VAL_OUTPUT_ACCURACY);
@@ -290,7 +290,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		String compassOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_COMPASS,
 				OSMTracker.Preferences.VAL_OUTPUT_COMPASS);
-		
+
 		Log.v(TAG, "write preferences: compass:" + compassOutput);
 
 		Writer writer = null;
@@ -325,7 +325,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			}
 		}
 	}
-	
+
 	/**
 	 * Iterates on track points and write them.
 	 * @param trackName Name of the track (metadata).
@@ -341,7 +341,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		if (dialogUpdateThreshold == 0) {
 			dialogUpdateThreshold++;
 		}
-		
+
 		fw.write("\t" + "<trk>" + "\n");
 		fw.write("\t\t" + "<name>" + CDATA_START + trackName + CDATA_END + "</name>" + "\n");
 		if (fillHDOP) {
@@ -350,31 +350,31 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 					+ context.getResources().getString(R.string.gpx_hdop_approximation_cmt)
 					+ CDATA_END
 					+ "</cmt>" + "\n");
-		}		
+		}
 		fw.write("\t\t" + "<trkseg>" + "\n");
-		
+
 		int i=0;
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(),i++) {
 			StringBuffer out = new StringBuffer();
-			out.append("\t\t\t" + "<trkpt lat=\"" 
+			out.append("\t\t\t" + "<trkpt lat=\""
 					+ c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE)) + "\" "
 					+ "lon=\"" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE)) + "\">" + "\n");
 			if (! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ELEVATION))) {
 				out.append("\t\t\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ELEVATION)) + "</ele>" + "\n");
 			}
 			out.append("\t\t\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
-			
+
 			if(fillHDOP && ! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY))) {
 				out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
 			}
 			if(OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) && !c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
-				out.append("\t\t\t\t" + "<cmt>"+CDATA_START+"compass: " + 
-							c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))+
-							"\n\t\t\t\t\tcompAccuracy: " + 
-							c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY))+
-				            CDATA_END+"</cmt>"+"\n");
+				out.append("\t\t\t\t" + "<cmt>"+CDATA_START+"compass: " +
+						c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))+
+						"\n\t\t\t\t\tcompAccuracy: " +
+						c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY))+
+						CDATA_END+"</cmt>"+"\n");
 			}
-			
+
 			String buff = "";
 			if(! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED))) {
 				buff += "\t\t\t\t\t" + "<speed>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED)) + "</speed>" + "\n";
@@ -396,11 +396,11 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				publishProgress((long) dialogUpdateThreshold);
 			}
 		}
-		
+
 		fw.write("\t\t" + "</trkseg>" + "\n");
 		fw.write("\t" + "</trk>" + "\n");
 	}
-	
+
 	/**
 	 * Iterates on way points and write them.
 	 * @param fw Writer to the target file.
@@ -417,12 +417,12 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		if (dialogUpdateThreshold == 0) {
 			dialogUpdateThreshold++;
 		}
-		
+
 		// Label for meter unit
 		String meterUnit = context.getResources().getString(R.string.various_unit_meters);
 		// Word "accuracy"
 		String accuracy = context.getResources().getString(R.string.various_accuracy);
-		
+
 		int i=0;
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(), i++) {
 			StringBuffer out = new StringBuffer();
@@ -435,13 +435,13 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 			out.append("\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
 
 			String name = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
-			
+
 			if (! OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_NONE.equals(accuracyInfo) && ! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY))) {
 				// Outputs accuracy info for way point
 				if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_NAME.equals(accuracyInfo)) {
 					// Output accuracy with name
 					out.append("\t\t" + "<name>"
-							+ CDATA_START 
+							+ CDATA_START
 							+ name
 							+ " (" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) + meterUnit + ")"
 							+ CDATA_END
@@ -476,14 +476,14 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 							"\n\t\t\tcompass accuracy: " + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + CDATA_END + "</cmt>\n");
 				}
 			}
-			
+
 			String link = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_LINK));
 			if (link != null) {
-					out.append("\t\t" + "<link href=\"" + URLEncoder.encode(link) + "\">" + "\n");
-					out.append("\t\t\t" + "<text>" + link +"</text>\n");
-					out.append("\t\t" + "</link>" + "\n");
+				out.append("\t\t" + "<link href=\"" + URLEncoder.encode(link) + "\">" + "\n");
+				out.append("\t\t\t" + "<text>" + link +"</text>\n");
+				out.append("\t\t" + "</link>" + "\n");
 			}
-			
+
 			if (! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_NBSATELLITES))) {
 				out.append("\t\t" + "<sat>" + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_NBSATELLITES)) + "</sat>" + "\n");
 			}
@@ -497,11 +497,11 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				out.append("\t\t<extensions>\n");
 				out.append("\t\t\t"+ "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>\n");
 				out.append("\t\t\t" + "<compass_accuracy>" + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n");
-				out.append("\t\t</extensions>\n");				
+				out.append("\t\t</extensions>\n");
 			}
-			
+
 			out.append("\t" + "</wpt>" + "\n");
-			
+
 			fw.write(out.toString());
 
 			if (i % dialogUpdateThreshold == 0) {
@@ -515,14 +515,14 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * @param gpxOutputDirectory The directory to which the track is being exported
 	 */
 	private void copyWaypointFiles(long trackId, File gpxOutputDirectory) {
-		// Get the new location where files related to these waypoints are/should be stored		
+		// Get the new location where files related to these waypoints are/should be stored
 		File trackDir = DataHelper.getTrackDirectory(trackId);
 
 		if(trackDir != null){
 			Log.v(TAG, "Copying files from the standard TrackDir ["+trackDir+"] to the export directory ["+gpxOutputDirectory+"]");
 			FileSystemUtils.copyDirectoryContents(gpxOutputDirectory, trackDir);
 		}
-		
+
 	}
 
 	/**
@@ -545,7 +545,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		String tname = c.getString(colName);
 
 		if ((! c.isNull(colName))
-			&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE))) {
+				&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE))) {
 
 			final String tname_raw = tname.trim().replace(':', ';');
 			final String sanitized = FILENAME_CHARS_BLACKLIST_PATTERN.matcher(tname_raw).replaceAll("_");

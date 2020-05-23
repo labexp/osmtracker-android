@@ -23,6 +23,7 @@ public class OSMTracker {
 		public final static String KEY_GPS_IGNORE_CLOCK = "gps.ignoreclock";
 		public final static String KEY_GPS_LOGGING_INTERVAL = "gps.logging.interval";
 		public final static String KEY_GPS_LOGGING_MIN_DISTANCE = "gps.logging.min_distance";
+		public final static String KEY_USE_BAROMETER = "gpx.use_barometer";
 		public final static String KEY_OUTPUT_FILENAME = "gpx.filename";
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
@@ -55,6 +56,7 @@ public class OSMTracker {
 		public final static boolean VAL_GPS_IGNORE_CLOCK = false;
 		public final static String VAL_GPS_LOGGING_INTERVAL = "0";
 		public final static String VAL_GPS_LOGGING_MIN_DISTANCE = "0";
+		public final static boolean VAL_USE_BAROMETER = false;
 		
 		public final static String VAL_OUTPUT_FILENAME_NAME = "name";
 		public final static String VAL_OUTPUT_FILENAME_NAME_DATE = "name_date";

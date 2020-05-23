@@ -12,6 +12,7 @@ import net.osmtracker.db.DataHelper;
 import net.osmtracker.layout.GpsStatusRecord;
 import net.osmtracker.layout.UserDefinedLayout;
 import net.osmtracker.listener.SensorListener;
+import net.osmtracker.listener.PressureListener;
 import net.osmtracker.receiver.MediaButtonReceiver;
 import net.osmtracker.service.gps.GPSLogger;
 import net.osmtracker.service.gps.GPSLoggerServiceConnection;
@@ -166,6 +167,11 @@ public class TrackLogger extends Activity {
 	 */
 	private SensorListener sensorListener;
 
+	/**
+	 * sensor listener for atmospheric pressure
+	 */
+	private PressureListener pressureListener;
+
 	private AudioManager mAudioManager;
 
 	private ComponentName mediaButtonReceiver;
@@ -214,6 +220,9 @@ public class TrackLogger extends Activity {
 		
 		// create sensor listener
 		sensorListener = new SensorListener();
+
+		// create pressure listener
+		pressureListener = new PressureListener();
 		
 		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		mediaButtonReceiver = new ComponentName(this, MediaButtonReceiver.class.getName());
@@ -341,6 +350,9 @@ public class TrackLogger extends Activity {
 		// connect the sensor listener
 		sensorListener.register(this);
 
+		// connect the pressure listener
+		pressureListener.register(this, prefs.getBoolean(OSMTracker.Preferences.KEY_USE_BAROMETER,OSMTracker.Preferences.VAL_USE_BAROMETER));
+
 		setEnabledActionButtons(buttonsEnabled);
 		if(!buttonsEnabled){
 			Toast.makeText(this, R.string.tracklogger_waiting_gps, Toast.LENGTH_LONG).show();
@@ -396,6 +408,10 @@ public class TrackLogger extends Activity {
 		
 		if (sensorListener!=null) {
 			sensorListener.unregister();
+		}
+
+		if (pressureListener != null) {
+			pressureListener.unregister();
 		}
 
 		mAudioManager.unregisterMediaButtonEventReceiver(mediaButtonReceiver);
