@@ -1,7 +1,9 @@
-package net.osmtracker.layouts;
+package net.osmtracker.util;
 
 import android.os.Environment;
 import android.support.test.InstrumentationRegistry;
+
+import net.osmtracker.data.Mocks;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -54,7 +56,7 @@ public class TestUtils {
 
         // Create a mock layout file
         File newLayout = createFile(layoutsDir,layoutName+"_es.xml");
-        writeToFile(newLayout, MockData.MOCK_LAYOUT_CONTENT);
+        writeToFile(newLayout, Mocks.MOCK_LAYOUT_CONTENT);
 
         // Create the icons directory
         File iconsDir = createDirectory(layoutsDir, layoutName+"_icons");
