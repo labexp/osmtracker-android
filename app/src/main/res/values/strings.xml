@@ -161,10 +161,10 @@
     <string name="buttons_presets_unsuccessful_update">Layout was not updated, try again later</string>
     <string name="buttons_presets_delete_message">Are you sure to delete the {0} layout?</string>
     <string name="buttons_presets_delete_positive_confirmation">Yes</string>
-    <string name="buttons_presets_successful_delete">The file was deleted successfully</string>
+    <string name="buttons_presets_successful_delete">The layout was deleted successfully</string>
     <string name="buttons_presets_icon_directory_deleted">The icon directory was deleted successfully</string>
     <string name="buttons_presets_icon_directory_does_not_exist">This file didn\'t have any icon directory associated</string>
-    <string name="buttons_presets_unsuccessful_delete">The file could not be delete</string>
+    <string name="buttons_presets_unsuccessful_delete">The layout could not be deleted</string>
 
     <!--Available Layouts messages -->
     <string name="available_layouts_connection_error">Error: unable to connect to the Internet</string>
