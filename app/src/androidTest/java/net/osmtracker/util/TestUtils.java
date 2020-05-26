@@ -1,8 +1,11 @@
 package net.osmtracker.util;
 
 import android.os.Environment;
+import android.preference.Preference;
 import android.support.test.InstrumentationRegistry;
 
+import net.osmtracker.OSMTracker;
+import net.osmtracker.activity.Preferences;
 import net.osmtracker.data.Mocks;
 
 import java.io.File;
@@ -90,7 +93,7 @@ public class TestUtils {
      */
     public static File getAppDirectory(){
         String storageDir =  Environment.getExternalStorageDirectory().getAbsolutePath();
-        File appDirectory = new File(storageDir + "/osmtracker");
+        File appDirectory = new File(storageDir + OSMTracker.Preferences.VAL_STORAGE_DIR);
         appDirectory.mkdirs();
         return appDirectory;
     }
@@ -101,7 +104,7 @@ public class TestUtils {
      */
     public static File getLayoutsDirectory(){
         String appDirectory = getAppDirectory().getAbsolutePath();
-        File layoutsDirectory = new File(appDirectory + "/layouts");
+        File layoutsDirectory = new File(appDirectory + "/" + Preferences.LAYOUTS_SUBDIR);
         layoutsDirectory.mkdirs();
         return layoutsDirectory;
     }
