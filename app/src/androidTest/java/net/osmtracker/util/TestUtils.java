@@ -1,9 +1,7 @@
 package net.osmtracker.util;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Environment;
-import android.preference.PreferenceManager;
+import android.preference.Preference;
 import android.support.test.InstrumentationRegistry;
 
 import net.osmtracker.OSMTracker;
@@ -24,10 +22,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
  */
 public class TestUtils {
 
-    public static String TESTING_GITHUB_USER = "labexp";
-    public static String TESTING_GITHUB_REPOSITORY = "osmtracker-android-layouts";
-    public static String TESTING_GITHUB_BRANCH = "for_tests";
-
     /**
      * List all the files in a folder and return a list of the names
      */
@@ -43,7 +37,7 @@ public class TestUtils {
      * Create a directory inside a directory and return the corresponding file
      */
     public static File createDirectory(File parentDir, String newDirName){
-        File newDir = new File(parentDir.getAbsolutePath() + File.separator + newDirName);
+        File newDir = new File(parentDir.getAbsolutePath()+"/"+newDirName);
         newDir.mkdir();
         return newDir;
     }
@@ -52,7 +46,7 @@ public class TestUtils {
      * Create a file inside a directory
      */
     public static File createFile(File parentDir, String newFileName){
-        File newFile = new File(parentDir.getAbsolutePath()+ File.separator + newFileName);
+        File newFile = new File(parentDir.getAbsolutePath()+"/"+newFileName);
         return newFile;
     }
 
@@ -60,16 +54,15 @@ public class TestUtils {
      * Install a mock layout in the phone
      *  - Creates the xml, the icons directory and some empty png files inside
      */
-    public static void injectMockLayout(String layoutName, String ISOLangCode) {
+    public static void injectMockLayout(String layoutName) {
         File layoutsDir = getLayoutsDirectory();
 
         // Create a mock layout file
-        String layoutFileName = CustomLayoutsUtils.createFileName(layoutName, ISOLangCode);
-        File newLayout = createFile(layoutsDir,layoutFileName);
+        File newLayout = createFile(layoutsDir,layoutName+"_es.xml");
         writeToFile(newLayout, Mocks.MOCK_LAYOUT_CONTENT);
 
         // Create the icons directory
-        File iconsDir = createDirectory(layoutsDir, layoutName + Preferences.ICONS_DIR_SUFFIX);
+        File iconsDir = createDirectory(layoutsDir, layoutName+"_icons");
 
         // And put some mock files inside
         int pngsToCreate = 4;
@@ -111,7 +104,7 @@ public class TestUtils {
      */
     public static File getLayoutsDirectory(){
         String appDirectory = getAppDirectory().getAbsolutePath();
-        File layoutsDirectory = new File(appDirectory + File.separator + Preferences.LAYOUTS_SUBDIR);
+        File layoutsDirectory = new File(appDirectory + "/" + Preferences.LAYOUTS_SUBDIR);
         layoutsDirectory.mkdirs();
         return layoutsDirectory;
     }
@@ -123,19 +116,6 @@ public class TestUtils {
 
     public static String getStringResource(int resourceId){
         return InstrumentationRegistry.getTargetContext().getResources().getString(resourceId);
-    }
-
-    public static void setGithubRepositorySettings(String user, String repo, String branch){
-        Context context = InstrumentationRegistry.getTargetContext();
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        editor.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, user);
-        editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repo);
-        editor.putString(OSMTracker.Preferences.KEY_BRANCH_NAME, branch);
-        editor.commit();
-    }
-
-    public static void setLayoutsTestingRepository(){
-        setGithubRepositorySettings(TESTING_GITHUB_USER,TESTING_GITHUB_REPOSITORY,TESTING_GITHUB_BRANCH);
     }
 
 }
