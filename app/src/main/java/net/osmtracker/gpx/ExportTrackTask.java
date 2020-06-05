@@ -374,8 +374,8 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 						c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY))+
 						CDATA_END+"</cmt>"+"\n");
 			}
-
 			String buff = "";
+
 			if(! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED))) {
 				buff += "\t\t\t\t\t" + "<speed>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED)) + "</speed>" + "\n";
 			}
@@ -383,6 +383,13 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				buff += "\t\t\t\t\t" + "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>" + "\n";
 				buff += "\t\t\t\t\t" + "<compass_accuracy>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n";
 			}
+
+			if (true) { //should be set via preference
+				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
+				String pressure_formatted = String.format("%.1f", pressure);
+				buff += "\t\t\t\t\t" + "<pressure_hpa>" + pressure_formatted + "</pressure_hpa>" + "\n";
+			}
+
 			if(! buff.equals("")) {
 				out.append("\t\t\t\t" + "<extensions>\n");
 				out.append(buff);
