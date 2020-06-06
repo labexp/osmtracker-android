@@ -384,7 +384,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				buff += "\t\t\t\t\t" + "<compass_accuracy>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n";
 			}
 
-			if (true) { //should be set via preference
+			if (! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE))) { //Checking if the database contains atmospheric_pressure data
 				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
 				String pressure_formatted = String.format("%.1f", pressure);
 				buff += "\t\t\t\t\t" + "<pressure_hpa>" + pressure_formatted + "</pressure_hpa>" + "\n";
