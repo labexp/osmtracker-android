@@ -1,7 +1,6 @@
 package net.osmtracker.util;
 
 import android.os.Environment;
-import android.preference.Preference;
 import android.support.test.InstrumentationRegistry;
 
 import net.osmtracker.OSMTracker;
