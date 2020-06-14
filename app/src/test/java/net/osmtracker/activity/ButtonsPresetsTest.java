@@ -35,6 +35,19 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @RunWith(PowerMockRunner.class)
 public class ButtonsPresetsTest {
 
+
+
+    // Variables used in selectLayoutTest
+    ButtonsPresets activity;
+    private CheckBox pressedCheckbox, priorSelectedCheckbox;
+    private Field selectedField;
+    private String label = "SOME LABEL";
+    SharedPreferences.Editor mockEditor;
+    SharedPreferences mockPrefs;
+    Field layoutFileNamesField;
+    Field prefsField;
+    Hashtable<String, String> mockHash;
+
     @Test
     public void getIsoTest(){
         ButtonsPresets activity = new ButtonsPresets();
@@ -68,61 +81,17 @@ public class ButtonsPresetsTest {
 
     @Test
     public void selectLayoutTest() throws Exception {
-        ButtonsPresets activity = new ButtonsPresets();
-
-        String label = "SOME LABEL";
-
-        // Mock a selected checkbox
-        CheckBox pressedCheckbox = mock(CheckBox.class);
-        when(pressedCheckbox.getText()).thenReturn(label);
-
-        // Mock and set a previously selected checkbox
-        CheckBox priorSelectedCheckbox = mock(CheckBox.class);
-        Field selectedField = activity.getClass().getDeclaredField("selected");
-        selectedField.setAccessible(true);
-        selectedField.set(activity, priorSelectedCheckbox);
-
-        // Mock and set the PreferencesEditor
-        SharedPreferences.Editor mockEditor = mock(SharedPreferences.Editor.class);
-        when(mockEditor.commit()).thenReturn(true);
-        when(mockEditor.putString("ui.buttons.layout", label)).thenReturn(mockEditor);
+        try {
+            setupMocksForSelectLayoutTest();
+            callSelectLayout();
+            makeAssertionsForSelectLayout();
+        }catch (Exception e){
+            System.out.println("Error testing selectLayout method");
+            e.printStackTrace();
+            fail();
+        }
 
 
-        // Mock prefs to use the mock editor
-        SharedPreferences mockPrefs = mock(SharedPreferences.class);
-        when(mockPrefs.edit()).thenReturn(mockEditor);
-
-        // Mock and set the preferences
-        Field prefsField = activity.getClass().getDeclaredField("prefs");
-        prefsField.setAccessible(true);
-        prefsField.set(activity, mockPrefs);
-
-        // Mock and set the layoutFilenames Hashtable
-        Hashtable<String, String> mockHash = mock(Hashtable.class);
-        when(mockHash.get(label)).thenReturn(label);
-        Field layoutFileNamesField = activity.getClass().getDeclaredField("layoutsFileNames");
-        layoutFileNamesField.setAccessible(true);
-        layoutFileNamesField.set(activity, mockHash);
-
-        // Call the method
-        Method selectLayoutMethod = activity.getClass().getDeclaredMethod("selectLayout", CheckBox.class);
-        selectLayoutMethod.setAccessible(true);
-        selectLayoutMethod.invoke(activity, pressedCheckbox);
-
-        // Assertions
-
-        // Make sure the previously selected is unchecked
-        verify(priorSelectedCheckbox).setChecked(false);
-
-        // Make sure the just selected is checked
-        verify(pressedCheckbox).setChecked(true);
-
-        // Make sure selected variable is updated to match the just selected
-        assertEquals(selectedField.get(activity), pressedCheckbox);
-
-        // Make sure the value in SharedPreferences is updated to match the just selected
-        verify(mockEditor).putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, label);
-        verify(mockEditor).commit();
     }
 
     @Test
@@ -278,4 +247,64 @@ public class ButtonsPresetsTest {
         }
         Whitebox.setInternalState(mockActivity.getClass(), "layoutsFileNames", internalHash);
     }
+
+    private void setupMocksForSelectLayoutTest() throws Exception{
+
+        activity = new ButtonsPresets();
+
+        // Mock a selected checkbox
+        pressedCheckbox = mock(CheckBox.class);
+        when(pressedCheckbox.getText()).thenReturn(label);
+
+        // Mock and set a previously selected checkbox
+        priorSelectedCheckbox = mock(CheckBox.class);
+        selectedField = activity.getClass().getDeclaredField("selected");
+        selectedField.setAccessible(true);
+        selectedField.set(activity, priorSelectedCheckbox);
+
+        // Mock and set the PreferencesEditor
+        mockEditor = mock(SharedPreferences.Editor.class);
+        when(mockEditor.commit()).thenReturn(true);
+        when(mockEditor.putString("ui.buttons.layout", label)).thenReturn(mockEditor);
+
+
+        // Mock prefs to use the mock editor
+        mockPrefs = mock(SharedPreferences.class);
+        when(mockPrefs.edit()).thenReturn(mockEditor);
+
+        // Mock and set the preferences
+        prefsField = activity.getClass().getDeclaredField("prefs");
+        prefsField.setAccessible(true);
+        prefsField.set(activity, mockPrefs);
+
+        // Mock and set the layoutFilenames Hashtable
+        mockHash = mock(Hashtable.class);
+        when(mockHash.get(label)).thenReturn(label);
+        layoutFileNamesField = activity.getClass().getDeclaredField("layoutsFileNames");
+        layoutFileNamesField.setAccessible(true);
+        layoutFileNamesField.set(activity, mockHash);
+    }
+
+    private void callSelectLayout() throws Exception{
+        Method selectLayoutMethod = activity.getClass().getDeclaredMethod("selectLayout", CheckBox.class);
+        selectLayoutMethod.setAccessible(true);
+        selectLayoutMethod.invoke(activity, pressedCheckbox);
+    }
+
+    private void makeAssertionsForSelectLayout() throws Exception{
+        // Make sure the previously selected is unchecked
+        verify(priorSelectedCheckbox).setChecked(false);
+
+        // Make sure the just selected is checked
+        verify(pressedCheckbox).setChecked(true);
+
+        // Make sure selected variable is updated to match the just selected
+        assertEquals(selectedField.get(activity), pressedCheckbox);
+
+        // Make sure the value in SharedPreferences is updated to match the just selected
+        verify(mockEditor).putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, label);
+        verify(mockEditor).commit();
+    }
+
 }
+
