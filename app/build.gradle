@@ -64,7 +64,7 @@ dependencies {
 
     implementation 'org.apache.james:apache-mime4j-core:0.8.3'
 
-    implementation ('org.apache.httpcomponents:httpmime:4.5.11')
+    implementation 'org.apache.httpcomponents:httpmime:4.3.6'
     //implementation 'org.apache.httpcomponents:httpclient-android:4.3.5'
 
     implementation 'org.osmdroid:osmdroid-android:6.1.5'
