@@ -64,8 +64,7 @@ dependencies {
 
     implementation 'org.apache.james:apache-mime4j-core:0.8.3'
 
-    implementation ('org.apache.httpcomponents:httpmime:4.3.6')
-    //implementation ('org.apache.httpcomponents:httpmime:4.5.11')
+    implementation 'org.apache.httpcomponents:httpmime:4.3.6'
     //implementation 'org.apache.httpcomponents:httpclient-android:4.3.5'
 
     implementation 'org.osmdroid:osmdroid-android:6.1.5'
@@ -81,7 +80,6 @@ dependencies {
     // Required for instrumented tests
     androidTestImplementation "com.android.support.test:runner:1.0.2"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
-
     androidTestImplementation "com.android.support.test:rules:1.0.2"
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
