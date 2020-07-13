@@ -24,6 +24,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
  */
 public class TestUtils {
 
+    public static String TESTING_GITHUB_USER = "labexp";
+    public static String TESTING_GITHUB_REPOSITORY = "osmtracker-android-layouts";
+    public static String TESTING_GITHUB_BRANCH = "for_tests";
+
     /**
      * List all the files in a folder and return a list of the names
      */
@@ -131,7 +135,7 @@ public class TestUtils {
     }
 
     public static void setLayoutsTestingRepository(){
-        setGithubRepositorySettings("labexp","osmtracker-android-layouts","for_tests");
+        setGithubRepositorySettings(TESTING_GITHUB_USER,TESTING_GITHUB_REPOSITORY,TESTING_GITHUB_BRANCH);
     }
 
 }
