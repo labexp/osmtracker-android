@@ -73,7 +73,7 @@ public class RepositorySettingsDialogTest {
         onView(withId(R.id.repository_name)).perform(clearText(), typeText(repo));
         onView(withId(R.id.branch_name)).perform(clearText(), typeText(branch));
 
-        onView(withText(getStringResource(R.string.menu_save))).perform(click());
+        onView(withText(getStringResource(R.string.menu_save).toUpperCase())).perform(click());
 
         String expectedMessage = (isValid) ? getStringResource(R.string.github_repository_settings_valid_server) :
                 getStringResource(R.string.github_repository_settings_invalid_server);
