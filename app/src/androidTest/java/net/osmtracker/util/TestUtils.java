@@ -1,6 +1,9 @@
 package net.osmtracker.util;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.test.InstrumentationRegistry;
 
 import net.osmtracker.OSMTracker;
@@ -116,6 +119,19 @@ public class TestUtils {
 
     public static String getStringResource(int resourceId){
         return InstrumentationRegistry.getTargetContext().getResources().getString(resourceId);
+    }
+
+    public static void setGithubRepositorySettings(String user, String repo, String branch){
+        Context context = InstrumentationRegistry.getTargetContext();
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, user);
+        editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repo);
+        editor.putString(OSMTracker.Preferences.KEY_BRANCH_NAME, branch);
+        editor.commit();
+    }
+
+    public static void setLayoutsTestingRepository(){
+        setGithubRepositorySettings("labexp","osmtracker-android-layouts","for_tests");
     }
 
 }

@@ -1,8 +1,6 @@
 package net.osmtracker.layouts;
 
 import android.support.test.espresso.Espresso;
-import android.support.test.espresso.ViewAssertion;
-import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.rule.ActivityTestRule;
 
@@ -24,27 +22,42 @@ import static android.support.test.espresso.matcher.PreferenceMatchers.withTitle
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static junit.framework.TestCase.fail;
 
 public class DownloadLayoutTest {
     @Rule
     public ActivityTestRule<TrackManager> mRule = new ActivityTestRule<>(TrackManager.class);
+
+    @Test
+    public void downloadLayoutTest() {
+        deleteLayoutsDirectory();
+
+        TestUtils.setLayoutsTestingRepository();
+
+        String layoutName = "ABC";
+
+        navigateToAvailableLayouts();
+
+        clickButtonsToDownloadLayout(layoutName);
+
+        makePostDownloadAssertions(layoutName);
+    }
+
 
     public void deleteLayoutsDirectory(){
         try {
             FileUtils.deleteDirectory(TestUtils.getLayoutsDirectory());
         }catch (Exception e){
             e.printStackTrace();
+            fail();
         }
     }
 
 
-    @Test
-    public void downloadLayoutTest() {
-
-        deleteLayoutsDirectory();
-
-        String layoutName = "HIDRANTES";
-
+    /**
+     * Assuming being in TrackManager
+     */
+    public void navigateToAvailableLayouts(){
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
         onView(withText(TestUtils.getStringResource(R.string.menu_settings))).perform(click());
@@ -52,21 +65,19 @@ public class DownloadLayoutTest {
         onData(withTitleText(TestUtils.getStringResource(R.string.prefs_ui_buttons_layout))).perform(scrollTo(), click());
 
         onView(withId(R.id.launch_available)).perform(click());
+    }
 
-        onView(withText(layoutName)).perform(click());
 
-        onView(withText("Español")).perform(click());
-
-        onView(withText(TestUtils.getStringResource(R.string.available_layouts_description_dialog_positive_confirmation))).
-                perform(click());
-
+    /**
+     * Check the new layouts appears as a new option
+     * Select the layout and check its buttons are shown when tracking
+     * @param layoutName
+     */
+    private void makePostDownloadAssertions(String layoutName) {
         Espresso.pressBack();
-
-        // Assertions
 
         // Check the layout appears as a new option in AvailableLayouts
         onView(withText(layoutName.toLowerCase())).check(ViewAssertions.matches(isDisplayed()));
-
 
         // Select the layout
         onView(withText(layoutName.toLowerCase())).perform(click());
@@ -77,7 +88,17 @@ public class DownloadLayoutTest {
         onView(withId(R.id.trackmgr_hint_icon)).perform(click());
 
         // Check the buttons are loaded correctly
-        onView(withText("HIDRANTE PARED MAL ESTADO")).check(ViewAssertions.matches(isDisplayed()));
+        String expectedButtonsLabels[] = new String[]{"A", "B", "C"};
+        for(String label : expectedButtonsLabels)
+            onView(withText(label)).check(ViewAssertions.matches(isDisplayed()));
 
+    }
+
+
+    private void clickButtonsToDownloadLayout(String layoutName) {
+        onView(withText(layoutName)).perform(click());
+
+        onView(withText(TestUtils.getStringResource(R.string.available_layouts_description_dialog_positive_confirmation))).
+                perform(click());
     }
 }
