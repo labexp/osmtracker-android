@@ -2,12 +2,10 @@ package net.osmtracker.layouts;
 
 import android.support.test.espresso.ViewAssertion;
 import android.support.test.rule.ActivityTestRule;
-import android.view.View;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.activity.AvailableLayouts;
-import net.osmtracker.util.TestUtils;
 
 import org.hamcrest.Matcher;
 import org.junit.Rule;
