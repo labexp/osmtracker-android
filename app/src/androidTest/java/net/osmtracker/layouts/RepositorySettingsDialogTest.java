@@ -1,6 +1,8 @@
 package net.osmtracker.layouts;
 
+import android.support.test.espresso.Espresso;
 import android.support.test.espresso.ViewAssertion;
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 
 import net.osmtracker.OSMTracker;
@@ -72,6 +74,10 @@ public class RepositorySettingsDialogTest {
         onView(withId(R.id.github_username)).perform(clearText(), typeText(user));
         onView(withId(R.id.repository_name)).perform(clearText(), typeText(repo));
         onView(withId(R.id.branch_name)).perform(clearText(), typeText(branch));
+
+        // This is required to find the "Save" button that will be clicked next, that button may be
+        // invisible because it's covered by the keyboard on small screens
+        Espresso.closeSoftKeyboard();
 
         onView(withText(getStringResource(R.string.menu_save).toUpperCase())).perform(click());
 
