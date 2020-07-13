@@ -47,8 +47,13 @@ public class RepositorySettingsDialogTest {
 
     @Test
     public void testRepositoryValidation(){
-        checkRepositoryValidity("labexp","osmtracker-android-layouts","master", true);
-        checkRepositoryValidity("labexp","osmtracker-android-layouts","NONE", false);
+        String validUser = OSMTracker.Preferences.VAL_GITHUB_USERNAME;
+        String validRepository = OSMTracker.Preferences.VAL_REPOSITORY_NAME;
+        String validBranch = OSMTracker.Preferences.VAL_BRANCH_NAME;
+        String invalidBranch = "NONE";
+
+        checkRepositoryValidity(validUser,validRepository,validBranch, true);
+        checkRepositoryValidity(validUser,validRepository,invalidBranch, false);
     }
 
 
