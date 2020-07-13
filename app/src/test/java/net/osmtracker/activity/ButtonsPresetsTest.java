@@ -226,7 +226,7 @@ public class ButtonsPresetsTest {
         assertTrue(sharedPrefs instanceof SharedPreferences);
         assertEquals(0, hashtable.size());
         assertNotNull(listener);
-        assertEquals("//osmtracker", storageDir);
+        assertEquals(File.separator+OSMTracker.Preferences.VAL_STORAGE_DIR, storageDir);
     }
 
     private void callInitializeAttributes(ButtonsPresets mockActivity) {
