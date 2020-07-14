@@ -2,7 +2,6 @@ package net.osmtracker.layouts;
 
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.ViewAssertion;
-import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 
 import net.osmtracker.OSMTracker;
@@ -102,9 +101,9 @@ public class RepositorySettingsDialogTest {
      * Check that the text fields values match the expected default ones
      */
     private void checkTextFieldsDefaultValues() {
-        onView(withText(OSMTracker.Preferences.VAL_GITHUB_USERNAME)).check(matches(isDisplayed()));
-        onView(withText(OSMTracker.Preferences.VAL_REPOSITORY_NAME)).check(matches(isDisplayed()));
-        onView(withText(OSMTracker.Preferences.VAL_BRANCH_NAME)).check(matches(isDisplayed()));
+        onView(withId(R.id.repository_name)).check(matches(withText(OSMTracker.Preferences.VAL_REPOSITORY_NAME)));
+        onView(withId(R.id.branch_name)).check(matches(withText(OSMTracker.Preferences.VAL_BRANCH_NAME)));
+        onView(withId(R.id.github_username)).check(matches(withText(OSMTracker.Preferences.VAL_GITHUB_USERNAME)));
     }
 
     /**
