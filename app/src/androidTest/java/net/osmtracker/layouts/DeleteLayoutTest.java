@@ -6,6 +6,8 @@ import android.support.test.rule.GrantPermissionRule;
 
 import net.osmtracker.R;
 import net.osmtracker.activity.ButtonsPresets;
+import net.osmtracker.activity.Preferences;
+import net.osmtracker.util.CustomLayoutsUtils;
 
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -41,6 +43,7 @@ public class DeleteLayoutTest {
     public GrantPermissionRule writePermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
     private static String layoutName = "mock";
+    private static String ISOLanguageCode = "es";
 
     /**
      * Assumes being in the ButtonsPresets activity
@@ -60,7 +63,7 @@ public class DeleteLayoutTest {
     public static void setUp(){
         try {
             deleteDirectory(getLayoutsDirectory());
-            injectMockLayout(layoutName);
+            injectMockLayout(layoutName, ISOLanguageCode);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,10 +93,11 @@ public class DeleteLayoutTest {
         ArrayList<String> filesAfterDeletion = listFiles(getLayoutsDirectory());
 
         // Check the xml file was deleted
-        assertFalse(filesAfterDeletion.contains(layoutName+"_es.xml"));
+        String layoutFileName = CustomLayoutsUtils.createFileName(layoutName, ISOLanguageCode);
+        assertFalse(filesAfterDeletion.contains(layoutFileName));
 
         // Check the icons folder was deleted
-        assertFalse(filesAfterDeletion.contains(layoutName+"_icons"));
+        assertFalse(filesAfterDeletion.contains(layoutName+ Preferences.ICONS_DIR_SUFFIX));
 
     }
 }
