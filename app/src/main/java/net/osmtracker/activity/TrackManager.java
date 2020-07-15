@@ -434,21 +434,6 @@ public class TrackManager extends ListActivity {
 			else exportOneTrack();
 			break;
 
-//		case R.id.trackmgr_contextmenu_export_and_share:
-//			trackId = info.id;
-//			if (!writeExternalStoragePermissionGranted()){
-//				Log.e("DisplayTrackMapWrite", "Permission asked");
-//				ActivityCompat.requestPermissions(this,
-//						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_EXPORT_ONE);
-//			}
-//			else {
-//				exportOneTrack();
-//				// Get track gpx file
-//				File trackGPX = DataHelper.getGPXTrackFile(info.id, getContentResolver(), this);
-//				shareFile(trackGPX);
-//			}
-//			break;
-
 		case R.id.trackmgr_contextmenu_share:
 			prepareAndShareTrack(info.id, this);
 			break;
@@ -558,19 +543,41 @@ public class TrackManager extends ListActivity {
 	// This should be static because contains an AsyncTask
 	// AsyncTasks has to live inside a static environment
 	// That's why the Context is passed as a parameter
-	private static void prepareAndShareTrack(long trackId, Context context) {
+	private static void prepareAndShareTrack(final long trackId, Context context) {
 		// Create temp file that will remain in cache
-		new ExportToTempFileTask(context, trackId, context.getContentResolver()){
+		new ExportToTempFileTask(context, trackId){
 			@Override
 			protected void executionCompleted(){
 				shareFile(this.getTmpFile(), context);
+			}
+
+			@Override
+			protected void onPostExecute(Boolean success) {
+				dialog.dismiss();
+				if (!success) {
+					new AlertDialog.Builder(context)
+							.setTitle(android.R.string.dialog_alert_title)
+							.setMessage(context.getResources()
+									.getString(R.string.trackmgr_prepare_for_share_error)
+									.replace("{0}", Long.toString(trackId)))
+							.setIcon(android.R.drawable.ic_dialog_alert)
+							.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									dialog.dismiss();
+								}
+							})
+							.show();
+				}else{
+					executionCompleted();
+				}
 			}
 		}.execute();
 	}
 
 	/**
 	 * Allows user to share gpx file from storage to another app
-	 * @param trackId track identifier
+	 * @param tmpGPXFile track identifier
 	 */
 	private static void shareFile(File tmpGPXFile, Context context) {
 
@@ -583,7 +590,7 @@ public class TrackManager extends ListActivity {
 		Intent shareIntent = new Intent();
 		shareIntent.setAction(Intent.ACTION_SEND);
 		shareIntent.putExtra(Intent.EXTRA_STREAM, trackUriContent);
-		shareIntent.setType(DataHelper.MIME_GPX_TYPE);
+		shareIntent.setType(DataHelper.MIME_TYPE_GPX);
 		context.startActivity(Intent.createChooser(shareIntent, context.getResources().getText(R.string.trackmgr_contextmenu_share)));
 
 	}

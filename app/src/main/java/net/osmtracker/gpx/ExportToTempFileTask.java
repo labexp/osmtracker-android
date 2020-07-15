@@ -1,11 +1,9 @@
 package net.osmtracker.gpx;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
-import net.osmtracker.db.DataHelper;
 import net.osmtracker.exception.ExportTrackException;
 
 import java.io.File;
@@ -35,19 +33,6 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 		}
 	}
 
-	public ExportToTempFileTask(Context context, long trackId, ContentResolver contentResolver) {
-		super(context, trackId);
-		String trackName = DataHelper.getTrackNameInDB(trackId, contentResolver);
-		try {
-			tmpFile = File.createTempFile(trackName, ".gpx", context.getCacheDir());
-			Log.d(TAG, "Temporary file: " + tmpFile.getAbsolutePath());
-		} catch (IOException ioe) {
-			Log.e(TAG, "Could not create temporary file", ioe);
-			throw new IllegalStateException("Could not create temporary file", ioe);
-		}
-	}
-	
-	
 	@Override
 	protected File getExportDirectory(Date startDate) throws ExportTrackException {
 		return tmpFile.getParentFile();

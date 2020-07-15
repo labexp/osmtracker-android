@@ -41,8 +41,6 @@ import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 
 	private static final String TAG = UploadToOpenStreetMapTask.class.getSimpleName();
-
-	private static final String GPX_MIMETYPE = "application/gpx+xml";
 	
 	/** Upload progress dialog */
 	private ProgressDialog dialog;
@@ -131,7 +129,7 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 			});
 
 			// API parameters
-			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.FILE, new FileBody(gpxFile, filename, DataHelper.MIME_GPX_TYPE, Charset.defaultCharset().name()));
+			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.FILE, new FileBody(gpxFile, filename, DataHelper.MIME_TYPE_GPX, Charset.defaultCharset().name()));
 			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.DESCRIPTION, new StringBody(description, Charset.defaultCharset()));
 			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.TAGS, new StringBody(tags, Charset.defaultCharset()));
 			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.VISIBILITY, new StringBody(visibility.toString().toLowerCase(),Charset.defaultCharset()));
