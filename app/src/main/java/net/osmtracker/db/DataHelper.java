@@ -45,7 +45,7 @@ public class DataHelper {
 	/**
 	 * GPX Files MIME standard for sharing
 	 */
-	public static final String MIME_GPX_TYPE = "application/gpx+xml";
+	public static final String MIME_TYPE_GPX = "application/gpx+xml";
 
 	/**
 	 * APP sign plus FileProvider = authority
