@@ -39,6 +39,9 @@ public class ExportToStorageTask extends ExportTrackTask {
 
 		boolean directoryPerTrack = prefs.getBoolean(OSMTracker.Preferences.KEY_OUTPUT_DIR_PER_TRACK, 
 				OSMTracker.Preferences.VAL_OUTPUT_GPX_OUTPUT_DIR_PER_TRACK);
+
+		boolean gpxFormatShort = prefs.getBoolean(OSMTracker.Preferences.KEY_GPX_FORMAT_SHORT,
+				OSMTracker.Preferences.VAL_GPX_FORMAT_SHORT);
 				
 		// Create the path to the directory to which we will be writing
 		// Trim the directory name, as additional spaces at the end will 

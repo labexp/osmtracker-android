@@ -290,6 +290,9 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 		String compassOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_COMPASS,
 				OSMTracker.Preferences.VAL_OUTPUT_COMPASS);
+		boolean gpxFormatShort = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+				OSMTracker.Preferences.KEY_GPX_FORMAT_SHORT,
+				OSMTracker.Preferences.VAL_GPX_FORMAT_SHORT);
 
 		Log.v(TAG, "write preferences: compass:" + compassOutput);
 
@@ -315,8 +318,13 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 			writer.write("\t</metadata>\n");
 
-			writeWayPoints(writer, cWayPoints, accuracyOutput, fillHDOP, compassOutput);
-			writeTrackPoints(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP, compassOutput);
+			if (gpxFormatShort) {
+				writeWayPoints_short(writer, cWayPoints, accuracyOutput, fillHDOP, compassOutput);
+				writeTrackPoints_short(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP, compassOutput);
+			} else {
+				writeWayPoints_long(writer, cWayPoints, accuracyOutput, fillHDOP, compassOutput);
+				writeTrackPoints_long(context.getResources().getString(R.string.gpx_track_name), writer, cTrackPoints, fillHDOP, compassOutput);
+			}
 			writer.write("</gpx>");
 
 		} finally {
@@ -327,7 +335,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	}
 
 	/**
-	 * Iterates on track points and write them.
+	 * Iterates on track points and write them. Long version, multiple lines per point.
 	 * @param trackName Name of the track (metadata).
 	 * @param fw Writer to the target file.
 	 * @param c Cursor to track points.
@@ -335,7 +343,191 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * @param compass Indicates if and how to write compass heading to the GPX ('none', 'comment', 'extension')
 	 * @throws IOException
 	 */
-	private void writeTrackPoints(String trackName, Writer fw, Cursor c, boolean fillHDOP, String compass) throws IOException {
+	private void writeTrackPoints_long(String trackName, Writer fw, Cursor c, boolean fillHDOP, String compass) throws IOException {
+		// Update dialog every 1%
+		int dialogUpdateThreshold = c.getCount() / 100;
+		if (dialogUpdateThreshold == 0) {
+			dialogUpdateThreshold++;
+		}
+
+		fw.write("\t" + "<trk>" + "\n");
+		fw.write("\t\t" + "<name>" + CDATA_START + trackName + CDATA_END + "</name>" + "\n");
+		if (fillHDOP) {
+			fw.write("\t\t" + "<cmt>"
+					+ CDATA_START
+					+ context.getResources().getString(R.string.gpx_hdop_approximation_cmt)
+					+ CDATA_END
+					+ "</cmt>" + "\n");
+		}
+		fw.write("\t\t" + "<trkseg>" + "\n");
+
+		int i=0;
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(),i++) {
+			StringBuffer out = new StringBuffer();
+			out.append("\t\t\t" + "<trkpt lat=\""
+					+ c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE)) + "\" "
+					+ "lon=\"" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE)) + "\">" + "\n");
+			if (! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ELEVATION))) {
+				out.append("\t\t\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ELEVATION)) + "</ele>" + "\n");
+			}
+			out.append("\t\t\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
+
+			if(fillHDOP && ! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY))) {
+				out.append("\t\t\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
+			}
+			if(OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) && !c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
+				out.append("\t\t\t\t" + "<cmt>"+CDATA_START+"compass: " +
+						c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))+
+						"\n\t\t\t\t\tcompAccuracy: " +
+						c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY))+
+						CDATA_END+"</cmt>"+"\n");
+			}
+
+			String buff = "";
+			if(! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED))) {
+				buff += "\t\t\t\t\t" + "<speed>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED)) + "</speed>" + "\n";
+			}
+			if(OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) && !c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
+				buff += "\t\t\t\t\t" + "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>" + "\n";
+				buff += "\t\t\t\t\t" + "<compass_accuracy>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n";
+			}
+			if(! buff.equals("")) {
+				out.append("\t\t\t\t" + "<extensions>\n");
+				out.append(buff);
+				out.append("\t\t\t\t" + "</extensions>\n");
+			}
+
+			out.append("\t\t\t" + "</trkpt>" + "\n");
+			fw.write(out.toString());
+
+			if (i % dialogUpdateThreshold == 0) {
+				publishProgress((long) dialogUpdateThreshold);
+			}
+		}
+
+		fw.write("\t\t" + "</trkseg>" + "\n");
+		fw.write("\t" + "</trk>" + "\n");
+	}
+
+	/**
+	 * Iterates on way points and write them. Long version, multiple lines per point.
+	 * @param fw Writer to the target file.
+	 * @param c Cursor to way points.
+	 * @param accuracyInfo Constant describing how to include (or not) accuracy info for way points.
+	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
+	 * @param compass Indicates if and how to write compass heading to the GPX ('none', 'comment', 'extension')
+	 * @throws IOException
+	 */
+	private void writeWayPoints_long(Writer fw, Cursor c, String accuracyInfo, boolean fillHDOP, String compass) throws IOException {
+
+		// Update dialog every 1%
+		int dialogUpdateThreshold = c.getCount() / 100;
+		if (dialogUpdateThreshold == 0) {
+			dialogUpdateThreshold++;
+		}
+
+		// Label for meter unit
+		String meterUnit = context.getResources().getString(R.string.various_unit_meters);
+		// Word "accuracy"
+		String accuracy = context.getResources().getString(R.string.various_accuracy);
+
+		int i=0;
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(), i++) {
+			StringBuffer out = new StringBuffer();
+			out.append("\t" + "<wpt lat=\""
+					+ c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE)) + "\" "
+					+ "lon=\"" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE)) + "\">" + "\n");
+			if (! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ELEVATION))) {
+				out.append("\t\t" + "<ele>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ELEVATION)) + "</ele>" + "\n");
+			}
+			out.append("\t\t" + "<time>" + pointDateFormatter.format(new Date(c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_TIMESTAMP)))) + "</time>" + "\n");
+
+			String name = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
+
+			if (! OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_NONE.equals(accuracyInfo) && ! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY))) {
+				// Outputs accuracy info for way point
+				if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_NAME.equals(accuracyInfo)) {
+					// Output accuracy with name
+					out.append("\t\t" + "<name>"
+							+ CDATA_START
+							+ name
+							+ " (" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) + meterUnit + ")"
+							+ CDATA_END
+							+ "</name>" + "\n");
+					if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) &&
+							! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
+						out.append("\t\t"+ "<cmt>" + CDATA_START + "compass: " + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) +
+								"\n\t\t\tcompass accuracy: " + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + CDATA_END + "</cmt>\n");
+					}
+				} else if (OSMTracker.Preferences.VAL_OUTPUT_ACCURACY_WPT_CMT.equals(accuracyInfo)) {
+					// Output accuracy in separate tag
+					out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
+					if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) &&
+							! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
+						out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) + meterUnit +
+								"\n\t\t\t compass heading: " + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) +
+								"deg\n\t\t\t compass accuracy: " + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) +CDATA_END + "</cmt>" + "\n");
+					} else {
+						out.append("\t\t" + "<cmt>" + CDATA_START + accuracy + ": " + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) + meterUnit + CDATA_END + "</cmt>" + "\n");
+					}
+				} else {
+					// Unknown value for accuracy info, shouldn't occur but who knows ?
+					// See issue #68. Output at least the name just in case.
+					out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
+				}
+			} else {
+				// No accuracy info requested, or available
+				out.append("\t\t" + "<name>" + CDATA_START + name + CDATA_END + "</name>" + "\n");
+				if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_COMMENT.equals(compass) &&
+						! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
+					out.append("\t\t"+ "<cmt>" + CDATA_START + "compass: " + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) +
+							"\n\t\t\tcompass accuracy: " + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + CDATA_END + "</cmt>\n");
+				}
+			}
+
+			String link = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_LINK));
+			if (link != null) {
+				out.append("\t\t" + "<link href=\"" + URLEncoder.encode(link) + "\">" + "\n");
+				out.append("\t\t\t" + "<text>" + link +"</text>\n");
+				out.append("\t\t" + "</link>" + "\n");
+			}
+
+			if (! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_NBSATELLITES))) {
+				out.append("\t\t" + "<sat>" + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_NBSATELLITES)) + "</sat>" + "\n");
+			}
+
+			if(fillHDOP && ! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY))) {
+				out.append("\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
+			}
+
+			if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) &&
+					! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
+				out.append("\t\t<extensions>\n");
+				out.append("\t\t\t"+ "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>\n");
+				out.append("\t\t\t" + "<compass_accuracy>" + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n");
+				out.append("\t\t</extensions>\n");
+			}
+
+			out.append("\t" + "</wpt>" + "\n");
+
+			fw.write(out.toString());
+
+			if (i % dialogUpdateThreshold == 0) {
+				publishProgress((long) dialogUpdateThreshold);
+			}
+		}
+	}	
+	
+	/**
+	 * Iterates on track points and write them. Short version, one line per point.
+	 * @param trackName Name of the track (metadata).
+	 * @param fw Writer to the target file.
+	 * @param c Cursor to track points.
+	 * @param fillHDOP Indicates whether fill <hdop> tag with approximation from location accuracy.
+	 * @param compass Indicates if and how to write compass heading to the GPX ('none', 'comment', 'extension')
+	 * @throws IOException
+	 */
+	private void writeTrackPoints_short(String trackName, Writer fw, Cursor c, boolean fillHDOP, String compass) throws IOException {
 		// Update dialog every 1%
 		int dialogUpdateThreshold = c.getCount() / 100;
 		if (dialogUpdateThreshold == 0) {
@@ -402,7 +594,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	}
 
 	/**
-	 * Iterates on way points and write them.
+	 * Iterates on way points and write them. Short version, one line per point.
 	 * @param fw Writer to the target file.
 	 * @param c Cursor to way points.
 	 * @param accuracyInfo Constant describing how to include (or not) accuracy info for way points.
@@ -410,7 +602,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * @param compass Indicates if and how to write compass heading to the GPX ('none', 'comment', 'extension')
 	 * @throws IOException
 	 */
-	private void writeWayPoints(Writer fw, Cursor c, String accuracyInfo, boolean fillHDOP, String compass) throws IOException {
+	private void writeWayPoints_short(Writer fw, Cursor c, String accuracyInfo, boolean fillHDOP, String compass) throws IOException {
 
 		// Update dialog every 1%
 		int dialogUpdateThreshold = c.getCount() / 100;

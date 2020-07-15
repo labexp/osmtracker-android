@@ -77,6 +77,8 @@
 	<string name="prefs_storage_dir_hint">Effective for the next track (not the current one)</string>
 	<string name="prefs_output_one_dir_per_track">One directory per track</string>
 	<string name="prefs_output_one_dir_per_track_summary">Save each track and associated files to its own directory</string>
+	<string name="prefs_gpx_format_type">Short format</string>
+	<string name="prefs_gpx_format_type_summary">One line per track- or waypoint</string>
 	<string name="prefs_output_filename">Filename for named tracks</string>
 	<string name="prefs_output_filename_summary">Pattern for filename if the track has a name</string>
 	<string-array name="prefs_output_filename_keys">
