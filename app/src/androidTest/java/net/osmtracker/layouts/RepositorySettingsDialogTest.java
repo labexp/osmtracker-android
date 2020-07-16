@@ -78,7 +78,7 @@ public class RepositorySettingsDialogTest {
         // invisible because it's covered by the keyboard on small screens
         Espresso.closeSoftKeyboard();
 
-        onView(withText(getStringResource(R.string.menu_save).toUpperCase())).perform(click());
+        onView(withText(getStringResource(R.string.menu_save))).perform(click());
 
         String expectedMessage = (isValid) ? getStringResource(R.string.github_repository_settings_valid_server) :
                 getStringResource(R.string.github_repository_settings_invalid_server);
