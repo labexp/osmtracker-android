@@ -23,14 +23,20 @@ public class URLValidatorTask extends AsyncTask<String, Integer, Boolean>{
          * params[1] = Repository Name
          * params[2] = Branch Name
          */
-        String server_url = URLCreator.createTestURL(params[0], params[1], params[2]);
+        String githubUsername = params[0];
+        String repoName = params[1];
+        String branchName = params[2];
+        return customLayoutsRepoValidator(githubUsername, repoName, branchName);
+    }
+
+    protected boolean customLayoutsRepoValidator(String githubUsername, String repoName, String branchName){
+        String server_url = URLCreator.createTestURL(githubUsername, repoName, branchName);
         boolean status;
         try {
             URL url = new URL(server_url);
             // Open Url Connection
             HttpsURLConnection.setDefaultSSLSocketFactory(new TLSSocketFactory());
             HttpsURLConnection httpConnection = (HttpsURLConnection) url.openConnection();
-
 
             //If Connection response is OK then change the status to true
             if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {

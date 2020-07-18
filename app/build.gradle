@@ -58,6 +58,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
 }
 
 dependencies {
