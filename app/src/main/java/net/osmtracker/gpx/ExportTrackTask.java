@@ -379,6 +379,9 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 			}
 
 			String buff = "";
+			if(! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY))) {
+				buff += "\t\t\t\t\t<accuracy>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) + "</accuracy>\n";
+			}
 			if(! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED))) {
 				buff += "\t\t\t\t\t" + "<speed>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED)) + "</speed>" + "\n";
 			}
