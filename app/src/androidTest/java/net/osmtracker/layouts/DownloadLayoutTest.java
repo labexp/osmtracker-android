@@ -98,7 +98,11 @@ public class DownloadLayoutTest {
     private void clickButtonsToDownloadLayout(String layoutName) {
         onView(withText(layoutName)).perform(click());
 
+        // TODO: catch the languages available dialog that shows up when the cell phone is not in EN.
+
         onView(withText(TestUtils.getStringResource(R.string.available_layouts_description_dialog_positive_confirmation))).
                 perform(click());
+
+        TestUtils.checkToastIsShownWith(TestUtils.getStringResource(R.string.available_layouts_successful_download));
     }
 }

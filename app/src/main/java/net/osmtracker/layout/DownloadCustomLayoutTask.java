@@ -65,20 +65,23 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
             // download layout
             createDir(layoutPath);
             downloadFile(layoutURL,layoutPath +File.separator + CustomLayoutsUtils.createFileName(layoutName, iso));
-            // downloading icons
-            createDir(iconsPath);
-            HashMap<String, String> iconsInfo = getIconsHash(layoutName);
-            Set<String> keys = iconsInfo.keySet();
-            String currentKey;
-            String currentValue;
-            for(int i=0 ; i<keys.toArray().length ; i++){
-                currentKey= (String)keys.toArray()[i];
-                currentValue = iconsInfo.get(currentKey);
-                downloadFile(currentValue, iconsPath + File.separator + currentKey);
-            }
             status = true;
+
+            // downloading icons
+            HashMap<String, String> iconsInfo = getIconsHash(layoutName);
+            if (iconsInfo != null) {
+                createDir(iconsPath);
+                Set<String> keys = iconsInfo.keySet();
+                String currentKey;
+                String currentValue;
+                for(int i=0 ; i<keys.toArray().length ; i++){
+                    currentKey= (String)keys.toArray()[i];
+                    currentValue = iconsInfo.get(currentKey);
+                    downloadFile(currentValue, iconsPath + File.separator + currentKey);
+                }
+            }
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            Log.e(TAG, throwable.toString());
             status = false;
         }
         return status;
@@ -156,7 +159,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString());
             return null;
         }
 
