@@ -273,23 +273,20 @@ public class ButtonsPresets extends Activity {
                         String fileName = layoutsFileNames.get(checkboxHeld.getText());
                         String rootDir = storageDir + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator;
                         File fileToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + fileName);
+                        String iconDirName = fileName.substring(0, fileName.length() - CustomLayoutsUtils.LAYOUT_EXTENSION_ISO.length())
+                                + Preferences.ICONS_DIR_SUFFIX;
+                        File iconDirToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + iconDirName);
 
-                        if(FileSystemUtils.delete(fileToDelete, false)){
-                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_successful_delete), Toast.LENGTH_SHORT).show();
+                        boolean successfulDeletion = FileSystemUtils.delete(fileToDelete, false);
 
-                            String iconDirName = fileName.substring(0, fileName.length() - CustomLayoutsUtils.LAYOUT_EXTENSION_ISO.length())
-                                    + Preferences.ICONS_DIR_SUFFIX;
-                            File iconDirToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + iconDirName);
+                        if(iconDirToDelete.exists())
+                            successfulDeletion &= FileSystemUtils.delete(iconDirToDelete, true);
 
-                            if(FileSystemUtils.delete(iconDirToDelete, true)){
-                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_icon_directory_deleted), Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_icon_directory_does_not_exist), Toast.LENGTH_SHORT).show();
-                            }
+                        int messageToShowId = (successfulDeletion) ? R.string.buttons_presets_successful_delete :
+                                R.string.buttons_presets_unsuccessful_delete;
 
-                        }else{
-                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.buttons_presets_unsuccessful_delete), Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(getApplicationContext(), getResources().getString(messageToShowId), Toast.LENGTH_SHORT).show();
+
                         //reload the activity
                         refreshActivity();
                     }
@@ -305,7 +302,11 @@ public class ButtonsPresets extends Activity {
         return super.onContextItemSelected(item);
     }
 
-    //this method obtain the iso of any layout file name
+    /**
+     * This method obtain the iso of any layout file name
+     * Assumes that layoutName looks like a filename => name_xx.ext
+     * Example: given "foo_es.xml" return only "es"
+     */
     private String getIso(String layoutName){
         String tmp = layoutName.substring(0, layoutName.length() - Preferences.LAYOUT_FILE_EXTENSION.length());
         String iso = "";
