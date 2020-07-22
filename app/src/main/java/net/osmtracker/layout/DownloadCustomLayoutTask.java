@@ -65,7 +65,6 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
             // download layout
             createDir(layoutPath);
             downloadFile(layoutURL,layoutPath +File.separator + CustomLayoutsUtils.createFileName(layoutName, iso));
-            status = true;
 
             // downloading icons
             HashMap<String, String> iconsInfo = getIconsHash(layoutName);
@@ -80,6 +79,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
                     downloadFile(currentValue, iconsPath + File.separator + currentKey);
                 }
             }
+            status = true;
         } catch (Throwable throwable) {
             Log.e(TAG, throwable.toString());
             status = false;

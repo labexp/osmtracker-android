@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import net.osmtracker.OSMTracker;
 
@@ -22,7 +23,7 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({PreferenceManager.class, Environment.class})
+@PrepareForTest({PreferenceManager.class, Environment.class, Log.class})
 public class DownloadCustomLayoutTaskTest {
 
     DownloadCustomLayoutTask downloadCustomLayoutTask;
@@ -69,6 +70,8 @@ public class DownloadCustomLayoutTaskTest {
         // external storage is writeable
         mockStatic(Environment.class);
         when(Environment.getExternalStorageState()).thenReturn(Environment.MEDIA_MOUNTED);
+
+       mockStatic(Log.class);
 
     }
 
