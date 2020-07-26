@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.osmtracker"
     android:installLocation="auto"
-    android:versionCode="49"
-    android:versionName="1.0.0-beta">
+    android:versionCode="50"
+    android:versionName="1.0.0-beta2">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
