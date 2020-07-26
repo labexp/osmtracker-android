@@ -374,8 +374,8 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 						c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY))+
 						CDATA_END+"</cmt>"+"\n");
 			}
-
 			String buff = "";
+
 			if(! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED))) {
 				buff += "\t\t\t\t\t" + "<speed>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED)) + "</speed>" + "\n";
 			}
@@ -383,6 +383,13 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				buff += "\t\t\t\t\t" + "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>" + "\n";
 				buff += "\t\t\t\t\t" + "<compass_accuracy>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n";
 			}
+
+			if (! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE))) { //Checking if the database contains atmospheric_pressure data
+				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
+				String pressure_formatted = String.format("%.1f", pressure);
+				buff += "\t\t\t\t\t" + "<baro>" + pressure_formatted + "</baro>" + "\n";
+			}
+
 			if(! buff.equals("")) {
 				out.append("\t\t\t\t" + "<extensions>\n");
 				out.append(buff);
@@ -492,12 +499,23 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				out.append("\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
 			}
 
-			if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) &&
-					! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
-				out.append("\t\t<extensions>\n");
-				out.append("\t\t\t"+ "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>\n");
-				out.append("\t\t\t" + "<compass_accuracy>" + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n");
-				out.append("\t\t</extensions>\n");
+			String buff = "";
+
+			if(OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) && !c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
+				buff += "\t\t\t\t\t" + "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>" + "\n";
+				buff += "\t\t\t\t\t" + "<compass_accuracy>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n";
+			}
+
+			if (! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE))) { //Checking if the database contains atmospheric_pressure data
+				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
+				String pressure_formatted = String.format("%.1f", pressure);
+				buff += "\t\t\t\t\t" + "<baro>" + pressure_formatted + "</baro>" + "\n";
+			}
+
+			if(! buff.equals("")) {
+				out.append("\t\t\t\t" + "<extensions>\n");
+				out.append(buff);
+				out.append("\t\t\t\t" + "</extensions>\n");
 			}
 
 			out.append("\t" + "</wpt>" + "\n");
