@@ -60,6 +60,7 @@ public class TrackManager extends ListActivity {
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ALL = 1;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ONE = 2;
 	final private int RC_GPS_PERMISSION = 5;
+	final private int RC_WRITE_PERMISSIONS_SHARE = 6;
 
 
 	MenuItem trackSelected;
@@ -435,7 +436,14 @@ public class TrackManager extends ListActivity {
 			break;
 
 		case R.id.trackmgr_contextmenu_share:
-			prepareAndShareTrack(info.id, this);
+			trackId = info.id;
+			if (!writeExternalStoragePermissionGranted()){
+				Log.e("Share GPX", "Permission asked");
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSIONS_SHARE);
+			} else {
+				prepareAndShareTrack(trackId, this);
+			}
 			break;
 
 		case R.id.trackmgr_contextmenu_osm_upload:
@@ -723,6 +731,24 @@ public class TrackManager extends ListActivity {
 					//TODO: add an informative message.
 					Log.w(TAG, "Permission not granted");
 					Toast.makeText(this, "To display the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+			case RC_WRITE_PERMISSIONS_SHARE: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					Log.e("Result", "Permission granted");
+					// permission was granted, yay!
+					displayTrack(trackSelected);
+					prepareAndShareTrack(trackId, this);
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					//TODO: add an informative message.
+					Log.w(TAG, "Permission not granted");
+					Toast.makeText(this, "To share the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
