@@ -41,19 +41,18 @@
     <string name="trackmgr_contextmenu_resume">Resume tracking</string>
     <string name="trackmgr_contextmenu_delete">Delete</string>
     <string name="trackmgr_contextmenu_export">Export as GPX</string>
-	<string name="trackmgr_contextmenu_share">Share GPX</string>
-    <string name="trackmgr_contextmenu_export_and_share">Export as GPX and share</string>
-	<string name="trackmgr_contextmenu_osm_upload">Upload to OpenStreetMap</string>
-	<string name="trackmgr_contextmenu_display">Display</string>
-	<string name="trackmgr_contextmenu_details">Details</string>
-	<string name="trackmgr_contextmenu_title">Track #{0}</string>
-	<string name="trackmgr_delete_confirm">Track #{0} will be deleted</string>
-	<string name="trackmgr_deleteall_confirm">All tracks will be deleted. Are you sure?</string>
-	<string name="trackmgr_exporting">Exporting track #{0}&#8230;</string>
-	<string name="trackmgr_exporting_prepare">Preparing export&#8230;</string>
-	<string name="trackmgr_export_error">Unable to export track: {0}</string>
-	<string name="trackmgr_exportall_confirm">All tracks will be exported, which could take a long time. Are you sure?</string>
-	<string name="trackmgr_prepare_for_share_error">Unable to process the track: {0}</string>
+    <string name="trackmgr_contextmenu_share">Share GPX</string>
+    <string name="trackmgr_contextmenu_osm_upload">Upload to OpenStreetMap</string>
+    <string name="trackmgr_contextmenu_display">Display</string>
+    <string name="trackmgr_contextmenu_details">Details</string>
+    <string name="trackmgr_contextmenu_title">Track #{0}</string>
+    <string name="trackmgr_delete_confirm">Track #{0} will be deleted</string>
+    <string name="trackmgr_deleteall_confirm">All tracks will be deleted. Are you sure?</string>
+    <string name="trackmgr_exporting">Exporting track #{0}&#8230;</string>
+    <string name="trackmgr_exporting_prepare">Preparing export&#8230;</string>
+    <string name="trackmgr_export_error">Unable to export track: {0}</string>
+    <string name="trackmgr_exportall_confirm">All tracks will be exported, which could take a long time. Are you sure?</string>
+    <string name="trackmgr_prepare_for_share_error">Unable to process the track: {0}</string>
 
     <!-- Track Detail -->
     <string name="trackdetail">Track Details</string>
@@ -164,10 +163,10 @@
     <string name="buttons_presets_unsuccessful_update">Layout was not updated, try again later</string>
     <string name="buttons_presets_delete_message">Are you sure to delete the {0} layout?</string>
     <string name="buttons_presets_delete_positive_confirmation">Yes</string>
-    <string name="buttons_presets_successful_delete">The file was deleted successfully</string>
+    <string name="buttons_presets_successful_delete">The layout was deleted successfully</string>
     <string name="buttons_presets_icon_directory_deleted">The icon directory was deleted successfully</string>
     <string name="buttons_presets_icon_directory_does_not_exist">This file didn\'t have any icon directory associated</string>
-    <string name="buttons_presets_unsuccessful_delete">The file could not be delete</string>
+    <string name="buttons_presets_unsuccessful_delete">The layout could not be deleted</string>
 
     <!--Available Layouts messages -->
     <string name="available_layouts_connection_error">Error: unable to connect to the Internet</string>
