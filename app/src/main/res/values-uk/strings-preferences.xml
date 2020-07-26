@@ -9,8 +9,8 @@
   <string name="prefs_check_gps_startup_summary">Перевіряти статус GPS при запуску, пропонувати включити</string>
   <string name="prefs_gps_ignore_clock">Ігнорувати час GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Ігнорувати час GPS  та використовувати час телефону для часових міток</string>
-  <string name="prefs_gps_logging_interval">Інтервал журналювання GPS</string>
-  <string name="prefs_gps_logging_interval_summary">Задайте 0 для мінімально можливого (прискорює розряд батарейки)</string>
+  <string name="prefs_gps_logging_interval">Інтервал запису точок GPS</string>
+  <string name="prefs_gps_logging_interval_summary">Задайте 0 для мінімально можливого (виснажує батарею)</string>
   <string name="prefs_gps_logging_interval_seconds">секунд(и)</string>
   <string name="prefs_ui">Інтерфейс</string>
   <string name="prefs_ui_picture_source">Типове джерело зображення</string>
@@ -20,9 +20,14 @@
     <item>Галерея</item>
     <item>Завжди запитувати</item>
   </string-array>
-  <string name="prefs_ui_buttons_layout">Розміщення кнопок</string>
+  <string name="prefs_ui_buttons_layout">Шаблони кнопок</string>
   <string name="prefs_ui_buttons_layout_summary">Виберіть варіант розміщення кнопок (див. док.)</string>
+  <string name="prefs_ui_buttons_layout_default_section">ТИПОВИЙ МАКЕТ</string>
   <string name="prefs_ui_buttons_layout_defaut">Типово</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">ЗАВАНТАЖЕНИЙ МАКЕТ</string>
+  <string name="prefs_ui_buttons_layout_empty_section">У вас немає завантажених макетів</string>
+  <string name="prefs_ui_available_layout">Доступні Макети</string>
+  <string name="prefs_ui_github_repository_settings">Налаштування репозиторію Github</string>
   <string name="prefs_ui_orientation">Орієнтація</string>
   <string name="prefs_ui_orientation_summary">Переважна орієнтація екрану з кнопками</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -33,7 +38,7 @@
   <string name="prefs_voicerec_duration">Тривалість запису аудіо</string>
   <string name="prefs_voicerec_duration_seconds">секунд(и)</string>
   <string name="prefs_theme">Основна тема оформлення</string>
-  <string name="prefs_theme_summary">Зміни будуть діяти після перезавантаження програми</string>
+  <string name="prefs_theme_summary">Перезапустіть застосунок, щоб зміни вступили в дію</string>
   <string-array name="prefs_theme_keys">
     <item>Типова у системі</item>
     <item>Типова у системі(темна)</item>
@@ -41,16 +46,16 @@
     <item>Високий контраст</item>
   </string-array>
   <string name="prefs_display_always_on">Не вимикати екран</string>
-  <string name="prefs_display_always_on_summary">Екран завжди буде включений під час запису шляху. Вимкніть для економії заряду батареї</string>
-  <string name="prefs_displaytrack_osm">Основна карта</string>
-  <string name="prefs_displaytrack_osm_summary">Відображати карти OpenStreetMap при відображенні шляху. Вимагає з\'єднання з інтернетом</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Завжди відображати основу OpenStreetMap? Вимагає з\'єднання з інтернетом.</string>
+  <string name="prefs_display_always_on_summary">Екран завжди буде увімкнений під час запису треку. Вимкніть для економії заряду батареї</string>
+  <string name="prefs_displaytrack_osm">Фонова мапа</string>
+  <string name="prefs_displaytrack_osm_summary">Показує трек поверх мапи OpenStreetMap. Вимагає з\'єднання з інтернетом</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Завжди показувати фонову мапу OpenStreetMap? Вимагає з\'єднання з інтернетом.</string>
   <string name="prefs_output">Налаштування GPX</string>
-  <string name="prefs_storage_dir">Каталог зовнішнього носія (SD)</string>
-  <string name="prefs_storage_dir_hint">Буде використовуватися для запису наступного шляху (не для поточного)</string>
-  <string name="prefs_output_one_dir_per_track">Окрема тека для шляху</string>
-  <string name="prefs_output_one_dir_per_track_summary">Зберігати кожен шлях і пов\'язані файли в окрему папку</string>
-  <string name="prefs_output_filename">Ім\'я файлів для названих шляхів</string>
+  <string name="prefs_storage_dir">Тека зовнішнього носія (SD)</string>
+  <string name="prefs_storage_dir_hint">Буде використовуватися для запису наступного треку (не для поточного)</string>
+  <string name="prefs_output_one_dir_per_track">Окрема тека для кожного треку</string>
+  <string name="prefs_output_one_dir_per_track_summary">Зберігати кожен трек і пов\'язані файли в окрему теку</string>
+  <string name="prefs_output_filename">Ім\'я файлів для іменованих треків</string>
   <string name="prefs_output_filename_summary">Шаблон імені файлу</string>
   <string-array name="prefs_output_filename_keys">
     <item> Ім\'я треку </item>
@@ -64,14 +69,14 @@
     <item> З ім\'ям дорожньої точки </item>
     <item> У коментар дорожньої точки </item>
   </string-array>
-  <string name="prefs_output_gpx_hdop_approximation">Використовувати апроксимацію HDOP</string>
-  <string name="prefs_output_gpx_hdop_approximation_summary">Заповнювати тег HDOP в GPX файлі апроксимованим значенням точності</string>
+  <string name="prefs_output_gpx_hdop_approximation">Використовувати усереднення HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Заповнювати тег HDOP в GPX файлі усередненим значенням точності</string>
   <string name="prefs_sound_enabled">Увімкнути звук</string>
-  <string name="prefs_sound_enabled_summary">Грати звук в момент початку і закінчення запису аудіо</string>
+  <string name="prefs_sound_enabled_summary">Відтворювати сигнал в момент початку і закінчення запису аудіо</string>
   <string name="prefs_osm_clear_oauth_data">Скинути облікові дані OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Видалити облікові дані доступу до OSM і примусити OSMTracker запросити їх знову.</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Потрібно буде заново авторизувати OSMTracker, щоб завантажувати шляхи. Ви впевнені?</string>
-  <string name="prefs_map_tile">Постачальник основи карти</string>
+  <string name="prefs_map_tile">Постачальник фонової мапи</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -83,6 +88,6 @@
     <item>у коментарі</item>
     <item>у розширенні</item>
   </string-array>
-  <string name="prefs_compass_heading">Напрямок експорту компасу</string>
+  <string name="prefs_compass_heading">Експортувати напрямок компасу</string>
   <string name="prefs_compass_heading_summary">Визначає, коли і як дані компасу можна експортувати у файл GPX</string>
 </resources>

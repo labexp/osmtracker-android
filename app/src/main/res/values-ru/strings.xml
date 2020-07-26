@@ -160,4 +160,5 @@
   <string name="github_repository_settings_custom_checkbox">Пользовательские</string>
   <string name="github_repository_settings_username">Логин Github:</string>
   <string name="github_repository_settings_repository_name">Имя репозитория:</string>
+  <string name="github_repository_settings_invalid_server">Недействительный репозиторий GitHub</string>
 </resources>

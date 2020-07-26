@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">הגדרות לחצנים</string>
   <string name="prefs_ui_buttons_layout_summary">בחר רשימת לחצנים מותאמת אישית (ראה תיעוד)</string>
+  <string name="prefs_ui_buttons_layout_default_section">עיצוב מקורי</string>
   <string name="prefs_ui_buttons_layout_defaut">ברירת מחדל</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">עיצוב שהורד</string>
+  <string name="prefs_ui_buttons_layout_empty_section">לא הורדת קבצי עיצוב</string>
+  <string name="prefs_ui_available_layout">עיצובים זמינים</string>
+  <string name="prefs_ui_github_repository_settings">הגדרות GitHub Repository</string>
   <string name="prefs_ui_orientation">כיוון</string>
   <string name="prefs_ui_orientation_summary">כיוון מועדף של המסך</string>
   <string-array name="prefs_ui_orientation_options_keys">

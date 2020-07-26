@@ -3,18 +3,28 @@
   <!--Generic strings-->
   <string name="app_name">متتبع أواسام للأندرويد™</string>
   <string name="app_short_name">متتبع أواسام</string>
+  <string name="app_description">في انتظار ثبات GPS لتفعيل الأزرار...</string>
   <!--TrackLogger-->
+  <string name="tracklogger">مسجل المسار</string>
+  <string name="tracklogger_waiting_gps">في انتظار تثبيت GPS لتفعيل الأزرار...</string>
   <string name="tracklogger_voicerec_title">تسجيل صوتي</string>
+  <string name="tracklogger_voicerec_text">تسجيل مقطع صوتي لـ {0}ثا.</string>
   <string name="tracklogger_voicerec_stop">إيقاف</string>
   <string name="tracklogger_btnBack">العودة</string>
+  <string name="tracklogger_tracked">تتبع:</string>
   <string name="tracklogger_gps_disabled">GPS تعطيل</string>
+  <string name="tracklogger_gps_disabled_hint">GPS معطل. هل تريد تشغيله؟</string>
+  <string name="tracklogger_choose_gallery_camera">عارض الصور أم الكاميرا؟</string>
   <string name="tracklogger_camera">أخذ صورة بآلة التصوير</string>
   <string name="tracklogger_gallery">إختيار صورة من المعرض</string>
   <!--Waypoint List-->
+  <string name="wplist">قائمة نقاط المسار</string>
   <string name="wplist_latitude">خط عرض :</string>
   <string name="wplist_longitude">خط طول :</string>
   <string name="wplist_elevation">الإرتفاع :</string>
   <string name="wplist_accuracy">الدقة :</string>
+  <string name="wplist_compass">اتجاه البوصلة:</string>
+  <string name="wplist_compass_accuracy">دقة البوصلة:</string>
   <!--Track Manager-->
   <string name="trackmgr">مدير المسار</string>
   <string name="trackmgr_tracklist">قائمة تتبع:</string>
@@ -24,6 +34,7 @@
   <string name="trackmgr_contextmenu_stop">إيقاف تقفِّي المسار</string>
   <string name="trackmgr_contextmenu_resume">مواصلة تقفِّي المسار</string>
   <string name="trackmgr_contextmenu_delete">حذف</string>
+  <string name="trackmgr_contextmenu_export">صدر إلى GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">إرفع إلى خريطة الشارع المفتوح</string>
   <string name="trackmgr_contextmenu_display">العرض</string>
   <string name="trackmgr_contextmenu_details">تفاصيل</string>
@@ -32,10 +43,15 @@
   <string name="trackdetail">تفاصيل المسار :</string>
   <string name="trackdetail_startdate">لحظة البداية :</string>
   <string name="trackdetail_enddate">لحظة النهاية :</string>
+  <string name="trackdetail_startloc">يبدأ عند:</string>
+  <string name="trackdetail_endloc">ينتهي عند:</string>
+  <string name="trackdetail_btn_export">صدر إلى GPX</string>
   <string name="trackdetail_description">الوصف</string>
   <string name="trackdetail_tags">الأوسمة (فاصلة بعد كل وسم)</string>
   <string name="osm_visibility_private">خاص</string>
   <string name="osm_visibility_public">عمومي</string>
+  <string name="osm_visibility_trackable">قابل للتتبع</string>
+  <string name="osm_visibility_identifiable">قابل للتعريف</string>
   <!--OSM upload-->
   <string name="osm_upload">إرفع إلى خريطة الشارع المفتوح</string>
   <!--GPS Status & record bar-->
@@ -50,6 +66,7 @@
   <string name="menu_deletetracks">حذف جميع المسارات</string>
   <string name="menu_save">احتفاظ</string>
   <string name="menu_cancel">إلغاء</string>
+  <string name="menu_export">صدر إلى GPX</string>
   <string name="menu_osm_upload">إرفع إلى خريطة الشارع المفتوح</string>
   <!--Errors-->
   <!--GPX-->
@@ -62,9 +79,11 @@
   <string name="notification_text">إضغط هنا لعرض الشاشة الرئسية</string>
   <!--Display track-->
   <string name="displaytrack">عرض المسار</string>
+  <string name="displaytrack_north">ش</string>
   <!--Track detail-->
   <string name="trackdetail_save">احتفاظ</string>
   <!--Various-->
+  <string name="various_unit_meters">م</string>
   <string name="various_accuracy">الدقة</string>
   <string name="various_accuracy_with_sats">الدقة {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
@@ -73,6 +92,19 @@
   <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_delete">احذف</string>
+  <string name="buttons_presets_updating_layout">تحديث...</string>
+  <string name="buttons_presets_delete_positive_confirmation">نعم</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_description_dialog_positive_confirmation">نزل</string>
+  <string name="available_layouts_downloading_dialog">تنزيل...</string>
+  <string name="available_layouts_null_response_received">خطأ عند استرجاع البيانات من الخادم</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">افتراضي</string>
+  <string name="github_repository_settings_custom_checkbox">مخصص</string>
+  <string name="github_repository_settings_username">اسم مستخدم Github:</string>
+  <string name="github_repository_settings_repository_name">اسم المستودع:</string>
+  <string name="github_repository_settings_branch_name">اسم الفرع:</string>
+  <string name="github_repository_settings_valid_server">مستودع Github صالح</string>
+  <string name="github_repository_settings_invalid_server">مستودع Github فاسد</string>
 </resources>

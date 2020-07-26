@@ -139,6 +139,20 @@
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap-reittinäyttö</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Päivitä &amp; asenna</string>
+  <string name="buttons_presets_context_menu_delete">Poista</string>
+  <string name="buttons_presets_updating_layout">Päivitetään…</string>
+  <string name="buttons_presets_delete_positive_confirmation">Kyllä</string>
+  <string name="buttons_presets_successful_delete">Tiedosto poistettiin onnistuneesti</string>
+  <string name="buttons_presets_unsuccessful_delete">Tiedostoa ei voitu poistaa</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connecting_message">(Yhdistetään…)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Lataa</string>
+  <string name="available_layouts_language_dialog_title">Saatavilla olevat kielet</string>
+  <string name="available_layouts_downloading_dialog">Ladataan…</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Oletus</string>
+  <string name="github_repository_settings_username">Github-käyttäjätunnus: </string>
+  <string name="github_repository_settings_repository_name">Tietovaraston nimi:</string>
+  <string name="github_repository_settings_branch_name">Haaran nimi:</string>
 </resources>

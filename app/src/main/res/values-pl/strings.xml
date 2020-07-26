@@ -140,6 +140,35 @@ głosową</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Podgląd śladu w OpenStreetMap</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Uaktualnij &amp; Instaluj</string>
+  <string name="buttons_presets_context_menu_delete">Usuń</string>
+  <string name="buttons_presets_updating_layout">Trwa aktualizacja...</string>
+  <string name="buttons_presets_successful_update">Update Layout-u zakończył się sukcesem</string>
+  <string name="buttons_presets_unsuccessful_update">Layout nie został uaktualniony, spróbuj ponownie później</string>
+  <string name="buttons_presets_delete_message">Czy na pewno chcesz usunąć {0} layout?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Tak</string>
+  <string name="buttons_presets_successful_delete">Plik został usunięty pomyślnie</string>
+  <string name="buttons_presets_icon_directory_deleted">Katalog ikony został usunięty pomyślnie</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Ten plik nie posiadał powiązanego katalogu ikony</string>
+  <string name="buttons_presets_unsuccessful_delete">Plik nie mógł być usunięty</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Błąd: nie można nawiązać połączenia z Internetem</string>
+  <string name="available_layouts_response_null_exception">Błąd: nie można nawiązać połączenia do domyślnego repozytorium niestandardowych layout-ów</string>
+  <string name="available_layouts_connecting_message">(Trwa łączenie...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Pobierz</string>
+  <string name="available_layouts_not_available_language">Twój język nie jest dostępny, wybierz jeden z listy</string>
+  <string name="available_layouts_language_dialog_title">Dostępne Języki</string>
+  <string name="available_layouts_checking_language_dialog">Trwa sprawdzanie lokalnych wersji języka</string>
+  <string name="available_layouts_downloading_dialog">Trwa pobieranie...</string>
+  <string name="available_layouts_successful_download">Layout został pobrany prawidłowo</string>
+  <string name="available_layouts_unsuccessful_download">Layout nie może być pobrany, spróbuj ponownie później</string>
+  <string name="available_layouts_null_response_received">Błąd przy odbieraniu danych z serwera</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Domyślny</string>
+  <string name="github_repository_settings_custom_checkbox">Niestandardowy</string>
+  <string name="github_repository_settings_username">Nazwa użytkownika Github:</string>
+  <string name="github_repository_settings_repository_name">Nazwa repozytorium:</string>
+  <string name="github_repository_settings_branch_name">Nazwa gałęzi:</string>
+  <string name="github_repository_settings_valid_server">Repozytorium Github poprawne</string>
+  <string name="github_repository_settings_invalid_server">Repozytorium Github niepoprawne</string>
 </resources>

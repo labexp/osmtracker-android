@@ -44,9 +44,9 @@
   <string name="trackmgr_contextmenu_title">{0}. nyomvonal </string>
   <string name="trackmgr_delete_confirm"> {0}. nyomvonal törlődik</string>
   <string name="trackmgr_deleteall_confirm">Minden nyomvonal törlésre kerül. Biztosan ezt akarja?</string>
-  <string name="trackmgr_exporting">{0}. nyomvonal exportálása…</string>
-  <string name="trackmgr_exporting_prepare">Exportálás előkészítése</string>
-  <string name="trackmgr_export_error">{0}. nyomvonal exportálása sikertelen</string>
+  <string name="trackmgr_exporting">#{0} nyomvonal exportálása…</string>
+  <string name="trackmgr_exporting_prepare">Exportálás előkészítése…</string>
+  <string name="trackmgr_export_error">{0} nyomvonal exportálása sikertelen</string>
   <string name="trackmgr_exportall_confirm">Minden nyomvonal exportáltatik, ami sokáig tarthat. Biztosan ezt akarja?</string>
   <!--Track Detail-->
   <string name="trackdetail">Nyomvonal részletei</string>
@@ -63,18 +63,18 @@
   <string name="trackdetail_description">Leírás</string>
   <string name="trackdetail_tags">Címkék (vesszővel elválasztva)</string>
   <string name="trackdetail_description_mandatory">Meg kell adnia egy leírást</string>
-  <string name="osm_visibility_private">Magántulajdon</string>
-  <string name="osm_visibility_public">Publikus</string>
+  <string name="osm_visibility_private">Privát</string>
+  <string name="osm_visibility_public">Nyilvános</string>
   <string name="osm_visibility_trackable">Követhető</string>
   <string name="osm_visibility_identifiable">Azonosítható</string>
   <!--OSM upload-->
   <string name="osm_upload">OpenStreetMap feltöltés</string>
   <string name="osm_upload_ok">Mentés és feltöltés</string>
-  <string name="osm_upload_tmpfile_failed">A nyomvonal exportálása az átmeneti fájlba nem sikerült</string>
+  <string name="osm_upload_tmpfile_failed">Nem sikerült a nyomvonal exportálása az ideiglenes fájlba.</string>
   <string name="osm_upload_oauth_failed">Az OSM bejelentkezés nem sikerült</string>
-  <string name="osm_upload_sending">{0}. nyomvonal küldése…</string>
+  <string name="osm_upload_sending">#{0} nyomvonal küldése…</string>
   <string name="osm_upload_waiting_response">Várakozás az OpenStreetMap-szerver válaszára…</string>
-  <string name="osm_upload_error">Hiba a nyomvonal feltöltése közben</string>
+  <string name="osm_upload_error">Hiba a nyomvonal feltöltésekor</string>
   <string name="osm_upload_bad_response">Az OSM szerver hibával tért vissza: ({0}) üzenet {1}</string>
   <string name="osm_upload_unauthorized">Bejelentkezési hiba. Szeretné törölni a mentett OpenStreetMap bejelentkezési információkat?</string>
   <string name="osm_upload_sucess">OpenStreetMap feltöltés sikeres</string>
@@ -91,7 +91,7 @@
   <string name="menu_newtrack">Új nyomvonal</string>
   <string name="menu_deletetracks">Minden nyomvonal törlése</string>
   <string name="menu_continue">Nyomvonal folytatása</string>
-  <string name="menu_stopcurrenttrack">Aktuális rögzítés leállítása</string>
+  <string name="menu_stopcurrenttrack">Aktuális nyomvonalrögzítés leállítása</string>
   <string name="menu_save">Mentés</string>
   <string name="menu_cancel">Mégsem</string>
   <string name="menu_export">Exportálás GPX fájlként</string>
@@ -101,9 +101,9 @@
   <!--Errors-->
   <string name="error_externalstorage_not_writable">A külső tárolóra írás nem sikerült.</string>
   <string name="error_create_track_dir">%s nyomvonalmappa létrehozása sikertelen</string>
-  <string name="error_externalstorage_not_writable_hint">Kérem ellenőrizze a külső tároló csatlakoztatását.</string>
+  <string name="error_externalstorage_not_writable_hint">Kérjük, ellenőrizze a külső tároló csatlakoztatását.</string>
   <string name="error_voicerec_failed">Hangrögzítés sikertelen</string>
-  <string name="error_userlayout_parsing">Hiba az XML sémafájl értelmezésekor. Kérjük térjen vissza az alapértelmezett sémához.</string>
+  <string name="error_userlayout_parsing">Hiba az XML-sémafájl értelmezésekor. Kérjük, térjen vissza az alapértelmezett sémához.</string>
   <!--GPX-->
   <string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
   <string name="gpx_hdop_approximation_cmt">Figyelem: A HDOP értékek nem azok a HDOP értékek, amit a GPS eszköz ad vissza. Ezek becsült értékek a hely pontosságából, méterben.</string>
@@ -113,14 +113,14 @@
   <string name="about_translate_text">Segítsen az OSMTracker fordításában:</string>
   <string name="about_debug_info">Hibakeresési információ</string>
   <string name="about_export_db">Adatbázis exportálása</string>
-  <string name="about_exporting_db">Adatbázis exportálása folyamatban</string>
-  <string name="about_export_db_result">Adatbázis exportálás eredménye: %s</string>
+  <string name="about_exporting_db">Adatbázis exportálása folyamatban…</string>
+  <string name="about_export_db_result">Adatbázis exportálásának eredménye: %s</string>
   <!--Notification-->
-  <string name="notification_ticker_text">Az OSMTracker rögzít</string>
-  <string name="notification_title">Az OSMTracker rögzít ({0}.)</string>
+  <string name="notification_ticker_text">Az OSMTracker éppen nyomvonalat rögzít</string>
+  <string name="notification_title">Az OSMTracker éppen nyomvonalat rögzít (#{0})</string>
   <string name="notification_text">Érintse meg itt a fő képernyő mgjelenítéséhez</string>
   <!--Display track-->
-  <string name="displaytrack">Nyomvonal mutatása</string>
+  <string name="displaytrack">Nyomvonal megjelenítése</string>
   <string name="displaytrack_map">Háttér térkép megjelenítése</string>
   <string name="displaytrack_north">É</string>
   <!--Track detail-->
@@ -130,15 +130,44 @@
   <string name="various_accuracy">Pontosság</string>
   <string name="various_accuracy_with_sats">Pontosság {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
-  <string name="various_waiting_gps_fix">GPS javításra vár ({0}/{1})</string>
+  <string name="various_waiting_gps_fix">Várakozás a GPS-javításra… ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
   <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
-  <string name="various_heading">Várakozás az irányra</string>
-  <string name="various_heading_unknown">Az irány nem meghatározható</string>
+  <string name="various_heading">Várakozás az irányra…</string>
+  <string name="various_heading_unknown">Az irány nem határozható meg</string>
   <!--OSM map view-->
-  <string name="displaytrackmap">OpenStreetMap nyomvonal megjelenítés</string>
+  <string name="displaytrackmap">OpenStreetMap nyomvonal megjelenítése</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Frissítés &amp; telepítés</string>
+  <string name="buttons_presets_context_menu_delete">Törlés</string>
+  <string name="buttons_presets_updating_layout">Frissítés…</string>
+  <string name="buttons_presets_successful_update">Az elrendezés sikeresen frissül</string>
+  <string name="buttons_presets_unsuccessful_update">Az elrendezés nem frissült, próbálja meg később újra</string>
+  <string name="buttons_presets_delete_message">Biztosan törölni szeretné ezt az elrendezést: {0}?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Igen</string>
+  <string name="buttons_presets_successful_delete">A fájl sikeresen törölve</string>
+  <string name="buttons_presets_icon_directory_deleted">Az ikonmappa sikeresen törölve</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Ehhez a fájlhoz nem volt ikonmappa társítva</string>
+  <string name="buttons_presets_unsuccessful_delete">A fájlt nem sikerült törölni</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Hiba: nem sikerül kapcsolódni az internethez</string>
+  <string name="available_layouts_response_null_exception">Hiba: nem sikerül csatlakozni az egyedi elrendezések alapértelmezett tárházához</string>
+  <string name="available_layouts_connecting_message">(Kapcsolódás…)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Letöltés</string>
+  <string name="available_layouts_not_available_language">Az Ön nyelve nem áll rendelkezésre, válasszon egyet a listából</string>
+  <string name="available_layouts_language_dialog_title">Rendelkezésre álló nyelvek</string>
+  <string name="available_layouts_checking_language_dialog">Helyi nyelvű verziók ellenőrzése</string>
+  <string name="available_layouts_downloading_dialog">Letöltés…</string>
+  <string name="available_layouts_successful_download">Az elrendezés sikeresen letöltve</string>
+  <string name="available_layouts_unsuccessful_download">Az elrendezés nem tölthető le, próbálja meg később újra</string>
+  <string name="available_layouts_null_response_received">Hiba történt az adatok kiszolgálóról történő lekérdezése közben</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Alapértelmezett</string>
+  <string name="github_repository_settings_custom_checkbox">Egyedi</string>
+  <string name="github_repository_settings_username">Github felhasználónév:</string>
+  <string name="github_repository_settings_repository_name">Tár neve:</string>
+  <string name="github_repository_settings_branch_name">Ág neve:</string>
+  <string name="github_repository_settings_valid_server">A Github tár érvényes</string>
+  <string name="github_repository_settings_invalid_server">A Github tár érvénytelen</string>
 </resources>

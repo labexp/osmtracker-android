@@ -22,10 +22,12 @@
   <!--Track Detail-->
   <string name="trackdetail_osm_upload_date">Nusiųsta į OpenStreetMap:</string>
   <string name="trackdetail_btn_export">Eksportuoti kaip GPX</string>
+  <string name="trackdetail_description">Aprašymas</string>
   <string name="trackdetail_tags">Žymos (atskirtos kableliu)</string>
   <string name="trackdetail_description_mandatory">Pridėkite aprašymą</string>
   <string name="osm_visibility_public">Viešas</string>
   <!--OSM upload-->
+  <string name="osm_upload_ok">Išsaugoti ir išsiųsti</string>
   <string name="osm_upload_oauth_failed">Nepavyksta prisijungti prie OSM</string>
   <string name="osm_upload_waiting_response">Laukiama OpenStreetMap serverio atsakymo…</string>
   <!--GPS Status & record bar-->
@@ -42,17 +44,31 @@
   <!--About screen-->
   <string name="about">Apie</string>
   <string name="about_translate_text">Pagelbėkite išversti OSMTracker:</string>
+  <string name="about_export_db">Exportuoti duomenų bazę</string>
+  <string name="about_exporting_db">Duomenų bazė eksportuojama...</string>
   <!--Notification-->
   <!--Display track-->
+  <string name="displaytrack_north">Š</string>
   <!--Track detail-->
   <string name="trackdetail_save">Išsaugoti</string>
   <!--Various-->
+  <string name="various_unit_meters">m</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
   <!--parameters: (used sats, visible sats)-->
   <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
   <!--OSM map view-->
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_delete">Ištrinti</string>
+  <string name="buttons_presets_updating_layout">Atnaujinama...</string>
+  <string name="buttons_presets_delete_positive_confirmation">Taip</string>
+  <string name="buttons_presets_successful_delete">Failas sėkmingai ištrintas</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Klaida: nepavyko prisijungti prie interneto</string>
+  <string name="available_layouts_connecting_message">(Jungiamasi...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Atsisiųsti</string>
+  <string name="available_layouts_language_dialog_title">Galimos kalbos</string>
+  <string name="available_layouts_downloading_dialog">Siunčiamasi...</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_repository_name">Repozitorijos pavadinimas:</string>
 </resources>

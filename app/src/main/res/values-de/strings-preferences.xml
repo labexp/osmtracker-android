@@ -12,20 +12,16 @@
   <string name="prefs_gps_logging_interval">GPS-Protokollierungsintervall</string>
   <string name="prefs_gps_logging_interval_summary">Verwenden Sie 0 für das kürzestmögliche Intervall (beeinflusst die Batterielebensdauer)</string>
   <string name="prefs_gps_logging_interval_seconds">Sekunden</string>
-  <string name="prefs_gps_logging_min_distance">GPS Distanz Trackpoints</string>
-  <string name="prefs_gps_logging_min_distance_summary">Min. Abstand zweier Trackpoints</string>
-  <string name="prefs_gps_logging_min_distance_meters">Meter</string>
-
   <string name="prefs_ui">Benutzeroberfläche</string>
   <string name="prefs_ui_picture_source">Standard-Fotoquelle</string>
   <string name="prefs_ui_picture_source_summary">Fotos von Kamera oder Galerie nehmen?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Kamera</item>
     <item>Galerie</item>
-    <item>Immer nachfragen</item>
+    <item>immer nachfragen</item>
   </string-array>
   <string name="prefs_ui_buttons_layout">Tastenvoreinstellungen</string>
-  <string name="prefs_ui_buttons_layout_summary">Benutzerdefinierten Tastensatz auswählen (siehe Dokumentation)</string>
+  <string name="prefs_ui_buttons_layout_summary">Benutzerdefiniertes Tastenlayout auswählen (siehe Dokumentation)</string>
   <string name="prefs_ui_buttons_layout_default_section">STANDARD Ansicht</string>
   <string name="prefs_ui_buttons_layout_defaut">Standard</string>
   <string name="prefs_ui_buttons_layout_downloaded_section">HERUNTERGELADENES Layout</string>
@@ -33,24 +29,24 @@
   <string name="prefs_ui_available_layout">Verfügbare Layouts</string>
   <string name="prefs_ui_github_repository_settings">Github Ablageeinstellungen</string>
   <string name="prefs_ui_orientation">Ausrichtung</string>
-  <string name="prefs_ui_orientation_summary">Bevorzugte Ausrichtung für die Buttonanzeige</string>
+  <string name="prefs_ui_orientation_summary">Bevorzugte Ausrichtung für die Tastendarstellung</string>
   <string-array name="prefs_ui_orientation_options_keys">
     <item>Automatisch</item>
     <item>Hochformat</item>
     <item>Querformat</item>
   </string-array>
-  <string name="prefs_voicerec_duration">Sprachaufnahmendauer</string>
+  <string name="prefs_voicerec_duration">Länge der Sprachaufnahme</string>
   <string name="prefs_voicerec_duration_seconds">Sekunden</string>
   <string name="prefs_theme">Hauptbildschirm-Grafikthema</string>
   <string name="prefs_theme_summary">Neustart der Anwendung ist erforderlich, damit die Änderung wirksam wird</string>
   <string-array name="prefs_theme_keys">
-    <item>BS-Standard</item>
-    <item>BS-Standard (Dunkel)</item>
-    <item>BS-Standard (Hell)</item>
+    <item>OS-Standard</item>
+    <item>OS-Standard (Dunkel)</item>
+    <item>OS-Standard (Hell)</item>
     <item>Hoher Kontrast</item>
   </string-array>
   <string name="prefs_display_always_on">Bildschirm immer an</string>
-  <string name="prefs_display_always_on_summary">Bildschirm bleibt während der Routenverfolgung beleuchtet. Deaktivieren um Akku zu sparen</string>
+  <string name="prefs_display_always_on_summary">Bildschirm bleibt während der Routenaufnahme eingeschaltet. Deaktivieren um Akku zu sparen</string>
   <string name="prefs_displaytrack_osm">Hintergrundkarte</string>
   <string name="prefs_displaytrack_osm_summary">OpenStreetMap-Karte unter Route anzeigen. Benötigt eine Datenverbindung</string>
   <string name="prefs_displaytrack_osm_summary_ask">OpenStreetMap-Hintergrund immer anzeigen? Benötigt eine Datenverbindung.</string>
@@ -67,11 +63,11 @@
     <item>Startdatum und -zeit</item>
   </string-array>
   <string name="prefs_output_accuracy">Genauigkeit in der GPX-Datei</string>
-  <string name="prefs_output_accuracy_summary">Erlaube Genauigkeitsanzeige in der GPX-Datei mit Waypoint-Name oder in einem separaten Tag</string>
+  <string name="prefs_output_accuracy_summary">Erlaube Genauigkeitsanzeige in der GPX-Datei mit Wegpunkt-Name oder in einem separaten Tag</string>
   <string-array name="prefs_output_accuracy_keys">
     <item>Kein</item>
-    <item>Mit Waypoint-Name</item>
-    <item>Im Waypoint-Kommentar</item>
+    <item>Im Wegpunkt-Name</item>
+    <item>Im Wegpunkt-Kommentar</item>
   </string-array>
   <string name="prefs_output_gpx_hdop_approximation">Benutze HDOP-Annäherung</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">Fülle HDOP (im GPX) mit Näherungswerten der Genauigkeitsmessung</string>
@@ -88,7 +84,7 @@
     <item>MapQuest Open</item>
   </string-array>
   <string-array name="prefs_compass_heading_keys">
-    <item>Kein</item>
+    <item>kein Export</item>
     <item>im Kommentar</item>
     <item>in der Erweiterung</item>
   </string-array>
