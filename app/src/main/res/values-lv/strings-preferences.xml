@@ -13,9 +13,21 @@
   <string name="prefs_gps_logging_interval_summary">Izmantot 0, īsākajam iepējamajam (ietekmē baterijas patēriņu)</string>
   <string name="prefs_gps_logging_interval_seconds">sekundes</string>
   <string name="prefs_ui">Lietotāja saskarne</string>
+  <string name="prefs_ui_picture_source">Noklusētais attēlu avots</string>
+  <string name="prefs_ui_picture_source_summary">Ņemt attēlus no kameras vai galerijas?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamera</item>
+    <item>Galerija</item>
+    <item>Vienmēr jautāt</item>
+  </string-array>
   <string name="prefs_ui_buttons_layout">Pogu iepriekšuzstādijumi</string>
   <string name="prefs_ui_buttons_layout_summary">Izvēlieties personalizētu pogu kopu (skatiet dokumentāciju)</string>
+  <string name="prefs_ui_buttons_layout_default_section">NOKLUSĒJUMA IZKĀRTOJUMS</string>
   <string name="prefs_ui_buttons_layout_defaut">Noklusētais</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">LEJUPIELĀDĒTS IZKĀRTOJUMS</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Tev nav lejupielādētas izkārtojuma datnes</string>
+  <string name="prefs_ui_available_layout">Pieejamie Izkārtojumi</string>
+  <string name="prefs_ui_github_repository_settings">Github Repositorijas Iestatījumi</string>
   <string name="prefs_ui_orientation">Orientācija</string>
   <string name="prefs_ui_orientation_summary">Vēlamā orientācija pogu izvēlnei</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -24,5 +36,58 @@
     <item>Ainava</item>
   </string-array>
   <string name="prefs_voicerec_duration">Balss ieraksta garums</string>
+  <string name="prefs_voicerec_duration_seconds">sekundes</string>
+  <string name="prefs_theme">Galvenā ekrāna grafiskā tēma</string>
+  <string name="prefs_theme_summary">Lietotni ir nepieciešams restartēt, lai pielietotu izmaiņas</string>
+  <string-array name="prefs_theme_keys">
+    <item>OS noklusējums</item>
+    <item>OS noklusējums (tumšs)</item>
+    <item>OS noklusējums (gaišs)</item>
+    <item>Augsta kontrasta</item>
+  </string-array>
+  <string name="prefs_display_always_on">Turēt ekrānu ieslēgtu</string>
+  <string name="prefs_display_always_on_summary">Ekrāns paliks ieslēgts sekošanas laikā. Atspējo lai taupītu enerģiju</string>
+  <string name="prefs_displaytrack_osm">Fona karte</string>
+  <string name="prefs_displaytrack_osm_summary">Attēlot OpenStreetMap karti zem ierakstītā ceļa. Vajadzīgs datu savienojums</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Vienmēr attēlot OpenStreetMap fonā? Vajadzīgs datu savienojums.</string>
+  <string name="prefs_output">GPX iestatījumi</string>
+  <string name="prefs_storage_dir">Ārējās krātuves (SD) mape</string>
+  <string name="prefs_storage_dir_hint">Funkcionē nākamajam ierakstam (ne pašreizējam)</string>
+  <string name="prefs_output_one_dir_per_track">Viena mape priekš ieraksta</string>
+  <string name="prefs_output_one_dir_per_track_summary">Saglabāt katru ierakstu un tā datnes savā mapē</string>
+  <string name="prefs_output_filename">Datņu nosaukums priekš ierakstiem</string>
+  <string name="prefs_output_filename_summary">Šablons datnes nosaukumam, ja ierakstam ir nosaukums</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Ieraksta nosaukums</item>
+    <item>Nosaukums,  sākuma datums un laiks</item>
+    <item>Sākuma datums un laiks</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Precizitāte GPX datnē</string>
+  <string name="prefs_output_accuracy_summary">Pievienot precizitātes informāciju GPX datnei, ar punkta nosaukumu vai punkta komentārā</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Nekur</item>
+    <item>Ar punkta nosaukumu</item>
+    <item>Punkta komentārā</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Izmantot HDOP aptuvināšanu</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Aizpildīt HDOP GPX datnē ar aptuvenu informāciju no precizitātes</string>
+  <string name="prefs_sound_enabled">Iespējot skaņu</string>
+  <string name="prefs_sound_enabled_summary">Atskaņot skaņas, kas balss ieraksts sākas un beidzas</string>
+  <string name="prefs_osm_clear_oauth_data">Atiestatīt OSM autentifikāciju</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Aizmirst OSM konta informāciju un atļaujas, un pieprasīt OSMTracker tās pieprasīt atkārtoti</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Tev būs atkārtoti jāautorizē OSMTracker lai augšupielādētu ierakstus. Vai esi pārliecināts?</string>
+  <string name="prefs_map_tile">Kartes attēlu sniedzējs</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Nekur</item>
+    <item>komentārā</item>
+    <item>paplašinājumā</item>
+  </string-array>
+  <string name="prefs_compass_heading">Eksportēt Kompasa Pozīciju</string>
+  <string name="prefs_compass_heading_summary">Uzstāda vai un kā kompasa dati tiks eksportēti uz GPX datni</string>
 </resources>

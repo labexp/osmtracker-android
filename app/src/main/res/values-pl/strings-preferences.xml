@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Układ przycisków</string>
   <string name="prefs_ui_buttons_layout_summary">Wybierz własny układ przycisków (zobacz dokumentację)</string>
+  <string name="prefs_ui_buttons_layout_default_section">DOMYŚLNY LAYOUT</string>
   <string name="prefs_ui_buttons_layout_defaut">Domyślnie</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">POBRANY LAYOUT</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Nie masz pobranych plików z layout-ami</string>
+  <string name="prefs_ui_available_layout">Dostępne Layout-y</string>
+  <string name="prefs_ui_github_repository_settings">Ustawienia repozytorium Github</string>
   <string name="prefs_ui_orientation">Orientacja</string>
   <string name="prefs_ui_orientation_summary">Preferowana orientacja przycisków na ekranie</string>
   <string-array name="prefs_ui_orientation_options_keys">

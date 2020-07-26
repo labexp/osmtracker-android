@@ -141,6 +141,35 @@
   <!--OSM map view-->
   <string name="displaytrackmap">הצגת הקלטת OpenStreetMap</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">עדכן והתקן</string>
+  <string name="buttons_presets_context_menu_delete">מחק</string>
+  <string name="buttons_presets_updating_layout">מעדכן</string>
+  <string name="buttons_presets_successful_update">העיצוב עודכן בהצלחה</string>
+  <string name="buttons_presets_unsuccessful_update">העיצוב לא עודכן, נא לנסות שנית מאוחר יותר</string>
+  <string name="buttons_presets_delete_message">לאשר מחיקה של עיצוב }0{?</string>
+  <string name="buttons_presets_delete_positive_confirmation">כן</string>
+  <string name="buttons_presets_successful_delete">הקובץ נמחק בהצלחה</string>
+  <string name="buttons_presets_icon_directory_deleted">תיקיית הסמלילים נמחקה בהצלחה</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">לקובץ זה לא משוייכת תיקיית סמלילים</string>
+  <string name="buttons_presets_unsuccessful_delete">לא ניתן למחוק את הקובץ</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">שגיאה: לא ניתן להתחבר לאינטרנט</string>
+  <string name="available_layouts_response_null_exception">שגיאה: לא ניתן להתחבר למאגר העיצובים</string>
+  <string name="available_layouts_connecting_message">(מתחבר...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">הורד</string>
+  <string name="available_layouts_not_available_language">השפה שלכם לא זמינה. בחרו מהרשימה</string>
+  <string name="available_layouts_language_dialog_title">שפות זמינות</string>
+  <string name="available_layouts_checking_language_dialog">בודק שפות מקומיות זמינות</string>
+  <string name="available_layouts_downloading_dialog">מוריד...</string>
+  <string name="available_layouts_successful_download">העיצוב הורד בהצלחה</string>
+  <string name="available_layouts_unsuccessful_download">לא ניתן להוריד את העיצוב, נא לנסות שנית מאוחר יותר</string>
+  <string name="available_layouts_null_response_received">שגיאה בקבלת נתונים מהשרת</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">ברירת מחדל</string>
+  <string name="github_repository_settings_custom_checkbox">אישי</string>
+  <string name="github_repository_settings_username">שם משתמש GitHub:</string>
+  <string name="github_repository_settings_repository_name">שם Repository:</string>
+  <string name="github_repository_settings_branch_name">שם הענף:</string>
+  <string name="github_repository_settings_valid_server">GitHub Repository חוקי</string>
+  <string name="github_repository_settings_invalid_server">GitHub Repository לא חוקי</string>
 </resources>

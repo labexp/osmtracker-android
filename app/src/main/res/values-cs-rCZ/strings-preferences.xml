@@ -6,15 +6,15 @@
   <string name="prefs_gps_os_settings">Nastavení GPS</string>
   <string name="prefs_gps_os_settings_summary">Zobrazí obrazovku nastavení GPS</string>
   <string name="prefs_check_gps_startup">Kontrola GPS při startu</string>
-  <string name="prefs_check_gps_startup_summary">Zkontroluj, jestli je GPS pro startu zakázána a zobraz možnost ji povolit</string>
-  <string name="prefs_gps_ignore_clock">Ignoruj hodiny z GPS</string>
-  <string name="prefs_gps_ignore_clock_summary">Ignoruj hodiny z GPS a použij hodiny Androidu pro časové značky</string>
+  <string name="prefs_check_gps_startup_summary">Zkontrolovat, zda je GPS pro startu zakázán a zobrazit možnost ji povolit</string>
+  <string name="prefs_gps_ignore_clock">Ignorovat hodiny z GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">Ignorovat hodiny z GPS a použít hodiny Androidu pro časové značky</string>
   <string name="prefs_gps_logging_interval">Interval záznamu GPS</string>
   <string name="prefs_gps_logging_interval_summary">Použijte 0 pro nejkratší možný (má vliv na spotřebu baterie)</string>
   <string name="prefs_gps_logging_interval_seconds">sekundy</string>
   <string name="prefs_ui">Uživatelské rozhraní</string>
   <string name="prefs_ui_picture_source">Výchozí zdroj fotografií</string>
-  <string name="prefs_ui_picture_source_summary">Použít fotografie z fotoaparátu nebo galerie?</string>
+  <string name="prefs_ui_picture_source_summary">Použít fotografie z fotoaparátu, nebo z galerie?</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Fotoaparát</item>
     <item>Galerie</item>
@@ -38,7 +38,7 @@
   <string name="prefs_voicerec_duration">Trvání zvukového záznamu</string>
   <string name="prefs_voicerec_duration_seconds">sekundy</string>
   <string name="prefs_theme">Grafické téma hlavní obrazovky</string>
-  <string name="prefs_theme_summary">Aby se změny projevili, je třeba restart aplikace</string>
+  <string name="prefs_theme_summary">Aby se změny projevily, je třeba restart aplikace</string>
   <string-array name="prefs_theme_keys">
     <item>OS výchozí</item>
     <item>OS výchozí (tmavý)</item>
@@ -54,11 +54,11 @@
   <string name="prefs_storage_dir">Adresář externího úložiště (SD)</string>
   <string name="prefs_storage_dir_hint">Bude mít vliv pro příští trasu (ne současnou)</string>
   <string name="prefs_output_one_dir_per_track">Pro každou trasu novou složku</string>
-  <string name="prefs_output_one_dir_per_track_summary">Ulož každou trasu a její přidružené soubory do její vlastní složky</string>
-  <string name="prefs_output_filename">Jméno souboru pro pojmenované trasy</string>
+  <string name="prefs_output_one_dir_per_track_summary">Uložit každou trasu a její přidružené soubory do její vlastní složky</string>
+  <string name="prefs_output_filename">Název souboru pro pojmenované trasy</string>
   <string name="prefs_output_filename_summary">Šablona pro název souboru, pokud má trasa jméno</string>
   <string-array name="prefs_output_filename_keys">
-    <item>Jméno trasy</item>
+    <item>Název trasy</item>
     <item>Jméno, datum a čas startu</item>
     <item>Datum a čas startu</item>
   </string-array>
@@ -70,7 +70,7 @@
     <item>V komentáři k bodu na trase</item>
   </string-array>
   <string name="prefs_output_gpx_hdop_approximation">Použít aproximaci HDOP</string>
-  <string name="prefs_output_gpx_hdop_approximation_summary">Vyplnit HDOP v GPX s hodnotou aproximace upřesnění</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Vyplnit HDOP v GPX s přibližnou hodnotou z přesnosti</string>
   <string name="prefs_sound_enabled">Povolit zvuk</string>
   <string name="prefs_sound_enabled_summary">Přehrát zvuk při začátku a konci nahrávání zvuku</string>
   <string name="prefs_osm_clear_oauth_data">Smazat OSM autentizaci</string>
@@ -89,5 +89,5 @@
     <item>V příponě</item>
   </string-array>
   <string name="prefs_compass_heading">Exportovat data kompasu</string>
-  <string name="prefs_compass_heading_summary">Nastavuje zda a jak budou data kompasu exportovány do GPX souboru</string>
+  <string name="prefs_compass_heading_summary">Nastavuje, zda a jak budou data kompasu exportovány do GPX souboru</string>
 </resources>

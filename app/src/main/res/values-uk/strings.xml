@@ -3,15 +3,15 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker для Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Як і OSMTracker для Windows Mobile, програма дозволяє записувати Ваші подорожі, відзначаючи найважливіші точки (із записом аудіо, фото), експортувати їх у формат GPX для подальшого використання в редакторах Open Street Map, наприклад в JOSM.</string>
+  <string name="app_description">Як і OSMTracker для Windows Mobile, програма дозволяє записувати Ваші подорожі, відзначаючи найважливіші точки (із записом аудіо, фото), експортувати їх у формат GPX для подальшого використання в редакторах OpenStreetMap, наприклад в JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Реєстратор шляхів</string>
-  <string name="tracklogger_waiting_gps">Очікування GPS фіксації для активації кнопок ...</string>
+  <string name="tracklogger_waiting_gps">Очікування сигналу GPS для активації кнопок…</string>
   <string name="tracklogger_voicerec_title">Запис голосу</string>
   <string name="tracklogger_voicerec_text">Записується аудіо: {0}с</string>
   <string name="tracklogger_voicerec_stop">Стоп</string>
   <string name="tracklogger_btnBack">Назад</string>
-  <string name="tracklogger_tracked">Відстежено</string>
+  <string name="tracklogger_tracked">Записано:</string>
   <string name="tracklogger_gps_disabled">GPS вимкнено</string>
   <string name="tracklogger_gps_disabled_hint">GPS вимкнено. Бажаєте його включити?</string>
   <string name="tracklogger_choose_gallery_camera">Галерея чи камера?</string>
@@ -23,17 +23,17 @@
   <string name="wplist_longitude">Довг.:</string>
   <string name="wplist_elevation">Вис:</string>
   <string name="wplist_accuracy">Точн:</string>
-  <string name="wplist_compass">Обчисл. напрям:</string>
-  <string name="wplist_compass_accuracy">Точн. обч.:</string>
+  <string name="wplist_compass">Напр. компасу:</string>
+  <string name="wplist_compass_accuracy">Точн. комп.:</string>
   <!--Track Manager-->
-  <string name="trackmgr">Менеджер шляхів</string>
-  <string name="trackmgr_tracklist">Список шляхів:</string>
+  <string name="trackmgr">Менеджер треків</string>
+  <string name="trackmgr_tracklist">Список треків:</string>
   <string name="trackmgr_waypoints_count">Дорожні точки:</string>
-  <string name="trackmgr_trackpoints_count">Точки шляху:</string>
-  <string name="trackmgr_empty">У вас не має  шляхів.</string>
-  <string name="trackmgr_newtrack_hint">Для запису доріжки\nнатисніть <b>Меню</b>, а потім <b>Нова доріжка</b></string>
-  <string name="trackmgr_newtrack_error">Неможливо створити новий шлях:{0}</string>
-  <string name="trackmgr_continuetrack_hint">Наразі ви записуєте <b>доріжку #{0}</b>\nВиберіть її у списку для продовження</string>
+  <string name="trackmgr_trackpoints_count">Точки треку:</string>
+  <string name="trackmgr_empty">У вас не має  треків.</string>
+  <string name="trackmgr_newtrack_hint">Для запису треку\nнатисніть <b>Меню</b>, а потім <b>Новий трек</b></string>
+  <string name="trackmgr_newtrack_error">Неможливо створити новий трек:{0}</string>
+  <string name="trackmgr_continuetrack_hint">Наразі ви записуєте трек #{0}&lt;/b&gt;\nВиберіть його у списку для продовження</string>
   <string name="trackmgr_contextmenu_stop">Зупинити запис</string>
   <string name="trackmgr_contextmenu_resume">Продовжити запис</string>
   <string name="trackmgr_contextmenu_delete">Вилучити</string>
@@ -41,15 +41,15 @@
   <string name="trackmgr_contextmenu_osm_upload">Завантажити на OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Показати</string>
   <string name="trackmgr_contextmenu_details">Подробиці</string>
-  <string name="trackmgr_contextmenu_title">Шлях #{0}</string>
-  <string name="trackmgr_delete_confirm">Шлях #{0} буде видалено</string>
-  <string name="trackmgr_deleteall_confirm">Усі шляхи буде вилучено. Ви впевнені?</string>
-  <string name="trackmgr_exporting">Експорт шляху #{0}…</string>
+  <string name="trackmgr_contextmenu_title">Трек #{0}</string>
+  <string name="trackmgr_delete_confirm">Трек #{0} буде видалено</string>
+  <string name="trackmgr_deleteall_confirm">Усі треки буде вилучено. Ви впевнені?</string>
+  <string name="trackmgr_exporting">Експорт треку #{0}…</string>
   <string name="trackmgr_exporting_prepare">Підготовка експорту…</string>
-  <string name="trackmgr_export_error">Неможливо експортувати шлях:{0}…</string>
-  <string name="trackmgr_exportall_confirm">Буде експортовано усі шляхи, що може зайняти тривалий час.</string>
+  <string name="trackmgr_export_error">Неможливо експортувати трек:{0}…</string>
+  <string name="trackmgr_exportall_confirm">Буде експортовано всі треки, це може тривати певний час.</string>
   <!--Track Detail-->
-  <string name="trackdetail">Подробиці шляху</string>
+  <string name="trackdetail">Відомості треку</string>
   <string name="trackdetail_startdate">Час початку:</string>
   <string name="trackdetail_enddate">Час закінчення:</string>
   <string name="trackdetail_startloc">Початок:</string>
@@ -62,7 +62,7 @@
   <string name="trackdetail_export_display">Показати</string>
   <string name="trackdetail_description">Опис</string>
   <string name="trackdetail_tags">Мітки (через кому)</string>
-  <string name="trackdetail_description_mandatory">Вам необхідно ввести опис</string>
+  <string name="trackdetail_description_mandatory">Вам необхідно додати опис</string>
   <string name="osm_visibility_private">Приватний</string>
   <string name="osm_visibility_public">Загальнодоступний</string>
   <string name="osm_visibility_trackable">Відстежуваний</string>
@@ -70,12 +70,12 @@
   <!--OSM upload-->
   <string name="osm_upload">Завантаження на OpenStreetMap</string>
   <string name="osm_upload_ok">Зберегти і завантажити</string>
-  <string name="osm_upload_tmpfile_failed">Не вдалося експортувати шлях у тимчасовий файл</string>
-  <string name="osm_upload_oauth_failed">Не вдалося пройти перевірку істинності на OSM</string>
-  <string name="osm_upload_sending">Надсилається шлях #{0}...</string>
-  <string name="osm_upload_waiting_response">Очікування відповіді від сервера OpenStreetMap...</string>
-  <string name="osm_upload_error">Помилка завантаження шляху</string>
-  <string name="osm_upload_bad_response">Сервер OSM повернув помилку: ({0}) текст {1}</string>
+  <string name="osm_upload_tmpfile_failed">Не вдалося експортувати трек у тимчасовий файл</string>
+  <string name="osm_upload_oauth_failed">Не вдалося пройти автентифікацію на OSM</string>
+  <string name="osm_upload_sending">Надсилається трек #{0}...</string>
+  <string name="osm_upload_waiting_response">Очікування відповіді від сервера OpenStreetMap…</string>
+  <string name="osm_upload_error">Помилка завантаження треку</string>
+  <string name="osm_upload_bad_response">Сервер OSM повернув помилку: ({0}) {1}</string>
   <string name="osm_upload_unauthorized">Помилка авторизації. Видалити збережені облікові дані OpenStreetMap?</string>
   <string name="osm_upload_sucess">Завантаження на OpenStreetMap завершено</string>
   <!--GPS Status & record bar-->
@@ -86,30 +86,30 @@
   <string name="menu_settings">Налаштування</string>
   <string name="menu_waypointlist">Дорожні точки</string>
   <string name="menu_about">Про програму</string>
-  <string name="menu_displaytrack">Показати шлях</string>
+  <string name="menu_displaytrack">Показати трек</string>
   <string name="menu_stoptracking">Зупинити і зберегти</string>
-  <string name="menu_newtrack">Новий шлях</string>
-  <string name="menu_deletetracks">Вилучити всі шляхи</string>
-  <string name="menu_continue">Продовжити шлях</string>
-  <string name="menu_stopcurrenttrack">Зупинити запис шляху</string>
+  <string name="menu_newtrack">Новий трек</string>
+  <string name="menu_deletetracks">Вилучити всі треки</string>
+  <string name="menu_continue">Продовжити трек</string>
+  <string name="menu_stopcurrenttrack">Зупинити запис треку</string>
   <string name="menu_save">Зберегти</string>
   <string name="menu_cancel">Скасувати</string>
   <string name="menu_export">Експортувати в GFX</string>
   <string name="menu_osm_upload">Завантаження на OpenStreetMap</string>
   <string name="menu_center_to_gps">Центрувати по GPS</string>
-  <string name="menu_exportall">Експортувати усе в GFX</string>
+  <string name="menu_exportall">Експортувати усе в GPX</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">Неможливо записати на зовнішній носій.</string>
-  <string name="error_create_track_dir">Неможливо створити теку шляху %s</string>
+  <string name="error_create_track_dir">Неможливо створити теку трека %s</string>
   <string name="error_externalstorage_not_writable_hint">Перевірте, чи зовнішній носій вірно вставлений та змонтований</string>
   <string name="error_voicerec_failed">Помилка запису аудіо</string>
-  <string name="error_userlayout_parsing">Помилка аналізу файлу розмітки XML. Верніться до типової розмітки.</string>
+  <string name="error_userlayout_parsing">Помилка розбору файлу розмітки XML. Верніться до типової розмітки.</string>
   <!--GPX-->
   <string name="gpx_track_name">Записано на OSMTracker для Android™</string>
-  <string name="gpx_hdop_approximation_cmt">Увага: значення записувані в файл як HDOP - це не значення HDOP, одержувані від GPS пристрою. Це наближено обчислені значення, отримані з метровою точністю розташування.</string>
+  <string name="gpx_hdop_approximation_cmt">Увага: значення HDOP - це не значення HDOP, одержані від GPS пристрою. Це наближено обчислені значення, з метровою точністю.</string>
   <!--About screen-->
   <string name="about">Про програму:</string>
-  <string name="about_text">Детальна інформація, повідомлення про помилки знаходяться на офіційному сайті проекту:</string>
+  <string name="about_text">Детальна інформація, повідомлення про помилки знаходяться на офіційному сайті проєкту:</string>
   <string name="about_translate_text">Допомогти з перекладом OSMTracker:</string>
   <string name="about_debug_info">Налагоджувальна інформація</string>
   <string name="about_export_db">Експортувати базу даних</string>
@@ -120,8 +120,8 @@
   <string name="notification_title">OSMTracker запущено (#{0})</string>
   <string name="notification_text">Натисніть тут для повернення на головний екран</string>
   <!--Display track-->
-  <string name="displaytrack">Показати шлях</string>
-  <string name="displaytrack_map">Відображати основну карту</string>
+  <string name="displaytrack">Показати трек</string>
+  <string name="displaytrack_map">Показувати фонову мапу</string>
   <string name="displaytrack_north">Пн</string>
   <!--Track detail-->
   <string name="trackdetail_save">Зберегти</string>
@@ -130,15 +130,44 @@
   <string name="various_accuracy">Точність</string>
   <string name="various_accuracy_with_sats">Точність {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
-  <string name="various_waiting_gps_fix">Очікування фіксації GPS…({0}/{1})</string>
+  <string name="various_waiting_gps_fix">Очікування сигналу GPS…({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
   <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Очікуємо на напрямок…</string>
   <string name="various_heading_unknown">Напрямок не можна визначити</string>
   <!--OSM map view-->
-  <string name="displaytrackmap">Відображення шляху OpenStreetMap</string>
+  <string name="displaytrackmap">Показ треку з OpenStreetMap</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Оновити та встановити</string>
+  <string name="buttons_presets_context_menu_delete">Вилучити</string>
+  <string name="buttons_presets_updating_layout">Оновлення…</string>
+  <string name="buttons_presets_successful_update">Макет оновлено</string>
+  <string name="buttons_presets_unsuccessful_update">Макет не оновлено, спробуйте ще раз згодом</string>
+  <string name="buttons_presets_delete_message">Ви точно бажаєте вилучити Макет - {0}?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Так</string>
+  <string name="buttons_presets_successful_delete">Файл вилучено</string>
+  <string name="buttons_presets_icon_directory_deleted">Теку значків вилучено</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Цей файл не має жодної пов\'язаної теки значків</string>
+  <string name="buttons_presets_unsuccessful_delete">Файл неможливо вилучити</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Помилка: неможливо під\'єднатися до Інтернету</string>
+  <string name="available_layouts_response_null_exception">Помилка: неможливо під\'єднатися до репозиторію макетів користувача</string>
+  <string name="available_layouts_connecting_message">(З\'єднуюсь…)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Завантаження</string>
+  <string name="available_layouts_not_available_language">Ваша мова не доступна, спробуйте іншу з переліку</string>
+  <string name="available_layouts_language_dialog_title">Доступні мови</string>
+  <string name="available_layouts_checking_language_dialog">Перевірка версії місцевої мови</string>
+  <string name="available_layouts_downloading_dialog">Завантаження…</string>
+  <string name="available_layouts_successful_download">Макет завантажено</string>
+  <string name="available_layouts_unsuccessful_download">Макет не було завантажено, спробуйте ще раз згодом</string>
+  <string name="available_layouts_null_response_received">Помилка отримання даних з сервера</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Типово</string>
+  <string name="github_repository_settings_custom_checkbox">Власні</string>
+  <string name="github_repository_settings_username">Github логін: </string>
+  <string name="github_repository_settings_repository_name">Репозиторій: </string>
+  <string name="github_repository_settings_branch_name">Гілка:</string>
+  <string name="github_repository_settings_valid_server">Репозиторій існує</string>
+  <string name="github_repository_settings_invalid_server">Репозиторій не існує</string>
 </resources>

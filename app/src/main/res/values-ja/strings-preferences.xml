@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">ボタンレイアウト</string>
   <string name="prefs_ui_buttons_layout_summary">カスタムボタンレイアウトを選択してください（ドキュメント参照）</string>
+  <string name="prefs_ui_buttons_layout_default_section">既定のレイアウト</string>
   <string name="prefs_ui_buttons_layout_defaut">デフォルト</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">ダウンロードしたレイアウト</string>
+  <string name="prefs_ui_buttons_layout_empty_section">レイアウトファイルをダウンロードしていません</string>
+  <string name="prefs_ui_available_layout">利用できるレイアウト</string>
+  <string name="prefs_ui_github_repository_settings">Github リポジトリ設定</string>
   <string name="prefs_ui_orientation">画面の方向</string>
   <string name="prefs_ui_orientation_summary">ボタン画面の推奨方向</string>
   <string-array name="prefs_ui_orientation_options_keys">

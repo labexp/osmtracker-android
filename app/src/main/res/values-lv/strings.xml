@@ -1,25 +1,173 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
+  <string name="app_name">OSMTracker priekš Android™</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">Iesvesmots no OSMTracker priekš Windows Mobile, tas ļauj jums ierakstīt savus ceļojumus, atzīmēt noteiktus intereses punktus (Balss ierakstos, attēlos), eksportēt tos GPX formātā, lai vēlāk varētu izmantot ar rīkiem kā JOSM priekš OpenStreetMap.</string>
   <!--TrackLogger-->
+  <string name="tracklogger">Ceļa ieraksts</string>
+  <string name="tracklogger_waiting_gps">Gaida GPS precizitāti, lai iespējotu pogas...</string>
+  <string name="tracklogger_voicerec_title">Balss Ieraksts</string>
+  <string name="tracklogger_voicerec_text">Ieraksta {0}s audio klipu.</string>
+  <string name="tracklogger_voicerec_stop">Beigt</string>
+  <string name="tracklogger_btnBack">Atpakaļ</string>
+  <string name="tracklogger_tracked">Ierakstīts:</string>
+  <string name="tracklogger_gps_disabled">GPS izslēgts</string>
+  <string name="tracklogger_gps_disabled_hint">GPS ir izslēgts. Vai tu gribi to ieslēgt?</string>
+  <string name="tracklogger_choose_gallery_camera">Gallerija vai kamera?</string>
+  <string name="tracklogger_camera">Uzņemt attēlu ar kameru</string>
+  <string name="tracklogger_gallery">Izvēlēties attēlu no galerijas</string>
   <!--Waypoint List-->
+  <string name="wplist">Intereses punktu saraksts</string>
+  <string name="wplist_latitude">Plat:</string>
+  <string name="wplist_longitude">Gar:</string>
+  <string name="wplist_elevation">Augst:</string>
+  <string name="wplist_accuracy">Preciz:</string>
+  <string name="wplist_compass">Komp. virziens:</string>
+  <string name="wplist_compass_accuracy">Komp. preciz.:</string>
   <!--Track Manager-->
+  <string name="trackmgr">Ierakstu pārvaldnieks</string>
+  <string name="trackmgr_tracklist">Ierakstu saraksts:</string>
+  <string name="trackmgr_waypoints_count">Intereses punkti:</string>
+  <string name="trackmgr_trackpoints_count">Ceļa punkti:</string>
+  <string name="trackmgr_empty">Tev nav neviena ieraksta.</string>
+  <string name="trackmgr_newtrack_hint">Lai ierakstītu ceļu, \nej uz <b>Izvēlne</b> tad <b>Jauns ieraksts</b></string>
+  <string name="trackmgr_newtrack_error">Nevarēja izveidot jaunu ierakstu: {0}</string>
+  <string name="trackmgr_continuetrack_hint">Tu pašlaik ieraksti <b>ceļš #{0}</b>\nIzvēlies to sarakstā, lai turpinātu</string>
+  <string name="trackmgr_contextmenu_stop">Beigt ierakstu</string>
+  <string name="trackmgr_contextmenu_resume">Turpināt ierakstu</string>
+  <string name="trackmgr_contextmenu_delete">Dzēst</string>
+  <string name="trackmgr_contextmenu_export">Eksportēt uz GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">Augšupielādēt uz OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">Displejs</string>
+  <string name="trackmgr_contextmenu_details">Detaļas</string>
+  <string name="trackmgr_contextmenu_title">Ieraksts #{0}</string>
+  <string name="trackmgr_delete_confirm">Ieraksts #{0} tiks dzēsts</string>
+  <string name="trackmgr_deleteall_confirm">Visi ieraksti tiks dzēsti. Vai tu esi pārliecināts?</string>
+  <string name="trackmgr_exporting">Eksportē ierakstu  #{0}…</string>
+  <string name="trackmgr_exporting_prepare">Sagatavo eksportu...</string>
+  <string name="trackmgr_export_error">Nevarēja eksportēt ieraktu: {0}</string>
+  <string name="trackmgr_exportall_confirm">Visi ieraksti tiks eksportēti, kas var aizņemt daudz laika. Vai tiešām eksportēt?</string>
   <!--Track Detail-->
+  <string name="trackdetail">Ieraksta detaļas</string>
+  <string name="trackdetail_startdate">Sākuma laiks:</string>
+  <string name="trackdetail_enddate">Beigu laiks:</string>
+  <string name="trackdetail_startloc">Sākums:</string>
+  <string name="trackdetail_endloc">Beigas:</string>
+  <string name="trackdetail_exportdate">Eksportēts:</string>
+  <string name="trackdetail_osm_upload_date">Augšupielādēts uz OpenStreetMap:</string>
+  <string name="trackdetail_btn_export">Eksportēt uz GPX</string>
+  <string name="trackdetail_export_notyet">(Nav vēl eksportēts)</string>
+  <string name="trackdetail_osm_upload_notyet">(Nav vēl augšupielādēts)</string>
+  <string name="trackdetail_export_display">Displejs</string>
+  <string name="trackdetail_description">Apraksts</string>
+  <string name="trackdetail_tags">Tagi (komatu atdalīti)</string>
+  <string name="trackdetail_description_mandatory">Tev ir jāievada apraksts</string>
+  <string name="osm_visibility_private">Privāts</string>
+  <string name="osm_visibility_public">Publisks</string>
+  <string name="osm_visibility_trackable">Izsekojams</string>
+  <string name="osm_visibility_identifiable">Identificējams</string>
   <!--OSM upload-->
+  <string name="osm_upload">OpenStreetMap augšupielāde</string>
+  <string name="osm_upload_ok">Saglabāt un augšupielādēt</string>
+  <string name="osm_upload_tmpfile_failed">Nevarēja eksportēt ierakstu uz īslaicīgu datni</string>
+  <string name="osm_upload_oauth_failed">Nevarēja autentificēties ar OSM</string>
+  <string name="osm_upload_sending">Sūta ierakstu #{0}…</string>
+  <string name="osm_upload_waiting_response">Gaida OpenStreetMap servera atbildi...</string>
+  <string name="osm_upload_error">Kļūda augšupielādējot ierakstu</string>
+  <string name="osm_upload_bad_response">OSM serveris atgrieza kļūdu: ({0}) ziņojums {1}</string>
+  <string name="osm_upload_unauthorized">Autorizācijas kļūda. Vai nodzēst saglabātos OpenStreetMap piekļuves datus? </string>
+  <string name="osm_upload_sucess">OpenStreetMap augšupielāde izdevās</string>
   <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">Ierakstīt balsi</string>
+  <string name="gpsstatus_record_stillimage">Uzņemt attēlu</string>
+  <string name="gpsstatus_record_textnote">Teksta piezīme</string>
   <!--Menu-->
+  <string name="menu_settings">Iestatījumi</string>
+  <string name="menu_waypointlist">Intereses punkti</string>
+  <string name="menu_about">Par</string>
+  <string name="menu_displaytrack">Parādīt ierakstu</string>
+  <string name="menu_stoptracking">Apturēt &amp; saglabāt</string>
+  <string name="menu_newtrack">Jauns ieraksts</string>
+  <string name="menu_deletetracks">Dzēst visus ierakstus</string>
+  <string name="menu_continue">Turpināt ierkstu</string>
+  <string name="menu_stopcurrenttrack">Apturēt pašreizējo ierakstu</string>
+  <string name="menu_save">Saglabāt</string>
+  <string name="menu_cancel">Atcelt</string>
+  <string name="menu_export">Eksportēt uz GPX</string>
+  <string name="menu_osm_upload">Augšupielādēt uz OpenStreetMap</string>
+  <string name="menu_center_to_gps">Centrēt pēc GPS</string>
+  <string name="menu_exportall">Eksportēt visu uz GPX</string>
   <!--Errors-->
+  <string name="error_externalstorage_not_writable">Nevarēja rakstīt arējā krātuvē</string>
+  <string name="error_create_track_dir">Nevarēja izveidot ieraksta mapi %s</string>
+  <string name="error_externalstorage_not_writable_hint">Lūdzu pārbaudi vai ārējā krāt. ir pareizi ievietota un piemontēta.</string>
+  <string name="error_voicerec_failed">Balss ieraksts neizdevās </string>
+  <string name="error_userlayout_parsing">Kļūda parsējot XML izkārtojuma datni. Lūdzu atiestati uz noklusējuma izkārtojumu.</string>
   <!--GPX-->
+  <string name="gpx_track_name">Ierakstīts izmantojot OSMTracker priekš Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Uzmanību: HDOP vērtības nav HDOP, kas tiek saņemts no GPS ierīces. Tās tiek aptuveni aprēķinātas no precizitātes metros.</string>
   <!--About screen-->
+  <string name="about">Par</string>
+  <string name="about_text">Lai saņemtu vairāk informācijas, dokumentus un kļūdu ziņošanu, lūdzu ejiet uz mājaslapu:</string>
+  <string name="about_translate_text">Palīdzi tulkot OSMTracker:</string>
+  <string name="about_debug_info">Atkļūdošanas info</string>
+  <string name="about_export_db">Eksportēt datubāzi</string>
+  <string name="about_exporting_db">Eksportē datubāzi...</string>
+  <string name="about_export_db_result">Datubāzes eksporta rezultāts: %s</string>
   <!--Notification-->
+  <string name="notification_ticker_text">OSMTracker veic ierakstu</string>
+  <string name="notification_title">OSMTracker veic ierakstu (#{0})</string>
+  <string name="notification_text">Nospied šeit lai parādītu galveno ekrānu</string>
   <!--Display track-->
+  <string name="displaytrack">Attēlot ierakstu</string>
+  <string name="displaytrack_map">Attēlot fona karti</string>
+  <string name="displaytrack_north">Z</string>
   <!--Track detail-->
+  <string name="trackdetail_save">Saglabāt</string>
   <!--Various-->
+  <string name="various_unit_meters">m</string>
+  <string name="various_accuracy">Precizitāte</string>
+  <string name="various_accuracy_with_sats">Precizitāte {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">Gaida GPS fix... ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">Gaida virziena noteikšanu...</string>
+  <string name="various_heading_unknown">Virzienu nevar noteikt</string>
   <!--OSM map view-->
+  <string name="displaytrackmap">OpenStreetMap ieraksta displejs</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Atjaunot &amp; Instalēt</string>
+  <string name="buttons_presets_context_menu_delete">Dzēst</string>
+  <string name="buttons_presets_updating_layout">Atjauno....</string>
+  <string name="buttons_presets_successful_update">Izkārtojums atjaunots veiksmīgi</string>
+  <string name="buttons_presets_unsuccessful_update">Izkārtojums netika atjaunots, lūdzu mēģini vēlreiz</string>
+  <string name="buttons_presets_delete_message">Vai tiešām izdzēst {0} izkārtojumu?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Jā</string>
+  <string name="buttons_presets_successful_delete">Datne tika izdzēsta veiksmīgi</string>
+  <string name="buttons_presets_icon_directory_deleted">Ikonu mape tika izdzēst veiksmīgi</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Šai datnei nebija pievienotas ikonu mapes</string>
+  <string name="buttons_presets_unsuccessful_delete">Šo datni nevar izdzēst</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Kļūda: nevar savienoties ar internetu</string>
+  <string name="available_layouts_response_null_exception">Kļūda: nevarēja savienoties ar noklusēto pielāgoto izkārtojumu repositoriju</string>
+  <string name="available_layouts_connecting_message">(Savienojas....)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Lejupielādēt</string>
+  <string name="available_layouts_not_available_language">Jūsu valoda nav pieejama, izvēlies vienu no saraksta</string>
+  <string name="available_layouts_language_dialog_title">Pieejamās valodas</string>
+  <string name="available_layouts_checking_language_dialog">Pārbauda vietājās valodas versijas</string>
+  <string name="available_layouts_downloading_dialog">Lejupielādē...</string>
+  <string name="available_layouts_successful_download">Izkārtojums tika sekmīgi lejupielādēts</string>
+  <string name="available_layouts_unsuccessful_download">Izkārtojums netika lejupielādēts, lūdzu mēģiniet vēlāk</string>
+  <string name="available_layouts_null_response_received">Kļūda saņemot datus no servera</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Noklusējuma</string>
+  <string name="github_repository_settings_custom_checkbox">Pielāgots</string>
+  <string name="github_repository_settings_username">Github lietotājvārds:</string>
+  <string name="github_repository_settings_repository_name">Repositorijas nosaukums:</string>
+  <string name="github_repository_settings_branch_name">Atzara nosaukums:</string>
+  <string name="github_repository_settings_valid_server">Github repositorija derīga</string>
+  <string name="github_repository_settings_invalid_server">Github repositorija nederīga</string>
 </resources>
