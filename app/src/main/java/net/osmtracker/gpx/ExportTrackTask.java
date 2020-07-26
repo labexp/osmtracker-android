@@ -54,7 +54,7 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * In addition, ':' will be replaced by ';', before calling this pattern.
 	 */
 	private final static Pattern FILENAME_CHARS_BLACKLIST_PATTERN =
-			Pattern.compile("[ '\"/\\\\*?~@<>]");  // must double-escape \
+		Pattern.compile("[ '\"/\\\\*?~@<>]");  // must double-escape \
 
 	/**
 	 * XML header.
@@ -376,7 +376,6 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 			}
 
 			String buff = "";
-
 			if(! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED))) {
 				buff += "\t\t\t\t\t" + "<speed>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_SPEED)) + "</speed>" + "\n";
 			}
