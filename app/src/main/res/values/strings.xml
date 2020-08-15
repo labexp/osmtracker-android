@@ -41,6 +41,7 @@
     <string name="trackmgr_contextmenu_resume">Resume tracking</string>
     <string name="trackmgr_contextmenu_delete">Delete</string>
     <string name="trackmgr_contextmenu_export">Export as GPX</string>
+    <string name="trackmgr_contextmenu_share">Share GPX</string>
     <string name="trackmgr_contextmenu_osm_upload">Upload to OpenStreetMap</string>
     <string name="trackmgr_contextmenu_display">Display</string>
     <string name="trackmgr_contextmenu_details">Details</string>
@@ -51,6 +52,7 @@
     <string name="trackmgr_exporting_prepare">Preparing export&#8230;</string>
     <string name="trackmgr_export_error">Unable to export track: {0}</string>
     <string name="trackmgr_exportall_confirm">All tracks will be exported, which could take a long time. Are you sure?</string>
+    <string name="trackmgr_prepare_for_share_error">Unable to process the track: {0}</string>
 
     <!-- Track Detail -->
     <string name="trackdetail">Track Details</string>

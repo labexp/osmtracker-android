@@ -6,38 +6,38 @@
   <string name="app_description">Εμπνευσμένο από το OSMTracker για το Windows Mobile, σας επιτρέπει να ιχνηλατήσετε τα ταξίδια σας, να σημειώσετε σημαντικά σημεία (ηχογράφηση φωνής, φωτογραφίες, κ.α.) και να κάνετε εξαγωγή σε τύπο αρχείου GPX για χρήση αργότερα με εργαλεία για το OpenStreetMap, όπως το JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Καταγραφέας ίχνους</string>
-  <string name="tracklogger_waiting_gps">Αναμονή του GPS για ενεργοποίηση των κουμπιών</string>
-  <string name="tracklogger_voicerec_title">Ηχογράφηση φωνής</string>
+  <string name="tracklogger_waiting_gps">Αναμονή του σήματος GPS για ενεργοποίηση των κουμπιών</string>
+  <string name="tracklogger_voicerec_title">Ηχητική καταγραφή</string>
   <string name="tracklogger_voicerec_text">Γίνεται εγγραφή ήχου {0}s.</string>
   <string name="tracklogger_voicerec_stop">Τερματισμός</string>
   <string name="tracklogger_btnBack">Πίσω</string>
   <string name="tracklogger_tracked">Ίχνευση:</string>
   <string name="tracklogger_gps_disabled">GPS απενεργοποιημένο</string>
-  <string name="tracklogger_gps_disabled_hint">Το GPS είναι απενεργοποιημένο. Θέλετε να το ενεργοποιήσετε;</string>
+  <string name="tracklogger_gps_disabled_hint">Το GPS είναι απενεργοποιημένο. Θέλετε ενεργοποίηση;</string>
   <string name="tracklogger_choose_gallery_camera">Συλλογή ή κάμερα;</string>
-  <string name="tracklogger_camera">Βγάλτε φωτογραφία με την κάμερα</string>
+  <string name="tracklogger_camera">Φωτογραφίστε</string>
   <string name="tracklogger_gallery">Επιλέξτε φωτογραφία από την συλλογή</string>
   <!--Waypoint List-->
   <string name="wplist">Λίστα σημείων</string>
-  <string name="wplist_latitude">Πλάτος:</string>
-  <string name="wplist_longitude">Μήκος:</string>
-  <string name="wplist_elevation">Ύψος:</string>
-  <string name="wplist_accuracy">Ακρ:</string>
+  <string name="wplist_latitude">Γεωγραφικό Πλάτος:</string>
+  <string name="wplist_longitude">Γεωγραφικό Μήκος:</string>
+  <string name="wplist_elevation">Ανύψωση:</string>
+  <string name="wplist_accuracy">Ακρίβεια:</string>
   <string name="wplist_compass">Κατεύθ. πυξίδας:</string>
-  <string name="wplist_compass_accuracy">Ακρίβ. πυξ.:</string>
+  <string name="wplist_compass_accuracy">Ακρίβ. πυξίδας.:</string>
   <!--Track Manager-->
   <string name="trackmgr">Διαχειριστής ιχνών</string>
   <string name="trackmgr_tracklist">Κατάλογος ιχνών:</string>
   <string name="trackmgr_waypoints_count">Ενδιάμεσα σημεία:</string>
   <string name="trackmgr_trackpoints_count">Ίχνη:</string>
   <string name="trackmgr_empty">Δεν έχετε ίχνη.</string>
-  <string name="trackmgr_newtrack_hint">Για να γράψεις ένα ίχνος,\n
-πάτα <b>Μενού</b> και μετά <b>Νέο ίχνος</b></string>
+  <string name="trackmgr_newtrack_hint">Για να καταγράψεις ένα νέο ίχνος,\n
+πάτα <b>+</b></string>
   <string name="trackmgr_newtrack_error">Αδύνατη η δημιουργία νέου ίχνους: {0}</string>
   <string name="trackmgr_continuetrack_hint">Αυτή τη στιγμή καταγράφετε το <b>ίχνος #{0}</b>\n
-Επιλέξτε το στον κατάλογο για συνέχεια</string>
-  <string name="trackmgr_contextmenu_stop">Τερματισμός ίχνους</string>
-  <string name="trackmgr_contextmenu_resume">Συνέχεια ίχνους</string>
+Επιλέξτε το στον κατάλογο για συνέχιση</string>
+  <string name="trackmgr_contextmenu_stop">Τερματισμός καταγραφής ίχνους</string>
+  <string name="trackmgr_contextmenu_resume">Συνέχιση καταγραφής ίχνους</string>
   <string name="trackmgr_contextmenu_delete">Διαγραφή</string>
   <string name="trackmgr_contextmenu_export">Εξαγωγή ως GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Αποστολή στο OpenStreetMap</string>
@@ -45,7 +45,7 @@
   <string name="trackmgr_contextmenu_details">Λεπτομέρειες</string>
   <string name="trackmgr_contextmenu_title">Ίχνος #{0}</string>
   <string name="trackmgr_delete_confirm">Το ίχνος #{0} θα διαγραφεί</string>
-  <string name="trackmgr_deleteall_confirm">Όλα τα ίχνη θα διαγραφούν. Είστε σίγουροι;</string>
+  <string name="trackmgr_deleteall_confirm">Όλα τα ίχνη θα διαγραφούν. Είστε σίγουρος;</string>
   <string name="trackmgr_exporting">Εξαγωγή ίχνους #{0}...</string>
   <string name="trackmgr_exporting_prepare">Προετοιμασία εξαγωγής...</string>
   <string name="trackmgr_export_error">Αδύνατη η εξαγωγή του ίχνους: {0}</string>
@@ -54,8 +54,8 @@
   <string name="trackdetail">Λεπτομέρειες Ίχνους</string>
   <string name="trackdetail_startdate">Χρόνος εκκίνησης:</string>
   <string name="trackdetail_enddate">Χρόνος ολοκλήρωσης:</string>
-  <string name="trackdetail_startloc">Αρχίζει σε:</string>
-  <string name="trackdetail_endloc">Τελειώνει σε:</string>
+  <string name="trackdetail_startloc">Αρχίζει στο:</string>
+  <string name="trackdetail_endloc">Τελειώνει στο:</string>
   <string name="trackdetail_exportdate">Εξήχθη:</string>
   <string name="trackdetail_osm_upload_date">Εστάλη στο OpenStreetMap:</string>
   <string name="trackdetail_btn_export">Εξαγωγή ως GPX</string>
@@ -63,9 +63,9 @@
   <string name="trackdetail_osm_upload_notyet">(Δεν έχει ακόμη σταλεί)</string>
   <string name="trackdetail_export_display">Προβολή</string>
   <string name="trackdetail_description">Περιγραφή</string>
-  <string name="trackdetail_tags">Ετικέτες (διαχωρισμένες με κόμματα)</string>
-  <string name="trackdetail_description_mandatory">Πρέπει να εισάγετε περιγραφή</string>
-  <string name="osm_visibility_private">Προσωπικό</string>
+  <string name="trackdetail_tags">Ετικέτες (διαχωρισμένες με κόμμα)</string>
+  <string name="trackdetail_description_mandatory">Πρέπει να εισάγετε μια περιγραφή</string>
+  <string name="osm_visibility_private">Ιδιωτικό</string>
   <string name="osm_visibility_public">Δημόσιο</string>
   <string name="osm_visibility_trackable">Ανιχνεύσιμο</string>
   <string name="osm_visibility_identifiable">Αναγνωρίσιμο</string>
@@ -74,15 +74,15 @@
   <string name="osm_upload_ok">Αποθήκευση και αποστολή</string>
   <string name="osm_upload_tmpfile_failed">Αδύνατη η εξαγωγή του ίχνους σε προσωρινό αρχείο</string>
   <string name="osm_upload_oauth_failed">Αδύνατη η επαλήθευση με το OSM</string>
-  <string name="osm_upload_sending">Αποστολή ίχνους#{0}...</string>
+  <string name="osm_upload_sending">Αποστολή ίχνους #{0}...</string>
   <string name="osm_upload_waiting_response">Αναμονή για την απάντηση του εξυπηρετητή του OpenStreetMap...</string>
   <string name="osm_upload_error">Σφάλμα κατά την αποστολή ίχνους</string>
   <string name="osm_upload_bad_response">Ο εξυπηρετητής OSM απέδωσε σφάλμα: ({0}) μήνυμα {1}</string>
-  <string name="osm_upload_unauthorized">Σφάλμα επαλήθευση. Θελε να εκκαθαρίσετε τα αποθηκευμένα πιστοποιητικά για το OSM;</string>
+  <string name="osm_upload_unauthorized">Σφάλμα επαλήθευσης. Θελε να εκκαθαρίσετε τα αποθηκευμένα πιστοποιητικά για το OSM;</string>
   <string name="osm_upload_sucess">Αποστολή στο OpenStreetMap επιτυχής</string>
   <!--GPS Status & record bar-->
-  <string name="gpsstatus_record_voicerec">Ηχογράφηση φωνής</string>
-  <string name="gpsstatus_record_stillimage">Βγάλτε φωτογραφία</string>
+  <string name="gpsstatus_record_voicerec">Ηχογράφηση</string>
+  <string name="gpsstatus_record_stillimage">Φωτογράφιση</string>
   <string name="gpsstatus_record_textnote">Σημείωση κειμένου</string>
   <!--Menu-->
   <string name="menu_settings">Ρυθμίσεις</string>
@@ -92,7 +92,7 @@
   <string name="menu_stoptracking">Διακοπή και αποθήκευση</string>
   <string name="menu_newtrack">Νέο ίχνος</string>
   <string name="menu_deletetracks">Διαγραφή όλων των ιχνών</string>
-  <string name="menu_continue">Συνέχεια ίχνους</string>
+  <string name="menu_continue">Συνέχιση ίχνους</string>
   <string name="menu_stopcurrenttrack">Διακοπή τρέχοντος ίχνους</string>
   <string name="menu_save">Αποθήκευση</string>
   <string name="menu_cancel">Ακύρωση</string>
@@ -101,21 +101,21 @@
   <string name="menu_center_to_gps">Κεντράρισμα στο GPS</string>
   <string name="menu_exportall">Εξαγωγή όλων ως GPX</string>
   <!--Errors-->
-  <string name="error_externalstorage_not_writable">Δεν ήταν δυνατή η αποθήκευση σε εξωτερικά μέσα</string>
+  <string name="error_externalstorage_not_writable">Δεν ήταν δυνατή η εγγραφή στο εξωτερικό αποθηκευτικό μέσο</string>
   <string name="error_create_track_dir">Αδύνατη η δημιουργία φακέλου για το ίχνος %s</string>
-  <string name="error_externalstorage_not_writable_hint">Παρακαλούμε κοιτάξτε αν η εξωτερική αποθήκευση έχει τοποθετηθεί σωστά. </string>
-  <string name="error_voicerec_failed">Η ηχογράφηση φωνής απέτυχε</string>
+  <string name="error_externalstorage_not_writable_hint">Παρακαλούμε ελέγξτε αν ο εξωτ. αποθηκευτικός χώρος έχει τοποθετηθεί σωστά. </string>
+  <string name="error_voicerec_failed">Η ηχογράφηση απέτυχε</string>
   <string name="error_userlayout_parsing">Σφάλμα στην ανάπτυξη του σχεδίου XML. Επαναφέρετε το προκαθορισμένο σχέδιο.</string>
   <!--GPX-->
   <string name="gpx_track_name">Ιχνηλατίστηκε με το OSMTracker για Android™</string>
-  <string name="gpx_hdop_approximation_cmt">Προσοχή: Οι τιμές HDOP δεν είναι ίδιες με αυτές που όριζει η συσκευή GPS. Είναι κατά προσέγγιση από την ακρίβεια θέσης σε μέτρα.</string>
+  <string name="gpx_hdop_approximation_cmt">Προσοχή: Οι τιμές HDOP δεν είναι ίδιες με αυτές που όρισε η συσκευή GPS.  Είναι κατά προσέγγιση μέσω της ακρίβειας θέσης σε μέτρα.</string>
   <!--About screen-->
   <string name="about">Σχετικά</string>
   <string name="about_text">Για περισσότερες πληροφορίες, εγχειρίδια και αναφορές λαθών, επισκεφθείτε τη σελίδα της εφαρμογής:</string>
   <string name="about_translate_text">Βοηθήστε στη μετάφραση του OSMTracker:</string>
   <string name="about_debug_info">Πληροφορίες εντοπισμού σφαλμάτων</string>
   <string name="about_export_db">Εξαγωγή βάσης δεδομένων</string>
-  <string name="about_exporting_db">Γίνεται εξαγωγή βάσης δεδομένων...</string>
+  <string name="about_exporting_db">Εξάγοντας τη βάση δεδομένων...</string>
   <string name="about_export_db_result">Αποτέλεσμα εξαγωγής βάσης δεδομένων: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">Το OSMTracker ιχνηλατεί</string>
@@ -132,15 +132,44 @@
   <string name="various_accuracy">Ακρίβεια</string>
   <string name="various_accuracy_with_sats">Ακρίβεια {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
-  <string name="various_waiting_gps_fix">Αναμονή GPS... ({0}/{1})</string>
+  <string name="various_waiting_gps_fix">Αναμονή για διόρθωση GPS... ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
   <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Αναμονή για κατεύθυνση…</string>
-  <string name="various_heading_unknown">Δεν ήταν δυνατό να προσδιοριστεί η κατεύθυνση</string>
+  <string name="various_heading_unknown">Η κατεύθυνση δεν μπορεί να προσδιοριστεί</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Προβολή ιχνών OpenStreetMap</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Ενημέρωση &amp; Εγκατάσταση</string>
+  <string name="buttons_presets_context_menu_delete">Διαγραφή</string>
+  <string name="buttons_presets_updating_layout">Ενημερώνοντας...</string>
+  <string name="buttons_presets_successful_update">Η διάταξη ενημερώθηκε επιτυχώς</string>
+  <string name="buttons_presets_unsuccessful_update">Η διάταξη δεν ενημερώθηκε, δοκιμάστε πάλι αργότερα</string>
+  <string name="buttons_presets_delete_message">Θέλετε σίγουρα να διαγράψετε τη {0} διάταξη;</string>
+  <string name="buttons_presets_delete_positive_confirmation">Ναι</string>
+  <string name="buttons_presets_successful_delete">Το αρχείο διεγράφει επιτυχώς</string>
+  <string name="buttons_presets_icon_directory_deleted">Ο φάκελος εικονιδίων διεγράφει επιτυχώς</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Το αρχείο δεν είχε συσχετισμό με φάκελο εικονιδίων</string>
+  <string name="buttons_presets_unsuccessful_delete">Το αρχείο δεν μπορούσε να διεγραφεί</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Σφάλμα: Αδύνατη η σύνδεση στο διαδίκτυο</string>
+  <string name="available_layouts_response_null_exception">Σφάλμα: Αδύνατη η σύνδεση στο αποθετήριο διατάξεων</string>
+  <string name="available_layouts_connecting_message">(Σύνδεση...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Αποθήκευση</string>
+  <string name="available_layouts_not_available_language">Η γλώσσα σας δεν είναι διαθέσιμη επιλέξτε μια άλλη από τη λίστα</string>
+  <string name="available_layouts_language_dialog_title">Διαθέσιμες Γλώσσες</string>
+  <string name="available_layouts_checking_language_dialog">Ελέγχοντας τις εκδόσεις των αποθηκευμένων γλωσσών</string>
+  <string name="available_layouts_downloading_dialog">Αποθηκεύοντας...</string>
+  <string name="available_layouts_successful_download">Η διάταξη αποθηκεύτηκε επιτυχώς</string>
+  <string name="available_layouts_unsuccessful_download">Η διάταξη δεν μπορεί να αποθηκευτεί, δοκιμάστε ξανά αργότερα</string>
+  <string name="available_layouts_null_response_received">Λάθος στη λήψη δεδομένων από τον server</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Προεπιλογή</string>
+  <string name="github_repository_settings_custom_checkbox">Παραμετροποίηση</string>
+  <string name="github_repository_settings_username">Όνομα χρήστη στο Github:</string>
+  <string name="github_repository_settings_repository_name">Όνομα αποθετηρίου</string>
+  <string name="github_repository_settings_branch_name">Όνομα Κλάδου:</string>
+  <string name="github_repository_settings_valid_server">Έγκυρο αποθετήριο στο Github</string>
+  <string name="github_repository_settings_invalid_server">Μη έγκυρο αποθετήριο στο Github</string>
 </resources>

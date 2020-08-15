@@ -38,7 +38,7 @@ public class PressureListener implements SensorEventListener {
 
     public boolean register (Context context, boolean use_barometer) {
 
-        boolean result = true;
+        boolean result = false;
 
         if (use_barometer) {
             sensorService = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);

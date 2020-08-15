@@ -1,5 +1,18 @@
 package net.osmtracker.activity;
 
+import android.content.ContentUris;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.Toast;
+
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.TrackContentProvider;
@@ -13,18 +26,6 @@ import net.osmtracker.osm.UploadToOpenStreetMapTask;
 import oauth.signpost.OAuth;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
-import android.content.ContentUris;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.Toast;
 
 /**
  * <p>Uploads a track on OSM using the API and
@@ -66,7 +67,7 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 				}
 			}
 		});
-				
+
 		final Button btnCancel = (Button) findViewById(R.id.osm_upload_btn_cancel);
 		btnCancel.setOnClickListener(new OnClickListener() {
 			@Override

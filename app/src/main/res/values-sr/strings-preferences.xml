@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Предефинисана дугмад</string>
   <string name="prefs_ui_buttons_layout_summary">Изабери посебне сетове дугмади (види документацију)</string>
+  <string name="prefs_ui_buttons_layout_default_section">ПОДРАЗУМЕВАНИ РАСПОРЕД</string>
   <string name="prefs_ui_buttons_layout_defaut">Подразумевано</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">ПРЕУЗЕТИ РАСПОРЕД</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Немате преузете фајлове распореда</string>
+  <string name="prefs_ui_available_layout">Доступни распореди</string>
+  <string name="prefs_ui_github_repository_settings">Поставке Гитхаб ризнице</string>
   <string name="prefs_ui_orientation">Усмерење</string>
   <string name="prefs_ui_orientation_summary">Жељено усмерење за екран дугмади</string>
   <string-array name="prefs_ui_orientation_options_keys">

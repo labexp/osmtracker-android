@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
  * @author Nicolas Guillaumin
  *
  */
-public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
+public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 
 	private static final String TAG = ExportTrackTask.class.getSimpleName();
 
@@ -54,7 +54,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	 * In addition, ':' will be replaced by ';', before calling this pattern.
 	 */
 	private final static Pattern FILENAME_CHARS_BLACKLIST_PATTERN =
-			Pattern.compile("[ '\"/\\\\*?~@<>]");  // must double-escape \
+		Pattern.compile("[ '\"/\\\\*?~@<>]");  // must double-escape \
 
 	/**
 	 * XML header.
@@ -87,7 +87,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	/**
 	 * Track IDs to export
 	 */
-	protected long[] trackIds;
+	private long[] trackIds;
 
 	/**
 	 * Dialog to display while exporting
@@ -139,8 +139,8 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		try {
-			for (int i=0; i<trackIds.length; i++) {
-				exportTrackAsGpx(trackIds[i]);
+			for (long trackId : trackIds) {
+				exportTrackAsGpx(trackId);
 			}
 		} catch (ExportTrackException ete) {
 			errorMsg = ete.getMessage();
@@ -240,7 +240,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 						null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
 
 				if (null != cTrackPoints && null != cWayPoints) {
-					publishProgress(new Long[]{trackId, (long) cTrackPoints.getCount(), (long) cWayPoints.getCount()});
+					publishProgress(trackId, (long) cTrackPoints.getCount(), (long) cWayPoints.getCount());
 
 					try {
 						writeGpxFile(track_name, tags, track_description, cTrackPoints, cWayPoints, trackFile);
@@ -383,6 +383,13 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				buff += "\t\t\t\t\t" + "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>" + "\n";
 				buff += "\t\t\t\t\t" + "<compass_accuracy>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n";
 			}
+
+			if (! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE))) { //Checking if the database contains atmospheric_pressure data
+				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
+				String pressure_formatted = String.format("%.1f", pressure);
+				buff += "\t\t\t\t\t" + "<baro>" + pressure_formatted + "</baro>" + "\n";
+			}
+
 			if(! buff.equals("")) {
 				out.append("\t\t\t\t" + "<extensions>\n");
 				out.append(buff);
@@ -425,7 +432,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 
 		int i=0;
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(), i++) {
-			StringBuffer out = new StringBuffer();
+			StringBuilder out = new StringBuilder();
 			out.append("\t" + "<wpt lat=\""
 					+ c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE)) + "\" "
 					+ "lon=\"" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE)) + "\">" + "\n");
@@ -492,12 +499,23 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Long, Boolean> {
 				out.append("\t\t" + "<hdop>" + (c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ACCURACY)) / OSMTracker.HDOP_APPROXIMATION_FACTOR) + "</hdop>" + "\n");
 			}
 
-			if (OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) &&
-					! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
-				out.append("\t\t<extensions>\n");
-				out.append("\t\t\t"+ "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>\n");
-				out.append("\t\t\t" + "<compass_accuracy>" + c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n");
-				out.append("\t\t</extensions>\n");
+			String buff = "";
+
+			if(OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass) && !c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS))) {
+				buff += "\t\t\t\t\t" + "<compass>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS)) + "</compass>" + "\n";
+				buff += "\t\t\t\t\t" + "<compass_accuracy>" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_COMPASS_ACCURACY)) + "</compass_accuracy>" + "\n";
+			}
+
+			if (! c.isNull(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE))) { //Checking if the database contains atmospheric_pressure data
+				double pressure = c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE));
+				String pressure_formatted = String.format("%.1f", pressure);
+				buff += "\t\t\t\t\t" + "<baro>" + pressure_formatted + "</baro>" + "\n";
+			}
+
+			if(! buff.equals("")) {
+				out.append("\t\t\t\t" + "<extensions>\n");
+				out.append(buff);
+				out.append("\t\t\t\t" + "</extensions>\n");
 			}
 
 			out.append("\t" + "</wpt>" + "\n");

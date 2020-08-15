@@ -4,48 +4,66 @@
   <string name="prefs">تنظیمات</string>
   <string name="prefs_gps">GPS</string>
   <string name="prefs_gps_os_settings">تنظیمات GPS </string>
-  <string name="prefs_gps_os_settings_summary">نمایش صفحه تنظیمات GPS سیستم</string>
+  <string name="prefs_gps_os_settings_summary">نمایش صفحهٔ تنظیمات GPS سیستم</string>
   <string name="prefs_check_gps_startup">بررسی GPS هنگام شروع</string>
-  <string name="prefs_check_gps_startup_summary">بررسی غیرفعال بودن GPS هنگام شروع برنامه و پیشنهاد برای فعالسازی آن</string>
-  <string name="prefs_gps_ignore_clock">نادیده گرفتن ساعت GPS</string>
-  <string name="prefs_gps_ignore_clock_summary">نادیده گرفتن ساعت جی پی اس و استفاده از ساعت آندروید برای timestamps</string>
+  <string name="prefs_check_gps_startup_summary">بررسی غیرفعال بودن GPS هنگام شروع برنامه و پیشنهاد برای فعال‌سازی آن</string>
+  <string name="prefs_gps_ignore_clock">نادیده‌گرفتن ساعت GPS</string>
+  <string name="prefs_gps_ignore_clock_summary">نادیده‌گرفتن ساعت جی‌پی‌اس و استفاده از ساعت آندروید برای timestamps</string>
   <string name="prefs_gps_logging_interval">فواصل ثبت GPS</string>
-  <string name="prefs_gps_logging_interval_summary">برای کوتاهترین زمان ممکن از 0 استفاده کن. (تاثیر روی مصرف باتری)</string>
+  <string name="prefs_gps_logging_interval_summary">برای کوتاهترین زمان ممکن از 0 استفاده کنید. (مؤثر در مصرف باتری)</string>
   <string name="prefs_gps_logging_interval_seconds">ثانیه</string>
   <string name="prefs_ui">رابط کاربری</string>
-  <string name="prefs_ui_picture_source">محل پیش فرض برای عکس</string>
-  <string name="prefs_ui_picture_source_summary">انتخاب عکس از دوربین یا گالری؟</string>
-  <string-array name="prefs_ui_picture_source_keys"/>
-  <string name="prefs_ui_buttons_layout">پیشفرض دکمه‌ها</string>
-  <string name="prefs_ui_buttons_layout_summary">انتخاب دکمه‌های دلخواه (مستندات را ببینید)</string>
+  <string name="prefs_ui_picture_source">منبع پیشفرض برای تصاویر</string>
+  <string name="prefs_ui_picture_source_summary">عکس‌برداری با دوربین یا انتخاب از گالری؟</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>دوربین</item>
+    <item>گالری</item>
+    <item>همیشه بپرس</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">پیش‌تنظیم‌های دکمه‌ها</string>
+  <string name="prefs_ui_buttons_layout_summary">انتخاب مجموعهٔ دلخواه از دکمه‌ها (مستندات را ببینید)</string>
   <string name="prefs_ui_buttons_layout_default_section">چیدمان پیشفرض</string>
   <string name="prefs_ui_buttons_layout_defaut">پیشفرض</string>
-  <string name="prefs_ui_buttons_layout_downloaded_section">چیدمان دانلود شده</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">چیدمان دانلودشده</string>
   <string name="prefs_ui_buttons_layout_empty_section">فایل‌های چیدمان را دانلود نکرده‌اید</string>
   <string name="prefs_ui_available_layout">چیدمان‌های موجود</string>
   <string name="prefs_ui_github_repository_settings">تنظیمات مخزن گیت‌هاب</string>
   <string name="prefs_ui_orientation">جهت</string>
-  <string name="prefs_ui_orientation_summary">جهتی که برای صفحه دکمه‌ها ترجیح می‌دهید</string>
-  <string-array name="prefs_ui_orientation_options_keys"/>
+  <string name="prefs_ui_orientation_summary">جهتی که برای صفحهٔ دکمه‌ها ترجیح می‌دهید</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>خودکار</item>
+    <item>عمودی</item>
+    <item>افقی</item>
+  </string-array>
   <string name="prefs_voicerec_duration">مدت ضبط صدا</string>
   <string name="prefs_voicerec_duration_seconds">ثانیه</string>
-  <string name="prefs_theme">قالب گرافیکی صفحه اصلی</string>
-  <string name="prefs_theme_summary">برای اثربخشی تغییرات برنامه را مجدداً راه‌اندازی کنید</string>
-  <string-array name="prefs_theme_keys"/>
+  <string name="prefs_theme">قالب گرافیکی صفحهٔ اصلی</string>
+  <string name="prefs_theme_summary">برای اثربخشی تغییرات، لازم است برنامه مجدداً راه‌اندازی شود</string>
+  <string-array name="prefs_theme_keys">
+    <item>پیشفرض سیستم‌عامل</item>
+    <item>پیشفرض سیستم‌عامل (تیره)</item>
+    <item>پیشفرض سیستم‌عامل (روشن)</item>
+    <item>پادنمایی زیاد</item>
+  </string-array>
   <string name="prefs_display_always_on">صفحه همیشه روشن</string>
-  <string name="prefs_display_always_on_summary">صفحه‌نمایش هنگام ردیابی روشن خواهد ماند. برای صرفه‌جویی در مصرف باتری غیرفعال کنید.</string>
-  <string name="prefs_displaytrack_osm">نقشه پس‌زمینه</string>
-  <string name="prefs_displaytrack_osm_summary">نمایش نقشه OpenStreetMap زیر مسیر. به ارتباط اینترنتی نیاز دارد.</string>
-  <string name="prefs_displaytrack_osm_summary_ask">پس‌زمینه  OpenStreetMap همیشه نمایش داده شود؟ نیاز به ارتباط اینترنتی دارد.</string>
+  <string name="prefs_display_always_on_summary">هنگام ثبت رد، صفحه‌نمایش روشن خواهد ماند. برای صرفه‌جویی در مصرف باتری غیرفعال کنید.</string>
+  <string name="prefs_displaytrack_osm">نقشهٔ پس‌زمینه</string>
+  <string name="prefs_displaytrack_osm_summary">نمایش نقشهٔ OpenStreetMap زیر رد. به ارتباط اینترنتی نیاز دارد</string>
+  <string name="prefs_displaytrack_osm_summary_ask">پس‌زمینهٔ  OpenStreetMap همیشه نمایش داده شود؟ به ارتباط اینترنتی نیاز دارد</string>
   <string name="prefs_output">تنظیمات GPS</string>
-  <string name="prefs_storage_dir">حافظه خارجی (SD)</string>
-  <string name="prefs_storage_dir_hint">موثر برای مسیر بعدی (روی مسیر فعلی تاثیر نمی‌گذارد)</string>
-  <string name="prefs_output_one_dir_per_track">یک شاخه برای هر مسیر</string>
-  <string name="prefs_output_one_dir_per_track_summary">هر مسیر و فایل‌های پیوست آن را در شاخه مجزا ذخیره کن</string>
-  <string name="prefs_output_filename">اسم فایل برای مسیرهای نام گذاری شده</string>
-  <string name="prefs_output_filename_summary">الگو برای نام فایل اگر مسیر نامی داشته باشد</string>
+  <string name="prefs_storage_dir">شاخهٔ حافظهٔ خارجی (SD)</string>
+  <string name="prefs_storage_dir_hint">موثر برای رد بعدی (روی رد فعلی تاثیر نمی‌گذارد)</string>
+  <string name="prefs_output_one_dir_per_track">یک شاخه برای هر رد</string>
+  <string name="prefs_output_one_dir_per_track_summary">هر رد و فایل‌های پیوست آن را در شاخهٔ مجزا ذخیره کن</string>
+  <string name="prefs_output_filename">نام فایل برای ردهای نام‌دار</string>
+  <string name="prefs_output_filename_summary">الگو برای نام فایل، اگر رد نام داشته باشد</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>نام رد</item>
+    <item>نام، تاریخ و ساعت شروع</item>
+    <item>تاریخ و ساعت شروع</item>
+  </string-array>
   <string name="prefs_output_accuracy">ثبت دقت در فایل GPX</string>
-  <string name="prefs_output_accuracy_summary">اطلاعات دقت را به فایل GPX اضافه می‌کند: در کنار نام نقطه بین‌راهی یا در توضیحات نقطه بین‌راهی</string>
+  <string name="prefs_output_accuracy_summary">اطلاعات دقت را به فایل GPX اضافه می‌کند: در کنار نام نقطهٔ بین‌راهی یا در توضیحات نقطهٔ بین‌راهی</string>
   <string-array name="prefs_output_accuracy_keys">
     <item>خالی</item>
     <item>کنار نام نقطه</item>
@@ -53,11 +71,11 @@
   </string-array>
   <string name="prefs_output_gpx_hdop_approximation">از تقریب HDOP استفاده شود</string>
   <string name="prefs_output_gpx_hdop_approximation_summary">مقدار HDOP در فایل GPX با مقداری تقریبی از دقت دستگاه پر شود.</string>
-  <string name="prefs_sound_enabled">فعالسازی صدا</string>
+  <string name="prefs_sound_enabled">فعال‌سازی صدا</string>
   <string name="prefs_sound_enabled_summary">هنگام شروع و پایان ضبط صدا هشدار صوتی داده شود</string>
   <string name="prefs_osm_clear_oauth_data">بازنشانی اطلاعات احراز هویت OSM</string>
-  <string name="prefs_osm_clear_oauth_data_summary">اعتبارنامه‌ها و مجوزهای OSM را فراموش کن و OSMTracker را مجبور به درخواست دوباره آن‌ها کن</string>
-  <string name="prefs_osm_clear_oauth_data_dialog">باید دویاره به OSMTracker مجوز بدهید تا بتوانید مسیرهای ذخیره شده را بارگذاری کنید. مطمئن هستید؟</string>
+  <string name="prefs_osm_clear_oauth_data_summary">اعتبارنامه‌ها و مجوزهای OSM را فراموش کن و OSMTracker را مجبور به درخواست دوبارهٔ آن‌ها کن</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">باید به OSMTracker مجوز بدهید تا دوباره بتوانید ردها را بارگذاری کنید. مطمئن هستید؟</string>
   <string name="prefs_map_tile">ارائه‌دهندهٔ کاشی نقشه</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
@@ -70,6 +88,6 @@
     <item>در توضیحات</item>
     <item>در extension</item>
   </string-array>
-  <string name="prefs_compass_heading">خزوجی از جهت قطب نما</string>
+  <string name="prefs_compass_heading">خزوجی از جهت قطب‌نما</string>
   <string name="prefs_compass_heading_summary">مشخص می‌کند آیا و چگونه اطلاعات قطب‌نما به فایل GPX وارد شود</string>
 </resources>

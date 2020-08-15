@@ -99,8 +99,8 @@ Bereich</string>
 (Grade 4)</string>
   <string name="tag.track_grade5">Unbefestigter Weg
 (Grade 5)</string>
-  <string name="tag.landuse_farm">Landwirtschaftlich
-genutzte Fläche</string>
+  <string name="tag.landuse_farm">landwirtschaft-
+liche Fläche</string>
   <string name="tag.landuse_landfill">Deponie</string>
   <string name="tag.landuse_basin">Wasserbecken</string>
   <string name="tag.landuse_reservoir">Speicherbecken</string>

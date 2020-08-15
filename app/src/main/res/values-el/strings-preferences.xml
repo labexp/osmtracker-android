@@ -4,17 +4,17 @@
   <string name="prefs">Ρυθμίσεις</string>
   <string name="prefs_gps">GPS</string>
   <string name="prefs_gps_os_settings">Ρυθμίσεις GPS</string>
-  <string name="prefs_gps_os_settings_summary">Προβάλλει τις ρυθμίσεις συστήματος για το GPS</string>
+  <string name="prefs_gps_os_settings_summary">Προβολή ρυθμίσεων συστήματος GPS</string>
   <string name="prefs_check_gps_startup">Έλεγχος GPS κατά την εκκίνηση</string>
-  <string name="prefs_check_gps_startup_summary">Ελέγχει για αν το GPS είναι ανενεργό κατά την εκκίνηση, και προσφέρει να το ενεργοποιήσει</string>
+  <string name="prefs_check_gps_startup_summary">Έλεγχος αν το GPS είναι απενεργοποιημένο κατά την εκκίνηση και προσφέρεται να το ενεργοποιήσει</string>
   <string name="prefs_gps_ignore_clock">Αγνόηση ρολογιού GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Αγνοεί το ρολόι του GPS και χρησιμοποιεί το ρολόι του Android για χρονική σήμανση</string>
-  <string name="prefs_gps_logging_interval">Διάστημα καταγραφής GPS</string>
-  <string name="prefs_gps_logging_interval_summary">Χρησιμοποιεί 0 για το μικρότερο δυνατό (επηρεάζει τη ζωή της μπαταρίας)</string>
+  <string name="prefs_gps_logging_interval">Χρονικό διάστημα καταγραφής GPS</string>
+  <string name="prefs_gps_logging_interval_summary">Χρησιμοποιήστε το 0 για το μικρότερο δυνατό χρονικό διάστημα (επηρεάζει τη ζωή της μπαταρίας)</string>
   <string name="prefs_gps_logging_interval_seconds">δευτερόλεπτα</string>
-  <string name="prefs_ui">Γραφικό περιβάλλων</string>
+  <string name="prefs_ui">Γραφικό περιβάλλον χρήστη</string>
   <string name="prefs_ui_picture_source">Προκαθορισμένη πηγή φωτογραφιών</string>
-  <string name="prefs_ui_picture_source_summary">Να βγαίνουν φωτογραφίες από την κάμερα ή τη συλλογή;</string>
+  <string name="prefs_ui_picture_source_summary">Φωτογραφίες από την κάμερα ή τη συλλογή;</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>Κάμερα</item>
     <item>Συλλογή</item>
@@ -22,55 +22,60 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Προκαθορισμένα κουμπιά</string>
   <string name="prefs_ui_buttons_layout_summary">Επιλέξτε ένα προσαρμοσμένο σύνολο κουμπιών (δείτε τα έγγραφα)</string>
+  <string name="prefs_ui_buttons_layout_default_section">ΠΡΟΚΑΘΟΡΙΣΜΕΝΗ ΔΙΑΤΑΞΗ</string>
   <string name="prefs_ui_buttons_layout_defaut">Προκαθορισμένο</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">ΑΠΟΘΗΚΕΥΜΕΝΗ ΔΙΑΤΑΞΗ</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Δεν έχεις αποθηκευμένες διατάξεις</string>
+  <string name="prefs_ui_available_layout">Διαθέσιμες Διατάξεις</string>
+  <string name="prefs_ui_github_repository_settings">Ρυθμίσεις του Github Repository</string>
   <string name="prefs_ui_orientation">Προσανατολισμός</string>
-  <string name="prefs_ui_orientation_summary">Προτιμώμενος προσανατολισμός για την οθόνη κουμπιών</string>
+  <string name="prefs_ui_orientation_summary">Προτιμώμενος προσανατολισμός για το κουμπί οθόνης</string>
   <string-array name="prefs_ui_orientation_options_keys">
     <item>Αυτόματα</item>
     <item>Πορτραίτο</item>
     <item>Τοπίο</item>
   </string-array>
-  <string name="prefs_voicerec_duration">Διάρκεια καταγραφής φωνής</string>
+  <string name="prefs_voicerec_duration">Διάρκεια ηχογράφησης</string>
   <string name="prefs_voicerec_duration_seconds">δευτερόλεπτα</string>
   <string name="prefs_theme">Γραφικό θέμα για την κύρια οθόνη</string>
   <string name="prefs_theme_summary">Επανεκκινήστε την εφαρμογή για την εφαρμογή των αλλαγών σας</string>
   <string-array name="prefs_theme_keys">
-    <item>Προκαθορισμένο λειτοργικού</item>
-    <item>Προκαθορισμένο λειτοργικού (σκοτεινό)</item>
-    <item>Προκαθορισμένο λειτοργικού (φωτεινό)</item>
+    <item>Προκαθορισμένο από το λειτουργικό</item>
+    <item>Προκαθορισμένο από το λειτουργικό (σκοτεινό)</item>
+    <item>Προκαθορισμένο από το λειτουργικό (φωτεινό)</item>
     <item>Υψηλή αντίθεση</item>
   </string-array>
-  <string name="prefs_display_always_on">Η οθόνη πάντα ανοικτή</string>
+  <string name="prefs_display_always_on">Η οθόνη πάντα ενεργή</string>
   <string name="prefs_display_always_on_summary">Η οθόνη θα παραμένει ανοικτή κατά την ιχνηλάτηση. Απενεργοποιήστε για να αυξήσετε τη διάρκεια της μπαταρίας</string>
   <string name="prefs_displaytrack_osm">Χάρτης παρασκηνίου</string>
   <string name="prefs_displaytrack_osm_summary">Εμφανίζει τον χάρτη του OpenStreetMap κάτω από το ίχνος. Χρειάζεται σύνδεση δεδομένων</string>
   <string name="prefs_displaytrack_osm_summary_ask">Πάντα εμφάνιση του παρασκηνίου OpenStreetMap; Απαιτεί σύνδεση δεδομένων.</string>
   <string name="prefs_output">Ρυθμίσεις GPX</string>
-  <string name="prefs_storage_dir">Φάκελος εξωτερικής αποθήκευσης (SD)</string>
+  <string name="prefs_storage_dir">Φάκελος εξωτερικού μέσου αποθήκευσης (SD)</string>
   <string name="prefs_storage_dir_hint">Θα επηρεάσει το επόμενο ίχνος (όχι το τρέχων)</string>
-  <string name="prefs_output_one_dir_per_track">Ένας φάκελος ανά ίχνος</string>
-  <string name="prefs_output_one_dir_per_track_summary">Αποθηκεύει κάθε ίχνος και τα σχετικά του αρχεία στον δικό τους φάκελο</string>
-  <string name="prefs_output_filename">Όνομα αρχείου για ίχνη με όνομα</string>
-  <string name="prefs_output_filename_summary">Πρότυπο όνομα αρχείου εάν το ίχνος έχει όνομα</string>
+  <string name="prefs_output_one_dir_per_track">Ένα ευρετήριο ανά ίχνος</string>
+  <string name="prefs_output_one_dir_per_track_summary">Αποθήκευση κάθε ίχνος και τα σχετικά αρχεία στο δικό τους ευρετήριο</string>
+  <string name="prefs_output_filename">Όνομα αρχείου για κατονομαζόμενο ίχνος</string>
+  <string name="prefs_output_filename_summary">Μοτίβο για το όνομα αρχείου αν το ίχνος έχει ένα όνομα</string>
   <string-array name="prefs_output_filename_keys">
     <item>Όνομα ίχνους</item>
     <item>Όνομα, ημερομηνία και ώρα έναρξης</item>
     <item>Ημερομηνία και ώρα έναρξης</item>
   </string-array>
   <string name="prefs_output_accuracy">Ακρίβεια στο αρχείο GPX</string>
-  <string name="prefs_output_accuracy_summary">Προστεθεί ακρίβεια στο αρχείο GPX με το όνομα του σημείου ή στο σχόλιο του σημείου</string>
+  <string name="prefs_output_accuracy_summary">Προσθήκη ακρίβειας στο αρχείο GPX,  με το όνομα σημείου διαδρομής ή στο σχόλιο του σημείου</string>
   <string-array name="prefs_output_accuracy_keys">
     <item>Κανένα</item>
     <item>Με όνομα σημείου</item>
     <item>Στο σχόλιο του σημείου</item>
   </string-array>
   <string name="prefs_output_gpx_hdop_approximation">Χρήση προσέγγισης HDOP</string>
-  <string name="prefs_output_gpx_hdop_approximation_summary">Γεμίζει το HDOP στο GPX με μια κατά προσέγγιση τιμή για την ακρίβεια</string>
-  <string name="prefs_sound_enabled">Ενεργοποίηση ήχων</string>
-  <string name="prefs_sound_enabled_summary">Αναπαραγάγει ήχους κατά την εκκίνηση και στάση φωνητικής ηχογράφησης</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Συμπλήρωση του HDOP στο GPX με μια κατά προσέγγιση τιμή από την ακρίβεια</string>
+  <string name="prefs_sound_enabled">Ενεργοποίηση ήχου</string>
+  <string name="prefs_sound_enabled_summary">Αναπαραγωγή ήχων κατά την εκκίνηση και τον τερματισμό ηχογράφησης</string>
   <string name="prefs_osm_clear_oauth_data">Επαναφορά πιστοποίησης OSM</string>
-  <string name="prefs_osm_clear_oauth_data_summary">Ξεχνά τα διαπιστευτήρια και δικαιώματα και ανάγκαζει το OSMTracker να τα ζητήσει ξανά</string>
-  <string name="prefs_osm_clear_oauth_data_dialog">Θα πρέπει να εξουσιοδοτήσετε το OSMTracker για να αποστείλει ίχνη ξανά. Είστε σίγουροι;</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Αγνόηση των διαπιστευτηρίων και των αδειών του OSM και εξαναγκασμός του OSMTracker να τα ζητήσει ξανά</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Θα πρέπει να εξουσιοδοτήσετε το OSMTracker να στείλει τα ίχνη ξανά. Είστε σίγουρος;</string>
   <string name="prefs_map_tile">Παροχέας πλακιδίων χάρτη</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">

@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTracker logotipas</string>
   <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Priartinti</string>
+  <string name="acc.zoom_out">Nutolinti</string>
   <!--GPS status bar-->
+  <string name="acc.sat_indicator">Palydovo signalo stiprumo indikatorius</string>
   <!--Track list-->
 </resources>

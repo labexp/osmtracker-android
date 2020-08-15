@@ -17,12 +17,17 @@
   <string name="prefs_ui_picture_source_summary">拍照还是从相册中选择图片？</string>
   <string-array name="prefs_ui_picture_source_keys">
     <item>相机</item>
-    <item>图库</item>
+    <item>相册</item>
     <item>总是询问</item>
   </string-array>
   <string name="prefs_ui_buttons_layout">按钮预设</string>
   <string name="prefs_ui_buttons_layout_summary">选择一套自定义按钮(参见文档)</string>
+  <string name="prefs_ui_buttons_layout_default_section">默认布局</string>
   <string name="prefs_ui_buttons_layout_defaut">默认</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">下载布局</string>
+  <string name="prefs_ui_buttons_layout_empty_section">不存在已下载的布局文件</string>
+  <string name="prefs_ui_available_layout">可用布局</string>
+  <string name="prefs_ui_github_repository_settings">Github仓库设置</string>
   <string name="prefs_ui_orientation">屏幕方向</string>
   <string name="prefs_ui_orientation_summary">按钮界面的屏幕方向偏好</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -64,10 +69,12 @@
     <item>路径点名</item>
     <item>路径点注释</item>
   </string-array>
-  <string name="prefs_output_gpx_hdop_approximation">使用HDOP估算</string>
+  <string name="prefs_output_gpx_hdop_approximation">使用HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">使用精度信息估算填入GPX的HDOP值</string>
   <string name="prefs_sound_enabled">开启声音</string>
   <string name="prefs_sound_enabled_summary">在录音开始、结束时发出声响</string>
-  <string name="prefs_osm_clear_oauth_data">重设 OSM 验证</string>
+  <string name="prefs_osm_clear_oauth_data">重置 OSM 账户信息</string>
+  <string name="prefs_osm_clear_oauth_data_summary">清除本地OSM账户以及权限信息。OSMTracker将要求用户重新输入这些信息</string>
   <string name="prefs_osm_clear_oauth_data_dialog">你将要再次授权 OSMTracker 来上传轨迹。确定吗？</string>
   <string name="prefs_map_tile">地图提供商</string>
   <string name="prefs_map_tile_summary"></string>
@@ -76,4 +83,11 @@
     <item>Cycle Map</item>
     <item>MapQuest Open</item>
   </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>不保存</item>
+    <item>保存于注释</item>
+    <item>保存于扩展</item>
+  </string-array>
+  <string name="prefs_compass_heading">导出方向信息</string>
+  <string name="prefs_compass_heading_summary">是否导出轨迹的方向信息，以及如何导出</string>
 </resources>

@@ -10,3 +10,6 @@ app/src/main/res/*-no
 *.pl
 *.sh
 app/null/
+
+# python vitualenv
+.venv

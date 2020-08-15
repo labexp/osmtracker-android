@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--About screen-->
   <string name="acc.osmtracker_logo">شعار OSMTracker</string>
@@ -10,5 +10,5 @@
   <string name="acc.record_indicator">مؤشر التقدم في التسجيل</string>
   <!--Track list-->
   <string name="acc.track_status">مؤشر حالة المسار</string>
-  <string name="acc.upload_status">مؤشر حالة التحميل ل OpenStreetMap</string>
+  <string name="acc.upload_status">مؤشر حالة التحميل لـ OpenStreetMap</string>
 </resources>

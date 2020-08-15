@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Knap-layout</string>
   <string name="prefs_ui_buttons_layout_summary">Brug tilpasset sæt knapper (see dokumentation)</string>
+  <string name="prefs_ui_buttons_layout_default_section">STANDARD-LAYOUT</string>
   <string name="prefs_ui_buttons_layout_defaut">Standard</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">HENTET LAYOUT</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Du har ikke hentet nogle layout-filer</string>
+  <string name="prefs_ui_available_layout">Tilgængelige layouts</string>
+  <string name="prefs_ui_github_repository_settings">Github-indstillinger</string>
   <string name="prefs_ui_orientation">Orientering</string>
   <string name="prefs_ui_orientation_summary">Foretrukket orientering for knapskærmen</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -30,7 +35,7 @@
     <item>Stående</item>
     <item>&gt;Liggende</item>
   </string-array>
-  <string name="prefs_voicerec_duration">Taleoptagelse, varighed</string>
+  <string name="prefs_voicerec_duration">Varighed af taleoptagelse</string>
   <string name="prefs_voicerec_duration_seconds">sekunder</string>
   <string name="prefs_theme">Hovedskærmens grafiske tema</string>
   <string name="prefs_theme_summary">Program-genstart krævet før ændringer træder i kraft</string>
@@ -46,7 +51,7 @@
   <string name="prefs_displaytrack_osm_summary">Vis OpenStreetMap-kort under track. Kræver dataforbindelse</string>
   <string name="prefs_displaytrack_osm_summary_ask">Vis altid OpenStreetMap i bagrunden? Kræver en dataforbindelse.</string>
   <string name="prefs_output">GPX-indstillinger</string>
-  <string name="prefs_storage_dir">Eksternt lager (SD) mappe</string>
+  <string name="prefs_storage_dir">Mappe på eksternt lager (SD)</string>
   <string name="prefs_storage_dir_hint">Gældende for næste track (ikke det nuværende)</string>
   <string name="prefs_output_one_dir_per_track">En mappe per track</string>
   <string name="prefs_output_one_dir_per_track_summary">Gem hvert track og tilhørende filer i egen mappe</string>
@@ -65,13 +70,13 @@
     <item>I waypoint-kommentar</item>
   </string-array>
   <string name="prefs_output_gpx_hdop_approximation">Brug HDOP-approksimering</string>
-  <string name="prefs_output_gpx_hdop_approximation_summary">Fyld HDOP i GPX med approksimeringsværdi fra præcision</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Udfyld HDOP i GPX med approksimeringsværdi fra præcision</string>
   <string name="prefs_sound_enabled">Aktiver lyd</string>
   <string name="prefs_sound_enabled_summary">Afspil lyde når taleoptagelse starter og stopper</string>
-  <string name="prefs_osm_clear_oauth_data">Ryd OSM-login-data</string>
+  <string name="prefs_osm_clear_oauth_data">Nulstil OSM-authentifikation</string>
   <string name="prefs_osm_clear_oauth_data_summary">Glem OSM-brugernavn og -tilladelser og tving OSMTracker til at spørge om dem igen</string>
-  <string name="prefs_osm_clear_oauth_data_dialog">Du skal autorisere OSMTracker til at uploade igen. Er du sikker?</string>
-  <string name="prefs_map_tile">Kortkilde udbyder</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Dette betyder at du vil skulle autorisere OSMTracker for at kunne uploade igen. Er du sikker?</string>
+  <string name="prefs_map_tile">Kortflise-leverandør</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -79,10 +84,10 @@
     <item>MapQuest Open</item>
   </string-array>
   <string-array name="prefs_compass_heading_keys">
-    <item>Ingen</item>
-    <item>i kommentart</item>
-    <item>i endelse</item>
+    <item>Deaktiveret</item>
+    <item>til kommentar</item>
+    <item>til udvidelse</item>
   </string-array>
-  <string name="prefs_compass_heading">Eksporter kompas retning</string>
-  <string name="prefs_compass_heading_summary">Definer om og hvordan kompas data eksporteres til GPX-filen</string>
+  <string name="prefs_compass_heading">Eksporter kompasretning</string>
+  <string name="prefs_compass_heading_summary">Definer om og hvordan kompasdata eksporteres til GPX-filen</string>
 </resources>

@@ -1,13 +1,14 @@
 package net.osmtracker.gpx;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-
-import net.osmtracker.exception.ExportTrackException;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
+
+import net.osmtracker.exception.ExportTrackException;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 
 /**
  * Exports to a temporary file. Will not export associated
@@ -31,8 +32,7 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 			throw new IllegalStateException("Could not create temporary file", ioe);
 		}
 	}
-	
-	
+
 	@Override
 	protected File getExportDirectory(Date startDate) throws ExportTrackException {
 		return tmpFile.getParentFile();
