@@ -1,10 +1,13 @@
 package net.osmtracker.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
+import android.support.test.runner.lifecycle.Stage;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.activity.Preferences;
@@ -13,6 +16,8 @@ import net.osmtracker.data.Mocks;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -136,6 +141,27 @@ public class TestUtils {
 
     public static void setLayoutsTestingRepository(){
         setGithubRepositorySettings(TESTING_GITHUB_USER,TESTING_GITHUB_REPOSITORY,TESTING_GITHUB_BRANCH);
+    }
+
+    /*
+     * This method return the actual activity
+     *
+     * Thanks to:
+     * https://stackoverflow.com/questions/38737127/espresso-how-to-get-current-activity-to-test-fragments
+     */
+    public static Activity getActivityInstance(){
+        final Activity[] currentActivity = {null};
+
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable(){
+            public void run(){
+                Collection<Activity> resumedActivity = ActivityLifecycleMonitorRegistry.getInstance()
+                        .getActivitiesInStage(Stage.RESUMED);
+                Iterator<Activity> it = resumedActivity.iterator();
+                currentActivity[0] = it.next();
+            }
+        });
+
+        return currentActivity[0];
     }
 
 }
