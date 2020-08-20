@@ -4,20 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import net.osmtracker.OSMTracker;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.mockito.ArgumentMatchers;
 
 import static org.junit.Assert.*;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
-//import static org.mockito.Mockito.mock;
 
 
 @RunWith(PowerMockRunner.class)
@@ -32,29 +27,13 @@ public class URLCreatorTest {
     public void setupMocks(){
         // Create SharedPreferences mock
         mockPrefs = mock(SharedPreferences.class);
-        when(mockPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME,
-                OSMTracker.Preferences.VAL_GITHUB_USERNAME))
-                .thenReturn("labexp");
 
-        when(mockPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME,
-                OSMTracker.Preferences.VAL_BRANCH_NAME))
-                .thenReturn("master");
-
-        when(mockPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME,
-                OSMTracker.Preferences.VAL_REPOSITORY_NAME))
-                .thenReturn("osmtracker-android-layouts");
-
-
+        UnitTestUtils.setLayoutsDefaultRepository(mockPrefs);
 
         // Create PreferenceManager mock
         mockContext = mock(Context.class);
-
-
         mockStatic(PreferenceManager.class);
-
         when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
-
-
 
     }
 
