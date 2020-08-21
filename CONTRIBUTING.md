@@ -14,7 +14,7 @@ For running this project locally follow this steps:
 ## How to run the tests 
 This repository has an automated way to run the tests on branches but if you already have the project installed on you computer then you can also run them from a terminal.
 It's recommended to run the tests locally before making a new pull request to make sure the changes doesn't break any previous functionality. You can run the tests locally as follows:
- - Make sure you at the *root directory of the project*
+ - Make sure you are at the *root directory of the project*
 	 - `$ cd YOUR_PATH/osmtracker-android`
  - For running **instrumentation** tests it's needed to previously start up an emulator (or real device),  you can do it from Android Studio but also without it using the command line. For that,  you need to move to the Android SDK installation directory and look for a folder called `emulator` once there, start any already created emulator by typing:
 	-	`$ ./emulator -avd NAME` to start the emulator called *NAME*
