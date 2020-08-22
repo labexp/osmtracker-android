@@ -551,28 +551,61 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * @param c  Track info: {@link TrackContentProvider.Schema#COL_NAME}, {@link TrackContentProvider.Schema#COL_START_DATE}
 	 * @return  GPX filename, not including the path
 	 */
-	protected String buildGPXFilename(Cursor c) {
-		// Build GPX filename from track info & preferences
-		final String filenameOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
+//	public String buildGPXFilename(Cursor c) {
+//		// Build GPX filename from track info & preferences
+//		final String filenameOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
+//				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
+//				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
+//
+//		StringBuilder filenameBase = new StringBuilder();
+//		final int colName = c.getColumnIndexOrThrow(TrackContentProvider.Schema.COL_NAME);
+//
+//		String tname = c.getString(colName);
+//
+//		if ((! c.isNull(colName))
+//				&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE))) {
+//
+//			final String tname_raw = tname.trim().replace(':', ';');
+//			final String sanitized = FILENAME_CHARS_BLACKLIST_PATTERN.matcher(tname_raw).replaceAll("_");
+//
+//			filenameBase.append(sanitized);
+//		}
+//
+//		filenameBase.append(DataHelper.EXTENSION_GPX);
+//		return filenameBase.toString();
+//	}
+
+	public String buildGPXFilename(Cursor cursor) {
+		String trackName =  cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
+		trackName = sanitizeTrackName(trackName);
+
+		String desiredOutputFormat = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
 				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
 
-		StringBuilder filenameBase = new StringBuilder();
-		final int colName = c.getColumnIndexOrThrow(TrackContentProvider.Schema.COL_NAME);
+		long trackStartDate = cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
+		String formattedTrackStartDate = DataHelper.FILENAME_FORMATTER.format(new Date(trackStartDate));
 
-		String tname = c.getString(colName);
-
-		if ((! c.isNull(colName))
-				&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE))) {
-
-			final String tname_raw = tname.trim().replace(':', ';');
-			final String sanitized = FILENAME_CHARS_BLACKLIST_PATTERN.matcher(tname_raw).replaceAll("_");
-
-			filenameBase.append(sanitized);
+		String finalGpxFilename = "";
+		switch(desiredOutputFormat){
+			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME:
+				finalGpxFilename += trackName;
+				break;
+			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME_DATE:
+				finalGpxFilename += trackName + "_" + formattedTrackStartDate;
+				break;
+			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE:
+				finalGpxFilename += formattedTrackStartDate;
+				break;
 		}
+		return finalGpxFilename + DataHelper.EXTENSION_GPX;
+	}
 
-		filenameBase.append(DataHelper.EXTENSION_GPX);
-		return filenameBase.toString();
+
+	public String sanitizeTrackName(String trackName){
+		String first = trackName.trim().replace(':', ';');
+		String second = FILENAME_CHARS_BLACKLIST_PATTERN.matcher(first).replaceAll("_");
+		return second;
 	}
 
 }

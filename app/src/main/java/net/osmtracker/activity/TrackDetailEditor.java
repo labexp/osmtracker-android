@@ -112,13 +112,8 @@ public abstract class TrackDetailEditor extends Activity {
 		// Get default track name
         String defaultDate = DataHelper.FILENAME_FORMATTER.format(startDate);
 
-        // If no changes were made don't append the date
-		if ((enteredName.length() > 0 && !enteredName.equals(tname))) {
-			// Append date to avoid duplicated tracks names only if is not included already
-			if(!enteredName.contains(defaultDate)) enteredName += "_" + defaultDate;
-			values.put(TrackContentProvider.Schema.COL_NAME, enteredName);
-		}
-		
+        values.put(TrackContentProvider.Schema.COL_NAME, enteredName);
+
 		// All other values updated even if empty
 		values.put(TrackContentProvider.Schema.COL_DESCRIPTION, etDescription.getText().toString().trim());
 		values.put(TrackContentProvider.Schema.COL_TAGS, etTags.getText().toString().trim());
