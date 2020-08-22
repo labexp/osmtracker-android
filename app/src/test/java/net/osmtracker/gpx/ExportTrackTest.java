@@ -4,12 +4,21 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.preference.PreferenceManager;
+
+import net.osmtracker.R;
 import net.osmtracker.gpx.ExportToStorageTask;
+
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.attribute.FileAttribute;
 import java.util.Date;
 
 import static junit.framework.TestCase.assertEquals;
@@ -26,8 +35,12 @@ import static net.osmtracker.OSMTracker.Preferences;
 @PrepareForTest({ PreferenceManager.class })
 public class ExportTrackTest {
 
+    @Rule
+    public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
     ExportToStorageTask task;
     Context mockContext = Mockito.mock(Context.class);
+
 
     @Test
     public void testBuildGPXFilenameUsingOnlyTrackName() {
@@ -106,9 +119,11 @@ public class ExportTrackTest {
     void doTestBuildGPXFilename(String trackName, String desiredFormat, long trackStartDate, String expectedFilename) {
         setupPreferencesToReturn(desiredFormat);
 
+        when(mockContext.getString(R.string.error_create_track_dir)).thenReturn("Any");
+
         task = new ExportToStorageTask(mockContext, 3);
 
-        String result = task.buildGPXFilename(createMockCursor(trackName, trackStartDate));
+        String result = task.buildGPXFilename(createMockCursor(trackName, trackStartDate), temporaryFolder.getRoot());
 
         assertEquals(expectedFilename, result);
     }

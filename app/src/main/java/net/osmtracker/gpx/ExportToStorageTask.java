@@ -28,7 +28,7 @@ public class ExportToStorageTask extends ExportTrackTask {
 
 	public ExportToStorageTask(Context context, long... trackId) {
 		super(context, trackId);
-		ERROR_MESSAGE = context.getResources().getString(R.string.error_create_track_dir);
+		ERROR_MESSAGE = context.getString(R.string.error_create_track_dir);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ExportToStorageTask extends ExportTrackTask {
 	}
 
 
-    String getSanitizedTrackNameByStartDate(Date startDate){
+    public String getSanitizedTrackNameByStartDate(Date startDate){
 
         // Get the name of the track with the received start date
         String selection = TrackContentProvider.Schema.COL_START_DATE + " = ?";
@@ -70,14 +70,14 @@ public class ExportToStorageTask extends ExportTrackTask {
         return trackName;
     }
 
-    boolean shouldCreateDirectoryPerTrack(SharedPreferences prefs){
+    public boolean shouldCreateDirectoryPerTrack(SharedPreferences prefs){
 	    return prefs.getBoolean(OSMTracker.Preferences.KEY_OUTPUT_DIR_PER_TRACK,
                 OSMTracker.Preferences.VAL_OUTPUT_GPX_OUTPUT_DIR_PER_TRACK);
 
     }
 
     // Create before returning if not exists
-    File getBaseExportDirectory(SharedPreferences prefs){
+    public File getBaseExportDirectory(SharedPreferences prefs){
         File rootStorageDirectory = Environment.getExternalStorageDirectory();
 
         String exportDirectoryNameInPreferences = prefs.getString(
