@@ -37,6 +37,9 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.regex.Pattern;
 
+import static net.osmtracker.db.DataHelper.EXTENSION_GPX;
+import static net.osmtracker.util.FileSystemUtils.getUniqueChildNameFor;
+
 /**
  * Base class to writes a GPX file and export
  * track media (Photos, Sounds)
@@ -49,7 +52,7 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	private static final String TAG = ExportTrackTask.class.getSimpleName();
 
 	/**
-	 * Characters to replace in track filename, for use by {@link #buildGPXFilename(Cursor)}. <BR>
+	 * Characters to replace in track filename, for use by buildGPXFilename. <BR>
 	 * The characters are: (space) ' " / \ * ? ~ @ &lt; &gt; <BR>
 	 * In addition, ':' will be replaced by ';', before calling this pattern.
 	 */
@@ -224,7 +227,8 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 				}
 
 				File trackGPXExportDirectory = getExportDirectory(startDate);
-				String filenameBase = buildGPXFilename(c);
+				String filenameBase = buildGPXFilename(c, trackGPXExportDirectory);
+
 
 				String tags = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_TAGS));
 				String track_description = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_DESCRIPTION));
@@ -548,37 +552,10 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * The filename will have the start date, and/or the track name if available.
 	 * If no name is available, fall back to the start date and time.
 	 * Track name characters will be sanitized using {@link #FILENAME_CHARS_BLACKLIST_PATTERN}.
-	 * @param c  Track info: {@link TrackContentProvider.Schema#COL_NAME}, {@link TrackContentProvider.Schema#COL_START_DATE}
+	 * @param cursor  Track info: {@link TrackContentProvider.Schema#COL_NAME}, {@link TrackContentProvider.Schema#COL_START_DATE}
 	 * @return  GPX filename, not including the path
 	 */
-//	public String buildGPXFilename(Cursor c) {
-//		// Build GPX filename from track info & preferences
-//		final String filenameOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
-//				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
-//				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
-//
-//		StringBuilder filenameBase = new StringBuilder();
-//		final int colName = c.getColumnIndexOrThrow(TrackContentProvider.Schema.COL_NAME);
-//
-//		String tname = c.getString(colName);
-//
-//		if ((! c.isNull(colName))
-//				&& (! filenameOutput.equals(OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE))) {
-//
-//			final String tname_raw = tname.trim().replace(':', ';');
-//			final String sanitized = FILENAME_CHARS_BLACKLIST_PATTERN.matcher(tname_raw).replaceAll("_");
-//
-//			filenameBase.append(sanitized);
-//		}
-//
-//		filenameBase.append(DataHelper.EXTENSION_GPX);
-//		return filenameBase.toString();
-//	}
-
-	public String buildGPXFilename(Cursor cursor) {
-		String trackName =  cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
-		trackName = sanitizeTrackName(trackName);
-
+	public String buildGPXFilename(Cursor cursor, File parentDirectory) {
 		String desiredOutputFormat = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
 				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
@@ -586,20 +563,41 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 		long trackStartDate = cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
 		String formattedTrackStartDate = DataHelper.FILENAME_FORMATTER.format(new Date(trackStartDate));
 
-		String finalGpxFilename = "";
+		String trackName =  cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
+		if(trackName != null)
+			trackName = sanitizeTrackName(trackName);
+
+		String firstGpxFilename = formatGpxFilename(desiredOutputFormat, trackName, formattedTrackStartDate);
+
+		firstGpxFilename = getUniqueChildNameFor(parentDirectory, firstGpxFilename, EXTENSION_GPX);
+		return firstGpxFilename;
+
+	}
+
+	public String formatGpxFilename(String desiredOutputFormat, String sanitizedTrackName, String formattedTrackStartDate){
+		String result = "";
+		boolean thereIsTrackName = sanitizedTrackName != null && sanitizedTrackName.length() >= 1;
+
 		switch(desiredOutputFormat){
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME:
-				finalGpxFilename += trackName;
+				if(thereIsTrackName)
+					result += sanitizedTrackName;
+				else
+					result += formattedTrackStartDate; // fallback case
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME_DATE:
-				finalGpxFilename += trackName + "_" + formattedTrackStartDate;
+				if(thereIsTrackName)
+					result += sanitizedTrackName + "_" + formattedTrackStartDate;
+				else
+					result += formattedTrackStartDate;
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE:
-				finalGpxFilename += formattedTrackStartDate;
+				result += formattedTrackStartDate;
 				break;
 		}
-		return finalGpxFilename + DataHelper.EXTENSION_GPX;
+		return result;
 	}
+
 
 
 	public String sanitizeTrackName(String trackName){

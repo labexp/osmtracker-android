@@ -1,4 +1,4 @@
-package net.osmtracker.gpx.export;
+package net.osmtracker.gpx;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,13 +24,13 @@ import static net.osmtracker.OSMTracker.Preferences;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ PreferenceManager.class })
-public class BuildGPXFilenameTest {
+public class ExportTrackTest {
 
     ExportToStorageTask task;
     Context mockContext = Mockito.mock(Context.class);
 
     @Test
-    public void testBuildGPXFilenameUsingOnlyTrackName(){
+    public void testBuildGPXFilenameUsingOnlyTrackName() {
         // Method parameters
         String trackNameInDatabase = "MyTrack";
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
@@ -43,7 +43,7 @@ public class BuildGPXFilenameTest {
     }
 
     @Test
-    public void testBuildGPXFilenameUsingTrackNameAndStartDate(){
+    public void testBuildGPXFilenameUsingTrackNameAndStartDate() {
         // Method parameters
         String trackNameInDatabase = "MyTrack";
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
@@ -55,7 +55,7 @@ public class BuildGPXFilenameTest {
     }
 
     @Test
-    public void testBuildGPXFilenameUsingOnlyStartDate(){
+    public void testBuildGPXFilenameUsingOnlyStartDate() {
         // Method parameters
         String trackNameInDatabase = "MyTrack";
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
@@ -67,7 +67,7 @@ public class BuildGPXFilenameTest {
     }
 
     @Test
-    public void testBuildGPXFilenameWhenSanitizesTrackName(){
+    public void testBuildGPXFilenameWhenSanitizesTrackName() {
         // Method parameters
         String trackNameInDatabase = ":M/y*T@r~a\\c?k:";
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
@@ -78,8 +78,32 @@ public class BuildGPXFilenameTest {
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
 
+    @Test
+    public void testBuildGPXFilenameWhenUsesTrackNameButThereIsNoName() {
+        // Method parameters
+        String trackNameInDatabase = "";
+        Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
+        String preferenceSetting = Preferences.VAL_OUTPUT_FILENAME_NAME;
 
-    void doTestBuildGPXFilename(String trackName, String desiredFormat, long trackStartDate, String expectedFilename){
+        String expectedFilename = "2000-01-02_03-04-05.gpx"; // Must fallback to use the start date
+
+        doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
+    }
+
+    @Test
+    public void testBuildGPXFilenameWhenUsesTrackNameAndStartDateButThereIsNoName() {
+        // Method parameters
+        String trackNameInDatabase = "";
+        Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
+        String preferenceSetting = Preferences.VAL_OUTPUT_FILENAME_NAME_DATE;
+
+        String expectedFilename = "2000-01-02_03-04-05.gpx"; // Must fallback to use the start date
+
+        doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
+    }
+
+
+    void doTestBuildGPXFilename(String trackName, String desiredFormat, long trackStartDate, String expectedFilename) {
         setupPreferencesToReturn(desiredFormat);
 
         task = new ExportToStorageTask(mockContext, 3);
@@ -91,7 +115,7 @@ public class BuildGPXFilenameTest {
 
 
     // Used for testing buildGPXFilename
-    void setupPreferencesToReturn( String desiredFormat ){
+    void setupPreferencesToReturn(String desiredFormat) {
         // Mock preferences
         SharedPreferences mockPrefs = mock(SharedPreferences.class);
         when(mockPrefs.getString(KEY_OUTPUT_FILENAME, VAL_OUTPUT_FILENAME)).thenReturn(desiredFormat);
@@ -100,6 +124,7 @@ public class BuildGPXFilenameTest {
 
         when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
     }
+
 
     // Used for testing buildGPXFilename
     Cursor createMockCursor(String trackName, long trackStartDate){

@@ -107,12 +107,10 @@ public abstract class TrackDetailEditor extends Activity {
 
 		// Save name field, if changed, to db.
 		// String class required for equals to work, and for trim().
-		String enteredName = etName.getText().toString().trim();
-
-		// Get default track name
-        String defaultDate = DataHelper.FILENAME_FORMATTER.format(startDate);
-
-        values.put(TrackContentProvider.Schema.COL_NAME, enteredName);
+		String nameToSave = etName.getText().toString().trim();
+		if(nameToSave.length() == 0)
+			nameToSave = DataHelper.FILENAME_FORMATTER.format(startDate); // Set default track name
+        values.put(TrackContentProvider.Schema.COL_NAME, nameToSave);
 
 		// All other values updated even if empty
 		values.put(TrackContentProvider.Schema.COL_DESCRIPTION, etDescription.getText().toString().trim());
