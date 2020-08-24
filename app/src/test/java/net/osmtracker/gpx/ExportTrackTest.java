@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.preference.PreferenceManager;
 
 import net.osmtracker.R;
-import net.osmtracker.gpx.ExportToStorageTask;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -16,9 +15,6 @@ import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.attribute.FileAttribute;
 import java.util.Date;
 
 import static junit.framework.TestCase.assertEquals;

@@ -36,10 +36,9 @@ public class ExportToStorageTask extends ExportTrackTask {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         String trackName = getSanitizedTrackNameByStartDate(startDate);
-        File baseExportDir = getBaseExportDirectory(preferences);
         boolean shouldCreateDirectoryPerTrack = shouldCreateDirectoryPerTrack(preferences);
+        File finalExportDirectory = getBaseExportDirectory(preferences);
 
-        File finalExportDirectory = baseExportDir;
         if( shouldCreateDirectoryPerTrack && trackName.length() >= 1){
             String uniqueFolderName = getUniqueChildNameFor(finalExportDirectory, trackName, "");
             finalExportDirectory = new File(finalExportDirectory, uniqueFolderName);
