@@ -34,7 +34,7 @@ public class DownloadLayoutTest {
 
         TestUtils.setLayoutsTestingRepository();
 
-        String layoutName = "ABC";
+        String layoutName = "abc";
 
         navigateToAvailableLayouts();
 
