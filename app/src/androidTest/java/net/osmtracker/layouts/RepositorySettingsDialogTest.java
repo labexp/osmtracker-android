@@ -37,12 +37,12 @@ public class RepositorySettingsDialogTest {
     public void testToggleBehaviour(){
         onView(withId(R.id.github_config)).perform(click());
 
-        onView(withId(R.id.default_server)).perform(click());
+        onView(withId(R.id.default_server)).perform(click(), closeSoftKeyboard());
         checkStateAfterToggle(R.id.default_server, R.id.custom_server);
         checkTextFieldsState(not(isEnabled()));
         checkTextFieldsDefaultValues();
 
-        onView(withId(R.id.custom_server)).perform(click());
+        onView(withId(R.id.custom_server)).perform(click(), closeSoftKeyboard());
         checkStateAfterToggle(R.id.custom_server, R.id.default_server);
         checkTextFieldsState(isEnabled());
     }
@@ -69,15 +69,11 @@ public class RepositorySettingsDialogTest {
     public void checkRepositoryValidity(String user, String repo, String branch, boolean isValid){
         onView(withId(R.id.github_config)).perform(click());
 
-        onView(withId(R.id.custom_server)).perform(click());
+        onView(withId(R.id.custom_server)).perform(click(), closeSoftKeyboard());
 
         onView(withId(R.id.github_username)).perform(clearText(), typeText(user), closeSoftKeyboard());
         onView(withId(R.id.repository_name)).perform(clearText(), typeText(repo), closeSoftKeyboard());
         onView(withId(R.id.branch_name)).perform(clearText(), typeText(branch), closeSoftKeyboard());
-
-        // This is required to find the "Save" button that will be clicked next, that button may be
-        // invisible because it's covered by the keyboard on small screens
-        Espresso.closeSoftKeyboard();
 
         onView(withText(getStringResource(R.string.menu_save))).perform(click());
 
