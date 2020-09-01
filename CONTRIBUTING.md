@@ -17,7 +17,7 @@ It's recommended to run the tests locally before making a new pull request to ma
  - Make sure you are at the *root directory of the project*
 	 - `$ cd YOUR_PATH/osmtracker-android`
  - For running **instrumentation** tests it's needed to previously start up an emulator (or real device),  you can do it from Android Studio but also without it using the command line. For that,  you need to move to the Android SDK installation directory and look for a folder called `emulator` once there, start any already created emulator by typing:
-	-	`$ ./emulator -avd NAME` to start the emulator called *NAME*
+	-	`$ ./emulator -avd NAME` to start the emulator called *NAME* (run `$ ./emulator -list-avds` for a valid list of AVD names)
 	- When  it's up, go back to the root project folder and run the instrumentation tests with
 	- `$ ./gradlew connectedAndroidTest`
 
