@@ -29,6 +29,7 @@ public class OSMTracker {
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
 		public final static String KEY_OUTPUT_DIR_PER_TRACK = "gpx.directory_per_track";
 		public final static String KEY_OUTPUT_COMPASS = "gpx.compass_heading";
+		public final static String KEY_GPX_FORMAT_SHORT = "gpx.gpx_format_short";
 		
 		public final static String KEY_UI_PICTURE_SOURCE = "ui.picture.source";
 		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
@@ -75,6 +76,7 @@ public class OSMTracker {
 		
 		public final static boolean VAL_OUTPUT_GPX_HDOP_APPROXIMATION = false;
 		public final static boolean VAL_OUTPUT_GPX_OUTPUT_DIR_PER_TRACK = true;
+		public final static boolean VAL_GPX_FORMAT_SHORT = false;
 
 		public final static String VAL_UI_PICTURE_SOURCE_CAMERA = "camera";
 		public final static String VAL_UI_PICTURE_SOURCE_GALLERY = "gallery";
