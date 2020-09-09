@@ -14,6 +14,7 @@
 	</string-array>
 
 	<string-array name="prefs_voicerec_durations">
+		<item>@string/unlimited_time_to_recording_option</item>
 		<item>2</item>
 		<item>3</item>
 		<item>4</item>
