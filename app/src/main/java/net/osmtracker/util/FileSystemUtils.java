@@ -179,5 +179,27 @@ public final class FileSystemUtils {
 
 		return deleted;		
 	}
-	
+
+
+	/**
+	 * Return an unique name for a child in the parent Directory
+	 * If there's a child in the parent with the received name + extension then will return name{i} + extension
+	 * extension can be "" for folders or a real extension (like ".gpx") for files and {i} would be a serial number
+	 */
+	public static String getUniqueChildNameFor(File parentDirectory, String childName, String childExtension) {
+		int serial = 0;
+		String suffix = "";
+		String currentName;
+		File testFile;
+		do{
+			currentName = childName + suffix + childExtension;
+			testFile = new File(parentDirectory, currentName);
+			serial++;
+			suffix = "" + serial;
+
+		}while(testFile.exists());
+
+		return currentName;
+	}
+
 }

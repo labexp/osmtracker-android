@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 
 import net.osmtracker.OSMTracker;
 
+import java.util.Date;
+
 import static org.powermock.api.mockito.PowerMockito.when;
 
 public class UnitTestUtils {
@@ -38,4 +40,9 @@ public class UnitTestUtils {
                 OSMTracker.Preferences.VAL_BRANCH_NAME);
     }
 
+    // This method is used to hide the weird modifications (offsets) that need to be made when creating a Date object
+    // See why here https://docs.oracle.com/javase/8/docs/api/java/util/Date.html#setYear-int-
+    public static Date createDateFrom(int year, int month, int day, int hour, int minute, int second) {
+        return new Date(year-1900, month-1, day, hour, minute, second);
+    }
 }

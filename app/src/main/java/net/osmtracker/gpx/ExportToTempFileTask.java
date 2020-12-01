@@ -39,8 +39,8 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 	}
 
 	@Override
-	protected String buildGPXFilename(Cursor c) {
-		filename = super.buildGPXFilename(c);
+	public String buildGPXFilename(Cursor c, File parentDirectory) {
+		filename = super.buildGPXFilename(c, parentDirectory);
 		return tmpFile.getName();
 	}
 
