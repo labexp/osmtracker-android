@@ -114,7 +114,7 @@ public class MercatorProjection {
 	 *				Latitude to convert.
 	 * @return Converted Y coordinate.
 	 */
-	private double convertLatitude(double latitude) {
+	public static double convertLatitude(double latitude) {
 		if (latitude < -MAX_LATITUDE) {
 			latitude = -MAX_LATITUDE;
 		} else if (latitude > MAX_LATITUDE) {
