@@ -32,4 +32,13 @@ public class FileSystemUtilsTest {
         Boolean resultado = FileSystemUtils.copyDirectoryContents(destinationDirectory, sourceFile);
         assertTrue(resultado);
     }
+
+    @Test
+    public void delete() {
+        String URLfileToDelete = new File("src/test/java/net/osmtracker/sourceDirectory/testDelete.txt").getAbsolutePath();
+        File fileToDelete = new File(URLfileToDelete);
+
+        Boolean result= FileSystemUtils.delete(fileToDelete, true);
+        assertTrue(result);
+    }
 }
