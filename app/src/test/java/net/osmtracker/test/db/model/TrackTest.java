@@ -2,15 +2,12 @@ package net.osmtracker.test.db.model;
 
 import android.content.ContentResolver;
 import android.database.Cursor;
-import android.opengl.Visibility;
 
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.model.Track;
 import static net.osmtracker.db.TrackContentProvider.Schema.*;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;

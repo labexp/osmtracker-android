@@ -1,9 +1,9 @@
 package net.osmtracker.gpx;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.util.Log;
 
+import net.osmtracker.db.model.Track;
 import net.osmtracker.exception.ExportTrackException;
 
 import java.io.File;
@@ -38,9 +38,8 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 		return tmpFile.getParentFile();
 	}
 
-	@Override
-	public String buildGPXFilename(Cursor c, File parentDirectory) {
-		filename = super.buildGPXFilename(c, parentDirectory);
+	public String buildGPXFilename(Track track, File parentDirectory) {
+		filename = super.buildGPXFilename(track, parentDirectory);
 		return tmpFile.getName();
 	}
 

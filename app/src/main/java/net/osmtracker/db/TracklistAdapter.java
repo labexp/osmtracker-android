@@ -90,7 +90,7 @@ public class TracklistAdapter extends CursorAdapter {
 		Track t = Track.build(trackId, cursor, context.getContentResolver(), false);
 		vTps.setText(Integer.toString(t.getTpCount()));
 		vWps.setText(Integer.toString(t.getWpCount()));
-		vNameOrStartDate.setText(t.getName());
+		vNameOrStartDate.setText(t.getDisplayName());
 
 		return v;
 	}

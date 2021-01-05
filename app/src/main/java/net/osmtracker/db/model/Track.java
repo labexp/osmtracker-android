@@ -61,7 +61,7 @@ public class Track {
 	private boolean extraInformationRead = false;
 	
 	private ContentResolver cr;
-	
+
 	/**
 	 * build a track object with the given cursor
 	 * 
@@ -82,6 +82,7 @@ public class Track {
 		out.description = tc.getString(tc.getColumnIndex(TrackContentProvider.Schema.COL_DESCRIPTION));
 		
 		String tags = tc.getString(tc.getColumnIndex(TrackContentProvider.Schema.COL_TAGS));
+		//TODO: use out.setTags(tags)
 		if (tags != null && ! "".equals(tags)) {
 			out.tags.addAll(Arrays.asList(tags.split(",")));
 		}
@@ -124,6 +125,13 @@ public class Track {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public void setTrackId(long trackId) {
+	}
+
+	public long getTrackId() {
+		return this.trackId;
+	}
 	
 	public void setDescription(String description) {
 		this.description = description;
@@ -149,12 +157,18 @@ public class Track {
 		this.startLat = startLat;
 	}
 
-	public void setTrackDate(long trackDate) {
-		this.trackDate = trackDate;
+	public void setTrackDate(long trackDate) { this.trackDate = trackDate; }
+
+	public long getTrackDate() {
+		return trackDate;
 	}
-	
+
 	public void setStartDate(long startDate) {
 		this.startDate = startDate;
+	}
+
+	public long getStartDate() {
+		return startDate;
 	}
 	
 	public void setStartLong(float startLong) {
@@ -176,8 +190,9 @@ public class Track {
 	public Integer getTpCount() {
 		return tpCount;
 	}
-	
-	public String getName() {
+
+	// @deprecated
+	public String getDisplayName() {
 		if (name != null && name.length() > 0) {
 			return name;
 		} else {
@@ -186,12 +201,28 @@ public class Track {
 		}
 	}
 
+	public String getName() { return name; }
+
 	public String getDescription() {
 		return description;
 	}
-	
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
+	public void setTags(String tags) {
+		if (tags != null && ! "".equals(tags)) {
+			this.tags.addAll(Arrays.asList(tags.split(",")));
+		}
+	}
+
 	public List<String> getTags() {
 		return tags;
+	}
+
+	public void setVisibility(OSMVisibility visibility) {
+		this.visibility = visibility;
 	}
 	
 	public OSMVisibility getVisibility() {

@@ -2,13 +2,13 @@ package net.osmtracker.gpx;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
-import net.osmtracker.db.TrackContentProvider;
+import net.osmtracker.db.DataHelper;
+import net.osmtracker.db.model.Track;
 import net.osmtracker.exception.ExportTrackException;
 
 import java.io.File;
@@ -51,17 +51,19 @@ public class ExportToStorageTask extends ExportTrackTask {
 	}
 
 
+    /**
+     *
+     * @param startDate
+     * @return
+     */
     public String getSanitizedTrackNameByStartDate(Date startDate){
 
-        // Get the name of the track with the received start date
-        String selection = TrackContentProvider.Schema.COL_START_DATE + " = ?";
-        String[] args = {String.valueOf(startDate.getTime())};
-        Cursor cursor = context.getContentResolver().query(
-                TrackContentProvider.CONTENT_URI_TRACK, null, selection, args, null);
+        DataHelper dh = new DataHelper(context);
+        Track track = dh.getTrackByStartDate(startDate);
 
         String trackName = "";
-        if(cursor != null && cursor.moveToFirst()){
-            trackName = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
+        if(track != null){
+            trackName = track.getName();
         }
         if(trackName != null && trackName.length() >= 1) {
             trackName = trackName.replace("/", "_").trim();
