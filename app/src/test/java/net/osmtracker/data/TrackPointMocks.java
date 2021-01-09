@@ -1,15 +1,36 @@
 package net.osmtracker.data;
 
 import net.osmtracker.db.model.TrackPoint;
-import net.osmtracker.db.model.WayPoint;
 
 public class TrackPointMocks {
 
-    // TrackPoints of real-track.gpx
+    // TrackPoints of gpx-test.gpx
     static final int GPX_TRACKPOINTS_COUNT = 2;
 
-    //
+    //hdop = false, compass = none
     public static String MOCK_TRACKPOINT_XML_A =
+            "\t\t\t<trkpt lat=\"10.037569043664794\" lon=\"-84.21228868248848\">\n"
+                    +"\t\t\t\t<ele>1015.1315925326198</ele>\n"
+                    +"\t\t\t\t<time>2001-05-16T23:20:28Z</time>\n"
+                    +"\t\t\t\t<extensions>\n"
+                    +"\t\t\t\t\t<speed>0.3619388937950134</speed>\n"
+                    +"\t\t\t\t</extensions>\n"
+                    +"\t\t\t</trkpt>\n";
+
+    //hdop = false, compass = comment
+    public static String MOCK_TRACKPOINT_XML_B =
+            "\t\t\t<trkpt lat=\"10.037569043664794\" lon=\"-84.21228868248848\">\n"
+                    +"\t\t\t\t<ele>1015.1315925326198</ele>\n"
+                    +"\t\t\t\t<time>2001-05-16T23:20:28Z</time>\n"
+                    +"\t\t\t\t<cmt><![CDATA[compass: 204.690002441406\n"
+                    +"\t\t\t\t\tcompAccuracy: 2.0]]></cmt>\n"
+                    +"\t\t\t\t<extensions>\n"
+                    +"\t\t\t\t\t<speed>0.3619388937950134</speed>\n"
+                    +"\t\t\t\t</extensions>\n"
+                    +"\t\t\t</trkpt>\n";
+
+    //hdop = false, compass = extension
+    public static String MOCK_TRACKPOINT_XML_C =
             "\t\t\t<trkpt lat=\"10.037569043664794\" lon=\"-84.21228868248848\">\n"
                     +"\t\t\t\t<ele>1015.1315925326198</ele>\n"
                     +"\t\t\t\t<time>2001-05-16T23:20:28Z</time>\n"
@@ -20,6 +41,55 @@ public class TrackPointMocks {
                     +"\t\t\t\t</extensions>\n"
                     +"\t\t\t</trkpt>\n";
 
+    //hdop = true, compass = none
+    public static String MOCK_TRACKPOINT_XML_D =
+            "\t\t\t<trkpt lat=\"10.037569043664794\" lon=\"-84.21228868248848\">\n"
+                    +"\t\t\t\t<ele>1015.1315925326198</ele>\n"
+                    +"\t\t\t\t<time>2001-05-16T23:20:28Z</time>\n"
+                    +"\t\t\t\t<hdop>10.0</hdop>\n"
+                    +"\t\t\t\t<extensions>\n"
+                    +"\t\t\t\t\t<speed>0.3619388937950134</speed>\n"
+                    +"\t\t\t\t</extensions>\n"
+                    +"\t\t\t</trkpt>\n";
+
+    //hdop = true, compass = comment
+    public static String MOCK_TRACKPOINT_XML_E =
+            "\t\t\t<trkpt lat=\"10.037569043664794\" lon=\"-84.21228868248848\">\n"
+                    +"\t\t\t\t<ele>1015.1315925326198</ele>\n"
+                    +"\t\t\t\t<time>2001-05-16T23:20:28Z</time>\n"
+                    +"\t\t\t\t<hdop>10.0</hdop>\n"
+                    +"\t\t\t\t<cmt><![CDATA[compass: 204.690002441406\n"
+                    +"\t\t\t\t\tcompAccuracy: 2.0]]></cmt>\n"
+                    +"\t\t\t\t<extensions>\n"
+                    +"\t\t\t\t\t<speed>0.3619388937950134</speed>\n"
+                    +"\t\t\t\t</extensions>\n"
+                    +"\t\t\t</trkpt>\n";
+
+    //hdop = true, compass = extension
+    public static String MOCK_TRACKPOINT_XML_F =
+            "\t\t\t<trkpt lat=\"10.037569043664794\" lon=\"-84.21228868248848\">\n"
+                    +"\t\t\t\t<ele>1015.1315925326198</ele>\n"
+                    +"\t\t\t\t<time>2001-05-16T23:20:28Z</time>\n"
+                    +"\t\t\t\t<hdop>10.0</hdop>\n"
+                    +"\t\t\t\t<extensions>\n"
+                    +"\t\t\t\t\t<speed>0.3619388937950134</speed>\n"
+                    +"\t\t\t\t\t<compass>204.690002441406</compass>\n"
+                    +"\t\t\t\t\t<compass_accuracy>2.0</compass_accuracy>\n"
+                    +"\t\t\t\t</extensions>\n"
+                    +"\t\t\t</trkpt>\n";
+
+    //hdop = true, compass = none
+    //trkpt.Accuracy = null
+    public static String MOCK_TRACKPOINT_XML_G =
+            "\t\t\t<trkpt lat=\"10.037569043664794\" lon=\"-84.21228868248848\">\n"
+                    +"\t\t\t\t<ele>1015.1315925326198</ele>\n"
+                    +"\t\t\t\t<time>2001-05-16T23:20:28Z</time>\n"
+                    +"\t\t\t\t<extensions>\n"
+                    +"\t\t\t\t\t<speed>0.3619388937950134</speed>\n"
+                    +"\t\t\t\t</extensions>\n"
+                    +"\t\t\t</trkpt>\n";
+
+
     public static TrackPoint getMockTrackPointForXML(){
         TrackPoint trkpt = new TrackPoint();
         trkpt.setId(3);
@@ -28,7 +98,7 @@ public class TrackPointMocks {
         trkpt.setLongitude(-84.21228868248848);
         trkpt.setSpeed(0.3619388937950134);
         trkpt.setElevation(1015.1315925326198);
-        trkpt.setAccuracy(null);
+        trkpt.setAccuracy(40.0);
         trkpt.setPointTimestamp(990055228011l);
         trkpt.setCompassHeading(204.690002441406);
         trkpt.setCompassAccuracy(2.0d);
@@ -37,7 +107,7 @@ public class TrackPointMocks {
     }
 
     /**
-     * This trackPoints match the data of real-track.gpx
+     * Matches data of gpx-test.gpx used in ExportTrackTest.testWriteGPXFile()
      *
      * @param trkptId
      * @return

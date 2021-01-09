@@ -4,12 +4,12 @@ import net.osmtracker.db.model.Track;
 
 public class TrackMocks {
 
-    // TrackId for mock Track to generate file real-track.gpx
+    // TrackId for mock Track used in ExportTrackTest.testWriteGPXFile()
     public static final long GPX_TRACKID = 7l;
 
 
     /**
-     * This track matches the data of real-track.gpx
+     * Matches data of gpx-test.gpx used in ExportTrackTest.testWriteGPXFile()
      *
      * @return Track
      */

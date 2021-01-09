@@ -261,7 +261,7 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * @param target Target GPX file
 	 * @throws IOException
 	 */
-	private void writeGpxFile(Track track, File target)
+	protected void writeGpxFile(Track track, File target)
 			throws IOException {
 
 		String accuracyOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
@@ -396,14 +396,14 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 					+ CDATA_END+"</cmt>"+"\n");
 		}
 
-		String buff = "";
+		String extensions = "";
 		if(trkpt.getSpeed() != null) {
-			buff += "\t\t\t\t\t" + "<speed>" + trkpt.getSpeed() + "</speed>" + "\n";
+			extensions += "\t\t\t\t\t" + "<speed>" + trkpt.getSpeed() + "</speed>" + "\n";
 		}
 		if ( OSMTracker.Preferences.VAL_OUTPUT_COMPASS_EXTENSION.equals(compass)
 				&& trkpt.getCompassHeading() != null ) {
-			buff += "\t\t\t\t\t" + "<compass>" + trkpt.getCompassHeading() + "</compass>" + "\n";
-			buff += "\t\t\t\t\t" + "<compass_accuracy>" + trkpt.getCompassAccuracy()
+			extensions += "\t\t\t\t\t" + "<compass>" + trkpt.getCompassHeading() + "</compass>" + "\n";
+			extensions += "\t\t\t\t\t" + "<compass_accuracy>" + trkpt.getCompassAccuracy()
 					+ "</compass_accuracy>" + "\n";
 		}
 
@@ -411,12 +411,12 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 		if (trkpt.getAtmosphericPressure() != null ) {
 			double pressure = trkpt.getAtmosphericPressure();
 			String pressure_formatted = String.format("%.1f", pressure);
-			buff += "\t\t\t\t\t" + "<baro>" + pressure_formatted + "</baro>" + "\n";
+			extensions += "\t\t\t\t\t" + "<baro>" + pressure_formatted + "</baro>" + "\n";
 		}
 
-		if(! buff.equals("")) {
+		if(! extensions.equals("")) {
 			out.append("\t\t\t\t" + "<extensions>\n");
-			out.append(buff);
+			out.append(extensions);
 			out.append("\t\t\t\t" + "</extensions>\n");
 		}
 

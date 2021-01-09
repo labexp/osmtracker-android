@@ -2,8 +2,8 @@ package net.osmtracker.data;
 
 public class GPXMocks {
 
-    //name = Nombre de la traza, keywords= osmtracker
-    public static String MOCK_WAYPOINT_XML_A =
+    //name = Nombre de la traza, keywords= OSMTracker and Bekuo
+    public static String MOCK_METADATA_XML_A =
             "\t<metadata>\n"
                     +"\t\t<name>Nombre de la traza</name>\n"
                     +"\t\t<keywords>OSMTracker</keywords>\n"
