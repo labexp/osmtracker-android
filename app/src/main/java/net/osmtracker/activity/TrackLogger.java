@@ -2,7 +2,6 @@ package net.osmtracker.activity;
 
 import java.io.File;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -53,8 +52,8 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.ImageColumns;
 import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
