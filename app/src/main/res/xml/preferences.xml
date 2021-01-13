@@ -72,7 +72,12 @@
 			android:title="@string/prefs_output_gpx_hdop_approximation"
 			android:summary="@string/prefs_output_gpx_hdop_approximation_summary"
 			android:defaultValue="false" />
-		<ListPreference android:key="gpx.compass_heading" android:summary="@string/prefs_compass_heading_summary" android:title="@string/prefs_compass_heading" android:entryValues="@array/prefs_compass_heading_values" android:entries="@array/prefs_compass_heading_keys"/>
+		<ListPreference
+			android:key="gpx.compass_heading"
+			android:summary="@string/prefs_compass_heading_summary"
+			android:title="@string/prefs_compass_heading"
+			android:entryValues="@array/prefs_compass_heading_values"
+			android:entries="@array/prefs_compass_heading_keys"/>
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/prefs_ui">

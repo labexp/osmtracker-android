@@ -66,7 +66,7 @@ public abstract class TrackDetailEditor extends Activity {
 	
 	protected void bindTrack(Track t) {
 		if (etName.length() == 0) {
-			etName.setText(t.getName());
+			etName.setText(t.getDisplayName());
 		}
 
 		etDescription.setText(t.getDescription());

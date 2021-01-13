@@ -13,3 +13,6 @@ app/null/
 
 # python vitualenv
 .venv
+
+# GPX created during tests
+app/src/test/assets/gpx/output-test.gpx

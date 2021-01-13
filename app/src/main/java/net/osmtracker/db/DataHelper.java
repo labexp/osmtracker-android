@@ -13,9 +13,15 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import net.osmtracker.OSMTracker;
+import net.osmtracker.db.model.Track;
+import net.osmtracker.db.model.TrackPoint;
+import net.osmtracker.db.model.WayPoint;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Data helper for dialoging with content resolver and filesystem.
@@ -303,13 +309,12 @@ public class DataHelper {
 	 * Mark the export date/time of this track.
 	 * @param trackId Id of the track
 	 * @param exportTime Time of export, from {@link System#currentTimeMillis()}
-	 * @param cr {@link ContentResolver} for query
 	 */
-	public static void setTrackExportDate(long trackId, long exportTime, ContentResolver cr) {
+	public void setTrackExportDate(long trackId, long exportTime) {
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 		ContentValues values = new ContentValues();
 		values.put(TrackContentProvider.Schema.COL_EXPORT_DATE, exportTime);
-		cr.update(trackUri, values, null, null);		
+		contentResolver.update(trackUri, values, null, null);
 	}
 	
 	public static void setTrackUploadDate(long trackId, long uploadTime, ContentResolver cr) {
@@ -425,6 +430,112 @@ public class DataHelper {
 		}
 
 		return trackName;
+	}
+
+	/**
+	 *
+	 * @param startDate
+	 * @return
+	 */
+	public Track getTrackByStartDate(Date startDate) {
+		// Get the name of the track with the received start date
+		String selection = TrackContentProvider.Schema.COL_START_DATE + " = ?";
+		String[] args = {String.valueOf(startDate.getTime())};
+		Cursor cursor = context.getContentResolver().query(
+				TrackContentProvider.CONTENT_URI_TRACK, null, selection, args,
+				null);
+		Track track = null;
+		if(cursor != null && cursor.moveToFirst()){
+			//This is due the build method. (TODO: a constructor with c as param needed in Track)
+			long trackId = cursor.getLong(
+					cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID));
+			track = Track.build(trackId, cursor, contentResolver, true);
+		}
+		return track;
+	}
+
+	//TODO: Fix this method. I suspect the query is not OK.
+	// What happens if trackId is not valid?
+	public Track getTrackById(long trackId) {
+		Cursor c = context.getContentResolver().query(ContentUris.withAppendedId(
+				TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
+				null, null);
+		Log.d(TAG, "Count of elements in cursor:" + c.getCount());
+
+		c.moveToFirst();
+		Track track = Track.build(trackId, c, contentResolver, true);
+		c.close();
+		return track;
+
+	}
+
+	public List<Integer> getWayPointIdsOfTrack(long trackId) {
+		List<Integer> out = new ArrayList<Integer>();
+		// constant for the column track Id
+		String[] mProjection = { TrackContentProvider.Schema.COL_ID };
+
+		Cursor cWayPoints = contentResolver.query( TrackContentProvider.waypointsUri(trackId),
+				mProjection, null, null,
+				TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+
+		Log.d(TAG, "Count of elements in cursor:" + cWayPoints.getCount());
+		for(cWayPoints.moveToFirst(); !cWayPoints.isAfterLast(); cWayPoints.moveToNext()) {
+			out.add(cWayPoints.getInt(
+					cWayPoints.getColumnIndex(TrackContentProvider.Schema.COL_ID)));
+		}
+		cWayPoints.close();
+
+		Log.d(TAG, "Count of elements in returned list:" + out.size());
+
+		return out;
+	}
+
+	public WayPoint getWayPointById(Integer wayPointId) {
+		WayPoint wpt = null;
+
+		Cursor cWayPoint = contentResolver.query(
+				TrackContentProvider.waypointUri(wayPointId),
+				null, null, null, null);
+		Log.d(TAG, "Count of elements in cursor (expected 1): "
+				+ cWayPoint.getCount());
+
+		cWayPoint.moveToFirst();
+		wpt = new WayPoint(cWayPoint);
+		return wpt;
+	}
+
+	public List<Integer> getTrackPointIdsOfTrack(long trackId) {
+		List<Integer> out = new ArrayList<Integer>();
+		// constant for the column track Id
+		String[] mProjection = { TrackContentProvider.Schema.COL_ID };
+
+		Cursor cTrackPoints = contentResolver.query( TrackContentProvider.trackPointsUri(trackId),
+				mProjection, null, null,
+				TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+
+		Log.d(TAG, "Count of elements in cTrackPoints:" + cTrackPoints.getCount());
+		for(cTrackPoints.moveToFirst(); !cTrackPoints.isAfterLast(); cTrackPoints.moveToNext()) {
+			out.add(cTrackPoints.getInt(
+					cTrackPoints.getColumnIndex(TrackContentProvider.Schema.COL_ID)));
+		}
+		cTrackPoints.close();
+		Log.d(TAG, "Count of elements in returned list:" + out.size());
+
+		return out;
+	}
+
+	public TrackPoint getTrackPointById(Integer trackPointId) {
+		TrackPoint trkpt = null;
+
+		Cursor cTrackPoint = contentResolver.query(
+				TrackContentProvider.trackpointUri(trackPointId),
+				null, null, null, null);
+		Log.d(TAG, "Count of elements in cursor (expected 1): "
+				+ cTrackPoint.getCount());
+
+		cTrackPoint.moveToFirst();
+		trkpt = new TrackPoint(cTrackPoint);
+		return trkpt;
 	}
 
 }
