@@ -107,6 +107,15 @@ public class TrackManager extends ListActivity {
 				btnNewTrack.setVisibility(View.INVISIBLE);
 			}
 		});
+
+		// should check if is the first time using the app
+		boolean showAppIntro = PreferenceManager.getDefaultSharedPreferences(this)
+				.getBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO,
+						OSMTracker.Preferences.VAL_DISPLAY_APP_INTRO);
+		if (showAppIntro) {
+			Intent intro = new Intent(this, Intro.class);
+			startActivity(intro);
+		}
 	}
 
 	@Override
