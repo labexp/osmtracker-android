@@ -12,6 +12,8 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.Locale;
+
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
@@ -98,7 +100,10 @@ public class DownloadLayoutTest {
     private void clickButtonsToDownloadLayout(String layoutName) {
         onView(withText(layoutName)).perform(click());
 
-        // TODO: catch the languages available dialog that shows up when the cell phone is not in EN.
+        // Catch languages available dialog that shows up when the cell phone is not in English
+        if (! Locale.getDefault().getLanguage().equalsIgnoreCase("en")) {
+            onView(withText("English")).perform(click());
+        }
 
         onView(withText(TestUtils.getStringResource(R.string.available_layouts_description_dialog_positive_confirmation))).
                 perform(click());
