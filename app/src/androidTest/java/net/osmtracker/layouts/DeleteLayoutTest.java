@@ -1,8 +1,8 @@
 package net.osmtracker.layouts;
 
 import android.Manifest;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.rule.GrantPermissionRule;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.rule.GrantPermissionRule;
 
 import net.osmtracker.R;
 import net.osmtracker.activity.ButtonsPresets;
@@ -15,11 +15,11 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.longClick;
-import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.longClick;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static net.osmtracker.util.TestUtils.checkToastIsShownWith;
 import static net.osmtracker.util.TestUtils.getLayoutsDirectory;
 import static net.osmtracker.util.TestUtils.getStringResource;

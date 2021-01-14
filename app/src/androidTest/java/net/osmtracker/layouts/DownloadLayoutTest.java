@@ -1,8 +1,8 @@
 package net.osmtracker.layouts;
 
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.assertion.ViewAssertions;
-import android.support.test.rule.ActivityTestRule;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.rule.ActivityTestRule;
 
 import net.osmtracker.R;
 import net.osmtracker.activity.TrackManager;
@@ -12,16 +12,18 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
-import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
-import static android.support.test.espresso.matcher.PreferenceMatchers.withTitleText;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import java.util.Locale;
+
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.espresso.Espresso.onData;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.matcher.PreferenceMatchers.withTitleText;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.fail;
 
 public class DownloadLayoutTest {
@@ -98,7 +100,10 @@ public class DownloadLayoutTest {
     private void clickButtonsToDownloadLayout(String layoutName) {
         onView(withText(layoutName)).perform(click());
 
-        // TODO: catch the languages available dialog that shows up when the cell phone is not in EN.
+        // Catch languages available dialog that shows up when the cell phone is not in English
+        if (! Locale.getDefault().getLanguage().equalsIgnoreCase("en")) {
+            onView(withText("English")).perform(click());
+        }
 
         onView(withText(TestUtils.getStringResource(R.string.available_layouts_description_dialog_positive_confirmation))).
                 perform(click());

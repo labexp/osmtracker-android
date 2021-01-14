@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.activity.Preferences;
@@ -14,10 +14,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 /**
  * Contains common and reusable static methods used for tests
@@ -122,11 +122,11 @@ public class TestUtils {
     }
 
     public static String getStringResource(int resourceId){
-        return InstrumentationRegistry.getTargetContext().getResources().getString(resourceId);
+        return InstrumentationRegistry.getInstrumentation().getTargetContext().getString(resourceId);
     }
 
     public static void setGithubRepositorySettings(String user, String repo, String branch){
-        Context context = InstrumentationRegistry.getTargetContext();
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, user);
         editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repo);
