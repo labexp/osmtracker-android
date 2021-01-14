@@ -1,9 +1,13 @@
 package net.osmtracker.layouts;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.rule.ActivityTestRule;
 
+import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.activity.TrackManager;
 import net.osmtracker.util.TestUtils;
@@ -28,7 +32,15 @@ import static junit.framework.TestCase.fail;
 
 public class DownloadLayoutTest {
     @Rule
-    public ActivityTestRule<TrackManager> mRule = new ActivityTestRule<>(TrackManager.class);
+    public ActivityTestRule<TrackManager> mRule = new ActivityTestRule(TrackManager.class) {
+        @Override
+        protected void beforeActivityLaunched() {
+            // Skip cool intro
+            SharedPreferences dtPrefs = PreferenceManager
+                    .getDefaultSharedPreferences(getInstrumentation().getTargetContext());
+            dtPrefs.edit().putBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO, false).apply();
+        }
+    };
 
     @Test
     public void downloadLayoutTest() {
