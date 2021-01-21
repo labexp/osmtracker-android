@@ -48,6 +48,9 @@ public class OSMTracker {
 		public final static String KEY_REPOSITORY_NAME = "repository_name";
 		public final static String KEY_BRANCH_NAME = "branch_name";
 
+		// intro flag
+		public final static String KEY_DISPLAY_APP_INTRO = "app.intro";
+
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
 		public final static String VAL_VOICEREC_DURATION = "2";
@@ -96,7 +99,11 @@ public class OSMTracker {
 		public final static String VAL_GITHUB_USERNAME = "labexp";
 		public final static String VAL_REPOSITORY_NAME = "osmtracker-android-layouts";
 		public final static String VAL_BRANCH_NAME = "master";
-		
+
+		// intro flag
+		public final static boolean VAL_DISPLAY_APP_INTRO = true;
+
+
 	};
 	
 	/**

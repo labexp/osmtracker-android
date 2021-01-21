@@ -100,6 +100,9 @@ dependencies {
     
     compileOnly 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 
+    // AndroidX Capable version
+    implementation 'com.github.AppIntro:AppIntro:6.0.0'
+
 }
 
 task copyNorwegianValues(type: Copy) {
@@ -120,4 +123,5 @@ android.applicationVariants.all { variant ->
 }
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }

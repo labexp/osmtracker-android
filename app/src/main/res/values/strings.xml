@@ -190,4 +190,13 @@
     <string name="github_repository_settings_valid_server">Github Repository valid</string>
     <string name="github_repository_settings_invalid_server">Github Repository invalid</string>
 
+    <!-- App Introduction -->
+    <string name="app_intro">OSMTracker for Android™ Introduction</string>
+    <!-- Intro - slide1 -->
+    <string name="app_intro_slide1_title">Welcome to OSMTracker for Android™ 👋</string>
+    <string name="app_intro_slide1_description">This App is free software that respects your freedom!</string>
+    <!-- Intro - slide2 -->
+    <string name="app_intro_slide2_title">Happy tracking 🗺 😎</string>
+    <string name="app_intro_slide2_description">OSMTracker for Android will use your GPS location to record trackpoints and waypoints, even when the App is running in background.
+\nYour data is not used to support ads.</string>
 </resources>

@@ -27,6 +27,9 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
+        <activity android:name="net.osmtracker.activity.Intro"
+            android:label="@string/app_intro"
+            android:theme="@style/AppIntroStyle"/>
         <activity
             android:name=".activity.TrackManager"
             android:label="@string/app_name">
