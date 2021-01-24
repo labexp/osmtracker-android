@@ -15,7 +15,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <!-- FIXME: requestLegacyExternalStorage will be disabled on android 11 -->
     <application
         android:description="@string/app_description"
         android:icon="@drawable/ic_launcher"
@@ -32,6 +31,7 @@
             android:theme="@style/AppIntroStyle"/>
         <activity
             android:name=".activity.TrackManager"
+            android:theme="@style/AppTheme"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -82,8 +82,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.AvailableLayouts" />
+        <activity android:name=".activity.AvailableLayouts" />
 
         <service
             android:name=".service.gps.GPSLogger"
@@ -107,19 +106,18 @@
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="net.osmtracker.fileprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
 
-        <receiver android:name="net.osmtracker.receiver.MediaButtonReceiver" >
+        <receiver android:name=".receiver.MediaButtonReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
-
     </application>
 
-</manifest> 
+</manifest>

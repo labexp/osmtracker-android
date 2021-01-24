@@ -99,7 +99,7 @@ public class DownloadLayoutTest {
         // Go to TrackLogger
         Espresso.pressBack();
         Espresso.pressBack();
-        onView(withId(R.id.trackmgr_hint_icon)).perform(click());
+        onView(withId(R.id.trackmgr_fab)).perform(click());
 
         // Check the buttons are loaded correctly
         String expectedButtonsLabels[] = new String[]{"A", "B", "C"};
