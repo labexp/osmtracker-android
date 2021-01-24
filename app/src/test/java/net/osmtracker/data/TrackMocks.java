@@ -40,7 +40,7 @@ public class TrackMocks {
     public static Track createMockTrack(String trackName, long trackStartDate) {
         Track track = new Track();
         track.setName(trackName);
-        track.setStartDate(trackStartDate);
+        track.setTrackDate(trackStartDate);
         return track;
     }
 

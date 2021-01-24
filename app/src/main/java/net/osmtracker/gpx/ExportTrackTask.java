@@ -226,29 +226,27 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 				String filenameBase = buildGPXFilename(track, trackGPXExportDirectory);
 				File trackFile = new File(trackGPXExportDirectory, filenameBase);
 
-				if (track.getTpCount() != 0 && 0 != track.getWpCount()) {
-					try {
-						writeGpxFile(track, trackFile);
+				// always try to writGPXFile no matter if there are points
+				try {
+					writeGpxFile(track, trackFile);
 
-						if (exportMediaFiles()) {
-							copyWaypointFiles(trackId, trackGPXExportDirectory);
-						}
-						if (updateExportDate()) {
-							dh.setTrackExportDate(trackId, System.currentTimeMillis());
-						}
-					} catch (IOException ioe) {
-						throw new ExportTrackException(ioe.getMessage());
+					if (exportMediaFiles()) {
+						copyWaypointFiles(trackId, trackGPXExportDirectory);
 					}
-
-					// Force rescan of directory
-					ArrayList<String> files = new ArrayList<String>();
-					for (File file : trackGPXExportDirectory.listFiles()) {
-						files.add(file.getAbsolutePath());
+					if (updateExportDate()) {
+						dh.setTrackExportDate(trackId, System.currentTimeMillis());
 					}
-					MediaScannerConnection.scanFile(context, files.toArray(new String[0]),
-							null, null);
-
+				} catch (IOException ioe) {
+					throw new ExportTrackException(ioe.getMessage());
 				}
+
+				// Force rescan of directory
+				ArrayList<String> files = new ArrayList<String>();
+				for (File file : trackGPXExportDirectory.listFiles()) {
+					files.add(file.getAbsolutePath());
+				}
+				MediaScannerConnection.scanFile(context, files.toArray(new String[0]),
+						null, null);
 			} else {
 				throw new ExportTrackException(context.getResources()
 						.getString(R.string.error_externalstorage_not_writable));
@@ -581,7 +579,7 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
 				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
 
-		long trackStartDate = track.getStartDate();
+		long trackStartDate = track.getTrackDate();
 		String formattedTrackStartDate = DataHelper.FILENAME_FORMATTER.format(new Date(trackStartDate));
 
 		String trackName =  track.getName();
