@@ -102,6 +102,8 @@ dependencies {
 
     // AndroidX Capable version
     implementation 'com.github.AppIntro:AppIntro:6.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+
 
 }
 
