@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Body trasy: </string>
   <string name="trackmgr_trackpoints_count">Trasové body: </string>
   <string name="trackmgr_empty">Nemáte zaznamenané žiadne prejdené trasy.</string>
-  <string name="trackmgr_newtrack_hint">Pre zaznamenanie trasy,\nstlačte <b>Ponuka</b> potom <b>Nová trasa</b></string>
   <string name="trackmgr_newtrack_error">Nedá sa vytvoriť nový záznam trasy: {0}</string>
   <string name="trackmgr_continuetrack_hint">Práve zaznamenávate <b>stopu #{0}</b>\nPre pokračovanie ju zvoľte v zozname</string>
   <string name="trackmgr_contextmenu_stop">Zastaviť záznam</string>
@@ -146,10 +145,8 @@
   <string name="buttons_presets_unsuccessful_update">Rozloženie nebolo aktualizované, skúste inokedy</string>
   <string name="buttons_presets_delete_message">Naozaj chcete vymazať rozloženie {0} ?</string>
   <string name="buttons_presets_delete_positive_confirmation">Áno</string>
-  <string name="buttons_presets_successful_delete">Súbor bol úspešne vymazaný</string>
   <string name="buttons_presets_icon_directory_deleted">Priečinok piktogramov bol úspešne vymazaný</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Tento súbor nemal priradený žiadny priečinok pre priktogramy</string>
-  <string name="buttons_presets_unsuccessful_delete">Súbor nemohol byť vymazaný</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Chyba: nepodarilo sa pripojiť na Internet</string>
   <string name="available_layouts_response_null_exception">Chyba: nepodarilo sa pripojiť na predvolený repozitár s prisposobenými rozloženiami tlačidiel</string>

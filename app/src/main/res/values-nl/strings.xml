@@ -31,8 +31,7 @@
   <string name="trackmgr_waypoints_count">Referentiepunten:</string>
   <string name="trackmgr_trackpoints_count">Trajectpunten:</string>
   <string name="trackmgr_empty">U hebt geen trajecten.</string>
-  <string name="trackmgr_newtrack_hint">Druk op <b>Menu</b> en <b>Nieuw traject</b> 
-om een traject op te nemen</string>
+  <string name="trackmgr_newtrack_hint">Om een traject op te nemen, drukt u op </string>
   <string name="trackmgr_newtrack_error">Kan geen nieuw traject aanmaken: {0}</string>
   <string name="trackmgr_continuetrack_hint">U bent nu <b>traject #{0}</b> aan het opnemen.
 Selecteer het in de lijst om door te gaan.</string>
@@ -40,6 +39,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackmgr_contextmenu_resume">Opnemen hervatten</string>
   <string name="trackmgr_contextmenu_delete">Verwijderen</string>
   <string name="trackmgr_contextmenu_export">Exporteren als GPX</string>
+  <string name="trackmgr_contextmenu_share">GPX delen</string>
   <string name="trackmgr_contextmenu_osm_upload">Uploaden naar OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Weergeven</string>
   <string name="trackmgr_contextmenu_details">Details</string>
@@ -50,6 +50,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackmgr_exporting_prepare">Exporteren voorbereiden...</string>
   <string name="trackmgr_export_error">Kan traject niet exporteren: {0}</string>
   <string name="trackmgr_exportall_confirm">Alle trajecten zullen geëxporteerd worden, wat lang kan duren. Bent u zeker?</string>
+  <string name="trackmgr_prepare_for_share_error">Traject kon niet verwerkt worden: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Traject-details</string>
   <string name="trackdetail_startdate">Begintijd:</string>
@@ -138,6 +139,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Wachten voor richting...</string>
   <string name="various_heading_unknown">Richting kan niet bepaald worden</string>
+  <string name="various_export_finished">Exporteerproces met succes afgerond</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap trajectweergave</string>
   <!--Buttons presets messages-->
@@ -148,10 +150,10 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="buttons_presets_unsuccessful_update">Lay-out werd niet bijgewerkt, probeer het later opnieuw</string>
   <string name="buttons_presets_delete_message">Weet u zeker dat u lay-out {0} wilt verwijderen?</string>
   <string name="buttons_presets_delete_positive_confirmation">Ja</string>
-  <string name="buttons_presets_successful_delete">Het bestand werd succesvol verwijderd</string>
+  <string name="buttons_presets_successful_delete">De lay-out werd met succes verwijderd</string>
   <string name="buttons_presets_icon_directory_deleted">De pictogram-map werd succesvol verwijderd</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Dit bestand was niet verbonden aan een pictogram-map</string>
-  <string name="buttons_presets_unsuccessful_delete">Het bestand kon niet verwijderd worden</string>
+  <string name="buttons_presets_unsuccessful_delete">De lay-out kon niet verwijderd worden</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Fout: kon niet verbinden met het Internet</string>
   <string name="available_layouts_response_null_exception">Fout: kon niet verbinden met de standaard aangepaste lay-outs repository</string>

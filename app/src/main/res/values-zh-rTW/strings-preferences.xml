@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">啟動時檢查 GPS 是否關閉並提示開啟。</string>
   <string name="prefs_gps_ignore_clock">忽略 GPS 的時間</string>
   <string name="prefs_gps_ignore_clock_summary">忽略 GPS 的時間，改用 Android 系統時間</string>
+  <string name="prefs_use_barometer">記錄氣壓 [hPa]</string>
+  <string name="prefs_use_barometer_summary">切換需要重新啟動軌跡記錄</string>
   <string name="prefs_gps_logging_interval">GPS 記錄頻率</string>
   <string name="prefs_gps_logging_interval_summary">使用 0 會盡可能的記錄資料 (會影響電池續航力)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
+  <string name="prefs_gps_logging_min_distance">GPS 記錄距離</string>
+  <string name="prefs_gps_logging_min_distance_summary">以公尺尺度的航點之間最小距離，設為 0 則是最小的可能</string>
+  <string name="prefs_gps_logging_min_distance_meters">公尺</string>
   <string name="prefs_ui">使用者介面</string>
   <string name="prefs_ui_picture_source">預設照片來源</string>
   <string name="prefs_ui_picture_source_summary">拍張照或從相簿挑選？</string>

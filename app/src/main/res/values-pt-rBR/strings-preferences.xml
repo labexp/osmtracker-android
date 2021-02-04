@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Ao iniciar, verificar se o GPS está desativado e perguntar se quer ativá-lo</string>
   <string name="prefs_gps_ignore_clock">Ignorar relógio do GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Ignorar relógio do GPS e usar relógio do Android para os registros de tempo</string>
+  <string name="prefs_use_barometer">Log da pressão barométrica [hPa]</string>
+  <string name="prefs_use_barometer_summary">Alternar requer o reinício da trilha</string>
   <string name="prefs_gps_logging_interval">Intervalo de registros do GPS</string>
   <string name="prefs_gps_logging_interval_summary">Use 0 para o menor possível (afeta a duração da bateria)</string>
   <string name="prefs_gps_logging_interval_seconds">segundos</string>
+  <string name="prefs_gps_logging_min_distance">Distância de registro do GPS</string>
+  <string name="prefs_gps_logging_min_distance_summary">Distância mínima entre os pontos da trilha em metros, use 0 para o mais curto possível</string>
+  <string name="prefs_gps_logging_min_distance_meters">metros</string>
   <string name="prefs_ui">Interface do usuário</string>
   <string name="prefs_ui_picture_source">Fonte padrão das imagens</string>
   <string name="prefs_ui_picture_source_summary">Tirar foto com a câmera ou escolher da galeria?</string>
@@ -22,7 +27,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Definições de botões</string>
   <string name="prefs_ui_buttons_layout_summary">Escolha uma configuração de botões personalizada (veja a documentação)</string>
+  <string name="prefs_ui_buttons_layout_default_section">Layout padrão</string>
   <string name="prefs_ui_buttons_layout_defaut">Padrão</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">Layout baixado</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Você não baixou arquivos de layout</string>
+  <string name="prefs_ui_available_layout">Layouts Disponíveis</string>
+  <string name="prefs_ui_github_repository_settings">Configurações do repositório do Github</string>
   <string name="prefs_ui_orientation">Orientação</string>
   <string name="prefs_ui_orientation_summary">Orientação preferida para a tela dos botões</string>
   <string-array name="prefs_ui_orientation_options_keys">

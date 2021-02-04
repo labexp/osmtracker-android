@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Controleren of gps uitgeschakeld is tijdens opstarten, en aanbieden om het in te schakelen</string>
   <string name="prefs_gps_ignore_clock">Gps-klok negeren</string>
   <string name="prefs_gps_ignore_clock_summary">Gps-klok negeren en de Android-klok gebruiken voor tijdstempels</string>
+  <string name="prefs_use_barometer">Luchtdruk loggen [hPa]</string>
+  <string name="prefs_use_barometer_summary">In-/uitschakelen vereist opnieuw starten van traject</string>
   <string name="prefs_gps_logging_interval">Gps-loginterval</string>
   <string name="prefs_gps_logging_interval_summary">Gebruik 0 voor de kortst mogelijke (beïnvloedt levensduur van de batterij)</string>
   <string name="prefs_gps_logging_interval_seconds">seconden</string>
+  <string name="prefs_gps_logging_min_distance">Gps-logafstand</string>
+  <string name="prefs_gps_logging_min_distance_summary">Minimale afstand tussen trajectpunten in meter. Gebruik 0 voor de kortst mogelijke afstand</string>
+  <string name="prefs_gps_logging_min_distance_meters">meter</string>
   <string name="prefs_ui">Gebruikersinterface</string>
   <string name="prefs_ui_picture_source">Standaard fotobron</string>
   <string name="prefs_ui_picture_source_summary">Foto\'s nemen van camera of galerij?</string>
