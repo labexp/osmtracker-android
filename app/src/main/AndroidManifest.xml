@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.osmtracker"
     android:installLocation="auto"
-    android:versionCode="52"
-    android:versionName="1.0.0-beta3">
+    android:versionCode="54"
+    android:versionName="1.0.0-beta4a">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -86,6 +86,7 @@
 
         <service
             android:name=".service.gps.GPSLogger"
+            android:foregroundServiceType="location"
             android:exported="false">
             <intent-filter>
                 <action android:name="osmtracker.intent.GPS_SERVICE" />
