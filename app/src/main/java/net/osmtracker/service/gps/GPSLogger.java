@@ -73,11 +73,6 @@ public class GPSLogger extends Service implements LocationListener {
 	private Location lastLocation;
 	
 	/**
-	 * Last number of satellites used in fix.
-	 */
-	private int lastNbSatellites;
-	
-	/**
 	 * LocationManager
 	 */
 	private LocationManager lmgr;
@@ -131,8 +126,7 @@ public class GPSLogger extends Service implements LocationListener {
 							String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
 							String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
 
-
-							dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+							dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
 
 							// If there is a waypoint in the track, there should also be a trackpoint
 							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
@@ -310,7 +304,6 @@ public class GPSLogger extends Service implements LocationListener {
 			lastGPSTimestamp = System.currentTimeMillis(); // save the time of this fix
 		
 			lastLocation = location;
-			//lastNbSatellites = countSatellites();
 			
 			if (isTracking) {
 				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
@@ -318,24 +311,6 @@ public class GPSLogger extends Service implements LocationListener {
 		}
 	}
 
-	/**
-	 * Counts number of satellites used in last fix.
-	 * @return The number of satellites
-	 */
-	/*
-	private int countSatellites() {
-		int count = 0;
-		GpsStatus status = lmgr.getGpsStatus(null);
-		for(GpsSatellite sat:status.getSatellites()) {
-			if (sat.usedInFix()) {
-				count++;
-			}
-		}
-		
-		return count;
-	}
-	*/
-	
 	/**
 	 * Builds the notification to display when tracking in background.
 	 */

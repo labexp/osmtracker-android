@@ -157,8 +157,6 @@ public class DataHelper {
 	 *				Id of the track
 	 * @param location
 	 *				Location of waypoint
-	 * @param nbSatellites
-	 *				Number of satellites used for the location
 	 * @param name
 	 *				Name of waypoint
 	 * @param link
@@ -171,8 +169,11 @@ public class DataHelper {
 	 * 			  accuracy of the compass reading (as SensorManager.SENSOR_STATUS_ACCURACY*),
 	 * 			  ignored if azimuth is invalid.
 	 */
-	public void wayPoint(long trackId, Location location, int nbSatellites, String name, String link, String uuid, float azimuth, int accuracy, float pressure) {
-		Log.v(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid + ", link='" + link + "', location=" + location + ", azimuth=" + azimuth + ", accuracy="+accuracy);
+	public void wayPoint(long trackId, Location location, String name, String link, String uuid, float azimuth, int accuracy, float pressure) {
+		Log.d(TAG, "Tracking waypoint '" + name + "', track=" + trackId + ", uuid=" + uuid
+				+ ", nbSatellites=" + location.getExtras().getInt("satellites")
+				+ ", link='"+ link + "', location=" + location + ", azimuth=" + azimuth
+				+ ", accuracy=" + accuracy);
 
 		// location should not be null, but sometime is.
 		// TODO investigate this issue.
@@ -182,12 +183,11 @@ public class DataHelper {
 			values.put(TrackContentProvider.Schema.COL_LATITUDE, location.getLatitude());
 			values.put(TrackContentProvider.Schema.COL_LONGITUDE, location.getLongitude());
 			values.put(TrackContentProvider.Schema.COL_NAME, name);
-			values.put(TrackContentProvider.Schema.COL_NBSATELLITES, nbSatellites);
+			values.put(TrackContentProvider.Schema.COL_NBSATELLITES, location.getExtras().getInt("satellites"));
 
 			if (uuid != null) {
 				values.put(TrackContentProvider.Schema.COL_UUID, uuid);
 			}
-			
 			if (location.hasAltitude()) {
 				values.put(TrackContentProvider.Schema.COL_ELEVATION, location.getAltitude());
 			}
