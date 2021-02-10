@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Útpontok:</string>
   <string name="trackmgr_trackpoints_count">Nyompontok:</string>
   <string name="trackmgr_empty">Nincs egyetlen nyomvonala sem.</string>
-  <string name="trackmgr_newtrack_hint">Új nyomvonal rögzítéséhez,\nnyomja meg a <b>Menü</b>t, majd válassza az <b>Új nyomvonal</b>at</string>
   <string name="trackmgr_newtrack_error">Nem sikerült új nyomvonalat létrehozni: {0}</string>
   <string name="trackmgr_continuetrack_hint">Jelenleg a <b>#{0}.nyomvonalat</b> rögzíti\nVálasszon a listáról a folytatáshoz.</string>
   <string name="trackmgr_contextmenu_stop">Nyomvonalkészítés leállítása</string>
@@ -146,10 +145,8 @@
   <string name="buttons_presets_unsuccessful_update">Az elrendezés nem frissült, próbálja meg később újra</string>
   <string name="buttons_presets_delete_message">Biztosan törölni szeretné ezt az elrendezést: {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Igen</string>
-  <string name="buttons_presets_successful_delete">A fájl sikeresen törölve</string>
   <string name="buttons_presets_icon_directory_deleted">Az ikonmappa sikeresen törölve</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Ehhez a fájlhoz nem volt ikonmappa társítva</string>
-  <string name="buttons_presets_unsuccessful_delete">A fájlt nem sikerült törölni</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Hiba: nem sikerül kapcsolódni az internethez</string>
   <string name="available_layouts_response_null_exception">Hiba: nem sikerül csatlakozni az egyedi elrendezések alapértelmezett tárházához</string>
@@ -170,4 +167,7 @@
   <string name="github_repository_settings_branch_name">Ág neve:</string>
   <string name="github_repository_settings_valid_server">A Github tár érvényes</string>
   <string name="github_repository_settings_invalid_server">A Github tár érvénytelen</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

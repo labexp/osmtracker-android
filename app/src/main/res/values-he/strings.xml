@@ -31,8 +31,6 @@
   <string name="trackmgr_waypoints_count">נקודות ציון:</string>
   <string name="trackmgr_trackpoints_count">נקודות מסלול:</string>
   <string name="trackmgr_empty">אין לך מסלולים</string>
-  <string name="trackmgr_newtrack_hint">על מנת להקליט מסלול,\n
-לחץ <b>תפריט</b> ואז <b>מסלול חדש</b></string>
   <string name="trackmgr_newtrack_error">לא ניתן ליצור מסלול חדש: {0}</string>
   <string name="trackmgr_continuetrack_hint">הנך מקליט כרגע <b> מסלול מספר {0}</b>\n
 בחר אותו מהרשימה כדי להמשיך</string>
@@ -148,10 +146,8 @@
   <string name="buttons_presets_unsuccessful_update">העיצוב לא עודכן, נא לנסות שנית מאוחר יותר</string>
   <string name="buttons_presets_delete_message">לאשר מחיקה של עיצוב }0{?</string>
   <string name="buttons_presets_delete_positive_confirmation">כן</string>
-  <string name="buttons_presets_successful_delete">הקובץ נמחק בהצלחה</string>
   <string name="buttons_presets_icon_directory_deleted">תיקיית הסמלילים נמחקה בהצלחה</string>
   <string name="buttons_presets_icon_directory_does_not_exist">לקובץ זה לא משוייכת תיקיית סמלילים</string>
-  <string name="buttons_presets_unsuccessful_delete">לא ניתן למחוק את הקובץ</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">שגיאה: לא ניתן להתחבר לאינטרנט</string>
   <string name="available_layouts_response_null_exception">שגיאה: לא ניתן להתחבר למאגר העיצובים</string>
@@ -172,4 +168,7 @@
   <string name="github_repository_settings_branch_name">שם הענף:</string>
   <string name="github_repository_settings_valid_server">GitHub Repository חוקי</string>
   <string name="github_repository_settings_invalid_server">GitHub Repository לא חוקי</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

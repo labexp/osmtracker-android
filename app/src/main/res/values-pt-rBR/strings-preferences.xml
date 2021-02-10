@@ -81,7 +81,6 @@
   <string name="prefs_osm_clear_oauth_data">Redefinir autenticação OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Esquecer as credenciais e permissões OSM e forçar o OSMTracker a perguntar isso novamente</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Você vai ter que autorizar OSMTracker para carregar trilhas novamente. Tem certeza?</string>
-  <string name="prefs_map_tile">Provedor do mapa</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -93,6 +92,5 @@
     <item>em comentário</item>
     <item>em extensão</item>
   </string-array>
-  <string name="prefs_compass_heading">Exportar o Rumo da Bússola</string>
   <string name="prefs_compass_heading_summary">Define se e como os dados da bússola devem ser exportados para o arquivo GPX</string>
 </resources>

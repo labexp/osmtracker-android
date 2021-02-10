@@ -76,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">Ripristina l\'autenticazione su OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Dimentica le credenziali e le autorizzazioni di OSM e forza OSMTracker a chiederle di nuovo</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Devi autorizzare nuovamente OSMTracker a caricare i tracciati. Sei sicuro?</string>
-  <string name="prefs_map_tile">Fornitore di Texture</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +87,5 @@
     <item>come commento</item>
     <item>per esteso</item>
   </string-array>
-  <string name="prefs_compass_heading">Esporta Direzione Bussola</string>
   <string name="prefs_compass_heading_summary">Definisce se e come i dati della bussola devono essere esportati nel file GPX</string>
 </resources>

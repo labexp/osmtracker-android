@@ -71,7 +71,6 @@
   <string name="prefs_osm_clear_oauth_data">Fjern OSM-nøkkel</string>
   <string name="prefs_osm_clear_oauth_data_summary">Fjern brukerinformasjon og tilgangsinformasjon for OSM og få OSMTracker til å spørre om tilgang på nytt</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Du kommer til å måtte gi OSMTracker tillatelse til å laste opp spor til OSM igjen. Er du sikker?</string>
-  <string name="prefs_map_tile">Kartdata leverandør</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -83,6 +82,5 @@
     <item>i kommentar</item>
     <item>i utvidelsen</item>
   </string-array>
-  <string name="prefs_compass_heading">Eksporter kompasskurs</string>
   <string name="prefs_compass_heading_summary">Bestemmer om og hvordan kompassdata skal eksporteres til GPX-filen.</string>
 </resources>

@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Points d\'interêt :</string>
   <string name="trackmgr_trackpoints_count">Pts. de trace :</string>
   <string name="trackmgr_empty">Vous n\'avez pas de traces.</string>
-  <string name="trackmgr_newtrack_hint">Pour enregistrer une trace,\npressez <b>Menu</b> puis <b>Nouvelle trace</b></string>
   <string name="trackmgr_newtrack_error">Impossible de créer une nouvelle trace : {0}</string>
   <string name="trackmgr_continuetrack_hint">Vous enregistrez en ce moment<b>la trace #{0}</b>\nChoisissez-la dans la liste pour continuer</string>
   <string name="trackmgr_contextmenu_stop">Arrêter l\'enregistrement</string>
@@ -143,9 +142,7 @@
   <string name="buttons_presets_context_menu_delete">Supprimer</string>
   <string name="buttons_presets_updating_layout">Mise à jour …</string>
   <string name="buttons_presets_delete_positive_confirmation">Oui</string>
-  <string name="buttons_presets_successful_delete">Le fichier à été supprimé avec succès</string>
   <string name="buttons_presets_icon_directory_deleted">L\'icône du répertoire a été supprimé avec succès</string>
-  <string name="buttons_presets_unsuccessful_delete">Le fichier ne peut être supprimé</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Erreur : Impossible de se connecter à internet</string>
   <string name="available_layouts_connecting_message">(Connection …)</string>
@@ -160,4 +157,7 @@
   <string name="github_repository_settings_branch_name">Nom de la branche :</string>
   <string name="github_repository_settings_valid_server">Répertoire GitHub valide</string>
   <string name="github_repository_settings_invalid_server">Répertoire GitHub invalide</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

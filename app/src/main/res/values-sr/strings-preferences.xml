@@ -76,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">Ресетуј OSM пријаву</string>
   <string name="prefs_osm_clear_oauth_data_summary">Заборави OSM акредитиве и дозволе и присили OSM пратиоца да их затражи поново</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Мораћете поново да овластите OSM пратиоца да шаље праћења. Сигурни сте?</string>
-  <string name="prefs_map_tile">Добављач поља мапе</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +87,5 @@
     <item>У коментару</item>
     <item>У проширењу</item>
   </string-array>
-  <string name="prefs_compass_heading">Извоз усмерења компаса</string>
   <string name="prefs_compass_heading_summary">Одређује да ли ће и како подаци компаса бити извезени у GPX фајл</string>
 </resources>

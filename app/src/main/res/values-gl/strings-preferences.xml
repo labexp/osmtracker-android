@@ -71,7 +71,6 @@
   <string name="prefs_osm_clear_oauth_data">Resetear autentificación OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Esquecer credenciais OSM e permisos e forzar a OSMTracker a volver preguntar</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Vai ter que autorizar OSMTracker para cargar pistas de novo. Estás seguro?</string>
-  <string name="prefs_map_tile">Fornecedor de Mapa de Mosaico</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -83,6 +82,5 @@
     <item>en comentario</item>
     <item>en extensión</item>
   </string-array>
-  <string name="prefs_compass_heading">Exportar Compás</string>
   <string name="prefs_compass_heading_summary">Define se e como os datos do compás deben ser exportados ao arquivo GPX</string>
 </resources>

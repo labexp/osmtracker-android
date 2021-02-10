@@ -81,7 +81,6 @@
   <string name="prefs_osm_clear_oauth_data">重新設定 OSM 認證</string>
   <string name="prefs_osm_clear_oauth_data_summary">捨棄現存的 OSM 認證與權限資訊，強制 OSMTracker 重新取得它們</string>
   <string name="prefs_osm_clear_oauth_data_dialog">您必須重新認證 OSMTracker 方能繼續上傳軌跡資料，確定嗎？</string>
-  <string name="prefs_map_tile">地圖圖塊的提供來源</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -93,6 +92,5 @@
     <item>於註解</item>
     <item>於副檔名</item>
   </string-array>
-  <string name="prefs_compass_heading">匯出羅盤方位</string>
   <string name="prefs_compass_heading_summary">定義羅盤資料要如何匯出到 GPX 檔案</string>
 </resources>

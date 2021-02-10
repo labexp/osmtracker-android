@@ -76,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">重置 OSM 账户信息</string>
   <string name="prefs_osm_clear_oauth_data_summary">清除本地OSM账户以及权限信息。OSMTracker将要求用户重新输入这些信息</string>
   <string name="prefs_osm_clear_oauth_data_dialog">你将要再次授权 OSMTracker 来上传轨迹。确定吗？</string>
-  <string name="prefs_map_tile">地图提供商</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +87,5 @@
     <item>保存于注释</item>
     <item>保存于扩展</item>
   </string-array>
-  <string name="prefs_compass_heading">导出方向信息</string>
   <string name="prefs_compass_heading_summary">是否导出轨迹的方向信息，以及如何导出</string>
 </resources>

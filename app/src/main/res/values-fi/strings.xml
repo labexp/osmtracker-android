@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Etapit: </string>
   <string name="trackmgr_trackpoints_count">Reittipisteet: </string>
   <string name="trackmgr_empty">Ei reittejä.</string>
-  <string name="trackmgr_newtrack_hint">Tallentaaksesi reitini,\npaina <b>Valikko</b> <b>Uusi reitti</b></string>
   <string name="trackmgr_newtrack_error">Uuden reitin luonti ei onnistu: {0}</string>
   <string name="trackmgr_continuetrack_hint">Tallennat parhaillaan <b>reittiä #{0}</b>\nValitse se listasta jatkaaksesi</string>
   <string name="trackmgr_contextmenu_stop">Lopeta seuranta</string>
@@ -143,8 +142,6 @@
   <string name="buttons_presets_context_menu_delete">Poista</string>
   <string name="buttons_presets_updating_layout">Päivitetään…</string>
   <string name="buttons_presets_delete_positive_confirmation">Kyllä</string>
-  <string name="buttons_presets_successful_delete">Tiedosto poistettiin onnistuneesti</string>
-  <string name="buttons_presets_unsuccessful_delete">Tiedostoa ei voitu poistaa</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connecting_message">(Yhdistetään…)</string>
   <string name="available_layouts_description_dialog_positive_confirmation">Lataa</string>
@@ -155,4 +152,7 @@
   <string name="github_repository_settings_username">Github-käyttäjätunnus: </string>
   <string name="github_repository_settings_repository_name">Tietovaraston nimi:</string>
   <string name="github_repository_settings_branch_name">Haaran nimi:</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

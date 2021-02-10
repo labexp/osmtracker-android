@@ -8,6 +8,5 @@
   <string name="prefs_gps_logging_interval_seconds">‍ಸೆಕೆಂಡ್ಸ್</string>
   <string name="prefs_output">‍ಜಿಪಿಎಕ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್</string>
   <string name="prefs_sound_enabled">‍‍ದ್ವನಿ ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="prefs_map_tile">‍‍</string>
   <string name="prefs_map_tile_summary"></string>
 </resources>

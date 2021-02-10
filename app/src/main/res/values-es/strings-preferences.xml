@@ -76,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">Restablecer la autenticación OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Olvidar las credenciales y permisos de OSM, y forzar a que OSMTracker los vuelva a solicitar</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Deberá autorizar a OSMTracker para volver a subir las pistas. ¿Está seguro?</string>
-  <string name="prefs_map_tile">Proveedor de teselas del mapa</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +87,5 @@
     <item>en comentario</item>
     <item>en extensión</item>
   </string-array>
-  <string name="prefs_compass_heading">Exportar la dirección de la brújula</string>
   <string name="prefs_compass_heading_summary">Define el si y cómo los datos de brújula deben ser exportados al archivo GPX</string>
 </resources>

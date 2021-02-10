@@ -64,7 +64,6 @@
   <string name="prefs_sound_enabled">Uključi zvuk</string>
   <string name="prefs_sound_enabled_summary">Zvučna obavijest kada kada snimanje glasa počinje i završava</string>
   <string name="prefs_osm_clear_oauth_data">Reset OSM provjere autentičnosti</string>
-  <string name="prefs_map_tile">Pružatelj karte</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
