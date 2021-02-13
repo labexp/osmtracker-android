@@ -20,9 +20,9 @@
 		android:text="@string/trackmgr_tracklist"
 		android:paddingBottom="5dp"/>
 
-	<FrameLayout
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:layout_width="fill_parent"
-		android:layout_height="689dp"
+		android:layout_height="0dp"
 		android:layout_weight="1"
 		android:padding="3dp">
 
@@ -41,16 +41,15 @@
 			android:padding="5dp"
 			android:text="@string/trackmgr_empty" />
 
-	</FrameLayout>
+		<com.google.android.material.floatingactionbutton.FloatingActionButton
+			android:id="@+id/trackmgr_fab"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end|bottom"
+			android:layout_margin="16dp"
+			android:contentDescription="@string/trackmgr_newtrack_hint"
+			android:src="@drawable/ic_fab_add_track" />
 
-	<com.google.android.material.floatingactionbutton.FloatingActionButton
-		android:id="@+id/trackmgr_fab"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="end|bottom"
-		android:layout_margin="16dp"
-		android:contentDescription="@string/trackmgr_newtrack_hint"
-		android:src="@drawable/ic_fab_add_track" />
-
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

@@ -128,7 +128,7 @@ public class TrackManager extends AppCompatActivity
 			// Is any track active?
 			currentTrackId = DataHelper.getActiveTrackId(getContentResolver());
 			if (currentTrackId != TRACK_ID_NO_TRACK) {
-				Snackbar.make(emptyView,
+				Snackbar.make(findViewById(R.id.trackmgr_fab),
 						getResources().getString(R.string.trackmgr_continuetrack_hint)
 						.replace("{0}", Long.toString(currentTrackId)), Snackbar.LENGTH_LONG)
 						.setAction("Action", null).show();
@@ -144,11 +144,7 @@ public class TrackManager extends AppCompatActivity
 	 */
 	private void setRecyclerView() {
 		recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-		/*
-		 * LinearLayoutManager can support HORIZONTAL or VERTICAL orientations. The reverse layout
-		 * parameter is useful mostly for HORIZONTAL layouts that should reverse for right to left
-		 * languages.
-		 */
+
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this,
 				LinearLayoutManager.VERTICAL, false);
 		recyclerView.setLayoutManager(layoutManager);
@@ -157,42 +153,14 @@ public class TrackManager extends AppCompatActivity
 				layoutManager.getOrientation());
 		recyclerView.addItemDecoration(did);
 
-		/*
-		 * Use this setting to improve performance if you know that changes in content do not
-		 * change the child layout size in the RecyclerView
-		 */
 		recyclerView.setHasFixedSize(true);
 		Cursor cursor = getContentResolver().query(
 				TrackContentProvider.CONTENT_URI_TRACK, null, null, null,
 				TrackContentProvider.Schema.COL_START_DATE + " desc");
-		/*
-		 * The ForecastAdapter is responsible for linking our weather data with the Views that
-		 * will end up displaying our weather data.
-		 */
+
 		recyclerViewAdapter = new TrackListRVAdapter(this, cursor, this);
 		recyclerView.setAdapter(recyclerViewAdapter);
 	}
-
-	/*
-	@Override
-	protected void onPause() {
-		// Remember position in listview (before any adapter change)
-		prevItemVisible = getListView().getFirstVisiblePosition();
-
-		CursorAdapter adapter = (CursorAdapter) getListAdapter();
-		if (adapter != null) {
-			// Prevents on-screen 'no tracks' message
-			getListView().setEmptyView(findViewById(android.R.id.empty));
-			// Properly close the adapter cursor
-			Cursor cursor = adapter.getCursor();
-			stopManagingCursor(cursor);
-			cursor.close();
-			setListAdapter(null);
-		}
-
-		super.onPause();
-	}
-	 */
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
@@ -280,7 +248,7 @@ public class TrackManager extends AppCompatActivity
 							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
 							RC_WRITE_PERMISSIONS_EXPORT_ALL);
 				}
-				else exportAllTracks();
+				else exportTracks(false);
 				break;
 			case R.id.trackmgr_menu_settings:
 				// Start settings activity
@@ -293,25 +261,6 @@ public class TrackManager extends AppCompatActivity
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	/**
-	 * This method prepare the new track and set an id, then start a new TrackLogger with the new track id
-	private void startTrackLogger(){
-		// Start track logger activity
-		try {
-			Intent i = new Intent(this, TrackLogger.class);
-			// New track
-			currentTrackId = createNewTrack();
-			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
-			startActivity(i);
-		} catch (CreateTrackException cte) {
-			Toast.makeText(this,
-					getResources().getString(R.string.trackmgr_newtrack_error).replace("{0}", cte.getMessage()),
-					Toast.LENGTH_LONG)
-					.show();
-		}
-	}
-	*/
 
 
 	/**
@@ -364,27 +313,58 @@ public class TrackManager extends AppCompatActivity
 	}
 
 
-	private void exportOneTrack(long trackId){
-		if (trackId != -1) {
-			new ExportToStorageTask(this, trackId).execute();
-			trackId = -1;
-		}
-	}
+	/* Export tracks
+	 * onlySelectedTrack: will export only the track selected on the recycle view.
+	 */
+	private void exportTracks(boolean onlyContextMenuSelectedTrack) {
 
-	private void exportAllTracks(){
-		Cursor cursor = getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACK,
-				null, null, null, TrackContentProvider.Schema.COL_START_DATE + " desc");
-		if (cursor.moveToFirst()) {
-			long[] ids = new long[cursor.getCount()];
-			int idCol = cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID);
-			int i=0;
-			do {
-				ids[i++] = cursor.getLong(idCol);
-			} while (cursor.moveToNext());
+		long[] trackIds = null;
 
-			new ExportToStorageTask(this, ids).execute();
+		// Select the trackIds to be exported
+		if (onlyContextMenuSelectedTrack) {
+			trackIds = new long[1];
+			trackIds[0] = contextMenuSelectedTrackid;
+		} else {
+			Cursor cursor = getContentResolver().query(TrackContentProvider.CONTENT_URI_TRACK,
+					null, null, null,
+					TrackContentProvider.Schema.COL_START_DATE + " desc");
+			if (cursor.moveToFirst()) {
+				trackIds = new long[cursor.getCount()];
+				int idCol = cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID);
+				int i = 0;
+				do {
+					trackIds[i++] = cursor.getLong(idCol);
+				} while (cursor.moveToNext());
+			}
+			cursor.close();
 		}
-		cursor.close();
+
+		// Invoke the Async Task
+		new ExportToStorageTask(this, trackIds) {
+			@Override
+			protected void onPostExecute(Boolean success) {
+				dialog.dismiss();
+				if (!success) {
+					new AlertDialog.Builder(context).setTitle(android.R.string.dialog_alert_title)
+							.setMessage(context.getResources()
+									.getString(R.string.trackmgr_export_error)
+									.replace("{0}", super.getErrorMsg()))
+							.setIcon(android.R.drawable.ic_dialog_alert)
+							.setNeutralButton(android.R.string.ok,
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									dialog.dismiss();
+								}
+							}).show();
+				}else{
+					Snackbar.make(findViewById(R.id.trackmgr_fab),
+							getResources().getString(R.string.various_export_finished),
+							Snackbar.LENGTH_LONG).setAction("Action", null).show();
+					updateTrackItemsInRecyclerView();
+				}
+			}
+		}.execute();
 	}
 
 	@Override
@@ -456,7 +436,7 @@ public class TrackManager extends AppCompatActivity
 							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
 							RC_WRITE_PERMISSIONS_EXPORT_ONE);
 				}
-				else exportOneTrack(contextMenuSelectedTrackid);
+				else exportTracks(true);
 				break;
 
 			case R.id.trackmgr_contextmenu_share:
@@ -631,14 +611,22 @@ public class TrackManager extends AppCompatActivity
 		getContentResolver().delete(
 				ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, id),
 				null, null);
-		recyclerViewAdapter.getCursorAdapter().getCursor().requery();
-		recyclerViewAdapter.notifyDataSetChanged();
+		updateTrackItemsInRecyclerView();
 
 		// Delete any data stored for the track we're deleting
 		File trackStorageDirectory = DataHelper.getTrackDirectory(id);
 		if (trackStorageDirectory.exists()) {
 			FileSystemUtils.delete(trackStorageDirectory, true);
 		}
+	}
+
+	/*
+	 * This method updates the track items in the user interface . Is used when data in DB change
+	 * (export or delete track) to force the UI reflect the change.
+	 */
+	private void updateTrackItemsInRecyclerView() {
+		recyclerViewAdapter.getCursorAdapter().getCursor().requery();
+		recyclerViewAdapter.notifyDataSetChanged();
 	}
 
 	/**
@@ -700,6 +688,9 @@ public class TrackManager extends AppCompatActivity
 			// set the currentTrackId to "no track"
 			currentTrackId = TRACK_ID_NO_TRACK;
 
+			// Change icon on track item
+			updateTrackItemsInRecyclerView();
+
 		}
 	}
 
@@ -712,7 +703,7 @@ public class TrackManager extends AppCompatActivity
 						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
 					// permission was granted, yay!
-					exportAllTracks();
+					exportTracks(false);
 
 				} else {
 
@@ -730,7 +721,7 @@ public class TrackManager extends AppCompatActivity
 						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
 					// permission was granted, yay!
-					exportOneTrack(contextMenuSelectedTrackid);
+					exportTracks(true);
 
 				} else {
 

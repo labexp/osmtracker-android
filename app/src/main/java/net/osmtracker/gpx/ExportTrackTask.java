@@ -97,9 +97,6 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 */
 	protected ProgressDialog dialog;
 
-	/**
-	 * Message in case of an error
-	 */
 	private String errorMsg = null;
 
 	/**
@@ -625,4 +622,10 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 		return second;
 	}
 
+	/**
+	 * Message in case of an error
+	 */
+	public String getErrorMsg() {
+		return errorMsg;
+	}
 }
