@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Prüfen, ob GPS beim Start deaktiviert ist und das Aktivieren anbieten</string>
   <string name="prefs_gps_ignore_clock">GPS-Uhrzeit ignorieren</string>
   <string name="prefs_gps_ignore_clock_summary">GPS-Uhrzeit ignorieren und Android-Uhrzeit für Zeitstempel verwenden</string>
+  <string name="prefs_use_barometer">Luftdruck loggen [hPa]</string>
+  <string name="prefs_use_barometer_summary">Umschalten benötigt einen Track Neustart</string>
   <string name="prefs_gps_logging_interval">GPS-Protokollierungsintervall</string>
   <string name="prefs_gps_logging_interval_summary">Verwenden Sie 0 für das kürzestmögliche Intervall (beeinflusst die Batterielebensdauer)</string>
   <string name="prefs_gps_logging_interval_seconds">Sekunden</string>
+  <string name="prefs_gps_logging_min_distance">GPS Log Distanz</string>
+  <string name="prefs_gps_logging_min_distance_summary">Mindestabstand zwischen Track-Punkten in Metern. 0 = kleinstmöglicher Abstand</string>
+  <string name="prefs_gps_logging_min_distance_meters">Meter</string>
   <string name="prefs_ui">Benutzeroberfläche</string>
   <string name="prefs_ui_picture_source">Standard-Fotoquelle</string>
   <string name="prefs_ui_picture_source_summary">Fotos von Kamera oder Galerie nehmen?</string>
@@ -76,7 +81,6 @@
   <string name="prefs_osm_clear_oauth_data">OSM-Anmeldedaten zurücksetzen</string>
   <string name="prefs_osm_clear_oauth_data_summary">OSM-Anmeldedaten und -berechtigungen vergessen und OSMTracker neu danach fragen lassen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Sie müssen OSMTracker erneut zum Hochladen von Routen autorisieren. Sind Sie sicher?</string>
-  <string name="prefs_map_tile">Hintergrundkarten-Anbieter</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +92,5 @@
     <item>im Kommentar</item>
     <item>in der Erweiterung</item>
   </string-array>
-  <string name="prefs_compass_heading">Export der Kompass-Richtung</string>
   <string name="prefs_compass_heading_summary">Definiert ob und wie die Kompass-Daten in die GPX-Datei exportiert werden</string>
 </resources>

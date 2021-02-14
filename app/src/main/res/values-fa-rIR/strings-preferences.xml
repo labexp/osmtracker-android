@@ -76,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">بازنشانی اطلاعات احراز هویت OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">اعتبارنامه‌ها و مجوزهای OSM را فراموش کن و OSMTracker را مجبور به درخواست دوبارهٔ آن‌ها کن</string>
   <string name="prefs_osm_clear_oauth_data_dialog">باید به OSMTracker مجوز بدهید تا دوباره بتوانید ردها را بارگذاری کنید. مطمئن هستید؟</string>
-  <string name="prefs_map_tile">ارائه‌دهندهٔ کاشی نقشه</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +87,5 @@
     <item>در توضیحات</item>
     <item>در extension</item>
   </string-array>
-  <string name="prefs_compass_heading">خزوجی از جهت قطب‌نما</string>
   <string name="prefs_compass_heading_summary">مشخص می‌کند آیا و چگونه اطلاعات قطب‌نما به فایل GPX وارد شود</string>
 </resources>

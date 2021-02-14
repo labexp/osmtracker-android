@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">웨이포인트:</string>
   <string name="trackmgr_trackpoints_count">트랙포인트:</string>
   <string name="trackmgr_empty">어떠한 트랙도 없습니다.</string>
-  <string name="trackmgr_newtrack_hint">트랙을 기록하려면,\n <b>메뉴</b>를 누르고 <b>새 트랙</b>을 누르세요</string>
   <string name="trackmgr_newtrack_error">새 트랙을 만들 수 없습니다: {0}</string>
   <string name="trackmgr_continuetrack_hint">현재  <b>트랙 #{0}</b>을 기록하고 있습니다\n계속하려면 목록에서 그것을 선택하세요</string>
   <string name="trackmgr_contextmenu_stop">트래킹 멈춤</string>
@@ -139,6 +138,33 @@
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap 트랙 표시</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">업데이트 및 설치</string>
+  <string name="buttons_presets_context_menu_delete">삭제</string>
+  <string name="buttons_presets_updating_layout">업데이트 중…</string>
+  <string name="buttons_presets_successful_update">레이아웃이 성공적으로 업데이트되었습니다</string>
+  <string name="buttons_presets_unsuccessful_update">레이아웃이 업데이트되지 않았습니다, 나중에 다시 시도하세요</string>
+  <string name="buttons_presets_delete_message">{0} 레이아웃을 삭제하겠습니까?</string>
+  <string name="buttons_presets_delete_positive_confirmation">예</string>
+  <string name="buttons_presets_icon_directory_deleted">아이콘 디렉터리가 성공적으로 삭제되었습니다</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">이 파일에는 어떠한 연관된 아이콘 디렉터리도 없었습니다</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">오류: 인터넷에 연결할 수 없습니다</string>
+  <string name="available_layouts_response_null_exception">오류: 기본 사용자 지정 레이아웃 저장소에 연결할 수 없습니다</string>
+  <string name="available_layouts_connecting_message">(연결 중…)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">다운로드</string>
+  <string name="available_layouts_not_available_language">목록에서 선택한 당신의 언어는 사용할 수 없습니다</string>
+  <string name="available_layouts_language_dialog_title">사용 가능한 언어</string>
+  <string name="available_layouts_checking_language_dialog">현지 언어 버전을 확인 중</string>
+  <string name="available_layouts_downloading_dialog">다운로드 중…</string>
+  <string name="available_layouts_successful_download">레이아웃이 성공적으로 다운로드되었습니다</string>
+  <string name="available_layouts_unsuccessful_download">레이아웃이 다운로드될 수 없습니다, 나중에 다시 시도하세요</string>
+  <string name="available_layouts_null_response_received">서버에서 데이터를 가져오는 중 오류</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">기본값</string>
+  <string name="github_repository_settings_custom_checkbox">사용자 지정</string>
+  <string name="github_repository_settings_username">Github 사용자 이름: </string>
+  <string name="github_repository_settings_repository_name">저장소 이름: </string>
+  <string name="github_repository_settings_branch_name">브랜치 이름: </string>
+  <string name="github_repository_settings_valid_server">Github 저장소 유효</string>
+  <string name="github_repository_settings_invalid_server">Github 저장소 무효</string>
 </resources>

@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">نقاط بین‌راهی:</string>
   <string name="trackmgr_trackpoints_count">نقاط مسیر:</string>
   <string name="trackmgr_empty">شما هیچ مسیری ندارید.</string>
-  <string name="trackmgr_newtrack_hint">برای ضبط یک مسیر،\n<b>منو</b> و سپس <b>مسیر جدید</b> را انتخاب نمایید.</string>
   <string name="trackmgr_newtrack_error">امکان ساخت مسیر جدید وجود ندارد: {0}</string>
   <string name="trackmgr_continuetrack_hint">هم‌اکنون در حال ضبط <b>مسیر#{0}</b> هستید\nبرای ادامه آن را از لیست انتخاب کنید</string>
   <string name="trackmgr_contextmenu_stop">توقف ثبت مسیر</string>
@@ -146,10 +145,8 @@
   <string name="buttons_presets_unsuccessful_update">چیدمان به‌روز نشد، بعداً تلاش کنید</string>
   <string name="buttons_presets_delete_message">آیا چیدمان {0} را حذف می‌کنید؟</string>
   <string name="buttons_presets_delete_positive_confirmation">بله</string>
-  <string name="buttons_presets_successful_delete">فایل با موفقیت حذف شد</string>
   <string name="buttons_presets_icon_directory_deleted">شاخهٔ icon با موفقیت حذف شد</string>
   <string name="buttons_presets_icon_directory_does_not_exist">هیچ شاخهٔ icon متناظر با این فایل وجود ندارد</string>
-  <string name="buttons_presets_unsuccessful_delete">این فایل را نمی‌توان پاک کرد</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">خطا: نمی‌توان به اینترنت متصل شد</string>
   <string name="available_layouts_response_null_exception">خطا: نمی‌توان به مخزن پیشفرض برای چیدمان‌های سفارشی متصل شد</string>
@@ -170,4 +167,7 @@
   <string name="github_repository_settings_branch_name">نام شاخه:</string>
   <string name="github_repository_settings_valid_server">مخزن گیت‌هاب معتبر</string>
   <string name="github_repository_settings_invalid_server">مخزن گیت‌هاب نامعتبر</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

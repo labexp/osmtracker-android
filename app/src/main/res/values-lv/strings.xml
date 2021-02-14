@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Intereses punkti:</string>
   <string name="trackmgr_trackpoints_count">Ceļa punkti:</string>
   <string name="trackmgr_empty">Tev nav neviena ieraksta.</string>
-  <string name="trackmgr_newtrack_hint">Lai ierakstītu ceļu, \nej uz <b>Izvēlne</b> tad <b>Jauns ieraksts</b></string>
   <string name="trackmgr_newtrack_error">Nevarēja izveidot jaunu ierakstu: {0}</string>
   <string name="trackmgr_continuetrack_hint">Tu pašlaik ieraksti <b>ceļš #{0}</b>\nIzvēlies to sarakstā, lai turpinātu</string>
   <string name="trackmgr_contextmenu_stop">Beigt ierakstu</string>
@@ -146,10 +145,8 @@
   <string name="buttons_presets_unsuccessful_update">Izkārtojums netika atjaunots, lūdzu mēģini vēlreiz</string>
   <string name="buttons_presets_delete_message">Vai tiešām izdzēst {0} izkārtojumu?</string>
   <string name="buttons_presets_delete_positive_confirmation">Jā</string>
-  <string name="buttons_presets_successful_delete">Datne tika izdzēsta veiksmīgi</string>
   <string name="buttons_presets_icon_directory_deleted">Ikonu mape tika izdzēst veiksmīgi</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Šai datnei nebija pievienotas ikonu mapes</string>
-  <string name="buttons_presets_unsuccessful_delete">Šo datni nevar izdzēst</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Kļūda: nevar savienoties ar internetu</string>
   <string name="available_layouts_response_null_exception">Kļūda: nevarēja savienoties ar noklusēto pielāgoto izkārtojumu repositoriju</string>
@@ -170,4 +167,7 @@
   <string name="github_repository_settings_branch_name">Atzara nosaukums:</string>
   <string name="github_repository_settings_valid_server">Github repositorija derīga</string>
   <string name="github_repository_settings_invalid_server">Github repositorija nederīga</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

@@ -31,8 +31,6 @@
   <string name="trackmgr_waypoints_count">Ενδιάμεσα σημεία:</string>
   <string name="trackmgr_trackpoints_count">Ίχνη:</string>
   <string name="trackmgr_empty">Δεν έχετε ίχνη.</string>
-  <string name="trackmgr_newtrack_hint">Για να καταγράψεις ένα νέο ίχνος,\n
-πάτα <b>+</b></string>
   <string name="trackmgr_newtrack_error">Αδύνατη η δημιουργία νέου ίχνους: {0}</string>
   <string name="trackmgr_continuetrack_hint">Αυτή τη στιγμή καταγράφετε το <b>ίχνος #{0}</b>\n
 Επιλέξτε το στον κατάλογο για συνέχιση</string>
@@ -148,10 +146,8 @@
   <string name="buttons_presets_unsuccessful_update">Η διάταξη δεν ενημερώθηκε, δοκιμάστε πάλι αργότερα</string>
   <string name="buttons_presets_delete_message">Θέλετε σίγουρα να διαγράψετε τη {0} διάταξη;</string>
   <string name="buttons_presets_delete_positive_confirmation">Ναι</string>
-  <string name="buttons_presets_successful_delete">Το αρχείο διεγράφει επιτυχώς</string>
   <string name="buttons_presets_icon_directory_deleted">Ο φάκελος εικονιδίων διεγράφει επιτυχώς</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Το αρχείο δεν είχε συσχετισμό με φάκελο εικονιδίων</string>
-  <string name="buttons_presets_unsuccessful_delete">Το αρχείο δεν μπορούσε να διεγραφεί</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Σφάλμα: Αδύνατη η σύνδεση στο διαδίκτυο</string>
   <string name="available_layouts_response_null_exception">Σφάλμα: Αδύνατη η σύνδεση στο αποθετήριο διατάξεων</string>
@@ -172,4 +168,7 @@
   <string name="github_repository_settings_branch_name">Όνομα Κλάδου:</string>
   <string name="github_repository_settings_valid_server">Έγκυρο αποθετήριο στο Github</string>
   <string name="github_repository_settings_invalid_server">Μη έγκυρο αποθετήριο στο Github</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">起動時にGPSが無効ならば有効にするよう提案</string>
   <string name="prefs_gps_ignore_clock">GPS時刻を無視</string>
   <string name="prefs_gps_ignore_clock_summary">タイムスタンプに、GPSの時計を参照せずにAndroidの時計を使用</string>
+  <string name="prefs_use_barometer">気圧の記録 [hPa]</string>
+  <string name="prefs_use_barometer_summary">切り替えにはトラックを再起動する必要があります</string>
   <string name="prefs_gps_logging_interval">GPS記録間隔</string>
   <string name="prefs_gps_logging_interval_summary">0を指定すると可能な限り短い間隔 (バッテリー消費量大)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
+  <string name="prefs_gps_logging_min_distance">GPS ログ距離</string>
+  <string name="prefs_gps_logging_min_distance_summary">トラックの点同士の最短距離をメートル単位で指定します。0を使用すると可能な限り短くなります。</string>
+  <string name="prefs_gps_logging_min_distance_meters">メートル</string>
   <string name="prefs_ui">ユーザーインターフェース</string>
   <string name="prefs_ui_picture_source">デフォルトの画像ソース</string>
   <string name="prefs_ui_picture_source_summary">カメラで撮影しますか？またはギャラリーから選択しますか？</string>
@@ -76,7 +81,6 @@
   <string name="prefs_osm_clear_oauth_data">OSMの認証情報をリセット</string>
   <string name="prefs_osm_clear_oauth_data_summary">OSMの認証と許可を消去し、強制的にOSMTrackerが再び確認するようにする</string>
   <string name="prefs_osm_clear_oauth_data_dialog">再びトラックをアップロードするには、OSMTrackerの認証が必要です。続けますか？</string>
-  <string name="prefs_map_tile">地図タイルプロバイダー</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +92,5 @@
     <item>コメント内</item>
     <item>拡張データ内</item>
   </string-array>
-  <string name="prefs_compass_heading">コンパスの向きをエクスポート</string>
   <string name="prefs_compass_heading_summary">コンパスのデータをGPXファイルに出力するか、または出力方法を指定します</string>
 </resources>

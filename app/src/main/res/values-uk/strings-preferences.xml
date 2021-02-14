@@ -76,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">Скинути облікові дані OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Видалити облікові дані доступу до OSM і примусити OSMTracker запросити їх знову.</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Потрібно буде заново авторизувати OSMTracker, щоб завантажувати шляхи. Ви впевнені?</string>
-  <string name="prefs_map_tile">Постачальник фонової мапи</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +87,5 @@
     <item>у коментарі</item>
     <item>у розширенні</item>
   </string-array>
-  <string name="prefs_compass_heading">Експортувати напрямок компасу</string>
   <string name="prefs_compass_heading_summary">Визначає, коли і як дані компасу можна експортувати у файл GPX</string>
 </resources>

@@ -62,7 +62,6 @@
   <string name="buttons_presets_context_menu_delete">Ištrinti</string>
   <string name="buttons_presets_updating_layout">Atnaujinama...</string>
   <string name="buttons_presets_delete_positive_confirmation">Taip</string>
-  <string name="buttons_presets_successful_delete">Failas sėkmingai ištrintas</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Klaida: nepavyko prisijungti prie interneto</string>
   <string name="available_layouts_connecting_message">(Jungiamasi...)</string>
@@ -71,4 +70,7 @@
   <string name="available_layouts_downloading_dialog">Siunčiamasi...</string>
   <!--Github Repository Settings-->
   <string name="github_repository_settings_repository_name">Repozitorijos pavadinimas:</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

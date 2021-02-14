@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Zkontrolovat, zda je GPS pro startu zakázán a zobrazit možnost ji povolit</string>
   <string name="prefs_gps_ignore_clock">Ignorovat hodiny z GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Ignorovat hodiny z GPS a použít hodiny Androidu pro časové značky</string>
+  <string name="prefs_use_barometer">Zaznamenávat barometrický tlak [hPa]</string>
+  <string name="prefs_use_barometer_summary">Změna se projeví po restartu záznamu</string>
   <string name="prefs_gps_logging_interval">Interval záznamu GPS</string>
   <string name="prefs_gps_logging_interval_summary">Použijte 0 pro nejkratší možný (má vliv na spotřebu baterie)</string>
   <string name="prefs_gps_logging_interval_seconds">sekundy</string>
+  <string name="prefs_gps_logging_min_distance">Vzdálenost záznamu GPS</string>
+  <string name="prefs_gps_logging_min_distance_summary">Min. vzdálenost v metrech mezi body trasy, zvolte 0 pro nejmenší možné.</string>
+  <string name="prefs_gps_logging_min_distance_meters">metrů</string>
   <string name="prefs_ui">Uživatelské rozhraní</string>
   <string name="prefs_ui_picture_source">Výchozí zdroj fotografií</string>
   <string name="prefs_ui_picture_source_summary">Použít fotografie z fotoaparátu, nebo z galerie?</string>
@@ -24,7 +29,7 @@
   <string name="prefs_ui_buttons_layout_summary">Vybrat vlastní sadu tlačítek (viz. dokumentace)</string>
   <string name="prefs_ui_buttons_layout_default_section">VÝCHOZÍ ROZLOŽENÍ</string>
   <string name="prefs_ui_buttons_layout_defaut">Výchozí</string>
-  <string name="prefs_ui_buttons_layout_downloaded_section">STAŽENÉ ROZLOŽENÍ</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">STAŽENÁ ROZLOŽENÍ</string>
   <string name="prefs_ui_buttons_layout_empty_section">Nemáte stažené soubory rozložení</string>
   <string name="prefs_ui_available_layout">Dostupná rozložení</string>
   <string name="prefs_ui_github_repository_settings">Nastavení úložiště Github</string>
@@ -76,7 +81,6 @@
   <string name="prefs_osm_clear_oauth_data">Smazat OSM autentizaci</string>
   <string name="prefs_osm_clear_oauth_data_summary">Zapomenout OSM údaje pro přihlášení a pověření a přiměj OSMTracker, aby se znovu zeptal</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Je třeba autorizace OSMTrackeru pro opakované nahrání. Jste si jisti?</string>
-  <string name="prefs_map_tile">Podkladová mapa</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +92,5 @@
     <item>V komentáři</item>
     <item>V příponě</item>
   </string-array>
-  <string name="prefs_compass_heading">Exportovat data kompasu</string>
   <string name="prefs_compass_heading_summary">Nastavuje, zda a jak budou data kompasu exportovány do GPX souboru</string>
 </resources>

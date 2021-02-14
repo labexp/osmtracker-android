@@ -31,13 +31,13 @@
   <string name="trackmgr_waypoints_count">Body na trase:</string>
   <string name="trackmgr_trackpoints_count">Body trasy:</string>
   <string name="trackmgr_empty">Zatím nemáte žádné trasy.</string>
-  <string name="trackmgr_newtrack_hint">Pro nahrání stopy\nstiskněte <b>Nabídka</b> a pak <b>Nová trasa</b></string>
   <string name="trackmgr_newtrack_error">Nelze vytvořit novou trasu: {0}</string>
   <string name="trackmgr_continuetrack_hint">Právě nahráváte <b>trasu  #{0}</b>\nPro pokračování ji vyberte v seznamu</string>
   <string name="trackmgr_contextmenu_stop">Zastavit trasování</string>
   <string name="trackmgr_contextmenu_resume">Obnovit trasování</string>
   <string name="trackmgr_contextmenu_delete">Smazat</string>
   <string name="trackmgr_contextmenu_export">Exportovat jako GPX</string>
+  <string name="trackmgr_contextmenu_share">Sdílet GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Nahrát na OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Zobrazit</string>
   <string name="trackmgr_contextmenu_details">Podrobnosti</string>
@@ -48,6 +48,7 @@
   <string name="trackmgr_exporting_prepare">Přípravuji export...</string>
   <string name="trackmgr_export_error">Není možné exportovat trasu: {0}</string>
   <string name="trackmgr_exportall_confirm">Všechny trasy budou exportovány, to může být časově náročné. Jste si jisti?</string>
+  <string name="trackmgr_prepare_for_share_error">Není možné zpracovat trasu: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Podrobnosti trasy</string>
   <string name="trackdetail_startdate">Čas začátku:</string>
@@ -109,7 +110,7 @@
   <string name="gpx_hdop_approximation_cmt">Upozornění: hodnoty HDOP nejsou hodnotami HDOP vrácenými zařízením GPS. Hodnoty jsou aproximovány z přesnosti lokace v metrech.</string>
   <!--About screen-->
   <string name="about">O aplikaci</string>
-  <string name="about_text">Pro více informací, dokumentace a hlášení chyb, se podívejte, prosím, na home page projektu.</string>
+  <string name="about_text">Více informací, dokumentaci a hlášení chyb naleznete na domovské stránce projektu.</string>
   <string name="about_translate_text">Pomozte přeložit OSMTracker:</string>
   <string name="about_debug_info">Ladicí informace</string>
   <string name="about_export_db">Export databáze</string>
@@ -136,6 +137,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Hledá se sever...</string>
   <string name="various_heading_unknown">Sever nelze určit</string>
+  <string name="various_export_finished">Proces exportu skončil úspěšně</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Zobrazení trasy OpenStreetMap</string>
   <!--Buttons presets messages-->
@@ -146,10 +148,10 @@
   <string name="buttons_presets_unsuccessful_update">Rozvržení nebylo aktualizováno, zkuste to znovu později</string>
   <string name="buttons_presets_delete_message">Opravdu chcete smazat rozložení {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Vskutku</string>
-  <string name="buttons_presets_successful_delete">Soubor byl úspěšně smazán</string>
+  <string name="buttons_presets_successful_delete">Rozvržení bylo úspěšně smazáno</string>
   <string name="buttons_presets_icon_directory_deleted">Adresář ikon byl úspěšně smazán</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Tento soubor neměl přidružený žádný adresář ikon</string>
-  <string name="buttons_presets_unsuccessful_delete">Soubor nelze odstranit</string>
+  <string name="buttons_presets_unsuccessful_delete">Rozvržení nelze odstranit</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Chyba: nelze se připojit k Internetu</string>
   <string name="available_layouts_response_null_exception">Chyba: nelze se připojit k výchozím úložištím vlastních rozvržení</string>
@@ -170,4 +172,7 @@
   <string name="github_repository_settings_branch_name">Název oddělené větve:</string>
   <string name="github_repository_settings_valid_server">Úložiště na Github je platné</string>
   <string name="github_repository_settings_invalid_server">Github úložiště je neplatné</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

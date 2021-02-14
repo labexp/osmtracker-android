@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">路点：</string>
   <string name="trackmgr_trackpoints_count">追踪点：</string>
   <string name="trackmgr_empty">您没有任何轨迹。</string>
-  <string name="trackmgr_newtrack_hint">要录制轨迹，\n按下 <b>菜单</b> 然后 <b>新建轨迹</b></string>
   <string name="trackmgr_newtrack_error">无法创建踪迹: {0}</string>
   <string name="trackmgr_continuetrack_hint">你正在录制 <b>轨迹 #{0}</b>\n在列表中选择它以继续</string>
   <string name="trackmgr_contextmenu_stop">停止记录</string>

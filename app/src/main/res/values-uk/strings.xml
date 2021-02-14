@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Дорожні точки:</string>
   <string name="trackmgr_trackpoints_count">Точки треку:</string>
   <string name="trackmgr_empty">У вас не має  треків.</string>
-  <string name="trackmgr_newtrack_hint">Для запису треку\nнатисніть <b>Меню</b>, а потім <b>Новий трек</b></string>
   <string name="trackmgr_newtrack_error">Неможливо створити новий трек:{0}</string>
   <string name="trackmgr_continuetrack_hint">Наразі ви записуєте трек #{0}&lt;/b&gt;\nВиберіть його у списку для продовження</string>
   <string name="trackmgr_contextmenu_stop">Зупинити запис</string>
@@ -146,10 +145,8 @@
   <string name="buttons_presets_unsuccessful_update">Макет не оновлено, спробуйте ще раз згодом</string>
   <string name="buttons_presets_delete_message">Ви точно бажаєте вилучити Макет - {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Так</string>
-  <string name="buttons_presets_successful_delete">Файл вилучено</string>
   <string name="buttons_presets_icon_directory_deleted">Теку значків вилучено</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Цей файл не має жодної пов\'язаної теки значків</string>
-  <string name="buttons_presets_unsuccessful_delete">Файл неможливо вилучити</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Помилка: неможливо під\'єднатися до Інтернету</string>
   <string name="available_layouts_response_null_exception">Помилка: неможливо під\'єднатися до репозиторію макетів користувача</string>
@@ -170,4 +167,7 @@
   <string name="github_repository_settings_branch_name">Гілка:</string>
   <string name="github_repository_settings_valid_server">Репозиторій існує</string>
   <string name="github_repository_settings_invalid_server">Репозиторій не існує</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

@@ -21,7 +21,5 @@
   <string name="prefs_output_one_dir_per_track">دليل واحد لكل مسار</string>
   <string name="prefs_output_accuracy">الدقة في ملف GPX</string>
   <string name="prefs_sound_enabled">فعل الصوت</string>
-  <string name="prefs_map_tile">مزود الخرائط القرميدية</string>
   <string name="prefs_map_tile_summary"></string>
-  <string name="prefs_compass_heading">صدر وجهة البوصلة</string>
 </resources>

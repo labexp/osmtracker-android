@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Тачки пролаза:</string>
   <string name="trackmgr_trackpoints_count">Тачки праћења:</string>
   <string name="trackmgr_empty">Нема праћења.</string>
-  <string name="trackmgr_newtrack_hint">Да снимите путању,\nпритисните <b>Мени</b> и онда <b>Нова путања</b></string>
   <string name="trackmgr_newtrack_error">Не могу да направим ново праћење: {0}</string>
   <string name="trackmgr_continuetrack_hint">Тренутно снимате <b>путању #{0}</b>\nИзаберите је у листи да наставите</string>
   <string name="trackmgr_contextmenu_stop">Заустави праћење</string>
@@ -146,10 +145,8 @@
   <string name="buttons_presets_unsuccessful_update">Распоред није послат. Покушајте касније</string>
   <string name="buttons_presets_delete_message">Заиста желите да обришете распоред {0} ?</string>
   <string name="buttons_presets_delete_positive_confirmation">Да</string>
-  <string name="buttons_presets_successful_delete">Фајл успешно обрисан</string>
   <string name="buttons_presets_icon_directory_deleted">Директоријум са иконама успешно обрисан</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Овај фајл није имао придружени директоријум са иконама</string>
-  <string name="buttons_presets_unsuccessful_delete">Фајл се не може обрисати</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Грешка: не могу да се повежем на интернет</string>
   <string name="available_layouts_response_null_exception">Грешка: не могу да се повежем на ризницу подразумеваних посебних распореда</string>
@@ -170,4 +167,7 @@
   <string name="github_repository_settings_branch_name">Назив гране:</string>
   <string name="github_repository_settings_valid_server">Гитхаб ризница исправна</string>
   <string name="github_repository_settings_invalid_server">Гитхаб ризница неисправна</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

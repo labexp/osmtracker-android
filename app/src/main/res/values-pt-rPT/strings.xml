@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Pontos de referência:</string>
   <string name="trackmgr_trackpoints_count">Pontos de trilhos:</string>
   <string name="trackmgr_empty">Não tem nenhum trilho.</string>
-  <string name="trackmgr_newtrack_hint">Para gravar um trilho,\npressione <b>Menu</b> e depois <b>Novo trilho</b></string>
   <string name="trackmgr_newtrack_error">Não foi possível criar o novo trilho: {0}</string>
   <string name="trackmgr_continuetrack_hint">Está neste momento a gravar o <b>trilho #{0}</b>\nEscolha-o na lista para continuar</string>
   <string name="trackmgr_contextmenu_stop">Parar registo</string>
@@ -146,10 +145,8 @@
   <string name="buttons_presets_unsuccessful_update">O layout não foi atualizado, tente novamente mais tarde</string>
   <string name="buttons_presets_delete_message">Tem a certeza que quer eliminar o layout {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Sim</string>
-  <string name="buttons_presets_successful_delete">O ficheiro foi eliminado com sucesso</string>
   <string name="buttons_presets_icon_directory_deleted">O diretório do ícone foi eliminado com sucesso</string>
   <string name="buttons_presets_icon_directory_does_not_exist">O ficheiro não tinha nenhum diretório de ícone associado</string>
-  <string name="buttons_presets_unsuccessful_delete">Não foi possível eliminar o ficheiro</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Erro: não foi possível ligar à Internet</string>
   <string name="available_layouts_response_null_exception">Erro: não foi possível estabelecer a ligação ao repositório padrão de layouts personalizados</string>

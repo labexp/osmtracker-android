@@ -77,7 +77,6 @@
   <string name="prefs_osm_clear_oauth_data">OSM authentikáció alaphelyzetbe állítása</string>
   <string name="prefs_osm_clear_oauth_data_summary">Az OSM belépési adatok és jogosultságok elfelejtése és az OSMTracker kényszerítése, hogy megkérdezze újra azokat</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Az OSMTrackert majd újból azonosítani kell a nyomvonalak feltöltéséhez. Biztosan ezt szeretné?</string>
-  <string name="prefs_map_tile">Térképcsempe-szolgáltató</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -89,6 +88,5 @@
     <item>megjegyzésben</item>
     <item>kiterjesztésben</item>
   </string-array>
-  <string name="prefs_compass_heading">Iránytű állásnak exportálása</string>
   <string name="prefs_compass_heading_summary">Definiálja, hogy bekerüljön-e és hogyan az iránytű adat az exportált GPX fájlba</string>
 </resources>
