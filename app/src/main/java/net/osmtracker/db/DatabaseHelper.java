@@ -38,7 +38,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ TrackContentProvider.Schema.COL_ACCURACY + " double null,"
 		+ TrackContentProvider.Schema.COL_TIMESTAMP + " long not null,"
 		+ TrackContentProvider.Schema.COL_COMPASS + " double null,"
-		+ TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null"+ ")";
+		+ TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null,"
+		+ TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null" + ")";
 
 	/**
 	 * SQL for creating index TRACKPOINT_idx (track id)
@@ -66,7 +67,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ TrackContentProvider.Schema.COL_LINK + " text,"
 		+ TrackContentProvider.Schema.COL_NBSATELLITES + " integer not null,"
 		+ TrackContentProvider.Schema.COL_COMPASS + " double null,"
-		+ TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null"+ ")";
+		+ TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null,"
+		+ TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null"	+ ")";
 
 	/**
 	 * SQL for creating index WAYPOINT_idx (track id)
@@ -120,9 +122,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * v15: add TBL_TRACKPOINT.COL_SPEED
 	 * v16: add TBL_TRACKPOINT.COL_COMPASS, TBL_TRACKPOINT.COL_COMPASS_ACCURACY,
 	 *          TBL_WAYPOINT.COL_COMPASS and TBL_WAYPOINT.COL_COMPASS_ACCURACY
+	 * v17: add TBL_TRACKPOINT.COL_ATMOSPHERIC_PRESSURE and TBL_WAYPOINT.COL_ATMOSPHERIC_PRESSURE
 	 *</pre>
 	 */
-	private static final int DB_VERSION = 16;
+	private static final int DB_VERSION = 17;
 
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -172,8 +175,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			db.execSQL("alter table " + TrackContentProvider.Schema.TBL_TRACKPOINT + " add column " + TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null");
 			db.execSQL("alter table " + TrackContentProvider.Schema.TBL_WAYPOINT + " add column " + TrackContentProvider.Schema.COL_COMPASS + " double null");
 			db.execSQL("alter table " + TrackContentProvider.Schema.TBL_WAYPOINT + " add column " + TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null");
+		case 16:
+			db.execSQL("alter table " + TrackContentProvider.Schema.TBL_TRACKPOINT + " add column " + TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null");
+			db.execSQL("alter table " + TrackContentProvider.Schema.TBL_WAYPOINT + " add column " + TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null");
 		}
-		
 	}
 
 	/**

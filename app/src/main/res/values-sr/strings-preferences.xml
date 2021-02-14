@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Предефинисана дугмад</string>
   <string name="prefs_ui_buttons_layout_summary">Изабери посебне сетове дугмади (види документацију)</string>
+  <string name="prefs_ui_buttons_layout_default_section">ПОДРАЗУМЕВАНИ РАСПОРЕД</string>
   <string name="prefs_ui_buttons_layout_defaut">Подразумевано</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">ПРЕУЗЕТИ РАСПОРЕД</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Немате преузете фајлове распореда</string>
+  <string name="prefs_ui_available_layout">Доступни распореди</string>
+  <string name="prefs_ui_github_repository_settings">Поставке Гитхаб ризнице</string>
   <string name="prefs_ui_orientation">Усмерење</string>
   <string name="prefs_ui_orientation_summary">Жељено усмерење за екран дугмади</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -71,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">Ресетуј OSM пријаву</string>
   <string name="prefs_osm_clear_oauth_data_summary">Заборави OSM акредитиве и дозволе и присили OSM пратиоца да их затражи поново</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Мораћете поново да овластите OSM пратиоца да шаље праћења. Сигурни сте?</string>
-  <string name="prefs_map_tile">Добављач поља мапе</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -83,6 +87,5 @@
     <item>У коментару</item>
     <item>У проширењу</item>
   </string-array>
-  <string name="prefs_compass_heading">Извоз усмерења компаса</string>
   <string name="prefs_compass_heading_summary">Одређује да ли ће и како подаци компаса бити извезени у GPX фајл</string>
 </resources>

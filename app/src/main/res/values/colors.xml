@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application colors -->
+    <!-- https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=004D40 -->
+    <color name="colorPrimary">#004d40</color>
+    <color name="colorPrimaryDark">#00251a</color>
+    <color name="colorAccent">#39796b</color>
+    <color name="colorPrimaryText">#ffffff</color>
+
+
+    <!-- Light Base application colors -->
+    <!-- https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=80CBC4 -->
+    <color name="colorPrimaryLight">#80cbc4</color>
+    <color name="colorPrimaryDarkLight">#4f9a94</color>
+    <color name="colorAccentLight">#b2fef7</color>
+    <color name="colorPrimaryTextLight">#000000</color>
+
+</resources>

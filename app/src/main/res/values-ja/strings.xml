@@ -3,17 +3,17 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker for Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Windows Mobile版 OSMTracker の後継で、あなたの旅の軌跡を記録し、ウェイポイントに印（音声録音や写真）をつけたり、GPX形式でエクスポートして、後でJOSMなどのOpen Street Map用ツールで編集したりできます。</string>
+  <string name="app_description">Windows Mobile 版 OSMTracker の後継で、あなたの旅の軌跡を記録し、ウェイポイントに印（音声録音や写真）をつけたり、GPX 形式でエクスポートして、後で JOSM などの Open Street Map 用ツールで編集したりできます。</string>
   <!--TrackLogger-->
-  <string name="tracklogger">トラックログ</string>
-  <string name="tracklogger_waiting_gps">GPS位置が特定できるまでボタンは無効です...</string>
-  <string name="tracklogger_voicerec_title">録音</string>
+  <string name="tracklogger">トラックロガー</string>
+  <string name="tracklogger_waiting_gps">GPS 位置が特定できるまでボタンは無効です...</string>
+  <string name="tracklogger_voicerec_title">音声録音中</string>
   <string name="tracklogger_voicerec_text">録音 {0}秒</string>
   <string name="tracklogger_voicerec_stop">停止</string>
   <string name="tracklogger_btnBack">戻る</string>
   <string name="tracklogger_tracked">トラック: </string>
-  <string name="tracklogger_gps_disabled">GPS無効</string>
-  <string name="tracklogger_gps_disabled_hint">GPSは無効です。有効にしますか？</string>
+  <string name="tracklogger_gps_disabled">GPS 無効</string>
+  <string name="tracklogger_gps_disabled_hint">GPS は無効です。有効にしますか？</string>
   <string name="tracklogger_choose_gallery_camera">ギャラリーとカメラのどちらですか？</string>
   <string name="tracklogger_camera">カメラで写真を撮る</string>
   <string name="tracklogger_gallery">ギャラリーから写真を選択する</string>
@@ -31,15 +31,16 @@
   <string name="trackmgr_waypoints_count">ウェイポイント: </string>
   <string name="trackmgr_trackpoints_count">トラックポイント: </string>
   <string name="trackmgr_empty">トラックデータがありません。</string>
-  <string name="trackmgr_newtrack_hint">トラックを記録するには、\n<b>メニュー</b>、<b>新規トラック</b>を押してください</string>
+  <string name="trackmgr_newtrack_hint">トラックを録音するには、を押してください</string>
   <string name="trackmgr_newtrack_error">新しいトラックが作成できません: {0}</string>
   <string name="trackmgr_continuetrack_hint">現在<b>トラック #{0}</b>を記録中
 続行するにはリストから選択して下さい。</string>
   <string name="trackmgr_contextmenu_stop">トラッキングの停止</string>
   <string name="trackmgr_contextmenu_resume">トラッキングの再開</string>
   <string name="trackmgr_contextmenu_delete">削除</string>
-  <string name="trackmgr_contextmenu_export">GPXにエクスポート</string>
-  <string name="trackmgr_contextmenu_osm_upload">OpenStreetMapへアップロード</string>
+  <string name="trackmgr_contextmenu_export">GPX にエクスポート</string>
+  <string name="trackmgr_contextmenu_share">GPX をシェア</string>
+  <string name="trackmgr_contextmenu_osm_upload">OpenStreetMap へアップロード</string>
   <string name="trackmgr_contextmenu_display">表示</string>
   <string name="trackmgr_contextmenu_details">詳細</string>
   <string name="trackmgr_contextmenu_title">トラック #{0}</string>
@@ -49,6 +50,7 @@
   <string name="trackmgr_exporting_prepare">エクスポートの準備中です...</string>
   <string name="trackmgr_export_error">トラック {0} をエクスポートできません</string>
   <string name="trackmgr_exportall_confirm">全てのトラックをエクスポートします。時間がかかる可能性があります。よろしいですか？</string>
+  <string name="trackmgr_prepare_for_share_error">トラック {0} を処理できませんでした</string>
   <!--Track Detail-->
   <string name="trackdetail">トラックの詳細</string>
   <string name="trackdetail_startdate">開始時刻:</string>
@@ -56,8 +58,8 @@
   <string name="trackdetail_startloc">開始位置:</string>
   <string name="trackdetail_endloc">終了位置:</string>
   <string name="trackdetail_exportdate">エクスポート時刻:</string>
-  <string name="trackdetail_osm_upload_date">OpenStreetMapアップロード時刻:</string>
-  <string name="trackdetail_btn_export">GPXでエクスポート</string>
+  <string name="trackdetail_osm_upload_date">OpenStreetMap アップロード時刻:</string>
+  <string name="trackdetail_btn_export">GPX でエクスポート</string>
   <string name="trackdetail_export_notyet">（まだエクスポートしていません）</string>
   <string name="trackdetail_osm_upload_notyet">（まだアップロードしていません）</string>
   <string name="trackdetail_export_display">表示</string>
@@ -69,16 +71,16 @@
   <string name="osm_visibility_trackable">追跡可能</string>
   <string name="osm_visibility_identifiable">識別可能</string>
   <!--OSM upload-->
-  <string name="osm_upload">OpenStreetMapへのアップロード</string>
+  <string name="osm_upload">OpenStreetMap へのアップロード</string>
   <string name="osm_upload_ok">保存してアップロード</string>
   <string name="osm_upload_tmpfile_failed">トラックの一時ファイルへのエクスポートに失敗しました</string>
-  <string name="osm_upload_oauth_failed">OSMの認証に失敗しました</string>
+  <string name="osm_upload_oauth_failed">OSM の認証に失敗しました</string>
   <string name="osm_upload_sending">トラック {0} を送信しています...</string>
-  <string name="osm_upload_waiting_response">OpenStreetMapサーバーの応答を待っています...</string>
+  <string name="osm_upload_waiting_response">OpenStreetMap サーバーの応答を待っています...</string>
   <string name="osm_upload_error">トラックのアップロード中にエラーが発生しました</string>
-  <string name="osm_upload_bad_response">OSMサーバーがエラーを返しました: ({0}) メッセージ {1}</string>
-  <string name="osm_upload_unauthorized">認証エラーです。保存されているOpenStreetMapの認証データをクリアしますか？</string>
-  <string name="osm_upload_sucess">OpenStreetMapへのアップロードに成功しました</string>
+  <string name="osm_upload_bad_response">OSM サーバーがエラーを返しました: ({0}) メッセージ {1}</string>
+  <string name="osm_upload_unauthorized">認証エラーです。保存されている OpenStreetMap の認証データをクリアしますか？</string>
+  <string name="osm_upload_sucess">OpenStreetMap へのアップロードに成功しました</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">音声録音</string>
   <string name="gpsstatus_record_stillimage">写真撮影</string>
@@ -95,23 +97,23 @@
   <string name="menu_stopcurrenttrack">現在のトラックを停止</string>
   <string name="menu_save">保存</string>
   <string name="menu_cancel">取消</string>
-  <string name="menu_export">GPXでエクスポート</string>
-  <string name="menu_osm_upload">OpenStreetMapへのアップロード</string>
-  <string name="menu_center_to_gps">GPS位置を中央にする</string>
-  <string name="menu_exportall">全てをGPXでエクスポート</string>
+  <string name="menu_export">GPX でエクスポート</string>
+  <string name="menu_osm_upload">OpenStreetMap へのアップロード</string>
+  <string name="menu_center_to_gps">GPS 位置を中央にする</string>
+  <string name="menu_exportall">全てを GPX でエクスポート</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">外部ストレージに書き込み出来ません。</string>
-  <string name="error_create_track_dir">‘%s’フォルダを作成できません。</string>
+  <string name="error_create_track_dir">‘%s’ フォルダを作成できません。</string>
   <string name="error_externalstorage_not_writable_hint">外部ストレージが挿入され、正しくマウントされていることを確認してください。</string>
   <string name="error_voicerec_failed">音声録音に失敗しました</string>
-  <string name="error_userlayout_parsing">XMLレイアウトファイルが認識できません。デフォルトレイアウトに戻してください。</string>
+  <string name="error_userlayout_parsing">XML レイアウトファイルが認識できません。デフォルトレイアウトに戻してください。</string>
   <!--GPX-->
-  <string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
-  <string name="gpx_hdop_approximation_cmt">警告: HDOP値がGPS機器から返されたHDOP値と異なります。これは正しい位置からのメートル単位の距離です。</string>
+  <string name="gpx_track_name">OSMTracker for Android™ で追跡</string>
+  <string name="gpx_hdop_approximation_cmt">警告: HDOP 値が GPS 機器から返された HDOP 値と異なります。これは正しい位置からのメートル単位の距離です。</string>
   <!--About screen-->
   <string name="about">バージョン情報</string>
   <string name="about_text">詳細情報,ドキュメント,議論については、ホームページを参照してください:</string>
-  <string name="about_translate_text">OSMTrackerの翻訳を支援してください。</string>
+  <string name="about_translate_text">OSMTracker の翻訳を支援してください。</string>
   <string name="about_debug_info">デバッグ情報</string>
   <string name="about_export_db">データベースをエクスポート</string>
   <string name="about_exporting_db">データベースをエクスポート中...</string>
@@ -131,15 +133,45 @@
   <string name="various_accuracy">精度</string>
   <string name="various_accuracy_with_sats">精度 {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
-  <string name="various_waiting_gps_fix">GPS測定待ち... ({0}/{1})</string>
+  <string name="various_waiting_gps_fix">GPS 測定待ち... ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
   <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">方位測定待ち...</string>
   <string name="various_heading_unknown">方位が特定できませんでした</string>
+  <string name="various_export_finished">エクスポート処理が完了しました</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap トラック表示</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">更新とインストール</string>
+  <string name="buttons_presets_context_menu_delete">削除</string>
+  <string name="buttons_presets_updating_layout">更新中...</string>
+  <string name="buttons_presets_successful_update">レイアウトの更新に成功しました</string>
+  <string name="buttons_presets_unsuccessful_update">レイアウトは更新されませんでした。後で試してください</string>
+  <string name="buttons_presets_delete_message">本当に {0} レイアウトを削除しますか？</string>
+  <string name="buttons_presets_delete_positive_confirmation">はい</string>
+  <string name="buttons_presets_successful_delete">レイアウトが削除されました</string>
+  <string name="buttons_presets_icon_directory_deleted">アイコンディレクトリが削除されました</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">このファイルはアイコンディレクトリに関連付けられていません</string>
+  <string name="buttons_presets_unsuccessful_delete">レイアウトが削除できませんでした</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">エラー: インターネットに接続できません</string>
+  <string name="available_layouts_response_null_exception">エラー: 既定のカスタムレイアウトリポジトリに接続できません</string>
+  <string name="available_layouts_connecting_message">(接続中...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">ダウンロード</string>
+  <string name="available_layouts_not_available_language">あなたの言語は利用できません。リストから選択してください</string>
+  <string name="available_layouts_language_dialog_title">利用できる言語</string>
+  <string name="available_layouts_checking_language_dialog">ローカル言語バージョンをチェック中</string>
+  <string name="available_layouts_downloading_dialog">ダウンロード中...</string>
+  <string name="available_layouts_successful_download">レイアウトのダウンロードに成功しました</string>
+  <string name="available_layouts_unsuccessful_download">レイアウトがダウンロードできませんでした。後で試してください</string>
+  <string name="available_layouts_null_response_received">サーバーからデータを受け取る際にエラーが発生しました</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">既定</string>
+  <string name="github_repository_settings_custom_checkbox">カスタム</string>
+  <string name="github_repository_settings_username">Github ユーザー名:</string>
+  <string name="github_repository_settings_repository_name">リポジトリ名:</string>
+  <string name="github_repository_settings_branch_name">ブランチ名</string>
+  <string name="github_repository_settings_valid_server">Github リポジトリが有効です</string>
+  <string name="github_repository_settings_invalid_server">Github リポジトリが無効です</string>
 </resources>

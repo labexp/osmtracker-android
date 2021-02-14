@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Boutons</string>
   <string name="prefs_ui_buttons_layout_summary">Permet de définir des boutons personalisés (voir la doc)</string>
+  <string name="prefs_ui_buttons_layout_default_section">PRÉSENTATION PAR DÉFAUT</string>
   <string name="prefs_ui_buttons_layout_defaut">Par défaut</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">PRÉSENTATION TÉLÉCHARGÉE</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Vous n\'avez pas téléchargé de modèles de présentation</string>
+  <string name="prefs_ui_available_layout">Modèles disponibles</string>
+  <string name="prefs_ui_github_repository_settings">Paramètres de dépôt Github</string>
   <string name="prefs_ui_orientation">Orientation</string>
   <string name="prefs_ui_orientation_summary">Permet de définir l\'orientation préférée</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -71,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">Supprimer les identifiants OpenStreetMap</string>
   <string name="prefs_osm_clear_oauth_data_summary">Force OSMTracker à se ré-authentifier sur OpenStreetMap</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Vous devrez vous reconnecter à OpenStreetMap. Êtes-vous sûr ?</string>
-  <string name="prefs_map_tile">Fournisseur de tuiles</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -83,6 +87,5 @@
     <item>En commentaire</item>
     <item>En extention</item>
   </string-array>
-  <string name="prefs_compass_heading">Exporter les directions du compas</string>
   <string name="prefs_compass_heading_summary">Définit si et comment les données du compas devraient être exportés dans le fichier GPX</string>
 </resources>

@@ -32,12 +32,12 @@
   <string name="trackmgr_trackpoints_count">P. de traza:</string>
   <string name="trackmgr_empty">Usted no tiene ninguna traza.</string>
   <string name="trackmgr_newtrack_error">No se puede crear una nueva traza: {0}</string>
-  <string name="trackmgr_newtrack_hint">Para iniciar una traza, presione </string>
   <string name="trackmgr_continuetrack_hint">En este momento está grabando la <b>traza #{0}</b>\nElíjalo en la lista para continuar</string>
   <string name="trackmgr_contextmenu_stop">Detener el trazado</string>
   <string name="trackmgr_contextmenu_resume">Reanudar el trazado</string>
   <string name="trackmgr_contextmenu_delete">Eliminar</string>
   <string name="trackmgr_contextmenu_export">Exportar como GPX</string>
+  <string name="trackmgr_contextmenu_share">Compartir GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Subir a OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Visualizar</string>
   <string name="trackmgr_contextmenu_details">Detalles</string>
@@ -146,10 +146,8 @@
   <string name="buttons_presets_unsuccessful_update">La disposición no se pudo actualizar, intente de nuevo más tarde</string>
   <string name="buttons_presets_delete_message">¿Está seguro que desea eliminar la disposición de {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Sí</string>
-  <string name="buttons_presets_successful_delete">El archivo fue borrado con éxito</string>
   <string name="buttons_presets_icon_directory_deleted">Iconos de la disposición eliminados con éxito</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Este archivo no tenía ningún directorio de iconos asociado</string>
-  <string name="buttons_presets_unsuccessful_delete">No se pudo eliminar el archivo</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Error: No se puede conectar a Internet, por favor revise su conexión</string>
   <string name="available_layouts_response_null_exception">Error: No se pudo conectar con el servidor de disposiciones personalizadas predeterminado</string>
@@ -170,4 +168,7 @@
   <string name="github_repository_settings_branch_name">Nombre de la rama: </string>
   <string name="github_repository_settings_valid_server">Repositorio de GitHub válido</string>
   <string name="github_repository_settings_invalid_server">Repositorio de GitHub inválido</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

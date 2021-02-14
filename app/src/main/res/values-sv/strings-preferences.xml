@@ -76,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">Återställ inloggning till OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Glöm bort inloggning och tillstånd och tvinga OSMTracker att fråga om detta igen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Du måste godkänna OSMTracker för att kunna ladda upp spår igen. Är du säker?</string>
-  <string name="prefs_map_tile">Tillhandahållare av kartrutor</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +87,5 @@
     <item>i kommentar</item>
     <item>i extension</item>
   </string-array>
-  <string name="prefs_compass_heading">Exportera kompassriktning</string>
   <string name="prefs_compass_heading_summary">Definierar om och hur kompassdata ska exporteras till GPX-filen</string>
 </resources>

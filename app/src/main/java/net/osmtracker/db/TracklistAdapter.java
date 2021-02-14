@@ -84,13 +84,13 @@ public class TracklistAdapter extends CursorAdapter {
 		// Bind id
 		long trackId = cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID));
 		String strTrackId = Long.toString(trackId);
-		vId.setText("#" + strTrackId);
+		vId.setText(strTrackId);
 
 		// Bind WP count, TP count, name
 		Track t = Track.build(trackId, cursor, context.getContentResolver(), false);
 		vTps.setText(Integer.toString(t.getTpCount()));
 		vWps.setText(Integer.toString(t.getWpCount()));
-		vNameOrStartDate.setText(t.getName());
+		vNameOrStartDate.setText(t.getDisplayName());
 
 		return v;
 	}

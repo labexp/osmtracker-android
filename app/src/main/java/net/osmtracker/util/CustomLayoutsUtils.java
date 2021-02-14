@@ -44,7 +44,7 @@ public class CustomLayoutsUtils {
 
     /**
      * @param representation is the layout name shown in the UI
-     * @return the filename of the layout. Which is the input with the "meta_", "_" and ".xml"
+     * @return Layout filename.
      */
     public static String unconvertFileName(String representation){
         return representation.replace(" ","_") + Preferences.LAYOUT_FILE_EXTENSION;

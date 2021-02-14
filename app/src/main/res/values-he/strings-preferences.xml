@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">הגדרות לחצנים</string>
   <string name="prefs_ui_buttons_layout_summary">בחר רשימת לחצנים מותאמת אישית (ראה תיעוד)</string>
+  <string name="prefs_ui_buttons_layout_default_section">עיצוב מקורי</string>
   <string name="prefs_ui_buttons_layout_defaut">ברירת מחדל</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">עיצוב שהורד</string>
+  <string name="prefs_ui_buttons_layout_empty_section">לא הורדת קבצי עיצוב</string>
+  <string name="prefs_ui_available_layout">עיצובים זמינים</string>
+  <string name="prefs_ui_github_repository_settings">הגדרות GitHub Repository</string>
   <string name="prefs_ui_orientation">כיוון</string>
   <string name="prefs_ui_orientation_summary">כיוון מועדף של המסך</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -71,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">איפוס אימות פרטי משתמש OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">מחק את אימות פרטי משתמש OSM ואלץ את הכנסתם מחדש</string>
   <string name="prefs_osm_clear_oauth_data_dialog">ידרש אימות מחדש כדי לשוב ולהעלות מסלולים. את/ה בטוח/ה?</string>
-  <string name="prefs_map_tile">מקור מפת הרקע</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -83,6 +87,5 @@
     <item>כהערה</item>
     <item>כהרחבה</item>
   </string-array>
-  <string name="prefs_compass_heading">שמירת כיוון המצפן</string>
   <string name="prefs_compass_heading_summary">מגדיר האם וכיצד ישמר כיוון המצפן בקובץ ה-GPX</string>
 </resources>

@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Paradas:</string>
   <string name="trackmgr_trackpoints_count">Puntos de ruta:</string>
   <string name="trackmgr_empty">Non tén ningunha ruta.</string>
-  <string name="trackmgr_newtrack_hint">Gravar pista,\npress <b>Menú</b> entón <b>Pista nova</b></string>
   <string name="trackmgr_newtrack_error">Activar e crear unha nova pista: {0}</string>
   <string name="trackmgr_continuetrack_hint">Estás gravando a precisión <b>pista #{0}</b>\nChoose na lista para continuar</string>
   <string name="trackmgr_contextmenu_stop">Deter seguimento</string>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="OSMTracker for Android™ - https://github.com/labexp/osmtracker-android" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd ">
+	<metadata>
+		<name>2020-12-30_17-20-17</name>
+		<keywords>osmtracker</keywords>
+	</metadata>
+	<wpt lat="10.0375634848231" lon="-84.2123549868801">
+		<ele>1029.89940680377</ele>
+		<time>2001-05-16T23:20:28Z</time>
+		<name><![CDATA[Punto de prueba]]></name>
+		<sat>0</sat>
+		<hdop>6.0</hdop>
+				<extensions>
+					<compass>204.029998779297</compass>
+					<compass_accuracy>2.0</compass_accuracy>
+				</extensions>
+	</wpt>
+	<trk>
+		<name><![CDATA[Trazado con OSMTracker para Android™]]></name>
+		<cmt><![CDATA[Advertencia: los valores HDOP no son los valores HDOP devueltos por el dispositivo GPS. Son valores aproximados de acuerdo a la precisión de la ubicación en metros.]]></cmt>
+		<trkseg>
+			<trkpt lat="10.0375690436648" lon="-84.2122886824885">
+				<ele>1015.13159253262</ele>
+				<time>2001-05-16T23:20:25Z</time>
+				<hdop>8.908860206604</hdop>
+				<extensions>
+					<speed>0.361938893795013</speed>
+					<compass>204.690002441406</compass>
+					<compass_accuracy>2.0</compass_accuracy>
+				</extensions>
+			</trkpt>
+			<trkpt lat="10.0377106969496" lon="-84.2123268390527">
+				<ele>1007.3209409276</ele>
+				<time>2001-05-16T23:20:26Z</time>
+				<hdop>13.0176601409912</hdop>
+				<extensions>
+					<speed>0.271533757448196</speed>
+					<compass>204.360000610352</compass>
+					<compass_accuracy>2.0</compass_accuracy>
+				</extensions>
+			</trkpt>
+		</trkseg>
+	</trk>
+</gpx>

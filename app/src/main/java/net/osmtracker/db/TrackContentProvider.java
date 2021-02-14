@@ -44,8 +44,18 @@ public class TrackContentProvider extends ContentProvider {
 	/**
 	 * Uri for a specific waypoint
 	 */
+	public static final Uri CONTENT_URI_WAYPOINT = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_WAYPOINT);
+
+	/**
+	 * Uri for a specific waypoint by uuid
+	 */
 	public static final Uri CONTENT_URI_WAYPOINT_UUID = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_WAYPOINT + "/uuid");
-	
+
+	/**
+	 * Uri for a specific trackpoint
+	 */
+	public static final Uri CONTENT_URI_TRACKPOINT = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACKPOINT);
+
 	/**
 	 * tables and joins to be used within a query to get the important informations of a track
 	 */
@@ -68,7 +78,7 @@ public class TrackContentProvider extends ContentProvider {
 		"count(" + Schema.TBL_TRACKPOINT + "." + Schema.COL_ID + ") as " + Schema.COL_TRACKPOINT_COUNT,
 		"(SELECT count("+Schema.TBL_WAYPOINT+"."+Schema.COL_TRACK_ID+") FROM "+Schema.TBL_WAYPOINT+" WHERE "+Schema.TBL_WAYPOINT+"."+Schema.COL_TRACK_ID+" = " + Schema.TBL_TRACK + "." + Schema.COL_ID + ") as " + Schema.COL_WAYPOINT_COUNT
 	};
-	
+
 	/**
 	 * the group by statement that is used for the track statements
 	 */
@@ -88,7 +98,9 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/end", Schema.URI_CODE_TRACK_END);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_WAYPOINT + "s", Schema.URI_CODE_TRACK_WAYPOINTS);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_TRACKPOINT + "s", Schema.URI_CODE_TRACK_TRACKPOINTS);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/#", Schema.URI_CODE_WAYPOINT_ID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/uuid/*", Schema.URI_CODE_WAYPOINT_UUID);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACKPOINT + "/#", Schema.URI_CODE_TRACKPOINT_ID);
 		
 	}
 	
@@ -101,6 +113,14 @@ public class TrackContentProvider extends ContentProvider {
 				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
 				Schema.TBL_WAYPOINT + "s" );
 	}
+
+	/**
+	 * @param waypointId target waypoint id
+	 * @return Uri for the waypoint
+	 */
+	public static final Uri waypointUri(long waypointId) {
+		return ContentUris.withAppendedId(CONTENT_URI_WAYPOINT, waypointId);
+	}
 	
 	/**
 	 * @param trackId target track id
@@ -110,6 +130,14 @@ public class TrackContentProvider extends ContentProvider {
 		return Uri.withAppendedPath(
 				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
 				Schema.TBL_TRACKPOINT + "s" );		
+	}
+
+	/**
+	 * @param trackpointId target trackpoint id
+	 * @return Uri for the trackpoint
+	 */
+	public static final Uri trackpointUri(long trackpointId) {
+		return ContentUris.withAppendedId(CONTENT_URI_TRACKPOINT, trackpointId);
 	}
 
 	/**
@@ -357,6 +385,26 @@ public class TrackContentProvider extends ContentProvider {
 			selection = Schema.COL_ACTIVE + " = ?";
 			selectionArgs = new String[] {Integer.toString(Schema.VAL_TRACK_ACTIVE)};			
 			break;
+		case Schema.URI_CODE_WAYPOINT_ID:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			String wayPointId = uri.getLastPathSegment();
+			qb.setTables(Schema.TBL_WAYPOINT);
+			selection = Schema.TBL_WAYPOINT + "." + Schema.COL_ID + " = ?";
+			selectionArgs = new String[] {wayPointId};
+			break;
+		case Schema.URI_CODE_TRACKPOINT_ID:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			String trackPointId = uri.getLastPathSegment();
+			qb.setTables(Schema.TBL_TRACKPOINT);
+			selection = Schema.TBL_TRACKPOINT + "." + Schema.COL_ID + " = ?";
+			selectionArgs = new String[] {trackPointId};
+			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
@@ -447,6 +495,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_OSM_UPLOAD_DATE = "osm_upload_date";
 		public static final String COL_COMPASS = "compass_heading";
 		public static final String COL_COMPASS_ACCURACY = "compass_accuracy";
+		public static final String COL_ATMOSPHERIC_PRESSURE = "atmospheric_pressure";
 		
 		// virtual colums that are used in some sqls but dont exist in database
 		public static final String COL_TRACKPOINT_COUNT = "tp_count";
@@ -461,7 +510,9 @@ public class TrackContentProvider extends ContentProvider {
 		public static final int URI_CODE_WAYPOINT_UUID = 8;
 		public static final int URI_CODE_TRACK_START = 9;
 		public static final int URI_CODE_TRACK_END = 10;
-		
+		public static final int URI_CODE_WAYPOINT_ID = 11;
+		public static final int URI_CODE_TRACKPOINT_ID = 12;
+
 
 		public static final int VAL_TRACK_ACTIVE = 1;
 		public static final int VAL_TRACK_INACTIVE = 0;

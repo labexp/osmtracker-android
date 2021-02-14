@@ -22,7 +22,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">버튼 프리셋</string>
   <string name="prefs_ui_buttons_layout_summary">사용자 지정 버튼 셋을 선택합니다 (설명문서를 보세요)</string>
+  <string name="prefs_ui_buttons_layout_default_section">기본 레이아웃</string>
   <string name="prefs_ui_buttons_layout_defaut">기본값</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">다운로드된 레이아웃</string>
+  <string name="prefs_ui_buttons_layout_empty_section">다운로드된 레이아웃 파일이 없습니다</string>
+  <string name="prefs_ui_available_layout">사용 가능한 레이아웃</string>
+  <string name="prefs_ui_github_repository_settings">Github 저장소 설정</string>
   <string name="prefs_ui_orientation">화면 방향</string>
   <string name="prefs_ui_orientation_summary">버튼 화면의 선호하는 방향</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -71,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">OSM 인증 재설정</string>
   <string name="prefs_osm_clear_oauth_data_summary">OSM 자격 증명과 권한을 잊고 강제로 OSMTracker에 다시 묻도록 합니다</string>
   <string name="prefs_osm_clear_oauth_data_dialog">트랙을 올리려면 OSMTracker를 다시 인증해야 합니다. 지우겠습니까?</string>
-  <string name="prefs_map_tile">지도 타일 제공자</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -83,6 +87,5 @@
     <item>주석에서</item>
     <item>확장에서</item>
   </string-array>
-  <string name="prefs_compass_heading">나침반 방위 내보내기</string>
   <string name="prefs_compass_heading_summary">나침반 데이터가 GPX 파일로 내보내져야 한다면과 어떻게 내보내야 하는지 정의합니다</string>
 </resources>

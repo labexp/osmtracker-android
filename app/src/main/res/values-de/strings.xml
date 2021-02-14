@@ -5,7 +5,7 @@
   <string name="app_short_name">OSMTracker</string>
   <string name="app_description">Inspiriert von OSMTracker auf Windows Mobile. OSMTracker ermöglicht die Aufzeichnung Ihrer Routen, das Markieren signifikanter Wegpunkte (z. B. durch Sprachaufnahme oder Foto) und dessen Export in eine GPX-Datei zur weiteren Bearbeitung mit OpenStreetMap-Werkzeugen wie JOSM.</string>
   <!--TrackLogger-->
-  <string name="tracklogger">Routen-Aufzeichner</string>
+  <string name="tracklogger">Routen-Aufzeichnung</string>
   <string name="tracklogger_waiting_gps">Warte auf GPS-Fix vor Tastenaktivierung…</string>
   <string name="tracklogger_voicerec_title">Sprachaufnahme</string>
   <string name="tracklogger_voicerec_text">{0}s Audioclip wird aufgenommen.</string>
@@ -31,10 +31,9 @@
   <string name="trackmgr_waypoints_count">Wegpunkte: </string>
   <string name="trackmgr_trackpoints_count">Routenpunkte: </string>
   <string name="trackmgr_empty">Sie haben keine Routen.</string>
-  <string name="trackmgr_newtrack_hint">Drücken Sie <b>Menü</b>\n und anschließend<b>Neue Route</b>, um eine neue Route aufzunehmen</string>
   <string name="trackmgr_newtrack_error">Neue Route kann nicht erstellt werden: {0}</string>
   <string name="trackmgr_continuetrack_hint">Aktuell wird <b>Route #{0}</b> aufgezeichnet.\nWählen Sie diese aus der Liste aus, um fortzufahren.</string>
-  <string name="trackmgr_contextmenu_stop">Routenverfolgung stoppen</string>
+  <string name="trackmgr_contextmenu_stop">Routenaufnahme stoppen</string>
   <string name="trackmgr_contextmenu_resume">Routenaufnahme fortsetzen</string>
   <string name="trackmgr_contextmenu_delete">Löschen</string>
   <string name="trackmgr_contextmenu_export">Als GPX exportieren</string>
@@ -146,10 +145,8 @@
   <string name="buttons_presets_unsuccessful_update">Layout nicht erfolgreich aktualisiert, bitte später noch einmal versuchen</string>
   <string name="buttons_presets_delete_message">Bist Du sicher das {0} Layout zu löschen?</string>
   <string name="buttons_presets_delete_positive_confirmation">Ja</string>
-  <string name="buttons_presets_successful_delete">Die Datei wurde erfolgreich gelöscht</string>
   <string name="buttons_presets_icon_directory_deleted">Das Symbol-Verzeichnis wurde erfolgreich gelöscht</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Die Datei hat kein zugehöriges Icon-Verzeichnis</string>
-  <string name="buttons_presets_unsuccessful_delete">Die Datei konnte nicht gelöscht werden</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Fehler: Verbindung zum Internet nicht verfügbar</string>
   <string name="available_layouts_response_null_exception">Fehler: konnte nicht mit dem speziell angelegten Layout-Ablage verbinden</string>
@@ -170,4 +167,7 @@
   <string name="github_repository_settings_branch_name">Zweig-Name</string>
   <string name="github_repository_settings_valid_server">Github Ablage gültig</string>
   <string name="github_repository_settings_invalid_server">Github Ablage ungültig</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

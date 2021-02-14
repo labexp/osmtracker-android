@@ -1,61 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_height="fill_parent" android:layout_width="fill_parent"
-		android:orientation="horizontal"
-		android:gravity="start|center_vertical"
-		android:paddingLeft="3dp" android:paddingRight="3dp" android:paddingTop="5dp" android:paddingBottom="5dp"
-		>
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:baselineAligned="true"
+	android:gravity="start|center_vertical"
+	android:orientation="horizontal"
+	android:paddingLeft="3dp"
+	android:paddingTop="5dp"
+	android:paddingRight="3dp"
+	android:paddingBottom="5dp">
 
-	<TextView android:id="@+id/trackmgr_item_id"
-		android:text="{id}"
-		android:layout_height="fill_parent" android:layout_width="wrap_content"
+	<TextView
+		android:id="@+id/trackmgr_item_id_symbol"
 		style="@android:style/TextAppearance.Medium"
-		android:gravity="start|center_vertical" android:layout_marginRight="5dp"/>
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:layout_marginEnd="5dp"
+		android:layout_marginRight="5dp"
+		android:gravity="start|center_vertical"
+		android:text="#" />
 
-	<RelativeLayout android:layout_height="fill_parent"
-		android:gravity="start|center_vertical" android:layout_width="0dip" android:layout_weight="1">
+	<TextView
+		android:id="@+id/trackmgr_item_id"
+		style="@android:style/TextAppearance.Medium"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:layout_marginEnd="5dp"
+		android:layout_marginRight="5dp"
+		android:gravity="start|center_vertical"
+		android:text="{id}" />
 
-		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_nameordate"
-			android:text="{start_date}" android:layout_width="wrap_content" style="@android:style/TextAppearance.Large"/>
+	<RelativeLayout
+		android:layout_width="0dip"
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		android:gravity="start|center_vertical">
 
-		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_waypoints" android:layout_below="@+id/trackmgr_item_nameordate"
-			android:textStyle="bold" android:layout_marginRight="3dp" style="@android:style/TextAppearance.Small" android:text="@string/trackmgr_waypoints_count"
-			android:layout_width="wrap_content"/>
+		<TextView
+			android:id="@+id/trackmgr_item_nameordate"
+			style="@android:style/TextAppearance.Large"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="{start_date}" />
 
-		<TextView android:layout_height="wrap_content"
-			android:layout_below="@id/trackmgr_item_nameordate" android:id="@+id/trackmgr_item_wps"
-			android:layout_toRightOf="@id/trackmgr_item_waypoints" android:text="{x}"
-			style="@android:style/TextAppearance.Small" android:layout_width="wrap_content"/>
+		<TextView
+			android:id="@+id/trackmgr_item_waypoints"
+			style="@android:style/TextAppearance.Small"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/trackmgr_item_nameordate"
+			android:layout_marginEnd="3dp"
+			android:layout_marginRight="3dp"
+			android:text="@string/trackmgr_waypoints_count"
+			android:textStyle="bold" />
 
-		<TextView android:layout_height="wrap_content" android:id="@+id/trackmgr_item_trackpoints" android:layout_toRightOf="@id/trackmgr_item_wps"
-			android:layout_below="@id/trackmgr_item_nameordate" android:layout_marginLeft="8dp"
-			android:textStyle="bold" android:layout_marginRight="3dp" style="@android:style/TextAppearance.Small"
-			android:text="@string/trackmgr_trackpoints_count" android:layout_width="wrap_content"/>
-		<TextView android:layout_height="wrap_content"
-			android:text="{y}" android:id="@+id/trackmgr_item_tps" android:layout_below="@id/trackmgr_item_nameordate"
-			android:layout_toRightOf="@id/trackmgr_item_trackpoints" style="@android:style/TextAppearance.Small" android:layout_width="wrap_content"/>
-				
+		<TextView
+			android:id="@+id/trackmgr_item_wps"
+			style="@android:style/TextAppearance.Small"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/trackmgr_item_nameordate"
+			android:layout_toEndOf="@id/trackmgr_item_waypoints"
+			android:layout_toRightOf="@id/trackmgr_item_waypoints"
+			android:text="{x}" />
+
+		<TextView
+			android:id="@+id/trackmgr_item_trackpoints"
+			style="@android:style/TextAppearance.Small"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/trackmgr_item_nameordate"
+			android:layout_marginStart="8dp"
+			android:layout_marginLeft="8dp"
+			android:layout_marginEnd="3dp"
+			android:layout_marginRight="3dp"
+			android:layout_toEndOf="@id/trackmgr_item_wps"
+			android:layout_toRightOf="@id/trackmgr_item_wps"
+			android:text="@string/trackmgr_trackpoints_count"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/trackmgr_item_tps"
+			style="@android:style/TextAppearance.Small"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/trackmgr_item_nameordate"
+			android:layout_toEndOf="@id/trackmgr_item_trackpoints"
+			android:layout_toRightOf="@id/trackmgr_item_trackpoints"
+			android:text="{y}" />
+
 	</RelativeLayout>
 
-	<ImageView android:id="@+id/trackmgr_item_statusicon"
-		android:layout_height="fill_parent" android:layout_width="wrap_content"
-		android:src="@android:drawable/presence_online"
-		android:paddingLeft="3dp"
-		android:layout_marginRight="3dp"
-		android:layout_marginLeft="3dp"
+	<ImageView
+		android:id="@+id/trackmgr_item_statusicon"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
 		android:layout_gravity="center_horizontal|center_vertical"
+		android:layout_marginLeft="3dp"
+		android:layout_marginRight="3dp"
+		android:contentDescription="@string/acc.track_status"
+		android:paddingLeft="3dp"
 		android:paddingRight="3dp"
-		android:contentDescription="@string/acc.track_status" />
+		android:src="@android:drawable/presence_online" />
 
-	<ImageView android:id="@+id/trackmgr_item_upload_statusicon"
-		android:layout_height="fill_parent" android:layout_width="wrap_content"
-		android:src="@android:drawable/stat_sys_upload_done"
-		android:paddingLeft="3dp"
-		android:layout_marginRight="3dp"
-		android:layout_marginLeft="3dp"
+	<ImageView
+		android:id="@+id/trackmgr_item_upload_statusicon"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
 		android:layout_gravity="center_horizontal|center_vertical"
+		android:layout_marginLeft="3dp"
+		android:layout_marginRight="3dp"
+		android:contentDescription="@string/acc.upload_status"
+		android:paddingLeft="3dp"
 		android:paddingRight="3dp"
-		android:contentDescription="@string/acc.upload_status" />
-		
-	
+		android:src="@android:drawable/stat_sys_upload_done" />
+
+
 </LinearLayout>

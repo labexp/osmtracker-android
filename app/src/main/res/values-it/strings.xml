@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">POI: </string>
   <string name="trackmgr_trackpoints_count">Punti traccia: </string>
   <string name="trackmgr_empty">Nessuna traccia disponibile.</string>
-  <string name="trackmgr_newtrack_hint">Per registrare una traccia,\npremi <b>Menu</b> poi <b>Nuova traccia</b></string>
   <string name="trackmgr_newtrack_error">Impossibile creare una nuova traccia: {0}</string>
   <string name="trackmgr_continuetrack_hint">Stai già registrando la <b>traccia #{0}</b>\nSelezionala nell\'elenco per continuare</string>
   <string name="trackmgr_contextmenu_stop">Ferma registrazione</string>
@@ -146,10 +145,8 @@
   <string name="buttons_presets_unsuccessful_update">Il formato non è stato aggiornato, riprovare più tardi</string>
   <string name="buttons_presets_delete_message">Vuoi veramente eliminare il formato {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Sì</string>
-  <string name="buttons_presets_successful_delete">Il file è stato eliminato con successo</string>
   <string name="buttons_presets_icon_directory_deleted">La directory delle icone è stata eliminata con successo</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Il file non aveva alcuna directory delle icone associata</string>
-  <string name="buttons_presets_unsuccessful_delete">Non è stato possibile eliminare il file</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Errore: impossibile connettersi a Internet</string>
   <string name="available_layouts_response_null_exception">Errore: impossibile connettersi al repository predefinito dei formati personalizzati</string>

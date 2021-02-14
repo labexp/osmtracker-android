@@ -15,6 +15,9 @@
 	<string name="prefs_gps_ignore_clock">Ignore GPS clock</string>
 	<string name="prefs_gps_ignore_clock_summary">Ignore GPS clock and use Android clock for timestamps</string>
 
+	<string name="prefs_use_barometer">Log barometric pressure [hPa]</string>
+	<string name="prefs_use_barometer_summary">Toggling requires track restart</string>
+
 	<string name="prefs_gps_logging_interval">GPS logging interval</string>
 	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (affects battery life)</string>
 	<string name="prefs_gps_logging_interval_seconds">seconds</string>
@@ -100,7 +103,7 @@
 	<string name="prefs_osm_clear_oauth_data_summary">Forget OSM credentials and permissions and force OSMTracker to ask them again</string>
 	<string name="prefs_osm_clear_oauth_data_dialog">You\'ll have to authorize OSMTracker to upload tracks again. Are you sure?</string>
 	
-	<string name="prefs_map_tile">Map Tile provider</string>
+	<string name="prefs_map_tile">Map tile provider</string>
 	<string name="prefs_map_tile_summary"></string>
 	<string-array name="prefs_map_tile_keys">
 		<item>Mapnik</item>
@@ -112,7 +115,7 @@
 		<item >in comment</item>
 		<item >in extension</item>
 	</string-array>
-	<string name="prefs_compass_heading">Export Compass Heading</string>
+	<string name="prefs_compass_heading">Export compass heading</string>
 	<string name="prefs_compass_heading_summary">Defines if and how the compass data should be exported to the GPX file</string>
 
 </resources>

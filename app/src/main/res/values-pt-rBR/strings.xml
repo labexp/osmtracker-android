@@ -31,13 +31,14 @@
   <string name="trackmgr_waypoints_count">Pontos de referência:</string>
   <string name="trackmgr_trackpoints_count">Trajeto:</string>
   <string name="trackmgr_empty">Você não tem nenhuma trilha.</string>
-  <string name="trackmgr_newtrack_hint">Para gravar uma trilha,\npressione <b>Menu</b> e então <b>Nova trilha</b></string>
+  <string name="trackmgr_newtrack_hint">Para gravar uma trilha, pressione</string>
   <string name="trackmgr_newtrack_error">Impossível criar uma nova trilha: {0}</string>
   <string name="trackmgr_continuetrack_hint">Você está gravando a <b>trilha #{0}</b>\nSelecione ela na lista para continuar</string>
   <string name="trackmgr_contextmenu_stop">Parar gravação</string>
   <string name="trackmgr_contextmenu_resume">Continuar gravação</string>
   <string name="trackmgr_contextmenu_delete">Apagar</string>
   <string name="trackmgr_contextmenu_export">Exportar em GPX</string>
+  <string name="trackmgr_contextmenu_share">Compartilhar GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Enviar para OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Exibir</string>
   <string name="trackmgr_contextmenu_details">Detalhes</string>
@@ -48,6 +49,7 @@
   <string name="trackmgr_exporting_prepare">Preparando para exportar...</string>
   <string name="trackmgr_export_error">Não foi possível exportar trilha: {0}</string>
   <string name="trackmgr_exportall_confirm">Todas as trilhas serão exportadas, o que poderá levar muito tempo. Tem certeza?</string>
+  <string name="trackmgr_prepare_for_share_error">Incapaz de processar a trilha: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Detalhes da trilha</string>
   <string name="trackdetail_startdate">Início:</string>
@@ -136,9 +138,39 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Aguardando rumo...</string>
   <string name="various_heading_unknown">O rumo não pôde ser determinado</string>
+  <string name="various_export_finished">Processo de exportação concluído com sucesso</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Exibindo trilhas do OpenStreetMap</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Atualizar &amp; Instalar</string>
+  <string name="buttons_presets_context_menu_delete">Excluir</string>
+  <string name="buttons_presets_updating_layout">Atualizando…</string>
+  <string name="buttons_presets_successful_update">O layout foi atualizado com sucesso</string>
+  <string name="buttons_presets_unsuccessful_update">O layout não foi atualizado, tente novamente mais tarde</string>
+  <string name="buttons_presets_delete_message">Tem certeza que deseja excluir o layout {0}?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Sim</string>
+  <string name="buttons_presets_successful_delete">O layout foi excluído com sucesso</string>
+  <string name="buttons_presets_icon_directory_deleted">O diretório do ícone foi excluído com sucesso</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Este arquivo não tinha nenhum diretório de ícone associado</string>
+  <string name="buttons_presets_unsuccessful_delete">O layout não pôde ser excluído</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Erro: não é possível conectar à Internet</string>
+  <string name="available_layouts_response_null_exception">Erro: não é possível conectar ao repositório de layouts personalizados padrão</string>
+  <string name="available_layouts_connecting_message">(Conectando ...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Download</string>
+  <string name="available_layouts_not_available_language">Seu idioma não está disponível, selecione um da lista</string>
+  <string name="available_layouts_language_dialog_title">idiomas disponíveis</string>
+  <string name="available_layouts_checking_language_dialog">Verificando as versões do idioma local</string>
+  <string name="available_layouts_downloading_dialog">Downloading…</string>
+  <string name="available_layouts_successful_download">O layout foi baixado com sucesso</string>
+  <string name="available_layouts_unsuccessful_download">O layout não pode ser baixado, tente novamente mais tarde</string>
+  <string name="available_layouts_null_response_received">Erro ao recuperar dados do servidor</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Padrão</string>
+  <string name="github_repository_settings_custom_checkbox">Personalizado</string>
+  <string name="github_repository_settings_username">Nome de usuário do Github</string>
+  <string name="github_repository_settings_repository_name">Nome do repositório</string>
+  <string name="github_repository_settings_branch_name">Nome da Branch</string>
+  <string name="github_repository_settings_valid_server">Repositório do Github válido</string>
+  <string name="github_repository_settings_invalid_server">repositório do github inválido</string>
 </resources>

@@ -76,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data">Eliminar a autenticação OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Esquecer as credenciais e permissões do OpenStreetMap e forçar o OSMTracker a requisitá-las novamente</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Terá de autorizar novamente o OSMTracker para poder enviar trilhos para o OpenStreetMap. Quer continuar?</string>
-  <string name="prefs_map_tile">Fornecedor de Telas do Mapa</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +87,5 @@
     <item>No comentário</item>
     <item>Na extensão</item>
   </string-array>
-  <string name="prefs_compass_heading">Exportar direção da Bússola</string>
   <string name="prefs_compass_heading_summary">Define se e como os dados da bússola devem ser exportados para o ficheiro GPX</string>
 </resources>

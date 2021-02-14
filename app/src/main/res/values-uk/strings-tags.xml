@@ -7,7 +7,7 @@
   <string name="tag.amenity">Інфраструктура</string>
   <string name="tag.amenity_more">Інфраструктура(+)</string>
   <string name="tag.way">Дорога</string>
-  <string name="tag.track">Шлях</string>
+  <string name="tag.track">Путівець</string>
   <string name="tag.landuse">Землекористування</string>
   <string name="tag.misc_bus_stop">Зупинка автобуса</string>
   <string name="tag.misc_railway">Залізниця</string>
@@ -34,7 +34,7 @@
   <string name="tag.restriction_traffic_light">Світлофор</string>
   <string name="tag.restriction_one_way">Односторонній</string>
   <string name="tag.car_fuel_station">АЗС</string>
-  <string name="tag.car_parking">Паркування</string>
+  <string name="tag.car_parking">Стоянка</string>
   <string name="tag.car_emergency_phone">Екстренний телефон</string>
   <string name="tag.car_turning_circle">Коло для повороту</string>
   <string name="tag.car_speed_camera">Камера швидкості</string>
@@ -54,7 +54,9 @@
   <string name="tag.amenity_marina">Гавань</string>
   <string name="tag.amenity_sport">Спорт</string>
   <string name="tag.amenity_taxi">Таксі</string>
+  <string name="tag.amenity_doctors">Лікарня,\nЛікарі</string>
   <string name="tag.amenity_recycling">Сміттєзвалище</string>
+  <string name="tag.amenity_place_of_worship">Культове\nмісце</string>
   <string name="tag.amenity_post_office">Пошта</string>
   <string name="tag.amenity_library">Бібліотека</string>
   <string name="tag.amenitymore_school">Школа</string>
@@ -73,18 +75,18 @@
   <string name="tag.way_zebra_crossing">Пішохідний перехід</string>
   <string name="tag.way_motorway">Автострада</string>
   <string name="tag.way_trunk">Магістраль</string>
-  <string name="tag.way_primary">Первинне</string>
-  <string name="tag.way_secondary">Вторинне</string>
-  <string name="tag.way_tertiary">Третинне</string>
-  <string name="tag.way_residential">Житловий район</string>
-  <string name="tag.way_service">Службове</string>
-  <string name="tag.track_track">Шлях</string>
+  <string name="tag.way_primary">Головна</string>
+  <string name="tag.way_secondary">Другорядна</string>
+  <string name="tag.way_tertiary">Третинна</string>
+  <string name="tag.way_residential">Вулиця</string>
+  <string name="tag.way_service">Службовий проїзд</string>
+  <string name="tag.track_track">Путівець</string>
   <string name="tag.track_cycleway">Велосипедна доріжка</string>
   <string name="tag.track_footway">Пішохідна доріжка</string>
   <string name="tag.track_bridleway">Кінна стежка</string>
   <string name="tag.track_steps">Сходи</string>
-  <string name="tag.track_living_street">Житлова вулиця</string>
-  <string name="tag.track_pedestrian">Пішохідний</string>
+  <string name="tag.track_living_street">Житлова зона</string>
+  <string name="tag.track_pedestrian">Пішохідна вулиця</string>
   <string name="tag.track_grade1">Клас 1</string>
   <string name="tag.track_grade2">Клас 2</string>
   <string name="tag.track_grade3">Клас 3</string>
@@ -97,4 +99,5 @@
   <string name="tag.landuse_forest">Ліс</string>
   <string name="tag.landuse_allotments">Дачі</string>
   <string name="tag.landuse_cemetery">Цвинтар</string>
+  <string name="tag.landuse_recreation_ground">Зона  відпочинку</string>
 </resources>

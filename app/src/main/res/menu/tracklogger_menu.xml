@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/tracklogger_menu_stoptracking"
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/tracklogger_menu_stoptracking"
 		android:title="@string/menu_stoptracking"
 		android:icon="@android:drawable/ic_menu_save"
-		android:showAsAction="ifRoom|withText"></item>
-	<item android:id="@+id/tracklogger_menu_waypointlist"
+		android:showAsAction="ifRoom|withText" />
+	<item
+		android:id="@+id/tracklogger_menu_waypointlist"
 		android:title="@string/menu_waypointlist"
-		android:icon="@android:drawable/ic_menu_directions"></item>
-	<item android:id="@+id/tracklogger_menu_displaytrack"
+		android:icon="@android:drawable/ic_menu_directions" />
+	<item
+		android:id="@+id/tracklogger_menu_displaytrack"
 		android:title="@string/menu_displaytrack"
-		android:icon="@android:drawable/ic_menu_compass"></item>
-	<item android:id="@+id/tracklogger_menu_settings"
+		android:icon="@android:drawable/ic_menu_compass" />
+	<item
+		android:id="@+id/tracklogger_menu_settings"
 		android:title="@string/menu_settings"
-		android:icon="@android:drawable/ic_menu_preferences"></item>
-	<item android:id="@+id/tracklogger_menu_about"
+		android:icon="@android:drawable/ic_menu_preferences" />
+	<item
+		android:id="@+id/tracklogger_menu_about"
 		android:title="@string/menu_about"
-		android:icon="@android:drawable/ic_menu_help"></item>
+		android:icon="@android:drawable/ic_menu_help" />
 </menu>

@@ -71,7 +71,6 @@
   <string name="prefs_osm_clear_oauth_data">Restableix l\'autenticació OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Oblida les credencials i permisos OSM i força OSMTracer a preguntar-los una altre vegada</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Hauràs d\'autoritzar OSMTracker per pujar els track la propera vegada. N\'estàs segur?</string>
-  <string name="prefs_map_tile">Proveidor de mapa</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -83,6 +82,5 @@
     <item>en el comentari</item>
     <item>en l\'extensió</item>
   </string-array>
-  <string name="prefs_compass_heading">Exporta la Direcció de la Brúixola</string>
   <string name="prefs_compass_heading_summary">Defineix si desar la informació de la brúixola en el fitxer GPX, i com fer-ho</string>
 </resources>

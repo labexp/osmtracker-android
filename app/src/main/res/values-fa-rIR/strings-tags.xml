@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="tag.misc">متفرقه</string>
-  <string name="tag.restriction">محدوده</string>
+  <string name="tag.restriction">محدودیت</string>
   <string name="tag.car">خودرو</string>
   <string name="tag.tourism">گردشگری</string>
-  <string name="tag.amenity">مکان</string>
-  <string name="tag.amenity_more">مکان (+)</string>
+  <string name="tag.amenity">مکان رفاهی</string>
+  <string name="tag.amenity_more">مکان رفاهی (+)</string>
   <string name="tag.way">جاده</string>
   <string name="tag.track">مسیر</string>
   <string name="tag.landuse">کاربری اراضی</string>
@@ -18,22 +18,22 @@
   <string name="tag.misc_toilets">دستشویی</string>
   <string name="tag.misc_shelter">پناهگاه</string>
   <string name="tag.misc_surveillance">نظارت</string>
-  <string name="tag.restriction_20">حداکثر سرعت ۲۰</string>
-  <string name="tag.restriction_30">حداکثر سرعت ۳۰</string>
-  <string name="tag.restriction_40">حداکثر سرعت ۴۰</string>
-  <string name="tag.restriction_50">حداکثر سرعت ۵۰</string>
-  <string name="tag.restriction_60">حداکثر سرعت ۶۰</string>
-  <string name="tag.restriction_70">حداکثر سرعت ۷۰</string>
-  <string name="tag.restriction_80">حداکثر سرعت ۸۰</string>
-  <string name="tag.restriction_90">حداکثر سرعت ۹۰</string>
-  <string name="tag.restriction_100">حداکثر سرعت ۱۰۰</string>
-  <string name="tag.restriction_110">حداکثر سرعت ۱۱۰</string>
-  <string name="tag.restriction_120">حداکثر سرعت ۱۲۰</string>
-  <string name="tag.restriction_130">حداکثر سرعت ۱۳۰</string>
+  <string name="tag.restriction_20">حداکثر ۲۰</string>
+  <string name="tag.restriction_30">حداکثر ۳۰</string>
+  <string name="tag.restriction_40">حداکثر ۴۰</string>
+  <string name="tag.restriction_50">حداکثر ۵۰</string>
+  <string name="tag.restriction_60">حداکثر ۶۰</string>
+  <string name="tag.restriction_70">حداکثر ۷۰</string>
+  <string name="tag.restriction_80">حداکثر ۸۰</string>
+  <string name="tag.restriction_90">حداکثر ۹۰</string>
+  <string name="tag.restriction_100">حداکثر ۱۰۰</string>
+  <string name="tag.restriction_110">حداکثر ۱۱۰</string>
+  <string name="tag.restriction_120">حداکثر ۱۲۰</string>
+  <string name="tag.restriction_130">حداکثر ۱۳۰</string>
   <string name="tag.restriction_no_exit">بن‌بست</string>
-  <string name="tag.restriction_traffic_light">چراغ راهنمایی و رانندگی</string>
+  <string name="tag.restriction_traffic_light">چراغ راهنمایی‌ورانندگی</string>
   <string name="tag.restriction_one_way">یکطرفه</string>
-  <string name="tag.car_fuel_station">پمپ بنزین</string>
+  <string name="tag.car_fuel_station">جایگاه سوخت</string>
   <string name="tag.car_parking">پارکینگ</string>
   <string name="tag.car_emergency_phone">تلفن اضطراری</string>
   <string name="tag.car_turning_circle">محل دورزدن</string>
@@ -41,7 +41,7 @@
   <string name="tag.tourism_view_point">مکان دیدنی</string>
   <string name="tag.tourism_information">اطلاعات</string>
   <string name="tag.tourism_picnic">محل اردو</string>
-  <string name="tag.tourism_attraction">جاذبه‌ها</string>
+  <string name="tag.tourism_attraction">جاذبه</string>
   <string name="tag.tourism_theme_park">پارک تفریحی</string>
   <string name="tag.tourism_castle">قلعه</string>
   <string name="tag.tourism_monument">یادمان</string>
@@ -56,8 +56,8 @@
   <string name="tag.amenity_taxi">تاکسی</string>
   <string name="tag.amenity_doctors">بیمارستان،\nپزشکان</string>
   <string name="tag.amenity_recycling">بازیافت</string>
-  <string name="tag.amenity_place_of_worship">مکان /n عبادت</string>
-  <string name="tag.amenity_post_office">اداره پست</string>
+  <string name="tag.amenity_place_of_worship">مکان/nعبادت</string>
+  <string name="tag.amenity_post_office">ادارهٔ پست</string>
   <string name="tag.amenity_library">کتابخانه</string>
   <string name="tag.amenitymore_school">مدرسه</string>
   <string name="tag.amenitymore_police">پلیس</string>
@@ -69,7 +69,7 @@
   <string name="tag.amenitymore_motel">متل</string>
   <string name="tag.amenitymore_hostel">مهمانپذیر</string>
   <string name="tag.amenitymore_restaurant">رستوران</string>
-  <string name="tag.amenitymore_fastfood">فست فود</string>
+  <string name="tag.amenitymore_fastfood">فست‌فود</string>
   <string name="tag.amenitymore_camp_site">اردوگاه</string>
   <string name="tag.way_bridge">پل</string>
   <string name="tag.way_zebra_crossing">خط‌کشی راه‌راه پیاده</string>
@@ -80,13 +80,13 @@
   <string name="tag.way_tertiary">جمع‌وپخش‌کننده</string>
   <string name="tag.way_residential">مسکونی</string>
   <string name="tag.way_service">دسترسی</string>
-  <string name="tag.track_track">جاده خاکی</string>
+  <string name="tag.track_track">جاده خاکی\ntrack</string>
   <string name="tag.track_cycleway">مسیر دوچرخه</string>
   <string name="tag.track_footway">راه پیاده</string>
   <string name="tag.track_bridleway">مسیر مال‌رو</string>
   <string name="tag.track_steps">پله</string>
-  <string name="tag.track_living_street">خیابان محلی</string>
-  <string name="tag.track_pedestrian">پیاده‌راه عریض</string>
+  <string name="tag.track_living_street">خیابان محلی\nLiving street</string>
+  <string name="tag.track_pedestrian">پیاده‌راه</string>
   <string name="tag.track_grade1">درجه ۱</string>
   <string name="tag.track_grade2">درجه ۲</string>
   <string name="tag.track_grade3">درجه ۳</string>
@@ -99,5 +99,5 @@
   <string name="tag.landuse_forest">جنگل</string>
   <string name="tag.landuse_allotments">باغ‌های تخصیص‌یافته</string>
   <string name="tag.landuse_cemetery">گورستان</string>
-  <string name="tag.landuse_recreation_ground">زمین بازی \nو ورزش</string>
+  <string name="tag.landuse_recreation_ground">زمین تفریح/nو سرگرمی</string>
 </resources>
