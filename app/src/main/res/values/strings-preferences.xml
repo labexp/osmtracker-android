@@ -70,7 +70,7 @@
 
 	<string name="prefs_displaytrack_osm">Background map</string>
 	<string name="prefs_displaytrack_osm_summary">Display OpenStreetMap map under track. Needs a data connection</string>
-	<string name="prefs_displaytrack_osm_summary_ask">Always display OpenStreetMap background? Requires a data connection.</string>
+	<string name="prefs_displaytrack_osm_summary_ask">Always display OpenStreetMap background? Requires a data connection</string>
 
 	<string name="prefs_output">GPX settings</string>
 	<string name="prefs_storage_dir">External storage (SD) directory</string>
