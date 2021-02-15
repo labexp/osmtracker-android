@@ -49,7 +49,6 @@
   <string name="prefs_display_always_on_summary">La pantalla permanecerá encendida mientras esté trazando. Desactivar para ahorrar batería</string>
   <string name="prefs_displaytrack_osm">Mapa de fondo</string>
   <string name="prefs_displaytrack_osm_summary">Visualizar OpenStreetMap bajo la traza. Requiere una conexión de datos</string>
-  <string name="prefs_displaytrack_osm_summary_ask">¿Mostrar siempre fondo OpenStreetMap? Requiere una conexión de datos.</string>
   <string name="prefs_output">Configuraciones GPX</string>
   <string name="prefs_storage_dir">Carpeta de almacenamiento externo (SD)</string>
   <string name="prefs_storage_dir_hint">Se hará efectivo en la traza siguiente (no la actual)</string>

@@ -44,7 +44,6 @@
   <string name="prefs_display_always_on_summary">Zaslon bo ob sledenju ostal vklopljen. Onemogočite, da prihranite energijo</string>
   <string name="prefs_displaytrack_osm">Zemljevid ozadja</string>
   <string name="prefs_displaytrack_osm_summary">Prikaži zemljevid OpenStreetMap pod sledjo. Zahteva podatkovno povezavo</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Vedno prikaži ozadje OpenStreetMap? Zahteva podatkovno povezavo.</string>
   <string name="prefs_output">Nastavitve GPX</string>
   <string name="prefs_storage_dir">Mapa zunanje pom. naprave (SD)</string>
   <string name="prefs_storage_dir_hint">Uveljavljeno za naslednjo sled (ne trenutno)</string>

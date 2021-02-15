@@ -31,6 +31,7 @@
   <string name="trackmgr_waypoints_count">Pkt nawigacji: </string>
   <string name="trackmgr_trackpoints_count">Pkt śladu: </string>
   <string name="trackmgr_empty">Nie masz żadnych śladów.</string>
+  <string name="trackmgr_newtrack_hint">Naciśnij, aby zarejestrować nowy ślad.</string>
   <string name="trackmgr_newtrack_error">Nie można utworzyć nowego śladu: {0}</string>
   <string name="trackmgr_continuetrack_hint">Właśnie tworzysz <b>ślad #{0}</b> Wybierz go z listy, aby kontynuować</string>
   <string name="trackmgr_contextmenu_stop">Zakończ rejestrację</string>
@@ -174,6 +175,12 @@ głosową</string>
   <string name="github_repository_settings_valid_server">Repozytorium Github poprawne</string>
   <string name="github_repository_settings_invalid_server">Repozytorium Github niepoprawne</string>
   <!--App Introduction-->
+  <string name="app_intro">Wprowadzenie do OSMTracker Android™</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Witaj w OSMTracker Android™ 👋</string>
+  <string name="app_intro_slide1_description">Ta aplikacja jest wolnym oprogramowaniem i szanuje Twoją wolność!</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Miłego zbierania śladów 🗺 😎</string>
+  <string name="app_intro_slide2_description">OSMTracker Android będzie używał Twojej pozycji GPS, aby zarejestrować punkty trasy i punkty orientacyjne, nawet jeśli aplikacja działa w tle.
+\n Twoje dane nie są używane w celach reklamowych.</string>
 </resources>

@@ -54,7 +54,6 @@
   <string name="prefs_display_always_on_summary">在記錄軌跡時，螢幕會保持開啟。關閉這個設定可節省用電量</string>
   <string name="prefs_displaytrack_osm">背景地圖</string>
   <string name="prefs_displaytrack_osm_summary">在軌跡底下顯示 OpenStreetMap 地圖。本功能需有可用的網路連結以傳輸資料</string>
-  <string name="prefs_displaytrack_osm_summary_ask">保持顯示 OpenStreetMap 底圖？此功能需要連線。</string>
   <string name="prefs_output">GPX 相關設定</string>
   <string name="prefs_storage_dir">外部儲存媒體 (SD) 資料夾位置</string>
   <string name="prefs_storage_dir_hint">設定值將在記錄下一筆軌跡資料時生效 (不是目前這筆)</string>

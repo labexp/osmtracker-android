@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Проверять статус GPS при запуске, предлагать включить</string>
   <string name="prefs_gps_ignore_clock">Игнорировать время GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Игнорировать время GPS и использовать время телефона для временных меток</string>
+  <string name="prefs_use_barometer">Логировать барометрическое давление [гПа]</string>
+  <string name="prefs_use_barometer_summary">Для переключения требуется перезапуск трека</string>
   <string name="prefs_gps_logging_interval">Интервал сохранения GPS</string>
   <string name="prefs_gps_logging_interval_summary">Установите 0 для минимально возможного (ускоряет разряд батереи)</string>
   <string name="prefs_gps_logging_interval_seconds">секунд</string>
+  <string name="prefs_gps_logging_min_distance">Дистанция логирования GPS</string>
+  <string name="prefs_gps_logging_min_distance_summary">Мин. расстояние между точками трека в метрах, используйте 0 для кратчайшего возможного</string>
+  <string name="prefs_gps_logging_min_distance_meters">метров</string>
   <string name="prefs_ui">Интерфейс</string>
   <string name="prefs_ui_picture_source">Источник фото по-умолчанию</string>
   <string name="prefs_ui_picture_source_summary">Сделать снимок или выбрать фото из галереи?</string>
@@ -22,7 +27,11 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Расположение кнопок</string>
   <string name="prefs_ui_buttons_layout_summary">Выбрать вариант расположения кнопок (См. документацию)</string>
+  <string name="prefs_ui_buttons_layout_default_section">МАКЕТ ПО УМОЛЧАНИЮ</string>
   <string name="prefs_ui_buttons_layout_defaut">По умолчанию</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">СКАЧАННЫЙ МАКЕТ</string>
+  <string name="prefs_ui_buttons_layout_empty_section">У вас нет загруженных файлов макета</string>
+  <string name="prefs_ui_available_layout"> Доступные макеты</string>
   <string name="prefs_ui_github_repository_settings">Настройки репозитория Github</string>
   <string name="prefs_ui_orientation">Ориентация</string>
   <string name="prefs_ui_orientation_summary">Предпочтительная ориентация экрана с кнопками</string>
@@ -45,7 +54,6 @@
   <string name="prefs_display_always_on_summary">Экран всегда будет включен во время записи трека. Отключите для экономии заряда батареи</string>
   <string name="prefs_displaytrack_osm">Картооснова OSM</string>
   <string name="prefs_displaytrack_osm_summary">Отображать картооснову OpenStreetMap при отображении трека. Требует интернет-соединения</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Отображать картооснову OpenStreetMap при отображении трека? Требует интернет-соединения</string>
   <string name="prefs_output">Настройки GPX файлов</string>
   <string name="prefs_storage_dir">Сохранять в каталоге</string>
   <string name="prefs_storage_dir_hint">Будет использоваться для записи следующего трека (не для текущего)</string>
@@ -72,6 +80,7 @@
   <string name="prefs_osm_clear_oauth_data">Сбросить учетные данные OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Удалить учетные данные доступа к OSM и задать OSMTracker запросить их снова.</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Нужно будет заново авторизовать OSMTracker, чтобы закачивать треки. Вы уверены?</string>
+  <string name="prefs_map_tile">Поставщик тайлов карт</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -83,5 +92,6 @@
     <item>в комментарии</item>
     <item>в расширении</item>
   </string-array>
+  <string name="prefs_compass_heading">Экспорт направления из компаса</string>
   <string name="prefs_compass_heading_summary">Определяет когда и как данные компаса могут быть экспортированы в файл GPX</string>
 </resources>

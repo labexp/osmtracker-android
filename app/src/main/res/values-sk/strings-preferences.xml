@@ -49,7 +49,6 @@
   <string name="prefs_display_always_on_summary">Obrazovka zostane zapnutá počas stopovania. Vypnite pre úsporu batérie</string>
   <string name="prefs_displaytrack_osm">OSM pozadie</string>
   <string name="prefs_displaytrack_osm_summary">Zobraziť OpenStreetMap pod stopou. Potrebuje dátové pripojenie</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Vždy zobrazovať pozadie OpenStreetMap? Vyžaduje aktívne dátové pripojenie.</string>
   <string name="prefs_output">Výstup GPX súboru</string>
   <string name="prefs_storage_dir">Adresár externého úložiska (SD)</string>
   <string name="prefs_storage_dir_hint">Použité až v ďalšej stope (nie v aktuálnej)</string>

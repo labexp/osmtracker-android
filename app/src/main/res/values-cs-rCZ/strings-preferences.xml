@@ -54,7 +54,6 @@
   <string name="prefs_display_always_on_summary">Obrazovka stále zapnutá během trasování. Deaktivace uspoří baterii.</string>
   <string name="prefs_displaytrack_osm">Podkladová mapa</string>
   <string name="prefs_displaytrack_osm_summary">Zobrazit mapu OpenStreetMap pod trasou. Je třeba datové spojení.</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Vždy zobrazovat pozadí OpenStreetMap? Vyžaduje datové připojení.</string>
   <string name="prefs_output">Nastavení GPX</string>
   <string name="prefs_storage_dir">Adresář externího úložiště (SD)</string>
   <string name="prefs_storage_dir_hint">Bude mít vliv pro příští trasu (ne současnou)</string>

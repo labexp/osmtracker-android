@@ -54,7 +54,6 @@
   <string name="prefs_display_always_on_summary">トラッキング中はスクリーンを常時オン、省電力機能を無効にする</string>
   <string name="prefs_displaytrack_osm">背景の地図</string>
   <string name="prefs_displaytrack_osm_summary">トラックの背景にOpenStreetMapの地図を表示する。データ通信接続が必要</string>
-  <string name="prefs_displaytrack_osm_summary_ask">常に背景にOpenStreetMapを表示しますか？データ通信接続が必要です。</string>
   <string name="prefs_output">GPX設定</string>
   <string name="prefs_storage_dir">外部ストレージ(SD)ディレクトリ</string>
   <string name="prefs_storage_dir_hint">次回から反映 (現在の分は適用外)</string>

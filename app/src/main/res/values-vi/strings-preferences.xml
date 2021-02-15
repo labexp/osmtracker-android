@@ -44,7 +44,6 @@
   <string name="prefs_display_always_on_summary">Màn hình sẽ bật lên luôn luôn trong việc theo dõi. Tắt để tiết kiệm pin.</string>
   <string name="prefs_displaytrack_osm">Bản đồ nề</string>
   <string name="prefs_displaytrack_osm_summary">Hiện bản đồ OpenStreetMap ở dưới tuyến đường (cần kết nối dữ liệu)</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Luôn hiện OpenStreetMap ở nền (cần kết nối dữ liệu)</string>
   <string name="prefs_output">Tùy chọn GPX</string>
   <string name="prefs_storage_dir">Thư mục bộ nhớ bên ngoài (SD)</string>
   <string name="prefs_storage_dir_hint">Có hiệu lực vào tuyến đường sau (không phải tuyến đường hiện tại)</string>

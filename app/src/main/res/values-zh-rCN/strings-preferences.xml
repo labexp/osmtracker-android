@@ -49,7 +49,6 @@
   <string name="prefs_display_always_on_summary">记录轨迹时屏幕常亮。关闭以节约电量</string>
   <string name="prefs_displaytrack_osm">背景地图</string>
   <string name="prefs_displaytrack_osm_summary">在轨迹下显示OpenStreetMap。需要数据连接</string>
-  <string name="prefs_displaytrack_osm_summary_ask">总是显示 OpenStreetMap 背景？需要数据连接。</string>
   <string name="prefs_output">GPX设置</string>
   <string name="prefs_storage_dir">外部存储设备(SD卡)路径</string>
   <string name="prefs_storage_dir_hint">下次追踪生效(本次无效)</string>

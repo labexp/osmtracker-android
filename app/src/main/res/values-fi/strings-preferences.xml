@@ -44,7 +44,6 @@
   <string name="prefs_display_always_on_summary">Näyttö pysyy päällä seurannan ajan. Poista käytöstä säästääksesi akkua</string>
   <string name="prefs_displaytrack_osm">OSM-tausta</string>
   <string name="prefs_displaytrack_osm_summary">Näytä OpenStreetMap-kartta reitin alla. Tarvitset datayhteyden</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Näytetäänkö OpenStreetMap aina taustalla? Vaatii datayhteyden.</string>
   <string name="prefs_output">GPX-asetukset</string>
   <string name="prefs_storage_dir">Muistikortin (SD) kansio</string>
   <string name="prefs_storage_dir_hint">Vaikuttaa seuraavaan reittiin (ei nykyiseen)</string>

@@ -49,7 +49,6 @@
   <string name="prefs_display_always_on_summary">هنگام ثبت رد، صفحه‌نمایش روشن خواهد ماند. برای صرفه‌جویی در مصرف باتری غیرفعال کنید.</string>
   <string name="prefs_displaytrack_osm">نقشهٔ پس‌زمینه</string>
   <string name="prefs_displaytrack_osm_summary">نمایش نقشهٔ OpenStreetMap زیر رد. به ارتباط اینترنتی نیاز دارد</string>
-  <string name="prefs_displaytrack_osm_summary_ask">پس‌زمینهٔ  OpenStreetMap همیشه نمایش داده شود؟ به ارتباط اینترنتی نیاز دارد</string>
   <string name="prefs_output">تنظیمات GPS</string>
   <string name="prefs_storage_dir">شاخهٔ حافظهٔ خارجی (SD)</string>
   <string name="prefs_storage_dir_hint">موثر برای رد بعدی (روی رد فعلی تاثیر نمی‌گذارد)</string>

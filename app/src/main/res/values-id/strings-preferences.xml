@@ -44,7 +44,6 @@
   <string name="prefs_display_always_on_summary">Layar akan selalu hidup saat melacak, Matikan untuk menghemat batrai</string>
   <string name="prefs_displaytrack_osm">Peta latar belakang</string>
   <string name="prefs_displaytrack_osm_summary">Tampilkan peta OpenSreetMap pada trek. Butuh koneksi internet</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Selalu tampilkan latar OpenSreetMap? Membutuhkan koneksi internet</string>
   <string name="prefs_output">Pengaturan GPX</string>
   <string name="prefs_storage_dir">Folder penyimpanan luar (kartu memori)</string>
   <string name="prefs_storage_dir_hint">Efektif untuk trek selanjutnya (bukan trek yg ini)</string>

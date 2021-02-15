@@ -54,7 +54,6 @@
   <string name="prefs_display_always_on_summary">Bildschirm bleibt während der Routenaufnahme eingeschaltet. Deaktivieren um Akku zu sparen</string>
   <string name="prefs_displaytrack_osm">Hintergrundkarte</string>
   <string name="prefs_displaytrack_osm_summary">OpenStreetMap-Karte unter Route anzeigen. Benötigt eine Datenverbindung</string>
-  <string name="prefs_displaytrack_osm_summary_ask">OpenStreetMap-Hintergrund immer anzeigen? Benötigt eine Datenverbindung.</string>
   <string name="prefs_output">GPX-Einstellungen</string>
   <string name="prefs_storage_dir">Externes Speicherverzeichnis (SD)</string>
   <string name="prefs_storage_dir_hint">Gültig ab der nächste Route (nicht für die derzeitige)</string>
