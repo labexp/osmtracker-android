@@ -54,6 +54,7 @@
   <string name="prefs_display_always_on_summary">トラッキング中はスクリーンを常時オン、省電力機能を無効にする</string>
   <string name="prefs_displaytrack_osm">背景の地図</string>
   <string name="prefs_displaytrack_osm_summary">トラックの背景にOpenStreetMapの地図を表示する。データ通信接続が必要</string>
+  <string name="prefs_displaytrack_osm_summary_ask">常に背景にOpenStreetMapを表示しますか？データ通信接続が必要です</string>
   <string name="prefs_output">GPX設定</string>
   <string name="prefs_storage_dir">外部ストレージ(SD)ディレクトリ</string>
   <string name="prefs_storage_dir_hint">次回から反映 (現在の分は適用外)</string>
@@ -80,6 +81,7 @@
   <string name="prefs_osm_clear_oauth_data">OSMの認証情報をリセット</string>
   <string name="prefs_osm_clear_oauth_data_summary">OSMの認証と許可を消去し、強制的にOSMTrackerが再び確認するようにする</string>
   <string name="prefs_osm_clear_oauth_data_dialog">再びトラックをアップロードするには、OSMTrackerの認証が必要です。続けますか？</string>
+  <string name="prefs_map_tile">地図タイルプロバイダー</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -91,5 +93,6 @@
     <item>コメント内</item>
     <item>拡張データ内</item>
   </string-array>
+  <string name="prefs_compass_heading">コンパスの向きをエクスポート</string>
   <string name="prefs_compass_heading_summary">コンパスのデータをGPXファイルに出力するか、または出力方法を指定します</string>
 </resources>
