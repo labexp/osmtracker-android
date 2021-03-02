@@ -41,7 +41,6 @@
   <string name="prefs_display_always_on_summary">Zaslon će ostati uključen za vrijeme bilježenja. Isključite da biste uštedjeli bateriju</string>
   <string name="prefs_displaytrack_osm">Pozadinska karta</string>
   <string name="prefs_displaytrack_osm_summary">Prikaži OpenStreetMap kartu ispod traga. Zahtjeva internet vezu</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Uvijek prikaži OpenStreetMap pozadinu? Zahtijeva internet vezu.</string>
   <string name="prefs_output">GPX postavke</string>
   <string name="prefs_storage_dir">Memorijska kartica (SD) mapa</string>
   <string name="prefs_storage_dir_hint">Primijeniti će se na sljedeći zapis (ne na trenutni)</string>
@@ -64,7 +63,6 @@
   <string name="prefs_sound_enabled">Uključi zvuk</string>
   <string name="prefs_sound_enabled_summary">Zvučna obavijest kada kada snimanje glasa počinje i završava</string>
   <string name="prefs_osm_clear_oauth_data">Reset OSM provjere autentičnosti</string>
-  <string name="prefs_map_tile">Pružatelj karte</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>

@@ -31,13 +31,14 @@
   <string name="trackmgr_waypoints_count">航點：</string>
   <string name="trackmgr_trackpoints_count">軌跡點：</string>
   <string name="trackmgr_empty">您尚未有任何的軌跡紀錄資料。</string>
-  <string name="trackmgr_newtrack_hint">要錄製軌跡請點選<b>選單</b>，然後點選<b>新軌跡</b></string>
+  <string name="trackmgr_newtrack_hint">要記錄軌跡，請按</string>
   <string name="trackmgr_newtrack_error">無法開始記錄新軌跡： {0}</string>
   <string name="trackmgr_continuetrack_hint">您目前正在錄製 <b>軌跡 #{0}</b>\n請於清單中選擇該軌跡以繼續</string>
   <string name="trackmgr_contextmenu_stop">停止記錄</string>
   <string name="trackmgr_contextmenu_resume">繼續記錄</string>
   <string name="trackmgr_contextmenu_delete">刪除</string>
   <string name="trackmgr_contextmenu_export">匯出 GPX 檔</string>
+  <string name="trackmgr_contextmenu_share">分享 GPX 檔案</string>
   <string name="trackmgr_contextmenu_osm_upload">上傳至 OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">顯示</string>
   <string name="trackmgr_contextmenu_details">詳細資訊</string>
@@ -48,6 +49,7 @@
   <string name="trackmgr_exporting_prepare">準備輸出...</string>
   <string name="trackmgr_export_error">無法匯出軌跡： {0}</string>
   <string name="trackmgr_exportall_confirm">將匯出所有軌跡，可能會耗費不少時間。您確定嗎？</string>
+  <string name="trackmgr_prepare_for_share_error">無法處理軌跡：{0}</string>
   <!--Track Detail-->
   <string name="trackdetail">軌跡細節</string>
   <string name="trackdetail_startdate">開始時間：</string>
@@ -136,6 +138,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">等待方位…</string>
   <string name="various_heading_unknown">無法偵測方位</string>
+  <string name="various_export_finished">成功完成匯出程序</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap 軌跡畫面</string>
   <!--Buttons presets messages-->
@@ -146,10 +149,10 @@
   <string name="buttons_presets_unsuccessful_update">樣式還未更新，請稍後再試一次</string>
   <string name="buttons_presets_delete_message">你確定要刪除 {0} 樣式嗎？</string>
   <string name="buttons_presets_delete_positive_confirmation">是</string>
-  <string name="buttons_presets_successful_delete">檔案已經成功刪除</string>
+  <string name="buttons_presets_successful_delete">成功刪除模式</string>
   <string name="buttons_presets_icon_directory_deleted">圖標目錄已經成功刪除</string>
   <string name="buttons_presets_icon_directory_does_not_exist">檔案並沒有與任何圖標目錄相關</string>
-  <string name="buttons_presets_unsuccessful_delete">檔案無法被刪除</string>
+  <string name="buttons_presets_unsuccessful_delete">無法刪除模式</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">錯誤：無法連線到網路</string>
   <string name="available_layouts_response_null_exception">錯誤：無法連線到預設客製樣式庫</string>

@@ -41,8 +41,13 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
     protected Boolean doInBackground(String[] layoutData) {
 
         String layoutName = layoutData[0];
-        String layoutFolderName = layoutName.replace(" ", "_");
         String iso = layoutData[1];
+        return downloadLayout(layoutName,iso);
+    }
+
+
+    public boolean downloadLayout(String layoutName, String iso){
+        String layoutFolderName = layoutName.replace(" ", "_");
         SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(context);
         String storageDir = File.separator + OSMTracker.Preferences.VAL_STORAGE_DIR;
 
@@ -50,6 +55,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
         String layoutPath = Environment.getExternalStorageDirectory() + storageDir + File.separator +
                 Preferences.LAYOUTS_SUBDIR + File.separator;
 
+        //TODO: change "_icons" for Preferences.ICONS_DIR_SUFFIX
         String iconsPath = Environment.getExternalStorageDirectory() + storageDir + File.separator +
                 Preferences.LAYOUTS_SUBDIR + File.separator  + layoutFolderName+"_icons" + File.separator;
 
@@ -59,20 +65,23 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
             // download layout
             createDir(layoutPath);
             downloadFile(layoutURL,layoutPath +File.separator + CustomLayoutsUtils.createFileName(layoutName, iso));
-            // downloading icons
-            createDir(iconsPath);
-            HashMap<String, String> iconsInfo = getIconsHash(layoutName);
-            Set<String> keys = iconsInfo.keySet();
-            String currentKey;
-            String currentValue;
-            for(int i=0 ; i<keys.toArray().length ; i++){
-                currentKey= (String)keys.toArray()[i];
-                currentValue = iconsInfo.get(currentKey);
-                downloadFile(currentValue, iconsPath + File.separator + currentKey);
-            }
             status = true;
+
+            // downloading icons
+            HashMap<String, String> iconsInfo = getIconsHash(layoutName);
+            if (iconsInfo != null) {
+                createDir(iconsPath);
+                Set<String> keys = iconsInfo.keySet();
+                String currentKey;
+                String currentValue;
+                for(int i=0 ; i<keys.toArray().length ; i++){
+                    currentKey= (String)keys.toArray()[i];
+                    currentValue = iconsInfo.get(currentKey);
+                    downloadFile(currentValue, iconsPath + File.separator + currentKey);
+                }
+            }
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            Log.e(TAG, throwable.toString());
             status = false;
         }
         return status;
@@ -150,7 +159,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString());
             return null;
         }
 

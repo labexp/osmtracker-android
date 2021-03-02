@@ -5,6 +5,7 @@ import net.osmtracker.R;
 import net.osmtracker.activity.TrackLogger;
 import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
+import net.osmtracker.listener.PressureListener;
 import net.osmtracker.listener.SensorListener;
 
 import android.Manifest;
@@ -26,8 +27,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 
 /**
@@ -54,6 +55,11 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Is GPS enabled ?
 	 */
 	private boolean isGpsEnabled = false;
+
+	/**
+	 * Use barometer yes/no ?
+	 */
+	private boolean use_barometer = false;
 	
 	/**
 	 * System notification id.
@@ -65,11 +71,6 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Last known location
 	 */
 	private Location lastLocation;
-	
-	/**
-	 * Last number of satellites used in fix.
-	 */
-	private int lastNbSatellites;
 	
 	/**
 	 * LocationManager
@@ -98,6 +99,11 @@ public class GPSLogger extends Service implements LocationListener {
 	private SensorListener sensorListener = new SensorListener();
 
 	/**
+	 * sensor for atmospheric pressure
+	 */
+	private PressureListener pressureListener = new PressureListener();
+
+	/**
 	 * Receives Intent for way point tracking, and stop/start logging.
 	 */
 	private BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -120,7 +126,10 @@ public class GPSLogger extends Service implements LocationListener {
 							String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
 							String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
 
-							dataHelper.wayPoint(trackId, lastLocation, lastNbSatellites, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy());
+							dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+
+							// If there is a waypoint in the track, there should also be a trackpoint
+							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
 						}
 					}
 				}
@@ -203,7 +212,9 @@ public class GPSLogger extends Service implements LocationListener {
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 		gpsLoggingMinDistance = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
-		
+		use_barometer =  PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
+				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
+
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(OSMTracker.INTENT_TRACK_WP);
@@ -222,6 +233,9 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		//register for Orientation updates
 		sensorListener.register(this);
+
+		// register for atmospheric pressure updates
+		pressureListener.register(this, use_barometer);
 				
 		super.onCreate();
 	}
@@ -253,6 +267,7 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		// stop sensors
 		sensorListener.unregister();
+		pressureListener.unregister();
 
 		super.onDestroy();
 	}
@@ -289,32 +304,13 @@ public class GPSLogger extends Service implements LocationListener {
 			lastGPSTimestamp = System.currentTimeMillis(); // save the time of this fix
 		
 			lastLocation = location;
-			//lastNbSatellites = countSatellites();
 			
 			if (isTracking) {
-				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy());
+				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
 			}
 		}
 	}
 
-	/**
-	 * Counts number of satellites used in last fix.
-	 * @return The number of satellites
-	 */
-	/*
-	private int countSatellites() {
-		int count = 0;
-		GpsStatus status = lmgr.getGpsStatus(null);
-		for(GpsSatellite sat:status.getSatellites()) {
-			if (sat.usedInFix()) {
-				count++;
-			}
-		}
-		
-		return count;
-	}
-	*/
-	
 	/**
 	 * Builds the notification to display when tracking in background.
 	 */

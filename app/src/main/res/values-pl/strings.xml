@@ -31,13 +31,14 @@
   <string name="trackmgr_waypoints_count">Pkt nawigacji: </string>
   <string name="trackmgr_trackpoints_count">Pkt śladu: </string>
   <string name="trackmgr_empty">Nie masz żadnych śladów.</string>
-  <string name="trackmgr_newtrack_hint">Aby nagrać ślad, naciśnij <b>Menu</b> następnie <b>Nowy ślad</b></string>
+  <string name="trackmgr_newtrack_hint">Naciśnij, aby zarejestrować nowy ślad.</string>
   <string name="trackmgr_newtrack_error">Nie można utworzyć nowego śladu: {0}</string>
   <string name="trackmgr_continuetrack_hint">Właśnie tworzysz <b>ślad #{0}</b> Wybierz go z listy, aby kontynuować</string>
   <string name="trackmgr_contextmenu_stop">Zakończ rejestrację</string>
   <string name="trackmgr_contextmenu_resume">Wznów rejestrację</string>
   <string name="trackmgr_contextmenu_delete">Usuń</string>
   <string name="trackmgr_contextmenu_export">Eksport do GPX</string>
+  <string name="trackmgr_contextmenu_share">Udostępnij GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Wyślij do OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Wyświetl</string>
   <string name="trackmgr_contextmenu_details">Szczegóły</string>
@@ -48,6 +49,7 @@
   <string name="trackmgr_exporting_prepare">Przygotowanie eksportu...</string>
   <string name="trackmgr_export_error">Nie można eksportować śladu: {0}</string>
   <string name="trackmgr_exportall_confirm">Wszystkie ślady zostaną wysłane, może to zająć dużo czasu. Jesteś pewien?</string>
+  <string name="trackmgr_prepare_for_share_error">Nie można przetworzyć śladu: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Szczegóły śladu</string>
   <string name="trackdetail_startdate">Start:</string>
@@ -137,9 +139,48 @@ głosową</string>
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Oczekuję na kierunek...</string>
   <string name="various_heading_unknown">Kierunek nie może zostać określony</string>
+  <string name="various_export_finished">Proces eksportu zakończony sukcesem</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Podgląd śladu w OpenStreetMap</string>
   <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">Uaktualnij &amp; Instaluj</string>
+  <string name="buttons_presets_context_menu_delete">Usuń</string>
+  <string name="buttons_presets_updating_layout">Trwa aktualizacja...</string>
+  <string name="buttons_presets_successful_update">Update Layout-u zakończył się sukcesem</string>
+  <string name="buttons_presets_unsuccessful_update">Layout nie został uaktualniony, spróbuj ponownie później</string>
+  <string name="buttons_presets_delete_message">Czy na pewno chcesz usunąć {0} layout?</string>
+  <string name="buttons_presets_delete_positive_confirmation">Tak</string>
+  <string name="buttons_presets_successful_delete">Układ /layout/ został pomyślnie usunięty</string>
+  <string name="buttons_presets_icon_directory_deleted">Katalog ikony został usunięty pomyślnie</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Ten plik nie posiadał powiązanego katalogu ikony</string>
+  <string name="buttons_presets_unsuccessful_delete">Nie udało się usunąć układu /layout-u/</string>
   <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">Błąd: nie można nawiązać połączenia z Internetem</string>
+  <string name="available_layouts_response_null_exception">Błąd: nie można nawiązać połączenia do domyślnego repozytorium niestandardowych layout-ów</string>
+  <string name="available_layouts_connecting_message">(Trwa łączenie...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">Pobierz</string>
+  <string name="available_layouts_not_available_language">Twój język nie jest dostępny, wybierz jeden z listy</string>
+  <string name="available_layouts_language_dialog_title">Dostępne Języki</string>
+  <string name="available_layouts_checking_language_dialog">Trwa sprawdzanie lokalnych wersji języka</string>
+  <string name="available_layouts_downloading_dialog">Trwa pobieranie...</string>
+  <string name="available_layouts_successful_download">Layout został pobrany prawidłowo</string>
+  <string name="available_layouts_unsuccessful_download">Layout nie może być pobrany, spróbuj ponownie później</string>
+  <string name="available_layouts_null_response_received">Błąd przy odbieraniu danych z serwera</string>
   <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">Domyślny</string>
+  <string name="github_repository_settings_custom_checkbox">Niestandardowy</string>
+  <string name="github_repository_settings_username">Nazwa użytkownika Github:</string>
+  <string name="github_repository_settings_repository_name">Nazwa repozytorium:</string>
+  <string name="github_repository_settings_branch_name">Nazwa gałęzi:</string>
+  <string name="github_repository_settings_valid_server">Repozytorium Github poprawne</string>
+  <string name="github_repository_settings_invalid_server">Repozytorium Github niepoprawne</string>
+  <!--App Introduction-->
+  <string name="app_intro">Wprowadzenie do OSMTracker Android™</string>
+  <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Witaj w OSMTracker Android™ 👋</string>
+  <string name="app_intro_slide1_description">Ta aplikacja jest wolnym oprogramowaniem i szanuje Twoją wolność!</string>
+  <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Miłego zbierania śladów 🗺 😎</string>
+  <string name="app_intro_slide2_description">OSMTracker Android będzie używał Twojej pozycji GPS, aby zarejestrować punkty trasy i punkty orientacyjne, nawet jeśli aplikacja działa w tle.
+\n Twoje dane nie są używane w celach reklamowych.</string>
 </resources>

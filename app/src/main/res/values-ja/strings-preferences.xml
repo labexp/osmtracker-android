@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">起動時にGPSが無効ならば有効にするよう提案</string>
   <string name="prefs_gps_ignore_clock">GPS時刻を無視</string>
   <string name="prefs_gps_ignore_clock_summary">タイムスタンプに、GPSの時計を参照せずにAndroidの時計を使用</string>
+  <string name="prefs_use_barometer">気圧の記録 [hPa]</string>
+  <string name="prefs_use_barometer_summary">切り替えにはトラックを再起動する必要があります</string>
   <string name="prefs_gps_logging_interval">GPS記録間隔</string>
   <string name="prefs_gps_logging_interval_summary">0を指定すると可能な限り短い間隔 (バッテリー消費量大)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
+  <string name="prefs_gps_logging_min_distance">GPS ログ距離</string>
+  <string name="prefs_gps_logging_min_distance_summary">トラックの点同士の最短距離をメートル単位で指定します。0を使用すると可能な限り短くなります。</string>
+  <string name="prefs_gps_logging_min_distance_meters">メートル</string>
   <string name="prefs_ui">ユーザーインターフェース</string>
   <string name="prefs_ui_picture_source">デフォルトの画像ソース</string>
   <string name="prefs_ui_picture_source_summary">カメラで撮影しますか？またはギャラリーから選択しますか？</string>
@@ -22,7 +27,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">ボタンレイアウト</string>
   <string name="prefs_ui_buttons_layout_summary">カスタムボタンレイアウトを選択してください（ドキュメント参照）</string>
+  <string name="prefs_ui_buttons_layout_default_section">既定のレイアウト</string>
   <string name="prefs_ui_buttons_layout_defaut">デフォルト</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">ダウンロードしたレイアウト</string>
+  <string name="prefs_ui_buttons_layout_empty_section">レイアウトファイルをダウンロードしていません</string>
+  <string name="prefs_ui_available_layout">利用できるレイアウト</string>
+  <string name="prefs_ui_github_repository_settings">Github リポジトリ設定</string>
   <string name="prefs_ui_orientation">画面の方向</string>
   <string name="prefs_ui_orientation_summary">ボタン画面の推奨方向</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -44,7 +54,7 @@
   <string name="prefs_display_always_on_summary">トラッキング中はスクリーンを常時オン、省電力機能を無効にする</string>
   <string name="prefs_displaytrack_osm">背景の地図</string>
   <string name="prefs_displaytrack_osm_summary">トラックの背景にOpenStreetMapの地図を表示する。データ通信接続が必要</string>
-  <string name="prefs_displaytrack_osm_summary_ask">常に背景にOpenStreetMapを表示しますか？データ通信接続が必要です。</string>
+  <string name="prefs_displaytrack_osm_summary_ask">常に背景にOpenStreetMapを表示しますか？データ通信接続が必要です</string>
   <string name="prefs_output">GPX設定</string>
   <string name="prefs_storage_dir">外部ストレージ(SD)ディレクトリ</string>
   <string name="prefs_storage_dir_hint">次回から反映 (現在の分は適用外)</string>

@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Путевые точки: </string>
   <string name="trackmgr_trackpoints_count">Точки трека: </string>
   <string name="trackmgr_empty">У вас нет треков.</string>
-  <string name="trackmgr_newtrack_hint">Чтобы записать трек,\nнажмите <b>Меню</b> затем <b>Новый трек</b></string>
   <string name="trackmgr_newtrack_error">Невозможно создать новый трек: {0}</string>
   <string name="trackmgr_continuetrack_hint">В данный момент вы записываете <b>трек #{0}</b>\nДля продолжения выберите его в списке</string>
   <string name="trackmgr_contextmenu_stop">Остановить запись трека</string>
@@ -143,9 +142,7 @@
   <string name="buttons_presets_context_menu_delete">Удалить</string>
   <string name="buttons_presets_updating_layout">Обновление...</string>
   <string name="buttons_presets_delete_positive_confirmation">Да</string>
-  <string name="buttons_presets_successful_delete">Файл успешно удалён</string>
   <string name="buttons_presets_icon_directory_deleted">Иконка каталога успешно удалена</string>
-  <string name="buttons_presets_unsuccessful_delete">Файл нельзя удалить</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Ошибка: нет подключения к интернету</string>
   <string name="available_layouts_connecting_message">(Соединение...)</string>
@@ -160,4 +157,8 @@
   <string name="github_repository_settings_custom_checkbox">Пользовательские</string>
   <string name="github_repository_settings_username">Логин Github:</string>
   <string name="github_repository_settings_repository_name">Имя репозитория:</string>
+  <string name="github_repository_settings_invalid_server">Недействительный репозиторий GitHub</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

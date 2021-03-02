@@ -49,7 +49,6 @@
   <string name="prefs_display_always_on_summary">Obrazovka zostane zapnutá počas stopovania. Vypnite pre úsporu batérie</string>
   <string name="prefs_displaytrack_osm">OSM pozadie</string>
   <string name="prefs_displaytrack_osm_summary">Zobraziť OpenStreetMap pod stopou. Potrebuje dátové pripojenie</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Vždy zobrazovať pozadie OpenStreetMap? Vyžaduje aktívne dátové pripojenie.</string>
   <string name="prefs_output">Výstup GPX súboru</string>
   <string name="prefs_storage_dir">Adresár externého úložiska (SD)</string>
   <string name="prefs_storage_dir_hint">Použité až v ďalšej stope (nie v aktuálnej)</string>
@@ -76,7 +75,6 @@
   <string name="prefs_osm_clear_oauth_data">Vymazať autentifikáciu OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Vymaže prihlasovacie údaje a oprávnenia OSM uložené v telefóne a prinúti OSMTracker, aby si ich opätovne vyžiadal</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Znova sa pokúšate autorizovať OSMTracker, aby mohol nahrávať záznamy stôp. Ste si istý?</string>
-  <string name="prefs_map_tile">Poskytovateľ mapových podkladov</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -88,6 +86,5 @@
     <item>V komentári</item>
     <item>V rozšírení</item>
   </string-array>
-  <string name="prefs_compass_heading">Exportovať smerovanie kompasu</string>
   <string name="prefs_compass_heading_summary">Určiť, či a ako sa majú exportovať údaje kompasu do súboru GPX</string>
 </resources>

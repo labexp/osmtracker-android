@@ -1,13 +1,12 @@
 package net.osmtracker.listener;
 
 import net.osmtracker.activity.TrackLogger;
-import net.osmtracker.view.VoiceRecDialog;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 

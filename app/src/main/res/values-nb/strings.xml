@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Rutepunkt: </string>
   <string name="trackmgr_trackpoints_count">Sporpunkt: </string>
   <string name="trackmgr_empty">Du har ingen spor.</string>
-  <string name="trackmgr_newtrack_hint">For å spore,\npress <b>Meny</b> og så <b>Nytt spor</b></string>
   <string name="trackmgr_newtrack_error">Kan ikke lage spor: {0}</string>
   <string name="trackmgr_continuetrack_hint">Du tar nå opp <b>spor #{0}</b>\nVelg det i listen for å fortsette med sporingen|</string>
   <string name="trackmgr_contextmenu_stop">Stopp sporing</string>

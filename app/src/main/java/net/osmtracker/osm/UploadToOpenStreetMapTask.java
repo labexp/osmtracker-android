@@ -1,19 +1,19 @@
 package net.osmtracker.osm;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences.Editor;
+import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
-import net.osmtracker.util.DialogUtils;
 import net.osmtracker.db.model.Track;
-
-import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+import net.osmtracker.util.DialogUtils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -24,14 +24,14 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.SharedPreferences.Editor;
-import android.os.AsyncTask;
-import android.preference.PreferenceManager;
-import android.util.Log;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+
+import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 
 /**
  * Uploads a GPX file to OpenStreetMap
@@ -41,8 +41,6 @@ import android.util.Log;
 public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 
 	private static final String TAG = UploadToOpenStreetMapTask.class.getSimpleName();
-
-	private static final String GPX_MIMETYPE = "application/gpx+xml";
 	
 	/** Upload progress dialog */
 	private ProgressDialog dialog;
@@ -131,7 +129,7 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 			});
 
 			// API parameters
-			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.FILE, new FileBody(gpxFile, filename, GPX_MIMETYPE, Charset.defaultCharset().name()));
+			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.FILE, new FileBody(gpxFile, filename, DataHelper.MIME_TYPE_GPX, Charset.defaultCharset().name()));
 			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.DESCRIPTION, new StringBody(description, Charset.defaultCharset()));
 			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.TAGS, new StringBody(tags, Charset.defaultCharset()));
 			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.VISIBILITY, new StringBody(visibility.toString().toLowerCase(),Charset.defaultCharset()));

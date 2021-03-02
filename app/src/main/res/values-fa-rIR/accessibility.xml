@@ -7,8 +7,8 @@
   <string name="acc.zoom_out">کوچکنمایی</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">نشانگر قدرت سیگنال ماهواره</string>
-  <string name="acc.record_indicator">نشانگر ضبط در جریان</string>
+  <string name="acc.record_indicator">نشانگر «در حال ضبط»</string>
   <!--Track list-->
-  <string name="acc.track_status">نشانگر وضعیت مسیر</string>
-  <string name="acc.upload_status">نشانگر وضعیت بارگذاری در OpenStreetMap </string>
+  <string name="acc.track_status">نشانگر «وضعیت رد»</string>
+  <string name="acc.upload_status">نشانگر «وضعیت بارگذاری در OpenStreetMap»</string>
 </resources>

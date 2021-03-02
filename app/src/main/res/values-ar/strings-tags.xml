@@ -9,7 +9,7 @@
   <string name="tag.way">طريق</string>
   <string name="tag.track">مسلك</string>
   <string name="tag.landuse">استخدام الأراضي</string>
-  <string name="tag.misc_bus_stop">محطة باص</string>
+  <string name="tag.misc_bus_stop">محطة حافلة</string>
   <string name="tag.misc_railway">سكة حديدية</string>
   <string name="tag.misc_telephone">هاتف</string>
   <string name="tag.misc_post_box">صندوق بريد</string>
@@ -54,7 +54,9 @@
   <string name="tag.amenity_marina">مارينا</string>
   <string name="tag.amenity_sport">رياضة</string>
   <string name="tag.amenity_taxi">تاكسي</string>
+  <string name="tag.amenity_doctors">مستشفيات\nو أطباء</string>
   <string name="tag.amenity_recycling">إعادة التصنيع</string>
+  <string name="tag.amenity_place_of_worship">مكان عبادة</string>
   <string name="tag.amenity_post_office">مكتب بريد</string>
   <string name="tag.amenity_library">مكتبة</string>
   <string name="tag.amenitymore_school">مدرسة</string>
@@ -75,7 +77,7 @@
   <string name="tag.way_trunk">طريق سريع</string>
   <string name="tag.way_primary">رئيسي</string>
   <string name="tag.way_secondary">ثانوي</string>
-  <string name="tag.way_tertiary">فوق الثانوي</string>
+  <string name="tag.way_tertiary">فرعي</string>
   <string name="tag.way_residential">سكني</string>
   <string name="tag.way_service">خدمة</string>
   <string name="tag.track_track">مسلك</string>

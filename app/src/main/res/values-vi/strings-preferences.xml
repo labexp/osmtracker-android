@@ -44,7 +44,6 @@
   <string name="prefs_display_always_on_summary">Màn hình sẽ bật lên luôn luôn trong việc theo dõi. Tắt để tiết kiệm pin.</string>
   <string name="prefs_displaytrack_osm">Bản đồ nề</string>
   <string name="prefs_displaytrack_osm_summary">Hiện bản đồ OpenStreetMap ở dưới tuyến đường (cần kết nối dữ liệu)</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Luôn hiện OpenStreetMap ở nền (cần kết nối dữ liệu)</string>
   <string name="prefs_output">Tùy chọn GPX</string>
   <string name="prefs_storage_dir">Thư mục bộ nhớ bên ngoài (SD)</string>
   <string name="prefs_storage_dir_hint">Có hiệu lực vào tuyến đường sau (không phải tuyến đường hiện tại)</string>
@@ -71,7 +70,6 @@
   <string name="prefs_osm_clear_oauth_data">Đặt lại xác thực OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Quên các định danh và quyền lực OSM và bắt OSMTracker phải hỏi lại</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Để tải lên tuyến đường về sau, bạn sẽ phải xác thực OSMTracker. Bạn có muốn tiếp tục?</string>
-  <string name="prefs_map_tile">Nhà cung cấp mảnh bản đồ</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -83,6 +81,5 @@
     <item>Xuất trong chú thích</item>
     <item>Xuất trong phần mở rộng</item>
   </string-array>
-  <string name="prefs_compass_heading">Xuất Hướng La bàn</string>
   <string name="prefs_compass_heading_summary">Chọn định dạng để xuất dữ liệu la bàn ra tập tin GPX</string>
 </resources>

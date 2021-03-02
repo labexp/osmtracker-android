@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Vägpunkter: </string>
   <string name="trackmgr_trackpoints_count">Spårpunkter: </string>
   <string name="trackmgr_empty">Du har inga spår.</string>
-  <string name="trackmgr_newtrack_hint">För att spela in ett nytt spår,\ntryck <b>Meny</b> och sedan <b>Nytt spår</b></string>
   <string name="trackmgr_newtrack_error">Kan inte skapa nytt spår: {0}</string>
   <string name="trackmgr_continuetrack_hint">Du spelar just nu in <b>spår #{0}</b>\nVälj det i listan för att fortsätta</string>
   <string name="trackmgr_contextmenu_stop">Stoppa inspelning</string>
@@ -146,10 +145,8 @@
   <string name="buttons_presets_unsuccessful_update">Layout uppdaterades ej, försök igen senare</string>
   <string name="buttons_presets_delete_message">Är du säker på att du vill ta bort layouten {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Ja</string>
-  <string name="buttons_presets_successful_delete">Filen har tagits bort</string>
   <string name="buttons_presets_icon_directory_deleted">ikon-katalog har tagits bort</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Denna fil har inte någon ikon-katalog associerad</string>
-  <string name="buttons_presets_unsuccessful_delete">Filen kunde inte tas bort</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Fel: kunde inte ansluta till internet</string>
   <string name="available_layouts_response_null_exception">Fel: kunde inte ansluta till standard-repository för anpassade layouter</string>

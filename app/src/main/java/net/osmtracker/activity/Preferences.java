@@ -98,6 +98,11 @@ public class Preferences extends PreferenceActivity {
 			}
 		});
 
+		// Use barometer yes/no
+		pref = findPreference(OSMTracker.Preferences.KEY_USE_BAROMETER);
+		pref.setSummary(getResources().getString(R.string.prefs_use_barometer_summary));
+
+
 		// Update GPS logging interval summary to the current value
 		pref = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL);
 		pref.setSummary(

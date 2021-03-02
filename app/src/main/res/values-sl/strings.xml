@@ -31,7 +31,6 @@
   <string name="trackmgr_waypoints_count">Točke:</string>
   <string name="trackmgr_trackpoints_count">Točke sledi:</string>
   <string name="trackmgr_empty">Nimate sledi.</string>
-  <string name="trackmgr_newtrack_hint">Za snemanje sledi\npritisnite <b>Meni</b> in potem <b>Nova sled</b></string>
   <string name="trackmgr_newtrack_error">Ustvarjanje nove sledi ni mogoče: [0]</string>
   <string name="trackmgr_continuetrack_hint">Trenutno snemate <b>sled št. {0}</b>\nIzberite jo na seznamu, da nadaljujete</string>
   <string name="trackmgr_contextmenu_stop">Ustavi sledenje</string>
@@ -141,4 +140,7 @@
   <!--Buttons presets messages-->
   <!--Available Layouts messages-->
   <!--Github Repository Settings-->
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>

@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Sprawdź przy starcie czy GPS jest aktywny, zaproponuj włączenie go</string>
   <string name="prefs_gps_ignore_clock">Ignoruj zegar GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Ignoruj zegar GPS i korzystaj z zegara Androida dla znaczników czasu</string>
+  <string name="prefs_use_barometer">Loguj ciśnienie barometryczne [hPa]</string>
+  <string name="prefs_use_barometer_summary">Przełączenie wymaga restartu śladu</string>
   <string name="prefs_gps_logging_interval">GPS interwał logowania</string>
   <string name="prefs_gps_logging_interval_summary">Użyj 0 dla najkrótszego (wpływa na żywotność baterii)</string>
   <string name="prefs_gps_logging_interval_seconds">sekund</string>
+  <string name="prefs_gps_logging_min_distance">GPS dystans logowania</string>
+  <string name="prefs_gps_logging_min_distance_summary">Min. dystans w metrach pomiędzy punktami śledzenia, użyj 0 dla najkrótszego możliwego</string>
+  <string name="prefs_gps_logging_min_distance_meters">metry/ów</string>
   <string name="prefs_ui">Interfejs użytkownika</string>
   <string name="prefs_ui_picture_source">Standardowe źródło zdjęć</string>
   <string name="prefs_ui_picture_source_summary">Wykonywać zdjęcia aparatem czy pobierać z galerii?</string>
@@ -22,7 +27,12 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Układ przycisków</string>
   <string name="prefs_ui_buttons_layout_summary">Wybierz własny układ przycisków (zobacz dokumentację)</string>
+  <string name="prefs_ui_buttons_layout_default_section">DOMYŚLNY LAYOUT</string>
   <string name="prefs_ui_buttons_layout_defaut">Domyślnie</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">POBRANY LAYOUT</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Nie masz pobranych plików z layout-ami</string>
+  <string name="prefs_ui_available_layout">Dostępne Layout-y</string>
+  <string name="prefs_ui_github_repository_settings">Ustawienia repozytorium Github</string>
   <string name="prefs_ui_orientation">Orientacja</string>
   <string name="prefs_ui_orientation_summary">Preferowana orientacja przycisków na ekranie</string>
   <string-array name="prefs_ui_orientation_options_keys">
@@ -44,7 +54,6 @@
   <string name="prefs_display_always_on_summary">Ekran pozostanie włączony podczas śledzenia. Wyłącz by oszczędzić baterię.</string>
   <string name="prefs_displaytrack_osm">Mapa tła</string>
   <string name="prefs_displaytrack_osm_summary">Włącza mapy OSM w podglądzie śladu. Wymaga aktywnego połączenia z Internetem.</string>
-  <string name="prefs_displaytrack_osm_summary_ask">Wyświetlać zawsze tło OpenStreetMap? Wymaga połączenia z internetem.</string>
   <string name="prefs_output">Ustawienia GPX</string>
   <string name="prefs_storage_dir">Folder na karcie pamięci</string>
   <string name="prefs_storage_dir_hint">Zmiana zadziała przy następnym śladzie</string>
@@ -71,7 +80,7 @@
   <string name="prefs_osm_clear_oauth_data">Reset uwierzytelnień OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Usuń uwierzytelnienia i zezwolenia dla OSM, OSMTracker zapyta o nie ponownie.</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Będziesz musiał ponownie autoryzować OSMTracker by wysyłać ślady. Czy jesteś pewien?</string>
-  <string name="prefs_map_tile">Dostawca Kafelków mapy</string>
+  <string name="prefs_map_tile">Dostawca kafelków mapy</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
