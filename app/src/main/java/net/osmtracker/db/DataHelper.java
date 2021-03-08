@@ -309,12 +309,13 @@ public class DataHelper {
 	 * Mark the export date/time of this track.
 	 * @param trackId Id of the track
 	 * @param exportTime Time of export, from {@link System#currentTimeMillis()}
+	 * @param cr {@link ContentResolver} for query
 	 */
-	public void setTrackExportDate(long trackId, long exportTime) {
+	public static void setTrackExportDate(long trackId, long exportTime, ContentResolver cr) {
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 		ContentValues values = new ContentValues();
 		values.put(TrackContentProvider.Schema.COL_EXPORT_DATE, exportTime);
-		contentResolver.update(trackUri, values, null, null);
+		cr.update(trackUri, values, null, null);
 	}
 	
 	public static void setTrackUploadDate(long trackId, long uploadTime, ContentResolver cr) {
