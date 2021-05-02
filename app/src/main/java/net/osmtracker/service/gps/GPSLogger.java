@@ -103,6 +103,8 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private PressureListener pressureListener = new PressureListener();
 
+	private boolean newSeg = true;
+
 	/**
 	 * Receives Intent for way point tracking, and stop/start logging.
 	 */
@@ -129,7 +131,8 @@ public class GPSLogger extends Service implements LocationListener {
 							dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
 
 							// If there is a waypoint in the track, there should also be a trackpoint
-							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(),newSeg);
+							newSeg = false;
 						}
 					}
 				}
@@ -243,6 +246,7 @@ public class GPSLogger extends Service implements LocationListener {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.v(TAG, "Service onStartCommand(-,"+flags+","+startId+")");
+		newSeg = true;
 		createNotificationChannel();
 		startForeground(NOTIFICATION_ID, getNotification());
 		return Service.START_STICKY;
@@ -306,7 +310,8 @@ public class GPSLogger extends Service implements LocationListener {
 			lastLocation = location;
 			
 			if (isTracking) {
-				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), newSeg);
+				newSeg = false;
 			}
 		}
 	}

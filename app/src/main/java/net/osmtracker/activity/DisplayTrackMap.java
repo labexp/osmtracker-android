@@ -8,6 +8,7 @@ import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.overlay.WayPointsOverlay;
+import net.osmtracker.overlay.PathOverlays;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -15,7 +16,6 @@ import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.PathOverlay;
 import org.osmdroid.views.overlay.mylocation.SimpleLocationOverlay;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
 
@@ -37,6 +37,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+
 
 /**
  * Display current track over an OSM map.
@@ -109,7 +110,7 @@ public class DisplayTrackMap extends Activity {
 	/**
 	 * OSM view overlay that displays current path
 	 */
-	private PathOverlay pathOverlay;
+	private PathOverlays pathOverlay;
 
 	/**
 	 * OSM view overlay that displays waypoints 
@@ -379,9 +380,7 @@ public class DisplayTrackMap extends Activity {
 		this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
 		// set with to hopefully DPI independent 0.5mm
- 		pathOverlay = new PathOverlay(Color.BLUE, (float)(metrics.densityDpi / 25.4 / 2),this);
-
-		osmView.getOverlays().add(pathOverlay);
+ 		pathOverlay = new PathOverlays(Color.BLUE, (float)(metrics.densityDpi / 25.4 / 2),this, osmView);
 		
 		myLocationOverlay = new SimpleLocationOverlay(this);
 		osmView.getOverlays().add(myLocationOverlay);
@@ -426,7 +425,7 @@ public class DisplayTrackMap extends Activity {
 		
 		// Projection: The columns to retrieve. Here, we want the latitude, 
 		// longitude and primary key only
-		String[] projection = {TrackContentProvider.Schema.COL_LATITUDE, TrackContentProvider.Schema.COL_LONGITUDE, TrackContentProvider.Schema.COL_ID};
+		String[] projection = {TrackContentProvider.Schema.COL_LATITUDE, TrackContentProvider.Schema.COL_LONGITUDE, TrackContentProvider.Schema.COL_ID, TrackContentProvider.Schema.COL_NEW_SEGMENT};
 		// Selection: The where clause to use
 		String selection = null;
 		// SelectionArgs: The parameter replacements to use for the '?' in the selection		
@@ -454,15 +453,21 @@ public class DisplayTrackMap extends Activity {
 			c.moveToFirst();
 			double lastLat = 0;
 			double lastLon = 0;
+			boolean newSegment = false;
 			int primaryKeyColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_ID);
 			int latitudeColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE);
 			int longitudeColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE);
-		
+			int newSegmentColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_NEW_SEGMENT);
+
 			// Add each new point to the track
 			while(!c.isAfterLast()) {			
 				lastLat = c.getDouble(latitudeColumnIndex);
 				lastLon = c.getDouble(longitudeColumnIndex);
 				lastTrackPointIdProcessed = c.getInt(primaryKeyColumnIndex);
+				newSegment = c.getShort(newSegmentColumnIndex) > 0;
+				if(newSegment) {
+					pathOverlay.nextSegment();
+				}
 				pathOverlay.addPoint((int)(lastLat * 1e6), (int)(lastLon * 1e6));
 				if (doInitialBoundsCalc) {
 					if (lastLat < minLat)  minLat = lastLat;
