@@ -38,7 +38,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-
 /**
  * Display current track over an OSM map.
  * Based on osmdroid code http://osmdroid.googlecode.com/
