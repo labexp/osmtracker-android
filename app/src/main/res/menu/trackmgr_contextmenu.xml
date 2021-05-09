@@ -25,4 +25,7 @@
     <item
         android:id="@+id/trackmgr_contextmenu_delete"
         android:title="@string/trackmgr_contextmenu_delete" />
+    <item
+        android:id="@+id/trackmgr_contextmenu_import"
+        android:title="@string/trackmgr_contextmenu_import" />
 </menu>
