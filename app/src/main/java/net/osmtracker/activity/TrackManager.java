@@ -1,7 +1,5 @@
 package net.osmtracker.activity;
 
-import java.io.InputStream;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -20,6 +18,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -403,10 +402,12 @@ public class TrackManager extends AppCompatActivity
 			}
 
 			Uri uri = (Uri) data.getData();
-			try(InputStream is = getContentResolver()
-			    .openInputStream(uri)) {
-				new ImportRoute(this, contextMenuSelectedTrackid)
-					.doImport(is);
+			try {
+				AssetFileDescriptor afd = getContentResolver()
+					.openAssetFileDescriptor(uri, "r");
+				new ImportRoute(this,
+						contextMenuSelectedTrackid)
+					.doImport(afd);
 			} catch(Exception e) {
 				new AlertDialog.Builder(this)
 					.setTitle("Exception received")

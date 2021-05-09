@@ -1,6 +1,9 @@
 package net.osmtracker.gpx;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.location.Location;
 import android.util.Log;
 
@@ -11,6 +14,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.FilterInputStream;
 import java.io.InputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -20,6 +24,55 @@ import java.time.format.DateTimeParseException;
 import java.util.function.DoubleConsumer;
 
 import javax.xml.parsers.ParserConfigurationException;
+
+interface LongConsumer {
+	void accept(long l);
+}
+
+class InputStreamWithPosition extends FilterInputStream {
+	private long position=0;
+	private LongConsumer report;
+	
+	public InputStreamWithPosition(InputStream in,
+				       LongConsumer report) {
+		super(in);
+		this.report = report;
+	}
+	
+	public boolean markSupported() {
+		return false;
+	}
+
+	private void advancePosition(long delta) {
+		if(delta == -1)
+			return;
+		position += delta;
+		report.accept(position);
+	}
+	
+	public int read() throws IOException {
+		int ret = super.read();
+		if(ret != -1)
+			advancePosition(1);
+		return ret;
+	}
+
+	public int read(byte[] b, int off, int len) throws IOException {
+		int ret = super.read(b, off, len);
+		advancePosition(ret);
+		return ret;
+	}
+
+	public long skip(long n) throws IOException {
+		long ret = super.skip(n);
+		advancePosition(ret);
+		return ret;
+	}
+	
+	public long getPosition() {
+		return position;
+	}
+}
 
 /**
  * Class to import a route
@@ -90,10 +143,6 @@ public class ImportRoute {
 
 	private interface FloatConsumer {
 		void accept(float f);
-	}
-
-	private interface LongConsumer {
-		void accept(long l);
 	}
 
 	private void readFloat(XmlPullParser parser, String tag,
@@ -271,10 +320,56 @@ public class ImportRoute {
 		parser.require(XmlPullParser.END_TAG, ns, tag);
 	}
 
+	public void reportPosition(long position,
+				   long totalSize,
+				   ProgressDialog pb) {
+		if(position > 30 && position <= totalSize)
+			pb.setProgress((int)position);
+	}
+
 	/**
 	 * Import the given input stream into the given track
 	 */
-	public void doImport(InputStream is)
+	public void doImport(AssetFileDescriptor afd)
+		throws IOException, XmlPullParserException,
+			ParserConfigurationException, SAXException {
+		ProgressDialog pb = new ProgressDialog(context);
+		pb.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		pb.setIndeterminate(false);
+		pb.setCancelable(false);
+		pb.setProgress(0);
+		pb.setMax(100);
+		pb.setTitle("Import");
+		pb.show();
+
+		new Thread(()-> {
+				try(InputStream is = afd.createInputStream();){
+					long totSize = afd.getLength();
+					if(totSize > 0) {
+						pb.setMax((int)totSize);
+					}
+					InputStreamWithPosition isp =
+						new InputStreamWithPosition(is,
+									    p->reportPosition(p, totSize, pb));
+					doImport(isp);
+				} catch(Exception e) {
+					new AlertDialog.Builder(context)
+					.setTitle("Exception received")
+					.setMessage(Log.getStackTraceString(e))
+					.setNeutralButton("Ok",
+							  (dlg,id)->dlg.dismiss())
+					.create()
+					.show();
+				} finally {
+					pb.dismiss();
+				}
+		}).start();
+	}
+		
+	/**
+	 * Import the given input stream into the given track
+	 */
+	private void doImport(InputStream is)
 		throws IOException, XmlPullParserException,
 			ParserConfigurationException, SAXException {
 		int event;
