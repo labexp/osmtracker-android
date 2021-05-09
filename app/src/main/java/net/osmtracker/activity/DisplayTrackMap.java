@@ -25,7 +25,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -452,8 +451,8 @@ public class DisplayTrackMap extends Activity {
 			c.moveToFirst();
 			double lastLat = 0;
 			double lastLon = 0;
-			boolean newSegment = false;
-			boolean isRoute = false;
+			boolean newSegment;
+			boolean isRoute;
 			int primaryKeyColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_ID);
 			int latitudeColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE);
 			int longitudeColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE);

@@ -9,7 +9,6 @@ import android.util.Log;
 
 import net.osmtracker.db.DataHelper;
 
-import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -23,15 +22,13 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.function.DoubleConsumer;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 interface LongConsumer {
 	void accept(long l);
 }
 
 class InputStreamWithPosition extends FilterInputStream {
 	private long position=0;
-	private LongConsumer report;
+	private final LongConsumer report;
 	
 	public InputStreamWithPosition(InputStream in,
 				       LongConsumer report) {
@@ -80,10 +77,9 @@ class InputStreamWithPosition extends FilterInputStream {
 public class ImportRoute {
 	private static final String TAG = ImportRoute.class.getSimpleName();
 
-	private long trackId;
-	private String ns=null;
-	private DataHelper dataHelper;
-	private Context context;
+	private final long trackId;
+	private final DataHelper dataHelper;
+	private final Context context;
 
 	public ImportRoute(Context context, long trackId) {
 		this.context = context;
@@ -122,9 +118,9 @@ public class ImportRoute {
 
 	private String readString(XmlPullParser parser, String tag)
 		throws IOException, XmlPullParserException {
-		parser.require(XmlPullParser.START_TAG, ns, tag);
+		parser.require(XmlPullParser.START_TAG, null, tag);
 		String result = readText(parser);
-		parser.require(XmlPullParser.END_TAG, ns, tag);
+		parser.require(XmlPullParser.END_TAG, null, tag);
 		return result;
 	}
 
@@ -172,17 +168,16 @@ public class ImportRoute {
 		}
 	}
 
-	private int readInt(XmlPullParser parser, String tag,
-			    int dflt)
+	private int readInt(XmlPullParser parser, String tag)
 		throws XmlPullParserException, IOException {
 		String str = readString(parser,tag);
 		if(str == null || "".equals(str))
-			return dflt;
+			return 0;
 		try {
 			return Integer.parseInt(str);
 		} catch(NumberFormatException e) {
 			Log.v(TAG, "Bad integer "+tag+" :\""+str+"\"");
-			return dflt;
+			return 0;
 		}
 	}
 
@@ -211,7 +206,6 @@ public class ImportRoute {
 				      .atZone(ZoneId.systemDefault())
 				      .toInstant()
 				      .toEpochMilli());
-			return;
 		} catch(DateTimeParseException e) {
 			Log.v(TAG, "Bad time "+tag+" :\""+str+"\":"+e);
 		}
@@ -219,9 +213,8 @@ public class ImportRoute {
 
 	private void readDoubleFromAttribute(XmlPullParser parser,
 					     String attribute,
-					     DoubleConsumer setter)
-		throws XmlPullParserException, IOException {
-		String str = parser.getAttributeValue(ns, attribute);
+					     DoubleConsumer setter) {
+		String str = parser.getAttributeValue(null, attribute);
 		if(str == null || "".equals(str))
 			return;
 		try {
@@ -249,7 +242,7 @@ public class ImportRoute {
 		float pressure=0.0f;
 
 		/* Ensure we have correct tag */
-		parser.require(XmlPullParser.START_TAG, ns, tag);
+		parser.require(XmlPullParser.START_TAG, null, tag);
 
 		Location location = new Location("import");
 		readDoubleFromAttribute(parser, "lat", location::setLatitude);
@@ -271,28 +264,36 @@ public class ImportRoute {
 				continue;
 			}
 			String name = parser.getName();
-			if (name.equals("ele")) {
-				readDouble(parser, name, location::setAltitude);
-			} else if (name.equals("time")) {
-				readTime(parser, name, location::setTime);
-			} else if (name.equals("accuracy")) {
-				readFloat(parser, name, location::setAccuracy);
-			} else if (name.equals("speed")) {
-				readFloat(parser, name, location::setSpeed);
-			} else if (name.equals("baro")) {
-				pressure = readFloat(parser, name, 0.0f);
-			} else if (name.equals("compass")) {
-				azimuth = readFloat(parser, name, -1.0f);
-			} else if (name.equals("compassAccuracy")) {
-				compassAccuracy = readInt(parser, name, 0);
-			} else {
+			switch(name) {
+				case "ele":
+					readDouble(parser, name, location::setAltitude);
+					break;
+				case "time":
+					readTime(parser, name, location::setTime);
+					break;
+				case "accuracy":
+					readFloat(parser, name, location::setAccuracy);
+					break;
+				case "speed":
+					readFloat(parser, name, location::setSpeed);
+					break;
+				case "baro":
+					pressure = readFloat(parser, name, 0.0f);
+					break;
+				case "compass":
+					azimuth = readFloat(parser, name, -1.0f);
+					break;
+				case "compassAccuracy":
+					compassAccuracy = readInt(parser, name);
+					break;
+				default:
 			       depth++;
 			       // ignore all other tags, but still recurse
 			       // into them
 			}
 		}
 
-		parser.require(XmlPullParser.END_TAG, ns, tag);
+		parser.require(XmlPullParser.END_TAG, null, tag);
 
 		dataHelper.track(trackId, location, azimuth,
 				 compassAccuracy, pressure, newSegment, true);
@@ -303,7 +304,7 @@ public class ImportRoute {
 	private void readSegment(XmlPullParser parser, String tag)
 		throws XmlPullParserException, IOException {
 		boolean segmentStart = true;
-		parser.require(XmlPullParser.START_TAG, ns, tag);
+		parser.require(XmlPullParser.START_TAG, null, tag);
 		while (parser.next() != XmlPullParser.END_TAG) {
 			if (parser.getEventType() != XmlPullParser.START_TAG) {
 				continue;
@@ -317,7 +318,7 @@ public class ImportRoute {
 				skip(parser);
 			}
 		}
-		parser.require(XmlPullParser.END_TAG, ns, tag);
+		parser.require(XmlPullParser.END_TAG, null, tag);
 	}
 
 	public void reportPosition(long position,
@@ -330,9 +331,7 @@ public class ImportRoute {
 	/**
 	 * Import the given input stream into the given track
 	 */
-	public void doImport(AssetFileDescriptor afd)
-		throws IOException, XmlPullParserException,
-			ParserConfigurationException, SAXException {
+	public void doImport(AssetFileDescriptor afd) {
 		ProgressDialog pb = new ProgressDialog(context);
 		pb.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		pb.setIndeterminate(false);
@@ -343,7 +342,7 @@ public class ImportRoute {
 		pb.show();
 
 		new Thread(()-> {
-				try(InputStream is = afd.createInputStream();){
+				try(InputStream is = afd.createInputStream()){
 					long totSize = afd.getLength();
 					if(totSize > 0) {
 						pb.setMax((int)totSize);
@@ -370,8 +369,7 @@ public class ImportRoute {
 	 * Import the given input stream into the given track
 	 */
 	private void doImport(InputStream is)
-		throws IOException, XmlPullParserException,
-			ParserConfigurationException, SAXException {
+		throws IOException, XmlPullParserException {
 		int event;
 		// Xml Pull parser
 		// https://www.tutorialspoint.com/android/android_xml_parsers.htm

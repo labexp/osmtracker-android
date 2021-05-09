@@ -13,15 +13,15 @@ import android.graphics.Color;
  * Collection of Overlays, useful to draw interrupted paths
  */
 public class PathOverlays {
-	private float width;
-	private Context ctx;
-	private MapView osmView;
-	private boolean[] havePoint = new boolean[] { false, false };
+	private final float width;
+	private final Context ctx;
+	private final MapView osmView;
+	private final boolean[] havePoint = new boolean[] { false, false };
 	
-	private int[] curIdx=new int[] { 0, 0};
+	private final int[] curIdx=new int[] { 0, 0};
 	
-	private List<List<PathOverlay>> paths = new ArrayList<>();
-	private int[] colors = new int[] { Color.BLUE, Color.GREEN };
+	private final List<List<PathOverlay>> paths = new ArrayList<>();
+	private final int[] colors = new int[] { Color.BLUE, Color.GREEN };
 	
 	private void addPath(int slot) {
 		PathOverlay path = new PathOverlay(colors[slot], width, ctx);
@@ -43,7 +43,7 @@ public class PathOverlays {
 		this.ctx=ctx;
 		this.osmView = osmView;
 		for(int slot=0; slot<2; slot++)
-			paths.add(new ArrayList<PathOverlay>());
+			paths.add(new ArrayList<>());
 	}
 
 	public void addPoint(double lat, double lon, boolean isRoute) {

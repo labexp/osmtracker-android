@@ -401,7 +401,7 @@ public class TrackManager extends AppCompatActivity
 				return;
 			}
 
-			Uri uri = (Uri) data.getData();
+			Uri uri = data.getData();
 			try {
 				AssetFileDescriptor afd = getContentResolver()
 					.openAssetFileDescriptor(uri, "r");
