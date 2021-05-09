@@ -498,6 +498,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_ATMOSPHERIC_PRESSURE = "atmospheric_pressure";
 
 		public static final String COL_NEW_SEGMENT = "new_segment";
+		public static final String COL_IS_ROUTE = "is_route";
 
 		// virtual colums that are used in some sqls but dont exist in database
 		public static final String COL_TRACKPOINT_COUNT = "tp_count";

@@ -148,7 +148,7 @@ public class DisplayTrackMap extends Activity {
 	 * Initially null, to indicate that no data has yet been read.  
 	 */
 	private Integer lastTrackPointIdProcessed = null;
-	
+
 	/**
 	 * Observes changes on trackpoints
 	 */
@@ -379,7 +379,7 @@ public class DisplayTrackMap extends Activity {
 		this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
 		// set with to hopefully DPI independent 0.5mm
- 		pathOverlay = new PathOverlays(Color.BLUE, (float)(metrics.densityDpi / 25.4 / 2),this, osmView);
+ 		pathOverlay = new PathOverlays((float)(metrics.densityDpi / 25.4 / 2),this, osmView);
 		
 		myLocationOverlay = new SimpleLocationOverlay(this);
 		osmView.getOverlays().add(myLocationOverlay);
@@ -424,7 +424,7 @@ public class DisplayTrackMap extends Activity {
 		
 		// Projection: The columns to retrieve. Here, we want the latitude, 
 		// longitude and primary key only
-		String[] projection = {TrackContentProvider.Schema.COL_LATITUDE, TrackContentProvider.Schema.COL_LONGITUDE, TrackContentProvider.Schema.COL_ID, TrackContentProvider.Schema.COL_NEW_SEGMENT};
+		String[] projection = {TrackContentProvider.Schema.COL_LATITUDE, TrackContentProvider.Schema.COL_LONGITUDE, TrackContentProvider.Schema.COL_ID, TrackContentProvider.Schema.COL_NEW_SEGMENT, TrackContentProvider.Schema.COL_IS_ROUTE};
 		// Selection: The where clause to use
 		String selection = null;
 		// SelectionArgs: The parameter replacements to use for the '?' in the selection		
@@ -453,10 +453,12 @@ public class DisplayTrackMap extends Activity {
 			double lastLat = 0;
 			double lastLon = 0;
 			boolean newSegment = false;
+			boolean isRoute = false;
 			int primaryKeyColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_ID);
 			int latitudeColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE);
 			int longitudeColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE);
 			int newSegmentColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_NEW_SEGMENT);
+			int isRouteColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_IS_ROUTE);
 
 			// Add each new point to the track
 			while(!c.isAfterLast()) {			
@@ -464,10 +466,12 @@ public class DisplayTrackMap extends Activity {
 				lastLon = c.getDouble(longitudeColumnIndex);
 				lastTrackPointIdProcessed = c.getInt(primaryKeyColumnIndex);
 				newSegment = c.getShort(newSegmentColumnIndex) > 0;
+				isRoute = c.getShort(isRouteColumnIndex) > 0;
 				if(newSegment) {
-					pathOverlay.nextSegment();
+					pathOverlay.nextSegment(isRoute);
 				}
-				pathOverlay.addPoint((int)(lastLat * 1e6), (int)(lastLon * 1e6));
+
+				pathOverlay.addPoint((int)(lastLat * 1e6), (int)(lastLon * 1e6), isRoute);
 				if (doInitialBoundsCalc) {
 					if (lastLat < minLat)  minLat = lastLat;
 					if (lastLon < minLon)  minLon = lastLon;

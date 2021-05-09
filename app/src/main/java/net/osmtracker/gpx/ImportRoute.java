@@ -295,7 +295,7 @@ public class ImportRoute {
 		parser.require(XmlPullParser.END_TAG, ns, tag);
 
 		dataHelper.track(trackId, location, azimuth,
-				 compassAccuracy, pressure, newSegment);
+				 compassAccuracy, pressure, newSegment, true);
 	}
 	
 	// Parses the contents of a track or route segment. If it encounters a

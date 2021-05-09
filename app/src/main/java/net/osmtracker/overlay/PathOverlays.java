@@ -7,53 +7,57 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.PathOverlay;
 
 import android.content.Context;
+import android.graphics.Color;
 
 /**
  * Collection of Overlays, useful to draw interrupted paths
  */
 public class PathOverlays {
-	private int color;
 	private float width;
 	private Context ctx;
 	private MapView osmView;
-	private boolean havePoint;
+	private boolean[] havePoint = new boolean[] { false, false };
 	
-	private int curIdx=0;
+	private int[] curIdx=new int[] { 0, 0};
 	
-	private List<PathOverlay> paths = new ArrayList<PathOverlay>();
-
-	private void addPath() {
-		PathOverlay path = new PathOverlay(color, width, ctx);
-		paths.add(path);
+	private List<List<PathOverlay>> paths = new ArrayList<>();
+	private int[] colors = new int[] { Color.BLUE, Color.GREEN };
+	
+	private void addPath(int slot) {
+		PathOverlay path = new PathOverlay(colors[slot], width, ctx);
+		paths.get(slot).add(path);
 		osmView.getOverlays().add(path);
 	}
 
 	public void clearPath() {
-		for(PathOverlay path : paths)
-			path.clearPath();
-		curIdx=0;
+		for(int slot=0; slot<2; slot++) {
+			for(PathOverlay path : paths.get(slot))
+				path.clearPath();
+			curIdx[slot]=0;
+		}
 	}
 
-	public PathOverlays(int color, float width,
+	public PathOverlays(float width,
 			    Context ctx, MapView osmView) {
-		this.color=color;
 		this.width=width;
 		this.ctx=ctx;
 		this.osmView = osmView;
-		addPath();
-		havePoint=false;
+		for(int slot=0; slot<2; slot++)
+			paths.add(new ArrayList<PathOverlay>());
 	}
 
-	public void addPoint(double lat, double lon) {
-		if(curIdx >= paths.size())
-			addPath();
-		paths.get(curIdx).addPoint(lat, lon);
-		havePoint=true;
+	public void addPoint(double lat, double lon, boolean isRoute) {
+		int slot= isRoute ? 1 : 0;
+		if(curIdx[slot] >= paths.get(slot).size())
+			addPath(slot);
+		paths.get(slot).get(curIdx[slot]).addPoint(lat, lon);
+		havePoint[slot]=true;
 	}
 
-	public void nextSegment() {
-		if(havePoint)
-			curIdx++;
-		havePoint=false;
+	public void nextSegment(boolean isRoute) {
+		int slot= isRoute ? 1 : 0;
+		if(havePoint[slot])
+			curIdx[slot]++;
+		havePoint[slot]=false;
 	}
 }

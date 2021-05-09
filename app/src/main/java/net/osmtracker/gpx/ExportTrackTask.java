@@ -361,6 +361,9 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 		boolean havePoint=false;
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(),i++) {
 			StringBuffer out = new StringBuffer();
+			if(c.getShort(c.getColumnIndex(TrackContentProvider.Schema.COL_IS_ROUTE)) > 0)
+				// do not re-export route points
+				continue;
 			if(havePoint && c.getShort(c.getColumnIndex(TrackContentProvider.Schema.COL_NEW_SEGMENT)) > 0) {
 				fw.write("\t\t" + "</trkseg>" + "\n");
 				fw.write("\t\t" + "<trkseg>" + "\n");

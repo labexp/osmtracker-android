@@ -111,8 +111,15 @@ public class DataHelper {
 	 * 			  ignored if azimuth is invalid.
 	 * @param pressure
 	 *            atmospheric pressure
+	 * @param newSeg
+	 *            whether this point is to start a new track segment
+	 * @param isRoute
+	 *            whether this point is a point of a route, rather
+	 *            than a track (routes are imported paths that we
+	 *            want to follow, and shown in green rather than
+	 *            blue)
 	 */
-	public void track(long trackId, Location location, float azimuth, int accuracy, float pressure, boolean newSeg) {
+	public void track(long trackId, Location location, float azimuth, int accuracy, float pressure, boolean newSeg, boolean isRoute) {
 		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location + " azimuth: " + azimuth + ", accuracy: " + accuracy);
 		ContentValues values = new ContentValues();
 		values.put(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
@@ -149,6 +156,9 @@ public class DataHelper {
 		values.put(TrackContentProvider.Schema.COL_NEW_SEGMENT,
 			   newSeg ? 1 : 0);
 		
+		values.put(TrackContentProvider.Schema.COL_IS_ROUTE,
+			   isRoute ? 1 : 0);
+
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 		contentResolver.insert(Uri.withAppendedPath(trackUri, TrackContentProvider.Schema.TBL_TRACKPOINT + "s"), values);
 	}
