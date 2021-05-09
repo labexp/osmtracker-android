@@ -260,7 +260,8 @@ public class ImportRoute {
 				continue;
 			}
 			String name = parser.getName();
-			if (name.equals("trkpt")) {
+			if (name.equals("trkpt")||
+			    name.equals("rtept")) {
 				readPoint(parser, name, segmentStart);
 				segmentStart = false;
 			} else {
