@@ -1,10 +1,12 @@
 package net.osmtracker.gpx;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.location.Location;
+import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 
 import net.osmtracker.db.DataHelper;
@@ -79,9 +81,9 @@ public class ImportRoute {
 
 	private final long trackId;
 	private final DataHelper dataHelper;
-	private final Context context;
+	private final Activity context;
 
-	public ImportRoute(Context context, long trackId) {
+	public ImportRoute(Activity context, long trackId) {
 		this.context = context;
 		this.trackId = trackId;
 		dataHelper = new DataHelper(context);
@@ -233,7 +235,8 @@ public class ImportRoute {
 	 */
 	private void readPoint(XmlPullParser parser,
 			       String tag,
-			       boolean newSegment)
+			       boolean newSegment,
+			       boolean isWaypoint)
 		throws XmlPullParserException, IOException {
 		int depth=1;
 
@@ -241,10 +244,14 @@ public class ImportRoute {
 		int compassAccuracy=0;
 		float pressure=0.0f;
 
+		String name=null;
+		
 		/* Ensure we have correct tag */
 		parser.require(XmlPullParser.START_TAG, null, tag);
 
 		Location location = new Location("import");
+		if(isWaypoint)
+			location.setExtras(new Bundle());
 		readDoubleFromAttribute(parser, "lat", location::setLatitude);
 		readDoubleFromAttribute(parser, "lon", location::setLongitude);
 		
@@ -263,40 +270,47 @@ public class ImportRoute {
 			if (parser.getEventType() != XmlPullParser.START_TAG) {
 				continue;
 			}
-			String name = parser.getName();
-			switch(name) {
-				case "ele":
-					readDouble(parser, name, location::setAltitude);
-					break;
-				case "time":
-					readTime(parser, name, location::setTime);
-					break;
-				case "accuracy":
-					readFloat(parser, name, location::setAccuracy);
-					break;
-				case "speed":
-					readFloat(parser, name, location::setSpeed);
-					break;
-				case "baro":
-					pressure = readFloat(parser, name, 0.0f);
-					break;
-				case "compass":
-					azimuth = readFloat(parser, name, -1.0f);
-					break;
-				case "compassAccuracy":
-					compassAccuracy = readInt(parser, name);
-					break;
-				default:
-			       depth++;
-			       // ignore all other tags, but still recurse
-			       // into them
+			String subTag = parser.getName();
+			switch(subTag) {
+			case "ele":
+				readDouble(parser, subTag, location::setAltitude);
+				break;
+			case "time":
+				readTime(parser, subTag, location::setTime);
+				break;
+			case "accuracy":
+				readFloat(parser, subTag, location::setAccuracy);
+				break;
+			case "speed":
+				readFloat(parser, subTag, location::setSpeed);
+				break;
+			case "baro":
+				pressure = readFloat(parser, subTag, 0.0f);
+				break;
+			case "compass":
+				azimuth = readFloat(parser, subTag, -1.0f);
+				break;
+			case "compassAccuracy":
+				compassAccuracy = readInt(parser, subTag);
+				break;
+			case "name":
+				name = readString(parser, subTag);
+				break;
+			default:
+				depth++;
+				// ignore all other tags, but still recurse
+				// into them
 			}
 		}
 
 		parser.require(XmlPullParser.END_TAG, null, tag);
 
-		dataHelper.track(trackId, location, azimuth,
-				 compassAccuracy, pressure, newSegment, true);
+		if(isWaypoint) {
+			dataHelper.wayPoint(trackId, location, name, null, null, azimuth, compassAccuracy, pressure);
+		} else {
+			dataHelper.track(trackId, location, azimuth,
+					 compassAccuracy, pressure, newSegment, true);
+		}
 	}
 	
 	// Parses the contents of a track or route segment. If it encounters a
@@ -312,7 +326,7 @@ public class ImportRoute {
 			String name = parser.getName();
 			if (name.equals("trkpt")||
 			    name.equals("rtept")) {
-				readPoint(parser, name, segmentStart);
+				readPoint(parser, name, segmentStart,false);
 				segmentStart = false;
 			} else {
 				skip(parser);
@@ -328,6 +342,23 @@ public class ImportRoute {
 			pb.setProgress((int)position);
 	}
 
+
+	private void showException(String msg, Exception e) {
+		try {
+			new AlertDialog.Builder(context)
+				.setTitle("Exception received while "+msg)
+				.setMessage(Log.getStackTraceString(e))
+				.setNeutralButton("Ok",
+						  (dlg,id)->dlg.dismiss())
+				.create()
+				.show();
+		} catch(Exception e2) {
+			Log.v(TAG, "Exception while showing exception "+
+			      Log.getStackTraceString(e2));
+								
+		}
+	}
+	
 	/**
 	 * Import the given input stream into the given track
 	 */
@@ -343,6 +374,7 @@ public class ImportRoute {
 
 		new Thread(()-> {
 				try(InputStream is = afd.createInputStream()){
+					Looper.prepare();
 					long totSize = afd.getLength();
 					if(totSize > 0) {
 						pb.setMax((int)totSize);
@@ -352,13 +384,9 @@ public class ImportRoute {
 									    p->reportPosition(p, totSize, pb));
 					doImport(isp);
 				} catch(Exception e) {
-					new AlertDialog.Builder(context)
-					.setTitle("Exception received")
-					.setMessage(Log.getStackTraceString(e))
-					.setNeutralButton("Ok",
-							  (dlg,id)->dlg.dismiss())
-					.create()
-					.show();
+					Log.v(TAG, "Exception during import "+
+					      Log.getStackTraceString(e));
+					context.runOnUiThread(()->showException("importing route", e));
 				} finally {
 					pb.dismiss();
 				}
@@ -387,6 +415,8 @@ public class ImportRoute {
 				if("trkseg".equals(name) ||
 				   "rte".equals(name)) {
 					readSegment(p, name);
+				} else if (name.equals("wpt")) {
+					readPoint(p, name, false, true);
 				}
 			}
 		}
