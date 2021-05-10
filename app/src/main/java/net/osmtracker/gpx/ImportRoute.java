@@ -362,7 +362,8 @@ public class ImportRoute {
 	/**
 	 * Import the given input stream into the given track
 	 */
-	public void doImport(AssetFileDescriptor afd) {
+	public void doImport(AssetFileDescriptor afd,
+			     Runnable completion) {
 		ProgressDialog pb = new ProgressDialog(context);
 		pb.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		pb.setIndeterminate(false);
@@ -383,6 +384,7 @@ public class ImportRoute {
 						new InputStreamWithPosition(is,
 									    p->reportPosition(p, totSize, pb));
 					doImport(isp);
+					context.runOnUiThread(completion);
 				} catch(Exception e) {
 					Log.v(TAG, "Exception during import "+
 					      Log.getStackTraceString(e));

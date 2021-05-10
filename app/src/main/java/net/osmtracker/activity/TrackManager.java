@@ -407,7 +407,7 @@ public class TrackManager extends AppCompatActivity
 					.openAssetFileDescriptor(uri, "r");
 				new ImportRoute(this,
 						contextMenuSelectedTrackid)
-					.doImport(afd);
+					.doImport(afd,()->updateTrackItemsInRecyclerView());
 			} catch(Exception e) {
 				new AlertDialog.Builder(this)
 					.setTitle("Exception received")
