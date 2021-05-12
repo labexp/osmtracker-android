@@ -18,14 +18,19 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.FilterInputStream;
 import java.io.InputStream;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeParseException;
-import java.util.function.DoubleConsumer;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 interface LongConsumer {
 	void accept(long l);
+}
+
+interface DoubleConsumer {
+	void accept(double d);
 }
 
 class InputStreamWithPosition extends FilterInputStream {
@@ -183,33 +188,48 @@ public class ImportRoute {
 		}
 	}
 
+	private static final DateFormat dfz = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
+	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+
+	private static final Pattern p =
+		Pattern.compile("^(\\d+-\\d+-\\d+T\\d+:\\d+:\\d+)(\\.\\d+)?(Z|(\\+\\d{2}):?(\\d{2})?)?");
+	//
+
+	private static String or(String first, String second) {
+		return (first != null) ? first : second;
+	}
+	
 	private void readTime(XmlPullParser parser, String tag,
 			      LongConsumer setter)
 		throws XmlPullParserException, IOException {
 		String str = readString(parser,tag);
 		if(str == null || "".equals(str))
 			return;
-
-		// first try with timezone...
-		try {
-			setter.accept(ZonedDateTime
-				      .parse(str)
-				      .toInstant()
-				      .toEpochMilli());
-			return;
-		} catch(DateTimeParseException e) {
-			Log.v(TAG, "Bad zoned time "+tag+" :\""+str+"\":"+e);
+		
+		Matcher m = p.matcher(str);
+		if(!m.find()) {
+			Log.v(TAG, "Bad date string \""+str+"\"");
 		}
 
-		// and then without
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(m.group(1)); // date and time
+		sb.append(or(m.group(2),".000")); // milliseconds
+
+		String tz = m.group(3);
+		if("Z".equals(tz))
+			sb.append("+0000");
+		else if(tz != null) {
+			sb.append(m.group(4));
+			sb.append(or(m.group(5),"00"));
+		}
+		String dstr = sb.toString();
 		try {
-			setter.accept(LocalDateTime
-				      .parse(str)
-				      .atZone(ZoneId.systemDefault())
-				      .toInstant()
-				      .toEpochMilli());
-		} catch(DateTimeParseException e) {
-			Log.v(TAG, "Bad time "+tag+" :\""+str+"\":"+e);
+			Date d = (tz != null) ? dfz.parse(dstr) : df.parse(dstr);
+			setter.accept(d.getTime());
+		} catch(ParseException e) {
+			Log.v(TAG, "Bad date string \""+str+"\" => \""+
+			      dstr+"\"");
 		}
 	}
 
