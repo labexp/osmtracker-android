@@ -226,7 +226,8 @@ public class ImportRoute {
 		String dstr = sb.toString();
 		try {
 			Date d = (tz != null) ? dfz.parse(dstr) : df.parse(dstr);
-			setter.accept(d.getTime());
+			if(d!=null)
+				setter.accept(d.getTime());
 		} catch(ParseException e) {
 			Log.v(TAG, "Bad date string \""+str+"\" => \""+
 			      dstr+"\"");
