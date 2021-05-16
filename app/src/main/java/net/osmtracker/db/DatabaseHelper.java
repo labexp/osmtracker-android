@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null,"
 		+ TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null,"
 		+ TrackContentProvider.Schema.COL_NEW_SEGMENT + " integer default 0,"
-		+ TrackContentProvider.Schema.COL_NEW_SEGMENT + " integer default 0"
+		+ TrackContentProvider.Schema.COL_IS_ROUTE + " integer default 0"
 		+ ")";
 
 	/**
