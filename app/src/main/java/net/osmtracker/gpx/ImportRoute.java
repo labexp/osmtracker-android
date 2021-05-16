@@ -131,16 +131,21 @@ public class ImportRoute {
 		return result;
 	}
 
+	
 	private void readDouble(XmlPullParser parser, String tag,
 							DoubleConsumer setter)
 		throws XmlPullParserException, IOException {
 		String str = readString(parser,tag);
+		storeDouble(str, setter);
+	}
+
+	private void storeDouble(String str, DoubleConsumer setter) {
 		if(str == null || "".equals(str))
 			return;
 		try {
 			setter.accept(Double.parseDouble(str));
 		} catch(NumberFormatException e) {
-			Log.v(TAG, "Bad double "+tag+" :\""+str+"\"");
+			Log.v(TAG, "Bad double :\""+str+"\"");
 		}
 	}
 
@@ -248,6 +253,8 @@ public class ImportRoute {
 		}
 	}
 
+	// GPX
+	
 	/**
 	 * Reads a track point
 	 * @param parser the parser
@@ -356,6 +363,112 @@ public class ImportRoute {
 		parser.require(XmlPullParser.END_TAG, null, tag);
 	}
 
+
+	// KML
+	private static final Pattern pat =
+			Pattern.compile("\\G\\s*([0-9.]+)\\s*,\\s*([0-9.]+)\\s*(?:,\\s*([0-9.]+)\\s*)?");
+	
+	private Location nextCoordinate(Matcher m) {
+		Location location = new Location("import");
+		storeDouble(m.group(1), location::setLongitude);
+		storeDouble(m.group(2), location::setLatitude);
+		storeDouble(m.group(3), location::setAltitude);
+		return location;
+	}
+
+	private Matcher parseCoordinates(XmlPullParser parser, String tag)
+		throws XmlPullParserException, IOException
+	{
+		return pat.matcher(readString(parser, tag));
+	}
+
+	private void readKmlTrackSegment(XmlPullParser parser, String tag)
+		throws XmlPullParserException, IOException
+	{
+		parser.require(XmlPullParser.START_TAG, null, tag);
+		while (parser.next() != XmlPullParser.END_TAG) {
+			if (parser.getEventType() != XmlPullParser.START_TAG) {
+				continue;
+			}
+
+			String subTag = parser.getName();
+			if("coordinates".equals(subTag)) {
+				boolean newSegment = true;
+				Matcher m = parseCoordinates(parser, subTag);
+				while (m.find()) {
+					Location point = nextCoordinate(m);
+					dataHelper.track(trackId, point,
+							-1.0f, 0, 0.0f,
+							newSegment, true);
+					newSegment = false;
+				}
+			} else
+				skip(parser);
+		}
+		parser.require(XmlPullParser.END_TAG, null, tag);
+	}
+	
+	private Location readKmlWayPoint(XmlPullParser parser, String tag)
+		throws XmlPullParserException, IOException
+	{
+		Location point=null;
+		parser.require(XmlPullParser.START_TAG, null, tag);
+		while (parser.next() != XmlPullParser.END_TAG) {
+			if (parser.getEventType() != XmlPullParser.START_TAG) {
+				continue;
+			}
+			String subTag = parser.getName();
+			if("coordinates".equals(subTag)) {
+				Matcher m = parseCoordinates(parser, subTag);
+				if (!m.find())
+					return null;
+				point = nextCoordinate(m);
+			} else {
+				skip(parser);
+			}
+		}
+		parser.require(XmlPullParser.END_TAG, null, tag);
+		return point;
+	}
+	
+	private void readPlacemark(XmlPullParser parser, String tag)
+		throws XmlPullParserException, IOException {
+
+		Location waypoint=null;
+		String wptName=null;
+
+		parser.require(XmlPullParser.START_TAG, null, tag);
+		while (parser.next() != XmlPullParser.END_TAG) {
+			if (parser.getEventType() != XmlPullParser.START_TAG) {
+				continue;
+			}
+			String subTag = parser.getName();
+			switch(subTag) {
+			case "Point":
+				// a waypoint
+				waypoint = readKmlWayPoint(parser, subTag);
+				break;
+			case "name":
+				// the name of the waypoint or track
+				wptName = readString(parser, subTag);
+				break;
+			case "LineString":
+				// a track segment
+				readKmlTrackSegment(parser, subTag);
+				break;
+			default:
+				skip(parser);
+			}
+		}
+		parser.require(XmlPullParser.END_TAG, null, tag);
+
+		if(waypoint != null) {
+			waypoint.setExtras(new Bundle());
+			dataHelper.wayPoint(trackId, waypoint, wptName,
+					    null, null, -1.0f, 0, 0.0f);
+		}
+	}
+
 	public void reportPosition(long position,
 				   long totalSize,
 				   ProgressDialog pb) {
@@ -435,11 +548,17 @@ public class ImportRoute {
 		while ((event=p.next()) != XmlPullParser.END_DOCUMENT) {
 			if(event == XmlPullParser.START_TAG) {
 				String name=p.getName();
+
+				// GPX
 				if("trkseg".equals(name) ||
 				   "rte".equals(name)) {
 					readSegment(p, name);
 				} else if (name.equals("wpt")) {
 					readPoint(p, name, false, true);
+
+					// KML
+				} else if (name.equals("Placemark")) {
+					readPlacemark(p, name);
 				}
 			}
 		}
