@@ -31,6 +31,7 @@
   <string name="trackmgr_waypoints_count">Body na trase:</string>
   <string name="trackmgr_trackpoints_count">Body trasy:</string>
   <string name="trackmgr_empty">Zatím nemáte žádné trasy.</string>
+  <string name="trackmgr_newtrack_hint">Stisknutím nahrajete novou stopu.</string>
   <string name="trackmgr_newtrack_error">Nelze vytvořit novou trasu: {0}</string>
   <string name="trackmgr_continuetrack_hint">Právě nahráváte <b>trasu  #{0}</b>\nPro pokračování ji vyberte v seznamu</string>
   <string name="trackmgr_contextmenu_stop">Zastavit trasování</string>
@@ -173,6 +174,11 @@
   <string name="github_repository_settings_valid_server">Úložiště na Github je platné</string>
   <string name="github_repository_settings_invalid_server">Github úložiště je neplatné</string>
   <!--App Introduction-->
+  <string name="app_intro">OSMTracker pro Android™ Úvod</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Vítejte v OSMTracker pro Android™ 👋</string>
+  <string name="app_intro_slide1_description">Tato aplikace je svobodný software, který respektuje vaši svobodu!</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Šťastné trasování 🗺 😎</string>
+  <string name="app_intro_slide2_description">OSMTracker pro Android použije vaši polohu GPS k záznamu trasových bodů a bodů cest, i když je aplikace spuštěna na pozadí. \nVaše data se nepoužívají k podpoře reklam.</string>
 </resources>

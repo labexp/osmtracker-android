@@ -31,12 +31,14 @@
   <string name="trackmgr_waypoints_count">Wegpunkte: </string>
   <string name="trackmgr_trackpoints_count">Routenpunkte: </string>
   <string name="trackmgr_empty">Sie haben keine Routen.</string>
+  <string name="trackmgr_newtrack_hint">Drücke, um eine neue Route aufzuzeichnen.</string>
   <string name="trackmgr_newtrack_error">Neue Route kann nicht erstellt werden: {0}</string>
   <string name="trackmgr_continuetrack_hint">Aktuell wird <b>Route #{0}</b> aufgezeichnet.\nWählen Sie diese aus der Liste aus, um fortzufahren.</string>
   <string name="trackmgr_contextmenu_stop">Routenaufnahme stoppen</string>
   <string name="trackmgr_contextmenu_resume">Routenaufnahme fortsetzen</string>
   <string name="trackmgr_contextmenu_delete">Löschen</string>
   <string name="trackmgr_contextmenu_export">Als GPX exportieren</string>
+  <string name="trackmgr_contextmenu_share">GPX teilen</string>
   <string name="trackmgr_contextmenu_osm_upload">Zu OpenStreetMap hochladen</string>
   <string name="trackmgr_contextmenu_display">Auf Karte anzeigen</string>
   <string name="trackmgr_contextmenu_details">Details</string>
@@ -47,6 +49,7 @@
   <string name="trackmgr_exporting_prepare">Bereite Export vor...</string>
   <string name="trackmgr_export_error">Route kann nicht exportiert werden: {0}</string>
   <string name="trackmgr_exportall_confirm">Alle Routen werden exportiert, dies kann einige Zeit dauern. Sind Sie sicher?</string>
+  <string name="trackmgr_prepare_for_share_error">Route kann nicht exportiert werden: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Routendetails</string>
   <string name="trackdetail_startdate">Startzeit: </string>
@@ -135,6 +138,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Warte auf Richtung...</string>
   <string name="various_heading_unknown">Richtung kann nicht bestimmt werden</string>
+  <string name="various_export_finished">Exportierung erfolgreich abgeschlossen</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap-Routenanzeige</string>
   <!--Buttons presets messages-->
@@ -145,8 +149,10 @@
   <string name="buttons_presets_unsuccessful_update">Layout nicht erfolgreich aktualisiert, bitte später noch einmal versuchen</string>
   <string name="buttons_presets_delete_message">Bist Du sicher das {0} Layout zu löschen?</string>
   <string name="buttons_presets_delete_positive_confirmation">Ja</string>
+  <string name="buttons_presets_successful_delete">Das Layout wurde erfolgreich gelöscht</string>
   <string name="buttons_presets_icon_directory_deleted">Das Symbol-Verzeichnis wurde erfolgreich gelöscht</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Die Datei hat kein zugehöriges Icon-Verzeichnis</string>
+  <string name="buttons_presets_unsuccessful_delete">Das Layout konnte nicht gelöscht werden </string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Fehler: Verbindung zum Internet nicht verfügbar</string>
   <string name="available_layouts_response_null_exception">Fehler: konnte nicht mit dem speziell angelegten Layout-Ablage verbinden</string>
@@ -168,6 +174,12 @@
   <string name="github_repository_settings_valid_server">Github Ablage gültig</string>
   <string name="github_repository_settings_invalid_server">Github Ablage ungültig</string>
   <!--App Introduction-->
+  <string name="app_intro">OSMTracker for Android™ Einführung</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Willkommen zu OSMTracker für Android™ 👋</string>
+  <string name="app_intro_slide1_description">Diese App ist freie Software die deine Privatsphäre respektiert!</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Viel Spaß beim Tracken 🗺 😎</string>
+  <string name="app_intro_slide2_description">OSMTracker für Android verwendet deine GPS-Position um Datenpunkte und Wegpunkte aufzuzeichnen, auch wenn die App im Hintergrund läuft.
+Deine Daten werden nicht für Werbezwecke verwendet.</string>
 </resources>

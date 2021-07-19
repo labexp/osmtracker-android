@@ -54,6 +54,7 @@
   <string name="prefs_display_always_on_summary">Ekran pozostanie włączony podczas śledzenia. Wyłącz by oszczędzić baterię.</string>
   <string name="prefs_displaytrack_osm">Mapa tła</string>
   <string name="prefs_displaytrack_osm_summary">Włącza mapy OSM w podglądzie śladu. Wymaga aktywnego połączenia z Internetem.</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Wyświetlać zawsze tło OpenStreetMap? Wymaga połączenia z internetem</string>
   <string name="prefs_output">Ustawienia GPX</string>
   <string name="prefs_storage_dir">Folder na karcie pamięci</string>
   <string name="prefs_storage_dir_hint">Zmiana zadziała przy następnym śladzie</string>
