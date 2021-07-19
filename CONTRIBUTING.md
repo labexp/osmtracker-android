@@ -1,5 +1,5 @@
 
-## Contributing
+# Contributing
 Everyone can contribute to the development of the app, and that's great!. Since we'll be using [gitflow](https://datasift.github.io/gitflow/IntroducingGitFlow.html), it's recommended to have feature branches that will eventually be merged back to the `develop` via pull requests, and later `develop` will be merged back to master when we're ready for a new release.
 
 ## How to run the app 
@@ -24,3 +24,10 @@ It's recommended to run the tests locally before making a new pull request to ma
  - For running the **unit tests** no emulator or device is needed, just run 
 	 - `$ ./gradlew test`
  - Now just wait for gradle to run the tests for you, it'll show the results of which tests passed or failed when it's finished
+
+## Translations
+OSMTracker is translated using Transifex (see the [wiki](https://github.com/labexp/osmtracker-android/wiki/Translating)).
+To update translations:
+* Create a python3 virtual environment: `$python3 -m venv .venv` (.venv folder is already added to gitignore file). Remember the virtualenv activates with the command `$source .venv/bin/activate` and deactivates with `deactivate`. 
+* Install Transifex CLI Client following the instructions in [this page](https://docs.transifex.com/client/installing-the-client#installing-on-macos-and-linux). 
+* Execute `(.venv) $ tx pull --minimum-perc 1` to get the updated translations with at least 1% of completeness.
