@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -29,6 +30,8 @@ import static net.osmtracker.OSMTracker.Preferences;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ PreferenceManager.class })
+//https://stackoverflow.com/questions/52966897/powermock-java-11
+@PowerMockIgnore("jdk.internal.reflect.*")
 public class ExportTrackTest {
 
     @Rule
