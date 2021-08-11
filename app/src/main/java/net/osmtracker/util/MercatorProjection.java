@@ -103,7 +103,7 @@ public class MercatorProjection {
 	 *				Longitude to convert.
 	 * @return Converted X coordinate.
 	 */
-	private double convertLongitude(double longitude) {
+	public static double convertLongitude(double longitude) {
 		return longitude;
 	}
 
@@ -114,7 +114,7 @@ public class MercatorProjection {
 	 *				Latitude to convert.
 	 * @return Converted Y coordinate.
 	 */
-	private double convertLatitude(double latitude) {
+	public static double convertLatitude(double latitude) {
 		if (latitude < -MAX_LATITUDE) {
 			latitude = -MAX_LATITUDE;
 		} else if (latitude > MAX_LATITUDE) {
@@ -168,5 +168,29 @@ public class MercatorProjection {
 			dms.append(neg ? 'W' : 'E');
 
 		return dms.toString();
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public double getTopX() {
+		return topX;
+	}
+
+	public double getTopY() {
+		return topY;
+	}
+
+	public double getDimX() {
+		return dimX;
+	}
+
+	public double getDimY() {
+		return dimY;
 	}
 }
