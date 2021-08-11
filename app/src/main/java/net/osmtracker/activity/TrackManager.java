@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -17,6 +18,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,6 +41,7 @@ import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.exception.CreateTrackException;
 import net.osmtracker.gpx.ExportToStorageTask;
 import net.osmtracker.gpx.ExportToTempFileTask;
+import net.osmtracker.gpx.ImportRoute;
 import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
@@ -61,6 +64,11 @@ public class TrackManager extends AppCompatActivity
 	final private int RC_GPS_PERMISSION = 5;
 	final private int RC_WRITE_PERMISSIONS_SHARE = 6;
 
+	/**
+	 * Request code for callback after user has selected an import file
+	 */
+	private static final int REQCODE_IMPORT_OPEN = 0;
+	
 	/** Bundle key for {@link #prevItemVisible} */
 	private static final String PREV_VISIBLE = "prev_visible";
 
@@ -367,6 +375,53 @@ public class TrackManager extends AppCompatActivity
 		}.execute();
 	}
 
+	/* Import route
+	 */
+	private void importRoute() {
+
+		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+		intent.setType("*/*"); // GPX application type not known to Android...
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		startActivityForResult(intent, REQCODE_IMPORT_OPEN);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+		case REQCODE_IMPORT_OPEN:
+			if(resultCode == Activity.RESULT_CANCELED) {
+				// cancelled by user
+				return;
+			}
+			if(resultCode != Activity.RESULT_OK) {
+				// something unexpected
+				Toast.makeText(this,
+					       "Result code="+resultCode,
+					       Toast.LENGTH_LONG).show();
+				return;
+			}
+
+			Uri uri = data.getData();
+			try {
+				AssetFileDescriptor afd = getContentResolver()
+					.openAssetFileDescriptor(uri, "r");
+				new ImportRoute(this,
+						contextMenuSelectedTrackid)
+					.doImport(afd,()->updateTrackItemsInRecyclerView());
+			} catch(Exception e) {
+				new AlertDialog.Builder(this)
+					.setTitle("Exception received")
+					.setMessage(Log.getStackTraceString(e))
+					.setNeutralButton("Ok",
+							  (dlg,id)->dlg.dismiss())
+					.create()
+					.show();
+			}
+			return;
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo, long trackId) {
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -474,6 +529,11 @@ public class TrackManager extends AppCompatActivity
 				i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, contextMenuSelectedTrackid);
 				startActivity(i);
 				break;
+
+			case R.id.trackmgr_contextmenu_import:
+				importRoute();
+				break;
+
 		}
 		return super.onContextItemSelected(item);
 	}
