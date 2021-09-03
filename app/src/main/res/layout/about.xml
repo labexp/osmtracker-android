@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:padding="10dp" >
 
     <ImageView
@@ -15,7 +15,7 @@
     <TextView
         android:id="@+id/about_appname"
         style="@android:style/TextAppearance.Large"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/about_logo"
         android:text="@string/app_name" >
@@ -40,65 +40,76 @@
     </TextView>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/about_logo"
         android:orientation="vertical"
         android:layout_alignParentBottom="false"
         android:layout_alignParentLeft="false">
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center" >
-
-            <TextView
-                android:id="@+id/about_text"
-                android:layout_width="wrap_content"
+            android:fillViewport="true">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:text="@string/about_text" >
-            </TextView>
+                android:gravity="center" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/about_text"
-                android:layout_centerInParent="true"
-                android:autoLink="all"
-                android:gravity="center"
-                android:text="@string/about_link" >
-            </TextView>
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/about_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/about_text" >
+                </TextView>
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/about_text"
+                    android:layout_centerInParent="true"
+                    android:autoLink="all"
+                    android:gravity="center"
+                    android:text="@string/about_link" >
+                </TextView>
+            </LinearLayout>
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center" >
-
-            <TextView
-                android:id="@+id/about_translate_text"
-                android:layout_width="wrap_content"
+            android:fillViewport="true">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:text="@string/about_translate_text" >
-            </TextView>
+                android:gravity="center" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/about_translate_text"
-                android:layout_centerInParent="true"
-                android:autoLink="all"
-                android:gravity="center"
-                android:text="@string/about_translate_link" >
-            </TextView>
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/about_translate_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/about_translate_text" >
+                </TextView>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/about_translate_text"
+                    android:layout_centerInParent="true"
+                    android:autoLink="all"
+                    android:gravity="center"
+                    android:text="@string/about_translate_link" >
+                </TextView>
+            </LinearLayout>
+        </ScrollView>
 
         <LinearLayout
             android:orientation="horizontal"
