@@ -55,6 +55,7 @@ public class TrackManager extends AppCompatActivity
 	private static final String TAG = "MainActivity";
 
 	final private int RC_WRITE_PERMISSIONS_UPLOAD = 4;
+	final private int RC_WRITE_PERMISSIONS_UPLOAD_GIT = 7;
 	final private int RC_WRITE_STORAGE_DISPLAY_TRACK = 3;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ALL = 1;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ONE = 2;
@@ -460,6 +461,19 @@ public class TrackManager extends AppCompatActivity
 				else uploadTrack(contextMenuSelectedTrackid);
 				break;
 
+			case R.id.trackmgr_contextmenu_git_upload:
+				if (!writeExternalStoragePermissionGranted()){
+					Log.e("DisplayTrackMapWrite", "Permission asked");
+					ActivityCompat.requestPermissions(this,
+							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+							RC_WRITE_PERMISSIONS_UPLOAD_GIT);
+				}
+				else {
+					uploadTrackToGitHub(contextMenuSelectedTrackid);
+				}
+
+				break;
+
 			case R.id.trackmgr_contextmenu_display:
 				if (!writeExternalStoragePermissionGranted()){
 					Log.e("DisplayTrackMapWrite", "Permission asked");
@@ -482,6 +496,11 @@ public class TrackManager extends AppCompatActivity
 		Intent i = new Intent(this, OpenStreetMapUpload.class);
 		i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
 		startActivity(i);
+	}
+
+	private void uploadTrackToGitHub(long trackId){
+		//codigo para subir a git
+		Toast.makeText(this, "hola jean marco y juan", Toast.LENGTH_LONG).show();
 	}
 
 	private void displayTrack(long trackId){
@@ -782,6 +801,23 @@ public class TrackManager extends AppCompatActivity
 					//TODO: add an informative message.
 					Log.w(TAG, "Permission not granted");
 					Toast.makeText(this, "To upload the track to OSM we need access to the storage.", Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+			case RC_WRITE_PERMISSIONS_UPLOAD_GIT: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					Log.e("Result", "Permission granted");
+					// permission was granted, yay!
+					uploadTrackToGitHub(contextMenuSelectedTrackid);
+				} else {
+
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+					//TODO: add an informative message.
+					Log.w(TAG, "Permission not granted");
+					Toast.makeText(this, "To upload the track to GIT we need access to the storage.", Toast.LENGTH_LONG).show();
 				}
 				break;
 			}

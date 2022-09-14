@@ -23,6 +23,9 @@
         android:id="@+id/trackmgr_contextmenu_osm_upload"
         android:title="@string/trackmgr_contextmenu_osm_upload" />
     <item
+        android:id="@+id/trackmgr_contextmenu_git_upload"
+        android:title="Upload to GitHub" />
+    <item
         android:id="@+id/trackmgr_contextmenu_delete"
         android:title="@string/trackmgr_contextmenu_delete" />
 </menu>
