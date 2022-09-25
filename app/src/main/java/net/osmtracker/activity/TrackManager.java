@@ -500,7 +500,7 @@ public class TrackManager extends AppCompatActivity
 
 	private void uploadTrackToGitHub(long trackId){
 		//codigo para subir a git
-		Toast.makeText(this, "hola jean marco y juan", Toast.LENGTH_LONG).show();
+		Toast.makeText(this, "hola jean marco", Toast.LENGTH_LONG).show();
 	}
 
 	private void displayTrack(long trackId){
