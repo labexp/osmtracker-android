@@ -1,11 +1,10 @@
 package net.osmtracker.activity;
 
 import android.app.Activity;
-
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
-
+import android.net.Uri;
 import android.os.Bundle;
-
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -16,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import net.osmtracker.R;
+
+
 
 
 public class GitHubUpload extends Activity {
@@ -29,10 +30,30 @@ public class GitHubUpload extends Activity {
         setContentView(R.layout.upload_github_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        final Button btnFork = (Button) findViewById(R.id.git_create_fork_btn_ok);
+        btnFork.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(GitHubUpload.this, "Error: No se pudo crear el Fork", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        final Button btnNewRepo= (Button) findViewById(R.id.git_create_repo_btn_ok);
+        btnNewRepo.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(GitHubUpload.this, "Crear un nuevo repo", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(GitHubUpload.this, GitHubNewRepo.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
         final Button btnUpload = (Button) findViewById(R.id.git_upload_btn_ok);
         btnUpload.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startUploadGitHub();
             }
         });
@@ -75,7 +96,7 @@ public class GitHubUpload extends Activity {
      * Either starts uploading directly if we are authenticated against GitHub,
      * or ask the user to authenticate via the browser.
      */
-    private void startUploadGitHub() {
+    private void startUploadGitHub(){
         Toast.makeText(this, "Subir a GitHub", Toast.LENGTH_SHORT).show();
         //finish();
     }
