@@ -67,6 +67,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.GitHubUpload"
+            android:label="@string/about" />
+        <activity
             android:name=".activity.About"
             android:label="@string/about" />
         <activity
