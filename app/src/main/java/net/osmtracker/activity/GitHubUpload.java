@@ -14,21 +14,49 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import net.osmtracker.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class GitHubUpload extends Activity {
 
-    private String listRepos[] = {"repo1", "repo2", "repo3", "repo4", "repoN"};
+    private ArrayList<String> ArrayListRepos = new ArrayList<>();
+    private String BaseURL = "https://api.github.com";
+    private String UserName = "JeanMarcoRU";
+    private String Token = "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";
+    private String  RepoName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        ArrayListRepos.add("none");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload_github_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        listRepos();
+
+        /*final Button btnListRepos = (Button) findViewById(R.id.git_list_repos_btn_ok);
+        btnListRepos.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //listRepos();
+            }
+        });*/
 
         final Button btnFork = (Button) findViewById(R.id.git_create_fork_btn_ok);
         btnFork.setOnClickListener(new OnClickListener() {
@@ -53,7 +81,6 @@ public class GitHubUpload extends Activity {
         btnUpload.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startUploadGitHub();
             }
         });
@@ -66,26 +93,10 @@ public class GitHubUpload extends Activity {
             }
         });
 
+
         Spinner spinner = findViewById(R.id.item_git_spinner_repos);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>( this,
-                android.R.layout.simple_spinner_item , listRepos);
-        spinner.setAdapter(adapter);
+        createSpinnerListRepos(spinner);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Toast.makeText(GitHubUpload.this, "Repo seleccionado: "
-                        + adapterView.getItemAtPosition(i),
-                        Toast.LENGTH_SHORT).show() ;
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
 
         // Do not show soft keyboard by default
@@ -98,10 +109,109 @@ public class GitHubUpload extends Activity {
      */
     private void startUploadGitHub(){
         Toast.makeText(this, "Subir a GitHub", Toast.LENGTH_SHORT).show();
+
         //finish();
     }
 
+    private void createSpinnerListRepos(Spinner spinner){
+        ArrayAdapter<String> adapter = new ArrayAdapter<>( this,
+                android.R.layout.simple_spinner_item, ArrayListRepos);
+        spinner.setAdapter(adapter);
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setRepoName(adapterView.getItemAtPosition(i).toString());
+                Toast.makeText(GitHubUpload.this, "Item Selected: " + getRepoName(), Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+    }
 
+    private void listRepos() {
+        //ArrayListRepos.removeAll(ArrayListRepos);
+        final String maxReposToShow = "10";
+        String sortBy = "created";
+        String fullURL = getBaseURL() + "/user/repos?" + "sort=" + sortBy + "&per_page=" + maxReposToShow;
+        //String tag_json_obj = "json_obj_req";
+        //RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonArrayRequest getResquest = new JsonArrayRequest(
+                Request.Method.GET,
+                fullURL,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        for (int i = 0; i < response.length(); i++) {
+                            // creating a new json object and
+                            // getting each object from our json array.
+                            try {
+                                // we are getting each json object.
+                                JSONObject responseObj = response.getJSONObject(i);
+                                // similarly we are extracting all the strings from our json object.
+                                ArrayListRepos.add(responseObj.getString("full_name"));
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public Map getHeaders() throws AuthFailureError
+            {
+                HashMap headers = new HashMap();
+                headers.put("Authorization", "Bearer " + getToken());
+                //headers.put("Accept", "*/*");
+                //headers.put("Accept-Encoding", "gzip, deflate, br");
+                //headers.put("Connection", "keep-alive");
+                return headers;
+            }
+
+        };
+        Volley.newRequestQueue(this).add(getResquest);
+
+        //return ArrayListRepos;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public String getToken() {
+        return Token;
+    }
+
+    public void setToken(String token) {
+        Token = token;
+    }
+
+    public String getRepoName() {
+        return RepoName;
+    }
+
+    public void setRepoName(String repoName) {
+        RepoName = repoName;
+    }
+
+    public String getBaseURL() {
+        return BaseURL;
+    }
+
+    public void setBaseURL(String baseURL) {
+        BaseURL = baseURL;
+    }
 }

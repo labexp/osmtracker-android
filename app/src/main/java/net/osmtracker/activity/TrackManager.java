@@ -501,7 +501,7 @@ public class TrackManager extends AppCompatActivity
 	private void uploadTrackToGitHub(long trackId){
 		//codigo para subir a git
 		//Toast.makeText(this, "hola jean marco", Toast.LENGTH_LONG).show();
-		boolean isLogin = false;
+		boolean isLogin = true;
 		if (isLogin){
 			Intent i = new Intent(this, GitHubUpload.class);
 			startActivity(i);
