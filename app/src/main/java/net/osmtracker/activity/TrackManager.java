@@ -32,9 +32,11 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import net.osmtracker.GitHubUser;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
+import net.osmtracker.db.DbGitHubUser;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.exception.CreateTrackException;
 import net.osmtracker.gpx.ExportToStorageTask;
@@ -500,14 +502,21 @@ public class TrackManager extends AppCompatActivity
 
 	private void uploadTrackToGitHub(long trackId){
 		//codigo para subir a git
-		//Toast.makeText(this, "hola jean marco", Toast.LENGTH_LONG).show();
-		boolean isLogin = true;
-		if (isLogin){
-			Intent i = new Intent(this, GitHubUpload.class);
+		GitHubUser gitHubUser = null;
+		try {
+			DbGitHubUser dbGitHubUser = new DbGitHubUser(TrackManager.this);
+			gitHubUser = dbGitHubUser.getUser();
+		}catch(Exception e){
+			//gitHubUser = new GitHubUser();
+			e.printStackTrace();
+		}
+
+		if (gitHubUser == null){
+			Intent i = new Intent(this, GitHubConfig.class);
 			startActivity(i);
 		}
 		else {
-			Intent i = new Intent(this, GitHubConfig.class);
+			Intent i = new Intent(this, GitHubUpload.class);
 			startActivity(i);
 		}
 

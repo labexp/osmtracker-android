@@ -23,7 +23,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
+import net.osmtracker.db.DbGitHubUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,8 +40,7 @@ public class GitHubUpload extends Activity {
 
     private ArrayList<String> ArrayListRepos = new ArrayList<>();
     private String BaseURL = "https://api.github.com";
-    private String UserName = "JeanMarcoRU";
-    private String Token = "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";
+    GitHubUser gitHubUser;
     private String  RepoName = "";
 
     @Override
@@ -48,15 +49,12 @@ public class GitHubUpload extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload_github_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        DbGitHubUser dbGitHubUser = new DbGitHubUser(GitHubUpload.this);
+        gitHubUser = dbGitHubUser.getUser();
+
         listRepos();
 
-        /*final Button btnListRepos = (Button) findViewById(R.id.git_list_repos_btn_ok);
-        btnListRepos.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //listRepos();
-            }
-        });*/
 
         final Button btnFork = (Button) findViewById(R.id.git_create_fork_btn_ok);
         btnFork.setOnClickListener(new OnClickListener() {
@@ -170,7 +168,7 @@ public class GitHubUpload extends Activity {
             public Map getHeaders() throws AuthFailureError
             {
                 HashMap headers = new HashMap();
-                headers.put("Authorization", "Bearer " + getToken());
+                headers.put("Authorization", "Bearer " + gitHubUser.getToken());
                 //headers.put("Accept", "*/*");
                 //headers.put("Accept-Encoding", "gzip, deflate, br");
                 //headers.put("Connection", "keep-alive");
@@ -181,22 +179,6 @@ public class GitHubUpload extends Activity {
         Volley.newRequestQueue(this).add(getResquest);
 
         //return ArrayListRepos;
-    }
-
-    public String getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(String userName) {
-        UserName = userName;
-    }
-
-    public String getToken() {
-        return Token;
-    }
-
-    public void setToken(String token) {
-        Token = token;
     }
 
     public String getRepoName() {
