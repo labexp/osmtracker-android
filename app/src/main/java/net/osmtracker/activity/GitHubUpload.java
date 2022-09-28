@@ -63,7 +63,9 @@ public class GitHubUpload extends Activity {
         btnFork.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(GitHubUpload.this, "Error: No se pudo crear el Fork", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(GitHubUpload.this, GitHubNewFork.class);
+                startActivity(i);
+                finish();
             }
         });
 
@@ -152,8 +154,6 @@ public class GitHubUpload extends Activity {
         final String maxReposToShow = "10";
         String sortBy = "created";
         String fullURL = getBaseURL() + "/user/repos?" + "sort=" + sortBy + "&per_page=" + maxReposToShow;
-        //String tag_json_obj = "json_obj_req";
-        //RequestQueue queue = Volley.newRequestQueue(this);
 
         JsonArrayRequest getResquest = new JsonArrayRequest(
                 Request.Method.GET,
