@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -13,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -55,7 +59,6 @@ public class GitHubUpload extends Activity {
 
         listRepos();
 
-
         final Button btnFork = (Button) findViewById(R.id.git_create_fork_btn_ok);
         btnFork.setOnClickListener(new OnClickListener() {
             @Override
@@ -95,10 +98,25 @@ public class GitHubUpload extends Activity {
         Spinner spinner = findViewById(R.id.item_git_spinner_repos);
         createSpinnerListRepos(spinner);
 
-
-
         // Do not show soft keyboard by default
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.githubupload_settings_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.git_configuration_credentials_btn:
+                Intent i = new Intent(this, GitHubConfig.class);
+                startActivity(i);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
