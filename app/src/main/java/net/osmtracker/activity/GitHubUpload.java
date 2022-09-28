@@ -42,22 +42,36 @@ import java.util.Map;
 
 public class GitHubUpload extends Activity {
 
-    private ArrayList<String> ArrayListRepos = new ArrayList<>();
+    private ArrayList<String> ArrayListRepos;
     private String BaseURL = "https://api.github.com";
     GitHubUser gitHubUser;
     private String  RepoName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ArrayListRepos.add("none");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload_github_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        ArrayListRepos = new ArrayList<>();
+        ArrayListRepos.add("none");
 
         DbGitHubUser dbGitHubUser = new DbGitHubUser(GitHubUpload.this);
         gitHubUser = dbGitHubUser.getUser();
 
         listRepos();
+
+        /*final Button btnUpdateRepos = (Button) findViewById(R.id.git_update_list_repos_btn_ok);
+        btnUpdateRepos.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayListRepos.removeAll(ArrayListRepos);
+                ArrayListRepos.add("none");
+                listRepos();
+                Spinner spinner2 = findViewById(R.id.item_git_spinner_repos);
+                createSpinnerListRepos(spinner2);
+            }
+        });*/
 
         final Button btnFork = (Button) findViewById(R.id.git_create_fork_btn_ok);
         btnFork.setOnClickListener(new OnClickListener() {
@@ -95,7 +109,6 @@ public class GitHubUpload extends Activity {
                 finish();
             }
         });
-
 
         Spinner spinner = findViewById(R.id.item_git_spinner_repos);
         createSpinnerListRepos(spinner);
@@ -150,10 +163,10 @@ public class GitHubUpload extends Activity {
     }
 
     private void listRepos() {
-        //ArrayListRepos.removeAll(ArrayListRepos);
-        final String maxReposToShow = "10";
+        //final String maxReposToShow = "5"; + "&per_page=" + maxReposToShow
+        RequestQueue queue = Volley.newRequestQueue(this);
         String sortBy = "created";
-        String fullURL = getBaseURL() + "/user/repos?" + "sort=" + sortBy + "&per_page=" + maxReposToShow;
+        String fullURL = getBaseURL() + "/user/repos?" + "sort=" + sortBy ;
 
         JsonArrayRequest getResquest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -194,8 +207,16 @@ public class GitHubUpload extends Activity {
             }
 
         };
-        Volley.newRequestQueue(this).add(getResquest);
+        getResquest.setShouldCache(false);
+        // Deleting all the cache
+        queue.getCache().remove(fullURL);
+        queue.getCache().clear();
 
+        queue.add(getResquest);
+
+        //queue.getCache().remove(fullURL);
+        //queue.getCache().clear();
+        //Volley.newRequestQueue(this).add(getResquest);
         //return ArrayListRepos;
     }
 
