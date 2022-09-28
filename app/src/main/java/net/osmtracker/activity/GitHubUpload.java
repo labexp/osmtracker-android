@@ -61,18 +61,6 @@ public class GitHubUpload extends Activity {
 
         listRepos();
 
-        /*final Button btnUpdateRepos = (Button) findViewById(R.id.git_update_list_repos_btn_ok);
-        btnUpdateRepos.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayListRepos.removeAll(ArrayListRepos);
-                ArrayListRepos.add("none");
-                listRepos();
-                Spinner spinner2 = findViewById(R.id.item_git_spinner_repos);
-                createSpinnerListRepos(spinner2);
-            }
-        });*/
-
         final Button btnFork = (Button) findViewById(R.id.git_create_fork_btn_ok);
         btnFork.setOnClickListener(new OnClickListener() {
             @Override
