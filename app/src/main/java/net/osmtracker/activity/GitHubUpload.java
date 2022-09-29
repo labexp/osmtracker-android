@@ -3,7 +3,6 @@ package net.osmtracker.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,8 +23,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import net.osmtracker.GitHubUser;
@@ -35,6 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,12 +48,15 @@ public class GitHubUpload extends Activity {
     private String BaseURL = "https://api.github.com";
     GitHubUser gitHubUser;
     private String  RepoName = "";
+    EditText editTextFileName,editTextCommitMsj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload_github_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        editTextFileName = findViewById(R.id.git_trackdetail_item_name);
+        editTextCommitMsj = findViewById(R.id.git_trackdetail_item_description);
 
         ArrayListRepos = new ArrayList<>();
         ArrayListRepos.add("none");
@@ -129,10 +134,61 @@ public class GitHubUpload extends Activity {
      * Either starts uploading directly if we are authenticated against GitHub,
      * or ask the user to authenticate via the browser.
      */
-    private void startUploadGitHub(String GPXFileInBase64){
+    private void startUploadGitHub(final String GPXFileInBase64){
         //Toast.makeText(this, "Subir a GitHub", Toast.LENGTH_SHORT).show();
-        System.out.println("=============BASE64GPX=="+GPXFileInBase64);
-        //finish();
+        String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+editTextFileName.getText().toString().trim().replace("\\s", "")+".gpx";
+
+        JsonObjectRequest postResquest= new JsonObjectRequest(
+                Request.Method.PUT,
+                fullURL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(GitHubUpload.this, "Subido correctamente", Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(GitHubUpload.this, "Error al subir", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            public Map getHeaders() throws AuthFailureError
+            {
+                HashMap headers = new HashMap();
+                headers.put("Authorization", "Bearer " + gitHubUser.getToken());
+                //headers.put("Accept", "*/*");
+                //headers.put("Accept-Encoding", "gzip, deflate, br");
+                //headers.put("Connection", "keep-alive");
+                return headers;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() {
+                JSONObject jsonBody = new JSONObject();
+                try {
+                    jsonBody.put("message", editTextCommitMsj.getText().toString().trim());
+                    jsonBody.put("content", GPXFileInBase64);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                final String requestBody = jsonBody.toString();
+                try {
+                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                    return null;
+                }
+            }
+        };
+        Volley.newRequestQueue(this).add(postResquest);
+        finish();
     }
 
     private void createSpinnerListRepos(Spinner spinner){
