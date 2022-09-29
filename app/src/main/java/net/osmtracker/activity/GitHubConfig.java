@@ -61,8 +61,8 @@ public class GitHubConfig extends Activity {
 
                 if (id > 0){
                     Toast.makeText(GitHubConfig.this, "Guardado correctamente", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(GitHubConfig.this, GitHubUpload.class);
-                    startActivity(i);
+                    //Intent i = new Intent(GitHubConfig.this, GitHubUpload.class);
+                    //startActivity(i);
                     finish();
                 }else {
                     Toast.makeText(GitHubConfig.this, "Error al guardar", Toast.LENGTH_SHORT).show();
