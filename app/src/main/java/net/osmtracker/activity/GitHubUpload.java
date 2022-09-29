@@ -82,14 +82,6 @@ public class GitHubUpload extends Activity {
             }
         });
 
-        final Button btnUpload = (Button) findViewById(R.id.git_upload_btn_ok);
-        btnUpload.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startUploadGitHub();
-            }
-        });
-
         final Button btnCancel = (Button) findViewById(R.id.git_upload_btn_cancel);
         btnCancel.setOnClickListener(new OnClickListener() {
             @Override
@@ -101,6 +93,16 @@ public class GitHubUpload extends Activity {
         Spinner spinner = findViewById(R.id.item_git_spinner_repos);
         createSpinnerListRepos(spinner);
 
+        final Button btnUpload = (Button) findViewById(R.id.git_upload_btn_ok);
+        btnUpload.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = GitHubUpload.this.getIntent().getExtras();
+                if (bundle != null){
+                    startUploadGitHub(bundle.getString("GPXFileInBase64"));
+                }
+            }
+        });
         // Do not show soft keyboard by default
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
@@ -117,6 +119,7 @@ public class GitHubUpload extends Activity {
             case R.id.git_configuration_credentials_btn:
                 Intent i = new Intent(this, GitHubConfig.class);
                 startActivity(i);
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -126,9 +129,9 @@ public class GitHubUpload extends Activity {
      * Either starts uploading directly if we are authenticated against GitHub,
      * or ask the user to authenticate via the browser.
      */
-    private void startUploadGitHub(){
-        Toast.makeText(this, "Subir a GitHub", Toast.LENGTH_SHORT).show();
-
+    private void startUploadGitHub(String GPXFileInBase64){
+        //Toast.makeText(this, "Subir a GitHub", Toast.LENGTH_SHORT).show();
+        System.out.println("=============BASE64GPX=="+GPXFileInBase64);
         //finish();
     }
 

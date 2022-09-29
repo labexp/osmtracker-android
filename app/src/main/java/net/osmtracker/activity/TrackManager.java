@@ -1,5 +1,6 @@
 package net.osmtracker.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -19,6 +20,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -44,6 +46,9 @@ import net.osmtracker.gpx.ExportToTempFileTask;
 import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Base64;
 import java.util.Date;
 
 /**
@@ -87,6 +92,8 @@ public class TrackManager extends AppCompatActivity
 	private RecyclerView recyclerView;
 	private TrackListRVAdapter recyclerViewAdapter;
 	private FloatingActionButton fab;
+
+	private String GPXinBase64;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -471,7 +478,7 @@ public class TrackManager extends AppCompatActivity
 							RC_WRITE_PERMISSIONS_UPLOAD_GIT);
 				}
 				else {
-					uploadTrackToGitHub(contextMenuSelectedTrackid);
+					uploadTrackToGitHub(contextMenuSelectedTrackid, this);
 				}
 
 				break;
@@ -500,11 +507,41 @@ public class TrackManager extends AppCompatActivity
 		startActivity(i);
 	}
 
-	private void uploadTrackToGitHub(long trackId){
-		//codigo para subir a git
+
+	private static String encodeFileToBase64(File file) {
+		try {
+			byte[] fileContent = Files.readAllBytes(file.toPath());
+			return Base64.getEncoder().encodeToString(fileContent);
+		} catch (IOException e) {
+			throw new IllegalStateException("could not read file " + file, e);
+		}
+	}
+
+	private void uploadTrackToGitHub(final long trackId, Context context){
+		//final String[] encodeGPXbase64 = new String[1];
+		/*
+		codigo para subir a git
+		 Create temp file that will remain in cache
+		*/
+		new ExportToTempFileTask(context, trackId){
+			@Override
+			protected void executionCompleted(){
+				//shareFile(this.getTmpFile(), context);
+				uploadTrackToGitHubAUX(this.getTmpFile(), context);
+			}
+		}.execute();
+
+
+
+	}
+
+	private void uploadTrackToGitHubAUX(File tmpGPXFile, Context context) {
+		String encodeGPXbase64 = encodeFileToBase64(tmpGPXFile);
+		//System.out.printf(String.valueOf(encodeGPXbase64.length()));
+		//System.out.println("------++BASE64++2v2-=" + encodeGPXbase64);
 		GitHubUser gitHubUser = null;
 		try {
-			DbGitHubUser dbGitHubUser = new DbGitHubUser(TrackManager.this);
+			DbGitHubUser dbGitHubUser = new DbGitHubUser(context);
 			gitHubUser = dbGitHubUser.getUser();
 		}catch(Exception e){
 			//gitHubUser = new GitHubUser();
@@ -512,15 +549,18 @@ public class TrackManager extends AppCompatActivity
 		}
 
 		if (gitHubUser == null){
-			Intent i = new Intent(this, GitHubConfig.class);
+			Intent i = new Intent(context, GitHubConfig.class);
 			startActivity(i);
 		}
 		else {
-			Intent i = new Intent(this, GitHubUpload.class);
+			Intent i = new Intent(context, GitHubUpload.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("GPXFileInBase64",encodeGPXbase64);
+			i.putExtras(bundle);
 			startActivity(i);
 		}
-
 	}
+
 
 	private void displayTrack(long trackId){
 		Log.e(TAG, "On Display Track");
@@ -631,6 +671,9 @@ public class TrackManager extends AppCompatActivity
 		Uri trackUriContent = FileProvider.getUriForFile(context,
 				DataHelper.FILE_PROVIDER_AUTHORITY,
 				tmpGPXFile);
+		//String GPXinBase64 = encodeFileToBase64(tmpGPXFile);
+		//System.out.printf(String.valueOf(GPXinBase64.length()));
+		//System.out.println("------------------" + GPXinBase64);
 
 		// Sharing intent
 		Intent shareIntent = new Intent();
@@ -829,7 +872,7 @@ public class TrackManager extends AppCompatActivity
 						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 					Log.e("Result", "Permission granted");
 					// permission was granted, yay!
-					uploadTrackToGitHub(contextMenuSelectedTrackid);
+					uploadTrackToGitHub(contextMenuSelectedTrackid, this);
 				} else {
 
 					// permission denied, boo! Disable the
@@ -852,5 +895,13 @@ public class TrackManager extends AppCompatActivity
 				break;
 			}
 		}
+	}
+
+	public String getGPXinBase64() {
+		return GPXinBase64;
+	}
+
+	public void setGPXinBase64(String GPXinBase64) {
+		this.GPXinBase64 = GPXinBase64;
 	}
 }
