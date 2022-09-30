@@ -80,6 +80,9 @@
             android:name=".activity.GitHubNewFork"
             android:label="Github" />
         <activity
+            android:name=".activity.GitHubPullRequest"
+            android:label="Github" />
+        <activity
             android:name=".activity.About"
             android:label="@string/about" />
         <activity

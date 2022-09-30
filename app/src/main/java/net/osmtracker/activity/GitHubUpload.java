@@ -105,6 +105,13 @@ public class GitHubUpload extends Activity {
                 Bundle bundle = GitHubUpload.this.getIntent().getExtras();
                 if (bundle != null){
                     startUploadGitHub(bundle.getString("GPXFileInBase64"));
+
+                    Intent i = new Intent(GitHubUpload.this, GitHubPullRequest.class);
+                    Bundle bundleForPullRequest = new Bundle();
+                    bundleForPullRequest.putString("myFullRepoName",getRepoName());
+                    i.putExtras(bundleForPullRequest);
+                    startActivity(i);
+                    finish();
                 }
             }
         });
@@ -145,7 +152,7 @@ public class GitHubUpload extends Activity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(GitHubUpload.this, "Subido correctamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GitHubUpload.this, "Se subió correctamente", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -188,7 +195,7 @@ public class GitHubUpload extends Activity {
             }
         };
         Volley.newRequestQueue(this).add(postResquest);
-        finish();
+        //finish();
     }
 
     private void createSpinnerListRepos(Spinner spinner){

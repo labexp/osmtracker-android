@@ -1,6 +1,7 @@
 package net.osmtracker.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -29,38 +30,43 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GitHubNewRepo extends Activity {
+public class GitHubPullRequest extends Activity {
 
-    EditText editTextNewRepo;
+    EditText editTextTitle, editTextBody;
     private String BaseURL = "https://api.github.com";
+    private String RepoOrigen;
+    private String DefaultBranch;
     GitHubUser gitHubUser;
-    private String newRepoFullName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.git_newrepo);
+        setContentView(R.layout.git_create_pullrequest);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        editTextNewRepo = findViewById(R.id.git_newrepo_name);
+        editTextTitle = findViewById(R.id.git_title_pullrequest_editText);
+        editTextBody = findViewById(R.id.git_body_pullrequest_editText);
 
-        DbGitHubUser dbGitHubUser = new DbGitHubUser(GitHubNewRepo.this);
+        DbGitHubUser dbGitHubUser = new DbGitHubUser(GitHubPullRequest.this);
         gitHubUser = dbGitHubUser.getUser();
 
-        final Button btnCreate = (Button) findViewById(R.id.git_create_newrepo_btn_ok);
+        Bundle bundle = GitHubPullRequest.this.getIntent().getExtras();
+        if (bundle != null){
+            getInfoRepo(bundle.getString("myFullRepoName"));
+        }
+
+        final Button btnCreate = (Button) findViewById(R.id.git_create_pullrequest_btn_ok);
         btnCreate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                createNewRepo();
+                createPullRequest();
                 finish();
-
             }
         });
 
-        final Button btnCancel = (Button) findViewById(R.id.git_back_newrepo_btn_cancel);
+        final Button btnCancel = (Button) findViewById(R.id.git_back_pullrequest_btn_cancel);
         btnCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
             }
         });
@@ -68,9 +74,9 @@ public class GitHubNewRepo extends Activity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
-    private void createNewRepo() {
+    private void createPullRequest() {
         //ArrayListRepos.removeAll(ArrayListRepos);
-        String fullURL = getBaseURL()+"/user/repos";
+        String fullURL = getBaseURL()+"/repos/"+getRepoOrigen()+"/pulls";
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
                 Request.Method.POST,
@@ -80,19 +86,16 @@ public class GitHubNewRepo extends Activity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            System.out.println("=========================" + response.getString("full_name"));
-                            setNewRepoFullName(response.getString("full_name"));
-                            Toast.makeText(GitHubNewRepo.this, "Creado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GitHubPullRequest.this, "Estado del Pull Request: " + response.getString("state"), Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
-                            System.out.println("=========================Error");
-                            Toast.makeText(GitHubNewRepo.this, "Error al crear", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GitHubPullRequest.this, "Error al crear", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(GitHubPullRequest.this, "Error al crear", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -100,9 +103,6 @@ public class GitHubNewRepo extends Activity {
             {
                 HashMap headers = new HashMap();
                 headers.put("Authorization", "Bearer " + gitHubUser.getToken());
-                //headers.put("Accept", "*/*");
-                //headers.put("Accept-Encoding", "gzip, deflate, br");
-                //headers.put("Connection", "keep-alive");
                 return headers;
             }
 
@@ -115,9 +115,10 @@ public class GitHubNewRepo extends Activity {
             public byte[] getBody() {
                 JSONObject jsonBody = new JSONObject();
                 try {
-                    jsonBody.put("name", editTextNewRepo.getText().toString().trim());
-                    jsonBody.put("auto_init", true);
-                    jsonBody.put("private", false);
+                    jsonBody.put("title", editTextTitle.getText().toString().trim());
+                    jsonBody.put("body", editTextBody.getText().toString().trim());
+                    jsonBody.put("head", gitHubUser.getUsername()+":"+getDefaultBranch());
+                    jsonBody.put("base", getDefaultBranch());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -133,6 +134,40 @@ public class GitHubNewRepo extends Activity {
         Volley.newRequestQueue(this).add(postResquest);
     }
 
+    private void getInfoRepo(String repoFullName) {
+        //ArrayListRepos.removeAll(ArrayListRepos);
+        String fullURL = getBaseURL()+"/repos/"+repoFullName;
+
+        JsonObjectRequest postResquest= new JsonObjectRequest(
+                Request.Method.GET,
+                fullURL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            setRepoOrigen(response.getJSONObject("parent").getString("full_name"));
+                            setDefaultBranch(response.getString("default_branch"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(GitHubPullRequest.this, "Error info repo", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            public Map getHeaders() throws AuthFailureError {
+                HashMap headers = new HashMap();
+                headers.put("Authorization", "Bearer " + gitHubUser.getToken());
+                return headers;
+            }
+        };
+        Volley.newRequestQueue(this).add(postResquest);
+    }
+
     public String getBaseURL() {
         return BaseURL;
     }
@@ -141,11 +176,19 @@ public class GitHubNewRepo extends Activity {
         BaseURL = baseURL;
     }
 
-    public String getNewRepoFullName() {
-        return newRepoFullName;
+    public String getRepoOrigen() {
+        return RepoOrigen;
     }
 
-    public void setNewRepoFullName(String newRepoFullName) {
-        this.newRepoFullName = newRepoFullName;
+    public void setRepoOrigen(String repoOrigen) {
+        RepoOrigen = repoOrigen;
+    }
+
+    public String getDefaultBranch() {
+        return DefaultBranch;
+    }
+
+    public void setDefaultBranch(String defaultBranch) {
+        DefaultBranch = defaultBranch;
     }
 }
