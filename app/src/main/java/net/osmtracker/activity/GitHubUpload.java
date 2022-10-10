@@ -138,8 +138,7 @@ public class GitHubUpload extends Activity {
     }
 
     /**
-     * Either starts uploading directly if we are authenticated against GitHub,
-     * or ask the user to authenticate via the browser.
+     * Either starts uploading directly if we are authenticated against GitHub
      */
     private void startUploadGitHub(final String GPXFileInBase64){
         //Toast.makeText(this, "Subir a GitHub", Toast.LENGTH_SHORT).show();
