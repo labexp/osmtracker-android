@@ -537,8 +537,6 @@ public class TrackManager extends AppCompatActivity
 
 	private void uploadTrackToGitHubAUX(File tmpGPXFile, Context context) {
 		String encodeGPXbase64 = encodeFileToBase64(tmpGPXFile);
-		//System.out.printf(String.valueOf(encodeGPXbase64.length()));
-		//System.out.println("------++BASE64++2v2-=" + encodeGPXbase64);
 		GitHubUser gitHubUser = null;
 		try {
 			DbGitHubUser dbGitHubUser = new DbGitHubUser(context);

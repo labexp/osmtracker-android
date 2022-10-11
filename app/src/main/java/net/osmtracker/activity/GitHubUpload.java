@@ -266,11 +266,6 @@ public class GitHubUpload extends Activity {
         queue.getCache().clear();
 
         queue.add(getResquest);
-
-        //queue.getCache().remove(fullURL);
-        //queue.getCache().clear();
-        //Volley.newRequestQueue(this).add(getResquest);
-        //return ArrayListRepos;
     }
 
     public String getRepoName() {
