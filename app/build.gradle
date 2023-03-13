@@ -103,6 +103,10 @@ dependencies {
     implementation 'com.github.AppIntro:AppIntro:6.0.0'
     implementation 'com.google.android.material:material:1.4.0'
 
+    // Required for the GitHub REST API
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
 
 }
 

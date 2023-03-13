@@ -20,7 +20,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/HighContrast"
-        android:requestLegacyExternalStorage="true">
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true" >
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -66,6 +67,21 @@
                     android:scheme="osmtracker" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.GitHubUpload"
+            android:label="Github" />
+        <activity
+            android:name=".activity.GitHubConfig"
+            android:label="Github" />
+        <activity
+            android:name=".activity.GitHubNewRepo"
+            android:label="Github" />
+        <activity
+            android:name=".activity.GitHubNewFork"
+            android:label="Github" />
+        <activity
+            android:name=".activity.GitHubPullRequest"
+            android:label="Github" />
         <activity
             android:name=".activity.About"
             android:label="@string/about" />
