@@ -1,6 +1,5 @@
 package net.osmtracker.activity;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -20,7 +19,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -34,11 +32,9 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import net.osmtracker.GitHubUser;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
-import net.osmtracker.db.DbGitHubUser;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.exception.CreateTrackException;
 import net.osmtracker.gpx.ExportToStorageTask;
@@ -46,9 +42,6 @@ import net.osmtracker.gpx.ExportToTempFileTask;
 import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Base64;
 import java.util.Date;
 
 /**
@@ -62,7 +55,6 @@ public class TrackManager extends AppCompatActivity
 	private static final String TAG = "MainActivity";
 
 	final private int RC_WRITE_PERMISSIONS_UPLOAD = 4;
-	final private int RC_WRITE_PERMISSIONS_UPLOAD_GIT = 7;
 	final private int RC_WRITE_STORAGE_DISPLAY_TRACK = 3;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ALL = 1;
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ONE = 2;
@@ -92,8 +84,6 @@ public class TrackManager extends AppCompatActivity
 	private RecyclerView recyclerView;
 	private TrackListRVAdapter recyclerViewAdapter;
 	private FloatingActionButton fab;
-
-	private String GPXinBase64;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -470,19 +460,6 @@ public class TrackManager extends AppCompatActivity
 				else uploadTrack(contextMenuSelectedTrackid);
 				break;
 
-			case R.id.trackmgr_contextmenu_git_upload:
-				if (!writeExternalStoragePermissionGranted()){
-					Log.e("DisplayTrackMapWrite", "Permission asked");
-					ActivityCompat.requestPermissions(this,
-							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-							RC_WRITE_PERMISSIONS_UPLOAD_GIT);
-				}
-				else {
-					uploadTrackToGitHub(contextMenuSelectedTrackid, this);
-				}
-
-				break;
-
 			case R.id.trackmgr_contextmenu_display:
 				if (!writeExternalStoragePermissionGranted()){
 					Log.e("DisplayTrackMapWrite", "Permission asked");
@@ -506,59 +483,6 @@ public class TrackManager extends AppCompatActivity
 		i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
 		startActivity(i);
 	}
-
-
-	private static String encodeFileToBase64(File file) {
-		try {
-			byte[] fileContent = Files.readAllBytes(file.toPath());
-			return Base64.getEncoder().encodeToString(fileContent);
-		} catch (IOException e) {
-			throw new IllegalStateException("could not read file " + file, e);
-		}
-	}
-
-	private void uploadTrackToGitHub(final long trackId, Context context){
-		//final String[] encodeGPXbase64 = new String[1];
-		/*
-		codigo para subir a git
-		 Create temp file that will remain in cache
-		*/
-		new ExportToTempFileTask(context, trackId){
-			@Override
-			protected void executionCompleted(){
-				//shareFile(this.getTmpFile(), context);
-				uploadTrackToGitHubAUX(this.getTmpFile(), context);
-			}
-		}.execute();
-
-
-
-	}
-
-	private void uploadTrackToGitHubAUX(File tmpGPXFile, Context context) {
-		String encodeGPXbase64 = encodeFileToBase64(tmpGPXFile);
-		GitHubUser gitHubUser = null;
-		try {
-			DbGitHubUser dbGitHubUser = new DbGitHubUser(context);
-			gitHubUser = dbGitHubUser.getUser();
-		}catch(Exception e){
-			//gitHubUser = new GitHubUser();
-			e.printStackTrace();
-		}
-
-		if (gitHubUser == null){
-			Intent i = new Intent(context, GitHubConfig.class);
-			startActivity(i);
-		}
-		else {
-			Intent i = new Intent(context, GitHubUpload.class);
-			Bundle bundle = new Bundle();
-			bundle.putString("GPXFileInBase64",encodeGPXbase64);
-			i.putExtras(bundle);
-			startActivity(i);
-		}
-	}
-
 
 	private void displayTrack(long trackId){
 		Log.e(TAG, "On Display Track");
@@ -669,9 +593,6 @@ public class TrackManager extends AppCompatActivity
 		Uri trackUriContent = FileProvider.getUriForFile(context,
 				DataHelper.FILE_PROVIDER_AUTHORITY,
 				tmpGPXFile);
-		//String GPXinBase64 = encodeFileToBase64(tmpGPXFile);
-		//System.out.printf(String.valueOf(GPXinBase64.length()));
-		//System.out.println("------------------" + GPXinBase64);
 
 		// Sharing intent
 		Intent shareIntent = new Intent();
@@ -864,23 +785,6 @@ public class TrackManager extends AppCompatActivity
 				}
 				break;
 			}
-			case RC_WRITE_PERMISSIONS_UPLOAD_GIT: {
-				// If request is cancelled, the result arrays are empty.
-				if (grantResults.length > 0
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					Log.e("Result", "Permission granted");
-					// permission was granted, yay!
-					uploadTrackToGitHub(contextMenuSelectedTrackid, this);
-				} else {
-
-					// permission denied, boo! Disable the
-					// functionality that depends on this permission.
-					//TODO: add an informative message.
-					Log.w(TAG, "Permission not granted");
-					Toast.makeText(this, "To upload the track to GIT we need access to the storage.", Toast.LENGTH_LONG).show();
-				}
-				break;
-			}
 			case RC_GPS_PERMISSION:{
 				if (grantResults.length > 0
 						&& grantResults[0] == PackageManager.PERMISSION_GRANTED){
@@ -893,13 +797,5 @@ public class TrackManager extends AppCompatActivity
 				break;
 			}
 		}
-	}
-
-	public String getGPXinBase64() {
-		return GPXinBase64;
-	}
-
-	public void setGPXinBase64(String GPXinBase64) {
-		this.GPXinBase64 = GPXinBase64;
 	}
 }
