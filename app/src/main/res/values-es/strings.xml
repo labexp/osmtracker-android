@@ -40,7 +40,6 @@
   <string name="trackmgr_contextmenu_export">Exportar como GPX</string>
   <string name="trackmgr_contextmenu_share">Compartir GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Subir a OpenStreetMap</string>
-  <string name="trackmgr_contextmenu_github_upload">Subir a GitHub</string>
   <string name="trackmgr_contextmenu_display">Visualizar</string>
   <string name="trackmgr_contextmenu_details">Detalles</string>
   <string name="trackmgr_contextmenu_title">Traza #{0}</string>
