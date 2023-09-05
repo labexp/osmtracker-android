@@ -19,8 +19,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -430,25 +433,65 @@ public class TrackManager extends AppCompatActivity
 				break;
 
 			case R.id.trackmgr_contextmenu_export:
-				if (!writeExternalStoragePermissionGranted()){
-					Log.e("DisplayTrackMapWrite", "Permission asked");
-					ActivityCompat.requestPermissions(this,
-							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-							RC_WRITE_PERMISSIONS_EXPORT_ONE);
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
+					if (!writeExternalStoragePermissionGranted()){
+						Log.e("DisplayTrackMapWrite", "Permission asked");
+						ActivityCompat.requestPermissions(this,
+								new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+								RC_WRITE_PERMISSIONS_EXPORT_ONE);
+					}else{
+						exportTracks(true);
+						break;
+					}
+
 				}
-				else exportTracks(true);
-				break;
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
+					if (!Environment.isExternalStorageManager()) {
+						try {
+							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							intent.addCategory("android.intent.category.DEFAULT");
+							intent.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
+							startActivityIfNeeded(intent, 101);
+						} catch (Exception exception) {
+							Intent intent = new Intent();
+							intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							startActivityIfNeeded(intent, 101);
+						}
+					}else{
+						exportTracks(true);
+						break;
+					}
+				}
 
 			case R.id.trackmgr_contextmenu_share:
-				if (!writeExternalStoragePermissionGranted()){
-					Log.e("Share GPX", "Permission asked");
-					ActivityCompat.requestPermissions(this,
-							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-							RC_WRITE_PERMISSIONS_SHARE);
-				} else {
-					prepareAndShareTrack(contextMenuSelectedTrackid, this);
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
+					if (!writeExternalStoragePermissionGranted()){
+						Log.e("Share GPX", "Permission asked");
+						ActivityCompat.requestPermissions(this,
+								new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+								RC_WRITE_PERMISSIONS_SHARE);
+					} else {
+						prepareAndShareTrack(contextMenuSelectedTrackid, this);
+					}
+					break;
 				}
-				break;
+
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
+					if (!Environment.isExternalStorageManager()) {
+						try {
+							Uri uri = Uri.parse("package:" + getApplicationContext().getPackageName());
+							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
+							startActivity(intent);
+						} catch (Exception exception) {
+							// Handle the exception, if necessary
+						}
+					} else {
+						// You already have the necessary permissions, proceed with sharing
+						prepareAndShareTrack(contextMenuSelectedTrackid, this);
+					}
+					break;
+				}
+
 
 			case R.id.trackmgr_contextmenu_osm_upload:
 				if (!writeExternalStoragePermissionGranted()){
