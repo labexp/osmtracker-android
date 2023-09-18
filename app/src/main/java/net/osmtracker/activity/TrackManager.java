@@ -63,6 +63,7 @@ public class TrackManager extends AppCompatActivity
 	final private int RC_WRITE_PERMISSIONS_EXPORT_ONE = 2;
 	final private int RC_GPS_PERMISSION = 5;
 	final private int RC_WRITE_PERMISSIONS_SHARE = 6;
+	private static final int RC_BACKGROUND_LOCATION_PERMISSION = 123;
 
 	/** Bundle key for {@link #prevItemVisible} */
 	private static final String PREV_VISIBLE = "prev_visible";
@@ -272,29 +273,82 @@ public class TrackManager extends AppCompatActivity
 	 * method again if granted
 	 */
 	private void tryStartTrackLogger(Intent intent){
-		// If GPS Permission Granted
-		if (ContextCompat.checkSelfPermission(this,
-				Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-			Log.i(TAG,"Granted on try");
-			startActivity(intent);
-		} else{
-			// Permission is not granted
-			Log.i(TAG,"Not Granted on try");
-			this.TrackLoggerStartIntent = intent;
-			// Should we show an explanation?
-			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-					Manifest.permission.ACCESS_FINE_LOCATION)) {
-				Log.i(TAG,"Should explain");
-				Toast.makeText(this, "Can't continue without GPS permission",
-						Toast.LENGTH_LONG).show();
+		if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
+			// If GPS Permission Granted
+			if (ContextCompat.checkSelfPermission(this,
+					Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+				Log.i(TAG,"Granted on try");
+				startActivity(intent);
+			} else{
+				// Permission is not granted
+				Log.i(TAG,"Not Granted on try");
+				this.TrackLoggerStartIntent = intent;
+				// Should we show an explanation?
+				if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+						Manifest.permission.ACCESS_FINE_LOCATION)) {
+					Log.i(TAG,"Should explain");
+					Toast.makeText(this, "Can't continue without GPS permission",
+							Toast.LENGTH_LONG).show();
+				}
+
+				// No explanation needed, just request the permission.
+				Log.i(TAG,"Should not explain");
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, RC_GPS_PERMISSION);
+
 			}
-
-			// No explanation needed, just request the permission.
-			Log.i(TAG,"Should not explain");
-			ActivityCompat.requestPermissions(this,
-					new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, RC_GPS_PERMISSION);
-
 		}
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+			// Handle permission logic for SDK 30 or higher here
+			Boolean fineLocationGranted = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+			Boolean coarseLocationGranted = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+			Boolean backgroundLocationGranted = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED);
+
+			if (fineLocationGranted != null && fineLocationGranted) {
+				Log.i(TAG, "Precise location access granted.");
+				if (backgroundLocationGranted != null && backgroundLocationGranted) {
+					Log.i(TAG, "Background location access granted.");
+					startActivity(intent);
+				} else {
+					// Request background location permission if not granted
+					Log.i(TAG, "Requesting background location permission.");
+					ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, RC_BACKGROUND_LOCATION_PERMISSION);
+				}
+			} else if (coarseLocationGranted != null && coarseLocationGranted) {
+				Log.i(TAG, "Only approximate location access granted.");
+				if (backgroundLocationGranted != null && backgroundLocationGranted) {
+					Log.i(TAG, "Background location access granted.");
+					startActivity(intent);
+				} else {
+					// Request background location permission if not granted
+					Log.i(TAG, "Requesting background location permission.");
+					ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, RC_BACKGROUND_LOCATION_PERMISSION);
+				}
+			} else {
+				Log.i(TAG, "No location access granted.");
+				this.TrackLoggerStartIntent = intent;
+				// Should we show an explanation?
+				if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION) || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+					Log.i(TAG, "Should explain");
+					Toast.makeText(this, "Can't continue without location permission", Toast.LENGTH_LONG).show();
+				} else {
+					// No explanation needed, just request the permissions.
+					Log.i(TAG, "Should not explain");
+					ActivityCompat.requestPermissions(this,
+							new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, RC_GPS_PERMISSION);
+				}
+			}
+		}
+
+	}
+
+	// Check if the app has background location permission
+	private boolean hasBackgroundLocationPermission() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+			return PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+		}
+		return true; // On versions lower than Android 11, background location permission is not required.
 	}
 
 	/**
@@ -780,103 +834,256 @@ public class TrackManager extends AppCompatActivity
 										   int[] grantResults) {
 		switch (requestCode) {
 			case RC_WRITE_PERMISSIONS_EXPORT_ALL: {
-				// If request is cancelled, the result arrays are empty.
-				if (grantResults.length > 0
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
+					// If request is cancelled, the result arrays are empty.
+					if (grantResults.length > 0
+							&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-					// permission was granted, yay!
-					exportTracks(false);
+						// permission was granted, yay!
+						exportTracks(false);
 
-				} else {
+					} else {
 
-					// permission denied, boo! Disable the
-					// functionality that depends on this permission.
-					//TODO: add an informative message.
-					Log.w(TAG, "we should explain why we need write permission_EXPORT_ALL");
-					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+						// permission denied, boo! Disable the
+						// functionality that depends on this permission.
+						//TODO: add an informative message.
+						Log.w(TAG, "we should explain why we need write permission_EXPORT_ALL");
+						Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+					}
+					break;
+				}
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
+					if (!Environment.isExternalStorageManager()) {
+						try {
+							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							intent.addCategory("android.intent.category.DEFAULT");
+							intent.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
+							startActivityIfNeeded(intent, 101);
+						} catch (Exception exception) {
+							Intent intent = new Intent();
+							intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							startActivityIfNeeded(intent, 101);
+						}
+					}else{
+						// permission was granted, yay!
+						exportTracks(false);
+					}
+					break;
 				}
 				break;
 			}
 			case RC_WRITE_PERMISSIONS_EXPORT_ONE: {
-				// If request is cancelled, the result arrays are empty.
-				if (grantResults.length > 0
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
+					// If request is cancelled, the result arrays are empty.
+					if (grantResults.length > 0
+							&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-					// permission was granted, yay!
-					exportTracks(true);
+						// permission was granted, yay!
+						exportTracks(true);
 
-				} else {
+					} else {
 
-					// permission denied, boo! Disable the
-					// functionality that depends on this permission.
-					//TODO: add an informative message.
-					Log.w(TAG, "we should explain why we need write permission_EXPORT_ONE");
-					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+						// permission denied, boo! Disable the
+						// functionality that depends on this permission.
+						//TODO: add an informative message.
+						Log.w(TAG, "we should explain why we need write permission_EXPORT_ONE");
+						Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+					}
+					break;
+				}
+
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
+					if (!Environment.isExternalStorageManager()) {
+						try {
+							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							intent.addCategory("android.intent.category.DEFAULT");
+							intent.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
+							startActivityIfNeeded(intent, 101);
+						} catch (Exception exception) {
+							Intent intent = new Intent();
+							intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							startActivityIfNeeded(intent, 101);
+						}
+					}else{
+						// permission was granted, yay!
+						exportTracks(true);
+					}
+					break;
 				}
 				break;
 			}
 			case RC_WRITE_STORAGE_DISPLAY_TRACK: {
-				// If request is cancelled, the result arrays are empty.
-				if (grantResults.length > 0
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					Log.e("Result", "Permission granted");
-					// permission was granted, yay!
-					displayTrack(contextMenuSelectedTrackid);
-				} else {
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
+					// If request is cancelled, the result arrays are empty.
+					if (grantResults.length > 0
+							&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+						Log.e("Result", "Permission granted");
+						// permission was granted, yay!
+						displayTrack(contextMenuSelectedTrackid);
+					} else {
 
-					// permission denied, boo! Disable the
-					// functionality that depends on this permission.
-					//TODO: add an informative message.
-					Log.w(TAG, "Permission not granted");
-					Toast.makeText(this, "To display the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+						// permission denied, boo! Disable the
+						// functionality that depends on this permission.
+						//TODO: add an informative message.
+						Log.w(TAG, "Permission not granted");
+						Toast.makeText(this, "To display the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+					}
+					break;
+				}
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
+					if (!Environment.isExternalStorageManager()) {
+						try {
+							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							intent.addCategory("android.intent.category.DEFAULT");
+							intent.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
+							startActivityIfNeeded(intent, 101);
+						} catch (Exception exception) {
+							Intent intent = new Intent();
+							intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							startActivityIfNeeded(intent, 101);
+						}
+					}else{
+						// permission was granted, yay!
+						displayTrack(contextMenuSelectedTrackid);
+					}
+					break;
 				}
 				break;
 			}
 			case RC_WRITE_PERMISSIONS_SHARE: {
-				// If request is cancelled, the result arrays are empty.
-				if (grantResults.length > 0
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					Log.e("Result", "Permission granted");
-					// permission was granted, yay!
-					displayTrack(contextMenuSelectedTrackid);
-					prepareAndShareTrack(contextMenuSelectedTrackid, this);
-				} else {
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
+					// If request is cancelled, the result arrays are empty.
+					if (grantResults.length > 0
+							&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+						Log.e("Result", "Permission granted");
+						// permission was granted, yay!
+						displayTrack(contextMenuSelectedTrackid);
+						prepareAndShareTrack(contextMenuSelectedTrackid, this);
+					} else {
+						// permission denied, boo! Disable the
+						// functionality that depends on this permission.
+						//TODO: add an informative message.
+						Log.w(TAG, "Permission not granted");
+						Toast.makeText(this, "To share the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+					}
+					break;
+				}
 
-					// permission denied, boo! Disable the
-					// functionality that depends on this permission.
-					//TODO: add an informative message.
-					Log.w(TAG, "Permission not granted");
-					Toast.makeText(this, "To share the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
+					if (!Environment.isExternalStorageManager()) {
+						try {
+							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							intent.addCategory("android.intent.category.DEFAULT");
+							intent.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
+							startActivityIfNeeded(intent, 101);
+						} catch (Exception exception) {
+							Intent intent = new Intent();
+							intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							startActivityIfNeeded(intent, 101);
+						}
+					}else{
+						// permission was granted, yay!
+						displayTrack(contextMenuSelectedTrackid);
+						prepareAndShareTrack(contextMenuSelectedTrackid, this);
+					}
+					break;
 				}
 				break;
 			}
 			case RC_WRITE_PERMISSIONS_UPLOAD: {
-				// If request is cancelled, the result arrays are empty.
-				if (grantResults.length > 0
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					Log.e("Result", "Permission granted");
-					// permission was granted, yay!
-					uploadTrack(contextMenuSelectedTrackid);
-				} else {
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
+					// If request is cancelled, the result arrays are empty.
+					if (grantResults.length > 0
+							&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+						Log.e("Result", "Permission granted");
+						// permission was granted, yay!
+						uploadTrack(contextMenuSelectedTrackid);
+					} else {
 
-					// permission denied, boo! Disable the
-					// functionality that depends on this permission.
-					//TODO: add an informative message.
-					Log.w(TAG, "Permission not granted");
-					Toast.makeText(this, "To upload the track to OSM we need access to the storage.", Toast.LENGTH_LONG).show();
+						// permission denied, boo! Disable the
+						// functionality that depends on this permission.
+						//TODO: add an informative message.
+						Log.w(TAG, "Permission not granted");
+						Toast.makeText(this, "To upload the track to OSM we need access to the storage.", Toast.LENGTH_LONG).show();
+					}
+					break;
+				}
+
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
+					if (!Environment.isExternalStorageManager()) {
+						try {
+							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							intent.addCategory("android.intent.category.DEFAULT");
+							intent.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
+							startActivityIfNeeded(intent, 101);
+						} catch (Exception exception) {
+							Intent intent = new Intent();
+							intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							startActivityIfNeeded(intent, 101);
+						}
+					}else{
+						// permission was granted, yay!
+						uploadTrack(contextMenuSelectedTrackid);
+					}
+					break;
 				}
 				break;
 			}
 			case RC_GPS_PERMISSION:{
-				if (grantResults.length > 0
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED){
-					Log.i(TAG,"GPS Permission granted");
-					tryStartTrackLogger(this.TrackLoggerStartIntent);
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
+					if (grantResults.length > 0
+							&& grantResults[0] == PackageManager.PERMISSION_GRANTED){
+						Log.i(TAG,"GPS Permission granted");
+						tryStartTrackLogger(this.TrackLoggerStartIntent);
+					}
+					else{
+						Log.i(TAG,"GPS Permission denied");
+					}
+					break;
 				}
-				else{
-					Log.i(TAG,"GPS Permission denied");
+
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+					// Handle permission logic for SDK 30 or higher here
+					Boolean fineLocationGranted = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+					Boolean coarseLocationGranted = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+					Boolean backgroundLocationGranted = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED);
+
+					if (fineLocationGranted != null && fineLocationGranted) {
+						Log.i(TAG, "Precise location access granted.");
+						if (backgroundLocationGranted != null && backgroundLocationGranted) {
+							Log.i(TAG, "Background location access granted.");
+							tryStartTrackLogger(this.TrackLoggerStartIntent);
+						} else {
+							// Request background location permission if not granted
+							Log.i(TAG, "Requesting background location permission.");
+							ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, RC_BACKGROUND_LOCATION_PERMISSION);
+						}
+					} else if (coarseLocationGranted != null && coarseLocationGranted) {
+						Log.i(TAG, "Only approximate location access granted.");
+						if (backgroundLocationGranted != null && backgroundLocationGranted) {
+							Log.i(TAG, "Background location access granted.");
+							tryStartTrackLogger(this.TrackLoggerStartIntent);
+						} else {
+							// Request background location permission if not granted
+							Log.i(TAG, "Requesting background location permission.");
+							ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, RC_BACKGROUND_LOCATION_PERMISSION);
+						}
+					} else {
+						Log.i(TAG, "No location access granted.");
+						// Should we show an explanation?
+						if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION) || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+							Log.i(TAG, "Should explain");
+							Toast.makeText(this, "Can't continue without location permission", Toast.LENGTH_LONG).show();
+						} else {
+							// No explanation needed, just request the permissions.
+							Log.i(TAG, "Should not explain");
+							ActivityCompat.requestPermissions(this,
+									new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, RC_GPS_PERMISSION);
+						}
+					}
 				}
 				break;
+
 			}
 		}
 	}

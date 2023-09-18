@@ -3,6 +3,7 @@ package net.osmtracker.service.gps;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.activity.TrackLogger;
+import net.osmtracker.activity.TrackManager;
 import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.listener.PressureListener;
@@ -27,6 +28,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import android.util.Log;
@@ -102,34 +105,67 @@ public class GPSLogger extends Service implements LocationListener {
 	 * sensor for atmospheric pressure
 	 */
 	private PressureListener pressureListener = new PressureListener();
+	private static final int RC_BACKGROUND_LOCATION_PERMISSION = 123; // Replace 123 with your desired request code
 
 	/**
 	 * Receives Intent for way point tracking, and stop/start logging.
 	 */
 	private BroadcastReceiver receiver = new BroadcastReceiver() {
-		
+
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			Log.v(TAG, "Received intent " + intent.getAction());
-			
+
 			if (OSMTracker.INTENT_TRACK_WP.equals(intent.getAction())) {
 				// Track a way point
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
-					// because of the gps logging interval our last fix could be very old
-					// so we'll request the last known location from the gps provider
-					if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-						lastLocation = lmgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-						if (lastLocation != null) {
-							Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
-							String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
-							String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
-							String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
+					// Because of the GPS logging interval, our last fix could be very old
+					// So we'll request the last known location from the GPS provider
 
-							dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+					if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+						// Handle permission logic for SDKs below 30 here
+						if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+							lastLocation = lmgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+							if (lastLocation != null) {
+								Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
+								String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
+								String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
+								String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
 
-							// If there is a waypoint in the track, there should also be a trackpoint
-							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+								dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+
+								// If there is a waypoint in the track, there should also be a trackpoint
+								dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+							}
+						}
+					} else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+						// Handle permission logic for SDK 30 or higher here
+						Boolean fineLocationGranted = (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+						Boolean backgroundLocationGranted = (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED);
+
+						if (fineLocationGranted != null && fineLocationGranted) {
+							Log.i(TAG, "Fine location access granted.");
+							if (backgroundLocationGranted != null && backgroundLocationGranted) {
+								Log.i(TAG, "Background location access granted.");
+								lastLocation = lmgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+								if (lastLocation != null) {
+									Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
+									String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
+									String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
+									String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
+
+									dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+
+									// If there is a waypoint in the track, there should also be a trackpoint
+									dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+								}
+							} else {
+								// Request background location permission if not granted
+								Log.i(TAG, "Requesting background location permission.");
+								ActivityCompat.requestPermissions((TrackManager) context, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, RC_BACKGROUND_LOCATION_PERMISSION);
+
+							}
 						}
 					}
 				}
@@ -150,13 +186,13 @@ public class GPSLogger extends Service implements LocationListener {
 					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
 					dataHelper.deleteWayPoint(uuid);
 				}
-			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction()) ) {
+			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction())) {
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
 					Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 					startTracking(trackId);
 				}
-			} else if (OSMTracker.INTENT_STOP_TRACKING.equals(intent.getAction()) ) {
+			} else if (OSMTracker.INTENT_STOP_TRACKING.equals(intent.getAction())) {
 				stopTrackingAndSave();
 			}
 		}
@@ -203,16 +239,16 @@ public class GPSLogger extends Service implements LocationListener {
 	}
 	
 	@Override
-	public void onCreate() {	
+	public void onCreate() {
 		Log.v(TAG, "Service onCreate()");
 		dataHelper = new DataHelper(this);
 
-		//read the logging interval from preferences
+		// Read the logging interval from preferences
 		gpsLoggingInterval = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 		gpsLoggingMinDistance = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
-		use_barometer =  PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
+		use_barometer = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
 				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
 
 		// Register our broadcast receiver
@@ -227,16 +263,37 @@ public class GPSLogger extends Service implements LocationListener {
 		// Register ourselves for location updates
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-			lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, gpsLoggingInterval, gpsLoggingMinDistance, this);
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+			// Handle permission logic for SDKs below 30 here
+			if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+				lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, gpsLoggingInterval, gpsLoggingMinDistance, this);
+			}
+		} else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+			// Handle permission logic for SDK 30 or higher here
+			Boolean fineLocationGranted = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+			Boolean backgroundLocationGranted = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED);
+
+			if (fineLocationGranted != null && fineLocationGranted) {
+				// Location permission granted
+				if (backgroundLocationGranted != null && backgroundLocationGranted) {
+					// Background location permission granted
+					lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, gpsLoggingInterval, gpsLoggingMinDistance, this);
+				} else {
+					// Request background location permission if not granted
+					Log.i(TAG, "Requesting background location permission.");
+					ActivityCompat.requestPermissions((TrackManager) getApplicationContext(),
+							new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION},
+							RC_BACKGROUND_LOCATION_PERMISSION);
+				}
+			}
 		}
-		
-		//register for Orientation updates
+
+		// Register for orientation updates
 		sensorListener.register(this);
 
-		// register for atmospheric pressure updates
+		// Register for atmospheric pressure updates
 		pressureListener.register(this, use_barometer);
-				
+
 		super.onCreate();
 	}
 	
@@ -318,7 +375,7 @@ public class GPSLogger extends Service implements LocationListener {
 
 		Intent startTrackLogger = new Intent(this, TrackLogger.class);
 		startTrackLogger.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, PendingIntent.FLAG_UPDATE_CURRENT);
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
 
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
