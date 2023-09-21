@@ -41,12 +41,12 @@ android {
 
         }
     }
-
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE.txt', 'META-INF/NOTICE.txt']
+        }
     }
+
     android {
         lintOptions {
             abortOnError false
@@ -61,6 +61,7 @@ android {
         unitTests.returnDefaultValues = true
         animationsDisabled = true
     }
+    namespace 'net.osmtracker'
 
 }
 
