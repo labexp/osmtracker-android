@@ -54,6 +54,7 @@
   <string name="prefs_display_always_on_summary">Экран всегда будет включен во время записи трека. Отключите для экономии заряда батареи</string>
   <string name="prefs_displaytrack_osm">Картооснова OSM</string>
   <string name="prefs_displaytrack_osm_summary">Отображать картооснову OpenStreetMap при отображении трека. Требует интернет-соединения</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Всегда показывать OpenStreetMap в фоне? Требуется подключение к сети.</string>
   <string name="prefs_output">Настройки GPX файлов</string>
   <string name="prefs_storage_dir">Сохранять в каталоге</string>
   <string name="prefs_storage_dir_hint">Будет использоваться для записи следующего трека (не для текущего)</string>

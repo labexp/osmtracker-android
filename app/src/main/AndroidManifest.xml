@@ -3,7 +3,7 @@
     package="net.osmtracker"
     android:installLocation="auto"
     android:versionCode="57"
-    android:versionName="1.0.1">
+    android:versionName="1.0.2-develop">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

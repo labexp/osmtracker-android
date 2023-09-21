@@ -16,6 +16,9 @@ import static android.content.ContentValues.TAG;
  */
 
 public class URLValidatorTask extends AsyncTask<String, Integer, Boolean>{
+
+    public static final String TAG = "URLValidatorTask";
+
     @Override
     protected Boolean doInBackground(String... params) {
         /*
@@ -31,6 +34,7 @@ public class URLValidatorTask extends AsyncTask<String, Integer, Boolean>{
 
     protected boolean customLayoutsRepoValidator(String githubUsername, String repoName, String branchName){
         String server_url = URLCreator.createTestURL(githubUsername, repoName, branchName);
+        Log.d(TAG, "Resource URL: " + server_url);
         boolean status;
         try {
             URL url = new URL(server_url);
@@ -44,7 +48,8 @@ public class URLValidatorTask extends AsyncTask<String, Integer, Boolean>{
                         + " " + httpConnection.getResponseMessage());
                 status = true;
             } else{
-                Log.e(TAG, "The connection could not be established, server return: " + httpConnection.getResponseCode());
+                Log.e(TAG, "The connection could not be established, server return: " + httpConnection.getResponseCode()
+                        + " " + httpConnection.getResponseMessage());
                 status = false;
             }
         } catch (Exception e) {

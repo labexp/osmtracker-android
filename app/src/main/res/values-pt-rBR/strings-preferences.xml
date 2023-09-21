@@ -54,6 +54,7 @@
   <string name="prefs_display_always_on_summary">Tela ficará sempre ligada durante a gravação da trilha. Desative para economizar bateria</string>
   <string name="prefs_displaytrack_osm">Mapa de fundo</string>
   <string name="prefs_displaytrack_osm_summary">Exibir mapa do OpenStreetMap por baixo. Precisa de uma conexão de dados</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Sempre exibir o fundo do OpenStreetMap? Requer uma conexão de dados</string>
   <string name="prefs_output">Configurações GPX</string>
   <string name="prefs_storage_dir">Pasta do armazenamento externo (SD)</string>
   <string name="prefs_storage_dir_hint">Terá efeito na próxima trilha (não na atual)</string>

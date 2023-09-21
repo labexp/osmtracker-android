@@ -31,6 +31,7 @@
   <string name="trackmgr_waypoints_count">Puntos de ref.:</string>
   <string name="trackmgr_trackpoints_count">P. de traza:</string>
   <string name="trackmgr_empty">Usted no tiene ninguna traza.</string>
+  <string name="trackmgr_newtrack_hint">Presione para grabar una nueva traza.</string>
   <string name="trackmgr_newtrack_error">No se puede crear una nueva traza: {0}</string>
   <string name="trackmgr_continuetrack_hint">En este momento está grabando la <b>traza #{0}</b>\nElíjalo en la lista para continuar</string>
   <string name="trackmgr_contextmenu_stop">Detener el trazado</string>
@@ -48,6 +49,7 @@
   <string name="trackmgr_exporting_prepare">Preparando la exportación...</string>
   <string name="trackmgr_export_error">No se puede exportar la traza: {0}</string>
   <string name="trackmgr_exportall_confirm">Se exportarán todas las trazas, lo cual podría tardar mucho tiempo. ¿Está seguro?</string>
+  <string name="trackmgr_prepare_for_share_error">No se puede procesar la traza: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Detalles de la traza</string>
   <string name="trackdetail_startdate">Hora de inicio: </string>
@@ -136,6 +138,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Espere por la cabecera…</string>
   <string name="various_heading_unknown">La cabecera no se puede determinar</string>
+  <string name="various_export_finished">El proceso de exportación finalizó con éxito</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Vista de la traza en OpenStreetMap</string>
   <!--Buttons presets messages-->
@@ -146,8 +149,10 @@
   <string name="buttons_presets_unsuccessful_update">La disposición no se pudo actualizar, intente de nuevo más tarde</string>
   <string name="buttons_presets_delete_message">¿Está seguro que desea eliminar la disposición de {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Sí</string>
+  <string name="buttons_presets_successful_delete">La disposición se eliminó con éxito</string>
   <string name="buttons_presets_icon_directory_deleted">Iconos de la disposición eliminados con éxito</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Este archivo no tenía ningún directorio de iconos asociado</string>
+  <string name="buttons_presets_unsuccessful_delete">No se pudo eliminar la disposición</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Error: No se puede conectar a Internet, por favor revise su conexión</string>
   <string name="available_layouts_response_null_exception">Error: No se pudo conectar con el servidor de disposiciones personalizadas predeterminado</string>
@@ -169,6 +174,12 @@
   <string name="github_repository_settings_valid_server">Repositorio de GitHub válido</string>
   <string name="github_repository_settings_invalid_server">Repositorio de GitHub inválido</string>
   <!--App Introduction-->
+  <string name="app_intro">Introducción a OSMTracker para Android ™</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Bienvenido a OSMTracker para Android ™ 👋</string>
+  <string name="app_intro_slide1_description">¡Esta aplicación es un software libre que respeta tu libertad!</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Feliz trazado 🗺 😎</string>
+  <string name="app_intro_slide2_description">OSMTracker para Android usará su ubicación GPS para registrar puntos de traza y puntos, incluso cuando la aplicación se está ejecutando en segundo plano.
+Tus datos no se utilizan para respaldar anuncios.</string>
 </resources>
