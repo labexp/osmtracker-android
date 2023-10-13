@@ -245,15 +245,36 @@ public class TrackManager extends AppCompatActivity
 						}).create().show();
 				break;
 			case R.id.trackmgr_menu_exportall:
-				// Confirm
-				if (!writeExternalStoragePermissionGranted()){
-					Log.e("DisplayTrackMapWrite", "Permission asked");
-					ActivityCompat.requestPermissions(this,
-							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-							RC_WRITE_PERMISSIONS_EXPORT_ALL);
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
+					// Confirm
+					if (!writeExternalStoragePermissionGranted()){
+						Log.e("DisplayTrackMapWrite", "Permission asked");
+						ActivityCompat.requestPermissions(this,
+								new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+								RC_WRITE_PERMISSIONS_EXPORT_ALL);
+					}else{
+						exportTracks(false);
+						break;
+					}
 				}
-				else exportTracks(false);
-				break;
+				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
+					if (!Environment.isExternalStorageManager()) {
+						try {
+							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							intent.addCategory("android.intent.category.DEFAULT");
+							intent.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
+							startActivityIfNeeded(intent, 101);
+						} catch (Exception exception) {
+							Intent intent = new Intent();
+							intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+							startActivityIfNeeded(intent, 101);
+						}
+					}else{
+						exportTracks(false);
+						break;
+					}
+				}
+
 			case R.id.trackmgr_menu_settings:
 				// Start settings activity
 				startActivity(new Intent(this, Preferences.class));
