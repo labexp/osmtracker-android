@@ -40,23 +40,62 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 
 	final private int REQUEST_CODE_GPS_PERMISSIONS = 1;
 
+	/**
+	 * Formatter for accuracy display.
+	 */
 	private final static DecimalFormat ACCURACY_FORMAT = new DecimalFormat("0");
 
+	/**
+	 * Keeps matching between satellite indicator bars to draw, and numbers
+	 * of satellites for each bars;
+	 */
 	private final static int[] SAT_INDICATOR_TRESHOLD = {2, 3, 4, 6, 8};
 
+	/**
+	 * Containing activity
+	 */
 	private TrackLogger activity;
+
+	/**
+	 * Reference to LocationManager
+	 */
 	private LocationManager lmgr;
+
+	/**
+	 * the timestamp of the last GPS fix we used
+	 */
 	private long lastGPSTimestampStatus = 0;
+
+	/**
+	 * the timestamp of the last GPS fix we used for location updates
+	 */
 	private long lastGPSTimestampLocation = 0;
+
+	/**
+	 * the interval (in ms) to log GPS fixes defined in the preferences
+	 */
 	private final long gpsLoggingInterval;
+
+	/**
+	 * Is GPS active ?
+	 */
 	private boolean gpsActive = false;
+
+	/**
+	 * Satellites count
+	 */
 	private int satCount = 0;
+
+	/**
+	 * Satellites used in fix count
+	 */
 	private int fixCount = 0;
 
 	public GpsStatusRecord(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		LayoutInflater.from(context).inflate(R.layout.gpsstatus_record, this, true);
 
+		//read the logging interval from preferences
 		gpsLoggingInterval = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 
@@ -65,6 +104,7 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 			lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		}
 
+		// Initialize waiting message (0 satellites so far)
 		TextView tvAccuracy = findViewById(R.id.gpsstatus_record_tvAccuracy);
 		tvAccuracy.setText(getResources().getString(R.string.various_waiting_gps_fix)
 				.replace("{0}", "0")
@@ -86,11 +126,13 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {
+		// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
 		if ((lastGPSTimestampLocation + gpsLoggingInterval) < System.currentTimeMillis()) {
 			lastGPSTimestampLocation = System.currentTimeMillis();
 			Log.v(TAG, "Location received " + location);
 			if (!gpsActive) {
 				gpsActive = true;
+				// GPS activated, activate UI
 				activity.onGpsEnabled();
 			}
 
@@ -124,6 +166,7 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// Update provider status image according to status
 		Log.d(TAG, "Location provider " + provider + " status changed to: " + status);
 		ImageView imgSatIndicator = findViewById(R.id.gpsstatus_record_imgSatIndicator);
 		TextView tvAccuracy = findViewById(R.id.gpsstatus_record_tvAccuracy);
