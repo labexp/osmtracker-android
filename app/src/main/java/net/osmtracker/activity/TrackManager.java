@@ -88,6 +88,7 @@ public class TrackManager extends AppCompatActivity
 	private RecyclerView recyclerView;
 	private TrackListRVAdapter recyclerViewAdapter;
 	private FloatingActionButton fab;
+	final private int RC_WRITE_PERMISSIONS = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -245,36 +246,15 @@ public class TrackManager extends AppCompatActivity
 						}).create().show();
 				break;
 			case R.id.trackmgr_menu_exportall:
-				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
-					// Confirm
-					if (!writeExternalStoragePermissionGranted()){
-						Log.e("DisplayTrackMapWrite", "Permission asked");
-						ActivityCompat.requestPermissions(this,
-								new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-								RC_WRITE_PERMISSIONS_EXPORT_ALL);
-					}else{
-						exportTracks(false);
-						break;
-					}
+				// Confirm
+				if (!writeExternalStoragePermissionGranted()){
+					Log.e("DisplayTrackMapWrite", "Permission asked");
+					ActivityCompat.requestPermissions(this,
+							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+							RC_WRITE_PERMISSIONS_EXPORT_ALL);
 				}
-				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
-					if (!Environment.isExternalStorageManager()) {
-						try {
-							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-							intent.addCategory("android.intent.category.DEFAULT");
-							intent.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
-							startActivityIfNeeded(intent, 101);
-						} catch (Exception exception) {
-							Intent intent = new Intent();
-							intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-							startActivityIfNeeded(intent, 101);
-						}
-					}else{
-						exportTracks(false);
-						break;
-					}
-				}
-
+				else exportTracks(false);
+				break;
 			case R.id.trackmgr_menu_settings:
 				// Start settings activity
 				startActivity(new Intent(this, Preferences.class));
@@ -508,65 +488,61 @@ public class TrackManager extends AppCompatActivity
 				break;
 
 			case R.id.trackmgr_contextmenu_export:
-				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
-					if (!writeExternalStoragePermissionGranted()){
-						Log.e("DisplayTrackMapWrite", "Permission asked");
+				if (ContextCompat.checkSelfPermission(this,
+						Manifest.permission.WRITE_EXTERNAL_STORAGE)  != PackageManager.PERMISSION_GRANTED) {
+
+					// Should we show an explanation?
+					if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+							Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+						// Show an expanation to the user *asynchronously* -- don't block
+						// this thread waiting for the user's response! After the user
+						// sees the explanation, try again to request the permission.
+						// TODO: explain why we need permission.
+						Log.w(TAG, "we should explain why we need write permission");
+
+					} else {
+
+						// No explanation needed, we can request the permission.
 						ActivityCompat.requestPermissions(this,
 								new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-								RC_WRITE_PERMISSIONS_EXPORT_ONE);
-					}else{
-						exportTracks(true);
+								RC_WRITE_PERMISSIONS);
 						break;
 					}
 
-				}
-				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
-					if (!Environment.isExternalStorageManager()) {
-						try {
-							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-							intent.addCategory("android.intent.category.DEFAULT");
-							intent.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
-							startActivityIfNeeded(intent, 101);
-						} catch (Exception exception) {
-							Intent intent = new Intent();
-							intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-							startActivityIfNeeded(intent, 101);
-						}
-					}else{
-						exportTracks(true);
-						break;
-					}
+				} else {
+					exportTracks(true);
+					break;
 				}
 
 			case R.id.trackmgr_contextmenu_share:
-				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
-					if (!writeExternalStoragePermissionGranted()){
-						Log.e("Share GPX", "Permission asked");
+				if (ContextCompat.checkSelfPermission(this,
+						Manifest.permission.WRITE_EXTERNAL_STORAGE)  != PackageManager.PERMISSION_GRANTED) {
+
+					// Should we show an explanation?
+					if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+							Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+						// Show an expanation to the user *asynchronously* -- don't block
+						// this thread waiting for the user's response! After the user
+						// sees the explanation, try again to request the permission.
+						// TODO: explain why we need permission.
+						Log.w(TAG, "we should explain why we need write permission");
+
+					} else {
+
+						// No explanation needed, we can request the permission.
 						ActivityCompat.requestPermissions(this,
 								new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-								RC_WRITE_PERMISSIONS_SHARE);
-					} else {
-						prepareAndShareTrack(contextMenuSelectedTrackid, this);
+								RC_WRITE_PERMISSIONS);
+						break;
 					}
+
+				} else {
+					prepareAndShareTrack(contextMenuSelectedTrackid, this);
 					break;
 				}
-
-				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
-					if (!Environment.isExternalStorageManager()) {
-						try {
-							Uri uri = Uri.parse("package:" + getApplicationContext().getPackageName());
-							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
-							startActivity(intent);
-						} catch (Exception exception) {
-							// Handle the exception, if needed
-						}
-					} else {
-						// You already have the necessary permissions, proceed with sharing
-						prepareAndShareTrack(contextMenuSelectedTrackid, this);
-					}
-					break;
-				}
-
+				break;
 
 			case R.id.trackmgr_contextmenu_osm_upload:
 				if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && Build.VERSION.SDK_INT<Build.VERSION_CODES.R){
