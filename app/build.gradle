@@ -5,13 +5,12 @@ apply plugin: 'kotlin-android-extensions'
 android {
 
     useLibrary 'org.apache.http.legacy'
-    compileSdkVersion 29
-    buildToolsVersion = '29.0.3'
+    compileSdk 33
 
     defaultConfig {
         applicationId "net.osmtracker"
-        minSdkVersion 16
-        targetSdkVersion 29
+        minSdkVersion 25
+        targetSdkVersion 33
         multiDexEnabled true
 
         testApplicationId "net.osmtracker.test"
@@ -62,6 +61,7 @@ android {
         unitTests.returnDefaultValues = true
         animationsDisabled = true
     }
+    namespace 'net.osmtracker'
 
 }
 

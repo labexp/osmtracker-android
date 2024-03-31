@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.osmtracker"
     android:installLocation="auto"
     android:versionCode="57"
     android:versionName="1.0.2-develop">
 
+    <!-- Location permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- Foreground services and network permissions -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- External storage permissions -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -32,7 +39,7 @@
         <activity
             android:name=".activity.TrackManager"
             android:theme="@style/AppTheme"
-            android:label="@string/app_name">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,7 +61,8 @@
             android:label="@string/trackdetail" />
         <activity
             android:name=".activity.OpenStreetMapUpload"
-            android:label="@string/osm_upload">
+            android:label="@string/osm_upload"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -75,7 +83,8 @@
         <activity
             android:name=".activity.DisplayTrackMap"
             android:label="@string/displaytrackmap" />
-        <activity android:name=".activity.ButtonsPresets">
+        <activity android:name=".activity.ButtonsPresets"
+            android:exported="false">
             <intent-filter>
                 <action android:name="launch_buttons_presets" />
 
@@ -98,7 +107,8 @@
             android:authorities="net.osmtracker.provider"
             android:exported="false" />
 
-        <receiver android:name=".receiver.MediaButtonReceiver">
+        <receiver android:name=".receiver.MediaButtonReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
