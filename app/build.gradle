@@ -106,22 +106,7 @@ dependencies {
 
 }
 
-task copyNorwegianValues(type: Copy) {
-    from 'src/main/res/values-nb/'
-    into 'src/main/res/values-no/'
-}
 
-task copyNorwegianXml(type: Copy) {
-    from 'src/main/res/xml-nb/'
-    into 'src/main/res/xml-no/'
-}
-
-android.applicationVariants.all { variant ->
-    variant.outputs.each { output ->
-        // Copying 'nb' resources to 'no' (See pull request #6)
-        output.processResources.dependsOn([copyNorwegianValues, copyNorwegianXml])
-    }
-}
 repositories {
     mavenCentral()
     maven { url "https://jitpack.io" }
