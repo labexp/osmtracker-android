@@ -39,8 +39,7 @@ public class OSMTracker {
 		public final static String KEY_UI_MAP_TILE = "ui.map.tile";
 		public final static String KEY_SOUND_ENABLED = "sound_enabled";
 		public final static String KEY_UI_ORIENTATION = "ui.orientation";
-		public final static String KEY_OSM_OAUTH_TOKEN = "osm.oauth.token";
-		public final static String KEY_OSM_OAUTH_SECRET = "osm.oauth.secret";
+		public final static String KEY_OSM_OAUTH2_ACCESSTOKEN = "osm.oauth2.accesstoken";
 		public final static String KEY_OSM_OAUTH_CLEAR_DATA = "osm.oauth.clear-data";
 
 		//keys for repository settings
