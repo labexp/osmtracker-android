@@ -200,80 +200,73 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 
 	protected void exportTrackAsGpx(long trackId) throws ExportTrackException {
 
-		String state = Environment.getExternalStorageState();
-		File sdRoot = Environment.getExternalStorageDirectory();
+		ContentResolver cr = context.getContentResolver();
 
-		if (ContextCompat.checkSelfPermission(context,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+		Cursor c = context.getContentResolver().query(ContentUris.withAppendedId(
+				TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
+				null, null);
 
-			if (sdRoot.canWrite()) {
-				ContentResolver cr = context.getContentResolver();
-
-				Cursor c = context.getContentResolver().query(ContentUris.withAppendedId(
-						TrackContentProvider.CONTENT_URI_TRACK, trackId), null, null,
-						null, null);
-
-				// Get the startDate of this track
-				// TODO: Maybe we should be pulling the track name instead?
-				// We'd need to consider the possibility that two tracks were given the same name
-				// We could possibly disambiguate by including the track ID in the Folder Name
-				// to avoid overwriting another track on one hand or needlessly creating additional
-				// directories to avoid overwriting.
-				Date startDate = new Date();
-				if (null != c && 1 <= c.getCount()) {
-					c.moveToFirst();
-					long startDateInMilliseconds = c.getLong(c.getColumnIndex(TrackContentProvider.Schema.COL_START_DATE));
-					startDate.setTime(startDateInMilliseconds);
-				}
-
-				File trackGPXExportDirectory = getExportDirectory(startDate);
-				String filenameBase = buildGPXFilename(c, trackGPXExportDirectory);
-
-
-				String tags = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_TAGS));
-				String track_description = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_DESCRIPTION));
-				String track_name = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
-
-				c.close();
-
-				File trackFile = new File(trackGPXExportDirectory, filenameBase);
-
-				Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
-						null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
-				Cursor cWayPoints = cr.query(TrackContentProvider.waypointsUri(trackId), null, null,
-						null, TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
-
-				if (null != cTrackPoints && null != cWayPoints) {
-					publishProgress(trackId, (long) cTrackPoints.getCount(), (long) cWayPoints.getCount());
-
-					try {
-						writeGpxFile(track_name, tags, track_description, cTrackPoints, cWayPoints, trackFile);
-						if (exportMediaFiles()) {
-							copyWaypointFiles(trackId, trackGPXExportDirectory);
-						}
-						if (updateExportDate()) {
-							DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
-						}
-					} catch (IOException ioe) {
-						throw new ExportTrackException(ioe.getMessage());
-					} finally {
-						cTrackPoints.close();
-						cWayPoints.close();
-					}
-
-					// Force rescan of directory
-					ArrayList<String> files = new ArrayList<String>();
-					for (File file : trackGPXExportDirectory.listFiles()) {
-						files.add(file.getAbsolutePath());
-					}
-					MediaScannerConnection.scanFile(context, files.toArray(new String[0]), null, null);
-
-				}
-			} else {
-				throw new ExportTrackException(context.getResources().getString(R.string.error_externalstorage_not_writable));
-			}
+		// Get the startDate of this track
+		// TODO: Maybe we should be pulling the track name instead?
+		// We'd need to consider the possibility that two tracks were given the same name
+		// We could possibly disambiguate by including the track ID in the Folder Name
+		// to avoid overwriting another track on one hand or needlessly creating additional
+		// directories to avoid overwriting.
+		Date startDate = new Date();
+		if (null != c && 1 <= c.getCount()) {
+			c.moveToFirst();
+			long startDateInMilliseconds = c.getLong(c.getColumnIndex(
+					TrackContentProvider.Schema.COL_START_DATE));
+			startDate.setTime(startDateInMilliseconds);
 		}
 
+		File trackGPXExportDirectory = getExportDirectory(startDate);
+		String filenameBase = buildGPXFilename(c, trackGPXExportDirectory);
+
+
+		String tags = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_TAGS));
+		String track_description = c.getString(c.getColumnIndex(
+				TrackContentProvider.Schema.COL_DESCRIPTION));
+		String track_name = c.getString(c.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
+
+		c.close();
+
+		File trackFile = new File(trackGPXExportDirectory, filenameBase);
+
+		Cursor cTrackPoints = cr.query(TrackContentProvider.trackPointsUri(trackId), null,
+				null, null,
+				TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+		Cursor cWayPoints = cr.query(TrackContentProvider.waypointsUri(trackId), null,
+				null, null,
+				TrackContentProvider.Schema.COL_TIMESTAMP + " asc");
+
+		if (null != cTrackPoints && null != cWayPoints) {
+			publishProgress(trackId, (long) cTrackPoints.getCount(), (long) cWayPoints.getCount());
+
+			try {
+				writeGpxFile(track_name, tags, track_description, cTrackPoints, cWayPoints,
+						trackFile);
+				if (exportMediaFiles()) {
+					copyWaypointFiles(trackId, trackGPXExportDirectory);
+				}
+				if (updateExportDate()) {
+					DataHelper.setTrackExportDate(trackId, System.currentTimeMillis(), cr);
+				}
+			} catch (IOException ioe) {
+				throw new ExportTrackException(ioe.getMessage());
+			} finally {
+				cTrackPoints.close();
+				cWayPoints.close();
+			}
+
+			// Force rescan of directory
+			ArrayList<String> files = new ArrayList<String>();
+			for (File file : trackGPXExportDirectory.listFiles()) {
+				files.add(file.getAbsolutePath());
+			}
+			MediaScannerConnection.scanFile(context, files.toArray(new String[0]), null,
+					null);
+		}
 	}
 
 	/**

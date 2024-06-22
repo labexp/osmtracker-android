@@ -182,7 +182,7 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 			long gpxAPI = new GpsTracesApi(osm).create(filename,
 					GpsTraceDetails.Visibility.values()[visibility.position],
 					description, tags, is);
-			Log.d(TAG, "Gpx file uploaded. GPX id: " + gpxAPI);
+			Log.v(TAG, "Gpx file uploaded. GPX id: " + gpxAPI);
 			resultCode = okResultCode;
 		} catch (IOException | IllegalArgumentException | OsmBadUserInputException e) {
 			Log.d(TAG, e.getMessage());

@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -52,7 +53,7 @@ import java.util.Date;
 public class TrackManager extends AppCompatActivity
 		implements TrackListRVAdapter.TrackListRecyclerViewAdapterListener {
 
-	private static final String TAG = "MainActivity";
+	private static final String TAG = TrackManager.class.getSimpleName();;
 
 	final private int RC_WRITE_PERMISSIONS_UPLOAD = 4;
 	final private int RC_WRITE_STORAGE_DISPLAY_TRACK = 3;
@@ -81,23 +82,21 @@ public class TrackManager extends AppCompatActivity
 	// and the code that actually starts it when have GPS permissions
 	private Intent TrackLoggerStartIntent = null;
 
-	private RecyclerView recyclerView;
 	private TrackListRVAdapter recyclerViewAdapter;
-	private FloatingActionButton fab;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.trackmanager);
 
-		Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+		Toolbar myToolbar = findViewById(R.id.my_toolbar);
 		setSupportActionBar(myToolbar);
 
 		if (savedInstanceState != null) {
 			prevItemVisible = savedInstanceState.getInt(PREV_VISIBLE, -1);
 		}
 
-		fab = findViewById(R.id.trackmgr_fab);
+		FloatingActionButton fab = findViewById(R.id.trackmgr_fab);
 		fab.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -143,7 +142,7 @@ public class TrackManager extends AppCompatActivity
 	 *
 	 */
 	private void setRecyclerView() {
-		recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+		RecyclerView recyclerView = findViewById(R.id.recyclerview);
 
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this,
 				LinearLayoutManager.VERTICAL, false);
@@ -243,7 +242,7 @@ public class TrackManager extends AppCompatActivity
 			case R.id.trackmgr_menu_exportall:
 				// Confirm
 				if (!writeExternalStoragePermissionGranted()){
-					Log.e("DisplayTrackMapWrite", "Permission asked");
+					Log.e(TAG, "ExportAllWrite - Permission asked");
 					ActivityCompat.requestPermissions(this,
 							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
 							RC_WRITE_PERMISSIONS_EXPORT_ALL);
@@ -272,7 +271,7 @@ public class TrackManager extends AppCompatActivity
 		// If GPS Permission Granted
 		if (ContextCompat.checkSelfPermission(this,
 				Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-			Log.i(TAG,"Granted on try");
+			Log.i(TAG,"Permission granted on try");
 			startActivity(intent);
 		} else{
 			// Permission is not granted
@@ -430,43 +429,46 @@ public class TrackManager extends AppCompatActivity
 				break;
 
 			case R.id.trackmgr_contextmenu_export:
-				if (!writeExternalStoragePermissionGranted()){
-					Log.e("DisplayTrackMapWrite", "Permission asked");
+				if (writeExternalStoragePermissionGranted()) {
+					exportTracks(true);
+				} else {
+					Log.e(TAG, "ExportAsGPXWrite - Permission asked");
 					ActivityCompat.requestPermissions(this,
 							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
 							RC_WRITE_PERMISSIONS_EXPORT_ONE);
 				}
-				else exportTracks(true);
 				break;
 
 			case R.id.trackmgr_contextmenu_share:
-				if (!writeExternalStoragePermissionGranted()){
-					Log.e("Share GPX", "Permission asked");
+				if (writeExternalStoragePermissionGranted()) {
+					prepareAndShareTrack(contextMenuSelectedTrackid, this);
+				} else {
+					Log.e(TAG, "Share GPX - Permission asked");
 					ActivityCompat.requestPermissions(this,
 							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
 							RC_WRITE_PERMISSIONS_SHARE);
-				} else {
-					prepareAndShareTrack(contextMenuSelectedTrackid, this);
 				}
 				break;
 
 			case R.id.trackmgr_contextmenu_osm_upload:
-				if (!writeExternalStoragePermissionGranted()){
-					Log.e("DisplayTrackMapWrite", "Permission asked");
+				if (writeExternalStoragePermissionGranted()) {
+					uploadTrack(contextMenuSelectedTrackid);
+				} else {
+					Log.e(TAG, "OsmUploadWrite - Permission asked");
 					ActivityCompat.requestPermissions(this,
 							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
 							RC_WRITE_PERMISSIONS_UPLOAD);
 				}
-				else uploadTrack(contextMenuSelectedTrackid);
 				break;
 
 			case R.id.trackmgr_contextmenu_display:
-				if (!writeExternalStoragePermissionGranted()){
-					Log.e("DisplayTrackMapWrite", "Permission asked");
+				if (writeExternalStoragePermissionGranted()) {
+					displayTrack(contextMenuSelectedTrackid);
+				} else {
+					Log.e(TAG, "DisplayTrackMapWrite - Permission asked");
 					ActivityCompat.requestPermissions(this,
 							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_STORAGE_DISPLAY_TRACK);
 				}
-				else displayTrack(contextMenuSelectedTrackid);
 				break;
 
 			case R.id.trackmgr_contextmenu_details:
@@ -502,8 +504,15 @@ public class TrackManager extends AppCompatActivity
 	}
 
 	private boolean writeExternalStoragePermissionGranted(){
-		Log.e("CHECKING", "Write");
-		return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+		// On versions lower than Android 11, write external storage permission is required.
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+			Log.d(TAG, "CHECKING - Write");
+			return ContextCompat.checkSelfPermission(this,
+					Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+		} else {
+			Log.d(TAG, "Write External Storage is granted");
+			return true;
+		}
 	}
 
 	@Override
@@ -737,7 +746,7 @@ public class TrackManager extends AppCompatActivity
 				// If request is cancelled, the result arrays are empty.
 				if (grantResults.length > 0
 						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					Log.e("Result", "Permission granted");
+					Log.e(TAG, "Result - Permission granted");
 					// permission was granted, yay!
 					displayTrack(contextMenuSelectedTrackid);
 				} else {
@@ -754,7 +763,7 @@ public class TrackManager extends AppCompatActivity
 				// If request is cancelled, the result arrays are empty.
 				if (grantResults.length > 0
 						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					Log.e("Result", "Permission granted");
+					Log.e(TAG, "Result - Permission granted");
 					// permission was granted, yay!
 					displayTrack(contextMenuSelectedTrackid);
 					prepareAndShareTrack(contextMenuSelectedTrackid, this);
@@ -772,7 +781,7 @@ public class TrackManager extends AppCompatActivity
 				// If request is cancelled, the result arrays are empty.
 				if (grantResults.length > 0
 						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					Log.e("Result", "Permission granted");
+					Log.e(TAG, "Result - Permission granted");
 					// permission was granted, yay!
 					uploadTrack(contextMenuSelectedTrackid);
 				} else {
@@ -785,14 +794,13 @@ public class TrackManager extends AppCompatActivity
 				}
 				break;
 			}
-			case RC_GPS_PERMISSION:{
+			case RC_GPS_PERMISSION: {
 				if (grantResults.length > 0
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED){
-					Log.i(TAG,"GPS Permission granted");
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					Log.i(TAG, "GPS Permission granted");
 					tryStartTrackLogger(this.TrackLoggerStartIntent);
-				}
-				else{
-					Log.i(TAG,"GPS Permission denied");
+				} else {
+					Log.i(TAG, "GPS Permission denied");
 				}
 				break;
 			}
