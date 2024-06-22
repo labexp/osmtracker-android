@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto"
     android:versionCode="57"
-    android:versionName="1.0.2-develop">
+    android:versionName="2024.06-develop">
 
     <!-- Location permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
