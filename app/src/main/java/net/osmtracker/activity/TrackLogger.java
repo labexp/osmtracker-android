@@ -283,7 +283,6 @@ public class TrackLogger extends Activity {
 	}
 
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onResume() {
 

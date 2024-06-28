@@ -7,19 +7,15 @@ import net.osmtracker.R;
 import net.osmtracker.activity.TrackLogger;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.GpsSatellite;
-import android.location.GpsStatus;
-import android.location.GpsStatus.Listener;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
@@ -30,39 +26,38 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * Layout for the GPS Status image and misc
- * action buttons.
+ * Layout for the GPS Status image and misc action buttons.
  * 
  * @author Nicolas Guillaumin
  * 
  */
-public class GpsStatusRecord extends LinearLayout implements Listener, LocationListener {
+public class GpsStatusRecord extends LinearLayout implements LocationListener {
 	
 	private final static String TAG = GpsStatusRecord.class.getSimpleName();
 
-    final private int REQUEST_CODE_GPS_PERMISSIONS = 1;
+	final private int REQUEST_CODE_GPS_PERMISSIONS = 1;
 
 	/**
 	 * Formatter for accuracy display.
 	 */
 	private final static DecimalFormat ACCURACY_FORMAT = new DecimalFormat("0");
-	
+
 	/**
 	 * Keeps matching between satellite indicator bars to draw, and numbers
 	 * of satellites for each bars;
 	 */
 	private final static int[] SAT_INDICATOR_TRESHOLD = {2, 3, 4, 6, 8};
-	
+
 	/**
 	 * Containing activity
 	 */
 	private TrackLogger activity;
-	
+
 	/**
 	 * Reference to LocationManager
 	 */
 	private LocationManager lmgr;
-	
+
 	/**
 	 * the timestamp of the last GPS fix we used
 	 */
@@ -72,12 +67,12 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	 * the timestamp of the last GPS fix we used for location updates
 	 */
 	private long lastGPSTimestampLocation = 0;
-	
+
 	/**
 	 * the interval (in ms) to log GPS fixes defined in the preferences
 	 */
 	private final long gpsLoggingInterval;
-	
+
 	/**
 	 * Is GPS active ?
 	 */
@@ -87,7 +82,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	 * Satellites count
 	 */
 	private int satCount = 0;
-	
+
 	/**
 	 * Satellites used in fix count
 	 */
@@ -101,7 +96,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		//read the logging interval from preferences
 		gpsLoggingInterval = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
-		
+
 		if (context instanceof TrackLogger) {
 			activity = (TrackLogger) context;
 			lmgr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -114,107 +109,52 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 				.replace("{1}", "0"));
 
 	}
-	
+
 	public void requestLocationUpdates(boolean request) {
 		if (request) {
-
-            if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-                lmgr.addGpsStatusListener(this);
-            }
-			else {
-                    ActivityCompat.requestPermissions((Activity) activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                            REQUEST_CODE_GPS_PERMISSIONS);
-                }
+			if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+				lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+			} else {
+				ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+						REQUEST_CODE_GPS_PERMISSIONS);
+			}
 		} else {
 			lmgr.removeUpdates(this);
-			lmgr.removeGpsStatusListener(this);
 		}
 	}
-
-	@Override
-	public void onGpsStatusChanged(int event) {
-		// Update GPS Status image according to event
-		ImageView imgSatIndicator = (ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator);
-
-		switch (event) {
-		case GpsStatus.GPS_EVENT_FIRST_FIX:
-			imgSatIndicator.setImageResource(R.drawable.sat_indicator_0);
-			activity.onGpsEnabled();
-			break;
-		case GpsStatus.GPS_EVENT_STARTED:
-			imgSatIndicator.setImageResource(R.drawable.sat_indicator_unknown);
-			break;
-		case GpsStatus.GPS_EVENT_STOPPED:
-			imgSatIndicator.setImageResource(R.drawable.sat_indicator_off);
-			activity.onGpsDisabled();
-			break;
-		case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-			// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
-			if((event != GpsStatus.GPS_EVENT_SATELLITE_STATUS) || (lastGPSTimestampStatus + gpsLoggingInterval) < System.currentTimeMillis()){
-				lastGPSTimestampStatus = System.currentTimeMillis(); // save the time of this fix
-
-				if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-					break;
-				}
-				GpsStatus status = lmgr.getGpsStatus(null);
-
-				satCount = 0;
-				fixCount = 0;
-				// Count active satellites
-				for (GpsSatellite sat:status.getSatellites()) {
-					satCount++;
-					if (sat.usedInFix()) {
-						fixCount++;
-					}
-				}
-
-				// Count how many bars should we draw
-				int nbBars = 0;
-				for (int i=0; i<SAT_INDICATOR_TRESHOLD.length; i++) {
-					if (fixCount >= SAT_INDICATOR_TRESHOLD[i]) {
-						nbBars = i;
-					}
-				}
-				Log.v(TAG, "Found " + satCount + " satellites. " + fixCount + " used in fix. Will draw " + nbBars + " bars.");			
-				imgSatIndicator.setImageResource(getResources().getIdentifier("drawable/sat_indicator_" + nbBars, null, OSMTracker.class.getPackage().getName()));
-				if (fixCount == 0 && gpsActive) {
-					activity.onGpsDisabled();
-					gpsActive = false;
-				}
-				if (!gpsActive) {
-					//we set the text field (since nobody else does
-					TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
-					tvAccuracy.setText(getResources().getString(R.string.various_waiting_gps_fix)
-							.replace("{0}",Long.toString(fixCount))
-							.replace("{1}", Long.toString(satCount)));
-				}
-			}
-			break;
-		}
-	}
-
 
 	@Override
 	public void onLocationChanged(Location location) {
 		// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
-		if((lastGPSTimestampLocation + gpsLoggingInterval) < System.currentTimeMillis()){
+		if ((lastGPSTimestampLocation + gpsLoggingInterval) < System.currentTimeMillis()) {
 			lastGPSTimestampLocation = System.currentTimeMillis(); // save the time of this fix
 			Log.v(TAG, "Location received " + location);
-			if (! gpsActive) {
+			if (!gpsActive) {
 				gpsActive = true;
 				// GPS activated, activate UI
 				activity.onGpsEnabled();
+				manageRecordingIndicator(true);
 			}
-			
-			TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
+
+			//TODO: get number of satellites used and visible.
+			//Log.v(TAG, "Found " + satCount + " satellites. " + fixCount + " used in fix.
+
+			TextView tvAccuracy = findViewById(R.id.gpsstatus_record_tvAccuracy);
 			if (location.hasAccuracy()) {
+				Log.d(TAG, "location accuracy: "+ ACCURACY_FORMAT.format(location.getAccuracy()));
 				tvAccuracy.setText(getResources().getString(R.string.various_accuracy_with_sats)
 						.replace("{0}", ACCURACY_FORMAT.format(location.getAccuracy()))
-						.replace("{1}",getResources().getString(R.string.various_unit_meters)) 
-						.replace("{2}", Long.toString(fixCount))
-						.replace("{3}", Long.toString(satCount)));
+						.replace("{1}", getResources().getString(R.string.various_unit_meters))
+						//TODO: use the number of satellites used and visible
+						//.replace("{2}", Long.toString(fixCount))
+						//.replace("{3}", Long.toString(satCount)));
+						.replace("{2}", "?")
+						.replace("{3}", "?"));
+
+				manageSatelliteStatusIndicator((int) location.getAccuracy());
+
 			} else {
+				Log.d(TAG, "location without accuracy");
 				tvAccuracy.setText("");
 			}
 		}
@@ -239,23 +179,23 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// Update provider status image according to status
 		Log.d(TAG, "Location provider " + provider + " status changed to: " + status);
-		ImageView imgSatIndicator = (ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator);
-		TextView tvAccuracy = (TextView) findViewById(R.id.gpsstatus_record_tvAccuracy);
-		
+		ImageView imgSatIndicator = findViewById(R.id.gpsstatus_record_imgSatIndicator);
+		TextView tvAccuracy = findViewById(R.id.gpsstatus_record_tvAccuracy);
+
 		switch (status) {
-		// Don't do anything for status AVAILABLE, as this event occurs frequently,
-		// changing the graphics cause flickering .
-		case LocationProvider.OUT_OF_SERVICE:
-			imgSatIndicator.setImageResource(R.drawable.sat_indicator_off);
-			tvAccuracy.setText("");
-			gpsActive = false;
-			activity.onGpsDisabled();
-			break;
-		case LocationProvider.TEMPORARILY_UNAVAILABLE:
-			imgSatIndicator.setImageResource(R.drawable.sat_indicator_unknown);
-			tvAccuracy.setText("");
-			gpsActive = false;
-			break;
+			// Don't do anything for status AVAILABLE, as this event occurs frequently,
+			// changing the graphics cause flickering .
+			case LocationProvider.OUT_OF_SERVICE:
+				imgSatIndicator.setImageResource(R.drawable.sat_indicator_off);
+				tvAccuracy.setText("");
+				gpsActive = false;
+				activity.onGpsDisabled();
+				break;
+			case LocationProvider.TEMPORARILY_UNAVAILABLE:
+				imgSatIndicator.setImageResource(R.drawable.sat_indicator_unknown);
+				tvAccuracy.setText("");
+				gpsActive = false;
+				break;
 		}
 
 	}
@@ -265,7 +205,7 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 	 * @param isTracking true if the indicator must show that we're tracking, otherwise false
 	 */
 	public void manageRecordingIndicator(boolean isTracking) {
-		ImageView recordStatus = (ImageView) findViewById(R.id.gpsstatus_record_animRec);
+		ImageView recordStatus = findViewById(R.id.gpsstatus_record_animRec);
 		if (isTracking) {
 			recordStatus.setImageResource(R.drawable.record_red);
 		} else {
@@ -273,16 +213,33 @@ public class GpsStatusRecord extends LinearLayout implements Listener, LocationL
 		}
 	}
 
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-		switch (requestCode) {
-			case REQUEST_CODE_GPS_PERMISSIONS:
-				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					requestLocationUpdates(true);
-					// do something
-					return;
-				} else {
-					requestLocationUpdates(false);
-				}
+	/**
+	 * Manages the state of the satellites status
+	 * @param accuracy in meters, the smaller the number the better the accuracy.
+	 */
+	private void manageSatelliteStatusIndicator(int accuracy){
+		ImageView imgSatIndicator = findViewById(R.id.gpsstatus_record_imgSatIndicator);
+
+		int nbBars = accuracy / 4;
+
+		if (nbBars == 0) {
+			Log.v(TAG, "Will draw 5 bars.");
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_5);
+		} else if (nbBars == 1) {
+			Log.v(TAG, "Will draw 4 bars.");
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_4);
+		} else if (nbBars == 2) {
+			Log.v(TAG, "Will draw 3 bars.");
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_3);
+		} else if (nbBars == 3) {
+			Log.v(TAG, "Will draw 2 bars.");
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_2);
+		} else if (nbBars == 4) {
+			Log.v(TAG, "Will draw 1 bars.");
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_1);
+		} else {
+			Log.v(TAG, "Will draw 0 bars.");
+			imgSatIndicator.setImageResource(R.drawable.sat_indicator_0);
 		}
 	}
 

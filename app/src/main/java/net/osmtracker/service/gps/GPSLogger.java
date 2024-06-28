@@ -107,11 +107,11 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Receives Intent for way point tracking, and stop/start logging.
 	 */
 	private BroadcastReceiver receiver = new BroadcastReceiver() {
-		
+
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			Log.v(TAG, "Received intent " + intent.getAction());
-			
+
 			if (OSMTracker.INTENT_TRACK_WP.equals(intent.getAction())) {
 				// Track a way point
 				Bundle extras = intent.getExtras();
@@ -150,13 +150,13 @@ public class GPSLogger extends Service implements LocationListener {
 					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
 					dataHelper.deleteWayPoint(uuid);
 				}
-			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction()) ) {
+			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction())) {
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
 					Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 					startTracking(trackId);
 				}
-			} else if (OSMTracker.INTENT_STOP_TRACKING.equals(intent.getAction()) ) {
+			} else if (OSMTracker.INTENT_STOP_TRACKING.equals(intent.getAction())) {
 				stopTrackingAndSave();
 			}
 		}
@@ -203,7 +203,7 @@ public class GPSLogger extends Service implements LocationListener {
 	}
 	
 	@Override
-	public void onCreate() {	
+	public void onCreate() {
 		Log.v(TAG, "Service onCreate()");
 		dataHelper = new DataHelper(this);
 
@@ -212,7 +212,7 @@ public class GPSLogger extends Service implements LocationListener {
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 		gpsLoggingMinDistance = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
-		use_barometer =  PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
+		use_barometer = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
 				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
 
 		// Register our broadcast receiver
@@ -236,7 +236,7 @@ public class GPSLogger extends Service implements LocationListener {
 
 		// register for atmospheric pressure updates
 		pressureListener.register(this, use_barometer);
-				
+
 		super.onCreate();
 	}
 	
@@ -318,7 +318,7 @@ public class GPSLogger extends Service implements LocationListener {
 
 		Intent startTrackLogger = new Intent(this, TrackLogger.class);
 		startTrackLogger.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, PendingIntent.FLAG_UPDATE_CURRENT);
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, startTrackLogger, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
 
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
