@@ -15,23 +15,18 @@ import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.model.Track;
 import net.osmtracker.util.DialogUtils;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+import de.westnordost.osmapi.OsmConnection;
+import de.westnordost.osmapi.common.errors.OsmAuthorizationException;
+import de.westnordost.osmapi.common.errors.OsmBadUserInputException;
+import de.westnordost.osmapi.traces.GpsTraceDetails;
+import de.westnordost.osmapi.traces.GpsTracesApi;
 
 /**
  * Uploads a GPX file to OpenStreetMap
@@ -46,11 +41,9 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 	private ProgressDialog dialog;
 	
 	private final Activity activity;
+	private final String accessToken;
 	private final long trackId;
-	
-	/** OAuth consumer to sign the post request */
-	private final CommonsHttpOAuthConsumer oAuthConsumer;
-	
+
 	/** File to export */
 	private final File gpxFile;
 	
@@ -76,19 +69,18 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 	 * Either the HTTP result code, or -1 for an internal error
 	 */
 	private int resultCode = -1;
+	private final int authorizationErrorResultCode = -2;
+	private final int anotherErrorResultCode = -3;
+	private final int okResultCode = 1;
+
 	
-	private HttpPost request;
-	private HttpResponse response;
-	
-	public UploadToOpenStreetMapTask(Activity activity,
-			long trackId, CommonsHttpOAuthConsumer oAuthConsumer,
-			File gpxFile, String filename,
-			String description, String tags, Track.OSMVisibility visibility) {
+	public UploadToOpenStreetMapTask(Activity activity, String accessToken, long trackId,
+									 File gpxFile, String filename, String description, String tags,
+									 Track.OSMVisibility visibility) {
 		this.activity = activity;
+		this.accessToken = accessToken;
 		this.trackId = trackId;
 		this.filename = filename;
-		
-		this.oAuthConsumer = oAuthConsumer;
 		this.gpxFile = gpxFile;
 		this.description = (description == null) ? "test" : description;
 		this.tags = (tags == null) ? "test" : tags;
@@ -98,48 +90,10 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected void onPreExecute() {
 		try {
-			// Prepare and OAuth-sign the request request
-			request = new HttpPost(OpenStreetMapConstants.Api.Gpx.CREATE);
-			oAuthConsumer.sign(request);
-			
-			final long totalSize = gpxFile.length();
-			
-			// Custom entity to display a progress bar while uploading
-			MultipartEntity entity = new ProgressMultipartEntity(
-					HttpMultipartMode.BROWSER_COMPATIBLE,
-					Charset.defaultCharset(),
-					new ProgressMultipartEntity.ProgressListener() {
-				@Override
-				public void transferred(long num) {
-					dialog.incrementProgressBy((int) num);
-					if (num >= totalSize) {
-						// Finish sending. Switch to an indeterminate progress
-						// dialog while the OSM server processes the request
-						activity.runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-						 		dialog.setIndeterminate(true);
-						 		dialog.setCancelable(false);
-								dialog.setTitle(activity.getResources().getString(R.string.osm_upload_waiting_response));
-							}
-						});
-					}
-					
-				}
-			});
-
-			// API parameters
-			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.FILE, new FileBody(gpxFile, filename, DataHelper.MIME_TYPE_GPX, Charset.defaultCharset().name()));
-			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.DESCRIPTION, new StringBody(description, Charset.defaultCharset()));
-			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.TAGS, new StringBody(tags, Charset.defaultCharset()));
-			entity.addPart(OpenStreetMapConstants.Api.Gpx.Parameters.VISIBILITY, new StringBody(visibility.toString().toLowerCase(),Charset.defaultCharset()));
-			request.setEntity(entity);
-				
 			// Display progress dialog
 			dialog = new ProgressDialog(activity);
 			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			dialog.setIndeterminate(false);
-			dialog.setMax((int) totalSize);
+			dialog.setIndeterminate(true);
 			dialog.setTitle(
 					activity.getResources().getString(R.string.osm_upload_sending)
 					.replace("{0}", Long.toString(trackId)));
@@ -163,7 +117,7 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 					activity.getResources().getString(R.string.osm_upload_error)
 						+ ": " + errorMsg);
 			break;
-		case HttpStatus.SC_OK:
+		case okResultCode:
 			dialog.dismiss();
 			// Success ! Update database and close activity
 			DataHelper.setTrackUploadDate(trackId, System.currentTimeMillis(), activity.getContentResolver());
@@ -182,7 +136,7 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 				}).create().show();
 			
 			break;
-		case HttpStatus.SC_UNAUTHORIZED:
+		case authorizationErrorResultCode:
 			dialog.dismiss();
 			// Authorization issue. Provide a way to clear credentials
 			new AlertDialog.Builder(activity)
@@ -200,8 +154,7 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							Editor editor = PreferenceManager.getDefaultSharedPreferences(activity).edit();
-							editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN);
-							editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET);
+							editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN);
 							editor.commit();
 
 							dialog.dismiss();
@@ -210,48 +163,37 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 
 		default:
 			// Another error. Display OSM response
-			BufferedReader reader = null;
-			try {
-				reader = new BufferedReader(new InputStreamReader(new BufferedInputStream(response.getEntity().getContent())));
-				StringBuilder sb = new StringBuilder();
-				String line = null;
-				while ( (line = reader.readLine()) != null) {
-					sb.append(line).append(System.getProperty("line.separator"));
-				}
-				
-				dialog.dismiss();
-				
-				DialogUtils.showErrorDialog(activity,
-						activity.getResources().getString(R.string.osm_upload_bad_response)
-							.replace("{0}", Integer.toString(resultCode))
-							.replace("{1}", sb.toString()));
-			} catch (IOException ioe) {
-				DialogUtils.showErrorDialog(activity, activity.getResources().getString(R.string.osm_upload_error) + ": " + ioe);
-			} finally {
-				if (dialog.isShowing()) {
-					dialog.dismiss();
-				}
-				
-				if (reader != null) {
-					try { reader.close(); }
-					catch (IOException ioe) { }
-				}
-			}
+			dialog.dismiss();
+			// Internal error, the request didn't start at all
+			DialogUtils.showErrorDialog(activity,
+					activity.getResources().getString(R.string.osm_upload_error)
+							+ ": " + errorMsg);
 		}
 	}
 
 	@Override
 	protected Void doInBackground(Void... params) {
-		try {
-			// Post request and get response code
-			DefaultHttpClient httpClient = new DefaultHttpClient();
-			response = httpClient.execute(request);
-			resultCode = response.getStatusLine().getStatusCode();
+		OsmConnection osm = new OsmConnection(OpenStreetMapConstants.Api.OSM_API_URL_PATH,
+				OpenStreetMapConstants.OAuth2.USER_AGENT, accessToken);
+
+		List<String> tags = new ArrayList<>();
+		tags.add(this.tags);
+		try (InputStream is = new FileInputStream(gpxFile)) {
+			long gpxAPI = new GpsTracesApi(osm).create(filename,
+					GpsTraceDetails.Visibility.values()[visibility.position],
+					description, tags, is);
+			Log.v(TAG, "Gpx file uploaded. GPX id: " + gpxAPI);
+			resultCode = okResultCode;
+		} catch (IOException | IllegalArgumentException | OsmBadUserInputException e) {
+			Log.d(TAG, e.getMessage());
+			resultCode = -1; //internal error.
+		} catch (OsmAuthorizationException oae) {
+			Log.d(TAG, "OsmAuthorizationException");
+			resultCode = authorizationErrorResultCode;
 		} catch (Exception e) {
-			Log.e(TAG, "doInBackground failed", e);
-			errorMsg = e.getLocalizedMessage();
+			Log.e(TAG, e.getMessage());
+			resultCode = anotherErrorResultCode;
 		}
-		
 		return null;
 	}
 }

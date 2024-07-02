@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Set;
 
+import net.osmtracker.R;
 import net.osmtracker.activity.Preferences;
 import net.osmtracker.util.CustomLayoutsUtils;
 import net.osmtracker.util.URLCreator;
@@ -50,21 +51,24 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
         String layoutFolderName = layoutName.replace(" ", "_");
         SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(context);
         String storageDir = File.separator + OSMTracker.Preferences.VAL_STORAGE_DIR;
+        Log.d(TAG,"storage directory: " + storageDir);
 
         String layoutURL = URLCreator.createLayoutFileURL(context, layoutFolderName, iso);
-        String layoutPath = Environment.getExternalStorageDirectory() + storageDir + File.separator +
+        String layoutPath = context.getExternalFilesDir(null) + storageDir + File.separator +
                 Preferences.LAYOUTS_SUBDIR + File.separator;
 
         //TODO: change "_icons" for Preferences.ICONS_DIR_SUFFIX
-        String iconsPath = Environment.getExternalStorageDirectory() + storageDir + File.separator +
-                Preferences.LAYOUTS_SUBDIR + File.separator  + layoutFolderName+"_icons" + File.separator;
+        String iconsPath = context.getExternalFilesDir(null)  + storageDir + File.separator +
+                Preferences.LAYOUTS_SUBDIR + File.separator  + layoutFolderName+"_icons" +
+                File.separator;
 
         Boolean status = false;
 
         try {
             // download layout
             createDir(layoutPath);
-            downloadFile(layoutURL,layoutPath +File.separator + CustomLayoutsUtils.createFileName(layoutName, iso));
+            downloadFile(layoutURL,layoutPath +File.separator +
+                    CustomLayoutsUtils.createFileName(layoutName, iso));
             status = true;
 
             // downloading icons
@@ -88,21 +92,22 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
     }
 
 
-    private void createDir(String dirPath) {
-        /**
-         FIXME: Change this code for the same functionality that it's used when an gpx is exported.
-         */
+    //TODO: reuse export create dir functionality
+    private void createDir(String dirPath) throws IOException {
+        // Checks if a volume containing external storage is available for read and write.
+        if (! Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ) {
+            throw new IOException(context.getResources().getString(R.string.error_externalstorage_not_writable));
+        }
 
-        //Get File if SD card is present
-        File apkStorage = null;
-        if (isSDCardPresent()) {
-            apkStorage = new File(dirPath);
+        File directory = new File(dirPath);
+         //If File is not present create directory
+        if (! directory.exists() ) {
+            boolean ok = directory.mkdirs();
+            if (! ok) {
+                throw new IOException(context.getResources().getString(R.string.error_externalstorage_not_writable));
+            }
         }
-        //If File is not present create directory
-        if (!apkStorage.exists()) {
-            apkStorage.mkdirs();
-            Log.e(TAG, "Directory Created.");
-        }
+        Log.d(TAG, "Directory Created: " + directory.toString());
     }
 
     private boolean isSDCardPresent() {

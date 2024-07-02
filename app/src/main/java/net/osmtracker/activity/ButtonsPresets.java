@@ -9,8 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -63,9 +63,10 @@ public class ButtonsPresets extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
+        if ( writeExternalStoragePermissionGranted() ) {
+            refreshActivity();
+        } else {
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -83,8 +84,6 @@ public class ButtonsPresets extends Activity {
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RC_WRITE_PERMISSION);
             }
 
-        }  else {
-            refreshActivity();
         }
     }
 
@@ -108,7 +107,8 @@ public class ButtonsPresets extends Activity {
     }
 
     private void listLayouts(LinearLayout rootLayout){
-        File layoutsDir = new File(Environment.getExternalStorageDirectory(), storageDir + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator);
+        File layoutsDir = new File(this.getExternalFilesDir(null), storageDir +
+                File.separator + Preferences.LAYOUTS_SUBDIR + File.separator);
         int AT_START = 0; //the position to insert the view at
         int fontSize = 20;
         if (layoutsDir.exists() && layoutsDir.canRead()) {
@@ -233,6 +233,7 @@ public class ButtonsPresets extends Activity {
     @SuppressLint("StaticFieldLeak")
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        File externalFilesDir = this.getExternalFilesDir(null);
         switch (item.getItemId()){
             //this case download again the layout held and install it
             case R.id.cb_update_and_install:
@@ -272,10 +273,10 @@ public class ButtonsPresets extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
                         String fileName = layoutsFileNames.get(checkboxHeld.getText());
                         String rootDir = storageDir + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator;
-                        File fileToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + fileName);
+                        File fileToDelete = new File(externalFilesDir, rootDir + fileName);
                         String iconDirName = fileName.substring(0, fileName.length() - CustomLayoutsUtils.LAYOUT_EXTENSION_ISO.length())
                                 + Preferences.ICONS_DIR_SUFFIX;
-                        File iconDirToDelete = new File(Environment.getExternalStorageDirectory(), rootDir + iconDirName);
+                        File iconDirToDelete = new File(externalFilesDir, rootDir + iconDirName);
 
                         boolean successfulDeletion = FileSystemUtils.delete(fileToDelete, false);
 
@@ -349,6 +350,19 @@ public class ButtonsPresets extends Activity {
                     Log.w(TAG, "we should explain why we need read permission");
                 }
             }
+        }
+    }
+
+    //TODO: improve permissions management.
+    private boolean writeExternalStoragePermissionGranted(){
+        // On versions lower than Android 11, write external storage permission is required.
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            Log.d(TAG, "CHECKING - Write");
+            return ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+        } else {
+            Log.d(TAG, "Write External Storage is granted");
+            return true;
         }
     }
 

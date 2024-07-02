@@ -203,8 +203,7 @@ public class Preferences extends PreferenceActivity {
 
 		// Clear OSM data: Disable if there's no OSM data stored
 		pref = findPreference(OSMTracker.Preferences.KEY_OSM_OAUTH_CLEAR_DATA);
-		if (prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN)
-				&& prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET)) {
+		if (prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN)) {
 			pref.setEnabled(true);
 		} else {
 			pref.setEnabled(false);
@@ -214,8 +213,7 @@ public class Preferences extends PreferenceActivity {
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				// Clear data
 				Editor editor = prefs.edit();
-				editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH_TOKEN);
-				editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH_SECRET);
+				editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN);
 				editor.commit();
 
 				preference.setEnabled(false);

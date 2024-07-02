@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -15,6 +16,8 @@ import java.io.File;
 import java.util.Date;
 
 import static net.osmtracker.util.FileSystemUtils.getUniqueChildNameFor;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * Exports to the external storage / SD card
@@ -77,18 +80,37 @@ public class ExportToStorageTask extends ExportTrackTask {
 
     }
 
-    // Create before returning if not exists
-    public File getBaseExportDirectory(SharedPreferences prefs){
-        File rootStorageDirectory = Environment.getExternalStorageDirectory();
+	// Checks if a volume containing external storage is available for read and write.
+	private boolean isExternalStorageWritable() {
+		return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+	}
 
-        String exportDirectoryNameInPreferences = prefs.getString(
-                OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
+	// Create before returning if not exists
+    public File getBaseExportDirectory(SharedPreferences prefs) throws ExportTrackException {
 
-        File baseExportDirectory = new File(rootStorageDirectory, exportDirectoryNameInPreferences);
-        if(! baseExportDirectory.exists()){
-            baseExportDirectory.mkdirs();
-        }
-        return baseExportDirectory;
+		if (!isExternalStorageWritable()) {
+			throw new ExportTrackException(
+					context.getResources().getString(R.string.error_externalstorage_not_writable));
+		}
+
+		String exportDirectoryNameInPreferences = prefs.getString(
+				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
+		Log.d(TAG,"exportDirectoryNameInPreferences: " + exportDirectoryNameInPreferences);
+
+		File baseExportDirectory = new File(context.getExternalFilesDir(null),
+				exportDirectoryNameInPreferences);
+
+		if(! baseExportDirectory.exists()){
+			boolean ok = baseExportDirectory.mkdirs();
+			if (!ok) {
+				throw new ExportTrackException(
+						context.getResources().getString(
+								R.string.error_externalstorage_not_writable));
+			}
+		}
+
+		Log.d(TAG, "BaseExportDirectory: " + baseExportDirectory);
+		return baseExportDirectory;
     }
 
 	@Override
