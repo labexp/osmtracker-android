@@ -623,7 +623,7 @@ public class TrackManager extends AppCompatActivity
 		updateTrackItemsInRecyclerView();
 
 		// Delete any data stored for the track we're deleting
-		File trackStorageDirectory = DataHelper.getTrackDirectory(id);
+		File trackStorageDirectory = DataHelper.getTrackDirectory(id, this);
 		if (trackStorageDirectory.exists()) {
 			FileSystemUtils.delete(trackStorageDirectory, true);
 		}

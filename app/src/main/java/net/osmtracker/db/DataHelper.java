@@ -339,7 +339,7 @@ public class DataHelper {
 		// we will return the original file name we were given
 		String _return = from;
 		
-		File trackDir = getTrackDirectory(trackId);
+		File trackDir = getTrackDirectory(trackId, context);
 		
 		String ext = from.substring(from.lastIndexOf(".") + 1, from.length());
 		File origin = new File(trackDir + File.separator + from);
@@ -389,13 +389,14 @@ public class DataHelper {
 	/**
 	 * Generate a string of the directory path to external storage for the track id provided 
 	 * @param trackId Track id
+	 * @param context
 	 * @return A the path where this track should store its files
 	 */
-	public static File getTrackDirectory(long trackId) {
+	public static File getTrackDirectory(long trackId, Context context) {
 		File _return = null;
 		
-		String trackStorageDirectory = Environment.getExternalStorageDirectory()  
-		+ "/osmtracker/data/files/track" + trackId;
+		String trackStorageDirectory = context.getExternalFilesDir(null)
+		+ "/osmtracker/track" + trackId;
 		
 		_return = new File(trackStorageDirectory);		
 		return _return;

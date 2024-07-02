@@ -307,7 +307,7 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 		File audioFile = null;
 		
 		// Query for current track directory
-		File trackDir = DataHelper.getTrackDirectory(wayPointTrackId);
+		File trackDir = DataHelper.getTrackDirectory(wayPointTrackId, context);
 		
 		// Create the track storage directory if it does not yet exist
 		if (!trackDir.exists()) {

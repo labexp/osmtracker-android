@@ -127,8 +127,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	private static final int DB_VERSION = 17;
 
+	private Context context;
+
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
+		this.context = context;
 	}
 
 	@Override
@@ -210,7 +213,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				long trackId = cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID));
 				Log.d(TAG,"manageNewStoragePath (" + trackId + ")");
 				String oldDirName = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_DIR));
-				File newDir = DataHelper.getTrackDirectory(trackId);
+				File newDir = DataHelper.getTrackDirectory(trackId, context);
 				File oldDir = new File(oldDirName);
 				if(oldDir.exists() && oldDir.canRead()){
 					
