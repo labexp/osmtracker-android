@@ -23,7 +23,6 @@ import net.osmtracker.view.VoiceRecDialog;
 import net.osmtracker.db.TrackContentProvider;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -43,7 +42,6 @@ import android.database.Cursor;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.Build;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -52,6 +50,7 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.ImageColumns;
 import android.provider.Settings;
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.util.Log;
@@ -525,15 +524,13 @@ public class TrackLogger extends Activity {
 			}
 			break;
 		case KeyEvent.KEYCODE_CAMERA:
+			Log.d(TAG, "click on camera button");
 			if (gpsLogger.isTracking()) {
 				if (ContextCompat.checkSelfPermission(this,
-						Manifest.permission.WRITE_EXTERNAL_STORAGE) + ContextCompat.checkSelfPermission(this,
 						Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-
+					Log.d(TAG, "camera permission isn't granted, will request");
 					// Should we show an explanation?
 					if ( (ActivityCompat.shouldShowRequestPermissionRationale(this,
-							Manifest.permission.WRITE_EXTERNAL_STORAGE))
-							|| (ActivityCompat.shouldShowRequestPermissionRationale(this,
 							Manifest.permission.CAMERA)) ) {
 
 						// Show an expanation to the user *asynchronously* -- don't block
@@ -547,7 +544,6 @@ public class TrackLogger extends Activity {
 						// No explanation needed, we can request the permission.
 						ActivityCompat.requestPermissions(this,
 								new String[]{
-										Manifest.permission.WRITE_EXTERNAL_STORAGE,
 										Manifest.permission.CAMERA},
 								RC_STORAGE_CAMERA_PERMISSIONS);
 						break;
@@ -654,7 +650,7 @@ public class TrackLogger extends Activity {
 					c.close();
 					Log.d(TAG, "Copying gallery file '"+f+"' into '"+imageFile+"'");
 					FileSystemUtils.copyFile(imageFile.getParentFile(), new File(f), imageFile.getName());
-					
+
 					// Send an intent to inform service to track the waypoint.
 					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 					intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
@@ -699,7 +695,7 @@ public class TrackLogger extends Activity {
 		currentImageFile = null;
 
 		// Query for current track directory
-		File trackDir = DataHelper.getTrackDirectory(currentTrackId);
+		File trackDir = DataHelper.getTrackDirectory(currentTrackId, this);
 
 		// Create the track storage directory if it does not yet exist
 		if (!trackDir.exists()) {
@@ -715,7 +711,8 @@ public class TrackLogger extends Activity {
 		} else {
 			Log.w(TAG, "The directory [" + trackDir.getAbsolutePath() + "] will not allow files to be created");
 		}
-		
+
+		Log.d(TAG, "currentImage File: " + currentImageFile);
 		return currentImageFile;
 	}
 	
@@ -735,14 +732,11 @@ public class TrackLogger extends Activity {
 			// create a new TextNoteDialog
 			return new TextNoteDialog(this, currentTrackId);
 		case DIALOG_VOICE_RECORDING:
-			if (ContextCompat.checkSelfPermission(this,
-					Manifest.permission.WRITE_EXTERNAL_STORAGE) + ContextCompat.checkSelfPermission(this,
-					Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+			if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+					!= PackageManager.PERMISSION_GRANTED) {
 
 				// Should we show an explanation?
 				if ( (ActivityCompat.shouldShowRequestPermissionRationale(this,
-						Manifest.permission.WRITE_EXTERNAL_STORAGE))
-					|| (ActivityCompat.shouldShowRequestPermissionRationale(this,
 						Manifest.permission.RECORD_AUDIO)) ) {
 
 					// Show an expanation to the user *asynchronously* -- don't block
@@ -756,7 +750,6 @@ public class TrackLogger extends Activity {
 					// No explanation needed, we can request the permission.
 					ActivityCompat.requestPermissions(this,
 							new String[]{
-										 Manifest.permission.WRITE_EXTERNAL_STORAGE,
 										 Manifest.permission.RECORD_AUDIO},
 							RC_STORAGE_AUDIO_PERMISSIONS);
 					break;
@@ -822,14 +815,15 @@ public class TrackLogger extends Activity {
 		startActivityForResult(Intent.createChooser(intent, getString(R.string.tracklogger_choose_gallery_camera)), REQCODE_GALLERY_CHOSEN);
 	}
 
-	public void onRequestPermissionsResult(int requestCode,
-										   String permissions[], int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+										   @NonNull int[] grantResults) {
 		switch (requestCode) {
 			case RC_STORAGE_AUDIO_PERMISSIONS: {
 				// If request is cancelled, the result arrays are empty.
-				if (grantResults.length == 2
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED
-						&& grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+				if (grantResults.length > 1) {
+						// TODO: fix permission management
+						//&& grantResults[0] == PackageManager.PERMISSION_GRANTED
+						//&& grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
 					// permission was granted, yay!
 					new VoiceRecDialog(this, currentTrackId);
@@ -839,15 +833,18 @@ public class TrackLogger extends Activity {
 					// permission denied, boo! Disable the
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
+					Log.v(TAG, "Voice recording permission is denied.");
 				}
 				return;
 			}
 
 			case RC_STORAGE_CAMERA_PERMISSIONS: {
+				Log.d(TAG, "camera case");
 				// If request is cancelled, the result arrays are empty.
-				if (grantResults.length == 2
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED
-						&& grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+				if (grantResults.length > 1) {
+					// TODO: fix permission management
+						//&& grantResults[0] == PackageManager.PERMISSION_GRANTED
+						//&& grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
 					// permission was granted, yay!
 					requestStillImage();
@@ -857,6 +854,7 @@ public class TrackLogger extends Activity {
 					// permission denied, boo! Disable the
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
+					Log.v(TAG, "Camera permission is denied.");
 				}
 				return;
 			}

@@ -531,7 +531,7 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 */
 	private void copyWaypointFiles(long trackId, File gpxOutputDirectory) {
 		// Get the new location where files related to these waypoints are/should be stored
-		File trackDir = DataHelper.getTrackDirectory(trackId);
+		File trackDir = DataHelper.getTrackDirectory(trackId, context);
 
 		if(trackDir != null){
 			Log.v(TAG, "Copying files from the standard TrackDir ["+trackDir+"] to the export directory ["+gpxOutputDirectory+"]");
