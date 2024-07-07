@@ -1,14 +1,19 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <!--About screen-->
-  <string name="acc.osmtracker_logo">OSMTracker-Logo</string>
-  <!--Zoom in/out in map view-->
-  <string name="acc.zoom_in">Hineinzoomen</string>
-  <string name="acc.zoom_out">Hinauszoomen</string>
-  <!--GPS status bar-->
-  <string name="acc.sat_indicator">Satellitensignalstärkenindikator</string>
-  <string name="acc.record_indicator">Aufnahme-Fortschrittsindikator</string>
-  <!--Track list-->
-  <string name="acc.track_status">Spurstatusindikator</string>
-  <string name="acc.upload_status">OpenStreetMap-Hochladestatusindikator</string>
+    
+    <!-- About screen -->
+    <string name="acc.osmtracker_logo">OSMTracker-Logo</string>
+    
+    <!-- Zoom in/out in map view -->
+    <string name="acc.zoom_in">Hineinzoomen</string>
+    <string name="acc.zoom_out">Hinauszoomen</string>
+    
+    <!-- GPS status bar -->
+    <string name="acc.sat_indicator">Satellitensignalstärkenindikator</string>
+    <string name="acc.record_indicator">Aufnahme-Fortschrittsindikator</string>
+    
+    <!-- Track list -->
+    <string name="acc.track_status">Spurstatusindikator</string>
+	<string name="acc.upload_status">OpenStreetMap-Hochladestatusindikator</string>    
+    
 </resources>
