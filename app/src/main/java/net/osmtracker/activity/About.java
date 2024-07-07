@@ -39,7 +39,7 @@ public class About extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.about);
-		
+
 		// Retrieve app. version number
 		try {
 			PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), 0);
@@ -48,7 +48,7 @@ public class About extends Activity {
 			// Should not occur
 		}
 		
-		((Button) findViewById(R.id.about_debug_info_button)).setOnClickListener(
+		findViewById(R.id.about_debug_info_button).setOnClickListener(
 				new OnClickListener() {
 					
 					@Override
@@ -68,7 +68,7 @@ public class About extends Activity {
 				}
 		);
 
-		((Button) findViewById(R.id.about_export_db_button)).setOnClickListener(
+		findViewById(R.id.about_export_db_button).setOnClickListener(
 				new OnClickListener() {
 					@Override
 					public void onClick(View view) {
@@ -76,7 +76,8 @@ public class About extends Activity {
 
 						File dbFile = getDatabasePath(DatabaseHelper.DB_NAME);
 						File targetFolder = new File(
-								Environment.getExternalStorageDirectory(),
+								view.getContext().getExternalFilesDir(null),
+								//Environment.getExternalStorageDirectory(),
 								PreferenceManager.getDefaultSharedPreferences(About.this).getString(
 										OSMTracker.Preferences.KEY_STORAGE_DIR,
 										OSMTracker.Preferences.VAL_STORAGE_DIR));
@@ -126,13 +127,11 @@ public class About extends Activity {
 	}
 
 	private String getDebugInfo() {
-		return "Environment.getExternalStorageDirectory: '"
-				+ Environment.getExternalStorageDirectory().getAbsolutePath() + "'\n"
-			+ "Environment.getExternalStorageState: '"
-				+ Environment.getExternalStorageState() + "'\n"
-			+ "Can write to external storage: "
-				+ Boolean.toString(Environment.getExternalStorageDirectory().canWrite()) + "\n"
-		;
+		File externalStorageDir = this.getExternalFilesDir(null);
+		return "External Storage Directory: '" + externalStorageDir + "'\n"
+				+ "External Storage State: '"  + Environment.getExternalStorageState() + "'\n"
+				+ "Can write to external storage: "
+				+ Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) + "\n";
 	}
 
 }
