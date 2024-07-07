@@ -1,185 +1,202 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <!--Generic strings-->
-  <string name="app_name">OSMTracker для Android™</string>
-  <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">Вдохновленная OSMTracker для Windows  Mobile, эта программа дает возможность отслеживать траектории Ваших путешествий, отмечать важные места (в том числе записывать голосовые заметки и делать фотографии), сохранять их в формате GPX для дальнейшего использования с инструментами Open Street Map, например в редакторе JOSM.</string>
-  <!--TrackLogger-->
-  <string name="tracklogger">Регистратор треков</string>
-  <string name="tracklogger_waiting_gps">Ожидание GPS фиксации для активации кнопок…</string>
-  <string name="tracklogger_voicerec_title">Запись аудио</string>
-  <string name="tracklogger_voicerec_text">Запись аудио: {0}с.</string>
-  <string name="tracklogger_voicerec_stop">Стоп</string>
-  <string name="tracklogger_btnBack">Назад</string>
-  <string name="tracklogger_tracked">Записано: </string>
-  <string name="tracklogger_gps_disabled">GPS отключен</string>
-  <string name="tracklogger_gps_disabled_hint">GPS отключен. Вы хотите включить его?</string>
-  <string name="tracklogger_choose_gallery_camera">Галерея или камера? </string>
-  <string name="tracklogger_camera">Сделать фото</string>
-  <string name="tracklogger_gallery">Выбрать фото из галереи</string>
-  <!--Waypoint List-->
-  <string name="wplist">Список путевых точек</string>
-  <string name="wplist_latitude">Шир.: </string>
-  <string name="wplist_longitude">Долг.: </string>
-  <string name="wplist_elevation">Выс: </string>
-  <string name="wplist_accuracy">Точн.: </string>
-  <string name="wplist_compass">Выч. напр.:</string>
-  <string name="wplist_compass_accuracy">Выч. точн.:</string>
-  <!--Track Manager-->
-  <string name="trackmgr">Менеджер треков</string>
-  <string name="trackmgr_tracklist">Список треков:</string>
-  <string name="trackmgr_waypoints_count">Путевые точки: </string>
-  <string name="trackmgr_trackpoints_count">Точки трека: </string>
-  <string name="trackmgr_empty">У вас нет треков.</string>
-  <string name="trackmgr_newtrack_hint">Нажмите, чтобы записать новый трек.</string>
-  <string name="trackmgr_newtrack_error">Невозможно создать новый трек: {0}</string>
-  <string name="trackmgr_continuetrack_hint">В данный момент вы записываете <b>трек #{0}</b>\nДля продолжения выберите его в списке</string>
-  <string name="trackmgr_contextmenu_stop">Остановить запись трека</string>
-  <string name="trackmgr_contextmenu_resume">Продолжить запись трека</string>
-  <string name="trackmgr_contextmenu_delete">Удалить</string>
-  <string name="trackmgr_contextmenu_export">Экспортировать в GPX</string>
-  <string name="trackmgr_contextmenu_share">Поделиться GPX</string>
-  <string name="trackmgr_contextmenu_osm_upload">Загрузить на OpenStreetMap</string>
-  <string name="trackmgr_contextmenu_display">Показать</string>
-  <string name="trackmgr_contextmenu_details">Подробности</string>
-  <string name="trackmgr_contextmenu_title">Трек #{0}</string>
-  <string name="trackmgr_delete_confirm">Трек #{0} будет удалён</string>
-  <string name="trackmgr_deleteall_confirm">Все треки будут удалены. Вы уверены?</string>
-  <string name="trackmgr_exporting">Экспорт трека #{0}…</string>
-  <string name="trackmgr_exporting_prepare">Подготовка экспорта...</string>
-  <string name="trackmgr_export_error">Невозможно экспортировать трек: {0}</string>
-  <string name="trackmgr_exportall_confirm">Будут экспортированы все треки, что может занять продолжительное время. Вы уверены?</string>
-  <string name="trackmgr_prepare_for_share_error">Невозможно обработать трек: {0}</string>
-  <!--Track Detail-->
-  <string name="trackdetail">Подробности трека</string>
-  <string name="trackdetail_startdate">Время начала:</string>
-  <string name="trackdetail_enddate">Время окончания:</string>
-  <string name="trackdetail_startloc">Начало в:</string>
-  <string name="trackdetail_endloc">Окончание в:</string>
-  <string name="trackdetail_exportdate">Экспортирован:</string>
-  <string name="trackdetail_osm_upload_date">Загружен на OpenStreetMap:</string>
-  <string name="trackdetail_btn_export">Экспортировать в GPX</string>
-  <string name="trackdetail_export_notyet">(Ещё не экспортирован)</string>
-  <string name="trackdetail_osm_upload_notyet">(Ещё не загружен)</string>
-  <string name="trackdetail_export_display">Показать</string>
-  <string name="trackdetail_description">Описание</string>
-  <string name="trackdetail_tags">Метки (через запятую)</string>
-  <string name="trackdetail_description_mandatory">Необходимо ввести описание</string>
-  <string name="osm_visibility_private">Частный</string>
-  <string name="osm_visibility_public">Общедоступный</string>
-  <string name="osm_visibility_trackable">Отслеживаемый</string>
-  <string name="osm_visibility_identifiable">Идентифицируемый</string>
-  <!--OSM upload-->
-  <string name="osm_upload">Загрузка на OpenStreetMap</string>
-  <string name="osm_upload_ok">Сохранить и загрузить</string>
-  <string name="osm_upload_tmpfile_failed">Не удалось экспортировать трек во временный файл</string>
-  <string name="osm_upload_oauth_failed">Не удалось  пройти проверку подлинности на OSM</string>
-  <string name="osm_upload_sending">Передача трека #{0}...</string>
-  <string name="osm_upload_waiting_response">Ожидание ответа от сервера OpenStreetMap...</string>
-  <string name="osm_upload_error">Ошибка загрузки трека</string>
-  <string name="osm_upload_bad_response">Сервер OSM вернул ошибку:  ({0}) текст {1}</string>
-  <string name="osm_upload_unauthorized">Ошибка авторизации.  Удалить сохраненные учетные данные OpenStreetMap?</string>
-  <string name="osm_upload_sucess">Загрузка на OpenStreetMap завершена</string>
-  <!--GPS Status & record bar-->
-  <string name="gpsstatus_record_voicerec">Запись аудио</string>
-  <string name="gpsstatus_record_stillimage">Сделать фото</string>
-  <string name="gpsstatus_record_textnote">Запись текста</string>
-  <!--Menu-->
-  <string name="menu_settings">Настройки</string>
-  <string name="menu_waypointlist">Путевые точки</string>
-  <string name="menu_about">О программе</string>
-  <string name="menu_displaytrack">Показать трек</string>
-  <string name="menu_stoptracking">Остановить и сохранить</string>
-  <string name="menu_newtrack">Новый трек</string>
-  <string name="menu_deletetracks">Удалить все треки</string>
-  <string name="menu_continue">Продолжить трек</string>
-  <string name="menu_stopcurrenttrack">Остановить запись трека</string>
-  <string name="menu_save">Сохранить</string>
-  <string name="menu_cancel">Отмена</string>
-  <string name="menu_export">Экспортировать в GPX</string>
-  <string name="menu_osm_upload">Загрузка на OpenStreetMap</string>
-  <string name="menu_center_to_gps">Центрировать по GPS</string>
-  <string name="menu_exportall">Экспорт всех в GPX</string>
-  <!--Errors-->
-  <string name="error_externalstorage_not_writable">Невозможно записать файл.</string>
-  <string name="error_create_track_dir">Невозможно создать папку трека %s.</string>
-  <string name="error_externalstorage_not_writable_hint">Проверьте, что флеш карта правильно вставлена и примонтирована.</string>
-  <string name="error_voicerec_failed">Ошибка записи аудио</string>
-  <string name="error_userlayout_parsing">Ошибка при загрузки файла расположения кнопок. Вернитесь к файлу по умолчанию.</string>
-  <!--GPX-->
-  <string name="gpx_track_name">Записано на OSMTracker for Android™</string>
-  <string name="gpx_hdop_approximation_cmt">Внимание: значения записываемые в файл как HDOP — это не значения HDOP, получаемые от GPS устройства. Это приближённо вычисленное значение, полученное из метровой точности местоположения.</string>
-  <!--About screen-->
-  <string name="about">О программе</string>
-  <string name="about_text">Подробная информация, сообщения об ошибках находятся на официальном сайте проекта:</string>
-  <string name="about_translate_text">Помочь с переводом OSMTracker:</string>
-  <string name="about_debug_info">Отладочная информация</string>
-  <string name="about_export_db">Экспорт базы данных</string>
-  <string name="about_exporting_db">Экспорт базы данных...</string>
-  <string name="about_export_db_result">Результат экспорта базы данных: %s</string>
-  <!--Notification-->
-  <string name="notification_ticker_text">OSMTracker запущен</string>
-  <string name="notification_title">OSMTracker запущен (#{0})</string>
-  <string name="notification_text">Нажмите для возврата на основной экран</string>
-  <!--Display track-->
-  <string name="displaytrack">Отобразить трек</string>
-  <string name="displaytrack_map">Отображать подложку карты</string>
-  <string name="displaytrack_north">С</string>
-  <!--Track detail-->
-  <string name="trackdetail_save">Сохранить</string>
-  <!--Various-->
-  <string name="various_unit_meters">м</string>
-  <string name="various_accuracy">Точность</string>
-  <string name="various_accuracy_with_sats">Точность {0}{1} ({2}/{3})</string>
-  <!--parameters: (accuracy, meters, used sats, visible sats)-->
-  <string name="various_waiting_gps_fix">Ожидание фиксации GPS… ({0}/{1})</string>
-  <!--parameters: (used sats, visible sats)-->
-  <string name="various_heading_display">{0}°</string>
-  <!--parameters: (heading in degrees)-->
-  <string name="various_heading">Ожидание направления...</string>
-  <string name="various_heading_unknown">Направление не может быть определено</string>
-  <string name="various_export_finished">Процесс экспорта успешно завершен</string>
-  <!--OSM map view-->
-  <string name="displaytrackmap">Отображение трека (OSM)</string>
-  <!--Buttons presets messages-->
-  <string name="buttons_presets_context_menu_update_install">Обновить &amp; Установить</string>
-  <string name="buttons_presets_context_menu_delete">Удалить</string>
-  <string name="buttons_presets_updating_layout">Обновление...</string>
-  <string name="buttons_presets_successful_update">Макет успешно обновлен</string>
-  <string name="buttons_presets_unsuccessful_update">Макет не обновлен, повторите попытку позже</string>
-  <string name="buttons_presets_delete_message">Вы действительно хотите удалить макет {0}?</string>
-  <string name="buttons_presets_delete_positive_confirmation">Да</string>
-  <string name="buttons_presets_successful_delete">Макет был успешно удален</string>
-  <string name="buttons_presets_icon_directory_deleted">Иконка каталога успешно удалена</string>
-  <string name="buttons_presets_icon_directory_does_not_exist">С этим файлом не было связано ни одного каталога значков</string>
-  <string name="buttons_presets_unsuccessful_delete">Макет не может быть удален</string>
-  <!--Available Layouts messages-->
-  <string name="available_layouts_connection_error">Ошибка: нет подключения к интернету</string>
-  <string name="available_layouts_response_null_exception">Ошибка: невозможно подключиться к умолчальному  репозиторию настраиваемых макетов</string>
-  <string name="available_layouts_connecting_message">(Соединение...)</string>
-  <string name="available_layouts_description_dialog_positive_confirmation">Скачать</string>
-  <string name="available_layouts_not_available_language">Ваш язык недоступен, выберите один из списка</string>
-  <string name="available_layouts_language_dialog_title">Доступные Языки</string>
-  <string name="available_layouts_checking_language_dialog">Проверка доступности языка</string>
-  <string name="available_layouts_downloading_dialog">Загрузка...</string>
-  <string name="available_layouts_successful_download">Макет был успешно загружен</string>
-  <string name="available_layouts_unsuccessful_download">Макет не может быть загружен, повторите попытку позже</string>
-  <string name="available_layouts_null_response_received">Ошибка получения данных с сервера</string>
-  <!--Github Repository Settings-->
-  <string name="github_repository_settings_default_checkbox">По-умолчанию</string>
-  <string name="github_repository_settings_custom_checkbox">Пользовательские</string>
-  <string name="github_repository_settings_username">Логин Github:</string>
-  <string name="github_repository_settings_repository_name">Имя репозитория:</string>
-  <string name="github_repository_settings_branch_name">Имя ветки:</string>
-  <string name="github_repository_settings_valid_server">Действительный репозиторий GitHub</string>
-  <string name="github_repository_settings_invalid_server">Недействительный репозиторий GitHub</string>
-  <!--App Introduction-->
-  <string name="app_intro">OSMTracker для Android ™ Введение</string>
-  <!--Intro - slide1-->
-  <string name="app_intro_slide1_title">Добро пожаловать в OSMTracker для Android ™ 👋</string>
-  <string name="app_intro_slide1_description">Это свободное приложение, уважающее вашу свободу!</string>
-  <!--Intro - slide2-->
-  <string name="app_intro_slide2_title">Удачного трекинга 🗺 😎</string>
-  <string name="app_intro_slide2_description">OSMTracker для Android будет использовать ваше местоположение по GPS для записи точек трека и путевых точек, даже если приложение работает в фоновом режиме.
+    <!-- Generic strings -->
+    <string name="app_name">OSMTracker для Android™</string>
+    <string name="app_short_name">OSMTracker</string>
+    <string name="app_description">Вдохновленная OSMTracker для Windows  Mobile, эта программа дает возможность отслеживать траектории Ваших путешествий, отмечать важные места (в том числе записывать голосовые заметки и делать фотографии), сохранять их в формате GPX для дальнейшего использования с инструментами Open Street Map, например в редакторе JOSM.</string>
+
+    <!-- TrackLogger -->
+    <string name="tracklogger">Регистратор треков</string>
+    <string name="tracklogger_waiting_gps">Ожидание GPS фиксации для активации кнопок…</string>
+    <string name="tracklogger_voicerec_title">Запись аудио</string>
+    <string name="tracklogger_voicerec_text">Запись аудио: {0}с.</string>
+    <string name="tracklogger_voicerec_stop">Стоп</string>
+    <string name="tracklogger_btnBack">Назад</string>
+    <string name="tracklogger_tracked">Записано: </string>
+    <string name="tracklogger_gps_disabled">GPS отключен</string>
+    <string name="tracklogger_gps_disabled_hint">GPS отключен. Вы хотите включить его?</string>
+    <string name="tracklogger_choose_gallery_camera">Галерея или камера? </string>
+    <string name="tracklogger_camera">Сделать фото</string>
+    <string name="tracklogger_gallery">Выбрать фото из галереи</string>
+
+    <!-- Waypoint List -->
+    <string name="wplist">Список путевых точек</string>
+    <string name="wplist_latitude">Шир.: </string>
+    <string name="wplist_longitude">Долг.: </string>
+    <string name="wplist_elevation">Выс: </string>
+    <string name="wplist_accuracy">Точн.: </string>
+    <string name="wplist_compass">Выч. напр.:</string>
+    <string name="wplist_compass_accuracy">Выч. точн.:</string>
+
+    <!-- Track Manager -->
+    <string name="trackmgr">Менеджер треков</string>
+    <string name="trackmgr_tracklist">Список треков:</string>
+    <string name="trackmgr_waypoints_count">Путевые точки: </string>
+    <string name="trackmgr_trackpoints_count">Точки трека: </string>
+    <string name="trackmgr_empty">У вас нет треков.</string>
+    <string name="trackmgr_newtrack_hint">Нажмите, чтобы записать новый трек.</string>
+    <string name="trackmgr_newtrack_error">Невозможно создать новый трек: {0}</string>
+    <string name="trackmgr_continuetrack_hint">В данный момент вы записываете <b>трек #{0}</b>\nДля продолжения выберите его в списке</string>
+    <string name="trackmgr_contextmenu_stop">Остановить запись трека</string>
+    <string name="trackmgr_contextmenu_resume">Продолжить запись трека</string>
+    <string name="trackmgr_contextmenu_delete">Удалить</string>
+    <string name="trackmgr_contextmenu_export">Экспортировать в GPX</string>
+    <string name="trackmgr_contextmenu_share">Поделиться GPX</string>
+    <string name="trackmgr_contextmenu_osm_upload">Загрузить на OpenStreetMap</string>
+    <string name="trackmgr_contextmenu_display">Показать</string>
+    <string name="trackmgr_contextmenu_details">Подробности</string>
+    <string name="trackmgr_contextmenu_title">Трек #{0}</string>
+    <string name="trackmgr_delete_confirm">Трек #{0} будет удалён</string>
+    <string name="trackmgr_deleteall_confirm">Все треки будут удалены. Вы уверены?</string>
+    <string name="trackmgr_exporting">Экспорт трека #{0}…</string>
+    <string name="trackmgr_exporting_prepare">Подготовка экспорта...</string>
+    <string name="trackmgr_export_error">Невозможно экспортировать трек: {0}</string>
+    <string name="trackmgr_exportall_confirm">Будут экспортированы все треки, что может занять продолжительное время. Вы уверены?</string>
+    <string name="trackmgr_prepare_for_share_error">Невозможно обработать трек: {0}</string>
+
+    <!-- Track Detail -->
+    <string name="trackdetail">Подробности трека</string>
+    <string name="trackdetail_startdate">Время начала:</string>
+    <string name="trackdetail_enddate">Время окончания:</string>
+    <string name="trackdetail_startloc">Начало в:</string>
+    <string name="trackdetail_endloc">Окончание в:</string>
+    <string name="trackdetail_exportdate">Экспортирован:</string>
+    <string name="trackdetail_osm_upload_date">Загружен на OpenStreetMap:</string>
+    <string name="trackdetail_btn_export">Экспортировать в GPX</string>
+    <string name="trackdetail_export_notyet">(Ещё не экспортирован)</string>
+    <string name="trackdetail_osm_upload_notyet">(Ещё не загружен)</string>
+    <string name="trackdetail_export_display">Показать</string>
+    <string name="trackdetail_description">Описание</string>
+    <string name="trackdetail_tags">Метки (через запятую)</string>
+    <string name="trackdetail_description_mandatory">Необходимо ввести описание</string>
+    <string name="osm_visibility_private">Частный</string>
+    <string name="osm_visibility_public">Общедоступный</string>
+    <string name="osm_visibility_trackable">Отслеживаемый</string>
+    <string name="osm_visibility_identifiable">Идентифицируемый</string>
+
+    <!-- OSM upload -->
+    <string name="osm_upload">Загрузка на OpenStreetMap</string>
+    <string name="osm_upload_ok">Сохранить и загрузить</string>
+    <string name="osm_upload_tmpfile_failed">Не удалось экспортировать трек во временный файл</string>
+    <string name="osm_upload_oauth_failed">Не удалось  пройти проверку подлинности на OSM</string>
+    <string name="osm_upload_sending">Передача трека #{0}...</string>
+    <string name="osm_upload_waiting_response">Ожидание ответа от сервера OpenStreetMap...</string>
+    <string name="osm_upload_error">Ошибка загрузки трека</string>
+    <string name="osm_upload_bad_response">Сервер OSM вернул ошибку:  ({0}) текст {1}</string>
+    <string name="osm_upload_unauthorized">Ошибка авторизации.  Удалить сохраненные учетные данные OpenStreetMap?</string>
+    <string name="osm_upload_sucess">Загрузка на OpenStreetMap завершена</string>
+
+    <!-- GPS Status & record bar -->
+    <string name="gpsstatus_record_voicerec">Запись аудио</string>
+    <string name="gpsstatus_record_stillimage">Сделать фото</string>
+    <string name="gpsstatus_record_textnote">Запись текста</string>
+
+    <!-- Menu -->
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_waypointlist">Путевые точки</string>
+    <string name="menu_about">О программе</string>
+    <string name="menu_displaytrack">Показать трек</string>
+    <string name="menu_stoptracking">Остановить и сохранить</string>
+    <string name="menu_newtrack">Новый трек</string>
+    <string name="menu_deletetracks">Удалить все треки</string>
+    <string name="menu_continue">Продолжить трек</string>
+    <string name="menu_stopcurrenttrack">Остановить запись трека</string>
+    <string name="menu_save">Сохранить</string>
+    <string name="menu_cancel">Отмена</string>
+    <string name="menu_export">Экспортировать в GPX</string>
+    <string name="menu_osm_upload">Загрузка на OpenStreetMap</string>
+    <string name="menu_center_to_gps">Центрировать по GPS</string>
+    <string name="menu_exportall">Экспорт всех в GPX</string>
+
+    <!-- Errors -->
+    <string name="error_externalstorage_not_writable">Невозможно записать файл.</string>
+    <string name="error_create_track_dir">Невозможно создать папку трека %s.</string>
+    <string name="error_externalstorage_not_writable_hint">Проверьте, что флеш карта правильно вставлена и примонтирована.</string>
+    <string name="error_voicerec_failed">Ошибка записи аудио</string>
+    <string name="error_userlayout_parsing">Ошибка при загрузки файла расположения кнопок. Вернитесь к файлу по умолчанию.</string>
+
+    <!-- GPX -->
+    <string name="gpx_track_name">Записано на OSMTracker for Android™</string>
+    <string name="gpx_hdop_approximation_cmt">Внимание: значения записываемые в файл как HDOP — это не значения HDOP, получаемые от GPS устройства. Это приближённо вычисленное значение, полученное из метровой точности местоположения.</string>
+
+    <!-- About screen -->
+    <string name="about">О программе</string>
+    <string name="about_text">Подробная информация, сообщения об ошибках находятся на официальном сайте проекта:</string>
+    <string name="about_translate_text">Помочь с переводом OSMTracker:</string>
+    <string name="about_debug_info">Отладочная информация</string>
+    <string name="about_export_db">Экспорт базы данных</string>
+    <string name="about_exporting_db">Экспорт базы данных...</string>
+    <string name="about_export_db_result">Результат экспорта базы данных: %s</string>
+
+    <!-- Notification -->
+    <string name="notification_ticker_text">OSMTracker запущен</string>
+    <string name="notification_title">OSMTracker запущен (#{0})</string>
+    <string name="notification_text">Нажмите для возврата на основной экран</string>
+
+    <!-- Display track -->
+    <string name="displaytrack">Отобразить трек</string>
+    <string name="displaytrack_map">Отображать подложку карты</string>
+    <string name="displaytrack_north">С</string>
+
+    <!-- Track detail -->
+    <string name="trackdetail_save">Сохранить</string>
+
+    <!-- Various -->
+    <string name="various_unit_meters">м</string>
+    <string name="various_accuracy">Точность</string>
+    <string name="various_accuracy_with_sats">Точность {0}{1} ({2}/{3})</string> <!-- parameters: (accuracy, meters, used sats, visible sats) -->
+    <string name="various_waiting_gps_fix">Ожидание фиксации GPS… ({0}/{1})</string> <!-- parameters: (used sats, visible sats) -->
+    <string name="various_heading_display">{0}°</string> <!-- parameters: (heading in degrees) -->
+    <string name="various_heading">Ожидание направления...</string>
+    <string name="various_heading_unknown">Направление не может быть определено</string>
+    <string name="various_export_finished">Процесс экспорта успешно завершен</string>
+
+
+    <!-- OSM map view -->
+    <string name="displaytrackmap">Отображение трека (OSM)</string>
+
+    <!-- Buttons presets messages -->
+    <string name="buttons_presets_context_menu_update_install">Обновить &amp; Установить</string>
+    <string name="buttons_presets_context_menu_delete">Удалить</string>
+    <string name="buttons_presets_updating_layout">Обновление...</string>
+    <string name="buttons_presets_successful_update">Макет успешно обновлен</string>
+    <string name="buttons_presets_unsuccessful_update">Макет не обновлен, повторите попытку позже</string>
+    <string name="buttons_presets_delete_message">Вы действительно хотите удалить макет {0}?</string>
+    <string name="buttons_presets_delete_positive_confirmation">Да</string>
+    <string name="buttons_presets_successful_delete">Макет был успешно удален</string>
+    <string name="buttons_presets_icon_directory_deleted">Иконка каталога успешно удалена</string>
+    <string name="buttons_presets_icon_directory_does_not_exist">С этим файлом не было связано ни одного каталога значков</string>
+    <string name="buttons_presets_unsuccessful_delete">Макет не может быть удален</string>
+
+    <!--Available Layouts messages -->
+    <string name="available_layouts_connection_error">Ошибка: нет подключения к интернету</string>
+    <string name="available_layouts_response_null_exception">Ошибка: невозможно подключиться к умолчальному  репозиторию настраиваемых макетов</string>
+    <string name="available_layouts_connecting_message">(Соединение...)</string>
+    <string name="available_layouts_description_dialog_positive_confirmation">Скачать</string>
+    <string name="available_layouts_not_available_language">Ваш язык недоступен, выберите один из списка</string>
+    <string name="available_layouts_language_dialog_title">Доступные Языки</string>
+    <string name="available_layouts_checking_language_dialog">Проверка доступности языка</string>
+    <string name="available_layouts_downloading_dialog">Загрузка...</string>
+    <string name="available_layouts_successful_download">Макет был успешно загружен</string>
+    <string name="available_layouts_unsuccessful_download">Макет не может быть загружен, повторите попытку позже</string>
+    <string name="available_layouts_null_response_received">Ошибка получения данных с сервера</string>
+
+    <!-- Github Repository Settings -->
+    <string name="github_repository_settings_default_checkbox">По-умолчанию</string>
+    <string name="github_repository_settings_custom_checkbox">Пользовательские</string>
+    <string name="github_repository_settings_username">Логин Github:</string>
+    <string name="github_repository_settings_repository_name">Имя репозитория:</string>
+    <string name="github_repository_settings_branch_name">Имя ветки:</string>
+    <string name="github_repository_settings_valid_server">Действительный репозиторий GitHub</string>
+    <string name="github_repository_settings_invalid_server">Недействительный репозиторий GitHub</string>
+
+    <!-- App Introduction -->
+    <string name="app_intro">OSMTracker для Android ™ Введение</string>
+    <!-- Intro - slide1 -->
+    <string name="app_intro_slide1_title">Добро пожаловать в OSMTracker для Android ™ 👋</string>
+    <string name="app_intro_slide1_description">Это свободное приложение, уважающее вашу свободу!</string>
+    <!-- Intro - slide2 -->
+    <string name="app_intro_slide2_title">Удачного трекинга 🗺 😎</string>
+    <string name="app_intro_slide2_description">OSMTracker для Android будет использовать ваше местоположение по GPS для записи точек трека и путевых точек, даже если приложение работает в фоновом режиме.
 \\ nВаши данные не используются для поддержки рекламы.</string>
 </resources>
