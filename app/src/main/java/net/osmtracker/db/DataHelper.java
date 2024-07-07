@@ -402,6 +402,7 @@ public class DataHelper {
 		return _return;
 	}
 
+	/* method not in use. TODO: delete code.
 	public static File getGPXTrackFile(long trackId, ContentResolver contentResolver, Context context) {
 
 		String trackName = getTrackNameInDB(trackId, contentResolver);
@@ -420,6 +421,7 @@ public class DataHelper {
 
 		return new File(completeGPXTrackPath);
 	}
+	*/
 
 	public static String getTrackNameInDB(long trackId, ContentResolver contentResolver) {
 		String trackName = "";

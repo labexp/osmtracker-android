@@ -66,7 +66,7 @@ public class DownloadCustomLayoutTaskTest {
         assertEquals(true, result);
 
         // Check if layout was downloaded at .../osmtracker/layouts/abc_en.xml
-        String expectedLayoutFilePath = Environment.getExternalStorageDirectory()
+        String expectedLayoutFilePath = mockContext.getExternalFilesDir(null)
                 + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator
                 + Preferences.LAYOUTS_SUBDIR + File.separator
                 + expectedLayoutFilename;

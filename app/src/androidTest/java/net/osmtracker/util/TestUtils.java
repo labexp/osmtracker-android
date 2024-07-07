@@ -99,7 +99,8 @@ public class TestUtils {
      * - If it doesn't exist then should create it before returning
      */
     public static File getAppDirectory(){
-        String storageDir =  Environment.getExternalStorageDirectory().getAbsolutePath();
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String storageDir =  context.getExternalFilesDir(null).getAbsolutePath();
         File appDirectory = new File(storageDir + OSMTracker.Preferences.VAL_STORAGE_DIR);
         appDirectory.mkdirs();
         return appDirectory;

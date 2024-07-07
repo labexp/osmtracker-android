@@ -113,7 +113,7 @@ public class ButtonsPresetsTest {
 
 
             mockStatic(Environment.class);
-            when(Environment.getExternalStorageDirectory()).thenReturn(new File(""));
+            when(mockActivity.getExternalFilesDir(null)).thenReturn(new File(""));
 
             // Actual method call
             when(mockActivity,"refreshActivity").thenCallRealMethod();

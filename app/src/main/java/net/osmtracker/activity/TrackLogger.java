@@ -311,7 +311,7 @@ public class TrackLogger extends Activity {
 			} else {
 				// Using user buttons layout
 				File layoutFile = new File(
-						Environment.getExternalStorageDirectory(),
+						this.getExternalFilesDir(null),
 						OSMTracker.Preferences.VAL_STORAGE_DIR
 						+ File.separator + Preferences.LAYOUTS_SUBDIR
 						+ File.separator + userLayout);
