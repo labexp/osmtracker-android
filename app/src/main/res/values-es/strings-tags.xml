@@ -54,7 +54,9 @@
   <string name="tag.amenity_marina">Marina</string>
   <string name="tag.amenity_sport">Deporte</string>
   <string name="tag.amenity_taxi">Taxi</string>
+  <string name="tag.amenity_doctors">Hospital,\nDoctores</string>
   <string name="tag.amenity_recycling">Reciclaje</string>
+  <string name="tag.amenity_place_of_worship">Lugar de\nculto</string>
   <string name="tag.amenity_post_office">Correos</string>
   <string name="tag.amenity_library">Biblioteca</string>
   <string name="tag.amenitymore_school">Escuela</string>
@@ -97,4 +99,5 @@
   <string name="tag.landuse_forest">Zona forestal</string>
   <string name="tag.landuse_allotments">Huerto de ocio</string>
   <string name="tag.landuse_cemetery">Cementerio</string>
+  <string name="tag.landuse_recreation_ground">Área de\nrecreación</string>
 </resources>
