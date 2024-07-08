@@ -12,6 +12,7 @@
   <string name="prefs_gps_logging_interval">GPS logg-intervall</string>
   <string name="prefs_gps_logging_interval_summary">Använd 0 för kortast möjliga intervall (påverkar batteriets livslängd).</string>
   <string name="prefs_gps_logging_interval_seconds">sekunder</string>
+  <string name="prefs_gps_logging_min_distance_meters">meter</string>
   <string name="prefs_ui">Användargränssnitt</string>
   <string name="prefs_ui_picture_source">Vald bildkälla</string>
   <string name="prefs_ui_picture_source_summary">Välj bild från kamera eller galleri?</string>
