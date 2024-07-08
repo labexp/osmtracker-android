@@ -4,6 +4,8 @@
   <string name="tag.restriction">Restricció</string>
   <string name="tag.car">Cotxe</string>
   <string name="tag.tourism">Turisme</string>
+  <string name="tag.amenity">Establiment</string>
+  <string name="tag.amenity_more">Establiment (+)</string>
   <string name="tag.way">Via</string>
   <string name="tag.track">Camí</string>
   <string name="tag.landuse">Ús de terreny</string>
@@ -52,7 +54,9 @@
   <string name="tag.amenity_marina">Marina</string>
   <string name="tag.amenity_sport">Esport</string>
   <string name="tag.amenity_taxi">Taxi</string>
+  <string name="tag.amenity_doctors">Hospital,\nMetges</string>
   <string name="tag.amenity_recycling">Reciclatge</string>
+  <string name="tag.amenity_place_of_worship">Lloc de\npregària</string>
   <string name="tag.amenity_post_office">Oficina postal</string>
   <string name="tag.amenity_library">Biblioteca</string>
   <string name="tag.amenitymore_school">Escola</string>
@@ -89,7 +93,11 @@
   <string name="tag.track_grade4">Grau 4</string>
   <string name="tag.track_grade5">Grau 5</string>
   <string name="tag.landuse_farm">Granja</string>
+  <string name="tag.landuse_landfill">Abocador d\'escombreries</string>
+  <string name="tag.landuse_basin">Dàrsena</string>
+  <string name="tag.landuse_reservoir">Embassament</string>
   <string name="tag.landuse_forest">Bosc</string>
   <string name="tag.landuse_allotments">Parcel·les</string>
   <string name="tag.landuse_cemetery">Cementiri</string>
+  <string name="tag.landuse_recreation_ground">Àrea\nrecreativa</string>
 </resources>
