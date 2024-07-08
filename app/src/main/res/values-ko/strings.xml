@@ -167,4 +167,7 @@
   <string name="github_repository_settings_branch_name">브랜치 이름: </string>
   <string name="github_repository_settings_valid_server">Github 저장소 유효</string>
   <string name="github_repository_settings_invalid_server">Github 저장소 무효</string>
+  <!--App Introduction-->
+  <!--Intro - slide1-->
+  <!--Intro - slide2-->
 </resources>
