@@ -3,7 +3,7 @@
   <!--Generic strings-->
   <string name="app_name">OSMTracker Android™-ra</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">A Windows Mobile-on elérhető OSMTracker inspirálta, amely lehetővé teszi utazásai követését, megjelölésés fontos pontokkal (hangrögzítés, fényképek) exportálhatja GPX formában a későbbi olyan Open Street Map eszközökkel történő használathoz, mint például a JOSM.</string>
+  <string name="app_description">A Windows Mobile OSMTracker által inspirált program lehetővé teszi az utazások nyomon követését, a jelentős úticélok megjelölését (hangfelvétel, fényképek), valamint GPX formátumba exportálását, hogy később az OpenStreetMap eszközökkel, például a JOSM-mal is használhassa őket.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Nyomvonalrögzítő</string>
   <string name="tracklogger_waiting_gps">Várakozás a GPS beállására a gombok engedélyezéséhez…</string>
@@ -31,12 +31,14 @@
   <string name="trackmgr_waypoints_count">Útpontok:</string>
   <string name="trackmgr_trackpoints_count">Nyompontok:</string>
   <string name="trackmgr_empty">Nincs egyetlen nyomvonala sem.</string>
+  <string name="trackmgr_newtrack_hint">Nyomja meg új nyomvonal rögzítéséhez.</string>
   <string name="trackmgr_newtrack_error">Nem sikerült új nyomvonalat létrehozni: {0}</string>
   <string name="trackmgr_continuetrack_hint">Jelenleg a <b>#{0}.nyomvonalat</b> rögzíti\nVálasszon a listáról a folytatáshoz.</string>
   <string name="trackmgr_contextmenu_stop">Nyomvonalkészítés leállítása</string>
   <string name="trackmgr_contextmenu_resume">Nyomvonalkészítés folytatása</string>
   <string name="trackmgr_contextmenu_delete">Törlés</string>
   <string name="trackmgr_contextmenu_export">Exportálás GPX fájlként</string>
+  <string name="trackmgr_contextmenu_share">GPX megosztása</string>
   <string name="trackmgr_contextmenu_osm_upload">Feltöltés az OpenStreetMapre</string>
   <string name="trackmgr_contextmenu_display">Megjelenítés</string>
   <string name="trackmgr_contextmenu_details">Részletek</string>
@@ -47,6 +49,7 @@
   <string name="trackmgr_exporting_prepare">Exportálás előkészítése…</string>
   <string name="trackmgr_export_error">{0} nyomvonal exportálása sikertelen</string>
   <string name="trackmgr_exportall_confirm">Minden nyomvonal exportáltatik, ami sokáig tarthat. Biztosan ezt akarja?</string>
+  <string name="trackmgr_prepare_for_share_error">Nem sikerült a következő nyomvonal feldolgozása: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Nyomvonal részletei</string>
   <string name="trackdetail_startdate">Kezdési időpont:</string>
@@ -135,6 +138,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Várakozás az irányra…</string>
   <string name="various_heading_unknown">Az irány nem határozható meg</string>
+  <string name="various_export_finished">Az exportálási folyamat sikeresen befejeződött</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap nyomvonal megjelenítése</string>
   <!--Buttons presets messages-->
@@ -145,8 +149,10 @@
   <string name="buttons_presets_unsuccessful_update">Az elrendezés nem frissült, próbálja meg később újra</string>
   <string name="buttons_presets_delete_message">Biztosan törölni szeretné ezt az elrendezést: {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Igen</string>
+  <string name="buttons_presets_successful_delete">Az elrendezés sikeresen törlődött</string>
   <string name="buttons_presets_icon_directory_deleted">Az ikonmappa sikeresen törölve</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Ehhez a fájlhoz nem volt ikonmappa társítva</string>
+  <string name="buttons_presets_unsuccessful_delete">Az elrendezést nem sikerült törölni</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Hiba: nem sikerül kapcsolódni az internethez</string>
   <string name="available_layouts_response_null_exception">Hiba: nem sikerül csatlakozni az egyedi elrendezések alapértelmezett tárházához</string>
@@ -168,6 +174,12 @@
   <string name="github_repository_settings_valid_server">A Github tár érvényes</string>
   <string name="github_repository_settings_invalid_server">A Github tár érvénytelen</string>
   <!--App Introduction-->
+  <string name="app_intro">OSMTracker Android™-ra – bevezetés</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Isten hozta az OSMTracker for Android™ 👋 alkalmazásban</string>
+  <string name="app_intro_slide1_description">Ez az alkalmazás szabad szoftver, amely tiszteletben tartja az Ön szabadságát!</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Jó nyomvonalkövetést! 🗺 😎</string>
+  <string name="app_intro_slide2_description">Az OSMTracker for Android az Ön GPS helyzetének segítségével rögzít nyomvonalpontokat és útpontokat, még akkor is, ha az alkalmazás a háttérben fut.
+\nAz Ön adatait nem használjuk fel hirdetések támogatására.</string>
 </resources>
