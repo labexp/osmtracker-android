@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
-  <string name="app_name">متتبع أواسام للأندرويد™</string>
-  <string name="app_short_name">متتبع أواسام</string>
+  <string name="app_name">متتبع OSM للأندرويد™</string>
+  <string name="app_short_name">متتبع OSM</string>
   <string name="app_description">في انتظار ثبات GPS لتفعيل الأزرار...</string>
   <!--TrackLogger-->
   <string name="tracklogger">مسجل المسار</string>
@@ -31,73 +31,139 @@
   <string name="trackmgr_waypoints_count">نقاط الطريق :</string>
   <string name="trackmgr_trackpoints_count">نقاط المسار :</string>
   <string name="trackmgr_empty">لا توجد بحوزتك أية مسارات.</string>
+  <string name="trackmgr_newtrack_hint">اضغط لتسجيل مسار جديد.</string>
+  <string name="trackmgr_newtrack_error">تعذر إنشاء مسار جديد: {0}</string>
+  <string name="trackmgr_continuetrack_hint">أنت حاليًا تسجل المسار <b> #{0} </b> \n اختره في القائمة للمتابعة</string>
   <string name="trackmgr_contextmenu_stop">إيقاف تقفِّي المسار</string>
   <string name="trackmgr_contextmenu_resume">مواصلة تقفِّي المسار</string>
   <string name="trackmgr_contextmenu_delete">حذف</string>
-  <string name="trackmgr_contextmenu_export">صدر إلى GPX</string>
+  <string name="trackmgr_contextmenu_export">تصدير إلى GPX</string>
+  <string name="trackmgr_contextmenu_share">مشاركة GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">إرفع إلى خريطة الشارع المفتوح</string>
   <string name="trackmgr_contextmenu_display">العرض</string>
   <string name="trackmgr_contextmenu_details">تفاصيل</string>
   <string name="trackmgr_contextmenu_title">المسار #{0}</string>
+  <string name="trackmgr_delete_confirm">سيتم حذف المسار رقم #{0} </string>
+  <string name="trackmgr_deleteall_confirm">سيتم حذف جميع المسارات. هل أنت متأكد؟</string>
+  <string name="trackmgr_exporting">جارٍ تصدير المسار رقم #{0}…</string>
+  <string name="trackmgr_exporting_prepare">جارٍ تحضير التصدير ...</string>
+  <string name="trackmgr_export_error">تعذر تصدير المسار: {0}</string>
+  <string name="trackmgr_exportall_confirm">سيتم تصدير جميع المسارات ، الأمر الذي قد يستغرق وقتًا طويلاً. هل أنت متأكد؟</string>
+  <string name="trackmgr_prepare_for_share_error">تعذر معالجة المسار: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">تفاصيل المسار :</string>
   <string name="trackdetail_startdate">لحظة البداية :</string>
   <string name="trackdetail_enddate">لحظة النهاية :</string>
   <string name="trackdetail_startloc">يبدأ عند:</string>
   <string name="trackdetail_endloc">ينتهي عند:</string>
+  <string name="trackdetail_exportdate">تم التصدير:</string>
+  <string name="trackdetail_osm_upload_date">تم الرفع إلى خادم خريطة الشارع المفتوحة:</string>
   <string name="trackdetail_btn_export">صدر إلى GPX</string>
+  <string name="trackdetail_export_notyet">(لم يتم تصديره بعد)</string>
+  <string name="trackdetail_osm_upload_notyet">(لم يتم الرفع بعد)</string>
+  <string name="trackdetail_export_display">العرض</string>
   <string name="trackdetail_description">الوصف</string>
   <string name="trackdetail_tags">الأوسمة (فاصلة بعد كل وسم)</string>
+  <string name="trackdetail_description_mandatory">يجب عليك إدخال وصف</string>
   <string name="osm_visibility_private">خاص</string>
   <string name="osm_visibility_public">عمومي</string>
   <string name="osm_visibility_trackable">قابل للتتبع</string>
   <string name="osm_visibility_identifiable">قابل للتعريف</string>
   <!--OSM upload-->
   <string name="osm_upload">إرفع إلى خريطة الشارع المفتوح</string>
+  <string name="osm_upload_ok">حفظ ورفع</string>
+  <string name="osm_upload_tmpfile_failed">تعذر تصدير المسار إلى ملف مؤقت</string>
+  <string name="osm_upload_oauth_failed">غير قادر على المصادقة من OSM</string>
+  <string name="osm_upload_sending">جارٍ إرسال المسار رقم #{0}…</string>
+  <string name="osm_upload_waiting_response">في انتظار استجابة خادم خريطة الشارع المفتوحة...</string>
+  <string name="osm_upload_error">خطأ أثناء رفع المسار</string>
+  <string name="osm_upload_bad_response">عرض خادم OSM خطأ: ({0}) رسالة {1}</string>
+  <string name="osm_upload_unauthorized">خطأ في التشغيل التلقائي. هل ترغب في مسح بيانات اعتماد خريطة الشارع المفتوحة المحفوظة؟</string>
+  <string name="osm_upload_sucess">نجح الرفع لخريطة الشارع المفتوحة </string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">تسجيل صوتي</string>
   <string name="gpsstatus_record_stillimage">أخذ صورة</string>
   <string name="gpsstatus_record_textnote">ملاحظة</string>
   <!--Menu-->
   <string name="menu_settings">الإعدادات</string>
-  <string name="menu_about">عن</string>
+  <string name="menu_waypointlist">الإحداثيات</string>
+  <string name="menu_about">حول</string>
   <string name="menu_displaytrack">عرض المسار</string>
+  <string name="menu_stoptracking">توقف &amp; حفظ</string>
   <string name="menu_newtrack">مسار جديد</string>
   <string name="menu_deletetracks">حذف جميع المسارات</string>
-  <string name="menu_save">احتفاظ</string>
+  <string name="menu_continue">متابعة المسار</string>
+  <string name="menu_stopcurrenttrack">إيقاف المسار الحالي</string>
+  <string name="menu_save">حفظ</string>
   <string name="menu_cancel">إلغاء</string>
   <string name="menu_export">صدر إلى GPX</string>
   <string name="menu_osm_upload">إرفع إلى خريطة الشارع المفتوح</string>
+  <string name="menu_center_to_gps">توسيط حسب موقع GPS</string>
+  <string name="menu_exportall">تصدير الكل كـ GPX</string>
   <!--Errors-->
+  <string name="error_externalstorage_not_writable">غير قادر على الكتابة في وحدة التخزين الخارجية.</string>
+  <string name="error_create_track_dir">تعذر إنشاء مجلد المسار %s</string>
+  <string name="error_externalstorage_not_writable_hint">يرجى التحقق مما إذا كان الذاكرة الخارجية مدخلة بشكل صحيح وتم تركيبها بشكل صحيح.</string>
+  <string name="error_voicerec_failed">فشل التسجيل الصوتي</string>
+  <string name="error_userlayout_parsing">خطأ أثناء تحليل ملف تخطيط XML. يرجى العودة إلى التخطيط الافتراضي.</string>
   <!--GPX-->
+  <string name="gpx_track_name">تتبع مع متتبع OSM لنظام أندرويد™</string>
+  <string name="gpx_hdop_approximation_cmt">تحذير: قيم HDOP ليست HDOP كما تم إرجاعها بواسطة جهاز GPS. يتم تقريبها من دقة الموقع بالأمتار.</string>
   <!--About screen-->
-  <string name="about">عن</string>
-  <string name="about_translate_text">ساعدنا على ترجمة OSMTracker :</string>
+  <string name="about">حول</string>
+  <string name="about_text">لمزيد من المعلومات والمستندات وتقرير المشكلات ، يرجى زيارة الصفحة الرئيسية للمشروع:</string>
+  <string name="about_translate_text">ساعدنا على ترجمة متتبع OSM:</string>
+  <string name="about_debug_info">معلومات التصحيح البرمجية</string>
   <string name="about_export_db">تصدير قاعدة البيانات</string>
   <string name="about_exporting_db">جارٍ تصدير قاعدة البيانات ...</string>
+  <string name="about_export_db_result">نتيجة تصدير قاعدة البيانات:%s</string>
   <!--Notification-->
+  <string name="notification_ticker_text">متتبع OSM يقوم بالتتبع</string>
+  <string name="notification_title">متتبع OSM يقوم بالتتبع (#{0})</string>
   <string name="notification_text">إضغط هنا لعرض الشاشة الرئسية</string>
   <!--Display track-->
   <string name="displaytrack">عرض المسار</string>
-  <string name="displaytrack_north">ش</string>
+  <string name="displaytrack_map">عرض الخريطة الخلفية</string>
+  <string name="displaytrack_north">N</string>
   <!--Track detail-->
-  <string name="trackdetail_save">احتفاظ</string>
+  <string name="trackdetail_save">حفظ</string>
   <!--Various-->
   <string name="various_unit_meters">م</string>
   <string name="various_accuracy">الدقة</string>
   <string name="various_accuracy_with_sats">الدقة {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">في انتظار إصلاح نظام تتبع المواقع… ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
   <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
+  <string name="various_heading">انتظر الاتجاه...</string>
+  <string name="various_heading_unknown">لا يمكن تحديد الاتجاه</string>
+  <string name="various_export_finished">انتهت عملية التصدير بنجاح</string>
   <!--OSM map view-->
+  <string name="displaytrackmap">عرض مسار خريطة الشارع المفتوحة</string>
   <!--Buttons presets messages-->
-  <string name="buttons_presets_context_menu_delete">احذف</string>
+  <string name="buttons_presets_context_menu_update_install">تحديث &amp; تثبيت</string>
+  <string name="buttons_presets_context_menu_delete">حذف</string>
   <string name="buttons_presets_updating_layout">تحديث...</string>
+  <string name="buttons_presets_successful_update">تم تحديث التخطيط بنجاح</string>
+  <string name="buttons_presets_unsuccessful_update">لم يتم تحديث التخطيط ، أعد المحاولة لاحقًا</string>
+  <string name="buttons_presets_delete_message">هل أنت متأكد من حذف التنسيق {0}؟</string>
   <string name="buttons_presets_delete_positive_confirmation">نعم</string>
+  <string name="buttons_presets_successful_delete">تم حذف التخطيط بنجاح</string>
+  <string name="buttons_presets_icon_directory_deleted">تم حذف دليل الرموز بنجاح</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">هذا الملف ليس لديه أي مجلد رمز مرتبط به</string>
+  <string name="buttons_presets_unsuccessful_delete">لا يمكن حذف التخطيط</string>
   <!--Available Layouts messages-->
-  <string name="available_layouts_description_dialog_positive_confirmation">نزل</string>
+  <string name="available_layouts_connection_error">خطأ: غير قادر على الاتصال بالإنترنت</string>
+  <string name="available_layouts_response_null_exception">خطأ: غير قادر على الاتصال بمستودع التنسيقات المخصصة الافتراضية</string>
+  <string name="available_layouts_connecting_message">(اتصال…)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">تحميل</string>
+  <string name="available_layouts_not_available_language">لغتك غير متوفرة اختر واحدة من القائمة</string>
+  <string name="available_layouts_language_dialog_title">اللغات المتوفرة</string>
+  <string name="available_layouts_checking_language_dialog">التحقق من إصدارات اللغة المحلية</string>
   <string name="available_layouts_downloading_dialog">تنزيل...</string>
+  <string name="available_layouts_successful_download">تم تنزيل التخطيط بنجاح</string>
+  <string name="available_layouts_unsuccessful_download">لا يمكن تنزيل التخطيط ، حاول مرة أخرى لاحقًا</string>
   <string name="available_layouts_null_response_received">خطأ عند استرجاع البيانات من الخادم</string>
   <!--Github Repository Settings-->
   <string name="github_repository_settings_default_checkbox">افتراضي</string>
@@ -108,6 +174,12 @@
   <string name="github_repository_settings_valid_server">مستودع Github صالح</string>
   <string name="github_repository_settings_invalid_server">مستودع Github فاسد</string>
   <!--App Introduction-->
+  <string name="app_intro">مقدمة لمتتبع OSM للأندرويد™</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">مرحبًا بك في متتبع OSM للأندرويد™ 👋</string>
+  <string name="app_intro_slide1_description">هذا التطبيق هو برنامج مجاني يحترم حريتك!</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">تتبع سعيد 🗺 😎</string>
+  <string name="app_intro_slide2_description">سيستخدم متتبع OSM للأندرويد موقع GPS الخاص بك لتسجيل نقاط المسار ونقاط الطريق، حتى عند تشغيل التطبيق في الخلفية.
+\nلا يتم استخدام بياناتك لدعم الإعلانات.</string>
 </resources>
