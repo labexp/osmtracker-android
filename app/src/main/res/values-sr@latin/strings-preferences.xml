@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Postavke</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS postavke</string>
+  <string name="prefs_gps_os_settings_summary">Prikaz sistemskog ekrana GPS postavki</string>
+  <string name="prefs_check_gps_startup">Proveri GPS pri pokretanju</string>
+  <string name="prefs_check_gps_startup_summary">Proveri da li je GPS isključen i ponudi uključivanje</string>
+  <string name="prefs_gps_ignore_clock">Zanemari GPS časovnik</string>
+  <string name="prefs_gps_ignore_clock_summary">Zanemari GPS časovnik i koristi Androidov za vremena</string>
+  <string name="prefs_gps_logging_interval">Učestanost GPS zapisa</string>
+  <string name="prefs_gps_logging_interval_summary">Koristi 0 za najkraće moguće (utiče na bateriju)</string>
+  <string name="prefs_gps_logging_interval_seconds">sek</string>
+  <string name="prefs_ui">Sučelje</string>
+  <string name="prefs_ui_picture_source">Podrazumevani izvor slika</string>
+  <string name="prefs_ui_picture_source_summary">Slike sa kamere ili iz galerije?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamera</item>
+    <item>Galerija</item>
+    <item>Uvek pitaj</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Predefinisana dugmad</string>
+  <string name="prefs_ui_buttons_layout_summary">Izaberi posebne setove dugmadi (vidi dokumentaciju)</string>
+  <string name="prefs_ui_buttons_layout_defaut">Podrazumevano</string>
+  <string name="prefs_ui_orientation">Usmerenje</string>
+  <string name="prefs_ui_orientation_summary">Željeno usmerenje za ekran dugmadi</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Automatski</item>
+    <item>Uspravno</item>
+    <item>Položeno</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Trajanje glasovne beleške</string>
+  <string name="prefs_voicerec_duration_seconds">sek.</string>
+  <string name="prefs_theme">Tema glavnog ekrana</string>
+  <string name="prefs_theme_summary">Potrebno je ponovno pokretanje da bi se primenila</string>
+  <string-array name="prefs_theme_keys">
+    <item>Podrazumevano</item>
+    <item>Podrazumevano (tamno)</item>
+    <item>Podrazumevano (svetlo)</item>
+    <item>Visoki kontrast</item>
+  </string-array>
+  <string name="prefs_display_always_on">Ekran uvek uključen</string>
+  <string name="prefs_display_always_on_summary">Ekran će ostati uključen tokom praćenja. Isključite da sačuvate bateriju</string>
+  <string name="prefs_displaytrack_osm">Mapa u pozadini</string>
+  <string name="prefs_displaytrack_osm_summary">Prikazuj OpenStreet mapu ispod traga. Morate biti povezani</string>
+  <string name="prefs_output">GPX postavke</string>
+  <string name="prefs_storage_dir">Direktorijum spoljnog skladišta</string>
+  <string name="prefs_storage_dir_hint">Odnosi se na naredno praćenje (ne na tekuće)</string>
+  <string name="prefs_output_one_dir_per_track">Jedan direktorijum po praćenju</string>
+  <string name="prefs_output_one_dir_per_track_summary">Sačuvaj svako praćenje i njegove fajlove u sopstveni direktorijum</string>
+  <string name="prefs_output_filename">Naziv fajla za praćenja</string>
+  <string name="prefs_output_filename_summary">Šablon za naziv fajla praćenja</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Naziv praćenja</item>
+    <item>Naziv, početni datum i vreme</item>
+    <item>Početni datum i vreme</item>
+  </string-array>
+  <string name="prefs_output_accuracy">Tačnost u GPX fajlu</string>
+  <string name="prefs_output_accuracy_summary">Dodaj podatke o tačnosti u GPX fajl uz naziv prolazne tačke ili u njen komentar</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Bez tačnosti</item>
+    <item>Uz naziv prolazne tačke</item>
+    <item>U komentar prolazne tačke</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">Koristi HDOP aproksimaciju</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">Popuni HDOP u GPX-u sa procenjenom vrednošću iz preciznosti</string>
+  <string name="prefs_sound_enabled">Uključi zvuk</string>
+  <string name="prefs_sound_enabled_summary">Pusti zvuk kada glasovna beleška počne i završi se</string>
+  <string name="prefs_osm_clear_oauth_data">Resetuj OSM prijavu</string>
+  <string name="prefs_osm_clear_oauth_data_summary">Zaboravi OSM akreditive i dozvole i prisili OSM pratioca da ih zatraži ponovo</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">Moraćete ponovo da ovlastite OSM pratioca da šalje praćenja. Sigurni ste?</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Bez usmerenja</item>
+    <item>U komentaru</item>
+    <item>U proširenju</item>
+  </string-array>
+  <string name="prefs_compass_heading_summary">Određuje da li će i kako podaci kompasa biti izvezeni u GPX fajl</string>
+</resources>
