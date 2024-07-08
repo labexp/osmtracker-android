@@ -61,7 +61,9 @@
   <string name="tag.amenity_marina">Пристань</string>
   <string name="tag.amenity_sport">Спорт</string>
   <string name="tag.amenity_taxi">Такси</string>
+  <string name="tag.amenity_doctors">Больница,\nВрачи</string>
   <string name="tag.amenity_recycling">Мусорка</string>
+  <string name="tag.amenity_place_of_worship">Место\nбогослужения</string>
   <string name="tag.amenity_post_office">Почта</string>
   <string name="tag.amenity_library">Библиотека</string>
   <string name="tag.amenitymore_school">Школа</string>
@@ -107,4 +109,5 @@
   <string name="tag.landuse_forest">Лес</string>
   <string name="tag.landuse_allotments">Дачи</string>
   <string name="tag.landuse_cemetery">Кладбище</string>
+  <string name="tag.landuse_recreation_ground">Игровая\nплощадка</string>
 </resources>
