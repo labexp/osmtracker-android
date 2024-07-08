@@ -10,7 +10,7 @@
   <string name="prefs_gps_ignore_clock">GPS-Uhrzeit ignorieren</string>
   <string name="prefs_gps_ignore_clock_summary">GPS-Uhrzeit ignorieren und Android-Uhrzeit für Zeitstempel verwenden</string>
   <string name="prefs_use_barometer">Luftdruck loggen [hPa]</string>
-  <string name="prefs_use_barometer_summary">Umschalten benötigt einen Track Neustart</string>
+  <string name="prefs_use_barometer_summary">Umschalten benötigt einen Neustart des Tracks</string>
   <string name="prefs_gps_logging_interval">GPS-Protokollierungsintervall</string>
   <string name="prefs_gps_logging_interval_summary">Verwenden Sie 0 für das kürzestmögliche Intervall (beeinflusst die Batterielebensdauer)</string>
   <string name="prefs_gps_logging_interval_seconds">Sekunden</string>
