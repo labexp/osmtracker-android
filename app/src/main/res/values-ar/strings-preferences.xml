@@ -3,23 +3,96 @@
   <!--Preferences-->
   <string name="prefs">الاعدادت</string>
   <string name="prefs_gps">نظام تحديد الموقع</string>
-  <string name="prefs_gps_os_settings">اعدادات تحديد الموقع</string>
+  <string name="prefs_gps_os_settings">اعدادات نظام تحديد الموقع</string>
   <string name="prefs_gps_os_settings_summary">عرض شاشة اعدادات نظام تحديد المواقع</string>
-  <string name="prefs_check_gps_startup">تفحص GPS عند البدأ</string>
-  <string name="prefs_gps_ignore_clock">تجاهل ساعة GPS</string>
+  <string name="prefs_check_gps_startup">التحقق من تشغيل نظام تحديد المواقع عند البدأ</string>
+  <string name="prefs_check_gps_startup_summary">تحقق مما إذا كان نظام تحديد المواقع معطلاً عند بدء التشغيل، ونبهني لتمكينه</string>
+  <string name="prefs_gps_ignore_clock">تجاهل ساعة نظام تحديد المواقع</string>
+  <string name="prefs_gps_ignore_clock_summary">تجاهل ساعة نظام تحديد المواقع واستخدم ساعة نظام أندرويد لتسجيل الفترات الزمنية</string>
+  <string name="prefs_use_barometer">سجل الضغط الجوي [hPa]</string>
+  <string name="prefs_use_barometer_summary">للتغير لابد من إعادة تشغيل المسار</string>
+  <string name="prefs_gps_logging_interval">الفاصل الزمني لتسجيل التتبع من نظام تحديد المواقع</string>
+  <string name="prefs_gps_logging_interval_summary">استخدم 0 لأقصر وقت ممكن (يؤثر على عمر البطارية)</string>
   <string name="prefs_gps_logging_interval_seconds">ثوان</string>
+  <string name="prefs_gps_logging_min_distance">مسافة تسجيل الـGPS</string>
+  <string name="prefs_gps_logging_min_distance_summary">أقل مسافة بين النقاط المسجلة للمسار بالأمتار، استخدم 0 لأقصر مسافة ممكنة</string>
+  <string name="prefs_gps_logging_min_distance_meters">متر/أمتار</string>
   <string name="prefs_ui">واجهة المستخدم</string>
   <string name="prefs_ui_picture_source">مصدر الصورة اﻹفتراضي</string>
-  <string name="prefs_ui_buttons_layout">تعيين الأزرار</string>
+  <string name="prefs_ui_picture_source_summary">التقاط الصور من الكاميرا أو مستكشف الصور؟</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>الكاميرا</item>
+    <item>مستكشف الصور</item>
+    <item>إسأل دائما</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">ضبط الأزرار</string>
+  <string name="prefs_ui_buttons_layout_summary">اختر مجموعة مخصصة من الأزرار (انظر المستندات والتعليمات)</string>
+  <string name="prefs_ui_buttons_layout_default_section">التخطيط الافتراضي</string>
   <string name="prefs_ui_buttons_layout_defaut">الافتراضي</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">التخطيط الذي تم تنزيله</string>
+  <string name="prefs_ui_buttons_layout_empty_section">ليس لديك ملفات تخطيط تم تنزيلها</string>
+  <string name="prefs_ui_available_layout">التخطيطات المتوفرة</string>
+  <string name="prefs_ui_github_repository_settings">إعدادات مستودع Github</string>
   <string name="prefs_ui_orientation">الإتجاه</string>
+  <string name="prefs_ui_orientation_summary">الاتجاه المفضل لزر الشاشة</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>تلقائي</item>
+    <item>أفقي</item>
+    <item>عامودي</item>
+  </string-array>
   <string name="prefs_voicerec_duration">مدة التسجيل الصوتي</string>
   <string name="prefs_voicerec_duration_seconds">ثوان</string>
   <string name="prefs_theme">سمة الشاشة الرئيسية</string>
+  <string name="prefs_theme_summary">لابد من إعادة تشغيل التطبيق حتى يدخل التغيير حيز التنفيذ</string>
+  <string-array name="prefs_theme_keys">
+    <item>حسب نظام التشغيل</item>
+    <item>حسب نظام التشغيل (ظلام)</item>
+    <item>حسب نظام التشغيل (نهاري)</item>
+    <item>تباين عالي</item>
+  </string-array>
+  <string name="prefs_display_always_on">جعل الشاشة قيد التشغيل دائمًا</string>
+  <string name="prefs_display_always_on_summary">ستبقى الشاشة قيد التشغيل أثناء التتبع. عطل هذا الخيار لتوفير البطارية</string>
+  <string name="prefs_displaytrack_osm">الخريطة الخلفية</string>
+  <string name="prefs_displaytrack_osm_summary">اعرض خريطة الشارع المفتوحة أسفل المسار. لابد من وجود اتصال بالانترنت</string>
+  <string name="prefs_displaytrack_osm_summary_ask">عرض خلفية خريطة الشارع المفتوحة بشكل دائمًا؟ لابد من وجود اتصال بالانترنت</string>
   <string name="prefs_output">إعدادات GPX</string>
-  <string name="prefs_storage_dir">دليل المخزن الخارجي (SD)</string>
+  <string name="prefs_storage_dir">مجلد التخزين الخارجي (SD)</string>
+  <string name="prefs_storage_dir_hint">فعال للمسار التالي (ليس المسار الحالي)</string>
   <string name="prefs_output_one_dir_per_track">دليل واحد لكل مسار</string>
+  <string name="prefs_output_one_dir_per_track_summary">احفظ كل مسار والملفات المرتبطة به في الدليل الخاص به</string>
+  <string name="prefs_output_filename">اسم الملف للمسارات المسماة</string>
+  <string name="prefs_output_filename_summary">نمط اسم الملف إذا كان للمسار اسم</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>اسم المسار</item>
+    <item>الاسم, تاريخ البدء والوقت</item>
+    <item>تاريخ البدء والوقت</item>
+  </string-array>
   <string name="prefs_output_accuracy">الدقة في ملف GPX</string>
+  <string name="prefs_output_accuracy_summary">أضف وسجل معلومات الدقة في ملف GPX ، مع اسم الإحداثية أو تعليق الإحداثية</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>لا شيء</item>
+    <item>مع اسم الإحداثية</item>
+    <item>في تعليقات الإحداثية</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">استخدم تقريب HDOP</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">قم بتعبئة بيانات HDOP في GPX بقيمة تقريبية من الدقة</string>
   <string name="prefs_sound_enabled">فعل الصوت</string>
+  <string name="prefs_sound_enabled_summary">تشغيل الأصوات عندما يبدأ التسجيل الصوتي وينتهي</string>
+  <string name="prefs_osm_clear_oauth_data">إعادة تعيين مصادقة الدخول إلى OSM</string>
+  <string name="prefs_osm_clear_oauth_data_summary">ننسى بيانات اعتماد OSM والأذونات وأجبر OSMTracker على طلبها مرة أخرى</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">لابد من السماح لـOSMTracker برفع المسارات مرة أخرى. هل أنت متأكد؟</string>
+  <string name="prefs_map_tile">مزود الصور المتجانبة للخريطة</string>
   <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>خريطة الدراجات</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>لا شيء</item>
+    <item>في التعليق</item>
+    <item>في الملحق</item>
+  </string-array>
+  <string name="prefs_compass_heading">تصدير بيانات البوصلة</string>
+  <string name="prefs_compass_heading_summary">يحدد ما إذا كان ينبغي تصدير بيانات البوصلة إلى ملف GPX وكيفية ذلك</string>
 </resources>
