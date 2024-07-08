@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Verifica se il GPS è disabilitato all\'avvio e chiede di abilitarlo</string>
   <string name="prefs_gps_ignore_clock">Ignora orologio GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Ignora l\'orologio del GPS e utilizza quello Android per il salvataggio dell\'ora</string>
+  <string name="prefs_use_barometer">Registra pressione barometrica [hPa]</string>
+  <string name="prefs_use_barometer_summary">La commutazione richiede il riavvio della traccia</string>
   <string name="prefs_gps_logging_interval">Intervallo registrazione GPS</string>
   <string name="prefs_gps_logging_interval_summary">Usa 0 per il più breve possibile (influisce sulla durata batteria)</string>
   <string name="prefs_gps_logging_interval_seconds">secondi</string>
+  <string name="prefs_gps_logging_min_distance">Distanza registrazione GPS</string>
+  <string name="prefs_gps_logging_min_distance_summary">Distanza minima in metri tra i punti della traccia, usa 0 per quella minima possibile</string>
+  <string name="prefs_gps_logging_min_distance_meters">metri</string>
   <string name="prefs_ui">Interfaccia utente</string>
   <string name="prefs_ui_picture_source">Sorgente immagini predefinita</string>
   <string name="prefs_ui_picture_source_summary">Utilizzare le immagini della fotocamera o della galleria?</string>
@@ -41,14 +46,15 @@
   <string name="prefs_theme_summary">Riavvia l\'applicazione per impostare le modifiche</string>
   <string-array name="prefs_theme_keys">
     <item>OS predefinito</item>
-    <item>OS predefinito (Oscuro)</item>
-    <item>OS predefinito (Chiaro)</item>
+    <item>OS predefinito (scuro)</item>
+    <item>OS predefinito (chiaro)</item>
     <item>Contrasto elevato</item>
   </string-array>
   <string name="prefs_display_always_on">Schermo sempre attivo</string>
   <string name="prefs_display_always_on_summary">Lo schermo rimarrà attivo durante la registrazione della traccia. Disattiva per risparmiare la batteria</string>
   <string name="prefs_displaytrack_osm">Sfondo OSM</string>
   <string name="prefs_displaytrack_osm_summary">Mostra OpenStreetMap sotto la traccia. È necessaria una connessione dati</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Mostra sempre lo sfondo OpenStreetMap? Richiede una connessione dati</string>
   <string name="prefs_output">Salvataggio file GPX</string>
   <string name="prefs_storage_dir">Directory memoria esterna (SD)</string>
   <string name="prefs_storage_dir_hint">Valido per la traccia successiva (non per quella attuale)</string>
@@ -75,6 +81,7 @@
   <string name="prefs_osm_clear_oauth_data">Ripristina l\'autenticazione su OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Dimentica le credenziali e le autorizzazioni di OSM e forza OSMTracker a chiederle di nuovo</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Devi autorizzare nuovamente OSMTracker a caricare i tracciati. Sei sicuro?</string>
+  <string name="prefs_map_tile">Fornitore dei tasselli della mappa</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -86,5 +93,6 @@
     <item>come commento</item>
     <item>per esteso</item>
   </string-array>
+  <string name="prefs_compass_heading">Esporta orientamento bussola</string>
   <string name="prefs_compass_heading_summary">Definisce se e come i dati della bussola devono essere esportati nel file GPX</string>
 </resources>
