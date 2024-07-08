@@ -4,8 +4,8 @@
   <string name="tag.restriction">قيود</string>
   <string name="tag.car">سيارة</string>
   <string name="tag.tourism">سياحة</string>
-  <string name="tag.amenity">لطافة</string>
-  <string name="tag.amenity_more">لطافة (+)</string>
+  <string name="tag.amenity">مرفق</string>
+  <string name="tag.amenity_more">مرفق (+)</string>
   <string name="tag.way">طريق</string>
   <string name="tag.track">مسلك</string>
   <string name="tag.landuse">استخدام الأراضي</string>
@@ -15,7 +15,7 @@
   <string name="tag.misc_post_box">صندوق بريد</string>
   <string name="tag.misc_atm">صراف آلي</string>
   <string name="tag.misc_bollard">مربط حبال</string>
-  <string name="tag.misc_toilets">مراحيض</string>
+  <string name="tag.misc_toilets">دورات مياه</string>
   <string name="tag.misc_shelter">مأوى</string>
   <string name="tag.misc_surveillance">مراقبة</string>
   <string name="tag.restriction_20">الحد الأقصى 20</string>
@@ -99,4 +99,5 @@
   <string name="tag.landuse_forest">غابة</string>
   <string name="tag.landuse_allotments">تقسيمات</string>
   <string name="tag.landuse_cemetery">مقبرة</string>
+  <string name="tag.landuse_recreation_ground">الترفيهية\nالأرض</string>
 </resources>
