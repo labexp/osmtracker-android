@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Check om GPS er aktiveret ved start, og tilbyd at aktivere den</string>
   <string name="prefs_gps_ignore_clock">Ignorer GPS-tid</string>
   <string name="prefs_gps_ignore_clock_summary">Ignorer GPS-tid og brug Android-uret til tidsstempler</string>
+  <string name="prefs_use_barometer">Log barometrisk tryk [hPa]</string>
+  <string name="prefs_use_barometer_summary">Skift kræver genstart af sporet</string>
   <string name="prefs_gps_logging_interval">GPS-logningsinterval</string>
   <string name="prefs_gps_logging_interval_summary">Brug 0 for kortest mulige (påvirker batteritid)</string>
   <string name="prefs_gps_logging_interval_seconds">sekunder</string>
+  <string name="prefs_gps_logging_min_distance">GPS-logningsafstand</string>
+  <string name="prefs_gps_logging_min_distance_summary">Min. afstand mellem sporpunkter i meter, brug 0 for den kortest mulige.</string>
+  <string name="prefs_gps_logging_min_distance_meters">meter</string>
   <string name="prefs_ui">Brugerflade</string>
   <string name="prefs_ui_picture_source">Standard fotokilde</string>
   <string name="prefs_ui_picture_source_summary">Tag fotos fra kamera eller galleri?</string>
@@ -49,6 +54,7 @@
   <string name="prefs_display_always_on_summary">Skærm forbliver tændt under tracking. Inaktiver for at spare batteri</string>
   <string name="prefs_displaytrack_osm">Baggrundskort</string>
   <string name="prefs_displaytrack_osm_summary">Vis OpenStreetMap-kort under track. Kræver dataforbindelse</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Vis altid OpenStreetMap-baggrund? Kræver en dataforbindelse</string>
   <string name="prefs_output">GPX-indstillinger</string>
   <string name="prefs_storage_dir">Mappe på eksternt lager (SD)</string>
   <string name="prefs_storage_dir_hint">Gældende for næste track (ikke det nuværende)</string>
@@ -75,6 +81,7 @@
   <string name="prefs_osm_clear_oauth_data">Nulstil OSM-authentifikation</string>
   <string name="prefs_osm_clear_oauth_data_summary">Glem OSM-brugernavn og -tilladelser og tving OSMTracker til at spørge om dem igen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Dette betyder at du vil skulle autorisere OSMTracker for at kunne uploade igen. Er du sikker?</string>
+  <string name="prefs_map_tile">Leverandør af kortfliser</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -86,5 +93,6 @@
     <item>til kommentar</item>
     <item>til udvidelse</item>
   </string-array>
+  <string name="prefs_compass_heading">Eksporter kompasretning</string>
   <string name="prefs_compass_heading_summary">Definer om og hvordan kompasdata eksporteres til GPX-filen</string>
 </resources>
