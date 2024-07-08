@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Провери да ли је GPS искључен и понуди укључивање</string>
   <string name="prefs_gps_ignore_clock">Занемари GPS часовник</string>
   <string name="prefs_gps_ignore_clock_summary">Занемари GPS часовник и користи Андроидов за времена</string>
+  <string name="prefs_use_barometer">Бележи ваздушни притисак [hPa]</string>
+  <string name="prefs_use_barometer_summary">Промена захтева рестарт праћења</string>
   <string name="prefs_gps_logging_interval">Учестаност GPS записа</string>
   <string name="prefs_gps_logging_interval_summary">Користи 0 за најкраће могуће (утиче на батерију)</string>
   <string name="prefs_gps_logging_interval_seconds">сек</string>
+  <string name="prefs_gps_logging_min_distance">Размак „GPS“ бележења</string>
+  <string name="prefs_gps_logging_min_distance_summary">најмањи размак између тачака бележења, 0 за најкраћи могући</string>
+  <string name="prefs_gps_logging_min_distance_meters">m</string>
   <string name="prefs_ui">Сучеље</string>
   <string name="prefs_ui_picture_source">Подразумевани извор слика</string>
   <string name="prefs_ui_picture_source_summary">Слике са камере или из галерије?</string>
@@ -49,6 +54,7 @@
   <string name="prefs_display_always_on_summary">Екран ће остати укључен током праћења. Искључите да сачувате батерију</string>
   <string name="prefs_displaytrack_osm">Мапа у позадини</string>
   <string name="prefs_displaytrack_osm_summary">Приказуј OpenStreet мапу испод трага. Морате бити повезани</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Увек приказати мапу у позадини? Морате бити повезани</string>
   <string name="prefs_output">GPX поставке</string>
   <string name="prefs_storage_dir">Директоријум спољног складишта</string>
   <string name="prefs_storage_dir_hint">Односи се на наредно праћење (не на текуће)</string>
@@ -75,6 +81,7 @@
   <string name="prefs_osm_clear_oauth_data">Ресетуј OSM пријаву</string>
   <string name="prefs_osm_clear_oauth_data_summary">Заборави OSM акредитиве и дозволе и присили OSM пратиоца да их затражи поново</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Мораћете поново да овластите OSM пратиоца да шаље праћења. Сигурни сте?</string>
+  <string name="prefs_map_tile">Добављач поља мапе</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -86,5 +93,6 @@
     <item>У коментару</item>
     <item>У проширењу</item>
   </string-array>
+  <string name="prefs_compass_heading">Извоз усмерења компаса</string>
   <string name="prefs_compass_heading_summary">Одређује да ли ће и како подаци компаса бити извезени у GPX фајл</string>
 </resources>
