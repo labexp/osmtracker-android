@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTracker logosu</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Yaklaş</string>
+  <string name="acc.zoom_out">Uzaklaş</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Uydu sinyali gücü göstergesi</string>
+  <string name="acc.record_indicator">Kayıt sürüyor göstergesi</string>
+  <!--Track list-->
+  <string name="acc.track_status">İz durumu göstergesi</string>
+  <string name="acc.upload_status">OpenStreetMap yükleme durumu göstergesi</string>
+</resources>
