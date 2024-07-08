@@ -31,6 +31,7 @@
   <string name="trackmgr_waypoints_count">Тачки пролаза:</string>
   <string name="trackmgr_trackpoints_count">Тачки праћења:</string>
   <string name="trackmgr_empty">Нема праћења.</string>
+  <string name="trackmgr_newtrack_hint">Притисните да снимите нову путању.</string>
   <string name="trackmgr_newtrack_error">Не могу да направим ново праћење: {0}</string>
   <string name="trackmgr_continuetrack_hint">Тренутно снимате <b>путању #{0}</b>\nИзаберите је у листи да наставите</string>
   <string name="trackmgr_contextmenu_stop">Заустави праћење</string>
