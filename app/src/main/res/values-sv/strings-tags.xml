@@ -54,7 +54,9 @@
   <string name="tag.amenity_marina">Marina</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxi</string>
+  <string name="tag.amenity_doctors">Sjukvård</string>
   <string name="tag.amenity_recycling">Återvinning</string>
+  <string name="tag.amenity_place_of_worship">Plats för\ntillbedjan</string>
   <string name="tag.amenity_post_office">Postkontor</string>
   <string name="tag.amenity_library">Bibliotek</string>
   <string name="tag.amenitymore_school">Skola</string>
@@ -97,4 +99,5 @@
   <string name="tag.landuse_forest">Forest</string>
   <string name="tag.landuse_allotments">Kolonilotter</string>
   <string name="tag.landuse_cemetery">Begravningsplats</string>
+  <string name="tag.landuse_recreation_ground">Fritidsområde</string>
 </resources>
