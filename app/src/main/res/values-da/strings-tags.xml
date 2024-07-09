@@ -31,6 +31,7 @@
   <string name="tag.restriction_120">Max 120</string>
   <string name="tag.restriction_130">Max 130</string>
   <string name="tag.restriction_no_exit">Blind vej</string>
+  <string name="tag.restriction_traffic_light">Trafiklys</string>
   <string name="tag.restriction_one_way">Ensrettet</string>
   <string name="tag.car_fuel_station">Benzinstation</string>
   <string name="tag.car_parking">Parkering</string>
@@ -53,7 +54,9 @@
   <string name="tag.amenity_marina">Marina</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxa</string>
+  <string name="tag.amenity_doctors">Hospital,\nLæger</string>
   <string name="tag.amenity_recycling">Genbrug</string>
+  <string name="tag.amenity_place_of_worship">Sted for\ntilbedelse</string>
   <string name="tag.amenity_post_office">Posthus</string>
   <string name="tag.amenity_library">Bibliotek</string>
   <string name="tag.amenitymore_school">Skole</string>
@@ -96,4 +99,5 @@
   <string name="tag.landuse_forest">Skov</string>
   <string name="tag.landuse_allotments">Kolonihaver</string>
   <string name="tag.landuse_cemetery">Kirkegård</string>
+  <string name="tag.landuse_recreation_ground">Rekreativt\nområde</string>
 </resources>

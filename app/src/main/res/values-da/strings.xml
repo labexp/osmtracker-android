@@ -31,12 +31,14 @@
   <string name="trackmgr_waypoints_count">Waypoints: </string>
   <string name="trackmgr_trackpoints_count">Track-punkter: </string>
   <string name="trackmgr_empty">Du har ingen tracks.</string>
+  <string name="trackmgr_newtrack_hint">Tryk for at optage et nyt spor</string>
   <string name="trackmgr_newtrack_error">Kunne ikke oprette nyt track: {0}</string>
   <string name="trackmgr_continuetrack_hint">Du optager i øjeblikket <b>track #{0}</b>\nVælg det på listen for at fortsætte</string>
   <string name="trackmgr_contextmenu_stop">Stop tracking</string>
   <string name="trackmgr_contextmenu_resume">Gentoptag tracking</string>
   <string name="trackmgr_contextmenu_delete">Slet</string>
   <string name="trackmgr_contextmenu_export">Eksporter til GPX</string>
+  <string name="trackmgr_contextmenu_share">Del GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Upload til OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Vis</string>
   <string name="trackmgr_contextmenu_details">Detaljer</string>
@@ -47,6 +49,7 @@
   <string name="trackmgr_exporting_prepare">Forbereder eksport...</string>
   <string name="trackmgr_export_error">Kunne ikke eksportere track: {0}</string>
   <string name="trackmgr_exportall_confirm">Alle tracks bliver eksporteret. Det kan tage noget tid. Er du sikker?</string>
+  <string name="trackmgr_prepare_for_share_error">Kan ikke bearbejde sporet: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Track-detaljer</string>
   <string name="trackdetail_startdate">Starttid:</string>
@@ -135,6 +138,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Vent på retning...</string>
   <string name="various_heading_unknown">Retning kan ikke findes</string>
+  <string name="various_export_finished">Eksportproces afsluttet</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap track visning</string>
   <!--Buttons presets messages-->
@@ -145,8 +149,10 @@
   <string name="buttons_presets_unsuccessful_update">Layout blev ikke opdateret, prøv igen senere</string>
   <string name="buttons_presets_delete_message">Vil du virkelig slette layoutet {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Ja</string>
+  <string name="buttons_presets_successful_delete">Layoutet blev slettet</string>
   <string name="buttons_presets_icon_directory_deleted">Ikon-mappen blev slettet</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Denne fil havde ingen associeret ikon-mappe</string>
+  <string name="buttons_presets_unsuccessful_delete">Layoutet kunne ikke slettes</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Fejl: kan ikke forbinde til internettet</string>
   <string name="available_layouts_response_null_exception">Fejl: kan ikke forbinde til standard-lageret for tilpassede layouts</string>
@@ -168,6 +174,12 @@
   <string name="github_repository_settings_valid_server">Github-repository fundet</string>
   <string name="github_repository_settings_invalid_server">Github-repository ikke fundet</string>
   <!--App Introduction-->
+  <string name="app_intro">OSMTracker for Android™ Introduktion</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Velkommen til OSMTracker til Android™ 👋</string>
+  <string name="app_intro_slide1_description">Denne app er gratis software, der respekterer din frihed!</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">God fornøjelse med tracking 🗺 😎</string>
+  <string name="app_intro_slide2_description">OSMTracker til Android bruger din GPS-placering til at registrere trackpoints og waypoints, selv når appen kører i baggrunden.
+\nDine data bruges ikke til at understøtte annoncer.</string>
 </resources>
