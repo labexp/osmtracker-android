@@ -31,6 +31,7 @@
   <string name="trackmgr_waypoints_count">Ενδιάμεσα σημεία:</string>
   <string name="trackmgr_trackpoints_count">Ίχνη:</string>
   <string name="trackmgr_empty">Δεν έχετε ίχνη.</string>
+  <string name="trackmgr_newtrack_hint">Πατήστε για να καταγράψετε ένα νέο ίχνος.</string>
   <string name="trackmgr_newtrack_error">Αδύνατη η δημιουργία νέου ίχνους: {0}</string>
   <string name="trackmgr_continuetrack_hint">Αυτή τη στιγμή καταγράφετε το <b>ίχνος #{0}</b>\n
 Επιλέξτε το στον κατάλογο για συνέχιση</string>
@@ -38,6 +39,7 @@
   <string name="trackmgr_contextmenu_resume">Συνέχιση καταγραφής ίχνους</string>
   <string name="trackmgr_contextmenu_delete">Διαγραφή</string>
   <string name="trackmgr_contextmenu_export">Εξαγωγή ως GPX</string>
+  <string name="trackmgr_contextmenu_share">Κοινοποίηση GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Αποστολή στο OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Εμφάνιση</string>
   <string name="trackmgr_contextmenu_details">Λεπτομέρειες</string>
@@ -48,6 +50,7 @@
   <string name="trackmgr_exporting_prepare">Προετοιμασία εξαγωγής...</string>
   <string name="trackmgr_export_error">Αδύνατη η εξαγωγή του ίχνους: {0}</string>
   <string name="trackmgr_exportall_confirm">Όλα τα ίχνη θα εξαχθούν, κάτι που μπορεί να πάρει ώρα. Είστε σίγουρος;</string>
+  <string name="trackmgr_prepare_for_share_error">Αδύνατη η επεξεργασία του ίχνους: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Λεπτομέρειες Ίχνους</string>
   <string name="trackdetail_startdate">Χρόνος εκκίνησης:</string>
@@ -136,6 +139,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Αναμονή για κατεύθυνση…</string>
   <string name="various_heading_unknown">Η κατεύθυνση δεν μπορεί να προσδιοριστεί</string>
+  <string name="various_export_finished">Η διαδικασία εξαγωγής ολοκληρώθηκε με επιτυχία</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Προβολή ιχνών OpenStreetMap</string>
   <!--Buttons presets messages-->
@@ -146,8 +150,10 @@
   <string name="buttons_presets_unsuccessful_update">Η διάταξη δεν ενημερώθηκε, δοκιμάστε πάλι αργότερα</string>
   <string name="buttons_presets_delete_message">Θέλετε σίγουρα να διαγράψετε τη {0} διάταξη;</string>
   <string name="buttons_presets_delete_positive_confirmation">Ναι</string>
+  <string name="buttons_presets_successful_delete">Η διάταξη διαγράφηκε επιτυχώς</string>
   <string name="buttons_presets_icon_directory_deleted">Ο φάκελος εικονιδίων διεγράφει επιτυχώς</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Το αρχείο δεν είχε συσχετισμό με φάκελο εικονιδίων</string>
+  <string name="buttons_presets_unsuccessful_delete">Η διάταξη δεν μπόρεσε να διαγραφεί</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Σφάλμα: Αδύνατη η σύνδεση στο διαδίκτυο</string>
   <string name="available_layouts_response_null_exception">Σφάλμα: Αδύνατη η σύνδεση στο αποθετήριο διατάξεων</string>
@@ -169,6 +175,11 @@
   <string name="github_repository_settings_valid_server">Έγκυρο αποθετήριο στο Github</string>
   <string name="github_repository_settings_invalid_server">Μη έγκυρο αποθετήριο στο Github</string>
   <!--App Introduction-->
+  <string name="app_intro">Εισαγωγή στο OSMTracker για Android™</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Καλωσήρθατε στο OSMTracker για Android™ 👋</string>
+  <string name="app_intro_slide1_description">Αυτή η εφαρμοφή είναι δωρεάν λογισμικό το οποίο σέβεται της ελευθερία σας!</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Καλή ιχνηλάτηση 🗺 😎</string>
+  <string name="app_intro_slide2_description">Το OSMTracker για Android θα χρησιμοποιήσει την τοποθεσία σας GPS για να καταγράψει σημεία ίχνους και σημεία διαδρομής, ακόμη κι αν εφαρμογή τρέχει στο παρασκήνιο.\nΤα δεδομένα σας δεν χρησιμοποιούνται για την υποστήριξη διαφημίσεων.</string>
 </resources>
