@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Verificar se o GPS está inativo no arranque e perguntar se quero ativá-lo</string>
   <string name="prefs_gps_ignore_clock">Ignorar o relógio do GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Ignorar o relógio do GPS e usar o relógio do Android para registo da hora</string>
+  <string name="prefs_use_barometer">Registar pressão barométrica [hPa]</string>
+  <string name="prefs_use_barometer_summary">A alternância requer o reinício do trilho</string>
   <string name="prefs_gps_logging_interval">Intervalo de registo do GPS</string>
   <string name="prefs_gps_logging_interval_summary">Usar 0 para o valor mais pequeno possível (diminui a duração da bateria)</string>
   <string name="prefs_gps_logging_interval_seconds">segundos</string>
+  <string name="prefs_gps_logging_min_distance">Distância de registo GPS</string>
+  <string name="prefs_gps_logging_min_distance_summary">Distância mínima entre os pontos do trilho em metros; utilizar 0 para a distância mais curta possível</string>
+  <string name="prefs_gps_logging_min_distance_meters">metros</string>
   <string name="prefs_ui">Interface do utilizador</string>
   <string name="prefs_ui_picture_source">Origem das fotografias</string>
   <string name="prefs_ui_picture_source_summary">Tirar fotos com a câmara ou da galeria?</string>
@@ -49,6 +54,7 @@
   <string name="prefs_display_always_on_summary">O ecrã manter-se-á ligado enquanto estiver a registar. Desative para poupar bateria</string>
   <string name="prefs_displaytrack_osm">Mapa de fundo</string>
   <string name="prefs_displaytrack_osm_summary">Mostrar o mapa OpenStreetMap por baixo do trilho. Necessita de ligação de dados</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Mostrar sempre o fundo do OpenStreetMap? Requer uma conexão de dados</string>
   <string name="prefs_output">Configurações de GPX</string>
   <string name="prefs_storage_dir">Pasta de armazenamento externo (SD)</string>
   <string name="prefs_storage_dir_hint">Aplicável apenas no próximo trilho (não ao atual)</string>
@@ -75,6 +81,7 @@
   <string name="prefs_osm_clear_oauth_data">Eliminar a autenticação OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Esquecer as credenciais e permissões do OpenStreetMap e forçar o OSMTracker a requisitá-las novamente</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Terá de autorizar novamente o OSMTracker para poder enviar trilhos para o OpenStreetMap. Quer continuar?</string>
+  <string name="prefs_map_tile">Fornecedor de mosaicos de mapas</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -86,5 +93,6 @@
     <item>No comentário</item>
     <item>Na extensão</item>
   </string-array>
+  <string name="prefs_compass_heading">Exportar direção da bússola</string>
   <string name="prefs_compass_heading_summary">Define se e como os dados da bússola devem ser exportados para o ficheiro GPX</string>
 </resources>

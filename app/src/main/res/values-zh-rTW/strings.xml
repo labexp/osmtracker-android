@@ -31,7 +31,7 @@
   <string name="trackmgr_waypoints_count">航點：</string>
   <string name="trackmgr_trackpoints_count">軌跡點：</string>
   <string name="trackmgr_empty">您尚未有任何的軌跡紀錄資料。</string>
-  <string name="trackmgr_newtrack_hint">要記錄軌跡，請按</string>
+  <string name="trackmgr_newtrack_hint">按壓來開始記錄新的軌跡。</string>
   <string name="trackmgr_newtrack_error">無法開始記錄新軌跡： {0}</string>
   <string name="trackmgr_continuetrack_hint">您目前正在錄製 <b>軌跡 #{0}</b>\n請於清單中選擇該軌跡以繼續</string>
   <string name="trackmgr_contextmenu_stop">停止記錄</string>
@@ -173,4 +173,13 @@
   <string name="github_repository_settings_branch_name">分支名稱：</string>
   <string name="github_repository_settings_valid_server">Github 程式庫有效</string>
   <string name="github_repository_settings_invalid_server">Github 程式庫無效</string>
+  <!--App Introduction-->
+  <string name="app_intro">OSMTracker for Android™ 說明</string>
+  <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">歡迎使用 OSMTracker for Android™👋</string>
+  <string name="app_intro_slide1_description">這款 App 是尊重你自由的自由軟體</string>
+  <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">記錄快樂🗺 😎</string>
+  <string name="app_intro_slide2_description">OSMTracker for Android  會使用你的 GPS 位置來記錄航點和路徑，即便 App 在背景執行。
+\n你的資料並不會拿來給廣告使用。</string>
 </resources>

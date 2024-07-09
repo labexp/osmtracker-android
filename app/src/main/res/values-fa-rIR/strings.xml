@@ -31,12 +31,14 @@
   <string name="trackmgr_waypoints_count">نقاط بین‌راهی:</string>
   <string name="trackmgr_trackpoints_count">نقاط مسیر:</string>
   <string name="trackmgr_empty">شما هیچ مسیری ندارید.</string>
+  <string name="trackmgr_newtrack_hint">برای ضبط یک رد تازه لمس کنید</string>
   <string name="trackmgr_newtrack_error">امکان ساخت مسیر جدید وجود ندارد: {0}</string>
   <string name="trackmgr_continuetrack_hint">هم‌اکنون در حال ضبط <b>مسیر#{0}</b> هستید\nبرای ادامه آن را از لیست انتخاب کنید</string>
   <string name="trackmgr_contextmenu_stop">توقف ثبت مسیر</string>
   <string name="trackmgr_contextmenu_resume">ادامهٔ ثبت مسیر</string>
   <string name="trackmgr_contextmenu_delete">حذف</string>
   <string name="trackmgr_contextmenu_export">خروجی در قالب GPX</string>
+  <string name="trackmgr_contextmenu_share">همرسانی GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">بارگذاری در OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">نمایش</string>
   <string name="trackmgr_contextmenu_details">جزئیات</string>
@@ -47,6 +49,7 @@
   <string name="trackmgr_exporting_prepare">در حال آماده‌سازی فایل خروجی...</string>
   <string name="trackmgr_export_error">امکان تهیهٔ خروجی از مسیر: {0} وجود ندارد</string>
   <string name="trackmgr_exportall_confirm">از تمامی مسیرها خروجی تهیه خواهد شد که امکان دارد زمان زیادی طول بکشد. آیا مطمئن هستید؟</string>
+  <string name="trackmgr_prepare_for_share_error">امکان پردازش رد وجود ندارد: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">جزئیات مسیر</string>
   <string name="trackdetail_startdate">زمان شروع:</string>
@@ -54,7 +57,7 @@
   <string name="trackdetail_startloc">شروع در:</string>
   <string name="trackdetail_endloc">خاتمه در:</string>
   <string name="trackdetail_exportdate">خروجی:</string>
-  <string name="trackdetail_osm_upload_date">در سایت OpenStreetMap بارگذاری شد</string>
+  <string name="trackdetail_osm_upload_date">در OpenStreetMap بارگذاری شد:</string>
   <string name="trackdetail_btn_export">خروجی در قالب GPX</string>
   <string name="trackdetail_export_notyet">(هنوز خروجی نگرفته‌اید)</string>
   <string name="trackdetail_osm_upload_notyet">(هنوز بارگذاری نشده است)</string>
@@ -135,6 +138,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">منتظر جهت حرکت...</string>
   <string name="various_heading_unknown">سیستم قادر به تشخیص جهت حرکت نیست</string>
+  <string name="various_export_finished">فرآیند برون‌برد با موفقیت پایان یافت</string>
   <!--OSM map view-->
   <string name="displaytrackmap">نمایش مسیر اوپن‌استریت‌مپ</string>
   <!--Buttons presets messages-->
@@ -145,8 +149,10 @@
   <string name="buttons_presets_unsuccessful_update">چیدمان به‌روز نشد، بعداً تلاش کنید</string>
   <string name="buttons_presets_delete_message">آیا چیدمان {0} را حذف می‌کنید؟</string>
   <string name="buttons_presets_delete_positive_confirmation">بله</string>
+  <string name="buttons_presets_successful_delete">چیدمان با موفقیت حذف شد</string>
   <string name="buttons_presets_icon_directory_deleted">شاخهٔ icon با موفقیت حذف شد</string>
   <string name="buttons_presets_icon_directory_does_not_exist">هیچ شاخهٔ icon متناظر با این فایل وجود ندارد</string>
+  <string name="buttons_presets_unsuccessful_delete">چیدمان را نمی‌توان حذف کرد</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">خطا: نمی‌توان به اینترنت متصل شد</string>
   <string name="available_layouts_response_null_exception">خطا: نمی‌توان به مخزن پیشفرض برای چیدمان‌های سفارشی متصل شد</string>
@@ -168,6 +174,10 @@
   <string name="github_repository_settings_valid_server">مخزن گیت‌هاب معتبر</string>
   <string name="github_repository_settings_invalid_server">مخزن گیت‌هاب نامعتبر</string>
   <!--App Introduction-->
+  <string name="app_intro">مقدمهٔ OSMTracker for Android™‎</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">به OSMTracker for Android™‎ خوش آمدید 👋</string>
+  <string name="app_intro_slide1_description">این اپلیکیشن نرم‌افزاری آزاد است و به آزادی شما احترام می‌گذارد!</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">با ردگیری خوش بگذرانید 🗺 😎</string>
 </resources>
