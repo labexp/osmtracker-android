@@ -54,7 +54,9 @@
   <string name="tag.amenity_marina">Port</string>
   <string name="tag.amenity_sport">Sport</string>
   <string name="tag.amenity_taxi">Taxi</string>
+  <string name="tag.amenity_doctors">Szpitale,\nLekarze</string>
   <string name="tag.amenity_recycling">Recycling</string>
+  <string name="tag.amenity_place_of_worship">Miejsce\n kultu</string>
   <string name="tag.amenity_post_office">Poczta</string>
   <string name="tag.amenity_library">Biblioteka</string>
   <string name="tag.amenitymore_school">Szkoła</string>
@@ -97,4 +99,5 @@
   <string name="tag.landuse_forest">Las</string>
   <string name="tag.landuse_allotments">Ogródki</string>
   <string name="tag.landuse_cemetery">Cmentarz</string>
+  <string name="tag.landuse_recreation_ground">Teren\nrekreacyjny</string>
 </resources>
