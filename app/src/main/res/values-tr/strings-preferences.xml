@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Preferences-->
+  <string name="prefs">Ayarlar</string>
+  <string name="prefs_gps">GPS</string>
+  <string name="prefs_gps_os_settings">GPS ayarları</string>
+  <string name="prefs_gps_os_settings_summary">Sistem GPS ayarları ekranını görüntüle</string>
+  <string name="prefs_check_gps_startup">Başlatıldığında GPS\'yi kontrol et</string>
+  <string name="prefs_check_gps_startup_summary">Başlangıçta GPS\'in devre dışı olup olmadığını kontrol et ve etkinleştirmeyi teklif et</string>
+  <string name="prefs_gps_ignore_clock">GPS zamanlayıcısını görmezden gel</string>
+  <string name="prefs_gps_ignore_clock_summary">Zaman damgaları için GPS zamanlayıcısını görmezden gel ve Android zamanlayıcısını kullan</string>
+  <string name="prefs_use_barometer">Barometrik basıncı [hPa] kaydet</string>
+  <string name="prefs_use_barometer_summary">Açma/kapatma, izlemeyi baştan başlatmayı zorunlu kılsın</string>
+  <string name="prefs_gps_logging_interval">GPS kaydetme süresi</string>
+  <string name="prefs_gps_logging_interval_summary">Mümkün olan kısa kayıt süresini seçmek için 0\'ı kullanın (Pil ömrünü etkiler)</string>
+  <string name="prefs_gps_logging_interval_seconds">saniye</string>
+  <string name="prefs_gps_logging_min_distance">GPS kaydetme mesafesi</string>
+  <string name="prefs_gps_logging_min_distance_summary">İzleme noktaları arasındaki metre cinsinden asgari mesafe. Mümkün olan en kısa mesafeyi seçmek için 0\'ı kullanın</string>
+  <string name="prefs_gps_logging_min_distance_meters">metre</string>
+  <string name="prefs_ui">Kullanıcı arayüzü</string>
+  <string name="prefs_ui_picture_source">Varsayılan fotoğraf kaynağı</string>
+  <string name="prefs_ui_picture_source_summary">Fotoğraflar kameradan mı galeriden mi alınsın?</string>
+  <string-array name="prefs_ui_picture_source_keys">
+    <item>Kamera</item>
+    <item>Galeri</item>
+    <item>Her zaman sor</item>
+  </string-array>
+  <string name="prefs_ui_buttons_layout">Buton hazır ayarları</string>
+  <string name="prefs_ui_buttons_layout_summary">Özel bir buton grubu seçin (Belgelere bakın)</string>
+  <string name="prefs_ui_buttons_layout_default_section">VARSAYILAN YERLEŞİM</string>
+  <string name="prefs_ui_buttons_layout_defaut">Varsayılan</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">İNDİRİLMİŞ YERLEŞİM</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Herhangi bir indirilmiş yerleşim dosyanız yok</string>
+  <string name="prefs_ui_available_layout">Mevcut Yerleşimler</string>
+  <string name="prefs_ui_github_repository_settings">GitHub Kod Havuzu Ayarları</string>
+  <string name="prefs_ui_orientation">Yönelim</string>
+  <string name="prefs_ui_orientation_summary">Buton bölmesi için tercih edilen yönelim</string>
+  <string-array name="prefs_ui_orientation_options_keys">
+    <item>Otomatik</item>
+    <item>Dikey</item>
+    <item>Yatay</item>
+  </string-array>
+  <string name="prefs_voicerec_duration">Ses kayıt süresi</string>
+  <string name="prefs_voicerec_duration_seconds">saniye</string>
+  <string name="prefs_theme">Ana ekran grafik teması</string>
+  <string name="prefs_theme_summary">Değişikliğin etkili olması için uygulamanın yeniden başlatılması gerekiyor</string>
+  <string-array name="prefs_theme_keys">
+    <item>OS varsayılan</item>
+    <item>OS varsayılan (karanlık)</item>
+    <item>OS varsayılan (aydınlık)</item>
+    <item>Yüksek kontrast</item>
+  </string-array>
+  <string name="prefs_display_always_on">Ekranı sürekli açık tut</string>
+  <string name="prefs_display_always_on_summary">İzleme sırasında ekran açık kalacaktır. Pil tasarrufu yapmak için devre dışı bırakın</string>
+  <string name="prefs_displaytrack_osm">Arka plan haritası</string>
+  <string name="prefs_displaytrack_osm_summary">İzin altında OpenStreetMap haritasını görüntüle. Bir veri bağlantısı gerektirir</string>
+  <string name="prefs_displaytrack_osm_summary_ask">OpenStreetMap arka planı her zaman gösterilsin mi? Bir veri bağlantısı gerektirir</string>
+  <string name="prefs_output">GPX ayarları</string>
+  <string name="prefs_storage_dir">Harici depolama (SD) dizini</string>
+  <string name="prefs_storage_dir_hint">Bir sonraki izlemede etkili olacak (Şu ankinde değil)</string>
+  <string name="prefs_output_one_dir_per_track">İzleme başına bir dizin</string>
+  <string name="prefs_output_one_dir_per_track_summary">Her bir izlemeyi ve ilişkili dosyalarını kendi dizinine kaydedin</string>
+  <string name="prefs_output_filename">İsimlendirilmiş izlemeler için dosya adı</string>
+  <string name="prefs_output_filename_summary">İzlemenin bir adı olacaksa dosya adı için bir örüntü</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>İzleme adı</item>
+    <item>İsim, başlama tarihi ve zamanı</item>
+    <item>Başlama tarihi ve zamanı</item>
+  </string-array>
+  <string name="prefs_output_accuracy">GPX dosyasının doğruluğu</string>
+  <string name="prefs_output_accuracy_summary">GPX dosyasına doğruluk verisini koordinat adına veya koordinat yorumuna ekle</string>
+  <string-array name="prefs_output_accuracy_keys">
+    <item>Hiçbiri</item>
+    <item>Koordinat adına</item>
+    <item>Koordinat yorumuna</item>
+  </string-array>
+  <string name="prefs_output_gpx_hdop_approximation">HDOP tahminini kullan</string>
+  <string name="prefs_output_gpx_hdop_approximation_summary">GPX\'teki HDOP\'yi doğruluktan elde edilen yaklaşık değerle doldur</string>
+  <string name="prefs_sound_enabled">Sesi etkinleştir</string>
+  <string name="prefs_sound_enabled_summary">Ses kaydı başladığında ve bittiğinde bir ses çalar</string>
+  <string name="prefs_osm_clear_oauth_data">OSM doğrulamasını sıfırla</string>
+  <string name="prefs_osm_clear_oauth_data_summary">OSM bilgilerini ve izinlerini unut ve OSMTracker\'ı bunları tekrar sormaya zorla</string>
+  <string name="prefs_osm_clear_oauth_data_dialog">İzleme yüklemek için OSMTracker\'a tekrardan yetki vermeniz gerekecek. Emin misiniz?</string>
+  <string name="prefs_map_tile">Harita kutucuğu sağlayıcısı</string>
+  <string name="prefs_map_tile_summary"></string>
+  <string-array name="prefs_map_tile_keys">
+    <item>Mapnik</item>
+    <item>Cycle Map</item>
+    <item>MapQuest Open</item>
+  </string-array>
+  <string-array name="prefs_compass_heading_keys">
+    <item>Hiçbiri</item>
+    <item>yorumda</item>
+    <item>uzantıda</item>
+  </string-array>
+  <string name="prefs_compass_heading">Pusula yönünü dışa aktar</string>
+  <string name="prefs_compass_heading_summary">Pusula verilerinin GPX dosyasına aktarılıp aktarılmayacağını ve nasıl aktarılacağını tanımlar</string>
+</resources>
