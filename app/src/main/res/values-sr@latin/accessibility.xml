@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--About screen-->
+  <string name="acc.osmtracker_logo">OSMTracker logotip</string>
+  <!--Zoom in/out in map view-->
+  <string name="acc.zoom_in">Uveličaj</string>
+  <string name="acc.zoom_out">Umanji</string>
+  <!--GPS status bar-->
+  <string name="acc.sat_indicator">Pokazatelj jačine signala satelita</string>
+  <string name="acc.record_indicator">Pokazatelj napretka snimanja</string>
+  <!--Track list-->
+  <string name="acc.track_status">Pokazatelj stanja putanje</string>
+  <string name="acc.upload_status">Pokazatelj stanja slanja Otvorene mape</string>
+</resources>
