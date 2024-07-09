@@ -54,7 +54,9 @@
   <string name="tag.amenity_marina">Huvivenesatama</string>
   <string name="tag.amenity_sport">Urheilu</string>
   <string name="tag.amenity_taxi">Taksiasema</string>
+  <string name="tag.amenity_doctors">Sairaala,\nTohtorit</string>
   <string name="tag.amenity_recycling">Kierrätys</string>
+  <string name="tag.amenity_place_of_worship">Uskonnollinen\npaikka</string>
   <string name="tag.amenity_post_office">Posti</string>
   <string name="tag.amenity_library">Kirjasto</string>
   <string name="tag.amenitymore_school">Koulu</string>
@@ -97,4 +99,5 @@
   <string name="tag.landuse_forest">Metsä</string>
   <string name="tag.landuse_allotments">Siirtolapuutarha</string>
   <string name="tag.landuse_cemetery">Hautausmaa</string>
+  <string name="tag.landuse_recreation_ground">Leikki-\npaikka</string>
 </resources>
