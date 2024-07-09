@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Generic strings-->
+  <string name="app_name">OSMTracker™ برای آندرویید</string>
+  <string name="app_short_name">OSMTracker</string>
+  <string name="app_description">با الهام از OSMTracker در ویندوز موبایل، این نرم‌افزار به شما این امکان را می‌دهد که رد سفرهای خود را ضبط کنید، نقاط بین‌راهی مهم را نشانه‌گذاری کنید (همراه با ضبط صدا و تصاویر) و از آن‌ها در قالب فایل GPX خروجی بگیرید. سپس می‌توانید این خروجی‌ها را در ابزارهای OpenStreetMap، مانند JOSM به‌کار ببرید.</string>
+  <!--TrackLogger-->
+  <string name="tracklogger">واقعه‌نگار مسیر</string>
+  <string name="tracklogger_waiting_gps">در انتظار ثابت‌شدن GPS برای فعال‌سازی دکمه‌ها...</string>
+  <string name="tracklogger_voicerec_title">ضبط صدا</string>
+  <string name="tracklogger_voicerec_text">در حال ضبط (0) ثانیه فایل صوتی</string>
+  <string name="tracklogger_voicerec_stop">توقف</string>
+  <string name="tracklogger_btnBack">عقب</string>
+  <string name="tracklogger_tracked">مسیر ثبت شده:</string>
+  <string name="tracklogger_gps_disabled">GPS غیرفعال</string>
+  <string name="tracklogger_gps_disabled_hint">‏GPS غیرفعال است. آن را فعال می‌کنید؟</string>
+  <string name="tracklogger_choose_gallery_camera">گالری تصاویر یا دوربین؟</string>
+  <string name="tracklogger_camera">با دوربین عکس بگیر</string>
+  <string name="tracklogger_gallery">انتخاب عکس از گالری</string>
+  <!--Waypoint List-->
+  <string name="wplist">لیست نقاط بین‌راهی</string>
+  <string name="wplist_latitude">عرض جغرافیایی:</string>
+  <string name="wplist_longitude">طول جغرافیایی:</string>
+  <string name="wplist_elevation">ارتفاع:</string>
+  <string name="wplist_accuracy">دقت:</string>
+  <string name="wplist_compass">جهت قطب‌نما:</string>
+  <string name="wplist_compass_accuracy">دقت قطب‌نما:</string>
+  <!--Track Manager-->
+  <string name="trackmgr">مدیریت مسیرها</string>
+  <string name="trackmgr_tracklist">لیست مسیرها:</string>
+  <string name="trackmgr_waypoints_count">نقاط بین‌راهی:</string>
+  <string name="trackmgr_trackpoints_count">نقاط مسیر:</string>
+  <string name="trackmgr_empty">شما هیچ مسیری ندارید.</string>
+  <string name="trackmgr_newtrack_hint">برای ضبط یک رد تازه لمس کنید</string>
+  <string name="trackmgr_newtrack_error">امکان ساخت مسیر جدید وجود ندارد: {0}</string>
+  <string name="trackmgr_continuetrack_hint">هم‌اکنون در حال ضبط <b>مسیر#{0}</b> هستید\nبرای ادامه آن را از لیست انتخاب کنید</string>
+  <string name="trackmgr_contextmenu_stop">توقف ثبت مسیر</string>
+  <string name="trackmgr_contextmenu_resume">ادامهٔ ثبت مسیر</string>
+  <string name="trackmgr_contextmenu_delete">حذف</string>
+  <string name="trackmgr_contextmenu_export">خروجی در قالب GPX</string>
+  <string name="trackmgr_contextmenu_share">همرسانی GPX</string>
+  <string name="trackmgr_contextmenu_osm_upload">بارگذاری در OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_display">نمایش</string>
+  <string name="trackmgr_contextmenu_details">جزئیات</string>
+  <string name="trackmgr_contextmenu_title">مسیر #{0}</string>
+  <string name="trackmgr_delete_confirm">مسیر #{0} پاک خواهد شد</string>
+  <string name="trackmgr_deleteall_confirm">تمامی مسیرها پاک خواهد شد. آیا مطمئن هستید؟</string>
+  <string name="trackmgr_exporting">در حال خروجی‌گرفتن از مسیر #{0}...</string>
+  <string name="trackmgr_exporting_prepare">در حال آماده‌سازی فایل خروجی...</string>
+  <string name="trackmgr_export_error">امکان تهیهٔ خروجی از مسیر: {0} وجود ندارد</string>
+  <string name="trackmgr_exportall_confirm">از تمامی مسیرها خروجی تهیه خواهد شد که امکان دارد زمان زیادی طول بکشد. آیا مطمئن هستید؟</string>
+  <string name="trackmgr_prepare_for_share_error">امکان پردازش رد وجود ندارد: {0}</string>
+  <!--Track Detail-->
+  <string name="trackdetail">جزئیات مسیر</string>
+  <string name="trackdetail_startdate">زمان شروع:</string>
+  <string name="trackdetail_enddate">زمان خاتمه:</string>
+  <string name="trackdetail_startloc">شروع در:</string>
+  <string name="trackdetail_endloc">خاتمه در:</string>
+  <string name="trackdetail_exportdate">خروجی:</string>
+  <string name="trackdetail_osm_upload_date">در OpenStreetMap بارگذاری شد:</string>
+  <string name="trackdetail_btn_export">خروجی در قالب GPX</string>
+  <string name="trackdetail_export_notyet">(هنوز خروجی نگرفته‌اید)</string>
+  <string name="trackdetail_osm_upload_notyet">(هنوز بارگذاری نشده است)</string>
+  <string name="trackdetail_export_display">نمایش</string>
+  <string name="trackdetail_description">توضیح</string>
+  <string name="trackdetail_tags">برچسب (با کاما جدا شوند)</string>
+  <string name="trackdetail_description_mandatory">باید توضیحی بنویسید</string>
+  <string name="osm_visibility_private">خصوصی</string>
+  <string name="osm_visibility_public">عمومی</string>
+  <string name="osm_visibility_trackable">قابل ردیابی</string>
+  <string name="osm_visibility_identifiable">قابل‌شناسایی</string>
+  <!--OSM upload-->
+  <string name="osm_upload">بارگذاری در OpenStreetMap</string>
+  <string name="osm_upload_ok">ذخیره و بارگذاری</string>
+  <string name="osm_upload_tmpfile_failed">تهیهٔ خروجی مسیر بر روی فایل موقت ناموفق بود</string>
+  <string name="osm_upload_oauth_failed">تأیید حساب کاربری در OSM ناموفق بود</string>
+  <string name="osm_upload_sending">در حال ارسال مسیر #{0}...</string>
+  <string name="osm_upload_waiting_response">منتظر پاسخ از سرور OpenStreetMap...</string>
+  <string name="osm_upload_error">بارگذاری مسیر با خطا مواجه گردید</string>
+  <string name="osm_upload_bad_response">سرور OSM یک خطا برگرداند: {(0)} پیغام {1}</string>
+  <string name="osm_upload_unauthorized">خطای دسترسی. مایلید اطلاعات ورود به حساب کاربری OpenStreetMap از روی دستگاه پاک شود؟</string>
+  <string name="osm_upload_sucess">بارگذاری در OpenStreetMap موفقیت‌آمیز بود</string>
+  <!--GPS Status & record bar-->
+  <string name="gpsstatus_record_voicerec">ضبط صدا</string>
+  <string name="gpsstatus_record_stillimage">گرفتن عکس</string>
+  <string name="gpsstatus_record_textnote">یادداشت متنی</string>
+  <!--Menu-->
+  <string name="menu_settings">تنظیمات</string>
+  <string name="menu_waypointlist">نقاط بین‌راهی</string>
+  <string name="menu_about">دربارهٔ ما</string>
+  <string name="menu_displaytrack">نمایش مسیر</string>
+  <string name="menu_stoptracking">توقف و ذخیره</string>
+  <string name="menu_newtrack">مسیر جدید</string>
+  <string name="menu_deletetracks">پاک کردن تمامی مسیرها</string>
+  <string name="menu_continue">ادامه‌دادن مسیر</string>
+  <string name="menu_stopcurrenttrack">توقف مسیر جاری</string>
+  <string name="menu_save">ذخیره</string>
+  <string name="menu_cancel">لغو</string>
+  <string name="menu_export">خروجی در قالب GPX</string>
+  <string name="menu_osm_upload">بارگذاری در OpenStreetMap</string>
+  <string name="menu_center_to_gps">مرکز به GPS</string>
+  <string name="menu_exportall">همه را در قالب GPX خروجی بگیر</string>
+  <!--Errors-->
+  <string name="error_externalstorage_not_writable">نرم‌افزار نمی‌تواند در حافظه خارجی بنویسد.</string>
+  <string name="error_create_track_dir">نرم‌افزار نمی‌تواند پوشهٔ رد %s را بسازد</string>
+  <string name="error_externalstorage_not_writable_hint">لطفاً مطمئن شوید حافظهٔ خارجی دستگاه به‌درستی جاگذاری و سوار (mount) شده باشد.</string>
+  <string name="error_voicerec_failed">ضبط صدا با اشکال مواجه شد</string>
+  <string name="error_userlayout_parsing">خطا هنگام تجزیهٔ فایل چیدمان XML. لطفاً به چیدمان پیشفرض برگردانید.</string>
+  <!--GPX-->
+  <string name="gpx_track_name">با OSM Tracker for Android™‎ ضبط شده است</string>
+  <string name="gpx_hdop_approximation_cmt">هشدار: مقادیر HDOP همان مقادیر HDOP دریافتی از دستگاه GPS نیست؛ بلکه بر اساس دقت مکانی بر حسب متر تقریب زده شده.</string>
+  <!--About screen-->
+  <string name="about">درباره</string>
+  <string name="about_text">برای اطلاعات بیشتر، دیدن مستندات و گزارش مشکل لطفاً از سایت پروژه دیدن فرمایید:</string>
+  <string name="about_translate_text">کمک کنید OSMTracker را ترجمه کنیم:</string>
+  <string name="about_debug_info">اطلاعات debug</string>
+  <string name="about_export_db">خروجی از پایگاه‌داده</string>
+  <string name="about_exporting_db">در حال خروجی‌گرفتن از پایگاه‌داده....</string>
+  <string name="about_export_db_result">نتیجهٔ خروجی پایگاه‌داده: %s</string>
+  <!--Notification-->
+  <string name="notification_ticker_text">‏OSMTracker درحال ثبت مسیر است</string>
+  <string name="notification_title">‏OSMTracker درحال ثبت مسیر است (#{0})</string>
+  <string name="notification_text">برای نمایش صفحهٔ اصلی اینجا را لمس کنید</string>
+  <!--Display track-->
+  <string name="displaytrack">نمایش مسیر</string>
+  <string name="displaytrack_map">نمایش نقشهٔ پس‌زمنیه</string>
+  <string name="displaytrack_north">N</string>
+  <!--Track detail-->
+  <string name="trackdetail_save">ذخیره</string>
+  <!--Various-->
+  <string name="various_unit_meters">م</string>
+  <string name="various_accuracy">دقت</string>
+  <string name="various_accuracy_with_sats">دقت {0}{1} ({2}/{3})</string>
+  <!--parameters: (accuracy, meters, used sats, visible sats)-->
+  <string name="various_waiting_gps_fix">در انتظار تثبیت GPS...‏ ({0}/{1})</string>
+  <!--parameters: (used sats, visible sats)-->
+  <string name="various_heading_display">{0}°‎</string>
+  <!--parameters: (heading in degrees)-->
+  <string name="various_heading">منتظر جهت حرکت...</string>
+  <string name="various_heading_unknown">سیستم قادر به تشخیص جهت حرکت نیست</string>
+  <string name="various_export_finished">فرآیند برون‌برد با موفقیت پایان یافت</string>
+  <!--OSM map view-->
+  <string name="displaytrackmap">نمایش مسیر اوپن‌استریت‌مپ</string>
+  <!--Buttons presets messages-->
+  <string name="buttons_presets_context_menu_update_install">به‌روزرسانی و نصب</string>
+  <string name="buttons_presets_context_menu_delete">حذف</string>
+  <string name="buttons_presets_updating_layout">در حال به‌روزآوری...</string>
+  <string name="buttons_presets_successful_update">به‌روزرسانی چیدمان با موفقیت انجام شد</string>
+  <string name="buttons_presets_unsuccessful_update">چیدمان به‌روز نشد، بعداً تلاش کنید</string>
+  <string name="buttons_presets_delete_message">آیا چیدمان {0} را حذف می‌کنید؟</string>
+  <string name="buttons_presets_delete_positive_confirmation">بله</string>
+  <string name="buttons_presets_successful_delete">چیدمان با موفقیت حذف شد</string>
+  <string name="buttons_presets_icon_directory_deleted">شاخهٔ icon با موفقیت حذف شد</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">هیچ شاخهٔ icon متناظر با این فایل وجود ندارد</string>
+  <string name="buttons_presets_unsuccessful_delete">چیدمان را نمی‌توان حذف کرد</string>
+  <!--Available Layouts messages-->
+  <string name="available_layouts_connection_error">خطا: نمی‌توان به اینترنت متصل شد</string>
+  <string name="available_layouts_response_null_exception">خطا: نمی‌توان به مخزن پیشفرض برای چیدمان‌های سفارشی متصل شد</string>
+  <string name="available_layouts_connecting_message">(در حال اتصال...)</string>
+  <string name="available_layouts_description_dialog_positive_confirmation">بارگیری</string>
+  <string name="available_layouts_not_available_language">زبان شما موجود نیست. یکی را از لیست انتخاب کنید</string>
+  <string name="available_layouts_language_dialog_title">زبان‌های موجود</string>
+  <string name="available_layouts_checking_language_dialog">در حال بررسی نسخه‌های زبان محلی</string>
+  <string name="available_layouts_downloading_dialog">در حال بارگیری...</string>
+  <string name="available_layouts_successful_download">چیدمان با موفقیت بارگیری شد</string>
+  <string name="available_layouts_unsuccessful_download">چیدمان بارگیری نمی‌شود. بعداً تلاش کنید</string>
+  <string name="available_layouts_null_response_received">خطا در بازیابی داده‌ها از سرور</string>
+  <!--Github Repository Settings-->
+  <string name="github_repository_settings_default_checkbox">پیشفرض</string>
+  <string name="github_repository_settings_custom_checkbox">سفارشی</string>
+  <string name="github_repository_settings_username">نام کاربری گیت‌هاب:</string>
+  <string name="github_repository_settings_repository_name">نام مخزن:</string>
+  <string name="github_repository_settings_branch_name">نام شاخه:</string>
+  <string name="github_repository_settings_valid_server">مخزن گیت‌هاب معتبر</string>
+  <string name="github_repository_settings_invalid_server">مخزن گیت‌هاب نامعتبر</string>
+  <!--App Introduction-->
+  <string name="app_intro">مقدمهٔ OSMTracker for Android™‎</string>
+  <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">به OSMTracker for Android™‎ خوش آمدید 👋</string>
+  <string name="app_intro_slide1_description">این اپلیکیشن نرم‌افزاری آزاد است و به آزادی شما احترام می‌گذارد!</string>
+  <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">با ردگیری خوش بگذرانید 🗺 😎</string>
+</resources>
