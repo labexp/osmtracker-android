@@ -31,7 +31,7 @@
   <string name="trackmgr_waypoints_count">Referentiepunten:</string>
   <string name="trackmgr_trackpoints_count">Trajectpunten:</string>
   <string name="trackmgr_empty">U hebt geen trajecten.</string>
-  <string name="trackmgr_newtrack_hint">Om een traject op te nemen, drukt u op </string>
+  <string name="trackmgr_newtrack_hint">Drukken om een traject op te nemen.</string>
   <string name="trackmgr_newtrack_error">Kan geen nieuw traject aanmaken: {0}</string>
   <string name="trackmgr_continuetrack_hint">U bent nu <b>traject #{0}</b> aan het opnemen.
 Selecteer het in de lijst om door te gaan.</string>
@@ -174,4 +174,13 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="github_repository_settings_branch_name">Branch-naam</string>
   <string name="github_repository_settings_valid_server">Github-repository geldig</string>
   <string name="github_repository_settings_invalid_server">Github-repository ongeldig</string>
+  <!--App Introduction-->
+  <string name="app_intro">Introductie voor OSMTracker voor Android™</string>
+  <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Welkom bij OSMTracker voor Android™ 👋</string>
+  <string name="app_intro_slide1_description">Deze app is gratis software die uw vrijheid respecteert!</string>
+  <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Veel plezier met tracken! 🗺 😎</string>
+  <string name="app_intro_slide2_description">OSMTracker voor Android zal uw gps-locatie gebruiken om trajectpunten en referentiepunten op te nemen, zelfs wanneer de app op de achtergrond actief is.
+\nUw gegevens worden niet gebruikt om reclame te ondersteunen.</string>
 </resources>
