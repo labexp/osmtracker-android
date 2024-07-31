@@ -53,6 +53,7 @@ import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -800,8 +801,13 @@ public class TrackLogger extends Activity {
 	private void startCamera(File imageFile) {
 		StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
 		StrictMode.setVmPolicy(builder.build());
+
+		Uri imageUriContent = FileProvider.getUriForFile(this,
+				DataHelper.FILE_PROVIDER_AUTHORITY, imageFile);
+
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
+		cameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUriContent);
 		startActivityForResult(cameraIntent, REQCODE_IMAGE_CAPTURE);
 	}
 	
