@@ -396,7 +396,7 @@ public class DataHelper {
 		File _return = null;
 		
 		String trackStorageDirectory = context.getExternalFilesDir(null)
-		+ "/osmtracker/track" + trackId;
+		+ OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator + "track" + trackId;
 		
 		_return = new File(trackStorageDirectory);		
 		return _return;
