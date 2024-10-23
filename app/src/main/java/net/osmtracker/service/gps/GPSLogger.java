@@ -222,7 +222,7 @@ public class GPSLogger extends Service implements LocationListener {
 		filter.addAction(OSMTracker.INTENT_DELETE_WP);
 		filter.addAction(OSMTracker.INTENT_START_TRACKING);
 		filter.addAction(OSMTracker.INTENT_STOP_TRACKING);
-		registerReceiver(receiver, filter);
+		registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED);
 
 		// Register ourselves for location updates
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

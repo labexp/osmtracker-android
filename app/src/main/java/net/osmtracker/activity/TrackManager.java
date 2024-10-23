@@ -688,6 +688,7 @@ public class TrackManager extends AppCompatActivity
 		if(currentTrackId != TRACK_ID_NO_TRACK){
 			// we send a broadcast to inform all registered services to stop tracking
 			Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
+			intent.setPackage(this.getPackageName());
 			sendBroadcast(intent);
 
 			// need to get sure, that the database is up to date
