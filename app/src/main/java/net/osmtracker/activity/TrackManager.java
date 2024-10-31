@@ -46,6 +46,7 @@ import net.osmtracker.gpx.ExportToTempFileTask;
 import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Base64;
@@ -539,6 +540,15 @@ public class TrackManager extends AppCompatActivity
 	private void uploadTrackToGitHubAUX(File tmpGPXFile, Context context) {
 		String encodeGPXbase64 = encodeFileToBase64(tmpGPXFile);
 		GitHubUser gitHubUser = null;
+
+		File internalFile = new File(context.getFilesDir(), "tempGPXBase64.txt");
+		try (FileOutputStream fos = new FileOutputStream(internalFile)) {
+			fos.write(encodeGPXbase64.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+			return; // Go out in error case
+		}
+
 		try {
 			DbGitHubUser dbGitHubUser = new DbGitHubUser(context);
 			gitHubUser = dbGitHubUser.getUser();
@@ -553,9 +563,11 @@ public class TrackManager extends AppCompatActivity
 		}
 		else {
 			Intent i = new Intent(context, GitHubUpload.class);
-			Bundle bundle = new Bundle();
-			bundle.putString("GPXFileInBase64",encodeGPXbase64);
-			i.putExtras(bundle);
+			//Bundle bundle = new Bundle();
+			//bundle.putString("GPXFileInBase64",encodeGPXbase64);
+			//i.putExtras(bundle);
+			i.putExtra("GPXFilePath", internalFile.getAbsolutePath());
+			i.setPackage(getPackageName());
 			startActivity(i);
 		}
 	}

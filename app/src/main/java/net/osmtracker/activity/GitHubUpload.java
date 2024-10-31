@@ -36,6 +36,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,6 +75,7 @@ public class GitHubUpload extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(GitHubUpload.this, GitHubNewFork.class);
+                i.setPackage(getPackageName());
                 startActivity(i);
                 finish();
             }
@@ -82,6 +87,7 @@ public class GitHubUpload extends Activity {
             public void onClick(View v) {
                 //Toast.makeText(GitHubUpload.this, "Crear un nuevo repo", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(GitHubUpload.this, GitHubNewRepo.class);
+                i.setPackage(getPackageName());
                 startActivity(i);
                 finish();
             }
@@ -104,14 +110,35 @@ public class GitHubUpload extends Activity {
             public void onClick(View v) {
                 Bundle bundle = GitHubUpload.this.getIntent().getExtras();
                 if (bundle != null){
-                    startUploadGitHub(bundle.getString("GPXFileInBase64"));
+                    //startUploadGitHub(bundle.getString("GPXFileInBase64"));
+                    String filePath = getIntent().getStringExtra("GPXFilePath");
+                    if (filePath != null) {
+                        try {
+                            File file = new File(filePath);
+                            StringBuilder encodedGPX = new StringBuilder();
+                            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                                String line;
+                                while ((line = reader.readLine()) != null) {
+                                    encodedGPX.append(line);
+                                }
+                            }
 
-                    Intent i = new Intent(GitHubUpload.this, GitHubPullRequest.class);
-                    Bundle bundleForPullRequest = new Bundle();
-                    bundleForPullRequest.putString("myFullRepoName",getRepoName());
-                    i.putExtras(bundleForPullRequest);
-                    startActivity(i);
-                    finish();
+                            startUploadGitHub(encodedGPX.toString());
+
+                            Intent i = new Intent(GitHubUpload.this, GitHubPullRequest.class);
+                            Bundle bundleForPullRequest = new Bundle();
+                            bundleForPullRequest.putString("myFullRepoName", getRepoName());
+                            i.putExtras(bundleForPullRequest);
+                            i.setPackage(getPackageName());
+                            startActivity(i);
+                            finish();
+                        } catch (IOException e) {
+                            Toast.makeText(GitHubUpload.this, "Error reading the GPX file.", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(GitHubUpload.this, "GPX file not found.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -130,6 +157,7 @@ public class GitHubUpload extends Activity {
         switch (item.getItemId()){
             case R.id.git_configuration_credentials_btn:
                 Intent i = new Intent(this, GitHubConfig.class);
+                i.setPackage(this.getPackageName());
                 startActivity(i);
                 finish();
                 break;
