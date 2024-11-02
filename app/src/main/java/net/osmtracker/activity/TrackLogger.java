@@ -180,6 +180,10 @@ public class TrackLogger extends Activity {
 	 */
 	private HashSet<String> layoutNameTags = new HashSet<String>();
 
+	public boolean getButtonsEnabled() {
+		return buttonsEnabled;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -476,6 +480,7 @@ public class TrackLogger extends Activity {
 				saveTagsForTrack();
 
 				Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
+				intent.setPackage(getPackageName());
 				sendBroadcast(intent);
 				((GpsStatusRecord) findViewById(R.id.gpsStatus)).manageRecordingIndicator(false);
 				finish();
@@ -634,6 +639,7 @@ public class TrackLogger extends Activity {
 					intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
 					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
+					intent.setPackage(this.getPackageName());
 					sendBroadcast(intent);
 				}
 			}
@@ -656,6 +662,7 @@ public class TrackLogger extends Activity {
 					intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
 					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
+					intent.setPackage(this.getPackageName());
 					sendBroadcast(intent);
 				}
 			}

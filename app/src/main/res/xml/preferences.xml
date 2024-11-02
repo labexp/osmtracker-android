@@ -100,7 +100,7 @@
 			android:key="ui.theme"
 			android:summary="@string/prefs_theme_summary"
 			android:defaultValue="@style/DefaultTheme" />
-		<PreferenceScreen android:title="@string/prefs_ui_buttons_layout" android:summary="@string/prefs_ui_buttons_layout_summary">
+		<PreferenceScreen android:key="prefs_ui_buttons_layout" android:title="@string/prefs_ui_buttons_layout" android:summary="@string/prefs_ui_buttons_layout_summary">
 			<intent android:action="launch_buttons_presets" />
 		</PreferenceScreen>
 		<CheckBoxPreference
