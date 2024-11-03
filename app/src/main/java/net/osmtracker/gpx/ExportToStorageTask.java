@@ -38,9 +38,11 @@ public class ExportToStorageTask extends ExportTrackTask {
 	protected File getExportDirectory(Date startDate) throws ExportTrackException {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
+
         String trackName = getSanitizedTrackNameByStartDate(startDate);
         boolean shouldCreateDirectoryPerTrack = shouldCreateDirectoryPerTrack(preferences);
         File finalExportDirectory = getBaseExportDirectory(preferences);
+		Log.d(TAG, "absolute dir: " + finalExportDirectory.getAbsolutePath().toString());
 
         if( shouldCreateDirectoryPerTrack && trackName.length() >= 1){
             String uniqueFolderName = getUniqueChildNameFor(finalExportDirectory, trackName, "");
@@ -86,32 +88,34 @@ public class ExportToStorageTask extends ExportTrackTask {
 	}
 
 	// Create before returning if not exists
-    public File getBaseExportDirectory(SharedPreferences prefs) throws ExportTrackException {
-
-		if (!isExternalStorageWritable()) {
+	public File getBaseExportDirectory(SharedPreferences prefs) throws ExportTrackException {
+		// Verify if folder exists and is writable
+		if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
 			throw new ExportTrackException(
 					context.getResources().getString(R.string.error_externalstorage_not_writable));
 		}
-
 		String exportDirectoryNameInPreferences = prefs.getString(
 				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
 		Log.d(TAG,"exportDirectoryNameInPreferences: " + exportDirectoryNameInPreferences);
 
-		File baseExportDirectory = new File(context.getExternalFilesDir(null),
-				exportDirectoryNameInPreferences);
 
-		if(! baseExportDirectory.exists()){
+		// Using the public Downloads folder (default) with a specific subdirectory
+		File baseExportDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), exportDirectoryNameInPreferences);
+
+		// if folder not exists, create it
+		if (!baseExportDirectory.exists()) {
 			boolean ok = baseExportDirectory.mkdirs();
 			if (!ok) {
 				throw new ExportTrackException(
-						context.getResources().getString(
-								R.string.error_externalstorage_not_writable));
+						context.getResources().getString(R.string.error_externalstorage_not_writable));
 			}
 		}
 
-		Log.d(TAG, "BaseExportDirectory: " + baseExportDirectory);
+		Log.d(TAG, "BaseExportDirectory: " + baseExportDirectory.getAbsolutePath());
 		return baseExportDirectory;
-    }
+	}
+
+
 
 	@Override
 	protected boolean exportMediaFiles() {

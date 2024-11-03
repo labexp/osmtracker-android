@@ -73,7 +73,7 @@
 	<string name="prefs_displaytrack_osm_summary_ask">Always display OpenStreetMap background? Requires a data connection</string>
 
 	<string name="prefs_output">GPX settings</string>
-	<string name="prefs_storage_dir">External storage (SD) directory</string>
+	<string name="prefs_storage_dir">Export Folder (in Downloads)</string>
 	<string name="prefs_storage_dir_hint">Effective for the next track (not the current one)</string>
 	<string name="prefs_output_one_dir_per_track">One directory per track</string>
 	<string name="prefs_output_one_dir_per_track_summary">Save each track and associated files to its own directory</string>
