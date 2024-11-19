@@ -41,6 +41,7 @@ public class ExportToStorageTask extends ExportTrackTask {
         String trackName = getSanitizedTrackNameByStartDate(startDate);
         boolean shouldCreateDirectoryPerTrack = shouldCreateDirectoryPerTrack(preferences);
         File finalExportDirectory = getBaseExportDirectory(preferences);
+		Log.d(TAG, "absolute dir: " + finalExportDirectory.getAbsolutePath().toString());
 
         if( shouldCreateDirectoryPerTrack && trackName.length() >= 1){
             String uniqueFolderName = getUniqueChildNameFor(finalExportDirectory, trackName, "");
@@ -86,32 +87,31 @@ public class ExportToStorageTask extends ExportTrackTask {
 	}
 
 	// Create before returning if not exists
-    public File getBaseExportDirectory(SharedPreferences prefs) throws ExportTrackException {
+	public File getBaseExportDirectory(SharedPreferences prefs) throws ExportTrackException {
 
 		if (!isExternalStorageWritable()) {
 			throw new ExportTrackException(
 					context.getResources().getString(R.string.error_externalstorage_not_writable));
 		}
-
 		String exportDirectoryNameInPreferences = prefs.getString(
 				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
 		Log.d(TAG,"exportDirectoryNameInPreferences: " + exportDirectoryNameInPreferences);
 
 		File baseExportDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
 				exportDirectoryNameInPreferences);
-
-		if(! baseExportDirectory.exists()){
+		
+		// if folder not exists, create it
+		if (!baseExportDirectory.exists()) {
 			boolean ok = baseExportDirectory.mkdirs();
 			if (!ok) {
 				throw new ExportTrackException(
-						context.getResources().getString(
-								R.string.error_externalstorage_not_writable));
+						context.getResources().getString(R.string.error_externalstorage_not_writable));
 			}
 		}
 
-		Log.d(TAG, "BaseExportDirectory: " + baseExportDirectory);
+		Log.d(TAG, "BaseExportDirectory: " + baseExportDirectory.getAbsolutePath());
 		return baseExportDirectory;
-    }
+	}
 
 	@Override
 	protected boolean exportMediaFiles() {
