@@ -44,7 +44,6 @@ import android.media.AudioManager;
 import android.net.Uri;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -53,6 +52,7 @@ import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -75,7 +75,6 @@ public class TrackLogger extends Activity {
 	private static final String TAG = TrackLogger.class.getSimpleName();
 
 	final private int RC_STORAGE_AUDIO_PERMISSIONS = 1;
-	final private int RC_STORAGE_CAMERA_PERMISSIONS = 2;
 
 	/**
 	 * Request code for callback after the camera application had taken a
@@ -526,34 +525,7 @@ public class TrackLogger extends Activity {
 		case KeyEvent.KEYCODE_CAMERA:
 			Log.d(TAG, "click on camera button");
 			if (gpsLogger.isTracking()) {
-				if (ContextCompat.checkSelfPermission(this,
-						Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-					Log.d(TAG, "camera permission isn't granted, will request");
-					// Should we show an explanation?
-					if ( (ActivityCompat.shouldShowRequestPermissionRationale(this,
-							Manifest.permission.CAMERA)) ) {
-
-						// Show an expanation to the user *asynchronously* -- don't block
-						// this thread waiting for the user's response! After the user
-						// sees the explanation, try again to request the permission.
-						// TODO: explain why we need permission.
-						Log.w(TAG, "we should explain why we need write and record audio permission");
-
-					} else {
-
-						// No explanation needed, we can request the permission.
-						ActivityCompat.requestPermissions(this,
-								new String[]{
-										Manifest.permission.CAMERA},
-								RC_STORAGE_CAMERA_PERMISSIONS);
-						break;
-					}
-
-				} else {
-					requestStillImage();
-					//return true;
-				}
-
+				requestStillImage();
 			}
 			break;
 		case KeyEvent.KEYCODE_DPAD_CENTER:
@@ -800,8 +772,13 @@ public class TrackLogger extends Activity {
 	private void startCamera(File imageFile) {
 		StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
 		StrictMode.setVmPolicy(builder.build());
+
+		Uri imageUriContent = FileProvider.getUriForFile(this,
+				DataHelper.FILE_PROVIDER_AUTHORITY, imageFile);
+
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
+		cameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUriContent);
 		startActivityForResult(cameraIntent, REQCODE_IMAGE_CAPTURE);
 	}
 	
@@ -834,27 +811,6 @@ public class TrackLogger extends Activity {
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.v(TAG, "Voice recording permission is denied.");
-				}
-				return;
-			}
-
-			case RC_STORAGE_CAMERA_PERMISSIONS: {
-				Log.d(TAG, "camera case");
-				// If request is cancelled, the result arrays are empty.
-				if (grantResults.length > 1) {
-					// TODO: fix permission management
-						//&& grantResults[0] == PackageManager.PERMISSION_GRANTED
-						//&& grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-
-					// permission was granted, yay!
-					requestStillImage();
-
-				} else {
-
-					// permission denied, boo! Disable the
-					// functionality that depends on this permission.
-					//TODO: add an informative message.
-					Log.v(TAG, "Camera permission is denied.");
 				}
 				return;
 			}
