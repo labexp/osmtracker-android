@@ -17,6 +17,15 @@ android {
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
+
     signingConfigs {
         // Create a file $HOME/.gradle/gradle.properties
         // containing the values signing.storeFile=..., etc.
