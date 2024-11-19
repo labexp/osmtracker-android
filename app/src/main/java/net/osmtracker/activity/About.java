@@ -140,8 +140,6 @@ public class About extends Activity {
 				+ Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) + "\n"
 				+ "Export External Public Storage Directory: '"
 				+ baseExportDirectory + "'\n";
-
-
 	}
 
 }
