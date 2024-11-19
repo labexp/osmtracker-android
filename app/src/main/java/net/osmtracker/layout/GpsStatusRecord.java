@@ -169,7 +169,6 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 				manageRecordingIndicator(true);
 			}
 
-
 			TextView tvAccuracy = findViewById(R.id.gpsstatus_record_tvAccuracy);
 			if (location.hasAccuracy()) {
 				Log.d(TAG, "location accuracy: "+ ACCURACY_FORMAT.format(location.getAccuracy()));
