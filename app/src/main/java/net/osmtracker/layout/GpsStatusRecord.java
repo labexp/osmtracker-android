@@ -8,6 +8,7 @@ import net.osmtracker.activity.TrackLogger;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.GnssStatus;
 import android.location.Location;
@@ -160,6 +161,10 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 			if (!gpsActive) {
 				gpsActive = true;
 				// GPS activated, activate UI
+				activity.onGpsEnabled();
+				manageRecordingIndicator(true);
+			}
+			else if (gpsActive && !activity.getButtonsEnabled()) {
 				activity.onGpsEnabled();
 				manageRecordingIndicator(true);
 			}

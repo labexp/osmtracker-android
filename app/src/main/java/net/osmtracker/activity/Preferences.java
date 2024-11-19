@@ -68,6 +68,16 @@ public class Preferences extends PreferenceActivity {
 		// and register a change listener to set again the summary in case of change
 		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+		// Explicit execution of buttons presets window
+		Preference buttonLayoutPref = findPreference("prefs_ui_buttons_layout");
+		if (buttonLayoutPref != null) {
+			buttonLayoutPref.setOnPreferenceClickListener(preference -> {
+				Intent intent = new Intent(this, ButtonsPresets.class);
+				startActivity(intent);
+				return true;
+			});
+		}
+
 		// External storage directory
 		EditTextPreference storageDirPref = (EditTextPreference) findPreference(OSMTracker.Preferences.KEY_STORAGE_DIR);
 		storageDirPref.setSummary(prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR));

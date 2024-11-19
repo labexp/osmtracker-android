@@ -36,6 +36,10 @@ public class TagButtonOnClickListener implements OnClickListener {
 		Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 		intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 		intent.putExtra(OSMTracker.INTENT_KEY_NAME, label);
+
+		String packageName = view.getContext().getPackageName();
+		intent.setPackage(packageName);
+
 		view.getContext().sendBroadcast(intent);
 		
 		// Inform user that the waypoint was tracked

@@ -5,12 +5,12 @@ apply plugin: 'kotlin-android-extensions'
 android {
 
     useLibrary 'org.apache.http.legacy'
-    compileSdk 33
+    compileSdk 35
 
     defaultConfig {
         applicationId "net.osmtracker"
         minSdkVersion 25
-        targetSdkVersion 33
+        targetSdkVersion 35
         multiDexEnabled true
 
         testApplicationId "net.osmtracker.test"
