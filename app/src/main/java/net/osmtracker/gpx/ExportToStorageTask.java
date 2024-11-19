@@ -98,6 +98,8 @@ public class ExportToStorageTask extends ExportTrackTask {
 				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
 		Log.d(TAG,"exportDirectoryNameInPreferences: " + exportDirectoryNameInPreferences);
 
+		File baseExportDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
+				exportDirectoryNameInPreferences);
 
 		// Using the public Downloads folder (default) with a specific subdirectory
 		File baseExportDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), exportDirectoryNameInPreferences);
