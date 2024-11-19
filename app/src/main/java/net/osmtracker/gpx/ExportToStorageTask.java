@@ -88,8 +88,8 @@ public class ExportToStorageTask extends ExportTrackTask {
 
 	// Create before returning if not exists
 	public File getBaseExportDirectory(SharedPreferences prefs) throws ExportTrackException {
-		// Verify if folder exists and is writable
-		if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+
+		if (!isExternalStorageWritable()) {
 			throw new ExportTrackException(
 					context.getResources().getString(R.string.error_externalstorage_not_writable));
 		}
