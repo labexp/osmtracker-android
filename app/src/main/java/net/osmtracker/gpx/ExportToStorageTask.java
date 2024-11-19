@@ -100,10 +100,7 @@ public class ExportToStorageTask extends ExportTrackTask {
 
 		File baseExportDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
 				exportDirectoryNameInPreferences);
-
-		// Using the public Downloads folder (default) with a specific subdirectory
-		File baseExportDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), exportDirectoryNameInPreferences);
-
+		
 		// if folder not exists, create it
 		if (!baseExportDirectory.exists()) {
 			boolean ok = baseExportDirectory.mkdirs();
