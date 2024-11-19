@@ -38,7 +38,6 @@ public class ExportToStorageTask extends ExportTrackTask {
 	protected File getExportDirectory(Date startDate) throws ExportTrackException {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-
         String trackName = getSanitizedTrackNameByStartDate(startDate);
         boolean shouldCreateDirectoryPerTrack = shouldCreateDirectoryPerTrack(preferences);
         File finalExportDirectory = getBaseExportDirectory(preferences);
