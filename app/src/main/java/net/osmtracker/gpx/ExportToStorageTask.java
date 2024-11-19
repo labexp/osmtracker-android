@@ -113,8 +113,6 @@ public class ExportToStorageTask extends ExportTrackTask {
 		return baseExportDirectory;
 	}
 
-
-
 	@Override
 	protected boolean exportMediaFiles() {
 		return true;
