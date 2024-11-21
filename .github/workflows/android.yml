@@ -31,5 +31,10 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build --stacktrace
 
-      - name: Run unit tests
-        run: ./gradlew testDebugUnitTest --stacktrace
+      - name: Run unit tests and jacoco coverage
+        run: ./gradlew testDebugUnitTest jacocoTestReport --stacktrace
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2.3.4
+        with:
+          format: jacoco

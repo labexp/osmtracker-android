@@ -1,6 +1,7 @@
 # OSMTracker for Android™
 
-![Build](https://github.com/labexp/osmtracker-android/actions/workflows/android.yml/badge.svg)
+![Build](https://github.com/labexp/osmtracker-android/actions/workflows/android.yml/badge.svg?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/labexp/osmtracker-android/badge.svg?branch=develop)](https://coveralls.io/github/labexp/osmtracker-android?branch=develop)
 
 **OSMTracker for Android™** is a mobile app designed for OpenStreetMap mappers and outdoor adventurers. It lets you log a GPS track to document your journey. Its customizable buttons let you simply add POIs as track points directly inside your GPX track.
 
