@@ -48,7 +48,7 @@ public class About extends Activity {
 		} catch (NameNotFoundException nnfe) { 
 			// Should not occur
 		}
-		
+
 		findViewById(R.id.about_debug_info_button).setOnClickListener(
 				new OnClickListener() {
 					

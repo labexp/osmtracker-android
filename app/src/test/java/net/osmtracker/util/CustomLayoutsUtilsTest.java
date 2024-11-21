@@ -13,9 +13,12 @@ import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -85,17 +88,22 @@ public class CustomLayoutsUtilsTest {
     @Test
     public void getStringFromStream() throws IOException {
         setupMocks();
-        InputStream is = mockAssetManager.open("result.gpx");
-        String result = CustomLayoutsUtils.getStringFromStream(is);
-        is.close();
 
-        is = mockAssetManager.open("expected.gpx");
-        Scanner s = new Scanner(is).useDelimiter("\\A");
-        String expected = s.hasNext() ? s.next() : "";
-        is.close();
-        System.out.println(expected);
+        InputStream resultIs = mockAssetManager.open("result.gpx");
+        String result = CustomLayoutsUtils.getStringFromStream(resultIs);
 
-        assertEquals(expected, result);
+        String expected;
+        try (InputStream expectedIs = mockAssetManager.open("expected.gpx");
+             InputStreamReader expectedIsr = new InputStreamReader(expectedIs, StandardCharsets.UTF_8);
+             BufferedReader expectedReader = new BufferedReader(expectedIsr)) {
+             StringBuilder expectedBuilder = new StringBuilder();
+             String line;
+             while ((line = expectedReader.readLine()) != null) {
+                 expectedBuilder.append(line).append(System.lineSeparator());
+             }
+             expected = expectedBuilder.toString();
+        }
+        assertEquals("String should have same content", expected, result);
     }
 
     @Test

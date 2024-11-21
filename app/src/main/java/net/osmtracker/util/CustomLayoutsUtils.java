@@ -16,6 +16,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+
 /**
  * Created by adma9717 on 12/8/17.
  */
@@ -74,7 +76,7 @@ public class CustomLayoutsUtils {
             Writer writer = new StringWriter();
             char[] buffer = new char[2048];
             try {
-                Reader reader = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
+                Reader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
                 int counter;
                 while ((counter = reader.read(buffer)) != -1) {
                     writer.write(buffer, 0, counter);
