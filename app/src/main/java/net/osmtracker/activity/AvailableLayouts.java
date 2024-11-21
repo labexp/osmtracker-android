@@ -321,8 +321,8 @@ public class AvailableLayouts extends Activity {
         //setting the custom options into text fields
         else{
             etxGithubUsername.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
-            etxRepositoryName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME,""));
-            etxBranchName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, ""));
+            etxRepositoryName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME));
+            etxBranchName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.VAL_BRANCH_NAME));
         }
     }
 
