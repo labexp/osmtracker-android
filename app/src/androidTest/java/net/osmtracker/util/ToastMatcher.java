@@ -9,7 +9,7 @@ import org.hamcrest.TypeSafeMatcher;
 
 /**
  * Used to search for Toasts in the UI
- * This class was taken from https://stackoverflow.com/questions/28390574/checking-toast-message-in-android-espresso
+ * This class was taken from <a href="https://stackoverflow.com/questions/28390574/checking-toast-message-in-android-espresso">stackoverflow</a>
  */
 public class ToastMatcher extends TypeSafeMatcher<Root> {
 

@@ -9,9 +9,7 @@ import android.util.Log;
 
 /**
  * Listener for pressure sensor.
- *
  * Register the listener with your context using the register/unregister functions
- *
  * Should be possible to enable/disable via preferences due to power consumption.
  *
  */

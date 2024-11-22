@@ -40,11 +40,11 @@ import android.view.View.OnClickListener;
 
 /**
  * Display current track over an OSM map.
- * Based on osmdroid code http://osmdroid.googlecode.com/
+ * Based on <a href="http://osmdroid.googlecode.com/">osmdroid code</a>
  *<P>
  * Used only if {@link OSMTracker.Preferences#KEY_UI_DISPLAYTRACK_OSM} is set.
  * Otherwise {@link DisplayTrack} is used (track only, no OSM background tiles).
- * 
+ *
  * @author Viesturs Zarins
  *
  */

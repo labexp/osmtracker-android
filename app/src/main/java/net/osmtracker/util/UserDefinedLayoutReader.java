@@ -87,7 +87,7 @@ public class UserDefinedLayoutReader {
 	
 	/** 
 	 * representing ScreenOrientation
-	 * see {@link Configuration.orientation}
+	 * see {@link Configuration}.orientation
 	 */
 	private int orientation;
 	
