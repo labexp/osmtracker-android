@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    if: github.event.schedule_activity.commits > 0
+    # if: github.event.schedule_activity.commits > 0
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
