@@ -14,25 +14,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.2.2
 
-      - name: Set up JDK
-        uses: actions/setup-java@v1
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.5.0
         with:
-          java-version: '11'
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
 
-      - name: Make Gradle executable
-        run: chmod +x ./gradlew
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --stacktrace
 
       - name: Rename APK
+        if: success()
         run: |
           DATE=$(date +'%Y%m%d')
           mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OSMTracker-nightly-$DATE.apk
 
+      - name: Upload Artifact
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
+
       - name: Create or Update GitHub Release
+        if: success()
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -45,6 +56,7 @@ jobs:
           overwrite: true
 
       - name: Upload Release Asset
+        if: success()
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
