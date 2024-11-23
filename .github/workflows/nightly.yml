@@ -1,0 +1,52 @@
+name: Build and Release Beta APK
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:  # This enables manual triggering
+
+jobs:
+  build:
+    if: github.event.schedule_activity.commits > 0
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug
+
+      - name: Rename APK
+        run: |
+          DATE=$(date +'%Y%m%d')
+          mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OSMTracker-nightly-$DATE.apk
+
+      - name: Create or Update GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: 'nightly'
+          release_name: 'Nightly Build'
+          draft: false
+          prerelease: true
+          overwrite: true
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
+          asset_name: OSMTracker-nightly-yyymmdd.apk
+          asset_content_type: application/vnd.android.package-archive
