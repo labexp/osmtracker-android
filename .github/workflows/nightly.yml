@@ -35,9 +35,9 @@ jobs:
           DATE=$(date +'%Y%m%d')
           mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OSMTracker-nightly-$DATE.apk
 
-      - name: Upload Artifact
+      - name: Upload a Build Artifact
         if: success()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: debug-apk
           path: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
