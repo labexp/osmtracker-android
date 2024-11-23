@@ -9,9 +9,13 @@
   <string name="prefs_check_gps_startup_summary">Kontrollera om GPS:en är inaktiv vid start och erbjud att aktivera den.</string>
   <string name="prefs_gps_ignore_clock">Ignorera GPS-klockan</string>
   <string name="prefs_gps_ignore_clock_summary">Ignorera GPS-klockan och använd istället Androids klocka för tidsstämpling.</string>
+  <string name="prefs_use_barometer">Logga barometertryck [hPa]</string>
+  <string name="prefs_use_barometer_summary">Växling kräver omstart av spår</string>
   <string name="prefs_gps_logging_interval">GPS logg-intervall</string>
   <string name="prefs_gps_logging_interval_summary">Använd 0 för kortast möjliga intervall (påverkar batteriets livslängd).</string>
   <string name="prefs_gps_logging_interval_seconds">sekunder</string>
+  <string name="prefs_gps_logging_min_distance">GPS-loggningsavstånd</string>
+  <string name="prefs_gps_logging_min_distance_summary">Minsta avstånd mellan spårpunkter i meter, använd 0 för kortast möjliga</string>
   <string name="prefs_gps_logging_min_distance_meters">meter</string>
   <string name="prefs_ui">Användargränssnitt</string>
   <string name="prefs_ui_picture_source">Vald bildkälla</string>
@@ -50,8 +54,9 @@
   <string name="prefs_display_always_on_summary">Skärmen släcks inte under tiden spår spelas in. Avmarkera för att spara batteri.</string>
   <string name="prefs_displaytrack_osm">Bakgrundskarta</string>
   <string name="prefs_displaytrack_osm_summary">Visa OpenStreetMap-karta under spåret. Dataanslutning krävs.</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Visa alltid OpenStreetMap-bakgrund? Kräver dataanslutning</string>
   <string name="prefs_output">GPX-fil</string>
-  <string name="prefs_storage_dir">Lagringsmapp (SD)</string>
+  <string name="prefs_storage_dir">Lagringsmapp i dokument</string>
   <string name="prefs_storage_dir_hint">Gäller för nästa och kommande spår, inte aktuellt spår.</string>
   <string name="prefs_output_one_dir_per_track">En mapp per spår</string>
   <string name="prefs_output_one_dir_per_track_summary">Spara varje spår och relaterade filer i en egen mapp</string>
@@ -76,6 +81,7 @@
   <string name="prefs_osm_clear_oauth_data">Återställ inloggning till OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Glöm bort inloggning och tillstånd och tvinga OSMTracker att fråga om detta igen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Du måste godkänna OSMTracker för att kunna ladda upp spår igen. Är du säker?</string>
+  <string name="prefs_map_tile">Tillhandahållare av kartrutor</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -87,5 +93,6 @@
     <item>i kommentar</item>
     <item>i extension</item>
   </string-array>
+  <string name="prefs_compass_heading">Exportera kompassriktning</string>
   <string name="prefs_compass_heading_summary">Definierar om och hur kompassdata ska exporteras till GPX-filen</string>
 </resources>
