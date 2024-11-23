@@ -29,13 +29,13 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleDebug --stacktrace
 
-      - name: Rename APK
+      - name: Rename output APK
         if: success()
         run: |
           DATE=$(date +'%Y%m%d')
           mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OSMTracker-nightly-$DATE.apk
 
-      - name: GH Release
+      - name: Create or Update GitHub Nightly Release
         if: success()
         uses: softprops/action-gh-release@v2.1.0
         with:
