@@ -35,32 +35,14 @@ jobs:
           DATE=$(date +'%Y%m%d')
           mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OSMTracker-nightly-$DATE.apk
 
-      - name: Upload a Build Artifact
+      - name: GH Release
         if: success()
-        uses: actions/upload-artifact@v4.4.3
-        with:
-          name: debug-apk
-          path: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
-
-      - name: Create or Update GitHub Release
-        if: success()
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2.1.0
         with:
           tag_name: 'nightly'
-          release_name: 'Nightly Build'
+          name: 'Nightly Build'
           draft: false
           prerelease: true
-
-      - name: Upload Release Asset
-        if: success()
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
-          asset_name: OSMTracker-nightly-yyymmdd.apk
-          asset_content_type: application/vnd.android.package-archive
+          files: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
+          body: "Nightly build for OSMTracker"
+          token: ${{ secrets.GITHUB_TOKEN }}
