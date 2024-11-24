@@ -31,12 +31,14 @@
   <string name="trackmgr_waypoints_count">Vägpunkter: </string>
   <string name="trackmgr_trackpoints_count">Spårpunkter: </string>
   <string name="trackmgr_empty">Du har inga spår.</string>
+  <string name="trackmgr_newtrack_hint">Tryck för att spela in ett nytt spår.</string>
   <string name="trackmgr_newtrack_error">Kan inte skapa nytt spår: {0}</string>
   <string name="trackmgr_continuetrack_hint">Du spelar just nu in <b>spår #{0}</b>\nVälj det i listan för att fortsätta</string>
   <string name="trackmgr_contextmenu_stop">Stoppa inspelning</string>
   <string name="trackmgr_contextmenu_resume">Återuppta inspelning</string>
   <string name="trackmgr_contextmenu_delete">Radera</string>
   <string name="trackmgr_contextmenu_export">Exportera som GPX</string>
+  <string name="trackmgr_contextmenu_share">Dela GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">Ladda upp till OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Visa spår på skärm</string>
   <string name="trackmgr_contextmenu_details">Visa detaljer</string>
@@ -47,6 +49,7 @@
   <string name="trackmgr_exporting_prepare">Förbereder export...</string>
   <string name="trackmgr_export_error">Kan inte exportera spår: {0}</string>
   <string name="trackmgr_exportall_confirm">Alla spår kommer att exporteras vilket kan ta lång tid. Är du säker?</string>
+  <string name="trackmgr_prepare_for_share_error">Kan inte hantera spåret: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Spårdetaljer</string>
   <string name="trackdetail_startdate">Starttid:</string>
@@ -135,6 +138,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Väntar på riktning...</string>
   <string name="various_heading_unknown">Riktning kan inte bestämmas</string>
+  <string name="various_export_finished">Exporteringen slutfördes framgångsrikt</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Spårvisning med OpenStreetMap</string>
   <!--Buttons presets messages-->
@@ -145,8 +149,10 @@
   <string name="buttons_presets_unsuccessful_update">Layout uppdaterades ej, försök igen senare</string>
   <string name="buttons_presets_delete_message">Är du säker på att du vill ta bort layouten {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Ja</string>
+  <string name="buttons_presets_successful_delete">Layouten raderades framgångsrikt</string>
   <string name="buttons_presets_icon_directory_deleted">ikon-katalog har tagits bort</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Denna fil har inte någon ikon-katalog associerad</string>
+  <string name="buttons_presets_unsuccessful_delete">Layouten kunde inte raderas</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Fel: kunde inte ansluta till internet</string>
   <string name="available_layouts_response_null_exception">Fel: kunde inte ansluta till standard-repository för anpassade layouter</string>
@@ -168,6 +174,12 @@
   <string name="github_repository_settings_valid_server">Github Repository giltigt</string>
   <string name="github_repository_settings_invalid_server">Github Repository felaktigt</string>
   <!--App Introduction-->
+  <string name="app_intro">Introduktion till OSMTracker for Android™</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Välkommen till OSMTracker for Android™ 👋</string>
+  <string name="app_intro_slide1_description">Den här appen är fri programvara som respekterar din frihet!</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Lycka till med spårningen 🗺😎</string>
+  <string name="app_intro_slide2_description">OSMTracker för Android kommer att använda din GPS-position för att spela in spårpunkter och vägpunkter, även när appen körs i bakgrunden.
+\nDina data används inte för annonsering.</string>
 </resources>

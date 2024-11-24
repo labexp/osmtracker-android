@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'jacoco'
 
 android {
 
@@ -50,12 +50,12 @@ android {
 
         }
     }
-
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE.txt', 'META-INF/NOTICE.txt']
+        }
     }
+
     android {
         lintOptions {
             abortOnError false
@@ -134,4 +134,31 @@ configurations.all {
 repositories {
     mavenCentral()
     maven { url "https://jitpack.io" }
+}
+
+jacoco {
+    toolVersion = "0.8.12"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+tasks.register("jacocoTestReport", JacocoReport) {
+    dependsOn testDebugUnitTest
+
+    reports {
+        xml.required = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*']
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.setFrom(files([mainSrc]))
+    classDirectories.setFrom(fileTree(dir: layout.buildDirectory.dir("intermediates/javac/debug").get().asFile, excludes: fileFilter))
+    executionData.setFrom(fileTree(dir: layout.buildDirectory.get(), includes: [
+            'jacoco/testDebugUnitTest.exec', 'outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec'
+    ]))
+
 }

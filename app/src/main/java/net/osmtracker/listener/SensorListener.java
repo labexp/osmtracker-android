@@ -17,9 +17,7 @@ import android.widget.TextView;
 /**
  * Listener for sensors. In particular for the acceleration and magnetic sensors to provide compass
  * heading.
- * 
  * Register the listener with your context using the register/unregister functions
- * 
  * most recent reading from the sensor is always available from azimuth, pitch, roll, accuracy and valid fields
  * 
  * @author Christoph Gohle

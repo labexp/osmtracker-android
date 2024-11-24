@@ -84,7 +84,7 @@ public class MercatorProjection {
 	 * @param latitude
 	 *				Latitude to project
 	 * @return An array of 2 int projected coordinates (use
-	 *			{@link MercatorProjection.X} and {@link MercatorProjection.Y} for
+	 *			{@link MercatorProjection}.X and {@link MercatorProjection}.Y for
 	 *			access.
 	 */
 	public int[] project(double longitude, double latitude) {
