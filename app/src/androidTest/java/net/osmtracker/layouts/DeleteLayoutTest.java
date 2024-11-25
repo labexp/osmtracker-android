@@ -47,10 +47,6 @@ public class DeleteLayoutTest {
         }
     };
 
-    // Storage permissions are required
-    @Rule
-    public GrantPermissionRule writePermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
     private static String layoutName = "mock";
     private static String ISOLanguageCode = "es";
 
