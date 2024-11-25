@@ -27,11 +27,11 @@
   </string-array>
   <string name="prefs_ui_buttons_layout">Układ przycisków</string>
   <string name="prefs_ui_buttons_layout_summary">Wybierz własny układ przycisków (zobacz dokumentację)</string>
-  <string name="prefs_ui_buttons_layout_default_section">DOMYŚLNY LAYOUT</string>
+  <string name="prefs_ui_buttons_layout_default_section">UKŁAD DOMYŚLNY</string>
   <string name="prefs_ui_buttons_layout_defaut">Domyślnie</string>
-  <string name="prefs_ui_buttons_layout_downloaded_section">POBRANY LAYOUT</string>
-  <string name="prefs_ui_buttons_layout_empty_section">Nie masz pobranych plików z layout-ami</string>
-  <string name="prefs_ui_available_layout">Dostępne Layout-y</string>
+  <string name="prefs_ui_buttons_layout_downloaded_section">POBRANY UKŁAD</string>
+  <string name="prefs_ui_buttons_layout_empty_section">Nie masz pobranych plików układu</string>
+  <string name="prefs_ui_available_layout">Dostępne układy</string>
   <string name="prefs_ui_github_repository_settings">Ustawienia repozytorium Github</string>
   <string name="prefs_ui_orientation">Orientacja</string>
   <string name="prefs_ui_orientation_summary">Preferowana orientacja przycisków na ekranie</string>
@@ -56,9 +56,9 @@
   <string name="prefs_displaytrack_osm_summary">Włącza mapy OSM w podglądzie śladu. Wymaga aktywnego połączenia z Internetem.</string>
   <string name="prefs_displaytrack_osm_summary_ask">Wyświetlać zawsze tło OpenStreetMap? Wymaga połączenia z internetem</string>
   <string name="prefs_output">Ustawienia GPX</string>
-  <string name="prefs_storage_dir">Folder na karcie pamięci</string>
+  <string name="prefs_storage_dir">Katalog przechowywania w dokumentach</string>
   <string name="prefs_storage_dir_hint">Zmiana zadziała przy następnym śladzie</string>
-  <string name="prefs_output_one_dir_per_track">Osobny folder dla każdego śladu</string>
+  <string name="prefs_output_one_dir_per_track">Osobny katalog dla każdego śladu</string>
   <string name="prefs_output_one_dir_per_track_summary">Zapisuje każdy ślad wraz z powiązanymi plikami w oddzielnych folderach</string>
   <string name="prefs_output_filename">Nazwy plików śladów</string>
   <string name="prefs_output_filename_summary">Schemat dla nazwanych śladów</string>
