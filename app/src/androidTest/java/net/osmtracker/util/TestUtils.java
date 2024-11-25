@@ -2,6 +2,7 @@ package net.osmtracker.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -118,8 +119,12 @@ public class TestUtils {
     }
 
     public static void checkToastIsShownWith(String text){
-        onView(withText(text)).inRoot(new ToastMatcher())
-                .check(matches(isDisplayed()));
+        // Espresso can not check Toast for android >= 11
+        // https://github.com/android/android-test/issues/803
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            onView(withText(text)).inRoot(new ToastMatcher())
+                    .check(matches(isDisplayed()));
+        }
     }
 
     public static String getStringResource(int resourceId){
