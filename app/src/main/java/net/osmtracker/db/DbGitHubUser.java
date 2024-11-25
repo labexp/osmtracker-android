@@ -20,7 +20,6 @@ public class DbGitHubUser extends DBGitHelper{
     }
 
     public long insertUser(String username, String token){
-        //super.onCreate();
         long id = 0;
         try {
             DBGitHelper dbGitHelper = new DbGitHubUser(context);

@@ -187,19 +187,19 @@
   <string name="error_uploading">Error al subir</string>
   <string name="gpx_file_read_error">Error al leer el archivo GPX</string>
   <string name="gpx_file_not_found">No se encontró el archivo GPX</string>
-  <string name="item_selected">Seleccionó el elemento: </string>
+  <string name="item_selected">Selecciono el elemento: </string>
   <!-- GitHubConfig -->
   <string name="github_config_btn">Configurar</string>
   <string name="github_token_placeholder">Token de GitHub:</string>
   <string name="github_get_token_btn">Obtener token</string>
   <string name="github_token_guide_title">Cómo obtener un token de GitHub:</string>
   <string name="how_to_get_ghToken_guide_step_1">1. Haz clic en el botón para abrir el sitio web de GitHub y crear un token. Inicia sesión con tu cuenta de GitHub si es necesario.</string>
-  <string name="how_to_get_ghToken_guide_step_2">2. Selecciona "Tokens (Clásicos)" y haz clic en el botón "Generar nuevo token".</string>
+  <string name="how_to_get_ghToken_guide_step_2">2. Selecciona \"Tokens (Clásicos)\" y haz clic en el botón \"Generar nuevo token\".</string>
   <string name="how_to_get_ghToken_guide_step_3">3. Asigna un nombre descriptivo a tu token.</string>
-  <string name="how_to_get_ghToken_guide_step_4">4. Selecciona una fecha de expiración. Recomendamos "Sin expiración" para evitar repetir este paso.</string>
+  <string name="how_to_get_ghToken_guide_step_4">4. Selecciona una fecha de expiración. Recomendamos \"Sin expiración\" para evitar repetir este paso.</string>
   <string name="how_to_get_ghToken_guide_step_5">5. Selecciona los permisos que deseas otorgar al token (OSMTracker solo necesita el permiso de repositorio).</string>
-  <string name="how_to_get_ghToken_guide_step_6">6. Haz clic en el botón "Generar token".</string>
-  <string name="how_to_get_ghToken_guide_step_7">7. Copia el token generado y pégalo en el campo "Token de GitHub".</string>
+  <string name="how_to_get_ghToken_guide_step_6">6. Haz clic en el botón \"Generar token\".</string>
+  <string name="how_to_get_ghToken_guide_step_7">7. Copia el token generado y pégalo en el campo \"Token de GitHub\".</string>
   <!-- GitHubUpload -->
   <string name="upload_to_github_filename">Nombre del archivo:</string>
   <string name="upload_to_github_description">Mensaje del commit:</string>

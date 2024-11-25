@@ -85,7 +85,6 @@ public class GitHubUpload extends Activity {
         btnNewRepo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(GitHubUpload.this, "Crear un nuevo repo", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(GitHubUpload.this, GitHubNewRepo.class);
                 i.setPackage(getPackageName());
                 startActivity(i);
@@ -110,7 +109,6 @@ public class GitHubUpload extends Activity {
             public void onClick(View v) {
                 Bundle bundle = GitHubUpload.this.getIntent().getExtras();
                 if (bundle != null){
-                    //startUploadGitHub(bundle.getString("GPXFileInBase64"));
                     String filePath = getIntent().getStringExtra("GPXFilePath");
                     if (filePath != null) {
                         try {
@@ -191,9 +189,9 @@ public class GitHubUpload extends Activity {
             {
                 HashMap headers = new HashMap();
                 headers.put("Authorization", "Bearer " + gitHubUser.getToken());
-                //headers.put("Accept", "*/*");
-                //headers.put("Accept-Encoding", "gzip, deflate, br");
-                //headers.put("Connection", "keep-alive");
+                headers.put("Accept", "*/*");
+                headers.put("Accept-Encoding", "gzip, deflate, br");
+                headers.put("Connection", "keep-alive");
                 return headers;
             }
 
@@ -233,7 +231,7 @@ public class GitHubUpload extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setRepoName(adapterView.getItemAtPosition(i).toString());
-                Toast.makeText(GitHubUpload.this, R.string.item_selected + getRepoName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(GitHubUpload.this, getString(R.string.item_selected) + " " + getRepoName(), Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -258,9 +256,7 @@ public class GitHubUpload extends Activity {
                             // creating a new json object and
                             // getting each object from our json array.
                             try {
-                                // we are getting each json object.
                                 JSONObject responseObj = response.getJSONObject(i);
-                                // similarly we are extracting all the strings from our json object.
                                 ArrayListRepos.add(responseObj.getString("full_name"));
 
                             } catch (JSONException e) {
@@ -287,7 +283,6 @@ public class GitHubUpload extends Activity {
 
         };
         getResquest.setShouldCache(false);
-        // Deleting all the cache
         queue.getCache().remove(fullURL);
         queue.getCache().clear();
 

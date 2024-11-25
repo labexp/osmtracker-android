@@ -69,7 +69,6 @@ public class GitHubNewRepo extends Activity {
     }
 
     private void createNewRepo() {
-        //ArrayListRepos.removeAll(ArrayListRepos);
         String fullURL = getBaseURL()+"/user/repos";
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
@@ -100,9 +99,6 @@ public class GitHubNewRepo extends Activity {
             {
                 HashMap headers = new HashMap();
                 headers.put("Authorization", "Bearer " + gitHubUser.getToken());
-                //headers.put("Accept", "*/*");
-                //headers.put("Accept-Encoding", "gzip, deflate, br");
-                //headers.put("Connection", "keep-alive");
                 return headers;
             }
 

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="Subir a GitHub" />
+            android:text="@string/upload_to_github_commit_btn" />
 
         <Button
             android:id="@+id/git_upload_btn_cancel"

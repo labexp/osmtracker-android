@@ -210,12 +210,12 @@
     <string name="github_get_token_btn">Get token</string>
     <string name="how_to_get_ghToken_guide_title">How to get a GitHub Token:</string>
     <string name="how_to_get_ghToken_guide_step_1">1. Click the button to open the GitHub website and create a token. Sign In with your GitHub account if needed.</string>
-    <string name="how_to_get_ghToken_guide_step_2">2. Select "Tokens (Classic)" and click "Generate new token" button.</string>
+    <string name="how_to_get_ghToken_guide_step_2">2. Select \"Tokens (Classic)\" and click \"Generate new token\" button.</string>
     <string name="how_to_get_ghToken_guide_step_3">3. Assign a descriptive name to your token.</string>
-    <string name="how_to_get_ghToken_guide_step_4">4. Select an expiration date. We recommend "No expiration" to avoid repeating this step.</string>"
+    <string name="how_to_get_ghToken_guide_step_4">4. Select an expiration date. We recommend \"No expiration\" to avoid repeating this step.</string>"
     <string name="how_to_get_ghToken_guide_step_5">5. Select the scope or permissions you want to grant for this token (OSMTracker just need the repo permission).</string>
-    <string name="how_to_get_ghToken_guide_step_6">6. Click the "Generate token" button.</string>
-    <string name="how_to_get_ghToken_guide_step_7">7. Copy the generated token and paste it in the field "GitHub token".</string>
+    <string name="how_to_get_ghToken_guide_step_6">6. Click the \"Generate token\" button.</string>
+    <string name="how_to_get_ghToken_guide_step_7">7. Copy the generated token and paste it in the field \"GitHub token\".</string>
     <!-- GitHubUpload -->
     <string name="upload_to_github_filename">Filename:</string>
     <string name="upload_to_github_description">Commit message:</string>

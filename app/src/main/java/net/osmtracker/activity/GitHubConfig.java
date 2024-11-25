@@ -52,8 +52,6 @@ public class GitHubConfig extends Activity {
 
                 if(db == null){
                     Toast.makeText(GitHubConfig.this, R.string.db_error, Toast.LENGTH_SHORT).show();
-                }else {
-                    //Toast.makeText(GitHubConfig.this, "Creado correctamente", Toast.LENGTH_SHORT).show();
                 }
 
                 DbGitHubUser dbGitHubUser = new DbGitHubUser(GitHubConfig.this);
@@ -61,8 +59,6 @@ public class GitHubConfig extends Activity {
 
                 if (id > 0){
                     Toast.makeText(GitHubConfig.this, R.string.successfully_saved, Toast.LENGTH_SHORT).show();
-                    //Intent i = new Intent(GitHubConfig.this, GitHubUpload.class);
-                    //startActivity(i);
                     finish();
                 }else {
                     Toast.makeText(GitHubConfig.this, R.string.saving_error, Toast.LENGTH_SHORT).show();

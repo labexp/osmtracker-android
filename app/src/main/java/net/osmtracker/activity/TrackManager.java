@@ -689,10 +689,6 @@ public class TrackManager extends AppCompatActivity
 		Uri trackUriContent = FileProvider.getUriForFile(context,
 				DataHelper.FILE_PROVIDER_AUTHORITY,
 				tmpGPXFile);
-		//String GPXinBase64 = encodeFileToBase64(tmpGPXFile);
-		//System.out.printf(String.valueOf(GPXinBase64.length()));
-		//System.out.println("------------------" + GPXinBase64);
-
 		// Sharing intent
 		Intent shareIntent = new Intent();
 		shareIntent.setAction(Intent.ACTION_SEND);

@@ -75,7 +75,6 @@ public class GitHubPullRequest extends Activity {
     }
 
     private void createPullRequest() {
-        //ArrayListRepos.removeAll(ArrayListRepos);
         String fullURL = getBaseURL()+"/repos/"+getRepoOrigen()+"/pulls";
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
@@ -86,7 +85,7 @@ public class GitHubPullRequest extends Activity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            Toast.makeText(GitHubPullRequest.this, R.string.pr_status + response.getString("state"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GitHubPullRequest.this, getString(R.string.pr_status) + " " + response.getString("state"), Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             Toast.makeText(GitHubPullRequest.this, R.string.error_creating, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
@@ -135,7 +134,6 @@ public class GitHubPullRequest extends Activity {
     }
 
     private void getInfoRepo(String repoFullName) {
-        //ArrayListRepos.removeAll(ArrayListRepos);
         String fullURL = getBaseURL()+"/repos/"+repoFullName;
 
         JsonObjectRequest postResquest= new JsonObjectRequest(

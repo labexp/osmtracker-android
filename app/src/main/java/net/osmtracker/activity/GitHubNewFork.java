@@ -50,15 +50,13 @@ public class GitHubNewFork extends Activity {
 
         editTextRootUsername.setHint("Usuario raíz del repositorio");
         editTextRootRepo.setHint("Nombre del repositorio raíz");
-        //editTextRootUsername.setText("Usuario raíz del repositorio");
-        //editTextRootRepo.setText("Nombre del repositorio raíz");
 
         final Button btnCreate = (Button) findViewById(R.id.git_create_newfork_btn_ok);
         btnCreate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 createNewFork();
-                //Toast.makeText(GitHubNewFork.this, "Creado correctamente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GitHubNewFork.this, R.string.successfully_created, Toast.LENGTH_SHORT).show();
                 finish();
 
             }
@@ -79,7 +77,6 @@ public class GitHubNewFork extends Activity {
     }
 
     private void createNewFork() {
-        //ArrayListRepos.removeAll(ArrayListRepos);
         String fullURL = getBaseURL() + "/repos/"+ editTextRootUsername.getText().toString().trim() +"/"+ editTextRootRepo.getText().toString().trim() +"/forks?name=fork";
 
         JsonObjectRequest  postResquest= new JsonObjectRequest(
@@ -90,11 +87,9 @@ public class GitHubNewFork extends Activity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            System.out.println("=========================" + response.getString("full_name"));
                             setNewForkFullName(response.getString("full_name"));
                             Toast.makeText(GitHubNewFork.this, R.string.successfully_created, Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
-                            System.out.println("=========================Error");
                             Toast.makeText(GitHubNewFork.this, R.string.error_creating, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
@@ -110,16 +105,11 @@ public class GitHubNewFork extends Activity {
             {
                 HashMap headers = new HashMap();
                 headers.put("Authorization", "Bearer " + gitHubUser.getToken());
-                //headers.put("Accept", "*/*");
-                //headers.put("Accept-Encoding", "gzip, deflate, br");
-                //headers.put("Connection", "keep-alive");
                 return headers;
             }
 
         };
         Volley.newRequestQueue(this).add(postResquest);
-
-        //return ArrayListRepos;
     }
 
     public String getBaseURL() {
