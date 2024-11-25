@@ -7,6 +7,7 @@ import androidx.test.rule.ActivityTestRule;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.activity.AvailableLayouts;
+import net.osmtracker.util.TestUtils;
 
 import org.hamcrest.Matcher;
 import org.junit.Rule;
@@ -23,6 +24,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static net.osmtracker.util.LogcatHelper.checkLogForMessage;
 import static net.osmtracker.util.TestUtils.checkToastIsShownWith;
 import static net.osmtracker.util.TestUtils.getStringResource;
 import static org.hamcrest.core.IsNot.not;
@@ -79,6 +81,8 @@ public class RepositorySettingsDialogTest {
 
         String expectedMessage = (isValid) ? getStringResource(R.string.github_repository_settings_valid_server) :
                 getStringResource(R.string.github_repository_settings_invalid_server);
+
+        checkLogForMessage("TOAST", expectedMessage);
 
         checkToastIsShownWith(expectedMessage);
 

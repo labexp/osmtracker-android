@@ -8,6 +8,7 @@ import net.osmtracker.R;
 import net.osmtracker.activity.ButtonsPresets;
 import net.osmtracker.activity.Preferences;
 import net.osmtracker.util.CustomLayoutsUtils;
+import net.osmtracker.util.TestUtils;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -20,6 +21,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static net.osmtracker.util.LogcatHelper.checkLogForMessage;
 import static net.osmtracker.util.TestUtils.checkToastIsShownWith;
 import static net.osmtracker.util.TestUtils.getLayoutsDirectory;
 import static net.osmtracker.util.TestUtils.getStringResource;
@@ -47,10 +49,6 @@ public class DeleteLayoutTest {
         }
     };
 
-    // Storage permissions are required
-    @Rule
-    public GrantPermissionRule writePermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
     private static String layoutName = "mock";
     private static String ISOLanguageCode = "es";
 
@@ -76,6 +74,8 @@ public class DeleteLayoutTest {
     public void layoutDeletionTest(){
 
         deleteLayout(layoutName);
+
+        checkLogForMessage("TOAST", TestUtils.getStringResource(R.string.buttons_presets_successful_delete));
 
         // Check the informative Toast is shown
         checkToastIsShownWith(getStringResource(R.string.buttons_presets_successful_delete));
