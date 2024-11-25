@@ -4,7 +4,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:hint="Nombre de usuario en GitHub"
+        android:hint="@string/github_repository_settings_username"
         android:inputType="text"
         android:singleLine="true" />
 
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_below="@id/git_configuration_user_name"
-        android:hint="GitHub Token"
+        android:hint="@string/github_token_placeholder"
         android:inputType="text"
         android:singleLine="true" />
 
@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Guia para obtener Token:"
+            android:text="@string/how_to_get_ghToken_guide_title"
             android:layout_weight="1"
             android:gravity="left"/>
 
@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="1. Preciona el boton para ser dirigitdo a GitHub y crear un Token. Inicie sesión de ser necesario."
+            android:text="@string/how_to_get_ghToken_guide_step_1"
             android:layout_weight="1"
             android:gravity="left"/>
 
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="2"
-            android:text="Obtener Token" />
+            android:text="@string/github_get_token_btn" />
     </LinearLayout>
 
     <LinearLayout
@@ -70,7 +70,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="2. Precione en Generate new token (Generar nuevo token)."
+            android:text="@string/how_to_get_ghToken_guide_step_2"
             android:layout_weight="1"
             android:gravity="left"/>
 
@@ -87,7 +87,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="3. Asígnale a tu token un nombre descriptivo."
+            android:text="@string/how_to_get_ghToken_guide_step_3"
             android:layout_weight="1"
             android:gravity="left"/>
 
@@ -104,7 +104,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="4. Seleccione Expiration (Expiración) y, después, escoja un valor predeterminado, recomendamos No expiration (Sin expiración), para no repetir este proceso."
+            android:text="@string/how_to_get_ghToken_guide_step_4"
             android:layout_weight="1"
             android:gravity="left"/>
 
@@ -121,7 +121,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="5. Selecciona los alcances o permisos que deseas otorgarle a este token. OSMTracker solo necesita repo."
+            android:text="@string/how_to_get_ghToken_guide_step_5"
             android:layout_weight="1"
             android:gravity="left"/>
 
@@ -138,7 +138,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="6. Seleccione en Generar token."
+            android:text="@string/how_to_get_ghToken_guide_step_6"
             android:layout_weight="1"
             android:gravity="left"/>
 
@@ -155,7 +155,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="7. Copie el Token y péguelo en el campo respectivo."
+            android:text="@string/how_to_get_ghToken_guide_step_7"
             android:layout_weight="1"
             android:gravity="left"/>
 

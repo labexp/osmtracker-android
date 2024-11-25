@@ -86,16 +86,16 @@ public class GitHubPullRequest extends Activity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            Toast.makeText(GitHubPullRequest.this, "Estado del Pull Request: " + response.getString("state"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GitHubPullRequest.this, R.string.pr_status + response.getString("state"), Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
-                            Toast.makeText(GitHubPullRequest.this, "Error al crear", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GitHubPullRequest.this, R.string.error_creating, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(GitHubPullRequest.this, "Error al crear", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GitHubPullRequest.this, R.string.error_creating, Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -155,7 +155,7 @@ public class GitHubPullRequest extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(GitHubPullRequest.this, "Error info repo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GitHubPullRequest.this, R.string.repository_information_error, Toast.LENGTH_SHORT).show();
             }
         }){
             @Override

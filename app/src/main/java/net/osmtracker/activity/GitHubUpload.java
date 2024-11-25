@@ -133,11 +133,11 @@ public class GitHubUpload extends Activity {
                             startActivity(i);
                             finish();
                         } catch (IOException e) {
-                            Toast.makeText(GitHubUpload.this, "Error reading the GPX file.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GitHubUpload.this, R.string.gpx_file_read_error, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     } else {
-                        Toast.makeText(GitHubUpload.this, "GPX file not found.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GitHubUpload.this, R.string.gpx_file_not_found, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -169,7 +169,6 @@ public class GitHubUpload extends Activity {
      * Either starts uploading directly if we are authenticated against GitHub
      */
     private void startUploadGitHub(final String GPXFileInBase64){
-        //Toast.makeText(this, "Subir a GitHub", Toast.LENGTH_SHORT).show();
         String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+editTextFileName.getText().toString().trim().replace("\\s", "")+".gpx";
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
@@ -179,12 +178,12 @@ public class GitHubUpload extends Activity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(GitHubUpload.this, "Se subió correctamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GitHubUpload.this, R.string.successfully_uploaded, Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(GitHubUpload.this, "Error al subir", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GitHubUpload.this, R.string.error_uploading, Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -234,7 +233,7 @@ public class GitHubUpload extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setRepoName(adapterView.getItemAtPosition(i).toString());
-                Toast.makeText(GitHubUpload.this, "Item Selected: " + getRepoName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(GitHubUpload.this, R.string.item_selected + getRepoName(), Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -244,7 +243,6 @@ public class GitHubUpload extends Activity {
     }
 
     private void listRepos() {
-        //final String maxReposToShow = "5"; + "&per_page=" + maxReposToShow
         RequestQueue queue = Volley.newRequestQueue(this);
         String sortBy = "created";
         String fullURL = getBaseURL() + "/user/repos?" + "sort=" + sortBy ;

@@ -82,10 +82,10 @@ public class GitHubNewRepo extends Activity {
                         try {
                             System.out.println("=========================" + response.getString("full_name"));
                             setNewRepoFullName(response.getString("full_name"));
-                            Toast.makeText(GitHubNewRepo.this, "Creado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GitHubNewRepo.this, R.string.successfully_created, Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             System.out.println("=========================Error");
-                            Toast.makeText(GitHubNewRepo.this, "Error al crear", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GitHubNewRepo.this, R.string.error_creating, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }

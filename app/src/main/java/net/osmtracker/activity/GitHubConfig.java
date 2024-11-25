@@ -51,7 +51,7 @@ public class GitHubConfig extends Activity {
                 SQLiteDatabase db = dbGitHelper.getWritableDatabase();
 
                 if(db == null){
-                    Toast.makeText(GitHubConfig.this, "Error con la base de datos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GitHubConfig.this, R.string.db_error, Toast.LENGTH_SHORT).show();
                 }else {
                     //Toast.makeText(GitHubConfig.this, "Creado correctamente", Toast.LENGTH_SHORT).show();
                 }
@@ -60,12 +60,12 @@ public class GitHubConfig extends Activity {
                 long id = dbGitHubUser.insertUser(editTextUserName.getText().toString().trim(),editTextUserToken.getText().toString().trim());
 
                 if (id > 0){
-                    Toast.makeText(GitHubConfig.this, "Guardado correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GitHubConfig.this, R.string.successfully_saved, Toast.LENGTH_SHORT).show();
                     //Intent i = new Intent(GitHubConfig.this, GitHubUpload.class);
                     //startActivity(i);
                     finish();
                 }else {
-                    Toast.makeText(GitHubConfig.this, "Error al guardar", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GitHubConfig.this, R.string.saving_error, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -79,8 +79,6 @@ public class GitHubConfig extends Activity {
                 finish();
             }
         });
-
-
 
         // Do not show soft keyboard by default
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);

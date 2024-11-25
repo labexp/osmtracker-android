@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/git_configuration_credentials_btn"
-        android:title="Configurar"
+        android:title="@string/upload_to_github_configure"
         android:icon="@android:drawable/ic_menu_preferences"
         app:showAsAction="ifRoom"/>
 

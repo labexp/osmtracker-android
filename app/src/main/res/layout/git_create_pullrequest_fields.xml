@@ -4,7 +4,7 @@
         android:id="@+id/git_title_pullrequest_editText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Titulo del Pull Request"
+        android:hint="@string/upload_to_github_pr_description"
         android:layout_margin="5dp"
         android:inputType="text"
         android:singleLine="true" />
@@ -13,7 +13,7 @@
         android:id="@+id/git_body_pullrequest_editText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Mensaje del Pull Request"
+        android:hint="@string/upload_to_github_pr_description"
         android:layout_margin="5dp"
         android:layout_below="@id/git_title_pullrequest_editText"
         android:inputType="text"
