@@ -13,7 +13,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static junit.framework.TestCase.fail;
-import static net.osmtracker.util.LogcatHelper.checkLogForMessage;
 import static net.osmtracker.util.WaitForView.waitForView;
 
 import android.Manifest;
@@ -44,9 +43,7 @@ public class DownloadLayoutTest {
     @Rule
     public GrantPermissionRule coarseLocationPermission = GrantPermissionRule.grant(Manifest.permission.ACCESS_COARSE_LOCATION);
     @Rule
-    public GrantPermissionRule backgroundLocationPermission = GrantPermissionRule.grant(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
-    @Rule
-    public GrantPermissionRule serviceLocationPermission = GrantPermissionRule.grant(Manifest.permission.FOREGROUND_SERVICE_LOCATION);
+    public GrantPermissionRule writeStoragePermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
     @Rule
     public ActivityTestRule<TrackManager> mRule = new ActivityTestRule(TrackManager.class) {
@@ -139,8 +136,6 @@ public class DownloadLayoutTest {
 
         onView(withText(TestUtils.getStringResource(R.string.available_layouts_description_dialog_positive_confirmation))).
                 perform(click());
-
-        checkLogForMessage("TOAST", TestUtils.getStringResource(R.string.available_layouts_successful_download));
 
         TestUtils.checkToastIsShownWith(TestUtils.getStringResource(R.string.available_layouts_successful_download));
     }
