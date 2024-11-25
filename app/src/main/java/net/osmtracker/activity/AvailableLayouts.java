@@ -492,9 +492,11 @@ public class AvailableLayouts extends Activity {
                     String message="";
                     if (status) {
                         message = getResources().getString(R.string.available_layouts_successful_download);
+                        Log.i("TOAST", message);
                     }
                     else {
                         message = getResources().getString(R.string.available_layouts_unsuccessful_download);
+                        Log.e("TOAST", message);
                     }
                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
                     dialog.dismiss();
