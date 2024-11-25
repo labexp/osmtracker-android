@@ -247,7 +247,9 @@ public class AvailableLayouts extends Activity {
                                 protected void onPostExecute(Boolean result){
                                     //validating the github repository
                                     if(result){
-                                        Toast.makeText(AvailableLayouts.this, getResources().getString(R.string.github_repository_settings_valid_server), Toast.LENGTH_SHORT).show();
+                                        String message = getResources().getString(R.string.github_repository_settings_valid_server);
+                                        Log.i("TOAST", message);
+                                        Toast.makeText(AvailableLayouts.this, message, Toast.LENGTH_SHORT).show();
                                         //save the entered options into the shared preferences file
                                         editor.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, repositoryCustomOptions[0]);
                                         editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]);
@@ -257,7 +259,9 @@ public class AvailableLayouts extends Activity {
                                         tmpSharedPref.edit().putBoolean("isCallBack", false).commit();
                                         retrieveAvailableLayouts();
                                     }else{
-                                        Toast.makeText(AvailableLayouts.this, getResources().getString(R.string.github_repository_settings_invalid_server), Toast.LENGTH_SHORT).show();
+                                        String message = getResources().getString(R.string.github_repository_settings_invalid_server);
+                                        Log.e("TOAST", message);
+                                        Toast.makeText(AvailableLayouts.this, message, Toast.LENGTH_SHORT).show();
                                         tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, repositoryCustomOptions[0]).commit();
                                         tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]).commit();
                                         tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_BRANCH_NAME, repositoryCustomOptions[2]).commit();
