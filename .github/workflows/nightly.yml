@@ -3,11 +3,16 @@ name: Nightly APK
 on:
   schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch:  # This enables manual triggering
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the workflow on'
+        default: 'develop'
+        required: true
 
 jobs:
   build:
-    # if: github.event.schedule_activity.commits > 0
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
