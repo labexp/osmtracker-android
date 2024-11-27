@@ -38,7 +38,12 @@ jobs:
           DATE=$(date +'%Y%m%d')
           mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OSMTracker-nightly-$DATE.apk
 
-      - name: Create or Update GitHub Nightly Release
+      - name: Delete existing Nightly release
+        if: success()
+        run: |
+          gh release delete nightly --yes
+
+      - name: Create GitHub Nightly Release
         if: success()
         uses: softprops/action-gh-release@v2.1.0
         with:
