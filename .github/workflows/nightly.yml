@@ -1,0 +1,55 @@
+name: Nightly APK
+
+on:
+  schedule: # Scheduled jobs only run on the default repository branch
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the workflow on'
+        default: 'develop'
+        required: true
+
+jobs:
+  nightly_build:
+    name: Nightly build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.5.0
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Rename output APK
+        run: |
+          DATE=$(date +'%Y%m%d%H%M')
+          mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OSMTracker-nightly-$DATE.apk
+
+      - name: Delete existing Nightly release
+        run: gh release delete nightly --cleanup-tag --yes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Nightly Release
+        uses: softprops/action-gh-release@v2.1.0
+        with:
+          tag_name: 'nightly'
+          name: 'Nightly Build'
+          draft: false
+          prerelease: true
+          files: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
+          body: "Nightly build for OSMTracker"
+          token: ${{ secrets.GITHUB_TOKEN }}
