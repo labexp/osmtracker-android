@@ -13,6 +13,10 @@ android {
         targetSdkVersion 35
         multiDexEnabled true
 
+        // versionCode should be increased after each release
+        versionCode 63
+        versionName new Date().format('yyyy.MM.dd')
+
         testApplicationId "net.osmtracker.test"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
@@ -46,8 +50,9 @@ android {
             if (signingConfigs.hasProperty('release')) {
                 signingConfig signingConfigs.release
             }
-
-
+        }
+        debug {
+            versionNameSuffix "-dev"
         }
     }
     packagingOptions {
