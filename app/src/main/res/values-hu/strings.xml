@@ -62,6 +62,7 @@
   <string name="trackdetail_export_notyet">(Még nincs exportálva)</string>
   <string name="trackdetail_osm_upload_notyet">(Még nincs feltöltve)</string>
   <string name="trackdetail_export_display">Megjelenítés</string>
+  <string name="trackdetail_name">Név</string>
   <string name="trackdetail_description">Leírás</string>
   <string name="trackdetail_tags">Címkék (vesszővel elválasztva)</string>
   <string name="trackdetail_description_mandatory">Meg kell adnia egy leírást</string>
