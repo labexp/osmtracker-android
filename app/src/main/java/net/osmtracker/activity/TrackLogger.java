@@ -1,36 +1,12 @@
 package net.osmtracker.activity;
 
-import java.io.File;
-
-import java.util.Date;
-import java.util.HashSet;
-
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-import net.osmtracker.db.DataHelper;
-import net.osmtracker.layout.GpsStatusRecord;
-import net.osmtracker.layout.UserDefinedLayout;
-import net.osmtracker.listener.SensorListener;
-import net.osmtracker.listener.PressureListener;
-import net.osmtracker.receiver.MediaButtonReceiver;
-import net.osmtracker.service.gps.GPSLogger;
-import net.osmtracker.service.gps.GPSLoggerServiceConnection;
-import net.osmtracker.util.CustomLayoutsUtils;
-import net.osmtracker.util.FileSystemUtils;
-import net.osmtracker.util.ThemeValidator;
-import net.osmtracker.view.TextNoteDialog;
-import net.osmtracker.view.VoiceRecDialog;
-import net.osmtracker.db.TrackContentProvider;
-
 import android.Manifest;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.ContentValues;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,17 +18,11 @@ import android.database.Cursor;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.Uri;
-
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.provider.MediaStore.Images.ImageColumns;
 import android.provider.Settings;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -61,6 +31,32 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.db.DataHelper;
+import net.osmtracker.db.TrackContentProvider;
+import net.osmtracker.layout.GpsStatusRecord;
+import net.osmtracker.layout.UserDefinedLayout;
+import net.osmtracker.listener.PressureListener;
+import net.osmtracker.listener.SensorListener;
+import net.osmtracker.receiver.MediaButtonReceiver;
+import net.osmtracker.service.gps.GPSLogger;
+import net.osmtracker.service.gps.GPSLoggerServiceConnection;
+import net.osmtracker.util.CustomLayoutsUtils;
+import net.osmtracker.util.FileSystemUtils;
+import net.osmtracker.util.ThemeValidator;
+import net.osmtracker.view.TextNoteDialog;
+import net.osmtracker.view.VoiceRecDialog;
+
+import java.io.File;
+import java.util.Date;
+import java.util.HashSet;
 
 
 /**
@@ -123,11 +119,11 @@ public class TrackLogger extends Activity {
 	 * goes to settings/about/other screen.
 	 */
 	private boolean checkGPSFlag = true;
-	
+
 	/**
 	 * Keeps track of the image file when taking a picture.
 	 */
-	private File currentImageFile;
+	private File currentPhotoFile;
 	
 	/**
 	 * Keeps track of the current track id.
@@ -557,44 +553,52 @@ public class TrackLogger extends Activity {
 	 */
 	public void requestStillImage() {
 		if (gpsLogger.isTracking()) {
-			final File imageFile = pushImageFile();
-			if (null != imageFile) {
-
-				
-				final String pictureSource = prefs.getString(OSMTracker.Preferences.KEY_UI_PICTURE_SOURCE, 
-						OSMTracker.Preferences.VAL_UI_PICTURE_SOURCE);
-				if (OSMTracker.Preferences.VAL_UI_PICTURE_SOURCE_CAMERA.equals(pictureSource)) {
-					startCamera(imageFile);
-				} else if (OSMTracker.Preferences.VAL_UI_PICTURE_SOURCE_GALLERY.equals(pictureSource)) {
-					startGallery();
-				} else {
-					// Let the user choose between using the camera
-					// or selecting a picture from the gallery
-
-					AlertDialog.Builder getImageFrom = new AlertDialog.Builder(TrackLogger.this);
-					getImageFrom.setTitle("Select:");
-					final CharSequence[] opsChars = { getString(R.string.tracklogger_camera), getString(R.string.tracklogger_gallery) };
-					getImageFrom.setItems(opsChars, new android.content.DialogInterface.OnClickListener() {
-	
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							if (which == 0) {
-								startCamera(imageFile);
-							} else if (which == 1) {
-								startGallery();
-							}
-							dialog.dismiss();
-						}
-					});
-	
-					getImageFrom.show();
-				}
+			final String pictureSource = prefs.getString(OSMTracker.Preferences.KEY_UI_PICTURE_SOURCE,
+					OSMTracker.Preferences.VAL_UI_PICTURE_SOURCE);
+			if (OSMTracker.Preferences.VAL_UI_PICTURE_SOURCE_CAMERA.equals(pictureSource)) {
+				startCamera();
+			} else if (OSMTracker.Preferences.VAL_UI_PICTURE_SOURCE_GALLERY.equals(pictureSource)) {
+				startGallery();
 			} else {
-				Toast.makeText(getBaseContext(), 
-						getResources().getString(R.string.error_externalstorage_not_writable),
-						Toast.LENGTH_SHORT).show();
+				// Let the user choose between using the camera
+				// or selecting a picture from the gallery
+
+				AlertDialog.Builder getImageFrom = new AlertDialog.Builder(TrackLogger.this);
+				getImageFrom.setTitle("Select:");
+				final CharSequence[] opsChars = { getString(R.string.tracklogger_camera), getString(R.string.tracklogger_gallery) };
+				getImageFrom.setItems(opsChars, new android.content.DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						if (which == 0) {
+							startCamera();
+						} else if (which == 1) {
+							startGallery();
+						}
+						dialog.dismiss();
+					}
+				});
+
+				getImageFrom.show();
 			}
+		} else {
+			Toast.makeText(getBaseContext(),
+					getResources().getString(R.string.error_externalstorage_not_writable),
+					Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	/**
+	 * Get file path from android media URI
+	 *
+	 * @param contentUri the android media URI
+	 * @return the filepath of the file
+	 */
+	public String getRealPathFromURI(Uri contentUri) {
+		Cursor cursor = getContentResolver().query(contentUri, null, null, null, null);
+		int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATA);
+		cursor.moveToFirst();
+		return cursor.getString(column_index);
 	}
 
 	@Override
@@ -603,31 +607,28 @@ public class TrackLogger extends Activity {
 		switch (requestCode) {
 		case REQCODE_IMAGE_CAPTURE:
 			if (resultCode == RESULT_OK) {
-				// A still image has been captured, track the corresponding waypoint
-				// Send an intent to inform service to track the waypoint.
-				File imageFile = popImageFile();
-				if (imageFile != null) {
+				if (currentPhotoFile != null && currentPhotoFile.exists()) {
 					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 					intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
-					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
+					intent.putExtra(OSMTracker.INTENT_KEY_LINK, currentPhotoFile.getName());
 					intent.setPackage(this.getPackageName());
 					sendBroadcast(intent);
+				} else {
+					Log.e(TAG, "Cannot get image path from camera intent");
 				}
 			}
 			break;
 		case REQCODE_GALLERY_CHOSEN:
 			if (resultCode == RESULT_OK) {
-				// An image has been selected from the gallery, track the corresponding waypoint
-				File imageFile = popImageFile();
-				if (imageFile != null) {
+				// Get imagePath from Gallery Uri
+				String imagePath = getRealPathFromURI(data.getData());
+				File imageFile = new File(imagePath != null ? imagePath : "");
+				if (imageFile.exists()) {
 					// Copy the file from the gallery
-					Cursor c = getContentResolver().query(data.getData(), null, null, null, null);
-					c.moveToFirst();
-					String f = c.getString(c.getColumnIndex(ImageColumns.DATA));
-					c.close();
-					Log.d(TAG, "Copying gallery file '"+f+"' into '"+imageFile+"'");
-					FileSystemUtils.copyFile(imageFile.getParentFile(), new File(f), imageFile.getName());
+					File destFile = createImageFile();
+					Log.d(TAG, "Copying gallery file '" + imagePath + "' into '" + destFile.getAbsolutePath() + "'");
+					FileSystemUtils.copyFile(destFile.getParentFile(), new File(imagePath), destFile.getName());
 
 					// Send an intent to inform service to track the waypoint.
 					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
@@ -636,15 +637,15 @@ public class TrackLogger extends Activity {
 					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
 					intent.setPackage(this.getPackageName());
 					sendBroadcast(intent);
+				} else {
+					Log.e(TAG, "Cannot get image path from gallery intent");
 				}
 			}
 		}
 
 		super.onActivityResult(requestCode, resultCode, data);
 	}
-	
-	
-	
+
 	/**
 	 * Getter for gpsLogger
 	 * 
@@ -663,45 +664,25 @@ public class TrackLogger extends Activity {
 	public void setGpsLogger(GPSLogger l) {
 		this.gpsLogger = l;
 	}
-	
-	/**
-	 * Gets a File for storing an image in the current track dir
-	 * and stores it in a class variable.
-	 * 
-	 * @return A File pointing to an image file inside the current track directory
-	 */
-	public File pushImageFile() {
-		currentImageFile = null;
 
-		// Query for current track directory
+	/**
+	 * Create Image file according to DataHelper format and location
+	 *
+	 * @return a File
+	 */
+	public File createImageFile() {
 		File trackDir = DataHelper.getTrackDirectory(currentTrackId, this);
-
-		// Create the track storage directory if it does not yet exist
-		if (!trackDir.exists()) {
-			if ( !trackDir.mkdirs() ) {
-				Log.w(TAG, "Directory [" + trackDir.getAbsolutePath() + "] does not exist and cannot be created");
-			}
+		if (!trackDir.exists() && !trackDir.mkdirs()) {
+			Log.w(TAG, "Directory [" + trackDir.getAbsolutePath() + "] does not exist and cannot be created");
+			return null;
 		}
-
-		// Ensure that this location can be written to 
 		if (trackDir.exists() && trackDir.canWrite()) {
-			currentImageFile = new File(trackDir, 
-					DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_JPG);			
-		} else {
-			Log.w(TAG, "The directory [" + trackDir.getAbsolutePath() + "] will not allow files to be created");
+			File imageFile = new File(trackDir, DataHelper.FILENAME_FORMATTER.format(new Date()) + DataHelper.EXTENSION_JPG);
+			Log.d(TAG, "New Image File: " + imageFile);
+			return imageFile;
 		}
-
-		Log.d(TAG, "currentImage File: " + currentImageFile);
-		return currentImageFile;
-	}
-	
-	/**
-	 * @return The current image file, and clear the internal variable.
-	 */
-	public File popImageFile() {
-		File imageFile = currentImageFile;
-		currentImageFile = null;
-		return imageFile;
+		Log.w(TAG, "The directory [" + trackDir.getAbsolutePath() + "] will not allow files to be created");
+		return null;
 	}
 
 	@Override
@@ -774,14 +755,17 @@ public class TrackLogger extends Activity {
 	
 	/**
 	 * Starts the camera app. to take a picture
-	 * @param imageFile File to save the picture to
 	 */
-	private void startCamera(File imageFile) {
+	private void startCamera() {
 		StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
 		StrictMode.setVmPolicy(builder.build());
 
-		Uri imageUriContent = FileProvider.getUriForFile(this,
-				DataHelper.FILE_PROVIDER_AUTHORITY, imageFile);
+		currentPhotoFile = createImageFile();
+		if (currentPhotoFile == null) {
+			Log.e(TAG, "imageFile is NULL in startCamera");
+			return;
+		}
+		Uri imageUriContent = FileProvider.getUriForFile(this, DataHelper.FILE_PROVIDER_AUTHORITY, currentPhotoFile);
 
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		cameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -793,10 +777,10 @@ public class TrackLogger extends Activity {
 	 * Starts the gallery app. to choose a picture
 	 */
 	private void startGallery() {
-		Intent intent = new Intent();
-		intent.setType("image/*");
-		intent.setAction(Intent.ACTION_GET_CONTENT);
-		startActivityForResult(Intent.createChooser(intent, getString(R.string.tracklogger_choose_gallery_camera)), REQCODE_GALLERY_CHOSEN);
+        Intent galleryIntent = new Intent();
+        galleryIntent.setType("image/*");
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+		startActivityForResult(galleryIntent, REQCODE_GALLERY_CHOSEN);
 	}
 
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
