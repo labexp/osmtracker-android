@@ -634,7 +634,7 @@ public class TrackLogger extends Activity {
 					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 					intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
-					intent.putExtra(OSMTracker.INTENT_KEY_LINK, imageFile.getName());
+					intent.putExtra(OSMTracker.INTENT_KEY_LINK, destFile.getName());
 					intent.setPackage(this.getPackageName());
 					sendBroadcast(intent);
 				} else {
