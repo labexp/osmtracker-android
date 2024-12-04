@@ -399,7 +399,9 @@ public class TrackManager extends AppCompatActivity
 
 			case R.id.trackmgr_contextmenu_resume:
 				// let's activate the track and start the TrackLogger activity
-				setActiveTrack(contextMenuSelectedTrackid);
+				if (currentTrackId == TRACK_ID_NO_TRACK) {
+					setActiveTrack(contextMenuSelectedTrackid);
+				}
 				i = new Intent(this, TrackLogger.class);
 				i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, contextMenuSelectedTrackid);
 				tryStartTrackLogger(i);
