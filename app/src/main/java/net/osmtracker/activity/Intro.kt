@@ -15,14 +15,14 @@ class Intro : AppIntro() {
 
         // Call addSlide passing your Fragments.
         // You can use AppIntroFragment to use a pre-built fragment
-        addSlide(AppIntroFragment.newInstance(
+        addSlide(AppIntroFragment.createInstance(
                 title = getString(R.string.app_intro_slide1_title),
                 imageDrawable = R.drawable.icon_100x100,
                 description = getString(R.string.app_intro_slide1_description)
         ))
 
         //TODO: change the image of slide number 2.
-        addSlide(AppIntroFragment.newInstance(
+        addSlide(AppIntroFragment.createInstance(
                 title = getString(R.string.app_intro_slide2_title),
                 imageDrawable = R.drawable.icon_100x100,
                 description = getString(R.string.app_intro_slide2_description)
