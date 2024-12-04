@@ -1,21 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = '1.6.21'
-    repositories {
-        google()
-        mavenCentral()
+    ext {
+        kotlin_version = '2.0.21'
+        jacocoVersion = '0.8.12'
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.2'
+        classpath 'com.android.tools.build:gradle:8.7.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
-}
-
-plugins {
-    id 'jacoco'
-}
-
-allprojects {
     repositories {
         google()
         mavenCentral()
