@@ -1,5 +1,12 @@
 package net.osmtracker.layout;
 
+import static android.content.Context.MODE_PRIVATE;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
@@ -7,6 +14,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
 import net.osmtracker.activity.Preferences;
 import net.osmtracker.util.UnitTestUtils;
 
@@ -17,12 +25,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.File;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({PreferenceManager.class, Environment.class, Log.class})
@@ -48,7 +50,8 @@ public class DownloadCustomLayoutTaskTest {
         // Create PreferenceManager mock
         mockContext = mock(Context.class);
         mockStatic(PreferenceManager.class);
-        when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
+
+        when(mockContext.getSharedPreferences(mockContext.getString(R.string.shared_pref), MODE_PRIVATE)).thenReturn(mockPrefs);
         // external storage is writeable
         mockStatic(Environment.class);
         when(Environment.getExternalStorageState()).thenReturn(Environment.MEDIA_MOUNTED);

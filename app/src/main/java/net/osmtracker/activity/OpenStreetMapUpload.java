@@ -121,7 +121,7 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 	 * or ask the user to authenticate via the browser.
 	 */
 	private void startUpload() {
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
 		if ( prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN) ) {
 			// Re-use saved token
 			uploadToOsm(prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN, ""));
@@ -171,7 +171,7 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 			} else if (resp == null) {
 				Log.e(TAG, "Authorization Error. Null response from server.");
 			} else {
-				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+				SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
 
 				//Exchanging the authorization code
 				authService.performTokenRequest(

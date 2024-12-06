@@ -226,7 +226,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			break;
 		case R.id.trackdetail_menu_display:
 			
-			boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+			boolean useOpenStreetMapBackground = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE).getBoolean(
 					OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
 			if (useOpenStreetMapBackground) {
 				i = new Intent(this, DisplayTrackMap.class);

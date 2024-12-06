@@ -1,14 +1,16 @@
 package net.osmtracker.util;
 
+import static android.content.Context.MODE_PRIVATE;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static net.osmtracker.util.LogcatHelper.checkLogForMessage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
 import net.osmtracker.activity.Preferences;
 import net.osmtracker.data.Mocks;
 
@@ -126,12 +128,13 @@ public class TestUtils {
     }
 
     public static void setGithubRepositorySettings(String user, String repo, String branch){
-        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        Context context = getInstrumentation().getTargetContext();
+        SharedPreferences sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, user);
         editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repo);
         editor.putString(OSMTracker.Preferences.KEY_BRANCH_NAME, branch);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setLayoutsTestingRepository(){

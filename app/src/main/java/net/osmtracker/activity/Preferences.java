@@ -1,32 +1,26 @@
 package net.osmtracker.activity;
 
-import java.io.File;
-import java.io.FilenameFilter;
-
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
-
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+
+import java.io.File;
 
 
 /**
@@ -66,7 +60,7 @@ public class Preferences extends PreferenceActivity {
 
 		// Set summary of some preferences to their actual values
 		// and register a change listener to set again the summary in case of change
-		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		final SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
 
 		// Explicit execution of buttons presets window
 		Preference buttonLayoutPref = findPreference("prefs_ui_buttons_layout");
@@ -224,7 +218,7 @@ public class Preferences extends PreferenceActivity {
 				// Clear data
 				Editor editor = prefs.edit();
 				editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN);
-				editor.commit();
+				editor.apply();
 
 				preference.setEnabled(false);
 				return false;

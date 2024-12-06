@@ -197,7 +197,7 @@ public class TrackLogger extends Activity {
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
 		// get shared preferences
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
 		
 		// Set application theme according to user settings
 		setTheme(getResources().getIdentifier(ThemeValidator.getValidTheme(prefs, getResources()), null, null));
@@ -497,7 +497,7 @@ public class TrackLogger extends Activity {
 			break;
 		case R.id.tracklogger_menu_displaytrack:
 			// Start display track activity, with or without OSM background
-			boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+			boolean useOpenStreetMapBackground = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE).getBoolean(
 					OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
 			if (useOpenStreetMapBackground) {
 				i = new Intent(this, DisplayTrackMap.class);

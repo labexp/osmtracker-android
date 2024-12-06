@@ -1,12 +1,14 @@
 package net.osmtracker.osm;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import net.osmtracker.OSMTracker;
@@ -153,9 +155,10 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							Editor editor = PreferenceManager.getDefaultSharedPreferences(activity).edit();
+							SharedPreferences sharedPrefs = activity.getSharedPreferences(activity.getString(R.string.shared_pref), MODE_PRIVATE);
+							Editor editor = sharedPrefs.edit();
 							editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN);
-							editor.commit();
+							editor.apply();
 
 							dialog.dismiss();
 						}

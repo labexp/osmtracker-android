@@ -1,5 +1,6 @@
 package net.osmtracker.gpx;
 
+import static android.content.Context.MODE_PRIVATE;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
 import static net.osmtracker.OSMTracker.Preferences;
@@ -64,7 +65,7 @@ public class ExportToStorageTaskTest {
         mockStatic(Environment.class);
         mockStatic(PreferenceManager.class);
 
-        when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
+        when(mockContext.getSharedPreferences(mockContext.getString(R.string.shared_pref), MODE_PRIVATE)).thenReturn(mockPrefs);
         when(mockContext.getResources()).thenReturn(mockResources);
         when(mockResources.getString(R.string.error_create_track_dir)).thenReturn(ERROR_CREATE_TRACK_DIR);
         when(mockResources.getString(R.string.error_externalstorage_not_writable)).thenReturn(UNABLE_TO_WRITE_STORAGE);

@@ -1,15 +1,18 @@
 package net.osmtracker.layout;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.activity.Preferences;
+import net.osmtracker.util.CustomLayoutsUtils;
+import net.osmtracker.util.URLCreator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import net.osmtracker.OSMTracker;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,11 +22,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Set;
-
-import net.osmtracker.R;
-import net.osmtracker.activity.Preferences;
-import net.osmtracker.util.CustomLayoutsUtils;
-import net.osmtracker.util.URLCreator;
 
 /**
  * Created by aton1698 on 13/12/17.
@@ -49,7 +47,7 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
 
     public boolean downloadLayout(String layoutName, String iso){
         String layoutFolderName = layoutName.replace(" ", "_");
-        SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(context);
+        // No usage of SharedPreferences why?
         String storageDir = File.separator + OSMTracker.Preferences.VAL_STORAGE_DIR;
         Log.d(TAG,"storage directory: " + storageDir);
 

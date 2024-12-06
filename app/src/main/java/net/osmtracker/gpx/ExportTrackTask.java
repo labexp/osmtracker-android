@@ -1,6 +1,9 @@
 package net.osmtracker.gpx;
 
-import android.Manifest;
+import static android.content.Context.MODE_PRIVATE;
+import static net.osmtracker.db.DataHelper.EXTENSION_GPX;
+import static net.osmtracker.util.FileSystemUtils.getUniqueChildNameFor;
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -8,13 +11,10 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.media.MediaScannerConnection;
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.preference.PreferenceManager;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -36,9 +36,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.regex.Pattern;
-
-import static net.osmtracker.db.DataHelper.EXTENSION_GPX;
-import static net.osmtracker.util.FileSystemUtils.getUniqueChildNameFor;
 
 /**
  * Base class to writes a GPX file and export
@@ -277,14 +274,14 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * @throws IOException
 	 */
 	private void writeGpxFile(String trackName, String tags, String track_description, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
-
-		String accuracyOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
+		SharedPreferences sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+		String accuracyOutput = sharedPrefs.getString(
 				OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
 				OSMTracker.Preferences.VAL_OUTPUT_ACCURACY);
-		boolean fillHDOP = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+		boolean fillHDOP = sharedPrefs.getBoolean(
 				OSMTracker.Preferences.KEY_OUTPUT_GPX_HDOP_APPROXIMATION,
 				OSMTracker.Preferences.VAL_OUTPUT_GPX_HDOP_APPROXIMATION);
-		String compassOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
+		String compassOutput = sharedPrefs.getString(
 				OSMTracker.Preferences.KEY_OUTPUT_COMPASS,
 				OSMTracker.Preferences.VAL_OUTPUT_COMPASS);
 
@@ -549,7 +546,8 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * @return  GPX filename, not including the path
 	 */
 	public String buildGPXFilename(Cursor cursor, File parentDirectory) {
-		String desiredOutputFormat = PreferenceManager.getDefaultSharedPreferences(context).getString(
+		SharedPreferences sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+		String desiredOutputFormat = sharedPrefs.getString(
 				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
 				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
 

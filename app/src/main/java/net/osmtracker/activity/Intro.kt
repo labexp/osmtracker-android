@@ -1,7 +1,6 @@
 package net.osmtracker.activity
 
 import android.os.Bundle
-import android.preference.PreferenceManager
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
@@ -38,7 +37,7 @@ class Intro : AppIntro() {
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
         // Decide what to do when the user clicks on "Done"
-        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO, false).apply()
+        getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE).edit().putBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO, false).apply()
         finish()
     }
 }

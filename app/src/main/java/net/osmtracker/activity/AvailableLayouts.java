@@ -13,7 +13,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,9 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.layout.DownloadCustomLayoutTask;
@@ -36,6 +32,10 @@ import net.osmtracker.layout.GetStringResponseTask;
 import net.osmtracker.layout.URLValidatorTask;
 import net.osmtracker.util.CustomLayoutsUtils;
 import net.osmtracker.util.URLCreator;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -73,7 +73,7 @@ public class AvailableLayouts extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPrefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
         editor = sharedPrefs.edit();
         setTitle(getResources().getString(R.string.prefs_ui_available_layout));
         // call task to download and parse the response to get the list of available layouts
@@ -219,7 +219,7 @@ public class AvailableLayouts extends Activity {
                     isDefChecked = true;
                     //we save the status into the sharedPreferences file
                     editor.putBoolean("defCheck", isDefChecked);
-                    editor.commit();
+                    editor.apply();
                 }
             });
             customServerCheckBox.setOnClickListener(new View.OnClickListener() {
@@ -230,7 +230,7 @@ public class AvailableLayouts extends Activity {
                     isDefChecked = false;
                     //we save the status into the sharedPreferences file
                     editor.putBoolean("defCheck", isDefChecked);
-                    editor.commit();
+                    editor.apply();
                 }
             });
             //creating the alert dialog with the github_repository_setting view
@@ -254,19 +254,19 @@ public class AvailableLayouts extends Activity {
                                         editor.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, repositoryCustomOptions[0]);
                                         editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]);
                                         editor.putString(OSMTracker.Preferences.KEY_BRANCH_NAME, repositoryCustomOptions[2]);
-                                        editor.commit();
+                                        editor.apply();
                                         //to avoid the request of invalid server at the beginning
-                                        tmpSharedPref.edit().putBoolean("isCallBack", false).commit();
+                                        tmpSharedPref.edit().putBoolean("isCallBack", false).apply();
                                         retrieveAvailableLayouts();
                                     }else{
                                         String message = getResources().getString(R.string.github_repository_settings_invalid_server);
                                         Log.e("TOAST", message);
                                         Toast.makeText(AvailableLayouts.this, message, Toast.LENGTH_SHORT).show();
-                                        tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, repositoryCustomOptions[0]).commit();
-                                        tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]).commit();
-                                        tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_BRANCH_NAME, repositoryCustomOptions[2]).commit();
+                                        tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, repositoryCustomOptions[0]).apply();
+                                        tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]).apply();
+                                        tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_BRANCH_NAME, repositoryCustomOptions[2]).apply();
                                         //to make a request at the beginning of pop-up
-                                        tmpSharedPref.edit().putBoolean("isCallBack", true).commit();
+                                        tmpSharedPref.edit().putBoolean("isCallBack", true).apply();
                                         onOptionsItemSelected(item);
                                     }
                                 }
@@ -276,21 +276,21 @@ public class AvailableLayouts extends Activity {
                     .setNegativeButton(getResources().getString(R.string.menu_cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            tmpSharedPref.edit().putBoolean("isCallBack", false).commit();
+                            tmpSharedPref.edit().putBoolean("isCallBack", false).apply();
                             if (checkBoxPressed){
                                 if(!isDefChecked){
                                     toggleRepositoryOptions(true);
                                     isDefChecked = true;
                                     //save the status into the sharedPreferences file
                                     editor.putBoolean("defCheck", isDefChecked);
-                                    editor.commit();
+                                    editor.apply();
                                 }
                                 else{
                                     toggleRepositoryOptions(false);
                                     isDefChecked = false;
                                     //save the status into the sharedPreferences file
                                     editor.putBoolean("defCheck", isDefChecked);
-                                    editor.commit();
+                                    editor.apply();
                                 }
                             }
                             dialog.cancel();

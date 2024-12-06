@@ -11,9 +11,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -23,6 +20,9 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -101,7 +101,7 @@ public class ButtonsPresets extends Activity {
         setTitle(getResources().getString(R.string.prefs_ui_buttons_layout));
         setContentView(R.layout.buttons_presets);
         listener = new CheckBoxChangedListener();
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
         layoutsFileNames = new Hashtable<String, String>();
         storageDir = File.separator + OSMTracker.Preferences.VAL_STORAGE_DIR;
     }
@@ -195,7 +195,7 @@ public class ButtonsPresets extends Activity {
                 selected = (CheckBox) defCheck;
                 String targetLayout = layoutsFileNames.get(selected.getText());
                 prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
-                        targetLayout).commit();
+                        targetLayout).apply();
                 //reload the activity
                 refreshActivity();
             }
@@ -210,7 +210,7 @@ public class ButtonsPresets extends Activity {
         selected=pressed;
         String targetLayout = layoutsFileNames.get(pressed.getText());
         prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
-                targetLayout).commit();
+                targetLayout).apply();
     }
 
     //Class that manages the changes on the selected layout

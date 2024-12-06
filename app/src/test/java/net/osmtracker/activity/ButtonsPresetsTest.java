@@ -1,12 +1,23 @@
 package net.osmtracker.activity;
 
-import android.content.SharedPreferences;
-import android.widget.CheckBox;
+import static android.content.Context.MODE_PRIVATE;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.verify;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.verifyPrivate;
+import static org.powermock.api.mockito.PowerMockito.when;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,18 +31,10 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
-import java.lang.reflect.Field;
 import java.io.File;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Hashtable;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.mock;
-
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.verifyPrivate;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
 @PowerMockIgnore("jdk.internal.reflect.*")
@@ -215,8 +218,7 @@ public class ButtonsPresetsTest {
 
     private void mockDefaultSharedPreferences(Context context) {
         SharedPreferences mockPrefs = mock(SharedPreferences.class);
-        mockStatic(PreferenceManager.class);
-        when(PreferenceManager.getDefaultSharedPreferences(context)).thenReturn(mockPrefs);
+        when(context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE)).thenReturn(mockPrefs);
     }
 
     private void checkAttributesAfterInitialization(ButtonsPresets mockActivity) {
@@ -266,9 +268,7 @@ public class ButtonsPresetsTest {
 
         // Mock and set the PreferencesEditor
         mockEditor = mock(SharedPreferences.Editor.class);
-        when(mockEditor.commit()).thenReturn(true);
         when(mockEditor.putString("ui.buttons.layout", label)).thenReturn(mockEditor);
-
 
         // Mock prefs to use the mock editor
         mockPrefs = mock(SharedPreferences.class);
@@ -305,7 +305,7 @@ public class ButtonsPresetsTest {
 
         // Make sure the value in SharedPreferences is updated to match the just selected
         verify(mockEditor).putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, label);
-        verify(mockEditor).commit();
+        verify(mockEditor).apply();
     }
 
 }

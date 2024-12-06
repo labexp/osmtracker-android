@@ -1,10 +1,5 @@
 package net.osmtracker.activity;
 
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-import net.osmtracker.db.DatabaseHelper;
-import net.osmtracker.db.ExportDatabaseTask;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,11 +10,14 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.db.DatabaseHelper;
+import net.osmtracker.db.ExportDatabaseTask;
 
 import java.io.File;
 
@@ -75,13 +73,11 @@ public class About extends Activity {
 					public void onClick(View view) {
 						showDialog(DIALOG_EXPORT_DB);
 
+						SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
 						File dbFile = getDatabasePath(DatabaseHelper.DB_NAME);
-						File targetFolder = new File(
-								Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
-								//Environment.getExternalStorageDirectory(),
-								PreferenceManager.getDefaultSharedPreferences(About.this).getString(
-										OSMTracker.Preferences.KEY_STORAGE_DIR,
-										OSMTracker.Preferences.VAL_STORAGE_DIR));
+						String storageDir = sharedPrefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR);
+						File publicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+						File targetFolder = new File(publicDirectory, storageDir);
 
 						new ExportDatabaseTask(About.this, targetFolder)
 								.execute(dbFile);
@@ -129,7 +125,7 @@ public class About extends Activity {
 
 	private String getDebugInfo() {
 		File externalStorageDir = this.getExternalFilesDir(null);
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
 		String exportDirectoryNameInPreferences = preferences.getString(
 				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
 		File baseExportDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),

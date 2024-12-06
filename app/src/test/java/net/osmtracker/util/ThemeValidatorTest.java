@@ -1,9 +1,18 @@
 package net.osmtracker.util;
+
+import static android.content.Context.MODE_PRIVATE;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.verify;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
+
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
-import android.content.SharedPreferences.Editor;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -13,13 +22,6 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 
 @RunWith(PowerMockRunner.class)
@@ -57,7 +59,7 @@ public class ThemeValidatorTest {
 
         mockStatic(PreferenceManager.class);
 
-        when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
+        when(mockContext.getSharedPreferences(mockContext.getString(R.string.shared_pref), MODE_PRIVATE)).thenReturn(mockPrefs);
 
         mockEditor=mock(SharedPreferences.Editor.class);
 
@@ -85,6 +87,6 @@ public class ThemeValidatorTest {
         assertEquals(result, expected);
         verify(mockPrefs,atLeastOnce()).edit();
         verify(mockEditor,atLeastOnce()).putString(OSMTracker.Preferences.KEY_UI_THEME, OSMTracker.Preferences.VAL_UI_THEME);
-        verify(mockEditor).commit();
+        verify(mockEditor).apply();
     }
 }

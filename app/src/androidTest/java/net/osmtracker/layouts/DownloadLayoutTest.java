@@ -1,5 +1,6 @@
 package net.osmtracker.layouts;
 
+import static android.content.Context.MODE_PRIVATE;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
@@ -16,8 +17,8 @@ import static junit.framework.TestCase.fail;
 import static net.osmtracker.util.WaitForView.waitForView;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.rule.ActivityTestRule;
@@ -50,8 +51,8 @@ public class DownloadLayoutTest {
         @Override
         protected void beforeActivityLaunched() {
             // Skip cool intro
-            SharedPreferences dtPrefs = PreferenceManager
-                    .getDefaultSharedPreferences(getInstrumentation().getTargetContext());
+            Context context = getInstrumentation().getTargetContext();
+            SharedPreferences dtPrefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
             dtPrefs.edit().putBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO, false).apply();
         }
     };

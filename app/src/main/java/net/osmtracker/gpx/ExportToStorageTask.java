@@ -1,11 +1,11 @@
 package net.osmtracker.gpx;
 
+import static android.content.Context.MODE_PRIVATE;
 import static net.osmtracker.util.FileSystemUtils.getUniqueChildNameFor;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import net.osmtracker.OSMTracker;
@@ -49,7 +49,7 @@ public class ExportToStorageTask extends ExportTrackTask {
 	public ExportToStorageTask(Context context, DataHelper dataHelper, long... trackId) {
 		super(context, trackId);
 		this.dataHelper = dataHelper;
-		this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+		this.sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
 		ERROR_MESSAGE = context.getString(R.string.error_create_track_dir);
 	}
 

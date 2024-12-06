@@ -1,9 +1,12 @@
 package net.osmtracker.util;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
 import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
 import net.osmtracker.activity.Preferences;
 
 /**
@@ -114,7 +117,7 @@ public class URLCreator {
      */
     private static String[] getGithubParams(Context context) {
         //the shared preferences file where the values are saved
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
 
         String username = preferences.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, OSMTracker.Preferences.VAL_GITHUB_USERNAME);
         String repo = preferences.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME);

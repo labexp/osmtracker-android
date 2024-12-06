@@ -158,7 +158,7 @@ public class DisplayTrackMap extends Activity {
 		super.onCreate(savedInstanceState);
 
 		// loading the preferences
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
 
 		setContentView(R.layout.displaytrackmap);
 

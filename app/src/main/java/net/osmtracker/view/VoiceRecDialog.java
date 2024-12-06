@@ -1,5 +1,7 @@
 package net.osmtracker.view;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,7 +12,6 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.media.MediaRecorder.OnInfoListener;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
@@ -117,7 +118,7 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 		// we'll need the start time of this dialog to check if a key has been pressed before the dialog was opened
 		dialogStartTime = SystemClock.uptimeMillis();
 
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
 
 		if (!isRecording)
 			recordingDuration = Integer.parseInt(

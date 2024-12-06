@@ -1,14 +1,10 @@
 package net.osmtracker.layout;
 
-import java.text.DecimalFormat;
-
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-import net.osmtracker.activity.TrackLogger;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.GnssStatus;
 import android.location.Location;
@@ -16,16 +12,21 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.activity.TrackLogger;
+
+import java.text.DecimalFormat;
 
 /**
  * Layout for the GPS Status image and misc action buttons.
@@ -96,7 +97,8 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 		LayoutInflater.from(context).inflate(R.layout.gpsstatus_record, this, true);
 
 		//read the logging interval from preferences
-		gpsLoggingInterval = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(context).getString(
+		SharedPreferences sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+		gpsLoggingInterval = Long.parseLong(sharedPrefs.getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 
 		if (context instanceof TrackLogger) {
