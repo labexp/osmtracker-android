@@ -11,6 +11,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
+import net.osmtracker.activity.ButtonsPresets;
 import net.osmtracker.activity.Preferences;
 import net.osmtracker.data.Mocks;
 
@@ -68,7 +69,7 @@ public class TestUtils {
         writeToFile(newLayout, Mocks.MOCK_LAYOUT_CONTENT);
 
         // Create the icons directory
-        File iconsDir = createDirectory(layoutsDir, layoutName + Preferences.ICONS_DIR_SUFFIX);
+        File iconsDir = createDirectory(layoutsDir, layoutName + ButtonsPresets.ICONS_DIR_SUFFIX);
 
         // And put some mock files inside
         int pngsToCreate = 4;
@@ -129,8 +130,8 @@ public class TestUtils {
 
     public static void setGithubRepositorySettings(String user, String repo, String branch){
         Context context = getInstrumentation().getTargetContext();
-        SharedPreferences sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
         editor.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, user);
         editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repo);
         editor.putString(OSMTracker.Preferences.KEY_BRANCH_NAME, branch);

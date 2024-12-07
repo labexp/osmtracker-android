@@ -52,8 +52,8 @@ public class DownloadLayoutTest {
         protected void beforeActivityLaunched() {
             // Skip cool intro
             Context context = getInstrumentation().getTargetContext();
-            SharedPreferences dtPrefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
-            dtPrefs.edit().putBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO, false).apply();
+            SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+            prefs.edit().putBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO, false).apply();
         }
     };
 

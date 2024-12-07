@@ -73,9 +73,9 @@ public class About extends Activity {
 					public void onClick(View view) {
 						showDialog(DIALOG_EXPORT_DB);
 
-						SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+						SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
 						File dbFile = getDatabasePath(DatabaseHelper.DB_NAME);
-						String storageDir = sharedPrefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR);
+						String storageDir = prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR);
 						File publicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
 						File targetFolder = new File(publicDirectory, storageDir);
 
@@ -125,11 +125,10 @@ public class About extends Activity {
 
 	private String getDebugInfo() {
 		File externalStorageDir = this.getExternalFilesDir(null);
-		SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
-		String exportDirectoryNameInPreferences = preferences.getString(
-				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
+		SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+		String exportDirectoryName = prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
 		File baseExportDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
-				exportDirectoryNameInPreferences);
+				exportDirectoryName);
 		return "External Storage Directory: '" + externalStorageDir + "'\n"
 				+ "External Storage State: '"  + Environment.getExternalStorageState() + "'\n"
 				+ "Can write to external storage: "

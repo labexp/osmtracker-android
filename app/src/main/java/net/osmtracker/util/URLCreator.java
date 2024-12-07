@@ -1,13 +1,13 @@
 package net.osmtracker.util;
 
 import static android.content.Context.MODE_PRIVATE;
+import static net.osmtracker.OSMTracker.Preferences.LAYOUT_FILE_EXTENSION;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
-import net.osmtracker.activity.Preferences;
 
 /**
  * Created by labexp on 13/12/17.
@@ -69,7 +69,7 @@ public class URLCreator {
         String[] ghParams = getGithubParams(context);
 
         String url = RAW_CONTENT + ghParams[USERNAME] + "/" + ghParams[REPO] + "/" + ghParams[BRANCH]
-                + "/layouts/" + layoutFolderName + "/" + iso + Preferences.LAYOUT_FILE_EXTENSION;
+                + "/layouts/" + layoutFolderName + "/" + iso + LAYOUT_FILE_EXTENSION;
         return url;
     }
 
@@ -117,11 +117,11 @@ public class URLCreator {
      */
     private static String[] getGithubParams(Context context) {
         //the shared preferences file where the values are saved
-        SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
 
-        String username = preferences.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, OSMTracker.Preferences.VAL_GITHUB_USERNAME);
-        String repo = preferences.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME);
-        String branch = preferences.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.VAL_BRANCH_NAME);
+        String username = prefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, OSMTracker.Preferences.VAL_GITHUB_USERNAME);
+        String repo = prefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME);
+        String branch = prefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.VAL_BRANCH_NAME);
 
         String[] params = {username, repo, branch};
         return params;

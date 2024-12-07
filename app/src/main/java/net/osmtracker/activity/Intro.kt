@@ -37,7 +37,8 @@ class Intro : AppIntro() {
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
         // Decide what to do when the user clicks on "Done"
-        getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE).edit().putBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO, false).apply()
+        val prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE)
+        prefs.edit().putBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO, false).apply()
         finish()
     }
 }

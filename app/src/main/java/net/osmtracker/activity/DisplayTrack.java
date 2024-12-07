@@ -31,8 +31,8 @@ public class DisplayTrack extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// Set application theme according to user settings
-		setTheme(getResources().getIdentifier(ThemeValidator.getValidTheme(
-				getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE), getResources()), null, null));
+		SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+		setTheme(getResources().getIdentifier(ThemeValidator.getValidTheme(prefs, getResources()), null, null));
 		
 		super.onCreate(savedInstanceState);
 		
@@ -46,9 +46,8 @@ public class DisplayTrack extends Activity {
 		// If this is the first time showing this activity,
 		// wait for everything to initialize and then ask
 		// the user if they'd rather see the OSM background.
-		SharedPreferences dtPrefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
-		if (! dtPrefs.getBoolean(OSMTracker.Preferences.KEY_UI_ASKED_DISPLAYTRACK_OSM, false)) {
-			dtPrefs.edit().putBoolean(OSMTracker.Preferences.KEY_UI_ASKED_DISPLAYTRACK_OSM, true).apply();
+		if (!prefs.getBoolean(OSMTracker.Preferences.KEY_UI_ASKED_DISPLAYTRACK_OSM, false)) {
+			prefs.edit().putBoolean(OSMTracker.Preferences.KEY_UI_ASKED_DISPLAYTRACK_OSM, true).apply();
 			dtv.post(new Runnable() {
 				@Override
 				public void run() {
@@ -59,8 +58,7 @@ public class DisplayTrack extends Activity {
 						.setPositiveButton(net.osmtracker.R.string.displaytrack_map, new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
-								SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
-								sharedPrefs.edit().putBoolean(OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, true).apply();
+								prefs.edit().putBoolean(OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, true).apply();
 								Intent i = new Intent(DisplayTrack.this, DisplayTrackMap.class);
 								i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
 								startActivity(i);

@@ -97,8 +97,8 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 		LayoutInflater.from(context).inflate(R.layout.gpsstatus_record, this, true);
 
 		//read the logging interval from preferences
-		SharedPreferences sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
-		gpsLoggingInterval = Long.parseLong(sharedPrefs.getString(
+		SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+		gpsLoggingInterval = Long.parseLong(prefs.getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 
 		if (context instanceof TrackLogger) {

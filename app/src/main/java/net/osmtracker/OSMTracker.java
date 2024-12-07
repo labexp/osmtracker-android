@@ -14,6 +14,24 @@ public class OSMTracker {
 	 * See preferences.xml for layout, strings-preferences.xml for text.
 	 */
 	public static final class Preferences {
+		/**
+		 * Directory containing user layouts, relative to storage dir.
+		 */
+		public static final String LAYOUTS_SUBDIR = "layouts";
+
+		/**
+		 * File extension for layout files
+		 */
+		public static final String LAYOUT_FILE_EXTENSION = ".xml";
+
+		/**
+		 * The suffix that must be added to the layout's name for getting its icons directory
+		 * Example: water_supply       <- layout name
+		 *          water_supply_icons <- icon directory
+		 */
+		public static final String ICONS_DIR_SUFFIX = "_icons";
+
+
 		// Property names
 		public final static String KEY_STORAGE_DIR = "logging.storage.dir";
 		public final static String KEY_VOICEREC_DURATION = "voicerec.duration";
@@ -52,7 +70,7 @@ public class OSMTracker {
 
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
-		public final static String VAL_VOICEREC_DURATION = "2";
+		public final static int VAL_VOICEREC_DURATION = 2;
 		public final static String VAL_UI_THEME = "net.osmtracker:style/DefaultTheme";
 		public final static boolean VAL_GPS_CHECKSTARTUP = true;
 		public final static boolean VAL_GPS_IGNORE_CLOCK = false;

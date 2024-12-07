@@ -274,14 +274,14 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * @throws IOException
 	 */
 	private void writeGpxFile(String trackName, String tags, String track_description, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
-		SharedPreferences sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
-		String accuracyOutput = sharedPrefs.getString(
+		SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+		String accuracyOutput = prefs.getString(
 				OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
 				OSMTracker.Preferences.VAL_OUTPUT_ACCURACY);
-		boolean fillHDOP = sharedPrefs.getBoolean(
+		boolean fillHDOP = prefs.getBoolean(
 				OSMTracker.Preferences.KEY_OUTPUT_GPX_HDOP_APPROXIMATION,
 				OSMTracker.Preferences.VAL_OUTPUT_GPX_HDOP_APPROXIMATION);
-		String compassOutput = sharedPrefs.getString(
+		String compassOutput = prefs.getString(
 				OSMTracker.Preferences.KEY_OUTPUT_COMPASS,
 				OSMTracker.Preferences.VAL_OUTPUT_COMPASS);
 
@@ -546,8 +546,8 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * @return  GPX filename, not including the path
 	 */
 	public String buildGPXFilename(Cursor cursor, File parentDirectory) {
-		SharedPreferences sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
-		String desiredOutputFormat = sharedPrefs.getString(
+		SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+		String desiredOutputFormat = prefs.getString(
 				OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
 				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
 

@@ -50,7 +50,8 @@
             android:label="@string/tracklogger"
             android:launchMode="singleTop" />
         <activity
-            android:name=".activity.Preferences"
+            android:name=".activity.SettingsActivity"
+            android:theme="@style/AppTheme"
             android:label="@string/prefs" />
         <activity
             android:name=".activity.WaypointList"

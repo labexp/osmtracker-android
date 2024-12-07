@@ -22,7 +22,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -44,7 +43,7 @@ import java.io.File;
 import java.util.Date;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Environment.class, PreferenceManager.class})
+@PrepareForTest({Environment.class})
 @PowerMockIgnore("jdk.internal.reflect.*")
 public class ExportToStorageTaskTest {
 
@@ -63,7 +62,6 @@ public class ExportToStorageTaskTest {
     @Before
     public void setUp() {
         mockStatic(Environment.class);
-        mockStatic(PreferenceManager.class);
 
         when(mockContext.getSharedPreferences(mockContext.getString(R.string.shared_pref), MODE_PRIVATE)).thenReturn(mockPrefs);
         when(mockContext.getResources()).thenReturn(mockResources);

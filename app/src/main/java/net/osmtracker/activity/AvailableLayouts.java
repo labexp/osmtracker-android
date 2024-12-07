@@ -56,7 +56,7 @@ public class AvailableLayouts extends Activity {
 
     //this variable indicates if the default github configuration is activated
     private boolean isDefChecked;
-    private SharedPreferences sharedPrefs;
+    private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
 
     //options for repository settings
@@ -73,8 +73,8 @@ public class AvailableLayouts extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPrefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
-        editor = sharedPrefs.edit();
+        prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+        editor = prefs.edit();
         setTitle(getResources().getString(R.string.prefs_ui_available_layout));
         // call task to download and parse the response to get the list of available layouts
         if (isNetworkAvailable(this)) {
@@ -87,9 +87,9 @@ public class AvailableLayouts extends Activity {
 
     @SuppressLint("StaticFieldLeak")
     public void validateDefaultOptions(){
-        String usernameGitHub = sharedPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, OSMTracker.Preferences.VAL_GITHUB_USERNAME);
-        String repositoryName = sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME);
-        String branchName = sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.VAL_BRANCH_NAME);
+        String usernameGitHub = prefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, OSMTracker.Preferences.VAL_GITHUB_USERNAME);
+        String repositoryName = prefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME);
+        String branchName = prefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.VAL_BRANCH_NAME);
         final String[] repositoryDefaultOptions = {usernameGitHub, repositoryName, branchName};
         //we verify if the entered options are correct
         new URLValidatorTask(){
@@ -187,14 +187,14 @@ public class AvailableLayouts extends Activity {
             customServerCheckBox = (CheckBox) repositoryConfigWindow.findViewById(R.id.custom_server);
 
             //internal private shared preferences to manage the incorrect server requested by the user
-            final SharedPreferences tmpSharedPref = getApplicationContext().getSharedPreferences(TMP_SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+            SharedPreferences tmpSharedPref = getApplicationContext().getSharedPreferences(TMP_SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
             //flag to manage if the user put an invalid server
             boolean isCallBack = tmpSharedPref.getBoolean("isCallBack", false);
 
             //if the user put an invalid GitHub server, the user can edit the values again until the server is valid
             if(!isCallBack){
                 //first, we verify if the default checkbox is activated, if true we put the default options into the edit texts and make them not editable
-                if(sharedPrefs.getBoolean("defCheck", true)){
+                if(prefs.getBoolean("defCheck", true)){
                     toggleRepositoryOptions(true);
                 }
                 //if the default checkbox isn't checked we put the shared preferences values into the edit texts
@@ -324,9 +324,9 @@ public class AvailableLayouts extends Activity {
         }
         //setting the custom options into text fields
         else{
-            etxGithubUsername.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
-            etxRepositoryName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME));
-            etxBranchName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.VAL_BRANCH_NAME));
+            etxGithubUsername.setText(prefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
+            etxRepositoryName.setText(prefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME));
+            etxBranchName.setText(prefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.VAL_BRANCH_NAME));
         }
     }
 

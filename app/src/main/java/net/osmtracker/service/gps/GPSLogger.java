@@ -209,12 +209,12 @@ public class GPSLogger extends Service implements LocationListener {
 		dataHelper = new DataHelper(this);
 
 		//read the logging interval from preferences
-		SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
-		gpsLoggingInterval = Long.parseLong(sharedPrefs.getString(
+		SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+		gpsLoggingInterval = Long.parseLong(prefs.getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
-		gpsLoggingMinDistance = Long.parseLong(sharedPrefs.getString(
+		gpsLoggingMinDistance = Long.parseLong(prefs.getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
-		use_barometer = sharedPrefs.getBoolean(
+		use_barometer = prefs.getBoolean(
 				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
 
 		// Register our broadcast receiver

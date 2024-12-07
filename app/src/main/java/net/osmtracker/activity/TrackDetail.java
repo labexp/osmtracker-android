@@ -1,30 +1,14 @@
 package net.osmtracker.activity;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-import net.osmtracker.db.TrackContentProvider;
-import net.osmtracker.db.model.Track;
-import net.osmtracker.gpx.ExportToStorageTask;
-import net.osmtracker.util.MercatorProjection;
-
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,6 +23,23 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.db.TrackContentProvider;
+import net.osmtracker.db.model.Track;
+import net.osmtracker.gpx.ExportToStorageTask;
+import net.osmtracker.util.MercatorProjection;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -225,14 +226,10 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			finish();
 			break;
 		case R.id.trackdetail_menu_display:
-			
-			boolean useOpenStreetMapBackground = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE).getBoolean(
-					OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
-			if (useOpenStreetMapBackground) {
-				i = new Intent(this, DisplayTrackMap.class);
-			} else {
-				i = new Intent(this, DisplayTrack.class);
-			}
+
+			SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+			boolean useOsmBackground = prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
+			i = new Intent(this, useOsmBackground ? DisplayTrackMap.class : DisplayTrack.class);
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
 			startActivity(i);	
 			break;

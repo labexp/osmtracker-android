@@ -105,9 +105,8 @@ public class TrackManager extends AppCompatActivity
 		});
 
 		// should check if is the first time using the app
-		boolean showAppIntro = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE)
-				.getBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO,
-						OSMTracker.Preferences.VAL_DISPLAY_APP_INTRO);
+		SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+		boolean showAppIntro = prefs.getBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO, OSMTracker.Preferences.VAL_DISPLAY_APP_INTRO);
 		if (showAppIntro) {
 			Intent intro = new Intent(this, Intro.class);
 			startActivity(intro);
@@ -251,7 +250,7 @@ public class TrackManager extends AppCompatActivity
 				break;
 			case R.id.trackmgr_menu_settings:
 				// Start settings activity
-				startActivity(new Intent(this, Preferences.class));
+				startActivity(new Intent(this, SettingsActivity.class));
 				break;
 			case R.id.trackmgr_menu_about:
 				// Start About activity
@@ -490,13 +489,9 @@ public class TrackManager extends AppCompatActivity
 		Log.e(TAG, "On Display Track");
 		// Start display track activity, with or without OSM background
 		Intent i;
-		SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
-		boolean useOpenStreetMapBackground = sharedPrefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
-		if (useOpenStreetMapBackground) {
-			i = new Intent(this, DisplayTrackMap.class);
-		} else {
-			i = new Intent(this, DisplayTrack.class);
-		}
+		SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+		boolean useOsmBackground = prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
+		i = new Intent(this, useOsmBackground ? DisplayTrackMap.class : DisplayTrack.class);
 		i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
 		startActivity(i);
 	}

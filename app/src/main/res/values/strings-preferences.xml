@@ -113,9 +113,9 @@
 		<item>MapQuest Open</item>
 	</string-array>
 	<string-array name="prefs_compass_heading_keys">
-		<item >None</item>
-		<item >in comment</item>
-		<item >in extension</item>
+		<item>None</item>
+		<item>in comment</item>
+		<item>in extension</item>
 	</string-array>
 	<string name="prefs_compass_heading">Export compass heading</string>
 	<string name="prefs_compass_heading_summary">Defines if and how the compass data should be exported to the GPX file</string>

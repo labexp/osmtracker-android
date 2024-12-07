@@ -155,8 +155,8 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							SharedPreferences sharedPrefs = activity.getSharedPreferences(activity.getString(R.string.shared_pref), MODE_PRIVATE);
-							Editor editor = sharedPrefs.edit();
+							SharedPreferences prefs = activity.getSharedPreferences(activity.getString(R.string.shared_pref), MODE_PRIVATE);
+							Editor editor = prefs.edit();
 							editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN);
 							editor.apply();
 

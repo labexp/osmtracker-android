@@ -15,7 +15,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -137,7 +136,6 @@ public class ButtonsPresetsTest {
     }
 
     @Test
-    @PrepareForTest(PreferenceManager.class)
     public void initializeAttributesTest() {
         ButtonsPresets mockActivity = mock(ButtonsPresets.class);
 

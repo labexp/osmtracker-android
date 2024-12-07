@@ -27,7 +27,7 @@ public class ExportToStorageTask extends ExportTrackTask {
 	private static final String TAG = ExportToStorageTask.class.getSimpleName();
 	private final String ERROR_MESSAGE;
 	private final DataHelper dataHelper;
-	private final SharedPreferences sharedPreferences;
+	private final SharedPreferences prefs;
 
 	/**
 	 * Constructor for ExportToStorageTask.
@@ -49,7 +49,7 @@ public class ExportToStorageTask extends ExportTrackTask {
 	public ExportToStorageTask(Context context, DataHelper dataHelper, long... trackId) {
 		super(context, trackId);
 		this.dataHelper = dataHelper;
-		this.sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+		this.prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
 		ERROR_MESSAGE = context.getString(R.string.error_create_track_dir);
 	}
 
@@ -103,7 +103,7 @@ public class ExportToStorageTask extends ExportTrackTask {
 	 * @return true if a separate directory should be created for each track, false otherwise
 	 */
     public boolean shouldCreateDirectoryPerTrack(){
-	    return sharedPreferences.getBoolean(OSMTracker.Preferences.KEY_OUTPUT_DIR_PER_TRACK,
+	    return prefs.getBoolean(OSMTracker.Preferences.KEY_OUTPUT_DIR_PER_TRACK,
                 OSMTracker.Preferences.VAL_OUTPUT_GPX_OUTPUT_DIR_PER_TRACK);
     }
 
@@ -129,7 +129,7 @@ public class ExportToStorageTask extends ExportTrackTask {
 			throw new ExportTrackException(
 					context.getResources().getString(R.string.error_externalstorage_not_writable));
 		}
-		String exportDirectoryNameInPreferences = sharedPreferences.getString(
+		String exportDirectoryNameInPreferences = prefs.getString(
 				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
 		Log.d(TAG,"exportDirectoryNameInPreferences: " + exportDirectoryNameInPreferences);
 

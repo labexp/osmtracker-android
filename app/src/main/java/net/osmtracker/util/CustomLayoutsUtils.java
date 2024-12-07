@@ -1,6 +1,7 @@
 package net.osmtracker.util;
 
 import static android.content.Context.MODE_PRIVATE;
+import static net.osmtracker.OSMTracker.Preferences.LAYOUT_FILE_EXTENSION;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,7 +9,6 @@ import android.content.SharedPreferences;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.activity.AvailableLayouts;
-import net.osmtracker.activity.Preferences;
 import net.osmtracker.layout.GetStringResponseTask;
 
 import java.io.BufferedReader;
@@ -34,7 +34,7 @@ public class CustomLayoutsUtils {
      */
     public static String convertFileName(String fileName) {
         //Remove de file extension
-        String subname = fileName.replace(Preferences.LAYOUT_FILE_EXTENSION,"");
+        String subname = fileName.replace(LAYOUT_FILE_EXTENSION,"");
 
         //Check if it has iso:
         if(subname.matches("\\w+_..")){
@@ -51,7 +51,7 @@ public class CustomLayoutsUtils {
      * @return Layout filename.
      */
     public static String unconvertFileName(String representation){
-        return representation.replace(" ","_") + Preferences.LAYOUT_FILE_EXTENSION;
+        return representation.replace(" ","_") + LAYOUT_FILE_EXTENSION;
     }
 
     /**
@@ -103,8 +103,8 @@ public class CustomLayoutsUtils {
     public static String getCurrentLayoutName(Context context){
         String layoutName = "";
         try {
-            SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
-            layoutName = sharedPreferences.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
+            SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
+            layoutName = prefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT);
         }
         catch (Exception e){
             e.printStackTrace();
