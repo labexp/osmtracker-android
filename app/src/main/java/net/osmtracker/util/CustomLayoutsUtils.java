@@ -1,7 +1,6 @@
 package net.osmtracker.util;
 
 import static android.content.Context.MODE_PRIVATE;
-import static net.osmtracker.OSMTracker.Preferences.LAYOUT_FILE_EXTENSION;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -34,7 +33,7 @@ public class CustomLayoutsUtils {
      */
     public static String convertFileName(String fileName) {
         //Remove de file extension
-        String subname = fileName.replace(LAYOUT_FILE_EXTENSION,"");
+        String subname = fileName.replace(OSMTracker.LAYOUT_FILE_EXTENSION,"");
 
         //Check if it has iso:
         if(subname.matches("\\w+_..")){
@@ -51,7 +50,7 @@ public class CustomLayoutsUtils {
      * @return Layout filename.
      */
     public static String unconvertFileName(String representation){
-        return representation.replace(" ","_") + LAYOUT_FILE_EXTENSION;
+        return representation.replace(" ","_") + OSMTracker.LAYOUT_FILE_EXTENSION;
     }
 
     /**

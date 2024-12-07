@@ -1,7 +1,5 @@
 package net.osmtracker.activity;
 
-import static net.osmtracker.OSMTracker.Preferences.LAYOUTS_SUBDIR;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -314,7 +312,7 @@ public class TrackLogger extends Activity {
 				File layoutFile = new File(
 						this.getExternalFilesDir(null),
 						OSMTracker.Preferences.VAL_STORAGE_DIR
-						+ File.separator + LAYOUTS_SUBDIR
+						+ File.separator + OSMTracker.LAYOUTS_SUBDIR
 						+ File.separator + userLayout);
 				mainLayout = new UserDefinedLayout(this, currentTrackId, layoutFile);
 			}

@@ -1,7 +1,6 @@
 package net.osmtracker.util;
 
 import static android.content.Context.MODE_PRIVATE;
-import static net.osmtracker.OSMTracker.Preferences.LAYOUT_FILE_EXTENSION;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -69,7 +68,7 @@ public class URLCreator {
         String[] ghParams = getGithubParams(context);
 
         String url = RAW_CONTENT + ghParams[USERNAME] + "/" + ghParams[REPO] + "/" + ghParams[BRANCH]
-                + "/layouts/" + layoutFolderName + "/" + iso + LAYOUT_FILE_EXTENSION;
+                + "/layouts/" + layoutFolderName + "/" + iso + OSMTracker.LAYOUT_FILE_EXTENSION;
         return url;
     }
 

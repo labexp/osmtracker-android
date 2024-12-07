@@ -159,7 +159,7 @@ public class ButtonsPresetsTest {
     }
 
     @Test
-    @PrepareForTest({File.class, Preferences.class, Environment.class})
+    @PrepareForTest({File.class, Environment.class})
     public void listLayoutsTest(){
         for (int i = 0; i <= 1 ; i++) {
             try {

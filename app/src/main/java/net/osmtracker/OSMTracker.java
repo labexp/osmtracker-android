@@ -14,24 +14,6 @@ public class OSMTracker {
 	 * See preferences.xml for layout, strings-preferences.xml for text.
 	 */
 	public static final class Preferences {
-		/**
-		 * Directory containing user layouts, relative to storage dir.
-		 */
-		public static final String LAYOUTS_SUBDIR = "layouts";
-
-		/**
-		 * File extension for layout files
-		 */
-		public static final String LAYOUT_FILE_EXTENSION = ".xml";
-
-		/**
-		 * The suffix that must be added to the layout's name for getting its icons directory
-		 * Example: water_supply       <- layout name
-		 *          water_supply_icons <- icon directory
-		 */
-		public static final String ICONS_DIR_SUFFIX = "_icons";
-
-
 		// Property names
 		public final static String KEY_STORAGE_DIR = "logging.storage.dir";
 		public final static String KEY_VOICEREC_DURATION = "voicerec.duration";
@@ -119,10 +101,8 @@ public class OSMTracker {
 
 		// intro flag
 		public final static boolean VAL_DISPLAY_APP_INTRO = true;
+	}
 
-
-	};
-	
 	/**
 	 * The full Package name of OSMTracker returned by calling
 	 * OSMTracker.class.getPackage().getName()
@@ -175,7 +155,7 @@ public class OSMTracker {
 	 * in meters, and HDOP is obtained by dividing accuracy by this factor.
 	 * The value is totally false (!), but is still useful for certain use case like
 	 * track display in JOSM.
-	 * See: http://code.google.com/p/osmtracker-android/issues/detail?id=15 
+	 * See: <a href="https://github.com/labexp/osmtracker-android/pull/15">PR #15</a>
 	 */
 	public final static int HDOP_APPROXIMATION_FACTOR = 4;
 	
@@ -183,9 +163,21 @@ public class OSMTracker {
 	 * time (in ms) we use to handle a key press as a long press
 	 */
 	public final static long LONG_PRESS_TIME = 1000;
-	
-	/** Device string identifiers */
-	public static final class Devices {
-		public static final String NEXUS_S = "Nexus S";
-	}
+
+	/**
+	 * Directory containing user layouts, relative to storage dir.
+	 */
+	public static final String LAYOUTS_SUBDIR = "layouts";
+
+	/**
+	 * File extension for layout files
+	 */
+	public static final String LAYOUT_FILE_EXTENSION = ".xml";
+
+	/**
+	 * The suffix that must be added to the layout's name for getting its icons directory
+	 * Example: water_supply       <- layout name
+	 *          water_supply_icons <- icon directory
+	 */
+	public static final String ICONS_DIR_SUFFIX = "_icons";
 }

@@ -11,8 +11,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
-import net.osmtracker.activity.ButtonsPresets;
-import net.osmtracker.activity.Preferences;
 import net.osmtracker.data.Mocks;
 
 import java.io.File;
@@ -69,7 +67,7 @@ public class TestUtils {
         writeToFile(newLayout, Mocks.MOCK_LAYOUT_CONTENT);
 
         // Create the icons directory
-        File iconsDir = createDirectory(layoutsDir, layoutName + ButtonsPresets.ICONS_DIR_SUFFIX);
+        File iconsDir = createDirectory(layoutsDir, layoutName + OSMTracker.ICONS_DIR_SUFFIX);
 
         // And put some mock files inside
         int pngsToCreate = 4;
@@ -112,7 +110,7 @@ public class TestUtils {
      */
     public static File getLayoutsDirectory(){
         String appDirectory = getAppDirectory().getAbsolutePath();
-        File layoutsDirectory = new File(appDirectory + File.separator + Preferences.LAYOUTS_SUBDIR);
+        File layoutsDirectory = new File(appDirectory + File.separator + OSMTracker.LAYOUTS_SUBDIR);
         layoutsDirectory.mkdirs();
         return layoutsDirectory;
     }

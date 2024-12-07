@@ -1,7 +1,5 @@
 package net.osmtracker.layout;
 
-import static net.osmtracker.OSMTracker.Preferences.LAYOUTS_SUBDIR;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -54,11 +52,10 @@ public class DownloadCustomLayoutTask extends AsyncTask<String, Integer, Boolean
 
         String layoutURL = URLCreator.createLayoutFileURL(context, layoutFolderName, iso);
         String layoutPath = context.getExternalFilesDir(null) + storageDir + File.separator +
-                LAYOUTS_SUBDIR + File.separator;
+                OSMTracker.LAYOUTS_SUBDIR + File.separator;
 
-        //TODO: change "_icons" for Preferences.ICONS_DIR_SUFFIX
         String iconsPath = context.getExternalFilesDir(null)  + storageDir + File.separator +
-                LAYOUTS_SUBDIR + File.separator  + layoutFolderName+"_icons" +
+                OSMTracker.LAYOUTS_SUBDIR + File.separator  + layoutFolderName + OSMTracker.ICONS_DIR_SUFFIX +
                 File.separator;
 
         Boolean status = false;
