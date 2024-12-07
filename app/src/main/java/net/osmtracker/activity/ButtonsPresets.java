@@ -11,9 +11,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -23,6 +20,9 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -40,8 +40,8 @@ import java.util.Hashtable;
 
 public class ButtonsPresets extends Activity {
 
-    @SuppressWarnings("unused")
-    private static final String TAG = Preferences.class.getSimpleName();
+
+    private static final String TAG = ButtonsPresets.class.getSimpleName();
 
     final private int RC_WRITE_PERMISSION = 1;
 
@@ -101,14 +101,14 @@ public class ButtonsPresets extends Activity {
         setTitle(getResources().getString(R.string.prefs_ui_buttons_layout));
         setContentView(R.layout.buttons_presets);
         listener = new CheckBoxChangedListener();
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
         layoutsFileNames = new Hashtable<String, String>();
         storageDir = File.separator + OSMTracker.Preferences.VAL_STORAGE_DIR;
     }
 
     private void listLayouts(LinearLayout rootLayout){
         File layoutsDir = new File(this.getExternalFilesDir(null), storageDir +
-                File.separator + Preferences.LAYOUTS_SUBDIR + File.separator);
+                File.separator + OSMTracker.LAYOUTS_SUBDIR + File.separator);
         int AT_START = 0; //the position to insert the view at
         int fontSize = 20;
         if (layoutsDir.exists() && layoutsDir.canRead()) {
@@ -116,7 +116,7 @@ public class ButtonsPresets extends Activity {
             String[] layoutFiles = layoutsDir.list(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String filename) {
-                    return filename.endsWith(Preferences.LAYOUT_FILE_EXTENSION);
+                    return filename.endsWith(OSMTracker.LAYOUT_FILE_EXTENSION);
                 }
             });
             //Remove all the layouts
@@ -195,7 +195,7 @@ public class ButtonsPresets extends Activity {
                 selected = (CheckBox) defCheck;
                 String targetLayout = layoutsFileNames.get(selected.getText());
                 prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
-                        targetLayout).commit();
+                        targetLayout).apply();
                 //reload the activity
                 refreshActivity();
             }
@@ -210,7 +210,7 @@ public class ButtonsPresets extends Activity {
         selected=pressed;
         String targetLayout = layoutsFileNames.get(pressed.getText());
         prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
-                targetLayout).commit();
+                targetLayout).apply();
     }
 
     //Class that manages the changes on the selected layout
@@ -272,10 +272,10 @@ public class ButtonsPresets extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String fileName = layoutsFileNames.get(checkboxHeld.getText());
-                        String rootDir = storageDir + File.separator + Preferences.LAYOUTS_SUBDIR + File.separator;
+                        String rootDir = storageDir + File.separator + OSMTracker.LAYOUTS_SUBDIR + File.separator;
                         File fileToDelete = new File(externalFilesDir, rootDir + fileName);
                         String iconDirName = fileName.substring(0, fileName.length() - CustomLayoutsUtils.LAYOUT_EXTENSION_ISO.length())
-                                + Preferences.ICONS_DIR_SUFFIX;
+                                + OSMTracker.ICONS_DIR_SUFFIX;
                         File iconDirToDelete = new File(externalFilesDir, rootDir + iconDirName);
 
                         boolean successfulDeletion = FileSystemUtils.delete(fileToDelete, false);
@@ -312,7 +312,7 @@ public class ButtonsPresets extends Activity {
      * Example: given "foo_es.xml" return only "es"
      */
     private String getIso(String layoutName){
-        String tmp = layoutName.substring(0, layoutName.length() - Preferences.LAYOUT_FILE_EXTENSION.length());
+        String tmp = layoutName.substring(0, layoutName.length() - OSMTracker.LAYOUT_FILE_EXTENSION.length());
         String iso = "";
         for (int i=tmp.length() - AvailableLayouts.ISO_CHARACTER_LENGTH; i<tmp.length(); i++){
                 iso += tmp.charAt(i);

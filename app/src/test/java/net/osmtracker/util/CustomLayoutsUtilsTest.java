@@ -1,16 +1,20 @@
 package net.osmtracker.util;
 
+import static android.content.Context.MODE_PRIVATE;
+import static org.junit.Assert.assertEquals;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
-import android.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.BufferedReader;
@@ -19,15 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
-
-import static org.junit.Assert.assertEquals;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(PreferenceManager.class)
 @PowerMockIgnore("jdk.internal.reflect.*")
 public class CustomLayoutsUtilsTest {
 
@@ -38,18 +35,16 @@ public class CustomLayoutsUtilsTest {
     InputStream expectedStream;
 
     public void setupMocks() {
+        // Create Context mock
+        mockContext = mock(Context.class);
+
         // Create SharedPreferences mock
         mockPrefs = mock(SharedPreferences.class);
         when(mockPrefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
                 OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT))
                 .thenReturn("transporte publico");
 
-        // Create PreferenceManager mock
-        mockContext = mock(Context.class);
-
-        mockStatic(PreferenceManager.class);
-
-        when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
+        when(mockContext.getSharedPreferences(mockContext.getString(R.string.shared_pref), MODE_PRIVATE)).thenReturn(mockPrefs);
 
         mockAssetManager = mock(AssetManager.class);
 

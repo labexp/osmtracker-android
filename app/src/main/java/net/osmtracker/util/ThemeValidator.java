@@ -1,13 +1,13 @@
 package net.osmtracker.util;
 
-import java.util.Arrays;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.res.Resources;
+import java.util.Arrays;
 
 /**
  * <p>Validates the theme from the preferences
@@ -35,7 +35,7 @@ public class ThemeValidator {
 			theme = OSMTracker.Preferences.VAL_UI_THEME;
 			Editor e = prefs.edit();
 			e.putString(OSMTracker.Preferences.KEY_UI_THEME, OSMTracker.Preferences.VAL_UI_THEME);
-			e.commit();
+			e.apply();
 		}
 		
 		return theme;

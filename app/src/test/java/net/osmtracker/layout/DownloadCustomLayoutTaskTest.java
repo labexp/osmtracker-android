@@ -1,13 +1,19 @@
 package net.osmtracker.layout;
 
+import static android.content.Context.MODE_PRIVATE;
+import static net.osmtracker.OSMTracker.LAYOUTS_SUBDIR;
+import static org.junit.Assert.assertTrue;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import net.osmtracker.OSMTracker;
-import net.osmtracker.activity.Preferences;
+import net.osmtracker.R;
 import net.osmtracker.util.UnitTestUtils;
 
 import org.junit.Test;
@@ -18,14 +24,8 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
-
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({PreferenceManager.class, Environment.class, Log.class})
+@PrepareForTest({Environment.class, Log.class})
 @PowerMockIgnore("jdk.internal.reflect.*")
 public class DownloadCustomLayoutTaskTest {
 
@@ -41,14 +41,14 @@ public class DownloadCustomLayoutTaskTest {
 
 
     public void setupMocks() {
+        // Create Context mock
+        mockContext = mock(Context.class);
+
         // Create SharedPreferences mock
         mockPrefs = mock(SharedPreferences.class);
         UnitTestUtils.setLayoutsTestingRepository(mockPrefs);
 
-        // Create PreferenceManager mock
-        mockContext = mock(Context.class);
-        mockStatic(PreferenceManager.class);
-        when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
+        when(mockContext.getSharedPreferences(mockContext.getString(R.string.shared_pref), MODE_PRIVATE)).thenReturn(mockPrefs);
         // external storage is writeable
         mockStatic(Environment.class);
         when(Environment.getExternalStorageState()).thenReturn(Environment.MEDIA_MOUNTED);
@@ -63,12 +63,12 @@ public class DownloadCustomLayoutTaskTest {
         setupMocks();
 
         boolean result = downloadCustomLayoutTask.downloadLayout(layoutName,iso);
-        assertEquals(true, result);
+		assertTrue(result);
 
         // Check if layout was downloaded at .../osmtracker/layouts/abc_en.xml
         String expectedLayoutFilePath = mockContext.getExternalFilesDir(null)
                 + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator
-                + Preferences.LAYOUTS_SUBDIR + File.separator
+                + LAYOUTS_SUBDIR + File.separator
                 + expectedLayoutFilename;
 
         System.out.println(expectedLayoutFilePath);
