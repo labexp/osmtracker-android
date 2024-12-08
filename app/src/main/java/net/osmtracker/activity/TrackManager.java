@@ -286,7 +286,7 @@ public class TrackManager extends AppCompatActivity
 			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
 					Manifest.permission.ACCESS_FINE_LOCATION)) {
 				Log.i(TAG,"Should explain");
-				Toast.makeText(this, "Can't continue without GPS permission",
+				Toast.makeText(this, R.string.gps_perms_required,
 						Toast.LENGTH_LONG).show();
 			}
 
@@ -729,7 +729,7 @@ public class TrackManager extends AppCompatActivity
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "we should explain why we need write permission_EXPORT_ALL");
-					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.storage_permission_for_export_GPX, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
@@ -747,7 +747,7 @@ public class TrackManager extends AppCompatActivity
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "we should explain why we need write permission_EXPORT_ONE");
-					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.storage_permission_for_export_GPX, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
@@ -764,7 +764,7 @@ public class TrackManager extends AppCompatActivity
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "Permission not granted");
-					Toast.makeText(this, "To display the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.storage_permission_for_display_track, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
@@ -782,7 +782,7 @@ public class TrackManager extends AppCompatActivity
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "Permission not granted");
-					Toast.makeText(this, "To share the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.storage_permission_for_share_track, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
@@ -799,7 +799,7 @@ public class TrackManager extends AppCompatActivity
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "Permission not granted");
-					Toast.makeText(this, "To upload the track to OSM we need access to the storage.", Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.storage_permission_for_upload_to_OSM, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}

@@ -116,6 +116,15 @@
     <string name="error_voicerec_failed">Voice recording has failed</string>
     <string name="error_userlayout_parsing">Error while parsing XML layout file. Please revert to default layout.</string>
 
+    <!-- messages -->
+    <string name="permission_required">Permission required</string>
+    <string name="storage_permission_for_export_GPX">To export the GPX trace we need to write on the storage.</string>
+    <string name="storage_permission_for_display_track">To display the track properly we need access to the storage.</string>
+    <string name="storage_permission_for_share_track">To share the track properly we need access to the storage.</string>
+    <string name="storage_permission_for_upload_to_OSM">To upload the track to OSM we need access to the storage.</string>
+    <string name="acccept">Accept</string>
+    <string name="gps_perms_required">Can\'t continue without GPS permission</string>
+
     <!-- GPX -->
     <string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
     <string name="gpx_hdop_approximation_cmt">Warning: HDOP values aren\'t the HDOP as returned by the GPS device. They\'re approximated from the location accuracy in meters.</string>

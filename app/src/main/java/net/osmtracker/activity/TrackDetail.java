@@ -275,15 +275,15 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 				// this thread waiting for the user's response! After the user
 				// sees the explanation, try again to request the permission.
 				new AlertDialog.Builder(this)
-								.setTitle("Permission required")
-								.setMessage("To export the GPX trace we need to write on the storage.")
-								.setPositiveButton("Accept", (dialog, which) -> {
+								.setTitle(R.string.permission_required)
+								.setMessage(R.string.storage_permission_for_export_GPX)
+								.setPositiveButton(R.string.acccept, (dialog, which) -> {
 									// Request the permission again
 									ActivityCompat.requestPermissions(this,
 													new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
 													RC_WRITE_PERMISSIONS);
 								})
-								.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+								.setNegativeButton(R.string.menu_cancel, (dialog, which) -> dialog.dismiss())
 								.show();
 			} else {
 				// No explanation needed, we can request the permission.
