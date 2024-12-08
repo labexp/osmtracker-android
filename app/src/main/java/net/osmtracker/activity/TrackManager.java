@@ -84,6 +84,9 @@ public class TrackManager extends AppCompatActivity
 
 	private TrackListRVAdapter recyclerViewAdapter;
 
+	// To check if the RecyclerView already has a DividerItemDecoration added
+	private boolean hasDivider;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -139,7 +142,7 @@ public class TrackManager extends AppCompatActivity
 
 
 	/**
-	 *
+	 * Configures and initializes the RecyclerView for displaying the list of tracks.
 	 */
 	private void setRecyclerView() {
 		RecyclerView recyclerView = findViewById(R.id.recyclerview);
@@ -147,11 +150,13 @@ public class TrackManager extends AppCompatActivity
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this,
 				LinearLayoutManager.VERTICAL, false);
 		recyclerView.setLayoutManager(layoutManager);
-
-		DividerItemDecoration did = new DividerItemDecoration(recyclerView.getContext(),
-				layoutManager.getOrientation());
-		recyclerView.addItemDecoration(did);
-
+		// adds a divider decoration if not already present
+		if (!hasDivider) {
+			DividerItemDecoration did = new DividerItemDecoration(recyclerView.getContext(),
+					layoutManager.getOrientation());
+			recyclerView.addItemDecoration(did);
+			hasDivider = true;
+		}
 		recyclerView.setHasFixedSize(true);
 		Cursor cursor = getContentResolver().query(
 				TrackContentProvider.CONTENT_URI_TRACK, null, null, null,
