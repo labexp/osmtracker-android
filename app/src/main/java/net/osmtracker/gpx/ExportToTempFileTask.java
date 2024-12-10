@@ -2,8 +2,10 @@ package net.osmtracker.gpx;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
+import net.osmtracker.OSMTracker;
 import net.osmtracker.db.DataHelper;
 import net.osmtracker.exception.ExportTrackException;
 
@@ -26,7 +28,12 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 	public ExportToTempFileTask(Context context, long trackId) {
 		super(context, trackId);
 		try {
-			tmpFile = new File(context.getCacheDir(), new DataHelper(context).getTrackById(trackId).getName()+"_OSMTracker.gpx");
+			String exportLabelName = PreferenceManager.getDefaultSharedPreferences(context).getString(
+					OSMTracker.Preferences.KEY_EXPORT_LABEL,	OSMTracker.Preferences.VAL_EXPORT_LABEL);
+			String trackName = new DataHelper(context).getTrackById(trackId).getName();
+
+			// Create temporary file
+			tmpFile = new File(context.getCacheDir(), trackName + exportLabelName+".gpx");
 			Log.d(TAG, "Temporary file: " + tmpFile.getAbsolutePath());
 
 		} catch (Exception ioe) {

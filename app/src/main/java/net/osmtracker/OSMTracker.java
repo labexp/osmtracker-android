@@ -16,6 +16,7 @@ public class OSMTracker {
 	public static final class Preferences {
 		// Property names
 		public final static String KEY_STORAGE_DIR = "logging.storage.dir";
+		public final static String KEY_EXPORT_LABEL = "gpx.export.label";
 		public final static String KEY_VOICEREC_DURATION = "voicerec.duration";
 		public final static String KEY_UI_THEME = "ui.theme";
 		public final static String KEY_GPS_OSSETTINGS = "gps.ossettings";
@@ -52,6 +53,7 @@ public class OSMTracker {
 
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
+		public final static String VAL_EXPORT_LABEL = "_OSMTracker";
 		public final static String VAL_VOICEREC_DURATION = "2";
 		public final static String VAL_UI_THEME = "net.osmtracker:style/DefaultTheme";
 		public final static boolean VAL_GPS_CHECKSTARTUP = true;
