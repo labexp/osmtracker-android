@@ -74,6 +74,7 @@
 
 	<string name="prefs_output">GPX settings</string>
 	<string name="prefs_storage_dir">Storage folder in documents</string>
+	<string name="prefs_export_label">Export label for sharing files</string>
 	<string name="prefs_storage_dir_hint">Effective for the next track (not the current one)</string>
 	<string name="prefs_output_one_dir_per_track">One directory per track</string>
 	<string name="prefs_output_one_dir_per_track_summary">Save each track and associated files to its own directory</string>
