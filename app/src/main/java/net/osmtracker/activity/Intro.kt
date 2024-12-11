@@ -18,6 +18,7 @@ class Intro : AppIntro() {
         addSlide(AppIntroFragment.createInstance(
                 title = getString(R.string.app_intro_slide1_title),
                 imageDrawable = R.drawable.icon_100x100,
+                backgroundColorRes = R.color.appintro_background_color,
                 description = getString(R.string.app_intro_slide1_description)
         ))
 
@@ -25,6 +26,7 @@ class Intro : AppIntro() {
         addSlide(AppIntroFragment.createInstance(
                 title = getString(R.string.app_intro_slide2_title),
                 imageDrawable = R.drawable.icon_100x100,
+                backgroundColorRes = R.color.appintro_background_color,
                 description = getString(R.string.app_intro_slide2_description)
         ))
     }
