@@ -62,6 +62,7 @@
   <string name="trackdetail_export_notyet">(尚未匯出)</string>
   <string name="trackdetail_osm_upload_notyet">(尚未上傳)</string>
   <string name="trackdetail_export_display">顯示</string>
+  <string name="trackdetail_name">名稱</string>
   <string name="trackdetail_description">描述</string>
   <string name="trackdetail_tags">標籤 (以半形逗號分隔)</string>
   <string name="trackdetail_description_mandatory">您必須填寫描述欄</string>
