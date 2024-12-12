@@ -62,6 +62,7 @@
   <string name="trackdetail_export_notyet">(Inte exporterad ännu)</string>
   <string name="trackdetail_osm_upload_notyet">(inte uppladdad än)</string>
   <string name="trackdetail_export_display">Visa</string>
+  <string name="trackdetail_name">Namn</string>
   <string name="trackdetail_description">Beskrivning</string>
   <string name="trackdetail_tags">Etiketter (kommaseparerade)</string>
   <string name="trackdetail_description_mandatory">Du måste ange en beskrivning</string>
@@ -106,6 +107,14 @@
   <string name="error_externalstorage_not_writable_hint">Kontrollera att minneskortet är korrekt isatt och fungerar.</string>
   <string name="error_voicerec_failed">Röstinspelningen misslyckades</string>
   <string name="error_userlayout_parsing">Ett fel inträffade när layoutfilen lästes in. Återställ orginalfilen.</string>
+  <!--messages-->
+  <string name="permission_required">Tillstånd krävs</string>
+  <string name="storage_permission_for_export_GPX">För att exportera GPX-spåret behöver vi skriva till enhetens filsystem.</string>
+  <string name="storage_permission_for_display_track">För att visa spåret korrekt behöver vi åtkomst till filsystemet.</string>
+  <string name="storage_permission_for_share_track">För att dela spåret korrekt behöver vi åtkomst till filsystemet.</string>
+  <string name="storage_permission_for_upload_to_OSM">För att ladda upp spåret till OSM behöver vi åtkomst till filsystemet.</string>
+  <string name="acccept">Acceptera</string>
+  <string name="gps_perms_required">Kan inte fortsätta utan GPS-tillstånd</string>
   <!--GPX-->
   <string name="gpx_track_name">Skapad med OSMTracker för Android™</string>
   <string name="gpx_hdop_approximation_cmt">Varning: HDOP-värdena är inte riktiga HDOP-värden från GPS-enheten. De är uppskattade värden, angivna i hela metrar, och bör inte användas.</string>
