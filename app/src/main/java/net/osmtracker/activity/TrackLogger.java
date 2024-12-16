@@ -197,8 +197,8 @@ public class TrackLogger extends Activity {
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
 		// get shared preferences
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
+		prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+
 		// Set application theme according to user settings
 		setTheme(getResources().getIdentifier(ThemeValidator.getValidTheme(prefs, getResources()), null, null));
 
@@ -312,7 +312,7 @@ public class TrackLogger extends Activity {
 				File layoutFile = new File(
 						this.getExternalFilesDir(null),
 						OSMTracker.Preferences.VAL_STORAGE_DIR
-						+ File.separator + Preferences.LAYOUTS_SUBDIR
+						+ File.separator + OSMTracker.LAYOUTS_SUBDIR
 						+ File.separator + userLayout);
 				mainLayout = new UserDefinedLayout(this, currentTrackId, layoutFile);
 			}
@@ -483,7 +483,7 @@ public class TrackLogger extends Activity {
 			break;
 		case R.id.tracklogger_menu_settings:
 			// Start settings activity
-			startActivity(new Intent(this, Preferences.class));
+			startActivity(new Intent(this, SettingsActivity.class));
 			break;
 		case R.id.tracklogger_menu_waypointlist:
 			// Start Waypoint list activity
@@ -497,13 +497,9 @@ public class TrackLogger extends Activity {
 			break;
 		case R.id.tracklogger_menu_displaytrack:
 			// Start display track activity, with or without OSM background
-			boolean useOpenStreetMapBackground = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
-					OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
-			if (useOpenStreetMapBackground) {
-				i = new Intent(this, DisplayTrackMap.class);
-			} else {
-				i = new Intent(this, DisplayTrack.class);
-			}
+			SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+			boolean useOsmBackground = prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
+			i = new Intent(this, useOsmBackground ? DisplayTrackMap.class : DisplayTrack.class);
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 			startActivity(i);
 			break;
@@ -552,6 +548,7 @@ public class TrackLogger extends Activity {
 	 * the current track directory
 	 */
 	public void requestStillImage() {
+
 		if (gpsLogger.isTracking()) {
 			final String pictureSource = prefs.getString(OSMTracker.Preferences.KEY_UI_PICTURE_SOURCE,
 					OSMTracker.Preferences.VAL_UI_PICTURE_SOURCE);

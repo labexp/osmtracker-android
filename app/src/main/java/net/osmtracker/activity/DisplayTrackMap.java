@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -158,7 +157,7 @@ public class DisplayTrackMap extends Activity {
 		super.onCreate(savedInstanceState);
 
 		// loading the preferences
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
 
 		setContentView(R.layout.displaytrackmap);
 
@@ -332,7 +331,7 @@ public class DisplayTrackMap extends Activity {
 				break;
 			case R.id.displaytrackmap_menu_settings:
 				// Start settings activity
-				startActivity(new Intent(this, Preferences.class));
+				startActivity(new Intent(this, SettingsActivity.class));
 				break;
 		}
 		return super.onOptionsItemSelected(item);

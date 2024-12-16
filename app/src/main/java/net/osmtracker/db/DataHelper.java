@@ -1,5 +1,7 @@
 package net.osmtracker.db;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -8,11 +10,10 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.location.Location;
 import android.net.Uri;
-import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
 import net.osmtracker.db.model.Track;
 import net.osmtracker.db.model.TrackPoint;
 import net.osmtracker.db.model.WayPoint;
@@ -127,8 +128,8 @@ public class DataHelper {
 		if (location.hasSpeed()) {
 			values.put(TrackContentProvider.Schema.COL_SPEED, location.getSpeed());
 		}
-		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+		SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
 		if (prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_IGNORE_CLOCK, OSMTracker.Preferences.VAL_GPS_IGNORE_CLOCK)) {
 			// Use OS clock
 			values.put(TrackContentProvider.Schema.COL_TIMESTAMP, System.currentTimeMillis());
@@ -199,7 +200,7 @@ public class DataHelper {
 				values.put(TrackContentProvider.Schema.COL_LINK, renameFile(trackId, link, FILENAME_FORMATTER.format(location.getTime())));
 			}
 			
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+			SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
 			if (prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_IGNORE_CLOCK, OSMTracker.Preferences.VAL_GPS_IGNORE_CLOCK)) {
 				// Use OS clock
 				values.put(TrackContentProvider.Schema.COL_TIMESTAMP, System.currentTimeMillis());
@@ -410,7 +411,8 @@ public class DataHelper {
 		File sdRoot = Environment.getExternalStorageDirectory();
 
 		// The location where the user has specified gpx files and associated content to be written
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+		SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.shared_pref), MODE_PRIVATE);
 		String userGPXExportDirectoryName = prefs.getString(
 				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
 

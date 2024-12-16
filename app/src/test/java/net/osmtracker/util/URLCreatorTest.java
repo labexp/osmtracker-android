@@ -1,23 +1,22 @@
 package net.osmtracker.util;
 
+import static android.content.Context.MODE_PRIVATE;
+import static org.junit.Assert.assertEquals;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
+
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import net.osmtracker.R;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import static org.junit.Assert.*;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(PreferenceManager.class)
 @PowerMockIgnore("jdk.internal.reflect.*")
 public class URLCreatorTest {
 
@@ -26,16 +25,13 @@ public class URLCreatorTest {
 
 
     public void setupMocks(){
+        // Create Context mock
+        mockContext = mock(Context.class);
+
         // Create SharedPreferences mock
         mockPrefs = mock(SharedPreferences.class);
-
         UnitTestUtils.setLayoutsDefaultRepository(mockPrefs);
-
-        // Create PreferenceManager mock
-        mockContext = mock(Context.class);
-        mockStatic(PreferenceManager.class);
-        when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
-
+        when(mockContext.getSharedPreferences(mockContext.getString(R.string.shared_pref), MODE_PRIVATE)).thenReturn(mockPrefs);
     }
 
     @Test

@@ -1,5 +1,26 @@
 package net.osmtracker.activity;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -8,27 +29,6 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.ContentUris;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -108,9 +108,8 @@ public class TrackManager extends AppCompatActivity
 		});
 
 		// should check if is the first time using the app
-		boolean showAppIntro = PreferenceManager.getDefaultSharedPreferences(this)
-				.getBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO,
-						OSMTracker.Preferences.VAL_DISPLAY_APP_INTRO);
+		SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+		boolean showAppIntro = prefs.getBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO, OSMTracker.Preferences.VAL_DISPLAY_APP_INTRO);
 		if (showAppIntro) {
 			Intent intro = new Intent(this, Intro.class);
 			startActivity(intro);
@@ -256,7 +255,7 @@ public class TrackManager extends AppCompatActivity
 				break;
 			case R.id.trackmgr_menu_settings:
 				// Start settings activity
-				startActivity(new Intent(this, Preferences.class));
+				startActivity(new Intent(this, SettingsActivity.class));
 				break;
 			case R.id.trackmgr_menu_about:
 				// Start About activity
@@ -498,15 +497,9 @@ public class TrackManager extends AppCompatActivity
 		Log.e(TAG, "On Display Track");
 		// Start display track activity, with or without OSM background
 		Intent i;
-		boolean useOpenStreetMapBackground = PreferenceManager
-				.getDefaultSharedPreferences(this).getBoolean(
-						OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM,
-						OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
-		if (useOpenStreetMapBackground) {
-			i = new Intent(this, DisplayTrackMap.class);
-		} else {
-			i = new Intent(this, DisplayTrack.class);
-		}
+		SharedPreferences prefs = getSharedPreferences(getString(R.string.shared_pref), MODE_PRIVATE);
+		boolean useOsmBackground = prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAYTRACK_OSM, OSMTracker.Preferences.VAL_UI_DISPLAYTRACK_OSM);
+		i = new Intent(this, useOsmBackground ? DisplayTrackMap.class : DisplayTrack.class);
 		i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
 		startActivity(i);
 	}
