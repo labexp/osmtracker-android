@@ -569,23 +569,29 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 
 	public String formatGpxFilename(String desiredOutputFormat, String sanitizedTrackName, String formattedTrackStartDate){
 		String result = "";
+		String exportLabelName = PreferenceManager.getDefaultSharedPreferences(context).getString(
+				OSMTracker.Preferences.KEY_EXPORT_LABEL,	OSMTracker.Preferences.VAL_EXPORT_LABEL);
 		boolean thereIsTrackName = sanitizedTrackName != null && sanitizedTrackName.length() >= 1;
 
 		switch(desiredOutputFormat){
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME:
 				if(thereIsTrackName)
-					result += sanitizedTrackName;
+					result += sanitizedTrackName+ exportLabelName;
 				else
-					result += formattedTrackStartDate; // fallback case
+					result += formattedTrackStartDate + exportLabelName; // fallback case
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME_DATE:
 				if(thereIsTrackName)
-					result += sanitizedTrackName + "_" + formattedTrackStartDate;
+					if(sanitizedTrackName.equals(formattedTrackStartDate)) {
+						result += sanitizedTrackName + "_"  + exportLabelName;
+					}else{
+						result += sanitizedTrackName + "_"  + formattedTrackStartDate + exportLabelName; // name is not equal
+					}
 				else
-					result += formattedTrackStartDate;
+					result += formattedTrackStartDate + exportLabelName;
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE:
-				result += formattedTrackStartDate;
+				result += formattedTrackStartDate + exportLabelName;
 				break;
 		}
 		return result;
