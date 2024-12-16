@@ -62,6 +62,7 @@
   <string name="trackdetail_export_notyet">(Jeszcze nie wyeksportowano)</string>
   <string name="trackdetail_osm_upload_notyet">(Jeszcze nie wysłano)</string>
   <string name="trackdetail_export_display">Wyświetl</string>
+  <string name="trackdetail_name">Nazwa</string>
   <string name="trackdetail_description">Opis</string>
   <string name="trackdetail_tags">Tagi (oddzielone przecinkami)</string>
   <string name="trackdetail_description_mandatory">Musisz wpisać opis.</string>
@@ -107,6 +108,14 @@ głosową</string>
   <string name="error_externalstorage_not_writable_hint">Proszę sprawdzić wew. pamięć czy jest prawidłowo zamontowana.</string>
   <string name="error_voicerec_failed">Nagrywanie głosu nie powiodło się</string>
   <string name="error_userlayout_parsing">Błąd podczas przetwarzania pliku XML. Proszę powrócić do domyślnego układu.</string>
+  <!--messages-->
+  <string name="permission_required">Wymagane pozwolenie</string>
+  <string name="storage_permission_for_export_GPX">Aby wyeksportować ślad GPX, musimy zapisać go w pamięci.</string>
+  <string name="storage_permission_for_display_track">Aby poprawnie wyświetlić ścieżkę potrzebujemy dostępu do magazynu.</string>
+  <string name="storage_permission_for_share_track">Aby prawidłowo udostępnić ścieżkę potrzebujemy dostępu do magazynu.</string>
+  <string name="storage_permission_for_upload_to_OSM">Aby przesłać ścieżkę do OSM, potrzebujemy dostępu do magazynu.</string>
+  <string name="acccept">Zgoda</string>
+  <string name="gps_perms_required">Nie można kontynuować bez przyzwolenia na GPS</string>
   <!--GPX-->
   <string name="gpx_track_name">Ślad zapisany przez OSMTracker - Android™</string>
   <string name="gpx_hdop_approximation_cmt">UWAGA: wartości HDOP nie są pobierane z urządzenia GPS. Są to dane orientacyjne podane w metrach.</string>
