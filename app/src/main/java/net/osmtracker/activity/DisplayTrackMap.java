@@ -87,6 +87,16 @@ public class DisplayTrackMap extends Activity {
 	private static final int DEFAULT_ZOOM = 16;
 
 	/**
+	 * Default zoom level for center with zoom
+	 */
+	private static final double CENTER_DEFAULT_ZOOM_LEVEL = 18;
+
+	/**
+	 * Animation duration in milliseconds for center with zoom
+	 */
+	private static final long ANIMATION_DURATION_MS = 1000;
+
+	/**
 	 * Main OSM view
 	 */
 	private MapView osmView;
@@ -207,6 +217,12 @@ public class DisplayTrackMap extends Activity {
 		// Register listeners for zoom buttons
 		findViewById(R.id.displaytrackmap_imgZoomIn).setOnClickListener(v -> osmViewController.zoomIn());
 		findViewById(R.id.displaytrackmap_imgZoomOut).setOnClickListener(v -> osmViewController.zoomOut());
+		findViewById(R.id.displaytrackmap_imgZoomCenter).setOnClickListener(view -> {
+			centerToGpsPos = true;
+			if (currentPosition != null) {
+				osmViewController.animateTo(currentPosition,CENTER_DEFAULT_ZOOM_LEVEL, ANIMATION_DURATION_MS);
+			}
+		});
 	}
 
 	/**
