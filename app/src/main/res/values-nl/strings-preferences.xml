@@ -56,7 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">OpenStreetMap-kaart weergeven onder traject. Heeft een dataverbinding nodig</string>
   <string name="prefs_displaytrack_osm_summary_ask">Altijd OpenStreetMap-achtergrond weergeven? Vereist een dataverbinding.</string>
   <string name="prefs_output">GPX-instellingen</string>
-  <string name="prefs_storage_dir">Map externe opslag (SD)</string>
+  <string name="prefs_storage_dir">Opslagmap in documenten</string>
   <string name="prefs_storage_dir_hint">Effectief voor het volgende traject (niet het huidige)</string>
   <string name="prefs_output_one_dir_per_track">Een map per traject</string>
   <string name="prefs_output_one_dir_per_track_summary">Elk traject en bijbehorende bestanden in eigen map opslaan</string>

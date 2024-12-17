@@ -63,6 +63,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackdetail_export_notyet">(Nog niet geëxporteerd)</string>
   <string name="trackdetail_osm_upload_notyet">(Nog niet geüpload)</string>
   <string name="trackdetail_export_display">Weergeven</string>
+  <string name="trackdetail_name">Naam</string>
   <string name="trackdetail_description">Beschrijving</string>
   <string name="trackdetail_tags">Tags (kommagescheiden)</string>
   <string name="trackdetail_description_mandatory">Een beschrijving is vereist</string>
@@ -107,6 +108,14 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="error_externalstorage_not_writable_hint">Controleer of de SD-kaart correct geplaatst is.</string>
   <string name="error_voicerec_failed">Stemopname mislukt</string>
   <string name="error_userlayout_parsing">Fout bij inlezen van XML lay-out-bestand. Gelieve terug te keren naar de standaard lay-out.</string>
+  <!--messages-->
+  <string name="permission_required">Toestemming vereist</string>
+  <string name="storage_permission_for_export_GPX">Om het GPX-traject op te slaan, moeten we in de opslag schrijven.</string>
+  <string name="storage_permission_for_display_track">Om het traject correct weer te geven hebben we toegang nodig tot de opslag.</string>
+  <string name="storage_permission_for_share_track">Om het traject correct te delen hebben we toegang nodig tot de opslag.</string>
+  <string name="storage_permission_for_upload_to_OSM">Om het traject naar OSM te uploaden hebben we toegang nodig tot de opslag.</string>
+  <string name="acccept">Accepteren</string>
+  <string name="gps_perms_required">Kan niet verdergaan zonder gps-toestemming</string>
   <!--GPX-->
   <string name="gpx_track_name">Opgenomen met OSMTracker voor Android™</string>
   <string name="gpx_hdop_approximation_cmt">Waarschuwing: HDOP-waarden worden niet uit de gps-apparaat gelezen. Ze worden benaderd op basis van de nauwkeurigheid van de locatie (in meter).</string>
