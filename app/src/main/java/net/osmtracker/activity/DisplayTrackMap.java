@@ -27,6 +27,7 @@ import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
@@ -171,6 +172,7 @@ public class DisplayTrackMap extends Activity {
 		osmView = findViewById(R.id.displaytrackmap_osmView);
 		// pinch to zoom
 		osmView.setMultiTouchControls(true);
+		osmView.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
 		// we'll use osmView to define if the screen is always on or not
 		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
 		osmViewController = osmView.getController();
