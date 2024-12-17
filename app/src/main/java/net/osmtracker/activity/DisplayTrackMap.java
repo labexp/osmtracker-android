@@ -27,6 +27,7 @@ import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
@@ -84,6 +85,16 @@ public class DisplayTrackMap extends Activity {
 	 * Default zoom level
 	 */
 	private static final int DEFAULT_ZOOM = 16;
+
+	/**
+	 * Default zoom level for center with zoom
+	 */
+	private static final double CENTER_DEFAULT_ZOOM_LEVEL = 18;
+
+	/**
+	 * Animation duration in milliseconds for center with zoom
+	 */
+	private static final long ANIMATION_DURATION_MS = 1000;
 
 	/**
 	 * Main OSM view
@@ -171,6 +182,7 @@ public class DisplayTrackMap extends Activity {
 		osmView = findViewById(R.id.displaytrackmap_osmView);
 		// pinch to zoom
 		osmView.setMultiTouchControls(true);
+		osmView.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
 		// we'll use osmView to define if the screen is always on or not
 		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
 		osmViewController = osmView.getController();
@@ -205,6 +217,12 @@ public class DisplayTrackMap extends Activity {
 		// Register listeners for zoom buttons
 		findViewById(R.id.displaytrackmap_imgZoomIn).setOnClickListener(v -> osmViewController.zoomIn());
 		findViewById(R.id.displaytrackmap_imgZoomOut).setOnClickListener(v -> osmViewController.zoomOut());
+		findViewById(R.id.displaytrackmap_imgZoomCenter).setOnClickListener(view -> {
+			centerToGpsPos = true;
+			if (currentPosition != null) {
+				osmViewController.animateTo(currentPosition,CENTER_DEFAULT_ZOOM_LEVEL, ANIMATION_DURATION_MS);
+			}
+		});
 	}
 
 	/**

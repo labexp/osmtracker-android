@@ -1,28 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <org.osmdroid.views.MapView
-        android:id="@+id/displaytrackmap_osmView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/displaytrackmap_imgZoomIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:contentDescription="@string/acc.zoom_in"
-        android:src="@drawable/zoom_in" >
-    </ImageView>
+        <org.osmdroid.views.MapView
+            android:id="@+id/displaytrackmap_osmView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"/>
 
-    <ImageView
-        android:id="@+id/displaytrackmap_imgZoomOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/acc.zoom_in"
-        android:src="@drawable/zoom_out" >
-    </ImageView>
+        <ImageView
+            android:id="@+id/displaytrackmap_imgZoomCenter"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginEnd="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="200dp"
+            android:contentDescription="@string/acc.zoom_center"
+            android:background="@drawable/map_btn_style"
+            android:src="@drawable/gps_center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/displaytrackmap_imgZoomIn"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10sp"
+            android:padding="10dp"
+            android:contentDescription="@string/acc.zoom_in"
+            android:src="@drawable/zoom_in"
+            android:background="@drawable/map_btn_style"
+            app:layout_constraintEnd_toEndOf="@+id/displaytrackmap_imgZoomCenter"
+            app:layout_constraintTop_toBottomOf="@+id/displaytrackmap_imgZoomCenter" />
+
+        <ImageView
+            android:id="@+id/displaytrackmap_imgZoomOut"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginTop="10sp"
+            android:padding="10dp"
+            android:contentDescription="@string/acc.zoom_out"
+            android:src="@drawable/zoom_out"
+            android:background="@drawable/map_btn_style"
+            app:layout_constraintEnd_toEndOf="@+id/displaytrackmap_imgZoomIn"
+            app:layout_constraintTop_toBottomOf="@+id/displaytrackmap_imgZoomIn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

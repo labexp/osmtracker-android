@@ -8,6 +8,11 @@
     <color name="colorAccent">#39796b</color>
     <color name="colorPrimaryText">#ffffff</color>
 
+    <!-- Map buttons -->
+    <color name="btnBorder">#000000</color>
+    <color name="map_btnBackground">#19303234</color>
+    <color name="map_onClickBackground">#303234</color>
+
 
     <!-- Light Base application colors -->
     <!-- https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=80CBC4 -->
