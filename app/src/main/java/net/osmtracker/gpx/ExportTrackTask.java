@@ -571,6 +571,9 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 		String result = "";
 		String exportLabelName = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_EXPORT_LABEL,	OSMTracker.Preferences.VAL_EXPORT_LABEL);
+		if(exportLabelName == null){
+			exportLabelName = OSMTracker.Preferences.VAL_EXPORT_LABEL;
+		}
 		boolean thereIsTrackName = sanitizedTrackName != null && sanitizedTrackName.length() >= 1;
 
 		switch(desiredOutputFormat){
