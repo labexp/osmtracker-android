@@ -157,7 +157,7 @@ public class AvailableLayouts extends Activity {
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(50, 10, 50, 10);
             layoutButton.setLayoutParams(layoutParams);
-            layoutButton.setPadding(10,20,10,20);
+            layoutButton.setPadding(40, 30, 40, 30);
             layoutButton.setOnClickListener(listener);
             rootLayout.addView(layoutButton,AT_START);
         }

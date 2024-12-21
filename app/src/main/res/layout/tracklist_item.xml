@@ -41,8 +41,11 @@
 			style="@android:style/TextAppearance.Large"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:autoSizeTextType="uniform"   
-			android:maxLines="1"       
+			android:autoSizeTextType="uniform"
+			android:autoSizeMinTextSize="12sp"
+    		android:autoSizeMaxTextSize="14sp" 
+			android:autoSizeStepGranularity="2sp"
+			android:maxLines="1"    
 			android:text="{start_date}" />
 
 		<LinearLayout
