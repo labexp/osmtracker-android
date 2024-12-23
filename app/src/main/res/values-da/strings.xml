@@ -62,6 +62,7 @@
   <string name="trackdetail_export_notyet">(Ikke eksporteret endnu)</string>
   <string name="trackdetail_osm_upload_notyet">(Ikke uploaded endnu)</string>
   <string name="trackdetail_export_display">Vis</string>
+  <string name="trackdetail_name">Navn</string>
   <string name="trackdetail_description">Beskrivelse</string>
   <string name="trackdetail_tags">Tags (kommasepareret)</string>
   <string name="trackdetail_description_mandatory">Du skal skrive en beskrivelse</string>
@@ -106,6 +107,14 @@
   <string name="error_externalstorage_not_writable_hint">Check at eksternt lager er korrekt indsat og mounted.</string>
   <string name="error_voicerec_failed">Taleoptagelse fejlede</string>
   <string name="error_userlayout_parsing">Fejl under parsing af XML-layout-fil. Brug i stedet standardlayout.</string>
+  <!--messages-->
+  <string name="permission_required">Tilladelse påkrævet</string>
+  <string name="storage_permission_for_export_GPX">For at eksportere GPX-sporet skal vi skrive på lagerpladsen.</string>
+  <string name="storage_permission_for_display_track">For at vise sporet korrekt skal vi have adgang til lagerpladsen.</string>
+  <string name="storage_permission_for_share_track">For at kunne dele sporet ordentligt skal vi have adgang til lagerpladsen.</string>
+  <string name="storage_permission_for_upload_to_OSM">For at uploade sporet til OSM skal vi have adgang til lagerpladsen.</string>
+  <string name="acccept">Accepter</string>
+  <string name="gps_perms_required">Kan ikke fortsætte uden GPS-tilladelse</string>
   <!--GPX-->
   <string name="gpx_track_name">Tracked med OSMTracker til Android™</string>
   <string name="gpx_hdop_approximation_cmt">Advarsel: HDOP-værdier er ikke de samme HDOP-værdier som kommer fra GPS. De er approksimeret fra placeringspræcisionen i meter.</string>
