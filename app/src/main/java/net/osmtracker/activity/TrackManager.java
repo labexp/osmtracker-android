@@ -16,8 +16,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,6 +42,7 @@ import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.exception.CreateTrackException;
 import net.osmtracker.gpx.ExportToStorageTask;
 import net.osmtracker.gpx.ExportToTempFileTask;
+import net.osmtracker.receiver.NetworkChangeReceiver;
 import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
@@ -66,11 +69,11 @@ public class TrackManager extends AppCompatActivity
 	private static final String PREV_VISIBLE = "prev_visible";
 
 	/** Constant used if no track is active (-1)*/
-	private static final long TRACK_ID_NO_TRACK = -1;
+	public static final long TRACK_ID_NO_TRACK = -1;
 
 	// The active track being recorded, if any, or {TRACK_ID_NO_TRACK};
 	// value is updated in {@link #onResume()}
-	private long currentTrackId = TRACK_ID_NO_TRACK;
+	public long currentTrackId = TRACK_ID_NO_TRACK;
 
 	//Use to know which view holder's trackId was selected on the recycler view
 	private long contextMenuSelectedTrackid = TRACK_ID_NO_TRACK;
@@ -104,14 +107,9 @@ public class TrackManager extends AppCompatActivity
 			}
 		});
 
-		// should check if is the first time using the app
-		boolean showAppIntro = PreferenceManager.getDefaultSharedPreferences(this)
-				.getBoolean(OSMTracker.Preferences.KEY_DISPLAY_APP_INTRO,
-						OSMTracker.Preferences.VAL_DISPLAY_APP_INTRO);
-		if (showAppIntro) {
-			Intent intro = new Intent(this, Intro.class);
-			startActivity(intro);
-		}
+		IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+		NetworkChangeReceiver networkChangeReceiver = new NetworkChangeReceiver(this);
+		this.registerReceiver(networkChangeReceiver, filter);
 	}
 
 	@Override
@@ -296,7 +294,7 @@ public class TrackManager extends AppCompatActivity
 	/**
 	 * This method prepare the new track and set an id, then start a new TrackLogger with the new track id
 	 */
-	private void startTrackLoggerForNewTrack(){
+	public void startTrackLoggerForNewTrack(){
 		// Start track logger activity
 		try {
 			Intent i = new Intent(this, TrackLogger.class);
@@ -684,7 +682,7 @@ public class TrackManager extends AppCompatActivity
 	 * Sends a broadcast to be received by GPSLogger to stop logging
 	 * and forces the DataHelper to stop tracking.
 	 */
-	private void stopActiveTrack(){
+	public void stopActiveTrack(){
 		if(currentTrackId != TRACK_ID_NO_TRACK){
 			// we send a broadcast to inform all registered services to stop tracking
 			Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
