@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- About screen -->
+    <string name="acc.osmtracker_logo">ਓਐੱਸਐੱਮਟ੍ਰੈਕਰ ਲੋਗ</string>
+    
+    <!-- Zoom in/out in map view -->
+    <string name="acc.zoom_in">ਅੰਦਰ ਜ਼ੂਮ ਕਰੋ</string>
+    <string name="acc.zoom_out">ਬਾਹਰ ਜ਼ੂਮ ਕਰੋ</string>
+    
+    <!-- GPS status bar -->
+    <string name="acc.sat_indicator">ਉਪਗ੍ਰਹਿ ਸਿਗਨਲ ਸਮਰੱਥਾ ਇੰਡੀਕੇਟਰ</string>
+    <string name="acc.record_indicator">ਰਿਕਾਰਡ ਜਾਰੀ ਹੈ ਦਾ ਇੰਡੀਕੇਟਰ</string>
+    
+    <!-- Track list -->
+    <string name="acc.track_status">ਟ੍ਰੈਕ ਸਟੇਟਸ ਇੰਡੀਕੇਟਰ</string>
+	<string name="acc.upload_status">ਓਪਨਸਟ੍ਰੀਟਮੈਪ ਅੱਪਲੋਡ ਸਟੇਟਸ ਇੰਡੀਕੇਟਰ</string>    
+    
+</resources>
