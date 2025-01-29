@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ਸਵੈਚਲਿਤ" parent="@android:style/Theme"/>
+    <style name="ਗੂੜ੍ਹਾ" parent="@android:style/Theme.Black"/>
+    <style name="ਚਾਨਣ" parent="@android:style/Theme.Light"/>
+    <style name="ਐਪ ਅਨੁਕੂਲ" parent="@style/Theme.AppCompat.Light.NoActionBar"/>
+</resources>
