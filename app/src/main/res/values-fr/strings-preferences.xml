@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Vérifie si le GPS est désactivé au démarrage, et propose de l\'activer</string>
   <string name="prefs_gps_ignore_clock">Ignorer l\'horloge du GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Ignore l\'horloge du GPS et utilise celle d\'Android pour l\'horodatage</string>
+  <string name="prefs_use_barometer">Enregistre la pression barométrique [hPa]</string>
+  <string name="prefs_use_barometer_summary">La modification requiert un redémarrage de la trace</string>
   <string name="prefs_gps_logging_interval">Intervalle d\'enregistrement GPS</string>
   <string name="prefs_gps_logging_interval_summary">Choisissez 0 pour le plus petit intervalle possible (consomme plus de batterie)</string>
   <string name="prefs_gps_logging_interval_seconds">seconds</string>
+  <string name="prefs_gps_logging_min_distance">Distance d\'enregistrement GPS</string>
+  <string name="prefs_gps_logging_min_distance_summary">Distance minimale entre les points de suivi en mètres, utilisez 0 pour la plus courte possible</string>
+  <string name="prefs_gps_logging_min_distance_meters">mètres</string>
   <string name="prefs_ui">Interface utilisateur</string>
   <string name="prefs_ui_picture_source">Source des photographies par défaut</string>
   <string name="prefs_ui_picture_source_summary">Prendre des photographies à partir de l’appareil photo ou à partir de la gallerie d’images ?</string>
@@ -49,8 +54,9 @@
   <string name="prefs_display_always_on_summary">L\'écran restera actif durant l\'enregistrement. Désactivez pour économiser la batterie</string>
   <string name="prefs_displaytrack_osm">OSM en arrière plan</string>
   <string name="prefs_displaytrack_osm_summary">Affiche OpenStreetMap sous la trace. Nécessite une connexion de données</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Toujours afficher l\'arrière-plan OpenStreetMap? Nécessite une connexion de données</string>
   <string name="prefs_output">Fichier d\'enregistrement GPX</string>
-  <string name="prefs_storage_dir">Répertoire de stockage externe (SD)</string>
+  <string name="prefs_storage_dir">Dossier de stockage dans les documents</string>
   <string name="prefs_storage_dir_hint">S\'applique à partir de la prochaine trace</string>
   <string name="prefs_output_one_dir_per_track">Un dossier par trace</string>
   <string name="prefs_output_one_dir_per_track_summary">Sauvegarde chaque trace et ses données associées dans son propre dossier</string>
@@ -75,6 +81,7 @@
   <string name="prefs_osm_clear_oauth_data">Supprimer les identifiants OpenStreetMap</string>
   <string name="prefs_osm_clear_oauth_data_summary">Force OSMTracker à se ré-authentifier sur OpenStreetMap</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Vous devrez vous reconnecter à OpenStreetMap. Êtes-vous sûr ?</string>
+  <string name="prefs_map_tile">Fournisseur de tuiles de carte</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -86,5 +93,6 @@
     <item>En commentaire</item>
     <item>En extention</item>
   </string-array>
+  <string name="prefs_compass_heading">Exporter la direction de la boussole</string>
   <string name="prefs_compass_heading_summary">Définit si et comment les données du compas devraient être exportés dans le fichier GPX</string>
 </resources>
