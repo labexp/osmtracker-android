@@ -56,7 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">Vis OpenStreetMap-kort under track. Kræver dataforbindelse</string>
   <string name="prefs_displaytrack_osm_summary_ask">Vis altid OpenStreetMap-baggrund? Kræver en dataforbindelse</string>
   <string name="prefs_output">GPX-indstillinger</string>
-  <string name="prefs_storage_dir">Mappe på eksternt lager (SD)</string>
+  <string name="prefs_storage_dir">Lagringsmappe i dokumenter</string>
   <string name="prefs_storage_dir_hint">Gældende for næste track (ikke det nuværende)</string>
   <string name="prefs_output_one_dir_per_track">En mappe per track</string>
   <string name="prefs_output_one_dir_per_track_summary">Gem hvert track og tilhørende filer i egen mappe</string>
