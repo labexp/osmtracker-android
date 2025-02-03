@@ -151,12 +151,13 @@ public class AvailableLayouts extends Activity {
             Button layoutButton = new Button(this);
             layoutButton.setHeight(150);
             layoutButton.setText(CustomLayoutsUtils.convertFileName(option));
-            layoutButton.setTextSize((float)22 );
+            layoutButton.setTextSize(16f);
             layoutButton.setTextColor(Color.WHITE);
+            layoutButton.setSingleLine(false);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(110, 0, 110, 0);
+            layoutParams.setMargins(50, 10, 50, 10);
             layoutButton.setLayoutParams(layoutParams);
-            layoutButton.setPadding(10,20,10,20);
+            layoutButton.setPadding(40, 30, 40, 30);
             layoutButton.setOnClickListener(listener);
             rootLayout.addView(layoutButton,AT_START);
         }
