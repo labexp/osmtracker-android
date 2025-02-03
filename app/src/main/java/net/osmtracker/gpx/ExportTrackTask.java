@@ -579,22 +579,22 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 		switch(desiredOutputFormat){
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME:
 				if(thereIsTrackName)
-					result += sanitizedTrackName+ exportLabelName;
+					result += sanitizedTrackName+ "-"+ exportLabelName;
 				else
-					result += formattedTrackStartDate + exportLabelName; // fallback case
+					result += formattedTrackStartDate + "-"+ exportLabelName; // fallback case
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME_DATE:
 				if(thereIsTrackName)
 					if(sanitizedTrackName.equals(formattedTrackStartDate)) {
-						result += sanitizedTrackName + "_"  + exportLabelName;
+						result += sanitizedTrackName + "-"  + exportLabelName;
 					}else{
-						result += sanitizedTrackName + "_"  + formattedTrackStartDate + exportLabelName; // name is not equal
+						result += sanitizedTrackName + "-"  + formattedTrackStartDate + "-"+ exportLabelName; // name is not equal
 					}
 				else
-					result += formattedTrackStartDate + exportLabelName;
+					result += formattedTrackStartDate + "-"+ exportLabelName;
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE:
-				result += formattedTrackStartDate + exportLabelName;
+				result += formattedTrackStartDate + "-"+exportLabelName;
 				break;
 		}
 		return result;
