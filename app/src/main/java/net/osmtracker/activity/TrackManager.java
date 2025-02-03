@@ -115,6 +115,14 @@ public class TrackManager extends AppCompatActivity
 			Intent intro = new Intent(this, Intro.class);
 			startActivity(intro);
 		}
+		RecyclerView recyclerView = findViewById(R.id.recyclerview);
+		recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+		// Adding a horizontal divider
+		DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
+		dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider)); // Using a custom drawable
+
+		recyclerView.addItemDecoration(dividerItemDecoration);
 	}
 
 	@Override
