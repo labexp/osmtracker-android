@@ -18,4 +18,13 @@ git:
 
   settings:
     language_mapping:
-        pt_PT: pt-rPT
+      bg_BG: bg-rBG
+      sr@Latin: b+sr+Latn
+      cs_CZ: cs-rCZ
+      fa_IR: fa-rIR
+      fr_FR: fr-rFR
+      pt_BR: pt-rBR
+      pt_PT: pt-rPT
+      tr_TR: tr-rTR
+      zh_CN: zh-rCN
+      zh_TW: zh-rTW
