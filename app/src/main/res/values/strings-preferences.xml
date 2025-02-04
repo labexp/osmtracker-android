@@ -84,7 +84,7 @@
 	<string-array name="prefs_output_filename_keys">
 		<item>Track name</item>
 		<item>Name, start date and time</item>
-		<item>start date and time, name</item>
+		<item>Start date and time, name</item>
 		<item>Start date and time</item>
 
 	</string-array>
