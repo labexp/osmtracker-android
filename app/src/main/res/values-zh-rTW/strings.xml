@@ -107,6 +107,14 @@
   <string name="error_externalstorage_not_writable_hint">請檢查外部儲存媒體是否正確安置與掛載。</string>
   <string name="error_voicerec_failed">語音錄製失敗</string>
   <string name="error_userlayout_parsing">解析 XML 外觀配置檔時發生錯誤。請改用預設外觀。</string>
+  <!--messages-->
+  <string name="permission_required">需要權限</string>
+  <string name="storage_permission_for_export_GPX">要匯出 GPS 軌跡則需寫入儲存裝置的權限。</string>
+  <string name="storage_permission_for_display_track">要顯示軌跡的譯則需要儲存裝置的權限。</string>
+  <string name="storage_permission_for_share_track">要分享軌跡的話則需要儲存裝置的權限</string>
+  <string name="storage_permission_for_upload_to_OSM">要上傳軌跡到 OSM 則需要儲存裝置的權限。</string>
+  <string name="acccept">接受</string>
+  <string name="gps_perms_required">沒有 GPS 權限則無法繼續</string>
   <!--GPX-->
   <string name="gpx_track_name">使用 OSMTracker for Android™ 記錄</string>
   <string name="gpx_hdop_approximation_cmt">警告：HDOP值並非GPS裝置回報的HDOP，HDOP值會與實際地點差大約幾公尺。</string>
