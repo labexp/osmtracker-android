@@ -34,7 +34,7 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 		super(context, trackId);
 		try {
 			String exportLabelName = PreferenceManager.getDefaultSharedPreferences(context).getString(
-					OSMTracker.Preferences.KEY_EXPORT_LABEL,	OSMTracker.Preferences.VAL_EXPORT_LABEL);
+					OSMTracker.Preferences.KEY_OUTPUT_FILENAME_LABEL,	OSMTracker.Preferences.VAL_OUTPUT_FILENAME_LABEL);
 			String trackName = new DataHelper(context).getTrackById(trackId).getName();
 			long date = new DataHelper(context).getTrackById(trackId).getStartDate();
 
@@ -57,15 +57,12 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 				OSMTracker.Preferences.VAL_OUTPUT_FILENAME);
 
 		boolean thereIsTrackName = sanitizedTrackName != null && sanitizedTrackName.length() >= 1;
-
 		switch(desiredOutputFormat){
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME:
 				if(thereIsTrackName)
 					result += sanitizedTrackName;
 				else
-					result += formattedTrackStartDate;
-				if(!(exportLabelName.equals("")))
-					result += "_"+ exportLabelName; // fallback case
+					result += formattedTrackStartDate; // fallback case
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME_DATE:
 				if(thereIsTrackName)
@@ -76,8 +73,6 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 					}
 				else
 					result += formattedTrackStartDate;
-				if(!(exportLabelName.equals("")))
-					result += "_"+ exportLabelName;
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE_NAME:
 				if(thereIsTrackName){
@@ -89,15 +84,13 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 				}else{
 					result += formattedTrackStartDate;
 				}
-				if(!(exportLabelName.equals("")))
-					result += "_"+ exportLabelName;
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE:
 				result += formattedTrackStartDate;
-				if(!(exportLabelName.equals("")))
-					result += "_"+ exportLabelName;
 				break;
 		}
+		if(!(exportLabelName.equals("")))
+			result += "_"+ exportLabelName;
 		return result;
 	}
 

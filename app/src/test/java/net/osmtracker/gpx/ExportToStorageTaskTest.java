@@ -83,7 +83,7 @@ public class ExportToStorageTaskTest {
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
         String preferenceSetting = Preferences.VAL_OUTPUT_FILENAME_NAME;
 
-        String expectedFilename = "MyTrack_"+Preferences.VAL_EXPORT_LABEL+".gpx";
+        String expectedFilename = "MyTrack_"+Preferences.VAL_OUTPUT_FILENAME_LABEL+".gpx";
 
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
@@ -94,7 +94,7 @@ public class ExportToStorageTaskTest {
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
         String preferenceSetting = Preferences.VAL_OUTPUT_FILENAME_NAME_DATE;
 
-        String expectedFilename = "MyTrack_2000-01-02_03-04-05_"+Preferences.VAL_EXPORT_LABEL+".gpx";
+        String expectedFilename = "MyTrack_2000-01-02_03-04-05_"+Preferences.VAL_OUTPUT_FILENAME_LABEL+".gpx";
 
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
@@ -105,7 +105,7 @@ public class ExportToStorageTaskTest {
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
         String preferenceSetting = Preferences.VAL_OUTPUT_FILENAME_DATE_NAME;
 
-        String expectedFilename = "2000-01-02_03-04-05_MyTrack_"+Preferences.VAL_EXPORT_LABEL+".gpx";
+        String expectedFilename = "2000-01-02_03-04-05_MyTrack_"+Preferences.VAL_OUTPUT_FILENAME_LABEL+".gpx";
 
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
@@ -116,7 +116,7 @@ public class ExportToStorageTaskTest {
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
         String preferenceSetting = Preferences.VAL_OUTPUT_FILENAME_DATE;
 
-        String expectedFilename = "2000-01-02_03-04-05_"+Preferences.VAL_EXPORT_LABEL+".gpx";
+        String expectedFilename = "2000-01-02_03-04-05_"+Preferences.VAL_OUTPUT_FILENAME_LABEL+".gpx";
 
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
@@ -127,7 +127,7 @@ public class ExportToStorageTaskTest {
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
         String preferenceSetting = Preferences.VAL_OUTPUT_FILENAME_NAME;
 
-        String expectedFilename = ";M_y_T_r_a_c_k;_"+Preferences.VAL_EXPORT_LABEL+".gpx";
+        String expectedFilename = ";M_y_T_r_a_c_k;_"+Preferences.VAL_OUTPUT_FILENAME_LABEL+".gpx";
 
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
@@ -138,7 +138,7 @@ public class ExportToStorageTaskTest {
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
         String preferenceSetting = Preferences.VAL_OUTPUT_FILENAME_NAME;
 
-        String expectedFilename = "2000-01-02_03-04-05_"+Preferences.VAL_EXPORT_LABEL+".gpx"; // Must fallback to use the start date
+        String expectedFilename = "2000-01-02_03-04-05_"+Preferences.VAL_OUTPUT_FILENAME_LABEL+".gpx"; // Must fallback to use the start date
 
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
@@ -149,7 +149,7 @@ public class ExportToStorageTaskTest {
         Date trackStartDate = createDateFrom(2000, 1, 2, 3, 4, 5);
         String preferenceSetting = Preferences.VAL_OUTPUT_FILENAME_NAME_DATE;
 
-        String expectedFilename = "2000-01-02_03-04-05_"+Preferences.VAL_EXPORT_LABEL+".gpx"; // Must fallback to use the start date
+        String expectedFilename = "2000-01-02_03-04-05_"+Preferences.VAL_OUTPUT_FILENAME_LABEL+".gpx"; // Must fallback to use the start date
 
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
