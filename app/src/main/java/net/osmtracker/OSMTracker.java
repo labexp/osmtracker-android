@@ -16,7 +16,6 @@ public class OSMTracker {
 	public static final class Preferences {
 		// Property names
 		public final static String KEY_STORAGE_DIR = "logging.storage.dir";
-		public final static String KEY_EXPORT_LABEL = "gpx.export.label";
 		public final static String KEY_VOICEREC_DURATION = "voicerec.duration";
 		public final static String KEY_UI_THEME = "ui.theme";
 		public final static String KEY_GPS_OSSETTINGS = "gps.ossettings";
@@ -26,6 +25,7 @@ public class OSMTracker {
 		public final static String KEY_GPS_LOGGING_MIN_DISTANCE = "gps.logging.min_distance";
 		public final static String KEY_USE_BAROMETER = "gpx.use_barometer";
 		public final static String KEY_OUTPUT_FILENAME = "gpx.filename";
+		public final static String KEY_OUTPUT_FILENAME_LABEL  = "gpx.export.label";
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
 		public final static String KEY_OUTPUT_DIR_PER_TRACK = "gpx.directory_per_track";
@@ -53,7 +53,6 @@ public class OSMTracker {
 
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
-		public final static String VAL_EXPORT_LABEL = "OSMTracker";
 		public final static String VAL_VOICEREC_DURATION = "2";
 		public final static String VAL_UI_THEME = "net.osmtracker:style/DefaultTheme";
 		public final static boolean VAL_GPS_CHECKSTARTUP = true;
@@ -63,6 +62,7 @@ public class OSMTracker {
 		public final static boolean VAL_USE_BAROMETER = false;
 		
 		public final static String VAL_OUTPUT_FILENAME_NAME = "name";
+		public final static String VAL_OUTPUT_FILENAME_LABEL = "OSMTracker";
 		public final static String VAL_OUTPUT_FILENAME_NAME_DATE = "name_date";
 		public final static String VAL_OUTPUT_FILENAME_DATE_NAME = "date_name";
 		public final static String VAL_OUTPUT_FILENAME_DATE = "date";

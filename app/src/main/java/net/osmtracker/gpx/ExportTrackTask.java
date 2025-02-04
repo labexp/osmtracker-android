@@ -566,9 +566,9 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	public String formatGpxFilename(String desiredOutputFormat, String sanitizedTrackName, String formattedTrackStartDate){
 		String result = "";
 		String exportLabelName = PreferenceManager.getDefaultSharedPreferences(context).getString(
-				OSMTracker.Preferences.KEY_EXPORT_LABEL,	OSMTracker.Preferences.VAL_EXPORT_LABEL);
+				OSMTracker.Preferences.KEY_OUTPUT_FILENAME_LABEL,	OSMTracker.Preferences.VAL_OUTPUT_FILENAME_LABEL);
 		if(exportLabelName == null){
-			exportLabelName = OSMTracker.Preferences.VAL_EXPORT_LABEL;
+			exportLabelName = OSMTracker.Preferences.VAL_OUTPUT_FILENAME_LABEL;
 		}
 		boolean thereIsTrackName = sanitizedTrackName != null && sanitizedTrackName.length() >= 1;
 
@@ -578,8 +578,6 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 					result += sanitizedTrackName;
 				else
 					result += formattedTrackStartDate;
-				if(!(exportLabelName.equals("")))
-					result += "_"+ exportLabelName; // fallback case
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME_DATE:
 				if(thereIsTrackName)
@@ -590,8 +588,6 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 					}
 				else
 					result += formattedTrackStartDate;
-				if(!(exportLabelName.equals("")))
-					result += "_"+ exportLabelName;
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE_NAME:
 				if(thereIsTrackName){
@@ -603,14 +599,13 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 				}else{
 					result += formattedTrackStartDate;
 				}
-				if(!(exportLabelName.equals("")))
-					result += "_"+ exportLabelName;
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE:
 				result += formattedTrackStartDate;
-				if(!(exportLabelName.equals("")))
-					result += "_"+ exportLabelName;
 				break;
+		}
+		if(!(exportLabelName.equals(""))) {
+			result += "_" + exportLabelName;
 		}
 		return result;
 	}
