@@ -575,33 +575,41 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 		switch(desiredOutputFormat){
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME:
 				if(thereIsTrackName)
-					result += sanitizedTrackName+ "_"+ exportLabelName;
+					result += sanitizedTrackName;
 				else
-					result += formattedTrackStartDate + "_"+ exportLabelName; // fallback case
+					result += formattedTrackStartDate;
+				if(!(exportLabelName.equals("")))
+					result += "_"+ exportLabelName; // fallback case
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME_DATE:
 				if(thereIsTrackName)
 					if(sanitizedTrackName.equals(formattedTrackStartDate)) {
-						result += sanitizedTrackName + "_"  + exportLabelName;
+						result += sanitizedTrackName;
 					}else{
-						result += sanitizedTrackName + "_"  + formattedTrackStartDate + "_"+ exportLabelName; // name is not equal
+						result += sanitizedTrackName + "_"  + formattedTrackStartDate; // name is not equal
 					}
 				else
-					result += formattedTrackStartDate + "_"+ exportLabelName;
+					result += formattedTrackStartDate;
+				if(!(exportLabelName.equals("")))
+					result += "_"+ exportLabelName;
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE_NAME:
 				if(thereIsTrackName){
 					if(sanitizedTrackName.equals(formattedTrackStartDate)){
-						result += formattedTrackStartDate + "_" + exportLabelName;
+						result += formattedTrackStartDate;
 					}else{
-						result += formattedTrackStartDate  + "_" + sanitizedTrackName + "_" + exportLabelName;
+						result += formattedTrackStartDate  + "_" + sanitizedTrackName;
 					}
 				}else{
-					result += formattedTrackStartDate + "_" + exportLabelName;
+					result += formattedTrackStartDate;
 				}
+				if(!(exportLabelName.equals("")))
+					result += "_"+ exportLabelName;
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE:
-				result += formattedTrackStartDate + "_"+exportLabelName;
+				result += formattedTrackStartDate;
+				if(!(exportLabelName.equals("")))
+					result += "_"+ exportLabelName;
 				break;
 		}
 		return result;
