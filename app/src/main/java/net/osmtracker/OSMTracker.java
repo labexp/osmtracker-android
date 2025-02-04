@@ -64,6 +64,7 @@ public class OSMTracker {
 		
 		public final static String VAL_OUTPUT_FILENAME_NAME = "name";
 		public final static String VAL_OUTPUT_FILENAME_NAME_DATE = "name_date";
+		public final static String VAL_OUTPUT_FILENAME_DATE_NAME = "date_name";
 		public final static String VAL_OUTPUT_FILENAME_DATE = "date";
 		public final static String VAL_OUTPUT_FILENAME = VAL_OUTPUT_FILENAME_NAME_DATE;
 

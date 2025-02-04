@@ -57,8 +57,8 @@
 			android:title="@string/prefs_output_one_dir_per_track"
 			android:summary="@string/prefs_output_one_dir_per_track_summary"
 			android:defaultValue="true" />
-		<EditTextPreference android:key="gpx.export.label"
-			android:defaultValue="_OSMTracker" android:title="@string/prefs_export_label"/>
+		<EditTextPreference android:key="gpx.export.label" android:defaultValue="OSMTracker" android:summary="@string/prefs_export_label_summary"
+			android:title="@string/prefs_export_label"/>
 		<ListPreference android:key="gpx.filename" android:defaultValue="name_date" android:summary="@string/prefs_output_filename_summary"
 			android:title="@string/prefs_output_filename" android:entryValues="@array/prefs_output_filename_values"
 			android:entries="@array/prefs_output_filename_keys" />

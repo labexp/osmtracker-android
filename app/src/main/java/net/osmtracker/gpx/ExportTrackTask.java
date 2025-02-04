@@ -1,6 +1,5 @@
 package net.osmtracker.gpx;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -8,13 +7,10 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.MediaScannerConnection;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.preference.PreferenceManager;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -579,22 +575,33 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 		switch(desiredOutputFormat){
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME:
 				if(thereIsTrackName)
-					result += sanitizedTrackName+ "-"+ exportLabelName;
+					result += sanitizedTrackName+ "_"+ exportLabelName;
 				else
-					result += formattedTrackStartDate + "-"+ exportLabelName; // fallback case
+					result += formattedTrackStartDate + "_"+ exportLabelName; // fallback case
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_NAME_DATE:
 				if(thereIsTrackName)
 					if(sanitizedTrackName.equals(formattedTrackStartDate)) {
-						result += sanitizedTrackName + "-"  + exportLabelName;
+						result += sanitizedTrackName + "_"  + exportLabelName;
 					}else{
-						result += sanitizedTrackName + "-"  + formattedTrackStartDate + "-"+ exportLabelName; // name is not equal
+						result += sanitizedTrackName + "_"  + formattedTrackStartDate + "_"+ exportLabelName; // name is not equal
 					}
 				else
-					result += formattedTrackStartDate + "-"+ exportLabelName;
+					result += formattedTrackStartDate + "_"+ exportLabelName;
+				break;
+			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE_NAME:
+				if(thereIsTrackName){
+					if(sanitizedTrackName.equals(formattedTrackStartDate)){
+						result += formattedTrackStartDate + "_" + exportLabelName;
+					}else{
+						result += formattedTrackStartDate  + "_" + sanitizedTrackName + "_" + exportLabelName;
+					}
+				}else{
+					result += formattedTrackStartDate + "_" + exportLabelName;
+				}
 				break;
 			case OSMTracker.Preferences.VAL_OUTPUT_FILENAME_DATE:
-				result += formattedTrackStartDate + "-"+exportLabelName;
+				result += formattedTrackStartDate + "_"+exportLabelName;
 				break;
 		}
 		return result;
