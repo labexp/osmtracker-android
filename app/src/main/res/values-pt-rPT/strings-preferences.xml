@@ -56,7 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">Mostrar o mapa OpenStreetMap por baixo do trilho. Necessita de ligação de dados</string>
   <string name="prefs_displaytrack_osm_summary_ask">Mostrar sempre o fundo do OpenStreetMap? Requer uma conexão de dados</string>
   <string name="prefs_output">Configurações de GPX</string>
-  <string name="prefs_storage_dir">Pasta de armazenamento externo (SD)</string>
+  <string name="prefs_storage_dir">Pasta de armazenamento nos documentos</string>
   <string name="prefs_storage_dir_hint">Aplicável apenas no próximo trilho (não ao atual)</string>
   <string name="prefs_output_one_dir_per_track">Uma pasta por trilho</string>
   <string name="prefs_output_one_dir_per_track_summary">Guardar cada trilho e os ficheiros relacionados numa pasta dedicada</string>
