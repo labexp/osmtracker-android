@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
@@ -21,13 +22,24 @@ public class ZipHelper {
      *
      * @param context   Application context.
      * @param trackId   Track ID.
-     * @param filegpx   Original GPX file.
+     * @param fileGPX   GPX file.
      * @return The created ZIP file or null if an error occurred.
      */
-    public static File zipCacheFiles(Context context, long trackId, File filegpx) {
+    public static File zipCacheFiles(Context context, long trackId, File fileGPX) {
         File directory = DataHelper.getTrackDirectory(trackId,context);
         if (!directory.exists() || !directory.isDirectory()) {
-            return filegpx;
+            String name = fileGPX.getName();
+            File zipFile = new File(context.getCacheDir(), name.substring(0, name.length() - 3)+"zip");
+            try (FileOutputStream fos = new FileOutputStream(zipFile);
+                 ZipOutputStream zos = new ZipOutputStream(fos)) {
+                // Adds the original gpx file
+                addFileToZip(fileGPX, zos);
+                return zipFile;
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         File[] files = directory.listFiles();
@@ -35,7 +47,7 @@ public class ZipHelper {
             Log.e(TAG, "There are no files to compress in: " + directory.getAbsolutePath());
             return null;
         }
-        String name = filegpx.getName();
+        String name = fileGPX.getName();
 
         File zipFile = new File(context.getCacheDir(), name.substring(0, name.length() - 3)+"zip");
 
@@ -53,7 +65,7 @@ public class ZipHelper {
                 }
             }
             // Adds the original gpx file
-            addFileToZip(filegpx, zos);
+            addFileToZip(fileGPX, zos);
 
             Log.d(TAG, "ZIP file created: " + zipFile.getAbsolutePath());
             return zipFile;
