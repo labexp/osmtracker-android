@@ -3,7 +3,10 @@ package net.osmtracker.gpx;
 import android.content.Context;
 import android.util.Log;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -29,7 +32,7 @@ public class ZipHelper {
 
         File[] files = directory.listFiles();
         if (files == null || files.length == 0) {
-            Log.e(TAG, "No hay archivos para comprimir en: " + directory.getAbsolutePath());
+            Log.e(TAG, "There are no files to compress in: " + directory.getAbsolutePath());
             return null;
         }
         String name = filegpx.getName();
@@ -40,23 +43,23 @@ public class ZipHelper {
              ZipOutputStream zos = new ZipOutputStream(fos)) {
 
             for (File file : files) {
-                if (!file.isDirectory()) { // Evita agregar carpetas vacías
-                    // solo se agrega archivos que no sean .zip
+                if (!file.isDirectory()) { // Avoid adding empty folders
+                    // only add files that are not .zip files
                     if (!file.getName().endsWith(".zip")) {
                         addFileToZip(file, zos);
                     }else {
-                        Log.d(TAG, "No se agrega archivo: " + file.getAbsolutePath());
+                        Log.d(TAG, "No file is added: " + file.getAbsolutePath());
                     }
                 }
             }
-            // Agrega el archivo gpx original
+            // Adds the original gpx file
             addFileToZip(filegpx, zos);
 
-            Log.d(TAG, "Archivo ZIP creado: " + zipFile.getAbsolutePath());
+            Log.d(TAG, "ZIP file created: " + zipFile.getAbsolutePath());
             return zipFile;
 
         } catch (IOException e) {
-            Log.e(TAG, "Error al crear el archivo ZIP", e);
+            Log.e(TAG, "Error creating ZIP file", e);
             return null;
         }
     }
@@ -70,7 +73,7 @@ public class ZipHelper {
      */
     private static void addFileToZip(File file, ZipOutputStream zos) throws IOException {
         if (!file.exists()) {
-            Log.e(TAG, "Archivo no encontrado: " + file.getAbsolutePath());
+            Log.e(TAG, "File does not exist: " + file.getAbsolutePath());
             return;
         }
 
