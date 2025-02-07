@@ -582,7 +582,8 @@ public class TrackManager extends AppCompatActivity
 		new ExportToTempFileTask(context, trackId){
 			@Override
 			protected void executionCompleted(){
-				File zipFile = ZipHelper.zipCacheFiles(context, trackId, this.getTmpFile()); // Create zip file or an archive in case there are no files associated with the trace
+				// Create zip file or an archive in case there are no files associated with the trace
+				File zipFile = ZipHelper.zipCacheFiles(context, trackId, this.getTmpFile());
 				shareFile(zipFile, context);
 			}
 
