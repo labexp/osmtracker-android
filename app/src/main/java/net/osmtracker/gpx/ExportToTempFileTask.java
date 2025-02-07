@@ -36,7 +36,7 @@ public abstract class ExportToTempFileTask extends ExportTrackTask {
 			String exportLabelName = PreferenceManager.getDefaultSharedPreferences(context).getString(
 					OSMTracker.Preferences.KEY_OUTPUT_FILENAME_LABEL,	OSMTracker.Preferences.VAL_OUTPUT_FILENAME_LABEL);
 			String trackName = new DataHelper(context).getTrackById(trackId).getName();
-			long date = new DataHelper(context).getTrackById(trackId).getStartDate();
+			long date = new DataHelper(context).getTrackById(trackId).getTrackDate();
 
 			String formattedTrackStartDate = DataHelper.FILENAME_FORMATTER.format(new Date(date));
 
