@@ -25,6 +25,7 @@ public class OSMTracker {
 		public final static String KEY_GPS_LOGGING_MIN_DISTANCE = "gps.logging.min_distance";
 		public final static String KEY_USE_BAROMETER = "gpx.use_barometer";
 		public final static String KEY_OUTPUT_FILENAME = "gpx.filename";
+		public final static String KEY_OUTPUT_FILENAME_LABEL  = "gpx.filename.label";
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
 		public final static String KEY_OUTPUT_GPX_HDOP_APPROXIMATION = "gpx.hdop.approximation";
 		public final static String KEY_OUTPUT_DIR_PER_TRACK = "gpx.directory_per_track";
@@ -62,8 +63,10 @@ public class OSMTracker {
 		
 		public final static String VAL_OUTPUT_FILENAME_NAME = "name";
 		public final static String VAL_OUTPUT_FILENAME_NAME_DATE = "name_date";
+		public final static String VAL_OUTPUT_FILENAME_DATE_NAME = "date_name";
 		public final static String VAL_OUTPUT_FILENAME_DATE = "date";
 		public final static String VAL_OUTPUT_FILENAME = VAL_OUTPUT_FILENAME_NAME_DATE;
+		public final static String VAL_OUTPUT_FILENAME_LABEL = "OSMTracker";
 
 		public final static String VAL_OUTPUT_ACCURACY_NONE = "none";
 		public final static String VAL_OUTPUT_ACCURACY_WPT_NAME = "wpt_name";

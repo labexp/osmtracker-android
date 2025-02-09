@@ -21,7 +21,6 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static net.osmtracker.util.LogcatHelper.checkLogForMessage;
 import static net.osmtracker.util.TestUtils.checkToastIsShownWith;
 import static net.osmtracker.util.TestUtils.getLayoutsDirectory;
 import static net.osmtracker.util.TestUtils.getStringResource;
@@ -33,6 +32,9 @@ import static org.apache.commons.io.FileUtils.deleteDirectory;
 
 
 public class DeleteLayoutTest {
+
+    @Rule
+    public GrantPermissionRule storagePermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
     @Rule
     public ActivityTestRule<ButtonsPresets> mRule = new ActivityTestRule(ButtonsPresets.class) {
@@ -74,8 +76,6 @@ public class DeleteLayoutTest {
     public void layoutDeletionTest(){
 
         deleteLayout(layoutName);
-
-        checkLogForMessage("TOAST", TestUtils.getStringResource(R.string.buttons_presets_successful_delete));
 
         // Check the informative Toast is shown
         checkToastIsShownWith(getStringResource(R.string.buttons_presets_successful_delete));

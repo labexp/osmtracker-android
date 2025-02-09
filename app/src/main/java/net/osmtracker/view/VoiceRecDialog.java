@@ -1,14 +1,5 @@
 package net.osmtracker.view;
 
-import java.io.File;
-import java.util.Date;
-import java.util.UUID;
-
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-import net.osmtracker.db.DataHelper;
-import net.osmtracker.db.TrackContentProvider.Schema;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,6 +14,15 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.db.DataHelper;
+import net.osmtracker.db.TrackContentProvider.Schema;
+
+import java.io.File;
+import java.util.Date;
+import java.util.UUID;
 
 public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	
@@ -151,6 +151,7 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 			intent.putExtra(Schema.COL_TRACK_ID, wayPointTrackId);
 			intent.putExtra(OSMTracker.INTENT_KEY_UUID, wayPointUuid);
 			intent.putExtra(OSMTracker.INTENT_KEY_NAME, context.getResources().getString(R.string.wpt_voicerec));
+			intent.setPackage(getContext().getPackageName());
 			context.sendBroadcast(intent);
 		}
 		
@@ -215,6 +216,7 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 				intent.putExtra(Schema.COL_TRACK_ID, wayPointTrackId);
 				intent.putExtra(OSMTracker.INTENT_KEY_UUID, wayPointUuid);
 				intent.putExtra(OSMTracker.INTENT_KEY_LINK, audioFile.getName());
+				intent.setPackage(getContext().getPackageName());
 				context.sendBroadcast(intent);
 			} else {
 				Log.w(TAG,"onStart() no suitable audioFile could be created");

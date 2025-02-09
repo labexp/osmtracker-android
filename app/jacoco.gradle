@@ -1,0 +1,25 @@
+jacoco {
+    toolVersion = jacocoVersion
+}
+
+tasks.withType(Test).configureEach {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+tasks.register("jacocoTestReport", JacocoReport) {
+    dependsOn testDebugUnitTest
+
+    reports {
+        xml.required = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*']
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.setFrom(files([mainSrc]))
+    classDirectories.setFrom(fileTree(dir: layout.buildDirectory.dir("intermediates/javac/debug").get().asFile, excludes: fileFilter))
+    executionData.setFrom(fileTree(dir: layout.buildDirectory.get(), includes: [
+            'jacoco/testDebugUnitTest.exec', 'outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec'
+    ]))
+}

@@ -60,6 +60,8 @@
 		<ListPreference android:key="gpx.filename" android:defaultValue="name_date" android:summary="@string/prefs_output_filename_summary"
 			android:title="@string/prefs_output_filename" android:entryValues="@array/prefs_output_filename_values"
 			android:entries="@array/prefs_output_filename_keys" />
+		<EditTextPreference android:key="gpx.filename.label" android:defaultValue="OSMTracker" android:summary="@string/prefs_output_filename_label_summary"
+			android:title="@string/prefs_output_filename_label"/>
 		<ListPreference
 			android:key="gpx.accuracy"
 			android:defaultValue="none"

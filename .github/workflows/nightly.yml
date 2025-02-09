@@ -1,20 +1,27 @@
 name: Nightly APK
 
 on:
-  schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:  # This enables manual triggering
+  schedule: # Scheduled jobs only run on the default repository branch
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the workflow on'
+        default: 'develop'
+        required: true
 
 jobs:
-  build:
-    # if: github.event.schedule_activity.commits > 0
+  nightly_build:
+    name: Nightly build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v4.5.0
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -27,14 +34,24 @@ jobs:
         run: ./gradlew assembleDebug --stacktrace
 
       - name: Rename output APK
-        if: success()
         run: |
-          DATE=$(date +'%Y%m%d')
+          DATE=$(date +'%Y%m%d-%H%M')
           mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OSMTracker-nightly-$DATE.apk
+          echo "ARTIFACT_DATE=$DATE" >> $GITHUB_ENV
 
-      - name: Create or Update GitHub Nightly Release
-        if: success()
-        uses: softprops/action-gh-release@v2.1.0
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-${{ env.ARTIFACT_DATE }}
+          path: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
+
+      - name: Delete existing Nightly release
+        run: gh release delete nightly --cleanup-tag --yes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Nightly Release
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: 'nightly'
           name: 'Nightly Build'

@@ -82,9 +82,12 @@
 	<string-array name="prefs_output_filename_keys">
 		<item>Track name</item>
 		<item>Name, start date and time</item>
+		<item>Start date and time, name</item>
 		<item>Start date and time</item>
 	</string-array>
-	
+	<string name="prefs_output_filename_label">Filename label</string>
+	<string name="prefs_output_filename_label_summary">This label will be appended at the end of filename</string>
+
 	<string name="prefs_output_accuracy">Accuracy in GPX file</string>
 	<string name="prefs_output_accuracy_summary">Add accuracy info in the GPX file, with waypoint name or in waypoint comment</string>
 	<string-array name="prefs_output_accuracy_keys">

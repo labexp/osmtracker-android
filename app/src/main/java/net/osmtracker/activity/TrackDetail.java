@@ -15,12 +15,14 @@ import net.osmtracker.gpx.ExportToStorageTask;
 import net.osmtracker.util.MercatorProjection;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import androidx.core.app.ActivityCompat;
@@ -181,7 +183,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		if (cursor.isNull(cursor.getColumnIndex(TrackContentProvider.Schema.COL_OSM_UPLOAD_DATE))) {
 			map.put(ITEM_VALUE, getResources().getString(R.string.trackdetail_osm_upload_notyet));
 		} else {
-			map.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_EXPORT_DATE)))));
+			map.put(ITEM_VALUE, DateFormat.getDateTimeInstance().format(new Date(cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_OSM_UPLOAD_DATE)))));
 		}
 		data.add(map);
 		
@@ -237,32 +239,10 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			startActivity(i);	
 			break;
 		case R.id.trackdetail_menu_export:
-			if (ContextCompat.checkSelfPermission(this,
-					Manifest.permission.WRITE_EXTERNAL_STORAGE)  != PackageManager.PERMISSION_GRANTED) {
-
-				// Should we show an explanation?
-				if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-						Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-					// Show an expanation to the user *asynchronously* -- don't block
-					// this thread waiting for the user's response! After the user
-					// sees the explanation, try again to request the permission.
-					// TODO: explain why we need permission.
-					Log.w(TAG, "we should explain why we need write permission");
-
-				} else {
-
-					// No explanation needed, we can request the permission.
-					ActivityCompat.requestPermissions(this,
-							new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-							RC_WRITE_PERMISSIONS);
-					break;
-				}
-
-			} else {
+			if (writeExternalStoragePermissionGranted()) {
 				exportTrack();
-				break;
 			}
+			break;
 		case R.id.trackdetail_menu_osm_upload:
 			i = new Intent(this, OpenStreetMapUpload.class);
 			i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
@@ -270,6 +250,51 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * Checks if the external storage write permission is granted.
+	 * If not, it requests the permission and may display a rationale dialog explaining why it is needed.
+	 *
+	 * <p>For devices running Android R (API level 30) and above, this permission is not required,
+	 * so the method will return {@code true} immediately.</p>
+	 *
+	 * @return {@code true} if the write permission is already granted or not required (Android R+),
+	 *         {@code false} otherwise.
+	 */
+	private boolean writeExternalStoragePermissionGranted() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+			return true;
+		}
+		else if (ContextCompat.checkSelfPermission(this,
+						Manifest.permission.WRITE_EXTERNAL_STORAGE)  != PackageManager.PERMISSION_GRANTED) {
+			// Should we show an explanation?
+			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+							Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+				// Show an expanation to the user *asynchronously* -- don't block
+				// this thread waiting for the user's response! After the user
+				// sees the explanation, try again to request the permission.
+				new AlertDialog.Builder(this)
+								.setTitle(R.string.permission_required)
+								.setMessage(R.string.storage_permission_for_export_GPX)
+								.setPositiveButton(R.string.acccept, (dialog, which) -> {
+									// Request the permission again
+									ActivityCompat.requestPermissions(this,
+													new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+													RC_WRITE_PERMISSIONS);
+								})
+								.setNegativeButton(R.string.menu_cancel, (dialog, which) -> dialog.dismiss())
+								.show();
+			} else {
+				// No explanation needed, we can request the permission.
+				ActivityCompat.requestPermissions(this,
+								new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+								RC_WRITE_PERMISSIONS);
+			}
+		}
+
+		return ContextCompat.checkSelfPermission(this,
+						Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
 	}
 
 

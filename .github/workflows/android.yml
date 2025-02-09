@@ -3,23 +3,22 @@ name: Build
 on:
   push:
     branches:
-      - main
+      - master
       - develop
   pull_request:
     branches:
       - develop
 
 jobs:
-  build:
+  build_and_test:
     name: Build and Test
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v4.5.0
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -29,12 +28,38 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build --stacktrace
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Rename output APK
+        run: |
+          DATE=$(date +'%Y%m%d-%H%M')
+          mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OSMTracker-debug-$DATE.apk
+          echo "ARTIFACT_DATE=$DATE" >> $GITHUB_ENV
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-${{ env.ARTIFACT_DATE }}
+          path: app/build/outputs/apk/debug/OSMTracker-debug-*.apk
 
       - name: Run unit tests and jacoco coverage
         run: ./gradlew testDebugUnitTest jacocoTestReport --stacktrace
 
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run connected tests
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: 26
+          script: |
+            adb logcat &
+            ./gradlew connectedCheck --no-parallel
+
       - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v2.3.4
+        uses: coverallsapp/github-action@v2
         with:
           format: jacoco

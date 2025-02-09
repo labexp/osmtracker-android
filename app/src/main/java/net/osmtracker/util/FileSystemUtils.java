@@ -1,5 +1,7 @@
 package net.osmtracker.util;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,8 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import android.util.Log;
 
 public final class FileSystemUtils {
 	
@@ -148,7 +148,7 @@ public final class FileSystemUtils {
 	 * @param fileToDelete the file/directory to be deleted
 	 * @param recursive if the deletion should be recursive
 	 * @param recursionDepth takes care of the depth of recursion and aborts deletion if DELETE_MAX_RECURSION_DEPTH is reached
-	 * @return
+	 * @return true if file was deleted
 	 */
 	private static boolean delete(File fileToDelete, boolean recursive, int recursionDepth){
 		// if we're deeper than one recursion/subfolder, we'll cancel deletion
