@@ -228,7 +228,9 @@
     <string name="how_to_get_ghToken_guide_step_7">7. Copy the generated token and paste it in the field \"GitHub token\".</string>
     <!-- GitHubUpload -->
     <string name="upload_to_github_description">Commit message:</string>
-    <string name="upload_to_github_create_fork">Create fork</string>
+    <string name="upload_to_github_create_fork">Create\nfork</string>
+    <string name="upload_to_github_open_pull_request">Open pull request</string>
+    <string name="upload_to_github_select_repo">Select a repository</string>
     <string name="upload_to_github_create_repository">Create repository</string>
     <string name="upload_to_github_commit_btn">Commit</string>
     <string name="upload_to_github_configure">Configure</string>

@@ -65,6 +65,14 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:text="@string/upload_to_github_create_repository" />
+
+    <Button
+        android:id="@+id/git_open_pull_request"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:text="@string/upload_to_github_open_pull_request" />
 </LinearLayout>
 
 </merge>

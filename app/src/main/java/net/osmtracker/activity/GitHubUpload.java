@@ -68,34 +68,11 @@ public class GitHubUpload extends Activity {
         gitHubUser = dbGitHubUser.getUser();
 
         listRepos();
-
-        final Button btnFork = (Button) findViewById(R.id.git_create_fork_btn_ok);
-        btnFork.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(GitHubUpload.this, GitHubNewFork.class);
-                i.setPackage(getPackageName());
-                startActivity(i);
-            }
-        });
-
-        final Button btnNewRepo= (Button) findViewById(R.id.git_create_repo_btn_ok);
-        btnNewRepo.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(GitHubUpload.this, GitHubNewRepo.class);
-                i.setPackage(getPackageName());
-                startActivity(i);
-            }
-        });
+        openActivityOnClick(R.id.git_create_fork_btn_ok, GitHubNewFork.class, null);
+        openActivityOnClick(R.id.git_create_repo_btn_ok, GitHubNewRepo.class, null);
 
         final Button btnCancel = (Button) findViewById(R.id.git_upload_btn_cancel);
-        btnCancel.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        btnCancel.setOnClickListener( v -> finish());
 
         Spinner spinner = findViewById(R.id.item_git_spinner_repos);
         createSpinnerListRepos(spinner);
@@ -119,13 +96,6 @@ public class GitHubUpload extends Activity {
                             }
 
                             startUploadGitHub(encodedGPX.toString(), file.getName());
-
-                            Intent i = new Intent(GitHubUpload.this, GitHubPullRequest.class);
-                            Bundle bundleForPullRequest = new Bundle();
-                            bundleForPullRequest.putString("myFullRepoName", getRepoName());
-                            i.putExtras(bundleForPullRequest);
-                            i.setPackage(getPackageName());
-                            startActivity(i);
                         } catch (IOException e) {
                             Toast.makeText(GitHubUpload.this, R.string.gpx_file_read_error, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
@@ -156,6 +126,18 @@ public class GitHubUpload extends Activity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openActivityOnClick(int btnId, Class<? extends Activity> destination, Bundle bundle) {
+        final Button btn = (Button) findViewById(btnId);
+        btn.setOnClickListener( v -> {
+            Intent i = new Intent(GitHubUpload.this, destination);
+            i.setPackage(getPackageName());
+            if (bundle != null) {
+                i.putExtras(bundle);
+            }
+            startActivity(i);
+        });
     }
 
     /**
@@ -226,7 +208,18 @@ public class GitHubUpload extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setRepoName(adapterView.getItemAtPosition(i).toString());
-                Toast.makeText(GitHubUpload.this, getString(R.string.item_selected) + " " + getRepoName(), Toast.LENGTH_SHORT).show();
+                if (i != 0) {
+                    Bundle bundleForPullRequest = new Bundle();
+                    bundleForPullRequest.putString("myFullRepoName", getRepoName());
+                    openActivityOnClick(R.id.git_open_pull_request, GitHubPullRequest.class, bundleForPullRequest);
+                    Toast.makeText(GitHubUpload.this, getString(R.string.item_selected) + " " + getRepoName(), Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Button btn = ((Button) findViewById(R.id.git_open_pull_request));
+                    btn.setOnClickListener( v -> {
+                        Toast.makeText(GitHubUpload.this, R.string.upload_to_github_select_repo, Toast.LENGTH_SHORT).show();
+                    });
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
