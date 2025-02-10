@@ -140,7 +140,7 @@ public class GitHubUpload extends Activity {
      * Either starts uploading directly if we are authenticated against GitHub
      */
     private void startUploadGitHub(final String GPXFileInBase64, String filename){
-        String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename.trim();//.replaceAll("\\s", "");
+        String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename.trim().replace(".base64", "");//.replaceAll("\\s", "");
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
                 Request.Method.PUT,

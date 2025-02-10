@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Base64OutputStream;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -46,8 +47,11 @@ import net.osmtracker.gpx.ExportToTempFileTask;
 import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.Base64;
 import java.util.Date;
@@ -526,14 +530,19 @@ public class TrackManager extends AppCompatActivity
 	}
 
 
-	private static String encodeFileToBase64(File file) {
-		try {
-			byte[] fileContent = Files.readAllBytes(file.toPath());
-			return Base64.getEncoder().encodeToString(fileContent);
-		} catch (IOException e) {
-			throw new IllegalStateException("could not read file " + file, e);
+	private static void encodeFileToBase64(File inputFile, File outputFile) throws IOException {
+		try (InputStream inputStream = new FileInputStream(inputFile);
+			 OutputStream outputStream = new FileOutputStream(outputFile);
+			 Base64OutputStream base64OutputStream = new Base64OutputStream(outputStream, 0)) {
+
+			byte[] buffer = new byte[8192]; // 8KB Buffer
+			int bytesRead;
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				base64OutputStream.write(buffer, 0, bytesRead);
+			}
 		}
 	}
+
 
 	private void uploadTrackToGitHub(final long trackId, Context context){
 		//final String[] encodeGPXbase64 = new String[1];
@@ -544,7 +553,8 @@ public class TrackManager extends AppCompatActivity
 		new ExportToTempFileTask(context, trackId){
 			@Override
 			protected void executionCompleted(){
-				//shareFile(this.getTmpFile(), context);
+				//File zipFile = ZipHelper.zipCacheFiles(context, trackId, this.getTmpFile());
+				//uploadTrackToGitHubAUX(zipFile, context, trackId);
 				uploadTrackToGitHubAUX(this.getTmpFile(), context);
 			}
 		}.execute();
@@ -554,15 +564,14 @@ public class TrackManager extends AppCompatActivity
 	}
 
 	private void uploadTrackToGitHubAUX(File tmpGPXFile, Context context) {
-		String encodeGPXbase64 = encodeFileToBase64(tmpGPXFile);
 		GitHubUser gitHubUser = null;
 
-		File internalFile = new File(context.getFilesDir(), tmpGPXFile.getName());
-		try (FileOutputStream fos = new FileOutputStream(internalFile)) {
-			fos.write(encodeGPXbase64.getBytes());
+		File internalFile = new File(context.getFilesDir(), tmpGPXFile.getName() + ".base64");
+		try {
+			encodeFileToBase64(tmpGPXFile, internalFile);
 		} catch (IOException e) {
 			e.printStackTrace();
-			return; // Go out in error case
+			return;
 		}
 
 		try {
@@ -579,9 +588,6 @@ public class TrackManager extends AppCompatActivity
 		}
 		else {
 			Intent i = new Intent(context, GitHubUpload.class);
-			//Bundle bundle = new Bundle();
-			//bundle.putString("GPXFileInBase64",encodeGPXbase64);
-			//i.putExtras(bundle);
 			i.putExtra("GPXFilePath", internalFile.getAbsolutePath());
 			i.putExtra("filename", internalFile.getName());
 			i.setPackage(getPackageName());
