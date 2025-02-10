@@ -36,6 +36,13 @@ public class ZipHelper {
         try (FileOutputStream fos = new FileOutputStream(zipFile);
              ZipOutputStream zos = new ZipOutputStream(fos)) {
 
+            // Add gpx file
+            addFileToZip(fileGPX, zos);
+
+            if(!traceFilesDirectory.exists()){
+                return zipFile;
+            }
+
             for (File multimediaFile : Objects.requireNonNull(traceFilesDirectory.listFiles())) {
                 if (!multimediaFile.isDirectory()) { // Avoid adding empty folders
                     // only add files that are not .zip files
@@ -48,9 +55,6 @@ public class ZipHelper {
                     Log.d(TAG, "Folder " + multimediaFile.getAbsolutePath() + " ignored. ");
                 }
             }
-
-            // Adds the original gpx file
-            addFileToZip(fileGPX, zos);
 
             Log.d(TAG, "ZIP file created: " + zipFile.getAbsolutePath());
             return zipFile;
