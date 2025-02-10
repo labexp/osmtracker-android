@@ -4,7 +4,7 @@
         android:id="@+id/git_title_pullrequest_editText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/upload_to_github_pr_description"
+        android:hint="@string/upload_to_github_pr_title"
         android:layout_margin="5dp"
         android:inputType="text"
         android:singleLine="true" />

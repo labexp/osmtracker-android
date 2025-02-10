@@ -48,8 +48,8 @@ public class GitHubNewFork extends Activity {
         editTextRootUsername = findViewById(R.id.git_username_to_fork_editText_user);
         editTextRootRepo = findViewById(R.id.git_repo_to_fork_editText_name);
 
-        editTextRootUsername.setHint("Usuario raíz del repositorio");
-        editTextRootRepo.setHint("Nombre del repositorio raíz");
+        editTextRootUsername.setHint(R.string.upload_to_github_forked_repo_owner);
+        editTextRootRepo.setHint(R.string.upload_to_github_forked_repo_name);
 
         final Button btnCreate = (Button) findViewById(R.id.git_create_newfork_btn_ok);
         btnCreate.setOnClickListener(new OnClickListener() {

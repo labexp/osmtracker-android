@@ -5,7 +5,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:hint="Nombre del Repositorio:"
+        android:hint="@string/github_repository_settings_repository_name"
         android:inputType="text"
         android:singleLine="true" />
 

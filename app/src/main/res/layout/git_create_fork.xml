@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="Crear" />
+            android:text="@string/create" />
 
         <Button
             android:id="@+id/git_back_newfork_btn_cancel"
