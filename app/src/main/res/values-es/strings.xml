@@ -188,6 +188,8 @@
   <string name="gpx_file_read_error">Error al leer el archivo GPX</string>
   <string name="gpx_file_not_found">No se encontró el archivo GPX</string>
   <string name="item_selected">Selecciono el elemento: </string>
+  <string name="github_repository_private">Privado: </string>
+  <string name="github_no_repository_name">Indique el nombre del repositorio</string>
   <!-- GitHubConfig -->
   <string name="github_config_btn">Configurar</string>
   <string name="github_token_placeholder">Token de GitHub:</string>

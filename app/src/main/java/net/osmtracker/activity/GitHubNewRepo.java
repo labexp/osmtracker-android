@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -50,9 +51,15 @@ public class GitHubNewRepo extends Activity {
         btnCreate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                createNewRepo();
-                finish();
-
+                String repoName = editTextNewRepo.getText().toString().trim();
+                boolean isPrivate = ((Switch) findViewById(R.id.git_newrepo_privacy)).isChecked();
+                if (repoName.length() == 0) {
+                    Toast.makeText(GitHubNewRepo.this, R.string.github_no_repository_name, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    createNewRepo(repoName, isPrivate);
+                    finish();
+                }
             }
         });
 
@@ -68,7 +75,7 @@ public class GitHubNewRepo extends Activity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
-    private void createNewRepo() {
+    private void createNewRepo(String repoName, boolean isPrivate) {
         String fullURL = getBaseURL()+"/user/repos";
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
@@ -111,9 +118,9 @@ public class GitHubNewRepo extends Activity {
             public byte[] getBody() {
                 JSONObject jsonBody = new JSONObject();
                 try {
-                    jsonBody.put("name", editTextNewRepo.getText().toString().trim());
+                    jsonBody.put("name", repoName);
                     jsonBody.put("auto_init", true);
-                    jsonBody.put("private", false);
+                    jsonBody.put("private", isPrivate);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
