@@ -62,7 +62,7 @@ public class GitHubUpload extends Activity {
         editTextCommitMsj = findViewById(R.id.git_trackdetail_item_description);
 
         ArrayListRepos = new ArrayList<>();
-        ArrayListRepos.add("none");
+        ArrayListRepos.add(getString(R.string.upload_to_github_select_repo));
 
         DbGitHubUser dbGitHubUser = new DbGitHubUser(GitHubUpload.this);
         gitHubUser = dbGitHubUser.getUser();
@@ -76,38 +76,34 @@ public class GitHubUpload extends Activity {
 
         Spinner spinner = findViewById(R.id.item_git_spinner_repos);
         createSpinnerListRepos(spinner);
-
-        final Button btnUpload = (Button) findViewById(R.id.git_upload_btn_ok);
-        btnUpload.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = GitHubUpload.this.getIntent().getExtras();
-                if (bundle != null){
-                    String filePath = getIntent().getStringExtra("GPXFilePath");
-                    if (filePath != null) {
-                        try {
-                            File file = new File(filePath);
-                            StringBuilder encodedGPX = new StringBuilder();
-                            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                                String line;
-                                while ((line = reader.readLine()) != null) {
-                                    encodedGPX.append(line);
-                                }
-                            }
-
-                            startUploadGitHub(encodedGPX.toString(), file.getName());
-                        } catch (IOException e) {
-                            Toast.makeText(GitHubUpload.this, R.string.gpx_file_read_error, Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
-                        }
-                    } else {
-                        Toast.makeText(GitHubUpload.this, R.string.gpx_file_not_found, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
         // Do not show soft keyboard by default
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
+
+    private void uploadCommit() {
+        Bundle bundle = GitHubUpload.this.getIntent().getExtras();
+        if (bundle != null){
+            String filePath = getIntent().getStringExtra("GPXFilePath");
+            if (filePath != null) {
+                try {
+                    File file = new File(filePath);
+                    StringBuilder encodedGPX = new StringBuilder();
+                    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            encodedGPX.append(line);
+                        }
+                    }
+
+                    startUploadGitHub(encodedGPX.toString(), file.getName());
+                } catch (IOException e) {
+                    Toast.makeText(GitHubUpload.this, R.string.gpx_file_read_error, Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            } else {
+                Toast.makeText(GitHubUpload.this, R.string.gpx_file_not_found, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -212,11 +208,16 @@ public class GitHubUpload extends Activity {
                     Bundle bundleForPullRequest = new Bundle();
                     bundleForPullRequest.putString("myFullRepoName", getRepoName());
                     openActivityOnClick(R.id.git_open_pull_request, GitHubPullRequest.class, bundleForPullRequest);
+                    ((Button) findViewById(R.id.git_upload_btn_ok)).setOnClickListener( v -> uploadCommit());
                     Toast.makeText(GitHubUpload.this, getString(R.string.item_selected) + " " + getRepoName(), Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Button btn = ((Button) findViewById(R.id.git_open_pull_request));
-                    btn.setOnClickListener( v -> {
+                    Button prBtn = (Button) findViewById(R.id.git_open_pull_request);
+                    Button commitBtn = (Button) findViewById(R.id.git_upload_btn_ok);
+                    prBtn.setOnClickListener( v -> {
+                        Toast.makeText(GitHubUpload.this, R.string.upload_to_github_select_repo, Toast.LENGTH_SHORT).show();
+                    });
+                    commitBtn.setOnClickListener( v -> {
                         Toast.makeText(GitHubUpload.this, R.string.upload_to_github_select_repo, Toast.LENGTH_SHORT).show();
                     });
                 }
