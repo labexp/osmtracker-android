@@ -573,7 +573,7 @@ public class TrackManager extends AppCompatActivity
 			e.printStackTrace();
 		}
 
-		if (gitHubUser == null){
+		if (gitHubUser == null || gitHubUser.getUsername().length() == 0 || gitHubUser.getToken().length() != 40){
 			Intent i = new Intent(context, GitHubConfig.class);
 			startActivity(i);
 		}

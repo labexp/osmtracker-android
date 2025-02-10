@@ -55,10 +55,19 @@ public class GitHubConfig extends Activity {
                 }
 
                 DbGitHubUser dbGitHubUser = new DbGitHubUser(GitHubConfig.this);
-                long id = dbGitHubUser.insertUser(editTextUserName.getText().toString().trim(),editTextUserToken.getText().toString().trim());
+                String username = editTextUserName.getText().toString().trim();
+                String ghToken = editTextUserToken.getText().toString().trim();
+                long id = dbGitHubUser.insertUser(username,ghToken);
 
                 if (id > 0){
                     Toast.makeText(GitHubConfig.this, R.string.successfully_saved, Toast.LENGTH_SHORT).show();
+                    if (username.length() < 1 || ghToken.length() != 40) {
+                        // avoid returning to GitHubUpload.java without credentials
+                        Intent intent = new Intent(GitHubConfig.this, TrackManager.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.setPackage(this.getClass().getPackage().getName());
+                        startActivity(intent);
+                    }
                     finish();
                 }else {
                     Toast.makeText(GitHubConfig.this, R.string.saving_error, Toast.LENGTH_SHORT).show();

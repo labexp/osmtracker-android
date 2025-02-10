@@ -77,7 +77,6 @@ public class GitHubUpload extends Activity {
                 Intent i = new Intent(GitHubUpload.this, GitHubNewFork.class);
                 i.setPackage(getPackageName());
                 startActivity(i);
-                finish();
             }
         });
 
@@ -88,7 +87,6 @@ public class GitHubUpload extends Activity {
                 Intent i = new Intent(GitHubUpload.this, GitHubNewRepo.class);
                 i.setPackage(getPackageName());
                 startActivity(i);
-                finish();
             }
         });
 
@@ -129,7 +127,6 @@ public class GitHubUpload extends Activity {
                             i.putExtras(bundleForPullRequest);
                             i.setPackage(getPackageName());
                             startActivity(i);
-                            finish();
                         } catch (IOException e) {
                             Toast.makeText(GitHubUpload.this, R.string.gpx_file_read_error, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
@@ -157,7 +154,6 @@ public class GitHubUpload extends Activity {
                 Intent i = new Intent(this, GitHubConfig.class);
                 i.setPackage(this.getPackageName());
                 startActivity(i);
-                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
