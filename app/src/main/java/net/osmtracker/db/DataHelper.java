@@ -49,6 +49,11 @@ public class DataHelper {
 	public static final String EXTENSION_JPG = ".jpg";
 
 	/**
+	 * ZIP file extension
+	 */
+	public static final String EXTENSION_ZIP = ".zip";
+
+	/**
 	 * GPX Files MIME standard for sharing
 	 */
 	public static final String MIME_TYPE_GPX = "application/gpx+xml";

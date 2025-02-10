@@ -5,9 +5,9 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -26,44 +26,29 @@ public class ZipHelper {
      * @return The created ZIP file or null if an error occurred.
      */
     public static File zipCacheFiles(Context context, long trackId, File fileGPX) {
-        File directory = DataHelper.getTrackDirectory(trackId,context);
-        if (!directory.exists() || !directory.isDirectory()) {
-            String name = fileGPX.getName();
-            File zipFile = new File(context.getCacheDir(), name.substring(0, name.length() - 3)+"zip");
-            try (FileOutputStream fos = new FileOutputStream(zipFile);
-                 ZipOutputStream zos = new ZipOutputStream(fos)) {
-                // Adds the original gpx file
-                addFileToZip(fileGPX, zos);
-                return zipFile;
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
 
-        File[] files = directory.listFiles();
-        if (files == null || files.length == 0) {
-            Log.e(TAG, "There are no files to compress in: " + directory.getAbsolutePath());
-            return null;
-        }
         String name = fileGPX.getName();
+        File zipFile = new File(context.getCacheDir(),
+                name.substring(0, name.length() - 3) + DataHelper.EXTENSION_ZIP);
 
-        File zipFile = new File(context.getCacheDir(), name.substring(0, name.length() - 3)+"zip");
+        File traceFilesDirectory = DataHelper.getTrackDirectory(trackId, context);
 
         try (FileOutputStream fos = new FileOutputStream(zipFile);
              ZipOutputStream zos = new ZipOutputStream(fos)) {
 
-            for (File file : files) {
-                if (!file.isDirectory()) { // Avoid adding empty folders
+            for (File multimediaFile : Objects.requireNonNull(traceFilesDirectory.listFiles())) {
+                if (!multimediaFile.isDirectory()) { // Avoid adding empty folders
                     // only add files that are not .zip files
-                    if (!file.getName().endsWith(".zip")) {
-                        addFileToZip(file, zos);
-                    }else {
-                        Log.d(TAG, "No file is added: " + file.getAbsolutePath());
+                    if (!multimediaFile.getName().endsWith(DataHelper.EXTENSION_ZIP)) {
+                        addFileToZip(multimediaFile, zos);
+                    } else {
+                        Log.d(TAG, "Multimedia file: " + multimediaFile.getAbsolutePath() + " ignored. ");
                     }
+                } else {
+                    Log.d(TAG, "Folder " + multimediaFile.getAbsolutePath() + " ignored. ");
                 }
             }
+
             // Adds the original gpx file
             addFileToZip(fileGPX, zos);
 
