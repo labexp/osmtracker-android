@@ -52,14 +52,13 @@ public class GitHubUpload extends Activity {
     private String BaseURL = "https://api.github.com";
     GitHubUser gitHubUser;
     private String  RepoName = "";
-    EditText editTextFileName,editTextCommitMsj;
+    EditText editTextCommitMsj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload_github_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        editTextFileName = findViewById(R.id.git_trackdetail_item_name);
         editTextCommitMsj = findViewById(R.id.git_trackdetail_item_description);
 
         ArrayListRepos = new ArrayList<>();
@@ -119,7 +118,7 @@ public class GitHubUpload extends Activity {
                                 }
                             }
 
-                            startUploadGitHub(encodedGPX.toString());
+                            startUploadGitHub(encodedGPX.toString(), file.getName());
 
                             Intent i = new Intent(GitHubUpload.this, GitHubPullRequest.class);
                             Bundle bundleForPullRequest = new Bundle();
@@ -162,8 +161,8 @@ public class GitHubUpload extends Activity {
     /**
      * Either starts uploading directly if we are authenticated against GitHub
      */
-    private void startUploadGitHub(final String GPXFileInBase64){
-        String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+editTextFileName.getText().toString().trim().replace("\\s", "")+".gpx";
+    private void startUploadGitHub(final String GPXFileInBase64, String filename){
+        String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename.trim();//.replaceAll("\\s", "");
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
                 Request.Method.PUT,

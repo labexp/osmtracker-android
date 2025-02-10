@@ -557,7 +557,7 @@ public class TrackManager extends AppCompatActivity
 		String encodeGPXbase64 = encodeFileToBase64(tmpGPXFile);
 		GitHubUser gitHubUser = null;
 
-		File internalFile = new File(context.getFilesDir(), "tempGPXBase64.txt");
+		File internalFile = new File(context.getFilesDir(), tmpGPXFile.getName());
 		try (FileOutputStream fos = new FileOutputStream(internalFile)) {
 			fos.write(encodeGPXbase64.getBytes());
 		} catch (IOException e) {
@@ -583,6 +583,7 @@ public class TrackManager extends AppCompatActivity
 			//bundle.putString("GPXFileInBase64",encodeGPXbase64);
 			//i.putExtras(bundle);
 			i.putExtra("GPXFilePath", internalFile.getAbsolutePath());
+			i.putExtra("filename", internalFile.getName());
 			i.setPackage(getPackageName());
 			startActivity(i);
 		}

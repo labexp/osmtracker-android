@@ -1,19 +1,9 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <EditText
-        android:id="@+id/git_trackdetail_item_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="@string/upload_to_github_filename"
-        android:inputType="text"
-        android:singleLine="true" />
-
-    <EditText
         android:id="@+id/git_trackdetail_item_description"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/git_trackdetail_item_name"
         android:layout_margin="5dp"
         android:hint="@string/upload_to_github_description"
         android:inputType="text"

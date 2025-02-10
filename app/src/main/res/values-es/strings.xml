@@ -201,7 +201,6 @@
   <string name="how_to_get_ghToken_guide_step_6">6. Haz clic en el botón \"Generar token\".</string>
   <string name="how_to_get_ghToken_guide_step_7">7. Copia el token generado y pégalo en el campo \"Token de GitHub\".</string>
   <!-- GitHubUpload -->
-  <string name="upload_to_github_filename">Nombre del archivo:</string>
   <string name="upload_to_github_description">Mensaje del commit:</string>
   <string name="upload_to_github_create_fork">Crear fork</string>
   <string name="upload_to_github_create_repository">Crear repositorio</string>
