@@ -4,7 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:minHeight="72dp"
+    android:padding="8dp"
+    android:stateListAnimator="@null"
+    android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/wplist_item_name"
@@ -12,9 +15,11 @@
         android:layout_height="wrap_content"
         android:text="{name}"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginBottom="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/wplist_item_timestamp"/>
+        app:layout_constraintEnd_toStartOf="@id/wplist_item_timestamp"
+        android:duplicateParentState="false"/>
 
     <TextView
         android:id="@+id/wplist_item_timestamp"
@@ -22,8 +27,10 @@
         android:layout_height="wrap_content"
         android:text="{timestamp}"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginStart="8dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:duplicateParentState="false"/>
 
     <TextView
         android:id="@+id/wplist_item_location"
@@ -31,7 +38,17 @@
         android:layout_height="wrap_content"
         android:text="{location}"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginTop="4dp"
         app:layout_constraintTop_toBottomOf="@id/wplist_item_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:duplicateParentState="false"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="wplist_item_location"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
