@@ -210,7 +210,7 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 			@Override
 			protected void executionCompleted() {
 				File fileZip = ZipHelper.zipGPXFile(context,trackId, getTmpFile());
-				String filename = getFilename().substring(0, getFilename().length() - 3) + DataHelper.EXTENSION_ZIP;
+				String filename = getFilename().substring(0, getFilename().length() - 4) + DataHelper.EXTENSION_ZIP;
 				new UploadToOpenStreetMapTask(OpenStreetMapUpload.this, accessToken,
 						trackId, fileZip,	filename,
 						etDescription.getText().toString(), etTags.getText().toString(),

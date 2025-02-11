@@ -29,7 +29,7 @@ public class ZipHelper {
 
         String name = fileGPX.getName();
         File zipFile = new File(context.getCacheDir(),
-                name.substring(0, name.length() - 3) + DataHelper.EXTENSION_ZIP);
+                name.substring(0, name.length() - 4) + DataHelper.EXTENSION_ZIP);
 
         File traceFilesDirectory = DataHelper.getTrackDirectory(trackId, context);
 
@@ -76,7 +76,7 @@ public class ZipHelper {
 
         String name = fileGPX.getName();
         File zipFile = new File(context.getCacheDir(),
-                name.substring(0, name.length() - 3) + DataHelper.EXTENSION_ZIP);
+                name.substring(0, name.length() - 4) + DataHelper.EXTENSION_ZIP);
 
         try (FileOutputStream fos = new FileOutputStream(zipFile);
              ZipOutputStream zos = new ZipOutputStream(fos)) {
