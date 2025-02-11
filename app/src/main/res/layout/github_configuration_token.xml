@@ -1,40 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/git_trackdetail_buttons"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/git_configuration_fields" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Botones en la parte inferior -->
     <LinearLayout
         android:id="@+id/git_trackdetail_buttons"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@android:color/darker_gray"
         android:gravity="bottom"
         android:orientation="horizontal"
-        android:padding="3dp" >
+        android:padding="3dp">
 
         <Button
             android:id="@+id/git_save_credentials_btn_ok"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:text="@string/menu_save" />
 
         <Button
             android:id="@+id/git_back_credentials_btn_cancel"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:text="@string/tracklogger_btnBack" />
     </LinearLayout>
-
-    <include
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/git_configuration_fields" />
 
 </RelativeLayout>

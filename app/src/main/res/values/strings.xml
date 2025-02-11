@@ -228,6 +228,7 @@
     <string name="how_to_get_ghToken_guide_step_5">5. Select the scope or permissions you want to grant for this token (OSMTracker just need the repo permission).</string>
     <string name="how_to_get_ghToken_guide_step_6">6. Click the \"Generate token\" button.</string>
     <string name="how_to_get_ghToken_guide_step_7">7. Copy the generated token and paste it in the field \"GitHub token\".</string>
+    <string name="how_to_get_ghToken_guide_note">⚠️ You can save blank to delete your credentials.</string>
     <!-- GitHubUpload -->
     <string name="upload_to_github_description">Commit message:</string>
     <string name="upload_to_github_create_fork">Create\nfork</string>

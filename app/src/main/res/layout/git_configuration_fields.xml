@@ -23,7 +23,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/git_configuration_user_token"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -40,7 +40,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/git_configuration_gide_text"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -64,7 +64,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/git_configuration_user_token_step1"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -81,7 +81,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/git_configuration_user_token_step2"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -98,7 +98,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/git_configuration_user_token_step3"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -115,7 +115,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/git_configuration_user_token_step4"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -132,7 +132,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/git_configuration_user_token_step5"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -149,13 +149,30 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/git_configuration_user_token_step6"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/how_to_get_ghToken_guide_step_7"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/git_configuration_user_token_note"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/git_configuration_user_token_step7"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_get_ghToken_guide_note"
             android:layout_weight="1"
             android:gravity="left"/>
 
