@@ -44,6 +44,7 @@ import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.exception.CreateTrackException;
 import net.osmtracker.gpx.ExportToStorageTask;
 import net.osmtracker.gpx.ExportToTempFileTask;
+import net.osmtracker.gpx.ZipHelper;
 import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
@@ -675,7 +676,9 @@ public class TrackManager extends AppCompatActivity
 		new ExportToTempFileTask(context, trackId){
 			@Override
 			protected void executionCompleted(){
-				shareFile(this.getTmpFile(), context);
+				// Creates a zip file with the trace and its multimedia files
+				File zipFile = ZipHelper.zipCacheFiles(context, trackId, this.getTmpFile());
+				shareFile(zipFile, context);
 			}
 
 			@Override
