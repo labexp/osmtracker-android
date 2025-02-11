@@ -23,11 +23,15 @@ import net.openid.appauth.ResponseTypeValues;
 import net.openid.appauth.TokenResponse;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
+import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.model.Track;
 import net.osmtracker.gpx.ExportToTempFileTask;
+import net.osmtracker.gpx.ZipHelper;
 import net.osmtracker.osm.OpenStreetMapConstants;
 import net.osmtracker.osm.UploadToOpenStreetMapTask;
+
+import java.io.File;
 
 /**
  * <p>Uploads a track on OSM using the API and
@@ -205,8 +209,10 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 		new ExportToTempFileTask(this, trackId) {
 			@Override
 			protected void executionCompleted() {
+				File fileZip = ZipHelper.zipGPXFile(context,trackId, getTmpFile());
+				String filename = getFilename().substring(0, getFilename().length() - 4) + DataHelper.EXTENSION_ZIP;
 				new UploadToOpenStreetMapTask(OpenStreetMapUpload.this, accessToken,
-						trackId, this.getTmpFile(),	this.getFilename(),
+						trackId, fileZip,	filename,
 						etDescription.getText().toString(), etTags.getText().toString(),
 						Track.OSMVisibility.fromPosition(
 								OpenStreetMapUpload.this.spVisibility.getSelectedItemPosition())
