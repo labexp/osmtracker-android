@@ -58,6 +58,17 @@ public class GitHubPullRequest extends Activity {
         btnCreate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (editTextTitle.getText().toString().trim().isEmpty()) {
+                    editTextTitle.setError(getString(R.string.error_field_required));
+                    editTextTitle.requestFocus();
+                    return;
+                }
+                if (editTextBody.getText().toString().trim().isEmpty()) {
+                    editTextBody.setError(getString(R.string.error_field_required));
+                    editTextBody.requestFocus();
+                    return;
+                }
+
                 createPullRequest();
                 finish();
             }

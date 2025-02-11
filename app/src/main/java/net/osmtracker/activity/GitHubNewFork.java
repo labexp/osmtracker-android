@@ -55,9 +55,22 @@ public class GitHubNewFork extends Activity {
         btnCreate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                createNewFork();
-                Toast.makeText(GitHubNewFork.this, R.string.successfully_created, Toast.LENGTH_SHORT).show();
-                finish();
+                String username = editTextRootUsername.getText().toString().trim();
+                String repo = editTextRootRepo.getText().toString().trim();
+                if (username.isEmpty()) {
+                    editTextRootUsername.setError(getString(R.string.error_field_required));
+                    editTextRootUsername.requestFocus();
+                    return;
+                }
+                if (repo.isEmpty()) {
+                    editTextRootRepo.setError(getString(R.string.error_field_required));
+                    editTextRootRepo.requestFocus();
+                    return;
+                }
+
+                createNewFork(username, repo);
+                //Toast.makeText(GitHubNewFork.this, R.string.successfully_created, Toast.LENGTH_SHORT).show();
+                //finish();
 
             }
         });
@@ -76,8 +89,8 @@ public class GitHubNewFork extends Activity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
-    private void createNewFork() {
-        String fullURL = getBaseURL() + "/repos/"+ editTextRootUsername.getText().toString().trim() +"/"+ editTextRootRepo.getText().toString().trim() +"/forks?name=fork";
+    private void createNewFork(String username, String repo) {
+        String fullURL = getBaseURL() + "/repos/"+ username +"/"+ repo +"/forks?name=fork";
 
         JsonObjectRequest  postResquest= new JsonObjectRequest(
                 Request.Method.POST,
@@ -89,6 +102,7 @@ public class GitHubNewFork extends Activity {
                         try {
                             setNewForkFullName(response.getString("full_name"));
                             Toast.makeText(GitHubNewFork.this, R.string.successfully_created, Toast.LENGTH_SHORT).show();
+                            finish();
                         } catch (JSONException e) {
                             Toast.makeText(GitHubNewFork.this, R.string.error_creating, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
@@ -97,7 +111,7 @@ public class GitHubNewFork extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(GitHubNewFork.this, R.string.error_creating, Toast.LENGTH_SHORT).show();
             }
         }){
             @Override

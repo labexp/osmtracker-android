@@ -54,7 +54,9 @@ public class GitHubNewRepo extends Activity {
                 String repoName = editTextNewRepo.getText().toString().trim();
                 boolean isPrivate = ((Switch) findViewById(R.id.git_newrepo_privacy)).isChecked();
                 if (repoName.length() == 0) {
-                    Toast.makeText(GitHubNewRepo.this, R.string.github_no_repository_name, Toast.LENGTH_SHORT).show();
+                    editTextNewRepo.setError(getString(R.string.error_field_required));
+                    editTextNewRepo.requestFocus();
+                    return;
                 }
                 else {
                     createNewRepo(repoName, isPrivate);

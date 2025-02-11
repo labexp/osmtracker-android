@@ -216,6 +216,7 @@
     <string name="item_selected">Item Selected: </string>
     <string name="github_repository_private">Private: </string>
     <string name="github_no_repository_name">You must specify a repository name</string>
+    <string name="error_field_required">You must specify a value for this field</string>
     <!-- GitHubConfig -->
     <string name="github_config_btn">Configure</string>
     <string name="github_token_placeholder">GitHub token:</string>

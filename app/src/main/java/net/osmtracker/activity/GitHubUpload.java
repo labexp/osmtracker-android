@@ -82,6 +82,12 @@ public class GitHubUpload extends Activity {
 
     private void uploadCommit() {
         Bundle bundle = GitHubUpload.this.getIntent().getExtras();
+        String commitMsj = editTextCommitMsj.getText().toString().trim();
+        if (commitMsj.isEmpty()) {
+            editTextCommitMsj.setError(getString(R.string.error_field_required));
+            editTextCommitMsj.requestFocus();
+            return;
+        }
         if (bundle != null){
             String filePath = getIntent().getStringExtra("GPXFilePath");
             if (filePath != null) {
@@ -95,7 +101,7 @@ public class GitHubUpload extends Activity {
                         }
                     }
 
-                    startUploadGitHub(encodedGPX.toString(), file.getName());
+                    startUploadGitHub(encodedGPX.toString(), file.getName(), commitMsj);
                 } catch (IOException e) {
                     Toast.makeText(GitHubUpload.this, R.string.gpx_file_read_error, Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -139,7 +145,7 @@ public class GitHubUpload extends Activity {
     /**
      * Either starts uploading directly if we are authenticated against GitHub
      */
-    private void startUploadGitHub(final String GPXFileInBase64, String filename){
+    private void startUploadGitHub(final String GPXFileInBase64, String filename, String commitMsj){
         String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename.trim().replace(".base64", "");//.replaceAll("\\s", "");
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
@@ -177,7 +183,7 @@ public class GitHubUpload extends Activity {
             public byte[] getBody() {
                 JSONObject jsonBody = new JSONObject();
                 try {
-                    jsonBody.put("message", editTextCommitMsj.getText().toString().trim());
+                    jsonBody.put("message", commitMsj);
                     jsonBody.put("content", GPXFileInBase64);
                 } catch (JSONException e) {
                     e.printStackTrace();
