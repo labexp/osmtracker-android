@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
 	<ListPreference
 		android:title="@string/prefs_voicerec_duration"
 		android:key="voicerec.duration"
 		android:entryValues="@array/prefs_voicerec_durations"
 		android:defaultValue="2"
-		android:entries="@array/prefs_voicerec_durations" />
+		android:entries="@array/prefs_voicerec_durations"/>
 	<CheckBoxPreference
 		android:key="sound_enabled"
 		android:title="@string/prefs_sound_enabled"
@@ -125,7 +129,5 @@
 			android:entries="@array/prefs_ui_orientation_options_keys"
 			android:entryValues="@array/prefs_ui_orientation_options_values" />
 	</PreferenceCategory>
-
-
 
 </PreferenceScreen>
