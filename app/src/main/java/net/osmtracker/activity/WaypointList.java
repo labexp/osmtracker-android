@@ -5,7 +5,9 @@ import net.osmtracker.db.WaypointListAdapter;
 
 import android.app.ListActivity;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 
 /**
  * Activity that lists the previous waypoints tracked by the user.
@@ -16,29 +18,25 @@ import android.widget.CursorAdapter;
 public class WaypointList extends ListActivity {
 
 	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		ListView listView = getListView();
+		listView.setFitsSystemWindows(true);
+		listView.setClipToPadding(false);
+		listView.setPadding(0, 48, 0, 0); // Ajusta el 48dp según necesites
+	}
+
+	@Override
 	protected void onResume() {
 		Long trackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
-		
+
 		Cursor cursor = getContentResolver().query(TrackContentProvider.waypointsUri(trackId),
 				null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " desc");
 		startManagingCursor(cursor);
 		setListAdapter(new WaypointListAdapter(WaypointList.this, cursor));
-		
+
 		super.onResume();
-	}
-
-	@Override
-	protected void onPause() {
-		CursorAdapter adapter = (CursorAdapter) getListAdapter();
-		if (adapter != null) {
-			// Properly close the adapter cursor
-			Cursor cursor = adapter.getCursor();
-			stopManagingCursor(cursor);
-			cursor.close();
-			setListAdapter(null);
-		}
-
-		super.onPause();
 	}
 
 }
