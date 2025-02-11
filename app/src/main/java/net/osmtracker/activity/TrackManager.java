@@ -546,22 +546,13 @@ public class TrackManager extends AppCompatActivity
 
 
 	private void uploadTrackToGitHub(final long trackId, Context context){
-		//final String[] encodeGPXbase64 = new String[1];
-		/*
-		codigo para subir a git
-		 Create temp file that will remain in cache
-		*/
 		new ExportToTempFileTask(context, trackId){
 			@Override
 			protected void executionCompleted(){
-				//File zipFile = ZipHelper.zipCacheFiles(context, trackId, this.getTmpFile());
-				//uploadTrackToGitHubAUX(zipFile, context, trackId);
-				uploadTrackToGitHubAUX(this.getTmpFile(), context);
+				File zipFile = ZipHelper.zipCacheFiles(context, trackId, this.getTmpFile());
+				uploadTrackToGitHubAUX(zipFile, context);
 			}
 		}.execute();
-
-
-
 	}
 
 	private void uploadTrackToGitHubAUX(File tmpGPXFile, Context context) {
@@ -579,7 +570,6 @@ public class TrackManager extends AppCompatActivity
 			DbGitHubUser dbGitHubUser = new DbGitHubUser(context);
 			gitHubUser = dbGitHubUser.getUser();
 		}catch(Exception e){
-			//gitHubUser = new GitHubUser();
 			e.printStackTrace();
 		}
 
