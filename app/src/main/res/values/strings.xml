@@ -213,6 +213,7 @@
     <string name="error_uploading">Error uploading</string>
     <string name="gpx_file_read_error">Error reading the GPX file</string>
     <string name="gpx_file_not_found">GPX file not found</string>
+    <string name="uploading_file">Uploading file: </string>
     <string name="item_selected">Item Selected: </string>
     <string name="github_repository_private">Private: </string>
     <string name="github_no_repository_name">You must specify a repository name</string>
