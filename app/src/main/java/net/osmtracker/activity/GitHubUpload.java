@@ -1,6 +1,7 @@
 package net.osmtracker.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
 import net.osmtracker.db.DbGitHubUser;
+import net.osmtracker.util.DialogUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -145,7 +147,13 @@ public class GitHubUpload extends Activity {
      * Either starts uploading directly if we are authenticated against GitHub
      */
     private void startUploadGitHub(final String fileInBase64, String filename, String commitMsj){
-        String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename.trim().replace(".base64", "");//.replaceAll("\\s", "");
+        filename = filename.substring(0, filename.lastIndexOf("."));
+        String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename;
+
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Subiendo el archivo " + filename + "...");
+        progressDialog.setCancelable(true);
+        progressDialog.show();
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
                 Request.Method.PUT,
@@ -154,12 +162,15 @@ public class GitHubUpload extends Activity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(GitHubUpload.this, R.string.successfully_uploaded, Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        DialogUtils.showSuccessDialog(GitHubUpload.this, R.string.successfully_uploaded);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(GitHubUpload.this, R.string.error_uploading, Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+                DialogUtils.showErrorDialog(GitHubUpload.this,
+                        GitHubUpload.this.getResources().getString(R.string.error_uploading));
             }
         }){
             @Override
