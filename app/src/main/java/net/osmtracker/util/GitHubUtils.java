@@ -72,4 +72,54 @@ public class GitHubUtils {
             }
         }.execute();
     }
+
+    /**
+     * Asynchronously generates a unique filename in a GitHub repository.
+     * If the file already exists, a number is appended before the extension.
+     *
+     * @param repoOwner   The owner of the repository.
+     * @param repoName    The name of the GitHub repository.
+     * @param repoFilePath The initial file path in the repository.
+     * @param token       The GitHub authentication token.
+     * @param callback    Callback to return the generated filename.
+     */
+    public static void getGHFilenameAsync(String repoOwner, String repoName, final String repoFilePath, String token, Callback callback) {
+        String filename = repoFilePath.substring(0, repoFilePath.lastIndexOf("."));
+        String extension = repoFilePath.substring(repoFilePath.lastIndexOf("."));
+        checkFileExists(repoOwner, repoName, filename, extension, 0, token, callback);
+    }
+
+    /**
+     * Recursively checks if a file exists and generates a unique filename.
+     *
+     * @param repoOwner  The owner of the repository.
+     * @param repoName   The GitHub repository name.
+     * @param filename   The base filename (without extension).
+     * @param extension  The file extension.
+     * @param count      The current attempt number for uniqueness.
+     * @param token      The GitHub authentication token.
+     * @param callback   Callback to return the final unique filename.
+     */
+    private static void checkFileExists(String repoOwner, String repoName, String filename, String extension, int count, String token, Callback callback) {
+        String newFilename;// (count == 0) ? filename + extension : filename + "(" + count + ")" + extension;
+        if (count == 0) {
+            newFilename = filename + extension;
+        } else {
+            newFilename = filename + "(" + count + ")" + extension;
+        }
+
+        getFileSHAAsync(repoOwner, repoName, newFilename, token, new Callback() {
+            @Override
+            public String onResult(String sha) {
+                if (sha == null) {
+                    // File does not exist, return the new unique filename
+                    callback.onResult(newFilename);
+                } else {
+                    // File exists, recursively try with the next count
+                    checkFileExists(repoOwner, repoName, filename, extension, count + 1, token, callback);
+                }
+                return null;
+            }
+        });
+    }
 }
