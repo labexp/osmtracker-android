@@ -32,7 +32,9 @@ import com.android.volley.toolbox.Volley;
 import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
 import net.osmtracker.db.DbGitHubUser;
+import net.osmtracker.util.Callback;
 import net.osmtracker.util.DialogUtils;
+import net.osmtracker.util.GitHubUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -106,7 +108,22 @@ public class GitHubUpload extends Activity {
                         }
                     }
 
-                    startUploadGitHub(encondedFile.toString(), file.getName(), commitMsj);
+                    String repoOwner = getRepoName().substring(0, getRepoName().indexOf("/")).replace(".base64", "");
+                    String repoName = getRepoName().substring(getRepoName().indexOf("/") + 1);
+                    String repoFilePath = file.getName().replace(".base64", "");
+                    GitHubUtils.getGHFilenameAsync(repoOwner, repoName, repoFilePath, gitHubUser.getToken(),
+                            new Callback() {
+                                @Override
+                                public String onResult(String result) {
+                                    if (result != null) {
+                                        System.out.println("uploading to GitHub: " + result);
+                                        startUploadGitHub(encondedFile.toString(), result, commitMsj);
+                                    } else {
+                                        System.out.println("Error while getting filename.");
+                                    }
+                                    return result;
+                                }
+                            });
                 } catch (IOException e) {
                     Toast.makeText(GitHubUpload.this, R.string.gpx_file_read_error, Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -151,7 +168,6 @@ public class GitHubUpload extends Activity {
      * Either starts uploading directly if we are authenticated against GitHub
      */
     private void startUploadGitHub(final String fileInBase64, String filename, String commitMsj){
-        filename = filename.substring(0, filename.lastIndexOf("."));
         String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename;
 
         ProgressDialog progressDialog = new ProgressDialog(this);
