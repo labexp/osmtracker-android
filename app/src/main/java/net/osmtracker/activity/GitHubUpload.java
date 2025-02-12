@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -89,19 +88,19 @@ public class GitHubUpload extends Activity {
             return;
         }
         if (bundle != null){
-            String filePath = getIntent().getStringExtra("GPXFilePath");
+            String filePath = getIntent().getStringExtra("filePath");
             if (filePath != null) {
                 try {
                     File file = new File(filePath);
-                    StringBuilder encodedGPX = new StringBuilder();
+                    StringBuilder encondedFile = new StringBuilder();
                     try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                         String line;
                         while ((line = reader.readLine()) != null) {
-                            encodedGPX.append(line);
+                            encondedFile.append(line);
                         }
                     }
 
-                    startUploadGitHub(encodedGPX.toString(), file.getName(), commitMsj);
+                    startUploadGitHub(encondedFile.toString(), file.getName(), commitMsj);
                 } catch (IOException e) {
                     Toast.makeText(GitHubUpload.this, R.string.gpx_file_read_error, Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -145,7 +144,7 @@ public class GitHubUpload extends Activity {
     /**
      * Either starts uploading directly if we are authenticated against GitHub
      */
-    private void startUploadGitHub(final String GPXFileInBase64, String filename, String commitMsj){
+    private void startUploadGitHub(final String fileInBase64, String filename, String commitMsj){
         String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename.trim().replace(".base64", "");//.replaceAll("\\s", "");
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
@@ -184,7 +183,7 @@ public class GitHubUpload extends Activity {
                 JSONObject jsonBody = new JSONObject();
                 try {
                     jsonBody.put("message", commitMsj);
-                    jsonBody.put("content", GPXFileInBase64);
+                    jsonBody.put("content", fileInBase64);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

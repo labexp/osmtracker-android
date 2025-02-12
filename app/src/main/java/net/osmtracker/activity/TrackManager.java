@@ -579,7 +579,7 @@ public class TrackManager extends AppCompatActivity
 		}
 		else {
 			Intent i = new Intent(context, GitHubUpload.class);
-			i.putExtra("GPXFilePath", internalFile.getAbsolutePath());
+			i.putExtra("filePath", internalFile.getAbsolutePath());
 			i.putExtra("filename", internalFile.getName());
 			i.setPackage(getPackageName());
 			startActivity(i);
