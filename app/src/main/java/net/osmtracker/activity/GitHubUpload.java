@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -56,6 +57,9 @@ public class GitHubUpload extends Activity {
     GitHubUser gitHubUser;
     private String  RepoName = "";
     EditText editTextCommitMsj;
+    private static int TIME_OUT_MINS = 15;
+    private static int MAX_RETRIES = 3;
+    private static float BACKOFF_MULT = 1.5f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,7 +171,7 @@ public class GitHubUpload extends Activity {
         String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename;
 
         ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage(R.string.uploading_file + filename);
+        progressDialog.setMessage(this.getResources().getString(R.string.uploading_file) + filename);
         progressDialog.setCancelable(true);
         progressDialog.show();
 
@@ -223,6 +227,12 @@ public class GitHubUpload extends Activity {
                 }
             }
         };
+
+        postResquest.setRetryPolicy(new DefaultRetryPolicy(
+                TIME_OUT_MINS * 60 * 100, // 60: seconds in a min, 100: ms in a second
+                MAX_RETRIES,
+                BACKOFF_MULT
+        ));
         Volley.newRequestQueue(this).add(postResquest);
         //finish();
     }
