@@ -5,6 +5,7 @@
   <!--Zoom in/out in map view-->
   <string name="acc.zoom_in">放大</string>
   <string name="acc.zoom_out">縮小</string>
+  <string name="acc.zoom_center">縮放中心</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">訊號強度</string>
   <string name="acc.record_indicator">正在記錄</string>
