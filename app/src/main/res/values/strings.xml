@@ -211,6 +211,7 @@
     <string name="repository_information_error">Error with repository information</string>
     <string name="successfully_uploaded">Successfully uploaded</string>"
     <string name="error_uploading">Error uploading</string>
+    <string name="uploading_file">Uploading file: </string>
     <string name="gpx_file_read_error">Error reading the GPX file</string>
     <string name="gpx_file_not_found">GPX file not found</string>
     <string name="item_selected">Item Selected: </string>

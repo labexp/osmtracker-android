@@ -167,7 +167,7 @@ public class GitHubUpload extends Activity {
         String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename;
 
         ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Subiendo el archivo " + filename + "...");
+        progressDialog.setMessage(R.string.uploading_file + filename);
         progressDialog.setCancelable(true);
         progressDialog.show();
 
