@@ -38,4 +38,18 @@ public class WaypointList extends ListActivity {
 		super.onResume();
 	}
 
+	@Override
+	protected void onPause() {
+		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		if (adapter != null) {
+			// Properly close the adapter cursor
+			Cursor cursor = adapter.getCursor();
+			stopManagingCursor(cursor);
+			cursor.close();
+			setListAdapter(null);
+		}
+
+		super.onPause();
+	}
+
 }
