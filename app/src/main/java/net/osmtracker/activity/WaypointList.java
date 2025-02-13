@@ -20,11 +20,10 @@ public class WaypointList extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		ListView listView = getListView();
 		listView.setFitsSystemWindows(true);
 		listView.setClipToPadding(false);
-		listView.setPadding(0, 48, 0, 0); // Ajusta el 48dp según necesites
+		listView.setPadding(0, 48, 0, 0);
 	}
 
 	@Override
