@@ -37,8 +37,8 @@
   <string name="trackmgr_contextmenu_stop">停止記錄</string>
   <string name="trackmgr_contextmenu_resume">繼續記錄</string>
   <string name="trackmgr_contextmenu_delete">刪除</string>
-  <string name="trackmgr_contextmenu_export">匯出 GPX 檔</string>
-  <string name="trackmgr_contextmenu_share">分享 GPX 檔案</string>
+  <string name="trackmgr_contextmenu_export">匯出</string>
+  <string name="trackmgr_contextmenu_share">分享</string>
   <string name="trackmgr_contextmenu_osm_upload">上傳至 OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">顯示</string>
   <string name="trackmgr_contextmenu_details">詳細資訊</string>
