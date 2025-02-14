@@ -3,8 +3,10 @@ package net.osmtracker.activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.database.Cursor;
+
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,14 +40,23 @@ public class WaypointList extends ListActivity {
 	private static final Logger log = LoggerFactory.getLogger(WaypointList.class);
 
 	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		ListView listView = getListView();
+		listView.setFitsSystemWindows(true);
+		listView.setClipToPadding(false);
+		listView.setPadding(0, 48, 0, 0);
+	}
+
+	@Override
 	protected void onResume() {
 		Long trackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
-		
+
 		Cursor cursor = getContentResolver().query(TrackContentProvider.waypointsUri(trackId),
 				null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " desc");
 		startManagingCursor(cursor);
 		setListAdapter(new WaypointListAdapter(WaypointList.this, cursor));
-		
+
 		super.onResume();
 	}
 
