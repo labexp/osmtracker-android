@@ -151,8 +151,12 @@ public class GPSLogger extends Service implements LocationListener {
 					Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
 					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
-					final String filePath = link.equals("null")? null : DataHelper.getTrackDirectory(trackId, context) + "/" + link;
-                    dataHelper.deleteWayPoint(uuid, filePath);
+					String filePath = null;
+					try {
+						filePath = link.equals("null") ? null : DataHelper.getTrackDirectory(trackId, context) + "/" + link;
+					}
+					catch(NullPointerException ne){}
+					dataHelper.deleteWayPoint(uuid, filePath);
 				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction())) {
 				Bundle extras = intent.getExtras();

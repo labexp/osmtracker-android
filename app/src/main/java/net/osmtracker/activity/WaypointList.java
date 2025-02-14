@@ -2,10 +2,11 @@ package net.osmtracker.activity;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
-
-import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,8 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
+
+import androidx.core.content.FileProvider;
 
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
@@ -51,12 +53,12 @@ public class WaypointList extends ListActivity {
 	@Override
 	protected void onResume() {
 		Long trackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
-
+		
 		Cursor cursor = getContentResolver().query(TrackContentProvider.waypointsUri(trackId),
 				null, null, null, TrackContentProvider.Schema.COL_TIMESTAMP + " desc");
 		startManagingCursor(cursor);
 		setListAdapter(new WaypointListAdapter(WaypointList.this, cursor));
-
+		
 		super.onResume();
 	}
 
@@ -92,9 +94,8 @@ public class WaypointList extends ListActivity {
 		// Inflate the waypoint edit dialog layout
 		final View editWaypointDialog = inflater.inflate(R.layout.edit_waypoint_dialog, null);
 		final EditText editWaypointName = editWaypointDialog.findViewById(R.id.edit_waypoint_et_name);
-		final ImageView waypointPreviewImage = editWaypointDialog.findViewById(R.id.waypoint_preview_image);
-		final Button waypointPlayAudio = editWaypointDialog.findViewById(R.id.waypoint_play_audio);
 
+		Button buttonPreview = editWaypointDialog.findViewById(R.id.edit_waypoint_button_preview);
 		Button buttonUpdate = editWaypointDialog.findViewById(R.id.edit_waypoint_button_update);
 		Button buttonDelete = editWaypointDialog.findViewById(R.id.edit_waypoint_button_delete);
 		Button buttonCancel = editWaypointDialog.findViewById(R.id.edit_waypoint_button_cancel);
@@ -115,12 +116,8 @@ public class WaypointList extends ListActivity {
 
 		if (file != null && file.exists()) {
 			try {
-				if (isImageFile(filePath)) {
-					waypointPreviewImage.setVisibility(View.VISIBLE);
-					waypointPreviewImage.setImageURI(Uri.fromFile(file));
-				} else if (isAudioFile(filePath)) {
-					waypointPlayAudio.setVisibility(View.VISIBLE);
-					waypointPlayAudio.setOnClickListener(v1 -> playAudio(filePath));
+				if (isImageFile(filePath) || isAudioFile(filePath)) {
+					buttonPreview.setVisibility(View.VISIBLE);
 				}
 			} catch (Exception e) {
 				Log.e(TAG, "Error handling file: " + filePath, e);
@@ -131,6 +128,33 @@ public class WaypointList extends ListActivity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setCancelable(true);
 		AlertDialog alert = builder.create();
+
+		// Preview button
+		buttonPreview.setOnClickListener(new EditWaypointDialogOnClickListener(alert, null) {
+			@Override
+			public void onClick(View view) {
+				if (filePath != null) {
+					File file = new File(filePath);
+					Uri fileUri = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ?
+							FileProvider.getUriForFile(getApplicationContext(), "net.osmtracker.fileprovider", file) :
+							Uri.fromFile(file);
+
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+					if (isImageFile(filePath)) {
+						intent.setDataAndType(fileUri, "image/*");
+					} else if (isAudioFile(filePath)) {
+						intent.setDataAndType(fileUri, "audio/*");
+					}
+
+					if (intent.resolveActivity(getPackageManager()) != null) {
+						startActivity(intent);
+					}
+				}
+				alert.dismiss();
+			}
+		});
 
 		// Update waypoint name
 		buttonUpdate.setOnClickListener(new EditWaypointDialogOnClickListener(alert, null) {
@@ -146,11 +170,29 @@ public class WaypointList extends ListActivity {
 		buttonDelete.setOnClickListener(new EditWaypointDialogOnClickListener(alert, cursor) {
 			@Override
 			public void onClick(View view) {
-				dataHelper.deleteWayPoint(uuid, filePath);
-				cursor.requery();
-				alert.dismiss();
+				new AlertDialog.Builder(WaypointList.this)
+						.setTitle(getString(R.string.delete_waypoint_confirm_dialog_title))
+						.setMessage(getString(R.string.delete_waypoint_confirm_dialog_msg))
+						.setPositiveButton(getString(R.string.delete_waypoint_confirm_bt_ok), new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								dataHelper.deleteWayPoint(uuid, filePath);
+								cursor.requery();
+								alert.dismiss();
+								dialog.dismiss();
+							}
+						})
+						.setNegativeButton(getString(R.string.delete_waypoint_confirm_bt_cancel), new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.dismiss();
+							}
+						})
+						.show();
 			}
 		});
+
+
 
 		// Cancel button
 		buttonCancel.setOnClickListener(new EditWaypointDialogOnClickListener(alert, null) {
@@ -185,24 +227,7 @@ public class WaypointList extends ListActivity {
 	 * @return True if the file is an audio file, false otherwise.
 	 */
 	private boolean isAudioFile(String path) {
-		return path.endsWith(".3gpp") || path.endsWith(".mp3") || path.endsWith(".wav") || path.endsWith(".ogg");
+		return path.endsWith(".3gpp") || path.endsWith(".mp3") || path.endsWith(".m4a") || path.endsWith(".wav") || path.endsWith(".ogg");
 	}
-
-	/**
-	 * Plays an audio file using MediaPlayer.
-	 *
-	 * @param filePath The path of the audio file.
-	 */
-	private void playAudio(String filePath) {
-		MediaPlayer mediaPlayer = new MediaPlayer();
-		try {
-			mediaPlayer.setDataSource(filePath);
-			mediaPlayer.prepare();
-			mediaPlayer.start();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 
 }

@@ -46,15 +46,15 @@ public class WaypointListAdapter extends CursorAdapter {
 
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
-		TableLayout rl = (TableLayout) view;
-		bind(cursor, rl, context);
+		TableLayout tl = (TableLayout) view;
+		bind(cursor, tl, context);
 	}
 
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup vg) {
-		TableLayout rl = (TableLayout) LayoutInflater.from(vg.getContext()).inflate(R.layout.waypointlist_item,
+		TableLayout tl = (TableLayout) LayoutInflater.from(vg.getContext()).inflate(R.layout.waypointlist_item,
 				vg, false);
-		return bind(cursor, rl, context);
+		return bind(cursor, tl, context);
 	}
 
 	/**
@@ -62,16 +62,16 @@ public class WaypointListAdapter extends CursorAdapter {
 	 * 
 	 * @param cursor
 	 *				Cursor to pull data
-	 * @param rl
+	 * @param tl
 	 *				RelativeView representing one item
 	 * @param context
 	 *				Context, to get resources
 	 * @return The relative view with data bound.
 	 */
-	private View bind(Cursor cursor, TableLayout rl, Context context) {
-		TextView vName = (TextView) rl.findViewById(R.id.wplist_item_name);
-		TextView vLocation = (TextView) rl.findViewById(R.id.wplist_item_location);
-		TextView vTimestamp = (TextView) rl.findViewById(R.id.wplist_item_timestamp);
+	private View bind(Cursor cursor, TableLayout tl, Context context) {
+		TextView vName = (TextView) tl.findViewById(R.id.wplist_item_name);
+		TextView vLocation = (TextView) tl.findViewById(R.id.wplist_item_location);
+		TextView vTimestamp = (TextView) tl.findViewById(R.id.wplist_item_timestamp);
 
 		// Bind name
 		String name = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
@@ -104,7 +104,7 @@ public class WaypointListAdapter extends CursorAdapter {
 		// Bind timestamp
 		Date ts = new Date(cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_TIMESTAMP)));
 		vTimestamp.setText(DATE_FORMATTER.format(ts));
-		return rl;
+		return tl;
 	}
 
 }

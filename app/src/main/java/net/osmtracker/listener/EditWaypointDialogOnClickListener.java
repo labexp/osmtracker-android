@@ -1,23 +1,24 @@
 package net.osmtracker.listener;
 
 import android.app.AlertDialog;
-import android.app.ListActivity;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.view.View;
 
-import java.util.List;
-
+/**
+ * Class that implements an OnClickListener to display an edit waypoint dialog.
+ */
 public class EditWaypointDialogOnClickListener implements View.OnClickListener {
+
 	private Cursor cursor;
+
 	protected AlertDialog alert;
 
 	protected EditWaypointDialogOnClickListener(AlertDialog alert, Cursor cu) {
-		this.cursor = cu;
-		this.alert = alert;
+		this.cursor = cu;   // Assigns the received cursor to the class attribute
+		this.alert = alert; // Assigns the received alert to the class attribute
 	}
 
-	// public void onClick(DialogInterface dialog, int which){};
-	public void onClick(View view){}
-
+	@Override
+	public void onClick(View view) {
+	}
 }
