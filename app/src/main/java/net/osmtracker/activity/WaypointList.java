@@ -127,7 +127,7 @@ public class WaypointList extends ListActivity {
 				if (filePath != null) {
 					File file = new File(filePath);
 					Uri fileUri = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ?
-							FileProvider.getUriForFile(getApplicationContext(), TrackContentProvider.Schema.FILE_PROVIDER_AUTHORITY, file) :
+							FileProvider.getUriForFile(getApplicationContext(), DataHelper.FILE_PROVIDER_AUTHORITY, file) :
 							Uri.fromFile(file);
 
 					Intent intent = new Intent(Intent.ACTION_VIEW);

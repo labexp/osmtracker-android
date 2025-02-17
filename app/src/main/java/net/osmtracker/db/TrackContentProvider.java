@@ -472,7 +472,6 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String TBL_WAYPOINT = "waypoint";
 		public static final String TBL_TRACK = "track";
 		public static final String MIME_TYPE_IMAGE = "image/*";
-		public static final String FILE_PROVIDER_AUTHORITY = "net.osmtracker.fileprovider";
 		public static final String MIME_TYPE_AUDIO = "audio/*";
 		
 		public static final String COL_ID = "_id";
