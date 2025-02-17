@@ -134,9 +134,9 @@ public class WaypointList extends ListActivity {
 					intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
 					if (isImageFile(filePath)) {
-						intent.setDataAndType(fileUri, TrackContentProvider.Schema.MIME_TYPE_IMAGE);
+						intent.setDataAndType(fileUri, DataHelper.MIME_TYPE_IMAGE);
 					} else if (isAudioFile(filePath)) {
-						intent.setDataAndType(fileUri, TrackContentProvider.Schema.MIME_TYPE_AUDIO);
+						intent.setDataAndType(fileUri, DataHelper.MIME_TYPE_AUDIO);
 					}
 
 					if (intent.resolveActivity(getPackageManager()) != null) {

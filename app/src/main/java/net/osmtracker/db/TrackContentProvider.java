@@ -471,9 +471,6 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String TBL_TRACKPOINT = "trackpoint";
 		public static final String TBL_WAYPOINT = "waypoint";
 		public static final String TBL_TRACK = "track";
-		public static final String MIME_TYPE_IMAGE = "image/*";
-		public static final String MIME_TYPE_AUDIO = "audio/*";
-		
 		public static final String COL_ID = "_id";
 		public static final String COL_TRACK_ID = "track_id";
 		public static final String COL_UUID = "uuid";

@@ -59,6 +59,16 @@ public class DataHelper {
 	public static final String MIME_TYPE_GPX = "application/gpx+xml";
 
 	/**
+	 * Audio Files MIME
+	 */
+	public static final String MIME_TYPE_AUDIO = "audio/*";
+
+	/**
+	 * Image Files MIME
+	 */
+	public static final String MIME_TYPE_IMAGE = "image/*";
+
+	/**
 	 * APP sign plus FileProvider = authority
 	 */
 	public static final String FILE_PROVIDER_AUTHORITY = "net.osmtracker.fileprovider";
