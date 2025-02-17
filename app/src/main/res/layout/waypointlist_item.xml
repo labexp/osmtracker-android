@@ -1,35 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout 
-	xmlns:android="http://schemas.android.com/apk/res/android" 
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:stretchColumns="*">
 
-	<TextView android:layout_height="wrap_content"
-		android:id="@+id/wplist_item_name" 
-		android:text="{name}"
-		android:layout_width="wrap_content" 
-		style="@android:style/TextAppearance.Large">
-	</TextView>
-	<TextView 
-		android:layout_height="wrap_content" 
-		android:layout_width="wrap_content" 
-		android:text="{timestamp}" 
-		android:id="@+id/wplist_item_timestamp" 
-		android:layout_below="@+id/wplist_item_location" 
-		android:layout_alignBaseline="@+id/wplist_item_name" 
-		android:layout_alignParentRight="true" 
-		android:layout_alignRight="@+id/wplist_item_name" 
-		android:layout_marginRight="10dp">
-	</TextView>
-	<TextView 
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:id="@+id/wplist_item_location"
-		android:text="{location}" 
-		android:layout_below="@+id/wplist_item_name" 
-		android:layout_alignParentRight="true" 
-		android:layout_marginRight="10dp">
-	</TextView>
+	<TableRow
+		android:paddingStart="5dp"
+		android:paddingEnd="5dp"
+		android:layout_marginStart="5dp"
+		android:layout_marginEnd="5dp">
 
-</RelativeLayout>
+		<TextView
+			android:id="@+id/wplist_item_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="4"
+			android:text="{name}"
+			android:textColor="@android:color/holo_green_light"
+			android:textAppearance="?android:attr/textAppearanceLarge" />
+
+		<TextView
+			android:id="@+id/wplist_item_timestamp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="{timestamp}"
+			android:gravity="end" />
+	</TableRow>
+
+	<TableRow
+		android:paddingStart="5dp"
+		android:paddingEnd="5dp"
+		android:layout_marginStart="5dp"
+		android:layout_marginEnd="5dp">
+
+		<TextView
+			android:id="@+id/wplist_item_location"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:text="{location}"
+			android:layout_span="2"
+			android:gravity="start" />
+	</TableRow>
+
+</TableLayout>

@@ -57,6 +57,7 @@ import net.osmtracker.view.VoiceRecDialog;
 import java.io.File;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.UUID;
 
 
 /**
@@ -609,6 +610,7 @@ public class TrackLogger extends Activity {
 			if (resultCode == RESULT_OK) {
 				if (currentPhotoFile != null && currentPhotoFile.exists()) {
 					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+					intent.putExtra(OSMTracker.INTENT_KEY_UUID, UUID.randomUUID().toString());
 					intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
 					intent.putExtra(OSMTracker.INTENT_KEY_LINK, currentPhotoFile.getName());
@@ -632,6 +634,7 @@ public class TrackLogger extends Activity {
 
 					// Send an intent to inform service to track the waypoint.
 					Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+					intent.putExtra(OSMTracker.INTENT_KEY_UUID, UUID.randomUUID().toString());
 					intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 					intent.putExtra(OSMTracker.INTENT_KEY_NAME, getResources().getString(R.string.wpt_stillimage));
 					intent.putExtra(OSMTracker.INTENT_KEY_LINK, destFile.getName());

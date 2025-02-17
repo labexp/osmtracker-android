@@ -1,0 +1,78 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+                <Button
+                    android:id="@+id/edit_waypoint_button_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_waypoint_bt_preview"
+                    android:visibility="gone"/>
+
+
+                <!-- Waypoint Name Label -->
+                <TextView
+                    android:id="@+id/edit_waypoint_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/waypoint_name_label" />
+
+                <!-- EditText -->
+                <EditText
+                    android:id="@+id/edit_waypoint_et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:background="@android:drawable/editbox_background"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp"
+                    android:maxWidth="600dp" />
+
+                <!-- Buttons Row -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp">
+
+                        <Button
+                            android:id="@+id/edit_waypoint_button_update"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:text="@string/edit_waypoint_bt_save" />
+
+                        <Button
+                            android:id="@+id/edit_waypoint_button_delete"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/edit_waypoint_bt_delete" />
+                </LinearLayout>
+
+
+                <!-- Cancel Button -->
+                <Button
+                    android:id="@+id/edit_waypoint_button_cancel"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/edit_waypoint_bt_cancel"
+                    android:gravity="center" />
+
+        </LinearLayout>
+</ScrollView>

@@ -84,6 +84,17 @@
   <string name="gpsstatus_record_voicerec">Grabar voz</string>
   <string name="gpsstatus_record_stillimage">Tomar foto</string>
   <string name="gpsstatus_record_textnote">Nota de texto</string>
+  <!-- edit_waypoint_dialog -->
+  <string name="waypoint_name_label">Nombre/contenido del punto</string>
+  <string name="waypoint_name_hint">Nombre del punto</string>
+  <string name="edit_waypoint_bt_preview">Abrir archivo</string>
+  <string name="edit_waypoint_bt_save">Guardar</string>
+  <string name="edit_waypoint_bt_delete">Eliminar</string>
+  <string name="edit_waypoint_bt_cancel">Cancelar</string>
+  <string name="delete_waypoint_confirm_dialog_title">Eliminar punto</string>
+  <string name="delete_waypoint_confirm_dialog_msg">¿Eliminar este punto?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Eliminar</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Cancelar</string>
   <!--Menu-->
   <string name="menu_settings">Configuración</string>
   <string name="menu_waypointlist">Puntos</string>
