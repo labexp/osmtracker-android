@@ -15,20 +15,14 @@ import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-
 import androidx.core.content.FileProvider;
-
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.WaypointListAdapter;
 import net.osmtracker.listener.EditWaypointDialogOnClickListener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
-import java.util.Arrays;
 
 /**
  * Activity that lists the previous waypoints tracked by the user.
@@ -38,8 +32,7 @@ import java.util.Arrays;
  */
 public class WaypointList extends ListActivity {
 
-	private static final String TAG = "Waypoint List" ;
-	private static final Logger log = LoggerFactory.getLogger(WaypointList.class);
+	private static final String TAG = WaypointList.class.getSimpleName();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +103,6 @@ public class WaypointList extends ListActivity {
 		final String uuid = cursor.getString(cursor.getColumnIndex("uuid"));
 		final String link = cursor.getString(cursor.getColumnIndex("link"));
 
-		Log.d(TAG, "***********************\n" + link);
 		final String filePath = (link != null) ? DataHelper.getTrackDirectory(trackId, l.getContext()) + "/" + link : null;
 		File file = (filePath != null) ? new File(filePath) : null;
 
@@ -215,9 +207,7 @@ public class WaypointList extends ListActivity {
 	 * @return True if the file is an image, false otherwise.
 	 */
 	private boolean isImageFile(String path) {
-		String[] imageExtensions = {"jpg", "jpeg", "png", "gif", "bmp", "webp"};
-		String ext = path.substring(path.lastIndexOf(".") + 1).toLowerCase();
-		return Arrays.asList(imageExtensions).contains(ext);
+		return path.endsWith(DataHelper.EXTENSION_JPG);
 	}
 
 	/**
@@ -227,7 +217,7 @@ public class WaypointList extends ListActivity {
 	 * @return True if the file is an audio file, false otherwise.
 	 */
 	private boolean isAudioFile(String path) {
-		return path.endsWith(".3gpp") || path.endsWith(".mp3") || path.endsWith(".m4a") || path.endsWith(".wav") || path.endsWith(".ogg");
+		return path.endsWith(DataHelper.EXTENSION_3GPP);
 	}
 
 }

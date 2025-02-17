@@ -95,15 +95,14 @@
     <!-- edit_waypoint_dialog -->
     <string name="waypoint_name_label">Waypoint Name/text</string>
     <string name="waypoint_name_hint">Enter waypoint name</string>
-    <string name="edit_waypoint_bt_preview">Preview</string>
-    <string name="edit_waypoint_bt_update">Update</string>
+    <string name="edit_waypoint_bt_preview">Open file</string>
+    <string name="edit_waypoint_bt_save">Save</string>
     <string name="edit_waypoint_bt_delete">Delete</string>
     <string name="edit_waypoint_bt_cancel">Cancel</string>
     <string name="delete_waypoint_confirm_dialog_title">Delete waypoint</string>
     <string name="delete_waypoint_confirm_dialog_msg">Delete this waypoint?</string>
     <string name="delete_waypoint_confirm_bt_ok">Delete</string>
     <string name="delete_waypoint_confirm_bt_cancel">Cancel</string>
-
 
     <!-- Menu -->
     <string name="menu_settings">Settings</string>

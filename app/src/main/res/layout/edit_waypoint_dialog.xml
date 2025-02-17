@@ -8,7 +8,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/colorBackground"
             android:gravity="center">
 
                 <Button
@@ -37,32 +36,34 @@
                     android:background="@android:drawable/editbox_background"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="16sp"
-                    android:layout_marginBottom="16dp"
                     android:maxWidth="600dp" />
 
                 <!-- Buttons Row -->
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="8dp">
 
                         <Button
                             android:id="@+id/edit_waypoint_button_update"
                             style="?android:attr/borderlessButtonStyle"
-                            android:layout_width="160dp"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
-                            android:text="@string/edit_waypoint_bt_update" />
+                            android:layout_weight="1"
+                            android:text="@string/edit_waypoint_bt_save" />
 
                         <Button
                             android:id="@+id/edit_waypoint_button_delete"
                             style="?android:attr/borderlessButtonStyle"
-                            android:layout_width="160dp"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="@string/edit_waypoint_bt_delete" />
                 </LinearLayout>
+
 
                 <!-- Cancel Button -->
                 <Button
