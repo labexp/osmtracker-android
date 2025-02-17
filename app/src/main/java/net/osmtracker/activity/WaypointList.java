@@ -94,14 +94,14 @@ public class WaypointList extends ListActivity {
 		Button buttonCancel = editWaypointDialog.findViewById(R.id.edit_waypoint_button_cancel);
 
 		// Retrieve existing waypoint name
-		String oldName = cursor.getString(cursor.getColumnIndex("name"));
+		String oldName = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
 		editWaypointName.setText(oldName);
 		editWaypointName.setSelection(oldName.length());
 
 		// Retrieve waypoint details
-		final long trackId = cursor.getLong(cursor.getColumnIndex("track_id"));
-		final String uuid = cursor.getString(cursor.getColumnIndex("uuid"));
-		final String link = cursor.getString(cursor.getColumnIndex("link"));
+		final long trackId = cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_TRACK_ID));
+		final String uuid = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_UUID));
+		final String link = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_LINK));
 
 		final String filePath = (link != null) ? DataHelper.getTrackDirectory(trackId, l.getContext()) + "/" + link : null;
 		File file = (filePath != null) ? new File(filePath) : null;
@@ -116,7 +116,6 @@ public class WaypointList extends ListActivity {
 			}
 		}
 
-
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setCancelable(true);
 		AlertDialog alert = builder.create();
@@ -128,16 +127,16 @@ public class WaypointList extends ListActivity {
 				if (filePath != null) {
 					File file = new File(filePath);
 					Uri fileUri = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ?
-							FileProvider.getUriForFile(getApplicationContext(), "net.osmtracker.fileprovider", file) :
+							FileProvider.getUriForFile(getApplicationContext(), TrackContentProvider.Schema.FILE_PROVIDER_AUTHORITY, file) :
 							Uri.fromFile(file);
 
 					Intent intent = new Intent(Intent.ACTION_VIEW);
 					intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
 					if (isImageFile(filePath)) {
-						intent.setDataAndType(fileUri, "image/*");
+						intent.setDataAndType(fileUri, TrackContentProvider.Schema.MIME_TYPE_IMAGE);
 					} else if (isAudioFile(filePath)) {
-						intent.setDataAndType(fileUri, "audio/*");
+						intent.setDataAndType(fileUri, TrackContentProvider.Schema.MIME_TYPE_AUDIO);
 					}
 
 					if (intent.resolveActivity(getPackageManager()) != null) {
@@ -183,8 +182,6 @@ public class WaypointList extends ListActivity {
 						.show();
 			}
 		});
-
-
 
 		// Cancel button
 		buttonCancel.setOnClickListener(new EditWaypointDialogOnClickListener(alert, null) {
