@@ -37,8 +37,8 @@
   <string name="trackmgr_contextmenu_stop">Zastavit trasování</string>
   <string name="trackmgr_contextmenu_resume">Obnovit trasování</string>
   <string name="trackmgr_contextmenu_delete">Smazat</string>
-  <string name="trackmgr_contextmenu_export">Exportovat jako GPX</string>
-  <string name="trackmgr_contextmenu_share">Sdílet GPX</string>
+  <string name="trackmgr_contextmenu_export">Export</string>
+  <string name="trackmgr_contextmenu_share">Sdílet</string>
   <string name="trackmgr_contextmenu_osm_upload">Nahrát na OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Zobrazit</string>
   <string name="trackmgr_contextmenu_details">Podrobnosti</string>
@@ -62,6 +62,7 @@
   <string name="trackdetail_export_notyet">(ještě není exportováno)</string>
   <string name="trackdetail_osm_upload_notyet">(ještě není nahráno)</string>
   <string name="trackdetail_export_display">Zobrazit</string>
+  <string name="trackdetail_name">Název</string>
   <string name="trackdetail_description">Popis</string>
   <string name="trackdetail_tags">Značky (oddělené čárkou)</string>
   <string name="trackdetail_description_mandatory">Je třeba vložit popis</string>
@@ -106,6 +107,14 @@
   <string name="error_externalstorage_not_writable_hint">Zkontrolujte, prosím, jestli je externí úložiště správně vloženo a připojeno.</string>
   <string name="error_voicerec_failed">Záznam hlasu selhal</string>
   <string name="error_userlayout_parsing">Došlo k chybě během zpracování XML souboru pro rozvržení. Přejděte, prosím, k výchozímu rozvržení.</string>
+  <!--messages-->
+  <string name="permission_required">Vyžadováno povolení</string>
+  <string name="storage_permission_for_export_GPX">Pro export stopy GPX je třeba zapsat do úložiště.</string>
+  <string name="storage_permission_for_display_track">Pro správné zobrazení stopy potřebujeme přístup k úložišti.</string>
+  <string name="storage_permission_for_share_track">Pro správné sdílení stopy potřebujeme přístup k úložišti.</string>
+  <string name="storage_permission_for_upload_to_OSM">Pro nahrání stopy do OSM potřebujeme přístup k úložišti.</string>
+  <string name="acccept">Přijmout</string>
+  <string name="gps_perms_required">Nelze pokračovat bez povolení GPS</string>
   <!--GPX-->
   <string name="gpx_track_name">Trasováno pomocí OSMTracker pro Android™</string>
   <string name="gpx_hdop_approximation_cmt">Upozornění: hodnoty HDOP nejsou hodnotami HDOP vrácenými zařízením GPS. Hodnoty jsou aproximovány z přesnosti lokace v metrech.</string>

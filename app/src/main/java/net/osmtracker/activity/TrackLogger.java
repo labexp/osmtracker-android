@@ -781,7 +781,7 @@ public class TrackLogger extends Activity {
 	 */
 	private void startGallery() {
         Intent galleryIntent = new Intent();
-        galleryIntent.setType("image/*");
+        galleryIntent.setType(DataHelper.MIME_TYPE_IMAGE);
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
 		startActivityForResult(galleryIntent, REQCODE_GALLERY_CHOSEN);
 	}

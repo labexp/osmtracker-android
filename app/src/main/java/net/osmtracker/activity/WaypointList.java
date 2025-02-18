@@ -127,16 +127,16 @@ public class WaypointList extends ListActivity {
 				if (filePath != null) {
 					File file = new File(filePath);
 					Uri fileUri = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ?
-							FileProvider.getUriForFile(getApplicationContext(), TrackContentProvider.Schema.FILE_PROVIDER_AUTHORITY, file) :
+							FileProvider.getUriForFile(getApplicationContext(), DataHelper.FILE_PROVIDER_AUTHORITY, file) :
 							Uri.fromFile(file);
 
 					Intent intent = new Intent(Intent.ACTION_VIEW);
 					intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
 					if (isImageFile(filePath)) {
-						intent.setDataAndType(fileUri, TrackContentProvider.Schema.MIME_TYPE_IMAGE);
+						intent.setDataAndType(fileUri, DataHelper.MIME_TYPE_IMAGE);
 					} else if (isAudioFile(filePath)) {
-						intent.setDataAndType(fileUri, TrackContentProvider.Schema.MIME_TYPE_AUDIO);
+						intent.setDataAndType(fileUri, DataHelper.MIME_TYPE_AUDIO);
 					}
 
 					if (intent.resolveActivity(getPackageManager()) != null) {
