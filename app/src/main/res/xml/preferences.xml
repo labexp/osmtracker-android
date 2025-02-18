@@ -64,7 +64,7 @@
 		<ListPreference android:key="gpx.filename" android:defaultValue="name_date" android:summary="@string/prefs_output_filename_summary"
 			android:title="@string/prefs_output_filename" android:entryValues="@array/prefs_output_filename_values"
 			android:entries="@array/prefs_output_filename_keys" />
-		<EditTextPreference android:key="gpx.filename.label" android:defaultValue="" android:summary="@string/prefs_output_filename_labe l_summary"
+		<EditTextPreference android:key="gpx.filename.label" android:defaultValue="" android:summary="@string/prefs_output_filename_label_summary"
 			android:title="@string/prefs_output_filename_label"/>
 		<ListPreference
 			android:key="gpx.accuracy"
@@ -114,13 +114,6 @@
 			android:title="@string/prefs_displaytrack_osm"
 			android:summary="@string/prefs_displaytrack_osm_summary"
 			android:defaultValue="false" />
-		<!--<ListPreference
-			android:entries="@array/prefs_map_tile_keys"
-			android:title="@string/prefs_map_tile"
-			android:entryValues="@array/prefs_map_tile_values"
-			android:key="ui.map.tile"
-			android:summary="@string/prefs_map_tile_summary"
-			android:defaultValue="MAPNIK" />-->
 		<ListPreference
 			android:defaultValue="none"
 			android:key="ui.orientation"
