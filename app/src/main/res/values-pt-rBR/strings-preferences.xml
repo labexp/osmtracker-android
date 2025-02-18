@@ -61,6 +61,7 @@
   <string name="prefs_output_one_dir_per_track_summary">Salvar cada trilha e arquivos associados em uma pasta própria</string>
   <string name="prefs_output_filename">Nome do arquivo para trilhas nomeadas</string>
   <string name="prefs_output_filename_summary">Padrão para nomes de arquivo se a trilha tem um nome</string>
+  <string-array name="prefs_output_filename_keys"/>
   <string name="prefs_output_accuracy">Precisão do arquivo GPX</string>
   <string name="prefs_output_accuracy_summary">Adicionar informações sobre precisão nos arquivos GPX, com nomes ou comentários dos pontos de referência</string>
   <string-array name="prefs_output_accuracy_keys">
