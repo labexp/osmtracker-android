@@ -50,17 +50,11 @@
   <string name="prefs_displaytrack_osm">מפת רקע</string>
   <string name="prefs_displaytrack_osm_summary">הצג את מפת OpenStreetMap כרקע למסלול. דורש חיבור לאינטרנט</string>
   <string name="prefs_output">הגדרות GPX</string>
-  <string name="prefs_storage_dir">תיקיית אכסון חיצוני (SD)</string>
   <string name="prefs_storage_dir_hint">יחל במסלול הבא (לא במסלול הנוכחי)</string>
   <string name="prefs_output_one_dir_per_track">תיקייה אחת לכל מסלול</string>
   <string name="prefs_output_one_dir_per_track_summary">שמור כל מסלול והקבצים הנלווים לו בתיקייה נפרדת</string>
   <string name="prefs_output_filename">שם קובץ למסלולים בעלי שם</string>
   <string name="prefs_output_filename_summary">תבנית לשם הקובץ, אם למסלול יש שם</string>
-  <string-array name="prefs_output_filename_keys">
-    <item>שם המסלול</item>
-    <item>שם, תאריך וזמן התחלה</item>
-    <item>תאריך וזמן התחלה</item>
-  </string-array>
   <string name="prefs_output_accuracy">שמור את הדיוק בקובץ ה-GPX</string>
   <string name="prefs_output_accuracy_summary">הוסף את הדיוק לקובץ ה-GPX בשם נקודת הציון או כהערה לנקודת הציון</string>
   <string-array name="prefs_output_accuracy_keys">
