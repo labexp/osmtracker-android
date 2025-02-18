@@ -50,17 +50,11 @@
   <string name="prefs_displaytrack_osm">Fona karte</string>
   <string name="prefs_displaytrack_osm_summary">Attēlot OpenStreetMap karti zem ierakstītā ceļa. Vajadzīgs datu savienojums</string>
   <string name="prefs_output">GPX iestatījumi</string>
-  <string name="prefs_storage_dir">Ārējās krātuves (SD) mape</string>
   <string name="prefs_storage_dir_hint">Funkcionē nākamajam ierakstam (ne pašreizējam)</string>
   <string name="prefs_output_one_dir_per_track">Viena mape priekš ieraksta</string>
   <string name="prefs_output_one_dir_per_track_summary">Saglabāt katru ierakstu un tā datnes savā mapē</string>
   <string name="prefs_output_filename">Datņu nosaukums priekš ierakstiem</string>
   <string name="prefs_output_filename_summary">Šablons datnes nosaukumam, ja ierakstam ir nosaukums</string>
-  <string-array name="prefs_output_filename_keys">
-    <item>Ieraksta nosaukums</item>
-    <item>Nosaukums,  sākuma datums un laiks</item>
-    <item>Sākuma datums un laiks</item>
-  </string-array>
   <string name="prefs_output_accuracy">Precizitāte GPX datnē</string>
   <string name="prefs_output_accuracy_summary">Pievienot precizitātes informāciju GPX datnei, ar punkta nosaukumu vai punkta komentārā</string>
   <string-array name="prefs_output_accuracy_keys">
