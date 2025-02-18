@@ -59,6 +59,16 @@ public class DataHelper {
 	public static final String MIME_TYPE_GPX = "application/gpx+xml";
 
 	/**
+	 * Audio Files MIME
+	 */
+	public static final String MIME_TYPE_AUDIO = "audio/*";
+
+	/**
+	 * Image Files MIME
+	 */
+	public static final String MIME_TYPE_IMAGE = "image/*";
+
+	/**
 	 * APP sign plus FileProvider = authority
 	 */
 	public static final String FILE_PROVIDER_AUTHORITY = "net.osmtracker.fileprovider";
@@ -258,15 +268,24 @@ public class DataHelper {
 	}
 	
 	/**
-	 * Deletes a waypoint
+	 * Deletes a waypoint and its file associated (if exists)
 	 * 
 	 * @param uuid
 	 *				Unique ID of the target waypoint
+	 *
+	 * @param filepath
+	 * 				file attached to the waypoint
 	 */
-	public void deleteWayPoint(String uuid) {
+	public void deleteWayPoint(String uuid, String filepath) {
 		Log.v(TAG, "Deleting waypoint with uuid '" + uuid);
 		if (uuid != null) {
 			contentResolver.delete(Uri.withAppendedPath(TrackContentProvider.CONTENT_URI_WAYPOINT_UUID, uuid), null, null);
+		}
+
+		// delete file if exists
+		File file = (filepath != null) ? new File(filepath) : null;
+		if (file != null && file.exists() && file.delete()) {
+			Log.v(TAG, "File deleted: " + filepath);
 		}
 	}
 	
@@ -406,27 +425,6 @@ public class DataHelper {
 		_return = new File(trackStorageDirectory);		
 		return _return;
 	}
-
-	/* method not in use. TODO: delete code.
-	public static File getGPXTrackFile(long trackId, ContentResolver contentResolver, Context context) {
-
-		String trackName = getTrackNameInDB(trackId, contentResolver);
-
-		File sdRoot = Environment.getExternalStorageDirectory();
-
-		// The location where the user has specified gpx files and associated content to be written
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		String userGPXExportDirectoryName = prefs.getString(
-				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
-
-		// Build storage track path for file creation
-		String completeGPXTrackPath = sdRoot + userGPXExportDirectoryName.trim() +
-				File.separator + trackName.trim()  + File.separator +
-				trackName.trim() + DataHelper.EXTENSION_GPX;
-
-		return new File(completeGPXTrackPath);
-	}
-	*/
 
 	public static String getTrackNameInDB(long trackId, ContentResolver contentResolver) {
 		String trackName = "";
