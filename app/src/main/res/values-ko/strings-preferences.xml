@@ -50,17 +50,11 @@
   <string name="prefs_displaytrack_osm">배경 지도</string>
   <string name="prefs_displaytrack_osm_summary">트랙 아래에 OpenStreetMap 지도를 표시합니다. 데이터 연결이 필요합니다</string>
   <string name="prefs_output">GPX 설정</string>
-  <string name="prefs_storage_dir">외부 저장소 (SD) 디렉터리</string>
   <string name="prefs_storage_dir_hint">다음 트랙에 반영됩니다 (현재 것은 안됨)</string>
   <string name="prefs_output_one_dir_per_track">트랙마다 디렉터리 하나</string>
   <string name="prefs_output_one_dir_per_track_summary">자신의 디렉터리에 각 트랙과 관련 파일을 저장합니다</string>
   <string name="prefs_output_filename">트랙 이름의 파일 이름</string>
   <string name="prefs_output_filename_summary">트랙에 이름이 있으면 파일 이름의 패턴</string>
-  <string-array name="prefs_output_filename_keys">
-    <item>트랙 이름</item>
-    <item>이름, 시작 날짜와 시간</item>
-    <item>시작 날짜와 시간</item>
-  </string-array>
   <string name="prefs_output_accuracy">GPX 파일의 정확도</string>
   <string name="prefs_output_accuracy_summary">GPX 파일에, 웨이포인트 이름이나 웨이포인트 주석에 정확성 정보를 추가합니다</string>
   <string-array name="prefs_output_accuracy_keys">
