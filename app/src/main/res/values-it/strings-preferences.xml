@@ -56,17 +56,11 @@
   <string name="prefs_displaytrack_osm_summary">Mostra OpenStreetMap sotto la traccia. È necessaria una connessione dati</string>
   <string name="prefs_displaytrack_osm_summary_ask">Mostra sempre lo sfondo OpenStreetMap? Richiede una connessione dati</string>
   <string name="prefs_output">Salvataggio file GPX</string>
-  <string name="prefs_storage_dir">Directory memoria esterna (SD)</string>
   <string name="prefs_storage_dir_hint">Valido per la traccia successiva (non per quella attuale)</string>
   <string name="prefs_output_one_dir_per_track">Una directory per traccia</string>
   <string name="prefs_output_one_dir_per_track_summary">Salva ogni traccia e i file associati nella propria directory</string>
   <string name="prefs_output_filename">Nome file traccia salvata</string>
   <string name="prefs_output_filename_summary">Schema per il nome del file se la traccia ha un nome</string>
-  <string-array name="prefs_output_filename_keys">
-    <item>Nome traccia</item>
-    <item>Nome, data e ora inizio</item>
-    <item>Data e ora inizio</item>
-  </string-array>
   <string name="prefs_output_accuracy">Precisione nel file GPX</string>
   <string name="prefs_output_accuracy_summary">Inserisce le info di precisione nel file GPX, con il nome del POI o in una scheda separata</string>
   <string-array name="prefs_output_accuracy_keys">
