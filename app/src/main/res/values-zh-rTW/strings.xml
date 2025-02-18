@@ -79,12 +79,12 @@
   <string name="osm_upload_waiting_response">等候 OpenStreetMap 伺服器回應…</string>
   <string name="osm_upload_error">上傳軌跡的過程中發生錯誤</string>
   <string name="osm_upload_bad_response">OSM 伺服器傳回錯誤: ({0}) 訊息 {1}</string>
-  <string name="osm_upload_unauthorized">認證錯誤。您想要清除現存的 OpenStreetMap 認證資料嗎？</string>
   <string name="osm_upload_sucess">成功上傳至 OpenStreetMap</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">錄製語音</string>
   <string name="gpsstatus_record_stillimage">拍照</string>
   <string name="gpsstatus_record_textnote">文字筆記</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">設定</string>
   <string name="menu_waypointlist">航點</string>
