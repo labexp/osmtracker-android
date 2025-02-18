@@ -37,8 +37,6 @@
   <string name="trackmgr_contextmenu_stop">Routenaufnahme stoppen</string>
   <string name="trackmgr_contextmenu_resume">Routenaufnahme fortsetzen</string>
   <string name="trackmgr_contextmenu_delete">Löschen</string>
-  <string name="trackmgr_contextmenu_export">Als GPX exportieren</string>
-  <string name="trackmgr_contextmenu_share">GPX teilen</string>
   <string name="trackmgr_contextmenu_osm_upload">Zu OpenStreetMap hochladen</string>
   <string name="trackmgr_contextmenu_display">Auf Karte anzeigen</string>
   <string name="trackmgr_contextmenu_details">Details</string>
@@ -78,12 +76,12 @@
   <string name="osm_upload_waiting_response">Warte auf die Antwort des OpenStreetMap-Servers...</string>
   <string name="osm_upload_error">Fehler beim Hochladen der Route</string>
   <string name="osm_upload_bad_response">Der OSM-Server meldet einen Fehler: ({0})message{1}</string>
-  <string name="osm_upload_unauthorized">Autorisierungsfehler. Möchten Sie die gespeicherten OpenStreetMap-Anmeldedaten zurücksetzen?</string>
   <string name="osm_upload_sucess">Hochladen zu OpenStreetMap erfolgreich</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Sprachaufnahme</string>
   <string name="gpsstatus_record_stillimage">Foto aufnehmen</string>
   <string name="gpsstatus_record_textnote">Textnotiz</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">Einstellungen</string>
   <string name="menu_waypointlist">Wegpunkte</string>
@@ -106,6 +104,7 @@
   <string name="error_externalstorage_not_writable_hint">Bitte überprüfen Sie, ob der externe Speicher korrekt eingesetzt und eingebunden ist.</string>
   <string name="error_voicerec_failed">Sprachaufnahme fehlgeschlagen</string>
   <string name="error_userlayout_parsing">Fehler während Parsen der XML-Datei. Bitte auf Standardlayout wechseln.</string>
+  <!--messages-->
   <!--GPX-->
   <string name="gpx_track_name">Aufgezeichnet mit OSMTracker für Android™</string>
   <string name="gpx_hdop_approximation_cmt">Warnung: HDOP-Werte sind nicht vom GPS. Es sind geschätzte Meter-Werte zur Ortsbestimmung, die nicht berücksichtigt werden sollten.</string>
