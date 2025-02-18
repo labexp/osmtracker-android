@@ -79,12 +79,12 @@
   <string name="osm_upload_waiting_response">Čekám na odpověď od serveru OpenStreetMap</string>
   <string name="osm_upload_error">Během nahrávání trasy nastala chyba </string>
   <string name="osm_upload_bad_response">OSM server vrátil chybu: ({0}) zpráva {1}</string>
-  <string name="osm_upload_unauthorized">Chyba autorizace. Chcete smazat uložené údaje o přihlášení k OpenStreetMap?</string>
   <string name="osm_upload_sucess">Nahrání na OpenStreetMap bylo úspěšné</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Záznam hlasu</string>
   <string name="gpsstatus_record_stillimage">Vyfotit</string>
   <string name="gpsstatus_record_textnote">Textová poznámka</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">Nastavení</string>
   <string name="menu_waypointlist">Body trasy</string>
