@@ -56,17 +56,11 @@
   <string name="prefs_displaytrack_osm_summary">Exibir mapa do OpenStreetMap por baixo. Precisa de uma conexão de dados</string>
   <string name="prefs_displaytrack_osm_summary_ask">Sempre exibir o fundo do OpenStreetMap? Requer uma conexão de dados</string>
   <string name="prefs_output">Configurações GPX</string>
-  <string name="prefs_storage_dir">Pasta do armazenamento externo (SD)</string>
   <string name="prefs_storage_dir_hint">Terá efeito na próxima trilha (não na atual)</string>
   <string name="prefs_output_one_dir_per_track">Uma pasta por trilha</string>
   <string name="prefs_output_one_dir_per_track_summary">Salvar cada trilha e arquivos associados em uma pasta própria</string>
   <string name="prefs_output_filename">Nome do arquivo para trilhas nomeadas</string>
   <string name="prefs_output_filename_summary">Padrão para nomes de arquivo se a trilha tem um nome</string>
-  <string-array name="prefs_output_filename_keys">
-    <item>Nome da trilha</item>
-    <item>Nome, data e hora do início</item>
-    <item>Data e hora do início</item>
-  </string-array>
   <string name="prefs_output_accuracy">Precisão do arquivo GPX</string>
   <string name="prefs_output_accuracy_summary">Adicionar informações sobre precisão nos arquivos GPX, com nomes ou comentários dos pontos de referência</string>
   <string-array name="prefs_output_accuracy_keys">
