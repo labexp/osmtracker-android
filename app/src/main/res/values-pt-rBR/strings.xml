@@ -79,12 +79,23 @@
   <string name="osm_upload_waiting_response">Esperando servidor do OpenStreetMap responder...</string>
   <string name="osm_upload_error">Erro ao enviar trilha</string>
   <string name="osm_upload_bad_response">O servidor do OSM retornou um erro: ({0}) message {1}</string>
+  <string name="osm_upload_unauthorized">Erro de autorização. Gostaria de limpar as credencias do OpenStreetMaps salvas?</string>
   <string name="osm_upload_sucess">Enviado com sucesso para o OpenStreetMap</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Gravar voz</string>
   <string name="gpsstatus_record_stillimage">Tirar foto</string>
   <string name="gpsstatus_record_textnote">Nota</string>
   <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Nome do ponto de referência/texto</string>
+  <string name="waypoint_name_hint">Insira o nome do ponto de referência</string>
+  <string name="edit_waypoint_bt_preview">Abrir arquivo</string>
+  <string name="edit_waypoint_bt_save">Salvar</string>
+  <string name="edit_waypoint_bt_delete">Apagar</string>
+  <string name="edit_waypoint_bt_cancel">Cancelar</string>
+  <string name="delete_waypoint_confirm_dialog_title">Apagar ponto de referência</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Apagar este ponto de referência?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Apagar</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Cancelar</string>
   <!--Menu-->
   <string name="menu_settings">Configurações</string>
   <string name="menu_waypointlist">Pontos de referência</string>
@@ -108,6 +119,13 @@
   <string name="error_voicerec_failed">Gravação de voz falhou</string>
   <string name="error_userlayout_parsing">Erro ao analisar arquivo de layout XML. Por favor, voltar para o layout padrão.</string>
   <!--messages-->
+  <string name="permission_required">Permissão necessária</string>
+  <string name="storage_permission_for_export_GPX">Para exportar o trilho GPX, é necessário escrever no armazenamento.</string>
+  <string name="storage_permission_for_display_track">Para apresentar corretamente o trilho, é necessário o acesso ao armazenamento.</string>
+  <string name="storage_permission_for_share_track">Para partilhar corretamente o trilho, é necessário o acesso ao armazenamento.</string>
+  <string name="storage_permission_for_upload_to_OSM">Para enviar o trilho para o OpenStreetMap, é necessário o acesso ao armazenamento.</string>
+  <string name="acccept">Aceitar</string>
+  <string name="gps_perms_required">Não é possível continuar sem a permissão do GPS</string>
   <!--GPX-->
   <string name="gpx_track_name">Gravado com OSMTracker para Android™</string>
   <string name="gpx_hdop_approximation_cmt">Atenção: valores HDOP não são o HDOP como retornado pelo dispositivo GPS. Eles são relativamente precisos na localização em metros.</string>
@@ -141,6 +159,8 @@
   <string name="various_heading">Aguardando rumo...</string>
   <string name="various_heading_unknown">O rumo não pôde ser determinado</string>
   <string name="various_export_finished">Processo de exportação concluído com sucesso</string>
+  <string name="various_waiting_position">Posição não disponível</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Exibindo trilhas do OpenStreetMap</string>
   <!--Buttons presets messages-->
