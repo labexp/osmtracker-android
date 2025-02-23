@@ -79,12 +79,23 @@
   <string name="osm_upload_waiting_response">Čekám na odpověď od serveru OpenStreetMap</string>
   <string name="osm_upload_error">Během nahrávání trasy nastala chyba </string>
   <string name="osm_upload_bad_response">OSM server vrátil chybu: ({0}) zpráva {1}</string>
+  <string name="osm_upload_unauthorized">Chyba autorizace. Chcete vymazat uložené přihlašovací údaje OpenStreetMap?</string>
   <string name="osm_upload_sucess">Nahrání na OpenStreetMap bylo úspěšné</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Záznam hlasu</string>
   <string name="gpsstatus_record_stillimage">Vyfotit</string>
   <string name="gpsstatus_record_textnote">Textová poznámka</string>
   <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Název bodu trasy/text </string>
+  <string name="waypoint_name_hint">Zadejte název bodu trasy</string>
+  <string name="edit_waypoint_bt_preview">Otevřít soubor</string>
+  <string name="edit_waypoint_bt_save">Uložit</string>
+  <string name="edit_waypoint_bt_delete">Smazat</string>
+  <string name="edit_waypoint_bt_cancel">Zrušit</string>
+  <string name="delete_waypoint_confirm_dialog_title">Smazat bod trasy</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Smazat tento bod trasy?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Smazat</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Zrušit</string>
   <!--Menu-->
   <string name="menu_settings">Nastavení</string>
   <string name="menu_waypointlist">Body trasy</string>
@@ -148,6 +159,8 @@
   <string name="various_heading">Hledá se sever...</string>
   <string name="various_heading_unknown">Sever nelze určit</string>
   <string name="various_export_finished">Proces exportu skončil úspěšně</string>
+  <string name="various_waiting_position">Pozice není dostupná</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Zobrazení trasy OpenStreetMap</string>
   <!--Buttons presets messages-->
