@@ -63,6 +63,12 @@
   <string name="prefs_output_one_dir_per_track_summary">Minden nyomkövetés és kapcsolódó fájljai egy saját könyvtárba mentése</string>
   <string name="prefs_output_filename">Fájlnév az elnevezett nyomvonalakhoz</string>
   <string name="prefs_output_filename_summary">Fájlnév minta, ha a nyomvonalnak neve van</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Nyomkövetés neve</item>
+    <item>Név, kezdeti dátum és időpont</item>
+    <item>Kezdeti dátum és időpont, név</item>
+    <item>Kezdeti dátum és időpont</item>
+  </string-array>
   <string name="prefs_output_accuracy">Pontosság a GPX fájlban</string>
   <string name="prefs_output_accuracy_summary">Pontosság információ hozzáadása a GPX fájlhoz, útpont névvel vagy útpont megjegyzéssel</string>
   <string-array name="prefs_output_accuracy_keys">
