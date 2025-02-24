@@ -62,6 +62,12 @@
   <string name="prefs_output_one_dir_per_track_summary">Spara varje spår och relaterade filer i en egen mapp</string>
   <string name="prefs_output_filename">Spårens namn</string>
   <string name="prefs_output_filename_summary">Hur filnamnet på namngivna spår ska se ut.</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Spårets namn</item>
+    <item>Namn, startdatum och tid</item>
+    <item>Startdatum och tid, namn</item>
+    <item>Startdatum och tid</item>
+  </string-array>
   <string name="prefs_output_accuracy">Noggrannhet</string>
   <string name="prefs_output_accuracy_summary">Tillåt noggrannhetsinformation i GPX-filen, i vägpunktsnamnet eller i en egen tagg.</string>
   <string-array name="prefs_output_accuracy_keys">
