@@ -61,6 +61,12 @@
   <string name="prefs_output_one_dir_per_track_summary">Her bir izlemeyi ve ilişkili dosyalarını kendi dizinine kaydedin</string>
   <string name="prefs_output_filename">İsimlendirilmiş izlemeler için dosya adı</string>
   <string name="prefs_output_filename_summary">İzlemenin bir adı olacaksa dosya adı için bir örüntü</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>İzleme adı</item>
+    <item>İsim, başlama tarihi ve zamanı</item>
+    <item>Başlama tarihi ve zamanı, İsim</item>
+    <item>Başlama tarihi ve zamanı</item>
+  </string-array>
   <string name="prefs_output_accuracy">GPX dosyasının doğruluğu</string>
   <string name="prefs_output_accuracy_summary">GPX dosyasına doğruluk verisini koordinat adına veya koordinat yorumuna ekle</string>
   <string-array name="prefs_output_accuracy_keys">
