@@ -61,6 +61,12 @@
   <string name="prefs_output_one_dir_per_track_summary">Αποθήκευση κάθε ίχνους και των σχετικών του αρχείων στον δικό του κατάλογο</string>
   <string name="prefs_output_filename">Όνομα αρχείου για κατονομαζόμενο ίχνος</string>
   <string name="prefs_output_filename_summary">Μοτίβο για το όνομα αρχείου αν το ίχνος έχει ένα όνομα</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Όνομα ίχνους</item>
+    <item>Όνομα, ημερομηνία και ώρα έναρξης</item>
+    <item>Ημερομηνία και ώρα έναρξης, Όνομα</item>
+    <item>Ημερομηνία και ώρα έναρξης</item>
+  </string-array>
   <string name="prefs_output_accuracy">Ακρίβεια στο αρχείο GPX</string>
   <string name="prefs_output_accuracy_summary">Προσθήκη ακρίβειας στο αρχείο GPX,  με το όνομα σημείου διαδρομής ή στο σχόλιο του σημείου</string>
   <string-array name="prefs_output_accuracy_keys">
