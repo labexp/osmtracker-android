@@ -62,6 +62,12 @@
   <string name="prefs_output_one_dir_per_track_summary">Gem hvert track og tilhørende filer i egen mappe</string>
   <string name="prefs_output_filename">Filnavn for navngivne tracks</string>
   <string name="prefs_output_filename_summary">Mønster for filnavn hvis track har et navn</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Track-navn</item>
+    <item>Navn, startdato og tid</item>
+    <item>Startdato og tid, navn</item>
+    <item>Startdato og tid</item>
+  </string-array>
   <string name="prefs_output_accuracy">Præcision i GPX-fil</string>
   <string name="prefs_output_accuracy_summary">Tilføj præcisionsinfo til GPX-fil, med waypoint-navn eller i waypoint-kommentar</string>
   <string-array name="prefs_output_accuracy_keys">
