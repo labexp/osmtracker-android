@@ -62,6 +62,12 @@
   <string name="prefs_output_one_dir_per_track_summary">Zapisuje każdy ślad wraz z powiązanymi plikami w oddzielnych folderach</string>
   <string name="prefs_output_filename">Nazwy plików śladów</string>
   <string name="prefs_output_filename_summary">Schemat dla nazwanych śladów</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Nazwa śladu</item>
+    <item>Nazwa, data i czas startu</item>
+    <item>Data i czas startu, nazwa</item>
+    <item>Data i czas startu</item>
+  </string-array>
   <string name="prefs_output_accuracy">Precyzja w pliku GPX</string>
   <string name="prefs_output_accuracy_summary">Dodaje informacje o dokładności w pliku GPX, w nazwie punktu lub w komantarzu punktu</string>
   <string-array name="prefs_output_accuracy_keys">
