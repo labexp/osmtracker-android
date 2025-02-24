@@ -61,6 +61,12 @@
   <string name="prefs_output_one_dir_per_track_summary">各トラックと関連ファイルを個別のディレクトリに保存</string>
   <string name="prefs_output_filename">トラック名をファイル名にする</string>
   <string name="prefs_output_filename_summary">ファイル名のパターン</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>トラック名</item>
+    <item>トラック名_開始日時</item>
+    <item>開始日時_トラック名</item>
+    <item>開始日時</item>
+  </string-array>
   <string name="prefs_output_accuracy">GPXファイルの補完</string>
   <string name="prefs_output_accuracy_summary">GPXファイル内のウェイポイントやコメントを補完する</string>
   <string-array name="prefs_output_accuracy_keys">
