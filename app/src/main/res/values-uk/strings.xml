@@ -74,6 +74,7 @@
   <string name="osm_upload_waiting_response">Очікування відповіді від сервера OpenStreetMap…</string>
   <string name="osm_upload_error">Помилка завантаження треку</string>
   <string name="osm_upload_bad_response">Сервер OSM повернув помилку: ({0}) {1}</string>
+  <string name="osm_upload_unauthorized">Помилка авторизації. Видалити збережені облікові дані OpenStreetMap?</string>
   <string name="osm_upload_sucess">Завантаження на OpenStreetMap завершено</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Запис звуку</string>
@@ -135,6 +136,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Очікуємо на напрямок…</string>
   <string name="various_heading_unknown">Напрямок не можна визначити</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Показ треку з OpenStreetMap</string>
   <!--Buttons presets messages-->
