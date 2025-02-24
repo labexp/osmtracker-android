@@ -37,6 +37,8 @@
   <string name="trackmgr_contextmenu_stop">Arrêter l\'enregistrement</string>
   <string name="trackmgr_contextmenu_resume">Reprendre l\'enregistrement</string>
   <string name="trackmgr_contextmenu_delete">Supprimer</string>
+  <string name="trackmgr_contextmenu_export">Exporter</string>
+  <string name="trackmgr_contextmenu_share">Partager</string>
   <string name="trackmgr_contextmenu_osm_upload">Uploader vers OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Afficher</string>
   <string name="trackmgr_contextmenu_details">Détails</string>
@@ -77,12 +79,23 @@
   <string name="osm_upload_waiting_response">Attente de la réponse du serveur…</string>
   <string name="osm_upload_error">Erreur lors de l\'upload</string>
   <string name="osm_upload_bad_response">Le serveur OSM à retourné une erreur ({0} message {1})</string>
+  <string name="osm_upload_unauthorized">Erreur d\'authentification. Voulez-vouz supprimer les données d\'authentifications et vous re-connecter ?</string>
   <string name="osm_upload_sucess">Upload vers OpenStreetMap complété avec succès</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Mémo vocal</string>
   <string name="gpsstatus_record_stillimage">Prendre une photo</string>
   <string name="gpsstatus_record_textnote">Note</string>
   <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Point d\'interêt/texte</string>
+  <string name="waypoint_name_hint">Entrer le nom du point d\'intérêt</string>
+  <string name="edit_waypoint_bt_preview">Ouvrir le fichier</string>
+  <string name="edit_waypoint_bt_save">Enregistrer</string>
+  <string name="edit_waypoint_bt_delete">Supprimer</string>
+  <string name="edit_waypoint_bt_cancel">Annuler</string>
+  <string name="delete_waypoint_confirm_dialog_title">Supprimer point d\'intérêt</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Supprimer ce point d\'intérêt?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Supprimer</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Annuler</string>
   <!--Menu-->
   <string name="menu_settings">Paramètres</string>
   <string name="menu_waypointlist">Points d\'interêt</string>
@@ -107,6 +120,10 @@
   <string name="error_userlayout_parsing">Erreur dans la définition des boutons. Veuillez revenir aux boutons par défaut.</string>
   <!--messages-->
   <string name="permission_required">Autorisation requise</string>
+  <string name="storage_permission_for_export_GPX">Pour exporter la trace GPX, nous devons écrire sur le stockage.</string>
+  <string name="storage_permission_for_display_track">Pour afficher correctement la trace, nous avons besoin d\'accéder au stockage.</string>
+  <string name="storage_permission_for_share_track">Pour partager correctement la trace, nous avons besoin d\'accéder au stockage</string>
+  <string name="storage_permission_for_upload_to_OSM">Pour télécharger la trace sur OSM, nous avons besoin d\'accéder au stockage.</string>
   <string name="acccept">Accepter</string>
   <string name="gps_perms_required">Impossible de continuer sans autorisation GPS</string>
   <!--GPX-->
@@ -142,6 +159,8 @@
   <string name="various_heading">En attente de coordonnées...</string>
   <string name="various_heading_unknown">Les coordonées n\'ont pas pu être déterminées</string>
   <string name="various_export_finished">Export réalisé avec succès</string>
+  <string name="various_waiting_position">Poste non disponible</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Voir le tracé avec OpenStreetMap</string>
   <!--Buttons presets messages-->
