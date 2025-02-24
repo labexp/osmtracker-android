@@ -55,6 +55,12 @@
   <string name="prefs_output_one_dir_per_track_summary">Uloží každú stopu a priradené súbory do jej vlastného adresára</string>
   <string name="prefs_output_filename">Názov súboru pre pomenované stopy</string>
   <string name="prefs_output_filename_summary">Vzor pre pomenovanie súboru ak má stopa názov</string>
+  <string-array name="prefs_output_filename_keys">
+    <item>Názov stopy</item>
+    <item>Názov, dátum a čas spustenia</item>
+    <item>Dátum a čas spustenia, názov</item>
+    <item>Dátum a čas spustenia</item>
+  </string-array>
   <string name="prefs_output_accuracy">Presnosť v GPX súbore</string>
   <string name="prefs_output_accuracy_summary">Povoliť informácie o presnosti v GPX súbore, s názvom cestovného bodu alebo v oddelenom poli</string>
   <string-array name="prefs_output_accuracy_keys">
