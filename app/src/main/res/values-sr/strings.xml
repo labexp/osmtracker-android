@@ -75,6 +75,7 @@
   <string name="osm_upload_waiting_response">Чекам одговор OpenStreetMap сервера…</string>
   <string name="osm_upload_error">Грешка при слању праћења</string>
   <string name="osm_upload_bad_response">OSM сервер је вратио грешку: ({0}) порука {1}</string>
+  <string name="osm_upload_unauthorized">Грешка ауторизације. Желите ли да очистите сачуване OpenStreetMap акредитиве?</string>
   <string name="osm_upload_sucess">Слање на OpenStreetMap успешно</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Гласовна белешка</string>
@@ -136,6 +137,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Чекам правац...</string>
   <string name="various_heading_unknown">Правац се не може одредити</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap приказ праћења</string>
   <!--Buttons presets messages-->
