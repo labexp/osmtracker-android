@@ -85,6 +85,7 @@
   <string name="gpsstatus_record_voicerec">錄製語音</string>
   <string name="gpsstatus_record_stillimage">拍照</string>
   <string name="gpsstatus_record_textnote">文字筆記</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">設定</string>
   <string name="menu_waypointlist">航點</string>
@@ -148,6 +149,7 @@
   <string name="various_heading">等待方位…</string>
   <string name="various_heading_unknown">無法偵測方位</string>
   <string name="various_export_finished">成功完成匯出程序</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap 軌跡畫面</string>
   <!--Buttons presets messages-->
