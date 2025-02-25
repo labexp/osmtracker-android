@@ -36,7 +36,7 @@
   <string name="trackmgr_contextmenu_stop">Beigt ierakstu</string>
   <string name="trackmgr_contextmenu_resume">Turpināt ierakstu</string>
   <string name="trackmgr_contextmenu_delete">Dzēst</string>
-  <string name="trackmgr_contextmenu_export">Eksportēt uz GPX</string>
+  <string name="trackmgr_contextmenu_export">Eksportēt</string>
   <string name="trackmgr_contextmenu_osm_upload">Augšupielādēt uz OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Displejs</string>
   <string name="trackmgr_contextmenu_details">Detaļas</string>
@@ -81,6 +81,7 @@
   <string name="gpsstatus_record_voicerec">Ierakstīt balsi</string>
   <string name="gpsstatus_record_stillimage">Uzņemt attēlu</string>
   <string name="gpsstatus_record_textnote">Teksta piezīme</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">Iestatījumi</string>
   <string name="menu_waypointlist">Intereses punkti</string>
@@ -103,6 +104,7 @@
   <string name="error_externalstorage_not_writable_hint">Lūdzu pārbaudi vai ārējā krāt. ir pareizi ievietota un piemontēta.</string>
   <string name="error_voicerec_failed">Balss ieraksts neizdevās </string>
   <string name="error_userlayout_parsing">Kļūda parsējot XML izkārtojuma datni. Lūdzu atiestati uz noklusējuma izkārtojumu.</string>
+  <!--messages-->
   <!--GPX-->
   <string name="gpx_track_name">Ierakstīts izmantojot OSMTracker priekš Android™</string>
   <string name="gpx_hdop_approximation_cmt">Uzmanību: HDOP vērtības nav HDOP, kas tiek saņemts no GPS ierīces. Tās tiek aptuveni aprēķinātas no precizitātes metros.</string>
@@ -135,6 +137,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Gaida virziena noteikšanu...</string>
   <string name="various_heading_unknown">Virzienu nevar noteikt</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap ieraksta displejs</string>
   <!--Buttons presets messages-->
