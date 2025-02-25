@@ -38,8 +38,8 @@
   <string name="trackmgr_contextmenu_stop">Τερματισμός καταγραφής ίχνους</string>
   <string name="trackmgr_contextmenu_resume">Συνέχιση καταγραφής ίχνους</string>
   <string name="trackmgr_contextmenu_delete">Διαγραφή</string>
-  <string name="trackmgr_contextmenu_export">Εξαγωγή ως GPX</string>
-  <string name="trackmgr_contextmenu_share">Κοινοποίηση GPX</string>
+  <string name="trackmgr_contextmenu_export">Εξαγωγή ως</string>
+  <string name="trackmgr_contextmenu_share">Κοινοποίηση</string>
   <string name="trackmgr_contextmenu_osm_upload">Αποστολή στο OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Εμφάνιση</string>
   <string name="trackmgr_contextmenu_details">Λεπτομέρειες</string>
@@ -63,6 +63,7 @@
   <string name="trackdetail_export_notyet">(Δεν έχει ακόμη εξαχθεί)</string>
   <string name="trackdetail_osm_upload_notyet">(Δεν έχει ακόμη σταλεί)</string>
   <string name="trackdetail_export_display">Προβολή</string>
+  <string name="trackdetail_name">Ονομα</string>
   <string name="trackdetail_description">Περιγραφή</string>
   <string name="trackdetail_tags">Ετικέτες (διαχωρισμένες με κόμμα)</string>
   <string name="trackdetail_description_mandatory">Πρέπει να εισάγετε μια περιγραφή</string>
@@ -85,6 +86,7 @@
   <string name="gpsstatus_record_voicerec">Ηχογράφηση</string>
   <string name="gpsstatus_record_stillimage">Φωτογράφιση</string>
   <string name="gpsstatus_record_textnote">Σημείωση κειμένου</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">Ρυθμίσεις</string>
   <string name="menu_waypointlist">Σημεία</string>
@@ -107,6 +109,7 @@
   <string name="error_externalstorage_not_writable_hint">Παρακαλούμε ελέγξτε αν ο εξωτ. αποθηκευτικός χώρος έχει τοποθετηθεί σωστά. </string>
   <string name="error_voicerec_failed">Η ηχογράφηση απέτυχε</string>
   <string name="error_userlayout_parsing">Σφάλμα στην ανάπτυξη του σχεδίου XML. Επαναφέρετε το προκαθορισμένο σχέδιο.</string>
+  <!--messages-->
   <!--GPX-->
   <string name="gpx_track_name">Ιχνηλατίστηκε με το OSMTracker για Android™</string>
   <string name="gpx_hdop_approximation_cmt">Προσοχή: Οι τιμές HDOP δεν είναι ίδιες με αυτές που όρισε η συσκευή GPS.  Είναι κατά προσέγγιση μέσω της ακρίβειας θέσης σε μέτρα.</string>
@@ -140,6 +143,7 @@
   <string name="various_heading">Αναμονή για κατεύθυνση…</string>
   <string name="various_heading_unknown">Η κατεύθυνση δεν μπορεί να προσδιοριστεί</string>
   <string name="various_export_finished">Η διαδικασία εξαγωγής ολοκληρώθηκε με επιτυχία</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Προβολή ιχνών OpenStreetMap</string>
   <!--Buttons presets messages-->
