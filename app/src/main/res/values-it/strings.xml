@@ -86,7 +86,16 @@
   <string name="gpsstatus_record_stillimage">Scatta foto</string>
   <string name="gpsstatus_record_textnote">Scrivi nota</string>
   <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Nome do waypoint/testo</string>
+  <string name="waypoint_name_hint">Inserisci il nome del waypoint</string>
   <string name="edit_waypoint_bt_preview">Apri file</string>
+  <string name="edit_waypoint_bt_save">Salvare</string>
+  <string name="edit_waypoint_bt_delete">Eliminare</string>
+  <string name="edit_waypoint_bt_cancel">Annullare</string>
+  <string name="delete_waypoint_confirm_dialog_title">Eliminare waypoint</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Eliminare il waypoint?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Eliminare</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Annullare</string>
   <!--Menu-->
   <string name="menu_settings">Impostazioni</string>
   <string name="menu_waypointlist">POI</string>
@@ -110,6 +119,13 @@
   <string name="error_voicerec_failed">Registrazione vocale fallita</string>
   <string name="error_userlayout_parsing">Errore durante l\'elaborazione del file XML del layout. Ripristinare il layout predefinito.</string>
   <!--messages-->
+  <string name="permission_required">Permesso richiesto</string>
+  <string name="storage_permission_for_export_GPX">Per esportare la traccia GPX dobbiamo scrivere sullo storage.</string>
+  <string name="storage_permission_for_display_track">Per visualizzare correttamente la traccia abbiamo bisogno di accedere allo spazio di archiviazione.</string>
+  <string name="storage_permission_for_share_track">Per condividere correttamente la traccia abbiamo bisogno di accedere allo storage.</string>
+  <string name="storage_permission_for_upload_to_OSM">Per caricare la traccia su OSM abbiamo bisogno di accedere allo storage.</string>
+  <string name="acccept">Accettare</string>
+  <string name="gps_perms_required">Impossibile continuare senza l\'autorizzazione del GPS</string>
   <!--GPX-->
   <string name="gpx_track_name">Tracciato con OSMTracker per Android™</string>
   <string name="gpx_hdop_approximation_cmt">Attenzione: i valori HDOP non corrispondono agli HDOP restituiti dal dispositivo GPS. La precisione della posizione è approssimativa in metri e non dovrebbe essere tenuta in conto.</string>
@@ -143,6 +159,7 @@
   <string name="various_heading">In attesa della direzione...</string>
   <string name="various_heading_unknown">La direzione non può essere determinata</string>
   <string name="various_export_finished">Esportazione completata con successo</string>
+  <string name="various_waiting_position">Posizione non disponibile</string>
   <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Mostra traccia OpenStreetMap</string>
