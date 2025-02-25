@@ -50,7 +50,6 @@
   <string name="prefs_displaytrack_osm">배경 지도</string>
   <string name="prefs_displaytrack_osm_summary">트랙 아래에 OpenStreetMap 지도를 표시합니다. 데이터 연결이 필요합니다</string>
   <string name="prefs_output">GPX 설정</string>
-  <string name="prefs_storage_dir">외부 저장소 (SD) 디렉터리</string>
   <string name="prefs_storage_dir_hint">다음 트랙에 반영됩니다 (현재 것은 안됨)</string>
   <string name="prefs_output_one_dir_per_track">트랙마다 디렉터리 하나</string>
   <string name="prefs_output_one_dir_per_track_summary">자신의 디렉터리에 각 트랙과 관련 파일을 저장합니다</string>
@@ -59,6 +58,7 @@
   <string-array name="prefs_output_filename_keys">
     <item>트랙 이름</item>
     <item>이름, 시작 날짜와 시간</item>
+    <item>시작 날짜와 시간, 이름</item>
     <item>시작 날짜와 시간</item>
   </string-array>
   <string name="prefs_output_accuracy">GPX 파일의 정확도</string>
@@ -75,6 +75,7 @@
   <string name="prefs_osm_clear_oauth_data">OSM 인증 재설정</string>
   <string name="prefs_osm_clear_oauth_data_summary">OSM 자격 증명과 권한을 잊고 강제로 OSMTracker에 다시 묻도록 합니다</string>
   <string name="prefs_osm_clear_oauth_data_dialog">트랙을 올리려면 OSMTracker를 다시 인증해야 합니다. 지우겠습니까?</string>
+  <string name="prefs_map_tile">지도 타일 제공자</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
