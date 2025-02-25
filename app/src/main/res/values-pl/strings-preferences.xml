@@ -65,6 +65,7 @@
   <string-array name="prefs_output_filename_keys">
     <item>Nazwa śladu</item>
     <item>Nazwa, data i czas startu</item>
+    <item>Data i czas startu, nazwa</item>
     <item>Data i czas startu</item>
   </string-array>
   <string name="prefs_output_accuracy">Precyzja w pliku GPX</string>
