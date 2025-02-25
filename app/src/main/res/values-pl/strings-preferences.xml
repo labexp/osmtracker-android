@@ -68,6 +68,8 @@
     <item>Data i czas startu, nazwa</item>
     <item>Data i czas startu</item>
   </string-array>
+  <string name="prefs_output_filename_label">Etykieta nazwy pliku</string>
+  <string name="prefs_output_filename_label_summary">Ta etykieta zostanie dodana na końcu nazwy pliku</string>
   <string name="prefs_output_accuracy">Precyzja w pliku GPX</string>
   <string name="prefs_output_accuracy_summary">Dodaje informacje o dokładności w pliku GPX, w nazwie punktu lub w komantarzu punktu</string>
   <string-array name="prefs_output_accuracy_keys">
