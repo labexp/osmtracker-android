@@ -56,17 +56,11 @@
   <string name="prefs_displaytrack_osm_summary">اعرض خريطة الشارع المفتوحة أسفل المسار. لابد من وجود اتصال بالانترنت</string>
   <string name="prefs_displaytrack_osm_summary_ask">عرض خلفية خريطة الشارع المفتوحة بشكل دائمًا؟ لابد من وجود اتصال بالانترنت</string>
   <string name="prefs_output">إعدادات GPX</string>
-  <string name="prefs_storage_dir">مجلد التخزين الخارجي (SD)</string>
   <string name="prefs_storage_dir_hint">فعال للمسار التالي (ليس المسار الحالي)</string>
   <string name="prefs_output_one_dir_per_track">دليل واحد لكل مسار</string>
   <string name="prefs_output_one_dir_per_track_summary">احفظ كل مسار والملفات المرتبطة به في الدليل الخاص به</string>
   <string name="prefs_output_filename">اسم الملف للمسارات المسماة</string>
   <string name="prefs_output_filename_summary">نمط اسم الملف إذا كان للمسار اسم</string>
-  <string-array name="prefs_output_filename_keys">
-    <item>اسم المسار</item>
-    <item>الاسم, تاريخ البدء والوقت</item>
-    <item>تاريخ البدء والوقت</item>
-  </string-array>
   <string name="prefs_output_accuracy">الدقة في ملف GPX</string>
   <string name="prefs_output_accuracy_summary">أضف وسجل معلومات الدقة في ملف GPX ، مع اسم الإحداثية أو تعليق الإحداثية</string>
   <string-array name="prefs_output_accuracy_keys">
