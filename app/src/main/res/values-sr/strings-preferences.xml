@@ -56,7 +56,6 @@
   <string name="prefs_displaytrack_osm_summary">Приказуј OpenStreet мапу испод трага. Морате бити повезани</string>
   <string name="prefs_displaytrack_osm_summary_ask">Увек приказати мапу у позадини? Морате бити повезани</string>
   <string name="prefs_output">GPX поставке</string>
-  <string name="prefs_storage_dir">Директоријум спољног складишта</string>
   <string name="prefs_storage_dir_hint">Односи се на наредно праћење (не на текуће)</string>
   <string name="prefs_output_one_dir_per_track">Један директоријум по праћењу</string>
   <string name="prefs_output_one_dir_per_track_summary">Сачувај свако праћење и његове фајлове у сопствени директоријум</string>
@@ -65,6 +64,7 @@
   <string-array name="prefs_output_filename_keys">
     <item>Назив праћења</item>
     <item>Назив, почетни датум и време</item>
+    <item>Почетни датум и време, Назив</item>
     <item>Почетни датум и време</item>
   </string-array>
   <string name="prefs_output_accuracy">Тачност у GPX фајлу</string>
