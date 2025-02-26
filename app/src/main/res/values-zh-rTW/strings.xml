@@ -86,6 +86,16 @@
   <string name="gpsstatus_record_stillimage">拍照</string>
   <string name="gpsstatus_record_textnote">文字筆記</string>
   <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">路徑節點名稱/文字</string>
+  <string name="waypoint_name_hint">輸入路徑節點名稱</string>
+  <string name="edit_waypoint_bt_preview">開啟檔案</string>
+  <string name="edit_waypoint_bt_save">儲存</string>
+  <string name="edit_waypoint_bt_delete">刪除</string>
+  <string name="edit_waypoint_bt_cancel">取消</string>
+  <string name="delete_waypoint_confirm_dialog_title">刪除路徑節點</string>
+  <string name="delete_waypoint_confirm_dialog_msg">刪除這個路徑節點？</string>
+  <string name="delete_waypoint_confirm_bt_ok">刪除</string>
+  <string name="delete_waypoint_confirm_bt_cancel">取消</string>
   <!--Menu-->
   <string name="menu_settings">設定</string>
   <string name="menu_waypointlist">航點</string>
@@ -149,6 +159,7 @@
   <string name="various_heading">等待方位…</string>
   <string name="various_heading_unknown">無法偵測方位</string>
   <string name="various_export_finished">成功完成匯出程序</string>
+  <string name="various_waiting_position">無法取得位置</string>
   <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap 軌跡畫面</string>
