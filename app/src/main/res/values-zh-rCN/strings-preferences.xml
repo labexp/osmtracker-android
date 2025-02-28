@@ -50,17 +50,11 @@
   <string name="prefs_displaytrack_osm">背景地图</string>
   <string name="prefs_displaytrack_osm_summary">在轨迹下显示OpenStreetMap。需要数据连接</string>
   <string name="prefs_output">GPX设置</string>
-  <string name="prefs_storage_dir">外部存储设备(SD卡)路径</string>
   <string name="prefs_storage_dir_hint">下次追踪生效(本次无效)</string>
   <string name="prefs_output_one_dir_per_track">每次追踪新建一个目录</string>
   <string name="prefs_output_one_dir_per_track_summary">分别将每条追踪记录及相关文件到各自目录</string>
   <string name="prefs_output_filename">已命名轨迹的文件名</string>
   <string name="prefs_output_filename_summary">文件名格式（如果轨迹有名称）</string>
-  <string-array name="prefs_output_filename_keys">
-    <item>轨迹名称</item>
-    <item>名称，起始日期与时间</item>
-    <item>起始日期与时间</item>
-  </string-array>
   <string name="prefs_output_accuracy">GPX文件精度</string>
   <string name="prefs_output_accuracy_summary">将精度信息连同路径点名或路径点注释添加至GPX文件</string>
   <string-array name="prefs_output_accuracy_keys">

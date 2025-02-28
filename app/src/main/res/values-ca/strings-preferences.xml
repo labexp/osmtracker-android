@@ -45,7 +45,7 @@
   <string name="prefs_displaytrack_osm">Mapa de fons</string>
   <string name="prefs_displaytrack_osm_summary">Mostra el mapa de OpenstreetMap sota el track. És necessari disposar de connexió de dades.</string>
   <string name="prefs_output">Preferències GPX</string>
-  <string name="prefs_storage_dir">Directori d\'emmagatzematge extern (SD)</string>
+  <string name="prefs_storage_dir">Carpeta d\'emmagatzematge a Documents</string>
   <string name="prefs_storage_dir_hint">Els canvis tindran efecte en el proper track (no en l\'actual)</string>
   <string name="prefs_output_one_dir_per_track">Una carpeta per track</string>
   <string name="prefs_output_one_dir_per_track_summary">Desa cada track i els fitxers corresponents a la seva propia carpeta</string>
@@ -54,7 +54,8 @@
   <string-array name="prefs_output_filename_keys">
     <item>Nom del track</item>
     <item>Nom, Hora d\'inici i de fi</item>
-    <item>Hora i data d\'inici i de fi</item>
+    <item>Hora i data d\'inici i de fi, nom</item>
+    <item>Hora i data d\'inici i de fi,</item>
   </string-array>
   <string name="prefs_output_accuracy">Precisió en el fitxer GPX</string>
   <string name="prefs_output_accuracy_summary">Afegeix informació de precisió en el fitxer GPX afegint waypoints o comentaris </string>
@@ -70,6 +71,7 @@
   <string name="prefs_osm_clear_oauth_data">Restableix l\'autenticació OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Oblida les credencials i permisos OSM i força OSMTracer a preguntar-los una altre vegada</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Hauràs d\'autoritzar OSMTracker per pujar els track la propera vegada. N\'estàs segur?</string>
+  <string name="prefs_map_tile">Proveidor de mapa</string>
   <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
@@ -81,5 +83,6 @@
     <item>en el comentari</item>
     <item>en l\'extensió</item>
   </string-array>
+  <string name="prefs_compass_heading">Exporta la Direcció de la Brúixola</string>
   <string name="prefs_compass_heading_summary">Defineix si desar la informació de la brúixola en el fitxer GPX, i com fer-ho</string>
 </resources>

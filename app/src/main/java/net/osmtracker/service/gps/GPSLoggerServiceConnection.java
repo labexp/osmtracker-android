@@ -50,6 +50,7 @@ public class GPSLoggerServiceConnection implements ServiceConnection {
 			activity.setEnabledActionButtons(false);
 			Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
 			intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, activity.getCurrentTrackId());
+			intent.setPackage(activity.getPackageName());
 			activity.sendBroadcast(intent);
 		}
 	}

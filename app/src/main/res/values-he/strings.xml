@@ -37,7 +37,6 @@
   <string name="trackmgr_contextmenu_stop">עצור מסלול</string>
   <string name="trackmgr_contextmenu_resume">חזור למסלול</string>
   <string name="trackmgr_contextmenu_delete">מחק</string>
-  <string name="trackmgr_contextmenu_export">ייצא כקובץ GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">העלאה ל OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">הצג</string>
   <string name="trackmgr_contextmenu_details">פרטים</string>
@@ -82,6 +81,7 @@
   <string name="gpsstatus_record_voicerec">הקלטת הודעה קולית</string>
   <string name="gpsstatus_record_stillimage">צילום תמונה</string>
   <string name="gpsstatus_record_textnote">הערה בכתב</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">הגדרות</string>
   <string name="menu_waypointlist">נקודות עיניין</string>
@@ -104,6 +104,7 @@
   <string name="error_externalstorage_not_writable_hint">בדקו אם התקן הזיכרון החיצוני הוכנס כראוי והתחבר</string>
   <string name="error_voicerec_failed">ההקלטה הקולית נכשלה</string>
   <string name="error_userlayout_parsing">שגיאה בניתוח קובץ ה XML של העימוד. נא לחזור לעימוד המקורי</string>
+  <!--messages-->
   <!--GPX-->
   <string name="gpx_track_name"> Tracked with OSMTracker for Android™</string>
   <string name="gpx_hdop_approximation_cmt">אזהרה: ערכי HDOP לא התקבלו מה GPS אלא הוערכו על פי דיוק המיקום במטרים.</string>
@@ -136,6 +137,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">ממתין לכיוון...</string>
   <string name="various_heading_unknown">לא ניתן לקבוע את הכיוון</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">הצגת הקלטת OpenStreetMap</string>
   <!--Buttons presets messages-->

@@ -36,7 +36,7 @@
   <string name="trackmgr_contextmenu_stop">Zastaviť záznam</string>
   <string name="trackmgr_contextmenu_resume">Pokračovať v zázname</string>
   <string name="trackmgr_contextmenu_delete">Odstrániť</string>
-  <string name="trackmgr_contextmenu_export">Exportovať ako GPX</string>
+  <string name="trackmgr_contextmenu_export">Exportovať</string>
   <string name="trackmgr_contextmenu_osm_upload">Odoslať na OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Zobraziť</string>
   <string name="trackmgr_contextmenu_details">Podrobnosti</string>
@@ -81,6 +81,7 @@
   <string name="gpsstatus_record_voicerec">Hlasový záznam</string>
   <string name="gpsstatus_record_stillimage">Zachytiť fotografiu</string>
   <string name="gpsstatus_record_textnote">Písomná poznámka</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">Nastavenia</string>
   <string name="menu_waypointlist">Cestovné body</string>
@@ -103,6 +104,7 @@
   <string name="error_externalstorage_not_writable_hint">Prosím, skontrolujte, či je ext. úložisko správne vložené a pripojené.</string>
   <string name="error_voicerec_failed">Hlasový záznam zlyhal</string>
   <string name="error_userlayout_parsing">Chyba počas analýzi XML súboru rozloženia. Prosím, vráťte sa k štandardnému rozloženiu.</string>
+  <!--messages-->
   <!--GPX-->
   <string name="gpx_track_name">Stopované s OSMTracker-om pre Android™</string>
   <string name="gpx_hdop_approximation_cmt">Varovanie: Hodnoty HDOP nie sú vrátené HDOP z GPS zariadenia. Sú odhadnuté pre presnosť umiestnenia v metroch, a nemali by byť vložené do účtu.</string>
@@ -135,6 +137,7 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Čaká sa na smerovanie...</string>
   <string name="various_heading_unknown">Nedá sa zistiť smerovanie</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Zobrazenie OpenStreetMap stopy</string>
   <!--Buttons presets messages-->

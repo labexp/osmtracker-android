@@ -31,12 +31,14 @@
   <string name="trackmgr_waypoints_count">Points d\'interêt :</string>
   <string name="trackmgr_trackpoints_count">Pts. de trace :</string>
   <string name="trackmgr_empty">Vous n\'avez pas de traces.</string>
+  <string name="trackmgr_newtrack_hint">Appuyer pour enregistrer une nouvelle trace</string>
   <string name="trackmgr_newtrack_error">Impossible de créer une nouvelle trace : {0}</string>
   <string name="trackmgr_continuetrack_hint">Vous enregistrez en ce moment<b>la trace #{0}</b>\nChoisissez-la dans la liste pour continuer</string>
   <string name="trackmgr_contextmenu_stop">Arrêter l\'enregistrement</string>
   <string name="trackmgr_contextmenu_resume">Reprendre l\'enregistrement</string>
   <string name="trackmgr_contextmenu_delete">Supprimer</string>
-  <string name="trackmgr_contextmenu_export">Exporter (GPX)</string>
+  <string name="trackmgr_contextmenu_export">Exporter</string>
+  <string name="trackmgr_contextmenu_share">Partager</string>
   <string name="trackmgr_contextmenu_osm_upload">Uploader vers OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Afficher</string>
   <string name="trackmgr_contextmenu_details">Détails</string>
@@ -47,6 +49,7 @@
   <string name="trackmgr_exporting_prepare">Préparation de l\'export...</string>
   <string name="trackmgr_export_error">Impossible d\'exporter la trace : {0}</string>
   <string name="trackmgr_exportall_confirm">Toutes les traces vont être exportées, cela peut prendre du temps. Êtes-vous sûr ?</string>
+  <string name="trackmgr_prepare_for_share_error">Impossible de traiter la trace : {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Détails de la trace</string>
   <string name="trackdetail_startdate">Date et heure de début : </string>
@@ -59,6 +62,7 @@
   <string name="trackdetail_export_notyet">(Pas encore exporté)</string>
   <string name="trackdetail_osm_upload_notyet">(Pas encore uploadé)</string>
   <string name="trackdetail_export_display">Afficher</string>
+  <string name="trackdetail_name">Nom</string>
   <string name="trackdetail_description">Description</string>
   <string name="trackdetail_tags">Tags (séparés par des virgules)</string>
   <string name="trackdetail_description_mandatory">La description est obligatoire</string>
@@ -81,6 +85,17 @@
   <string name="gpsstatus_record_voicerec">Mémo vocal</string>
   <string name="gpsstatus_record_stillimage">Prendre une photo</string>
   <string name="gpsstatus_record_textnote">Note</string>
+  <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Point d\'interêt/texte</string>
+  <string name="waypoint_name_hint">Entrer le nom du point d\'intérêt</string>
+  <string name="edit_waypoint_bt_preview">Ouvrir le fichier</string>
+  <string name="edit_waypoint_bt_save">Enregistrer</string>
+  <string name="edit_waypoint_bt_delete">Supprimer</string>
+  <string name="edit_waypoint_bt_cancel">Annuler</string>
+  <string name="delete_waypoint_confirm_dialog_title">Supprimer point d\'intérêt</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Supprimer ce point d\'intérêt?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Supprimer</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Annuler</string>
   <!--Menu-->
   <string name="menu_settings">Paramètres</string>
   <string name="menu_waypointlist">Points d\'interêt</string>
@@ -103,6 +118,14 @@
   <string name="error_externalstorage_not_writable_hint">Veuillez vérifier que le stockage est correctement inséré et monté.</string>
   <string name="error_voicerec_failed">L\'enregistrement vocal a échoué.</string>
   <string name="error_userlayout_parsing">Erreur dans la définition des boutons. Veuillez revenir aux boutons par défaut.</string>
+  <!--messages-->
+  <string name="permission_required">Autorisation requise</string>
+  <string name="storage_permission_for_export_GPX">Pour exporter la trace GPX, nous devons écrire sur le stockage.</string>
+  <string name="storage_permission_for_display_track">Pour afficher correctement la trace, nous avons besoin d\'accéder au stockage.</string>
+  <string name="storage_permission_for_share_track">Pour partager correctement la trace, nous avons besoin d\'accéder au stockage</string>
+  <string name="storage_permission_for_upload_to_OSM">Pour télécharger la trace sur OSM, nous avons besoin d\'accéder au stockage.</string>
+  <string name="acccept">Accepter</string>
+  <string name="gps_perms_required">Impossible de continuer sans autorisation GPS</string>
   <!--GPX-->
   <string name="gpx_track_name">Traces enregistrées avec OSMTracker pour Android™</string>
   <string name="gpx_hdop_approximation_cmt">Attention : les valeurs HDOP ne sont pas celles retournées par le GPS, mais approximées a partir de la précision en mètres. Elles ne sont donc pas très fiables.</string>
@@ -135,29 +158,50 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">En attente de coordonnées...</string>
   <string name="various_heading_unknown">Les coordonées n\'ont pas pu être déterminées</string>
+  <string name="various_export_finished">Export réalisé avec succès</string>
+  <string name="various_waiting_position">Poste non disponible</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Voir le tracé avec OpenStreetMap</string>
   <!--Buttons presets messages-->
   <string name="buttons_presets_context_menu_update_install">Mettre à jour &amp; Installer</string>
   <string name="buttons_presets_context_menu_delete">Supprimer</string>
   <string name="buttons_presets_updating_layout">Mise à jour …</string>
+  <string name="buttons_presets_successful_update">Calque mis à jour avec succès</string>
+  <string name="buttons_presets_unsuccessful_update">Calque non chargé, réessayer plus tard</string>
+  <string name="buttons_presets_delete_message">Êtes-vous sûr de supprimée le calque {0} ?</string>
   <string name="buttons_presets_delete_positive_confirmation">Oui</string>
+  <string name="buttons_presets_successful_delete">Le calque a été supprimé avec succès</string>
   <string name="buttons_presets_icon_directory_deleted">L\'icône du répertoire a été supprimé avec succès</string>
+  <string name="buttons_presets_icon_directory_does_not_exist">Ce fichier n\'a pas de dossier icône associé</string>
+  <string name="buttons_presets_unsuccessful_delete">Ce calque ne peut pas être supprimé</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Erreur : Impossible de se connecter à internet</string>
+  <string name="available_layouts_response_null_exception">Erreur : impossible de se connecter au dépôt des dispositions personnalisées par défaut</string>
   <string name="available_layouts_connecting_message">(Connection …)</string>
   <string name="available_layouts_description_dialog_positive_confirmation">Télécharger</string>
   <string name="available_layouts_not_available_language">Votre langue n\'est pas disponible. Sélectionner en une dans la liste.</string>
   <string name="available_layouts_language_dialog_title">Langues disponibles</string>
+  <string name="available_layouts_checking_language_dialog">Vérification des versions locales des langues</string>
   <string name="available_layouts_downloading_dialog">Téléchargement …</string>
+  <string name="available_layouts_successful_download">Le calque a été téléchargé avec succès</string>
+  <string name="available_layouts_unsuccessful_download">Ce calque ne peut pas être téléchargé, réessayer plus tard</string>
+  <string name="available_layouts_null_response_received">Erreur de récupération des données du serveur</string>
   <!--Github Repository Settings-->
   <string name="github_repository_settings_default_checkbox">Défaut</string>
+  <string name="github_repository_settings_custom_checkbox">Personnalisé</string>
   <string name="github_repository_settings_username">Nom d\'utilisateur de GitHub:</string>
   <string name="github_repository_settings_repository_name">Nom du répertoire :</string>
   <string name="github_repository_settings_branch_name">Nom de la branche :</string>
   <string name="github_repository_settings_valid_server">Répertoire GitHub valide</string>
   <string name="github_repository_settings_invalid_server">Répertoire GitHub invalide</string>
   <!--App Introduction-->
+  <string name="app_intro">OSMTracker pour Android™ Introduction</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Bienvenue sur OSMTracker pour Android™ 👋</string>
+  <string name="app_intro_slide1_description">Cette application est un logiciel libre qui respecte votre liberté !</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Bon cartographiage 🗺 😎</string>
+  <string name="app_intro_slide2_description">OSMTracker pour Android utilisera votre position GPS pour enregistrer des traces et des points de passage, même lorsque l\'application fonctionne en arrière-plan.
+\nVos données ne sont pas utilisées pour afficher des publicités.</string>
 </resources>

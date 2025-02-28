@@ -38,8 +38,8 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackmgr_contextmenu_stop">Opnemen stoppen</string>
   <string name="trackmgr_contextmenu_resume">Opnemen hervatten</string>
   <string name="trackmgr_contextmenu_delete">Verwijderen</string>
-  <string name="trackmgr_contextmenu_export">Exporteren als GPX</string>
-  <string name="trackmgr_contextmenu_share">GPX delen</string>
+  <string name="trackmgr_contextmenu_export">Exporteren</string>
+  <string name="trackmgr_contextmenu_share">Delen</string>
   <string name="trackmgr_contextmenu_osm_upload">Uploaden naar OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Weergeven</string>
   <string name="trackmgr_contextmenu_details">Details</string>
@@ -63,6 +63,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackdetail_export_notyet">(Nog niet geëxporteerd)</string>
   <string name="trackdetail_osm_upload_notyet">(Nog niet geüpload)</string>
   <string name="trackdetail_export_display">Weergeven</string>
+  <string name="trackdetail_name">Naam</string>
   <string name="trackdetail_description">Beschrijving</string>
   <string name="trackdetail_tags">Tags (kommagescheiden)</string>
   <string name="trackdetail_description_mandatory">Een beschrijving is vereist</string>
@@ -85,6 +86,17 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="gpsstatus_record_voicerec">Stemopname</string>
   <string name="gpsstatus_record_stillimage">Foto nemen</string>
   <string name="gpsstatus_record_textnote">Notitie</string>
+  <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Referentiepunt naam/tekst</string>
+  <string name="waypoint_name_hint">Naam van referentiepunt geven</string>
+  <string name="edit_waypoint_bt_preview">Bestand open</string>
+  <string name="edit_waypoint_bt_save">Opslaan</string>
+  <string name="edit_waypoint_bt_delete">Verwijderen</string>
+  <string name="edit_waypoint_bt_cancel">Annuleren</string>
+  <string name="delete_waypoint_confirm_dialog_title">Referentiepunt verwijderen</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Dit referentiepunt verwijderen?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Verwijderen</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Annuleren</string>
   <!--Menu-->
   <string name="menu_settings">Instellingen</string>
   <string name="menu_waypointlist">Referentiepunten</string>
@@ -107,6 +119,14 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="error_externalstorage_not_writable_hint">Controleer of de SD-kaart correct geplaatst is.</string>
   <string name="error_voicerec_failed">Stemopname mislukt</string>
   <string name="error_userlayout_parsing">Fout bij inlezen van XML lay-out-bestand. Gelieve terug te keren naar de standaard lay-out.</string>
+  <!--messages-->
+  <string name="permission_required">Toestemming vereist</string>
+  <string name="storage_permission_for_export_GPX">Om het GPX-traject op te slaan, moeten we in de opslag schrijven.</string>
+  <string name="storage_permission_for_display_track">Om het traject correct weer te geven hebben we toegang nodig tot de opslag.</string>
+  <string name="storage_permission_for_share_track">Om het traject correct te delen hebben we toegang nodig tot de opslag.</string>
+  <string name="storage_permission_for_upload_to_OSM">Om het traject naar OSM te uploaden hebben we toegang nodig tot de opslag.</string>
+  <string name="acccept">Accepteren</string>
+  <string name="gps_perms_required">Kan niet verdergaan zonder gps-toestemming</string>
   <!--GPX-->
   <string name="gpx_track_name">Opgenomen met OSMTracker voor Android™</string>
   <string name="gpx_hdop_approximation_cmt">Waarschuwing: HDOP-waarden worden niet uit de gps-apparaat gelezen. Ze worden benaderd op basis van de nauwkeurigheid van de locatie (in meter).</string>
@@ -140,6 +160,8 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="various_heading">Wachten voor richting...</string>
   <string name="various_heading_unknown">Richting kan niet bepaald worden</string>
   <string name="various_export_finished">Exporteerproces met succes afgerond</string>
+  <string name="various_waiting_position">Positie niet beschikbaar</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap trajectweergave</string>
   <!--Buttons presets messages-->

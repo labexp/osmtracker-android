@@ -1,15 +1,17 @@
 package net.osmtracker.listener;
 
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.UUID;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
 import net.osmtracker.db.TrackContentProvider;
+
 
 /**
  * Listener for standard waypoint tag button.
@@ -36,6 +38,11 @@ public class TagButtonOnClickListener implements OnClickListener {
 		Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 		intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 		intent.putExtra(OSMTracker.INTENT_KEY_NAME, label);
+		intent.putExtra(OSMTracker.INTENT_KEY_UUID, UUID.randomUUID().toString());
+
+		String packageName = view.getContext().getPackageName();
+		intent.setPackage(packageName);
+
 		view.getContext().sendBroadcast(intent);
 		
 		// Inform user that the waypoint was tracked

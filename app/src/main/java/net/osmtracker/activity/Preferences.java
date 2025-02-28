@@ -27,6 +27,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 
 /**
@@ -63,10 +64,24 @@ public class Preferences extends PreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
+		ListView listView = getListView();
+		listView.setFitsSystemWindows(true);
+		listView.setClipToPadding(false);
+		listView.setPadding(0, 48, 0, 0);
 
 		// Set summary of some preferences to their actual values
 		// and register a change listener to set again the summary in case of change
 		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+		// Explicit execution of buttons presets window
+		Preference buttonLayoutPref = findPreference("prefs_ui_buttons_layout");
+		if (buttonLayoutPref != null) {
+			buttonLayoutPref.setOnPreferenceClickListener(preference -> {
+				Intent intent = new Intent(this, ButtonsPresets.class);
+				startActivity(intent);
+				return true;
+			});
+		}
 
 		// External storage directory
 		EditTextPreference storageDirPref = (EditTextPreference) findPreference(OSMTracker.Preferences.KEY_STORAGE_DIR);

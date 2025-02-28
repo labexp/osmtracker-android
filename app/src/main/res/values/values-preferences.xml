@@ -33,6 +33,7 @@
 	<string-array name="prefs_output_filename_values">
 		<item>name</item>
 		<item>name_date</item>
+		<item>date_name</item>
 		<item>date</item>
 	</string-array>
 	

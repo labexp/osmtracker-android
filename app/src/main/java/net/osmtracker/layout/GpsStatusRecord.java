@@ -8,7 +8,9 @@ import net.osmtracker.activity.TrackLogger;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.GnssStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -114,14 +116,41 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 		if (request) {
 			if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 				lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+				lmgr.registerGnssStatusCallback(mStatusCallback);
 			} else {
 				ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
 						REQUEST_CODE_GPS_PERMISSIONS);
 			}
 		} else {
 			lmgr.removeUpdates(this);
+			lmgr.unregisterGnssStatusCallback(mStatusCallback);
 		}
 	}
+
+	private GnssStatus.Callback mStatusCallback = new GnssStatus.Callback() {
+		@Override
+		public void onSatelliteStatusChanged(GnssStatus status) {
+			satCount = status.getSatelliteCount();
+			fixCount = 0;
+
+			for (int i = 0; i < satCount; i++) {
+				if (status.usedInFix(i)) {
+					fixCount++;
+				}
+			}
+
+			if (fixCount == 0) {
+				TextView tvAccuracy = findViewById(R.id.gpsstatus_record_tvAccuracy);
+				tvAccuracy.setText(getResources().getString(R.string.various_waiting_gps_fix)
+						.replace("{0}", Long.toString(fixCount))
+						.replace("{1}", Long.toString(satCount)));
+
+				((ImageView) findViewById(R.id.gpsstatus_record_imgSatIndicator)).setImageResource(R.drawable.sat_indicator_unknown);
+			}
+
+			Log.v(TAG, "Found " + satCount + " satellites. " + fixCount + " used in fix.");
+		}
+	};
 
 	@Override
 	public void onLocationChanged(Location location) {
@@ -135,9 +164,10 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 				activity.onGpsEnabled();
 				manageRecordingIndicator(true);
 			}
-
-			//TODO: get number of satellites used and visible.
-			//Log.v(TAG, "Found " + satCount + " satellites. " + fixCount + " used in fix.
+			else if (gpsActive && !activity.getButtonsEnabled()) {
+				activity.onGpsEnabled();
+				manageRecordingIndicator(true);
+			}
 
 			TextView tvAccuracy = findViewById(R.id.gpsstatus_record_tvAccuracy);
 			if (location.hasAccuracy()) {
@@ -145,11 +175,8 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 				tvAccuracy.setText(getResources().getString(R.string.various_accuracy_with_sats)
 						.replace("{0}", ACCURACY_FORMAT.format(location.getAccuracy()))
 						.replace("{1}", getResources().getString(R.string.various_unit_meters))
-						//TODO: use the number of satellites used and visible
-						//.replace("{2}", Long.toString(fixCount))
-						//.replace("{3}", Long.toString(satCount)));
-						.replace("{2}", "?")
-						.replace("{3}", "?"));
+						.replace("{2}", Long.toString(fixCount))
+						.replace("{3}", Long.toString(satCount)));
 
 				manageSatelliteStatusIndicator((int) location.getAccuracy());
 

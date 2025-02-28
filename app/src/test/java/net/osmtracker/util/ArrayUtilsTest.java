@@ -1,31 +1,36 @@
 package net.osmtracker.util;
 
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class ArrayUtilsTest {
 
-    double data[][] = {
-            {1,1,1},
-            {2,2,2},
-            {3,3,3}
-    };
+	double[][] arrayAsc = {{1, 1, 1}, {2, 2, 2}, {3, 3, 3}};
 
-    @Test
-    public void findMin() {
+	double[][] arrayDesc = {{3, 3, 3}, {2, 2, 2}, {1, 1, 1}};
 
-        double min = ArrayUtils.findMin(data, 0);
-        assertTrue(min == 1);
+	@Test
+	public void findMinAsc() {
+		double min = ArrayUtils.findMin(arrayAsc, 0);
+		assertTrue(min == 1);
+	}
 
-    }
+	@Test
+	public void findMinDesc() {
+		double min = ArrayUtils.findMin(arrayDesc, 2);
+		assertTrue(min == 1);
+	}
 
-    @Test
-    public void findMax() {
+	@Test
+	public void findMaxAsc() {
+		double max = ArrayUtils.findMax(arrayAsc, 0);
+		assertTrue(max == 3);
+	}
 
-        double max = ArrayUtils.findMax(data, 0);
-        assertTrue(max == 3);
-
-    }
+	@Test
+	public void findMaxDesc() {
+		double max = ArrayUtils.findMax(arrayDesc, 2);
+		assertTrue(max == 3);
+	}
 }

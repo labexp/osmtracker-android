@@ -56,7 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">Visualizar OpenStreetMap bajo la traza. Requiere una conexión de datos</string>
   <string name="prefs_displaytrack_osm_summary_ask">¿Mostrar siempre OpenStreetMap de fondo? Requiere una conexión de datos</string>
   <string name="prefs_output">Configuraciones GPX</string>
-  <string name="prefs_storage_dir">Carpeta de almacenamiento externo (SD)</string>
+  <string name="prefs_storage_dir">Carpeta de almacenamiento en Documentos</string>
   <string name="prefs_storage_dir_hint">Se hará efectivo en la traza siguiente (no la actual)</string>
   <string name="prefs_output_one_dir_per_track">Una carpeta por cada traza</string>
   <string name="prefs_output_one_dir_per_track_summary">Guarda cada rastro y los archivos asociados en su propia carpeta</string>
@@ -65,8 +65,11 @@
   <string-array name="prefs_output_filename_keys">
     <item>Nombre de la traza</item>
     <item>Nombre, fecha y hora de inicio</item>
+    <item>Fecha y hora de inicio, nombre</item>
     <item>Fecha y hora de inicio</item>
   </string-array>
+  <string name="prefs_output_filename_label">Etiqueta de nombre de archivo</string>
+  <string name="prefs_output_filename_label_summary">Esta etiqueta será añadida al final del nombre de archivo</string>
   <string name="prefs_output_accuracy">Precisión en el archivo GPX</string>
   <string name="prefs_output_accuracy_summary">Añadir información de precisión en el archivo GPX, con el nombre del punto o en un comentario del punto</string>
   <string-array name="prefs_output_accuracy_keys">

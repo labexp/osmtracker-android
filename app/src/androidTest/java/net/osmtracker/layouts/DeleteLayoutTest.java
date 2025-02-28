@@ -8,6 +8,7 @@ import net.osmtracker.R;
 import net.osmtracker.activity.ButtonsPresets;
 import net.osmtracker.activity.Preferences;
 import net.osmtracker.util.CustomLayoutsUtils;
+import net.osmtracker.util.TestUtils;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -33,6 +34,9 @@ import static org.apache.commons.io.FileUtils.deleteDirectory;
 public class DeleteLayoutTest {
 
     @Rule
+    public GrantPermissionRule storagePermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+    @Rule
     public ActivityTestRule<ButtonsPresets> mRule = new ActivityTestRule(ButtonsPresets.class) {
         @Override
         protected void beforeActivityLaunched() {
@@ -46,10 +50,6 @@ public class DeleteLayoutTest {
             }
         }
     };
-
-    // Storage permissions are required
-    @Rule
-    public GrantPermissionRule writePermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
     private static String layoutName = "mock";
     private static String ISOLanguageCode = "es";

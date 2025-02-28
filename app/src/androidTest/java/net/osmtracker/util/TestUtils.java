@@ -1,9 +1,11 @@
 package net.osmtracker.util;
 
+import static net.osmtracker.util.LogcatHelper.checkLogForMessage;
+
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Environment;
 import android.preference.PreferenceManager;
+
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import net.osmtracker.OSMTracker;
@@ -13,11 +15,6 @@ import net.osmtracker.data.Mocks;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
-
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 /**
  * Contains common and reusable static methods used for tests
@@ -118,8 +115,10 @@ public class TestUtils {
     }
 
     public static void checkToastIsShownWith(String text){
-        onView(withText(text)).inRoot(new ToastMatcher())
-                .check(matches(isDisplayed()));
+        // Espresso can not check Toast for android >= 11
+        // https://github.com/android/android-test/issues/803
+        //onView(withText(text)).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
+        checkLogForMessage("TOAST", text);
     }
 
     public static String getStringResource(int resourceId){

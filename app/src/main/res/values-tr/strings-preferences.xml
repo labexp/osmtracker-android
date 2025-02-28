@@ -56,7 +56,6 @@
   <string name="prefs_displaytrack_osm_summary">İzin altında OpenStreetMap haritasını görüntüle. Bir veri bağlantısı gerektirir</string>
   <string name="prefs_displaytrack_osm_summary_ask">OpenStreetMap arka planı her zaman gösterilsin mi? Bir veri bağlantısı gerektirir</string>
   <string name="prefs_output">GPX ayarları</string>
-  <string name="prefs_storage_dir">Harici depolama (SD) dizini</string>
   <string name="prefs_storage_dir_hint">Bir sonraki izlemede etkili olacak (Şu ankinde değil)</string>
   <string name="prefs_output_one_dir_per_track">İzleme başına bir dizin</string>
   <string name="prefs_output_one_dir_per_track_summary">Her bir izlemeyi ve ilişkili dosyalarını kendi dizinine kaydedin</string>
@@ -65,6 +64,7 @@
   <string-array name="prefs_output_filename_keys">
     <item>İzleme adı</item>
     <item>İsim, başlama tarihi ve zamanı</item>
+    <item>Başlama tarihi ve zamanı, İsim</item>
     <item>Başlama tarihi ve zamanı</item>
   </string-array>
   <string name="prefs_output_accuracy">GPX dosyasının doğruluğu</string>

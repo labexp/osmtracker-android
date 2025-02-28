@@ -1,11 +1,27 @@
 package net.osmtracker.layouts;
 
+import static androidx.test.espresso.Espresso.onData;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.PreferenceMatchers.withTitleText;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static junit.framework.TestCase.fail;
+import static net.osmtracker.util.WaitForView.waitForView;
+
+import android.Manifest;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import androidx.test.espresso.Espresso;
-import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.rule.ActivityTestRule;
+import androidx.test.rule.GrantPermissionRule;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -18,19 +34,17 @@ import org.junit.Test;
 
 import java.util.Locale;
 
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
-import static androidx.test.espresso.Espresso.onData;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.matcher.PreferenceMatchers.withTitleText;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static junit.framework.TestCase.fail;
-
 public class DownloadLayoutTest {
+
+    private final int WAIT_VIEW_TIMEOUT = 5000;
+
+    @Rule
+    public GrantPermissionRule fineLocationPermission = GrantPermissionRule.grant(Manifest.permission.ACCESS_FINE_LOCATION);
+    @Rule
+    public GrantPermissionRule coarseLocationPermission = GrantPermissionRule.grant(Manifest.permission.ACCESS_COARSE_LOCATION);
+    @Rule
+    public GrantPermissionRule writeStoragePermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
     @Rule
     public ActivityTestRule<TrackManager> mRule = new ActivityTestRule(TrackManager.class) {
         @Override
@@ -71,13 +85,16 @@ public class DownloadLayoutTest {
     /**
      * Assuming being in TrackManager
      */
-    public void navigateToAvailableLayouts(){
+    public void navigateToAvailableLayouts() {
+        // Open options menu in the Action Bar
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-
+        // Click on "Settings" in this menu
         onView(withText(TestUtils.getStringResource(R.string.menu_settings))).perform(click());
-
+        // Click on "Buttons presets" settings
         onData(withTitleText(TestUtils.getStringResource(R.string.prefs_ui_buttons_layout))).perform(scrollTo(), click());
-
+        // Wait for "+" to be visible
+        onView(isRoot()).perform(waitForView(R.id.launch_available, WAIT_VIEW_TIMEOUT));
+        // Perform a click action on the "+" button
         onView(withId(R.id.launch_available)).perform(click());
     }
 
@@ -91,7 +108,7 @@ public class DownloadLayoutTest {
         Espresso.pressBack();
 
         // Check the layout appears as a new option in AvailableLayouts
-        onView(withText(layoutName.toLowerCase())).check(ViewAssertions.matches(isDisplayed()));
+        onView(withText(layoutName.toLowerCase())).check(matches(isDisplayed()));
 
         // Select the layout
         onView(withText(layoutName.toLowerCase())).perform(click());
@@ -104,7 +121,7 @@ public class DownloadLayoutTest {
         // Check the buttons are loaded correctly
         String expectedButtonsLabels[] = new String[]{"A", "B", "C"};
         for(String label : expectedButtonsLabels)
-            onView(withText(label)).check(ViewAssertions.matches(isDisplayed()));
+            onView(withText(label)).check(matches(isDisplayed()));
 
     }
 
