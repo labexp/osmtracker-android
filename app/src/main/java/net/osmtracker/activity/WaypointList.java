@@ -2,6 +2,7 @@ package net.osmtracker.activity;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -140,7 +141,12 @@ public class WaypointList extends ListActivity {
 					}
 
 					if (intent.resolveActivity(getPackageManager()) != null) {
-						startActivity(intent);
+						try{
+							startActivity(intent);
+						} catch (ActivityNotFoundException e) {
+							// Handle the case where no app can handle the intent
+							// this means the user has not installed an app that can handle the file type
+						}
 					}
 				}
 				alert.dismiss();
