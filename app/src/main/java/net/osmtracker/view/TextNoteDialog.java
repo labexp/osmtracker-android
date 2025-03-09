@@ -1,10 +1,5 @@
 package net.osmtracker.view;
 
-import java.util.UUID;
-
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,7 +8,11 @@ import android.os.Bundle;
 import android.view.WindowManager.LayoutParams;
 import android.widget.EditText;
 
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
 import net.osmtracker.db.TrackContentProvider;
+
+import java.util.UUID;
 
 public class TextNoteDialog extends AlertDialog {
 	
@@ -63,7 +62,7 @@ public class TextNoteDialog extends AlertDialog {
 		this.setCancelable(true);
 		this.setView(input);
 
-		this.setButton(context.getResources().getString(android.R.string.ok),  new DialogInterface.OnClickListener() {
+		this.setButton(context.getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// Track waypoint with user input text
@@ -71,11 +70,12 @@ public class TextNoteDialog extends AlertDialog {
 				intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, TextNoteDialog.this.wayPointTrackId);
 				intent.putExtra(OSMTracker.INTENT_KEY_NAME, input.getText().toString());
 				intent.putExtra(OSMTracker.INTENT_KEY_UUID, TextNoteDialog.this.wayPointUuid);
-				TextNoteDialog.this.context.sendBroadcast(intent);
+				intent.setPackage(getContext().getPackageName());
+				context.sendBroadcast(intent);
 			}
 		});
 		
-		this.setButton2(context.getResources().getString(android.R.string.cancel),  new DialogInterface.OnClickListener() {
+		this.setButton2(context.getResources().getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// cancel the dialog
@@ -89,7 +89,8 @@ public class TextNoteDialog extends AlertDialog {
 				// delete the waypoint because user canceled this dialog
 				Intent intent = new Intent(OSMTracker.INTENT_DELETE_WP);
 				intent.putExtra(OSMTracker.INTENT_KEY_UUID, TextNoteDialog.this.wayPointUuid);
-				TextNoteDialog.this.context.sendBroadcast(intent);
+				intent.setPackage(getContext().getPackageName());
+				context.sendBroadcast(intent);
 			}
 		});
 		
@@ -100,7 +101,7 @@ public class TextNoteDialog extends AlertDialog {
 	 */
 	@Override
 	protected void onStart() {
-		if(wayPointUuid == null){
+		if (wayPointUuid == null) {
 			// there is no UUID set for the waypoint we're working on
 			// so we need to generate a UUID and track this point
 			wayPointUuid = UUID.randomUUID().toString();
@@ -108,6 +109,7 @@ public class TextNoteDialog extends AlertDialog {
 			intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, wayPointTrackId);
 			intent.putExtra(OSMTracker.INTENT_KEY_UUID, wayPointUuid);
 			intent.putExtra(OSMTracker.INTENT_KEY_NAME, context.getResources().getString(R.string.gpsstatus_record_textnote));
+			intent.setPackage(getContext().getPackageName());
 			context.sendBroadcast(intent);
 		}
 
@@ -120,18 +122,18 @@ public class TextNoteDialog extends AlertDialog {
 	 * resets values of this dialog
 	 * such as the input fields text and the waypoints uuid
 	 */
-	public void resetValues(){
+	public void resetValues() {
 		wayPointUuid = null;
 		input.setText("");
 	}
 
 	/**
-	 * restoring values from the savedInstaceState 
+	 * restoring values from the savedInstanceState
 	 */
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
 		String text = savedInstanceState.getString(KEY_INPUT_TEXT);
-		if(text != null){
+		if (text != null) {
 			input.setText(text);
 		}
 		wayPointUuid = savedInstanceState.getString(KEY_WAYPOINT_UUID);
@@ -150,8 +152,4 @@ public class TextNoteDialog extends AlertDialog {
 		extras.putString(KEY_WAYPOINT_UUID, wayPointUuid);
 		return extras;
 	}
-	
-	
-	
-
 }

@@ -27,8 +27,8 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build with Gradle # skip tests, coverage, etc.
-        run: ./gradlew assembleDebug --stacktrace -x test
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug --stacktrace
 
       - name: Rename output APK
         run: |
@@ -41,3 +41,25 @@ jobs:
         with:
           name: debug-${{ env.ARTIFACT_DATE }}
           path: app/build/outputs/apk/debug/OSMTracker-debug-*.apk
+
+      - name: Run unit tests and jacoco coverage
+        run: ./gradlew testDebugUnitTest jacocoTestReport --stacktrace
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run connected tests
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: 26
+          script: |
+            adb logcat &
+            ./gradlew connectedCheck --no-parallel
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2
+        with:
+          format: jacoco

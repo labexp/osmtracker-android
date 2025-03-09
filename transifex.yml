@@ -1,0 +1,30 @@
+# Transifex config file
+
+git:
+  filters:
+    - filter_type: dir
+      file_format: ANDROID
+      source_file_extension: xml
+      source_language: en
+      source_file_dir: app/src/main/res/values/
+      translation_files_expression: 'app/src/main/res/values-<lang>/'
+      ignore_files:
+        - app/src/main/res/values/colors.xml
+        - app/src/main/res/values/themes.xml
+        - app/src/main/res/values/theme_highcontrast.xml
+        - app/src/main/res/values/styles.xml
+        - app/src/main/res/values/values.xml
+        - app/src/main/res/values/values-preferences.xml
+
+  settings:
+    language_mapping:
+      bg_BG: bg-rBG
+      sr@Latin: b+sr+Latn
+      cs_CZ: cs-rCZ
+      fa_IR: fa-rIR
+      fr_FR: fr-rFR
+      pt_BR: pt-rBR
+      pt_PT: pt-rPT
+      tr_TR: tr-rTR
+      zh_CN: zh-rCN
+      zh_TW: zh-rTW

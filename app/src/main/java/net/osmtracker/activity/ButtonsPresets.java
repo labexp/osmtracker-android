@@ -285,8 +285,11 @@ public class ButtonsPresets extends Activity {
 
                         int messageToShowId = (successfulDeletion) ? R.string.buttons_presets_successful_delete :
                                 R.string.buttons_presets_unsuccessful_delete;
+                        String message = getResources().getString(messageToShowId);
 
-                        Toast.makeText(getApplicationContext(), getResources().getString(messageToShowId), Toast.LENGTH_SHORT).show();
+                        Log.println(successfulDeletion ? Log.INFO : Log.ERROR, "TOAST", message);
+
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
                         //reload the activity
                         refreshActivity();

@@ -56,7 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">Vis OpenStreetMap-kort under track. Kræver dataforbindelse</string>
   <string name="prefs_displaytrack_osm_summary_ask">Vis altid OpenStreetMap-baggrund? Kræver en dataforbindelse</string>
   <string name="prefs_output">GPX-indstillinger</string>
-  <string name="prefs_storage_dir">Mappe på eksternt lager (SD)</string>
+  <string name="prefs_storage_dir">Lagringsmappe i dokumenter</string>
   <string name="prefs_storage_dir_hint">Gældende for næste track (ikke det nuværende)</string>
   <string name="prefs_output_one_dir_per_track">En mappe per track</string>
   <string name="prefs_output_one_dir_per_track_summary">Gem hvert track og tilhørende filer i egen mappe</string>
@@ -65,8 +65,11 @@
   <string-array name="prefs_output_filename_keys">
     <item>Track-navn</item>
     <item>Navn, startdato og tid</item>
+    <item>Startdato og tid, navn</item>
     <item>Startdato og tid</item>
   </string-array>
+  <string name="prefs_output_filename_label">Filnavnetiket</string>
+  <string name="prefs_output_filename_label_summary">Denne etiket vil blive tilføjet i slutningen af ​​filnavnet</string>
   <string name="prefs_output_accuracy">Præcision i GPX-fil</string>
   <string name="prefs_output_accuracy_summary">Tilføj præcisionsinfo til GPX-fil, med waypoint-navn eller i waypoint-kommentar</string>
   <string-array name="prefs_output_accuracy_keys">

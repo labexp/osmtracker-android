@@ -5,6 +5,7 @@
   <!--Zoom in/out in map view-->
   <string name="acc.zoom_in">Przybliż</string>
   <string name="acc.zoom_out">Oddal</string>
+  <string name="acc.zoom_center">Centrum</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">Wskaźnik siły sygnału satelit</string>
   <string name="acc.record_indicator">Wskaźnik postępu zapisywania</string>

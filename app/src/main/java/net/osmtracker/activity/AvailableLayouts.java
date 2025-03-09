@@ -151,12 +151,13 @@ public class AvailableLayouts extends Activity {
             Button layoutButton = new Button(this);
             layoutButton.setHeight(150);
             layoutButton.setText(CustomLayoutsUtils.convertFileName(option));
-            layoutButton.setTextSize((float)22 );
+            layoutButton.setTextSize(16f);
             layoutButton.setTextColor(Color.WHITE);
+            layoutButton.setSingleLine(false);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(110, 0, 110, 0);
+            layoutParams.setMargins(50, 10, 50, 10);
             layoutButton.setLayoutParams(layoutParams);
-            layoutButton.setPadding(10,20,10,20);
+            layoutButton.setPadding(40, 30, 40, 30);
             layoutButton.setOnClickListener(listener);
             rootLayout.addView(layoutButton,AT_START);
         }
@@ -247,7 +248,9 @@ public class AvailableLayouts extends Activity {
                                 protected void onPostExecute(Boolean result){
                                     //validating the github repository
                                     if(result){
-                                        Toast.makeText(AvailableLayouts.this, getResources().getString(R.string.github_repository_settings_valid_server), Toast.LENGTH_SHORT).show();
+                                        String message = getResources().getString(R.string.github_repository_settings_valid_server);
+                                        Log.i("TOAST", message);
+                                        Toast.makeText(AvailableLayouts.this, message, Toast.LENGTH_SHORT).show();
                                         //save the entered options into the shared preferences file
                                         editor.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, repositoryCustomOptions[0]);
                                         editor.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]);
@@ -257,7 +260,9 @@ public class AvailableLayouts extends Activity {
                                         tmpSharedPref.edit().putBoolean("isCallBack", false).commit();
                                         retrieveAvailableLayouts();
                                     }else{
-                                        Toast.makeText(AvailableLayouts.this, getResources().getString(R.string.github_repository_settings_invalid_server), Toast.LENGTH_SHORT).show();
+                                        String message = getResources().getString(R.string.github_repository_settings_invalid_server);
+                                        Log.e("TOAST", message);
+                                        Toast.makeText(AvailableLayouts.this, message, Toast.LENGTH_SHORT).show();
                                         tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, repositoryCustomOptions[0]).commit();
                                         tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, repositoryCustomOptions[1]).commit();
                                         tmpSharedPref.edit().putString(OSMTracker.Preferences.KEY_BRANCH_NAME, repositoryCustomOptions[2]).commit();
@@ -321,8 +326,8 @@ public class AvailableLayouts extends Activity {
         //setting the custom options into text fields
         else{
             etxGithubUsername.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, ""));
-            etxRepositoryName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME,""));
-            etxBranchName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, ""));
+            etxRepositoryName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, OSMTracker.Preferences.VAL_REPOSITORY_NAME));
+            etxBranchName.setText(sharedPrefs.getString(OSMTracker.Preferences.KEY_BRANCH_NAME, OSMTracker.Preferences.VAL_BRANCH_NAME));
         }
     }
 
@@ -492,9 +497,11 @@ public class AvailableLayouts extends Activity {
                     String message="";
                     if (status) {
                         message = getResources().getString(R.string.available_layouts_successful_download);
+                        Log.i("TOAST", message);
                     }
                     else {
                         message = getResources().getString(R.string.available_layouts_unsuccessful_download);
+                        Log.e("TOAST", message);
                     }
                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
                     dialog.dismiss();

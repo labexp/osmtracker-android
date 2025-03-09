@@ -1,16 +1,5 @@
 package net.osmtracker.layouts;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.ViewAssertion;
-import androidx.test.rule.ActivityTestRule;
-
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-import net.osmtracker.activity.AvailableLayouts;
-
-import org.hamcrest.Matcher;
-import org.junit.Rule;
-import org.junit.Test;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -26,6 +15,17 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static net.osmtracker.util.TestUtils.checkToastIsShownWith;
 import static net.osmtracker.util.TestUtils.getStringResource;
 import static org.hamcrest.core.IsNot.not;
+
+import androidx.test.espresso.ViewAssertion;
+import androidx.test.rule.ActivityTestRule;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.activity.AvailableLayouts;
+
+import org.hamcrest.Matcher;
+import org.junit.Rule;
+import org.junit.Test;
 
 public class RepositorySettingsDialogTest {
 
@@ -66,7 +66,7 @@ public class RepositorySettingsDialogTest {
         onView(withId(expectedInactiveId)).check(matches(isEnabled()));
     }
 
-    public void checkRepositoryValidity(String user, String repo, String branch, boolean isValid){
+    public void checkRepositoryValidity(String user, String repo, String branch, boolean isValid) {
         onView(withId(R.id.github_config)).perform(click());
 
         onView(withId(R.id.custom_server)).perform(click(), closeSoftKeyboard());
@@ -84,7 +84,6 @@ public class RepositorySettingsDialogTest {
 
         ViewAssertion expectedDialogState = (isValid) ? doesNotExist() : matches(isDisplayed());
         checkDialogState(expectedDialogState);
-
     }
 
     /**

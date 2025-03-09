@@ -16,6 +16,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+
 /**
  * Created by adma9717 on 12/8/17.
  */
@@ -65,16 +67,18 @@ public class CustomLayoutsUtils {
 
     /**
      * FIXME: Create a util class with this method. This method is a copy&paste of the one in {@link GetStringResponseTask}
-     * @param stream
-     * @return all the characters in the stream as a single String
-     * @throws IOException
+     * Converts an InputStream to a String using the UTF-8 charset.
+     *
+     * @param stream the InputStream to read from
+     * @return a String containing all characters read from the stream
+     * @throws IOException if an I/O error occurs
      */
     public static String getStringFromStream(InputStream stream) throws IOException {
         if (stream != null) {
             Writer writer = new StringWriter();
             char[] buffer = new char[2048];
             try {
-                Reader reader = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
+                Reader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
                 int counter;
                 while ((counter = reader.read(buffer)) != -1) {
                     writer.write(buffer, 0, counter);

@@ -37,8 +37,8 @@
   <string name="trackmgr_contextmenu_stop">Detener el trazado</string>
   <string name="trackmgr_contextmenu_resume">Reanudar el trazado</string>
   <string name="trackmgr_contextmenu_delete">Eliminar</string>
-  <string name="trackmgr_contextmenu_export">Exportar como GPX</string>
-  <string name="trackmgr_contextmenu_share">Compartir GPX</string>
+  <string name="trackmgr_contextmenu_export">Exportar</string>
+  <string name="trackmgr_contextmenu_share">Compartir</string>
   <string name="trackmgr_contextmenu_osm_upload">Subir a OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Visualizar</string>
   <string name="trackmgr_contextmenu_details">Detalles</string>
@@ -62,6 +62,7 @@
   <string name="trackdetail_export_notyet">(aún no exportado)</string>
   <string name="trackdetail_osm_upload_notyet">(aún no subido)</string>
   <string name="trackdetail_export_display">Mostrar</string>
+  <string name="trackdetail_name">Nombre</string>
   <string name="trackdetail_description">Descripción: </string>
   <string name="trackdetail_tags">Etiquetas (delimitado por comas)</string>
   <string name="trackdetail_description_mandatory">Debe introducir una descripción</string>
@@ -84,6 +85,17 @@
   <string name="gpsstatus_record_voicerec">Grabar voz</string>
   <string name="gpsstatus_record_stillimage">Tomar foto</string>
   <string name="gpsstatus_record_textnote">Nota de texto</string>
+  <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Nombre de Punto/texto</string>
+  <string name="waypoint_name_hint">Ingrese el nombre del punto</string>
+  <string name="edit_waypoint_bt_preview">Abrir archivo</string>
+  <string name="edit_waypoint_bt_save">Guardar</string>
+  <string name="edit_waypoint_bt_delete">Eliminar</string>
+  <string name="edit_waypoint_bt_cancel">Cancelar</string>
+  <string name="delete_waypoint_confirm_dialog_title">Eliminar Punto</string>
+  <string name="delete_waypoint_confirm_dialog_msg">¿Eliminar este punto?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Eliminar</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Cancelar</string>
   <!--Menu-->
   <string name="menu_settings">Configuración</string>
   <string name="menu_waypointlist">Puntos</string>
@@ -106,6 +118,14 @@
   <string name="error_externalstorage_not_writable_hint">Compruebe que el almacenamiento externo está correctamente insertado y montado.</string>
   <string name="error_voicerec_failed">La grabación de voz ha fallado</string>
   <string name="error_userlayout_parsing">Error al analizar el archivo XML de disposición. Por favor, vuelva a la disposición predeterminada.</string>
+  <!--messages-->
+  <string name="permission_required">Se requiere permiso</string>
+  <string name="storage_permission_for_export_GPX">Para exportar la traza se requiere permiso de escritura en el almacenamiento.</string>
+  <string name="storage_permission_for_display_track">Para mostrar la traza se requiere permiso de escritura en el almacenamiento.</string>
+  <string name="storage_permission_for_share_track">Para compartir la traza se requiere permiso de escritura en el almacenamiento.</string>
+  <string name="storage_permission_for_upload_to_OSM">Para subir a OSM la traza se requiere permiso de escritura en el almacenamiento.</string>
+  <string name="acccept">Aceptar</string>
+  <string name="gps_perms_required">No se puede continuar sin el permiso de GPS.</string>
   <!--GPX-->
   <string name="gpx_track_name">Trazado con OSMTracker para Android™</string>
   <string name="gpx_hdop_approximation_cmt">Advertencia: los valores HDOP no son los valores HDOP devueltos por el dispositivo GPS. Son valores aproximados de acuerdo a la precisión de la ubicación en metros.</string>
@@ -139,6 +159,8 @@
   <string name="various_heading">Espere por la cabecera…</string>
   <string name="various_heading_unknown">La cabecera no se puede determinar</string>
   <string name="various_export_finished">El proceso de exportación finalizó con éxito</string>
+  <string name="various_waiting_position">Posición no disponible</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Vista de la traza en OpenStreetMap</string>
   <!--Buttons presets messages-->

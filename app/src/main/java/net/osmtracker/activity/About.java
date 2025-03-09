@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class About extends Activity {
 		} catch (NameNotFoundException nnfe) { 
 			// Should not occur
 		}
-		
+
 		findViewById(R.id.about_debug_info_button).setOnClickListener(
 				new OnClickListener() {
 					
@@ -76,7 +77,7 @@ public class About extends Activity {
 
 						File dbFile = getDatabasePath(DatabaseHelper.DB_NAME);
 						File targetFolder = new File(
-								view.getContext().getExternalFilesDir(null),
+								Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
 								//Environment.getExternalStorageDirectory(),
 								PreferenceManager.getDefaultSharedPreferences(About.this).getString(
 										OSMTracker.Preferences.KEY_STORAGE_DIR,
@@ -128,10 +129,17 @@ public class About extends Activity {
 
 	private String getDebugInfo() {
 		File externalStorageDir = this.getExternalFilesDir(null);
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		String exportDirectoryNameInPreferences = preferences.getString(
+				OSMTracker.Preferences.KEY_STORAGE_DIR,	OSMTracker.Preferences.VAL_STORAGE_DIR);
+		File baseExportDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
+				exportDirectoryNameInPreferences);
 		return "External Storage Directory: '" + externalStorageDir + "'\n"
 				+ "External Storage State: '"  + Environment.getExternalStorageState() + "'\n"
 				+ "Can write to external storage: "
-				+ Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) + "\n";
+				+ Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) + "\n"
+				+ "Export External Public Storage Directory: '"
+				+ baseExportDirectory + "'\n";
 	}
 
 }

@@ -40,6 +40,7 @@ import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.exception.CreateTrackException;
 import net.osmtracker.gpx.ExportToStorageTask;
 import net.osmtracker.gpx.ExportToTempFileTask;
+import net.osmtracker.gpx.ZipHelper;
 import net.osmtracker.util.FileSystemUtils;
 
 import java.io.File;
@@ -84,6 +85,9 @@ public class TrackManager extends AppCompatActivity
 
 	private TrackListRVAdapter recyclerViewAdapter;
 
+	// To check if the RecyclerView already has a DividerItemDecoration added
+	private boolean hasDivider;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -112,6 +116,14 @@ public class TrackManager extends AppCompatActivity
 			Intent intro = new Intent(this, Intro.class);
 			startActivity(intro);
 		}
+		RecyclerView recyclerView = findViewById(R.id.recyclerview);
+		recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+		// Adding a horizontal divider
+		DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
+		dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider)); // Using a custom drawable
+
+		recyclerView.addItemDecoration(dividerItemDecoration);
 	}
 
 	@Override
@@ -139,7 +151,7 @@ public class TrackManager extends AppCompatActivity
 
 
 	/**
-	 *
+	 * Configures and initializes the RecyclerView for displaying the list of tracks.
 	 */
 	private void setRecyclerView() {
 		RecyclerView recyclerView = findViewById(R.id.recyclerview);
@@ -147,11 +159,13 @@ public class TrackManager extends AppCompatActivity
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this,
 				LinearLayoutManager.VERTICAL, false);
 		recyclerView.setLayoutManager(layoutManager);
-
-		DividerItemDecoration did = new DividerItemDecoration(recyclerView.getContext(),
-				layoutManager.getOrientation());
-		recyclerView.addItemDecoration(did);
-
+		// adds a divider decoration if not already present
+		if (!hasDivider) {
+			DividerItemDecoration did = new DividerItemDecoration(recyclerView.getContext(),
+					layoutManager.getOrientation());
+			recyclerView.addItemDecoration(did);
+			hasDivider = true;
+		}
 		recyclerView.setHasFixedSize(true);
 		Cursor cursor = getContentResolver().query(
 				TrackContentProvider.CONTENT_URI_TRACK, null, null, null,
@@ -281,7 +295,7 @@ public class TrackManager extends AppCompatActivity
 			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
 					Manifest.permission.ACCESS_FINE_LOCATION)) {
 				Log.i(TAG,"Should explain");
-				Toast.makeText(this, "Can't continue without GPS permission",
+				Toast.makeText(this, R.string.gps_perms_required,
 						Toast.LENGTH_LONG).show();
 			}
 
@@ -396,10 +410,13 @@ public class TrackManager extends AppCompatActivity
 				// stop the active track
 				stopActiveTrack();
 				break;
-
 			case R.id.trackmgr_contextmenu_resume:
-				// let's activate the track and start the TrackLogger activity
-				setActiveTrack(contextMenuSelectedTrackid);
+				// Activate the selected track if it is different from the currently active one
+				// (or if no track is currently active)
+				if (currentTrackId != contextMenuSelectedTrackid) {
+					setActiveTrack(contextMenuSelectedTrackid);
+				}
+				// Start the TrackLogger activity to begin logging the selected track
 				i = new Intent(this, TrackLogger.class);
 				i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, contextMenuSelectedTrackid);
 				tryStartTrackLogger(i);
@@ -565,7 +582,9 @@ public class TrackManager extends AppCompatActivity
 		new ExportToTempFileTask(context, trackId){
 			@Override
 			protected void executionCompleted(){
-				shareFile(this.getTmpFile(), context);
+				// Creates a zip file with the trace and its multimedia files
+				File zipFile = ZipHelper.zipCacheFiles(context, trackId, this.getTmpFile());
+				shareFile(zipFile, context);
 			}
 
 			@Override
@@ -688,6 +707,7 @@ public class TrackManager extends AppCompatActivity
 		if(currentTrackId != TRACK_ID_NO_TRACK){
 			// we send a broadcast to inform all registered services to stop tracking
 			Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
+			intent.setPackage(this.getPackageName());
 			sendBroadcast(intent);
 
 			// need to get sure, that the database is up to date
@@ -720,7 +740,7 @@ public class TrackManager extends AppCompatActivity
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "we should explain why we need write permission_EXPORT_ALL");
-					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.storage_permission_for_export_GPX, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
@@ -738,7 +758,7 @@ public class TrackManager extends AppCompatActivity
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "we should explain why we need write permission_EXPORT_ONE");
-					Toast.makeText(this, "To export the GPX trace we need to write on the storage.", Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.storage_permission_for_export_GPX, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
@@ -755,7 +775,7 @@ public class TrackManager extends AppCompatActivity
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "Permission not granted");
-					Toast.makeText(this, "To display the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.storage_permission_for_display_track, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
@@ -773,7 +793,7 @@ public class TrackManager extends AppCompatActivity
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "Permission not granted");
-					Toast.makeText(this, "To share the track properly we need access to the storage.", Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.storage_permission_for_share_track, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
@@ -790,7 +810,7 @@ public class TrackManager extends AppCompatActivity
 					// functionality that depends on this permission.
 					//TODO: add an informative message.
 					Log.w(TAG, "Permission not granted");
-					Toast.makeText(this, "To upload the track to OSM we need access to the storage.", Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.storage_permission_for_upload_to_OSM, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}

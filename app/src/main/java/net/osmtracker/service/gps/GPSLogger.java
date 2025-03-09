@@ -1,13 +1,5 @@
 package net.osmtracker.service.gps;
 
-import net.osmtracker.OSMTracker;
-import net.osmtracker.R;
-import net.osmtracker.activity.TrackLogger;
-import net.osmtracker.db.DataHelper;
-import net.osmtracker.db.TrackContentProvider;
-import net.osmtracker.listener.PressureListener;
-import net.osmtracker.listener.SensorListener;
-
 import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -27,9 +19,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
-import android.util.Log;
+
+import net.osmtracker.OSMTracker;
+import net.osmtracker.R;
+import net.osmtracker.activity.TrackLogger;
+import net.osmtracker.db.DataHelper;
+import net.osmtracker.db.TrackContentProvider;
+import net.osmtracker.listener.PressureListener;
+import net.osmtracker.listener.SensorListener;
 
 /**
  * GPS logging service.
@@ -147,8 +148,15 @@ public class GPSLogger extends Service implements LocationListener {
 				// Delete an existing waypoint
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
+					Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
-					dataHelper.deleteWayPoint(uuid);
+					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
+					String filePath = null;
+					try {
+						filePath = link.equals("null") ? null : DataHelper.getTrackDirectory(trackId, context) + "/" + link;
+					}
+					catch(NullPointerException ne){}
+					dataHelper.deleteWayPoint(uuid, filePath);
 				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction())) {
 				Bundle extras = intent.getExtras();
@@ -222,7 +230,11 @@ public class GPSLogger extends Service implements LocationListener {
 		filter.addAction(OSMTracker.INTENT_DELETE_WP);
 		filter.addAction(OSMTracker.INTENT_START_TRACKING);
 		filter.addAction(OSMTracker.INTENT_STOP_TRACKING);
-		registerReceiver(receiver, filter);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+			registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED);
+		} else {
+			registerReceiver(receiver, filter);
+		}
 
 		// Register ourselves for location updates
 		lmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
