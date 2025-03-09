@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 import androidx.core.content.FileProvider;
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
@@ -140,13 +141,13 @@ public class WaypointList extends ListActivity {
 						intent.setDataAndType(fileUri, DataHelper.MIME_TYPE_AUDIO);
 					}
 
-					if (intent.resolveActivity(getPackageManager()) != null) {
-						try{
-							startActivity(intent);
-						} catch (ActivityNotFoundException e) {
-							// Handle the case where no app can handle the intent
-							// this means the user has not installed an app that can handle the file type
-						}
+					try{
+						startActivity(intent);
+					} catch (ActivityNotFoundException e) {
+						// Handle the case where no app can handle the intent
+						// this means the user has not installed an app that can handle the file type
+						//Log.e(TAG, "No app found to handle the file type: " + filePath, e);
+						Toast.makeText(WaypointList.this, getString(R.string.no_app_to_handle_file_type), Toast.LENGTH_LONG).show();
 					}
 				}
 				alert.dismiss();
