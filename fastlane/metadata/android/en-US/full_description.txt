@@ -1,0 +1,24 @@
+<b>OSMTracker for Android</b> allows you to track your journey and mark significant waypoints. Waypoints can be marked
+using a button with a tag, a quick voice recording, a text note, or by taking a picture. The various button pages and
+layouts can be customized to suit your OpenStreetMap activities. You can view your current track on top of an
+OpenStreetMap background.
+
+<b>Features:</b>
+<ul>
+  <li><b>GPS Track Logging:</b> Record and store your journey as a GPX track.</li>
+  <li><b>Waypoint Marking:</b> Add points of interest with:
+    <ul>
+      <li>Customizable quick-access buttons</li>
+      <li>Voice recordings</li>
+      <li>Text notes</li>
+      <li>Photos</li>
+    </ul>
+  </li>
+  <li><b>OpenStreetMap Integration:</b> View your GPS track over an OpenStreetMap background.</li>
+  <li><b>Offline Usage:</b> Works without an internet connection, ideal for remote areas.</li>
+</ul>
+
+Whether you're mapping new territories, hiking, cycling, or exploring, <b>OSMTracker</b> is the perfect tool for
+OpenStreetMap contributors and outdoor adventurers.
+
+<strong>🚀 Start mapping with OSMTracker and contribute to OpenStreetMap today!</strong>
