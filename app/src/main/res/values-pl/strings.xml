@@ -87,6 +87,12 @@ głosową</string>
   <string name="gpsstatus_record_stillimage">Zrób zdjęcie</string>
   <string name="gpsstatus_record_textnote">Notka</string>
   <!--edit_waypoint_dialog-->
+  <string name="edit_waypoint_bt_preview">Otwórz plik</string>
+  <string name="edit_waypoint_bt_save">Ratować</string>
+  <string name="edit_waypoint_bt_delete">Usuwać</string>
+  <string name="edit_waypoint_bt_cancel">Anulować</string>
+  <string name="delete_waypoint_confirm_bt_ok">Usuwać</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Anulować</string>
   <!--Menu-->
   <string name="menu_settings">Ustawienia</string>
   <string name="menu_waypointlist">Punkty nawigacji</string>
@@ -150,6 +156,7 @@ głosową</string>
   <string name="various_heading">Oczekuję na kierunek...</string>
   <string name="various_heading_unknown">Kierunek nie może zostać określony</string>
   <string name="various_export_finished">Proces eksportu zakończony sukcesem</string>
+  <string name="various_waiting_position">Stanowisko niedostępne</string>
   <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Podgląd śladu w OpenStreetMap</string>
