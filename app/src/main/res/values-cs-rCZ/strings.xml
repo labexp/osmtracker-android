@@ -203,4 +203,5 @@
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Šťastné trasování 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker pro Android použije vaši polohu GPS k záznamu trasových bodů a bodů cest, i když je aplikace spuštěna na pozadí. \nVaše data se nepoužívají k podpoře reklam.</string>
+  <string name="no_app_to_handle_file_type">Nebyla nalezena žádná aplikace k otevření tohoto souboru.</string>
 </resources>
