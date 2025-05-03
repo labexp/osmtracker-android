@@ -1,6 +1,7 @@
 package net.osmtracker.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -80,6 +81,11 @@ public class GitHubNewRepo extends Activity {
     private void createNewRepo(String repoName, boolean isPrivate) {
         String fullURL = getBaseURL()+"/user/repos";
 
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(this.getResources().getString(R.string.github_creating_repository));
+        progressDialog.setCancelable(true);
+        progressDialog.show();
+
         JsonObjectRequest postResquest= new JsonObjectRequest(
                 Request.Method.POST,
                 fullURL,
@@ -88,11 +94,9 @@ public class GitHubNewRepo extends Activity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            System.out.println("=========================" + response.getString("full_name"));
                             setNewRepoFullName(response.getString("full_name"));
                             Toast.makeText(GitHubNewRepo.this, R.string.successfully_created, Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
-                            System.out.println("=========================Error");
                             Toast.makeText(GitHubNewRepo.this, R.string.error_creating, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
@@ -100,7 +104,7 @@ public class GitHubNewRepo extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(GitHubNewRepo.this, R.string.error_creating, Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
