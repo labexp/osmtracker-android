@@ -229,6 +229,7 @@
     <string name="gpx_file_not_found">GPX file not found</string>
     <string name="item_selected">Item Selected: </string>
     <string name="github_repository_private">Private: </string>
+    <string name="github_creating_repository">Creating repository</string>
     <string name="github_no_repository_name">You must specify a repository name</string>
     <string name="error_field_required">You must specify a value for this field</string>
     <!-- GitHubConfig -->
