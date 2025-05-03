@@ -66,6 +66,7 @@
   <string-array name="prefs_output_filename_keys">
     <item>Nyomkövetés neve</item>
     <item>Név, kezdeti dátum és időpont</item>
+    <item>Kezdeti dátum és időpont, név</item>
     <item>Kezdeti dátum és időpont</item>
   </string-array>
   <string name="prefs_output_accuracy">Pontosság a GPX fájlban</string>

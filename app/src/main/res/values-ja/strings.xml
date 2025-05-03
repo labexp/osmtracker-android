@@ -38,8 +38,6 @@
   <string name="trackmgr_contextmenu_stop">トラッキングの停止</string>
   <string name="trackmgr_contextmenu_resume">トラッキングの再開</string>
   <string name="trackmgr_contextmenu_delete">削除</string>
-  <string name="trackmgr_contextmenu_export">GPX にエクスポート</string>
-  <string name="trackmgr_contextmenu_share">GPX をシェア</string>
   <string name="trackmgr_contextmenu_osm_upload">OpenStreetMap へアップロード</string>
   <string name="trackmgr_contextmenu_display">表示</string>
   <string name="trackmgr_contextmenu_details">詳細</string>
@@ -85,6 +83,7 @@
   <string name="gpsstatus_record_voicerec">音声録音</string>
   <string name="gpsstatus_record_stillimage">写真撮影</string>
   <string name="gpsstatus_record_textnote">テキスト</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">設定</string>
   <string name="menu_waypointlist">ウェイポイント</string>
@@ -107,6 +106,7 @@
   <string name="error_externalstorage_not_writable_hint">外部ストレージが挿入され、正しくマウントされていることを確認してください。</string>
   <string name="error_voicerec_failed">音声録音に失敗しました</string>
   <string name="error_userlayout_parsing">XML レイアウトファイルが認識できません。デフォルトレイアウトに戻してください。</string>
+  <!--messages-->
   <!--GPX-->
   <string name="gpx_track_name">OSMTracker for Android™ で追跡</string>
   <string name="gpx_hdop_approximation_cmt">警告: HDOP 値が GPS 機器から返された HDOP 値と異なります。これは正しい位置からのメートル単位の距離です。</string>
@@ -140,6 +140,7 @@
   <string name="various_heading">方位測定待ち...</string>
   <string name="various_heading_unknown">方位が特定できませんでした</string>
   <string name="various_export_finished">エクスポート処理が完了しました</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap トラック表示</string>
   <!--Buttons presets messages-->

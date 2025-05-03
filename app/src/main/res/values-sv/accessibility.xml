@@ -5,6 +5,7 @@
   <!--Zoom in/out in map view-->
   <string name="acc.zoom_in">Zooma in</string>
   <string name="acc.zoom_out">Zooma ut</string>
+  <string name="acc.zoom_center">Centrum</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">Indikator för satellitsignalens styrka</string>
   <string name="acc.record_indicator">Förloppsindikator för inspelning</string>

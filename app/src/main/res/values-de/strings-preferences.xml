@@ -56,7 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">OpenStreetMap-Karte unter Route anzeigen. Benötigt eine Datenverbindung</string>
   <string name="prefs_displaytrack_osm_summary_ask">OpenStreetMap als Track-Hintergrund anzeigen? Benötigt eine Datenverbindung</string>
   <string name="prefs_output">GPX-Einstellungen</string>
-  <string name="prefs_storage_dir">Externes Speicherverzeichnis (SD)</string>
+  <string name="prefs_storage_dir">Ablageordner in Dokumenten</string>
   <string name="prefs_storage_dir_hint">Gültig ab der nächste Route (nicht für die derzeitige)</string>
   <string name="prefs_output_one_dir_per_track">Ein Verzeichnis pro Route</string>
   <string name="prefs_output_one_dir_per_track_summary">Jede Route und zugehörige Dateien in einem eigenen Verzeichnis speichern</string>
@@ -65,8 +65,11 @@
   <string-array name="prefs_output_filename_keys">
     <item>Routename</item>
     <item>Name, Startdatum und -zeit</item>
+    <item>Startdatum und -zeit, name</item>
     <item>Startdatum und -zeit</item>
   </string-array>
+  <string name="prefs_output_filename_label">Dateinamenbezeichnung</string>
+  <string name="prefs_output_filename_label_summary">Dieses Label wird am Ende des Dateinamens angehängt</string>
   <string name="prefs_output_accuracy">Genauigkeit in der GPX-Datei</string>
   <string name="prefs_output_accuracy_summary">Erlaube Genauigkeitsanzeige in der GPX-Datei mit Wegpunkt-Name oder in einem separaten Tag</string>
   <string-array name="prefs_output_accuracy_keys">

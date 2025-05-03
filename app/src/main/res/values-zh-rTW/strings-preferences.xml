@@ -56,7 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">在軌跡底下顯示 OpenStreetMap 地圖。本功能需有可用的網路連結以傳輸資料</string>
   <string name="prefs_displaytrack_osm_summary_ask">保持顯示 OpenStreetMap 底圖？此功能需要連線</string>
   <string name="prefs_output">GPX 相關設定</string>
-  <string name="prefs_storage_dir">外部儲存媒體 (SD) 資料夾位置</string>
+  <string name="prefs_storage_dir">文件當中的儲存資料夾</string>
   <string name="prefs_storage_dir_hint">設定值將在記錄下一筆軌跡資料時生效 (不是目前這筆)</string>
   <string name="prefs_output_one_dir_per_track">給每筆軌跡各配置一個專屬資料夾</string>
   <string name="prefs_output_one_dir_per_track_summary">將每筆軌跡以及相關的檔案一起放在專屬的資料夾當中</string>
@@ -64,9 +64,12 @@
   <string name="prefs_output_filename_summary">軌跡資料檔的命名樣式</string>
   <string-array name="prefs_output_filename_keys">
     <item>軌跡名稱</item>
-    <item>軌跡名稱，起始日期與時間</item>
-    <item>起始日期與時間</item>
+    <item>名稱、開始日期與時間</item>
+    <item>開始日期與時間、名稱</item>
+    <item>開始日期與時間</item>
   </string-array>
+  <string name="prefs_output_filename_label">檔案名稱標籤</string>
+  <string name="prefs_output_filename_label_summary">這個標籤會附在檔案名稱的結尾</string>
   <string name="prefs_output_accuracy">在 GPX 檔中附加精確度資訊</string>
   <string name="prefs_output_accuracy_summary">將精確度資訊添加於 GPX 檔中的航點名稱，或是航點註解中</string>
   <string-array name="prefs_output_accuracy_keys">

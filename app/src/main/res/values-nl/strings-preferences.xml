@@ -65,8 +65,11 @@
   <string-array name="prefs_output_filename_keys">
     <item>Trajectnaam</item>
     <item>Naam, begindatum en -tijd</item>
+    <item>Begindatum en -tijd, naam</item>
     <item>Begindatum en -tijd</item>
   </string-array>
+  <string name="prefs_output_filename_label">Bestandsnaam-label</string>
+  <string name="prefs_output_filename_label_summary">Dit label wordt toegevoegd aan het einde van de bestandsnaam</string>
   <string name="prefs_output_accuracy">Nauwkeurigheid in GPX-bestand</string>
   <string name="prefs_output_accuracy_summary">Nauwkeurigheid toevoegen in GPX-bestand, met naam van referentiepunt of in referentiepunt-opmerking</string>
   <string-array name="prefs_output_accuracy_keys">

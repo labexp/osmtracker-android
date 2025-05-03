@@ -37,8 +37,8 @@
   <string name="trackmgr_contextmenu_stop">Parar gravação</string>
   <string name="trackmgr_contextmenu_resume">Continuar gravação</string>
   <string name="trackmgr_contextmenu_delete">Apagar</string>
-  <string name="trackmgr_contextmenu_export">Exportar em GPX</string>
-  <string name="trackmgr_contextmenu_share">Compartilhar GPX</string>
+  <string name="trackmgr_contextmenu_export">Exportar</string>
+  <string name="trackmgr_contextmenu_share">Compartilhar</string>
   <string name="trackmgr_contextmenu_osm_upload">Enviar para OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Exibir</string>
   <string name="trackmgr_contextmenu_details">Detalhes</string>
@@ -62,6 +62,7 @@
   <string name="trackdetail_export_notyet">(Ainda não exportado)</string>
   <string name="trackdetail_osm_upload_notyet">(Ainda não enviado)</string>
   <string name="trackdetail_export_display">Exibir</string>
+  <string name="trackdetail_name">Nome</string>
   <string name="trackdetail_description">Descrição</string>
   <string name="trackdetail_tags">Tags (separado com vírgula)</string>
   <string name="trackdetail_description_mandatory">Você precisa digitar uma descrição</string>
@@ -84,6 +85,17 @@
   <string name="gpsstatus_record_voicerec">Gravar voz</string>
   <string name="gpsstatus_record_stillimage">Tirar foto</string>
   <string name="gpsstatus_record_textnote">Nota</string>
+  <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Nome do ponto de referência/texto</string>
+  <string name="waypoint_name_hint">Insira o nome do ponto de referência</string>
+  <string name="edit_waypoint_bt_preview">Abrir arquivo</string>
+  <string name="edit_waypoint_bt_save">Salvar</string>
+  <string name="edit_waypoint_bt_delete">Apagar</string>
+  <string name="edit_waypoint_bt_cancel">Cancelar</string>
+  <string name="delete_waypoint_confirm_dialog_title">Apagar ponto de referência</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Apagar este ponto de referência?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Apagar</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Cancelar</string>
   <!--Menu-->
   <string name="menu_settings">Configurações</string>
   <string name="menu_waypointlist">Pontos de referência</string>
@@ -106,6 +118,14 @@
   <string name="error_externalstorage_not_writable_hint">Por favor confira se o armazenamento externo está corretamente inserido e montado.</string>
   <string name="error_voicerec_failed">Gravação de voz falhou</string>
   <string name="error_userlayout_parsing">Erro ao analisar arquivo de layout XML. Por favor, voltar para o layout padrão.</string>
+  <!--messages-->
+  <string name="permission_required">Permissão necessária</string>
+  <string name="storage_permission_for_export_GPX">Para exportar o trilho GPX, é necessário escrever no armazenamento.</string>
+  <string name="storage_permission_for_display_track">Para apresentar corretamente o trilho, é necessário o acesso ao armazenamento.</string>
+  <string name="storage_permission_for_share_track">Para partilhar corretamente o trilho, é necessário o acesso ao armazenamento.</string>
+  <string name="storage_permission_for_upload_to_OSM">Para enviar o trilho para o OpenStreetMap, é necessário o acesso ao armazenamento.</string>
+  <string name="acccept">Aceitar</string>
+  <string name="gps_perms_required">Não é possível continuar sem a permissão do GPS</string>
   <!--GPX-->
   <string name="gpx_track_name">Gravado com OSMTracker para Android™</string>
   <string name="gpx_hdop_approximation_cmt">Atenção: valores HDOP não são o HDOP como retornado pelo dispositivo GPS. Eles são relativamente precisos na localização em metros.</string>
@@ -139,6 +159,8 @@
   <string name="various_heading">Aguardando rumo...</string>
   <string name="various_heading_unknown">O rumo não pôde ser determinado</string>
   <string name="various_export_finished">Processo de exportação concluído com sucesso</string>
+  <string name="various_waiting_position">Posição não disponível</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Exibindo trilhas do OpenStreetMap</string>
   <!--Buttons presets messages-->

@@ -1,0 +1,24 @@
+<b>OSMTracker para Android™</b> te permite registrar tu recorrido y marcar puntos de interés importantes. Los puntos de
+interés pueden marcarse usando un botón con una etiqueta, una grabación de voz rápida, una nota de texto o tomando una
+foto. Las diferentes páginas de botones y diseños pueden personalizarse para adaptarse a tus actividades en
+OpenStreetMap. Puedes ver tu recorrido actual sobre un mapa de fondo de OpenStreetMap.
+
+<b>Características:</b>
+
+<ul>
+    <li><b>Registro de trazas GPS:</b> Graba y guarda tu recorrido como una traza GPX.</li>
+    <li><b>Marcado de Puntos de Interés:</b> Agrega puntos importantes mediante: 
+        <ul>
+            <li>Botones de acceso rápido personalizables</li>
+            <li>Grabaciones de voz</li>
+            <li>Notas de texto</li>
+            <li>Fotografías</li>
+        </ul>
+    </li>
+    <li><b>Integración con OpenStreetMap:</b> Visualiza tu recorrido GPS sobre un mapa de fondo de OpenStreetMap.</li>
+    <li><b>Uso sin Conexión:</b> Funciona sin conexión a internet, ideal para zonas remotas.</li>
+</ul>
+Ya sea que estés mapeando nuevos territorios, haciendo senderismo, ciclismo o explorando, <b>OSMTracker</b> es la
+herramienta perfecta para los colaboradores de OpenStreetMap y los aventureros al aire libre.
+
+<strong>🚀 ¡Empieza a mapear con OSMTracker y contribuye a OpenStreetMap hoy mismo!</strong>

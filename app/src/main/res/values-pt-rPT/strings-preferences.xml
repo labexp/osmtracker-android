@@ -65,8 +65,11 @@
   <string-array name="prefs_output_filename_keys">
     <item>Nome do trilho</item>
     <item>Nome, data e hora de início</item>
+    <item>Data e hora de início, nome</item>
     <item>Data e hora de início</item>
   </string-array>
+  <string name="prefs_output_filename_label">Rótulo do nome do ficheiro</string>
+  <string name="prefs_output_filename_label_summary">Este rótulo será anexado ao final do nome do ficheiro</string>
   <string name="prefs_output_accuracy">Precisão no ficheiro GPX</string>
   <string name="prefs_output_accuracy_summary">Adicionar informação de precisão no ficheiro GPX, com nome do ponto de referência ou no comentário</string>
   <string-array name="prefs_output_accuracy_keys">

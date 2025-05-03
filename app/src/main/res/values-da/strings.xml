@@ -37,8 +37,8 @@
   <string name="trackmgr_contextmenu_stop">Stop tracking</string>
   <string name="trackmgr_contextmenu_resume">Gentoptag tracking</string>
   <string name="trackmgr_contextmenu_delete">Slet</string>
-  <string name="trackmgr_contextmenu_export">Eksporter til GPX</string>
-  <string name="trackmgr_contextmenu_share">Del GPX</string>
+  <string name="trackmgr_contextmenu_export">Eksporter</string>
+  <string name="trackmgr_contextmenu_share">Del</string>
   <string name="trackmgr_contextmenu_osm_upload">Upload til OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Vis</string>
   <string name="trackmgr_contextmenu_details">Detaljer</string>
@@ -85,6 +85,17 @@
   <string name="gpsstatus_record_voicerec">Tale-optagelse</string>
   <string name="gpsstatus_record_stillimage">Tag foto</string>
   <string name="gpsstatus_record_textnote">Tekstnote</string>
+  <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Waypoint navn/tekst</string>
+  <string name="waypoint_name_hint">Indtast waypointnavn</string>
+  <string name="edit_waypoint_bt_preview">Åbn fil</string>
+  <string name="edit_waypoint_bt_save">Spare</string>
+  <string name="edit_waypoint_bt_delete">Slet</string>
+  <string name="edit_waypoint_bt_cancel">Ophæve</string>
+  <string name="delete_waypoint_confirm_dialog_title">Slet waypoint</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Vil du slette dette waypoint?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Slet</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Ophæve</string>
   <!--Menu-->
   <string name="menu_settings">Indstillinger</string>
   <string name="menu_waypointlist">Waypoints</string>
@@ -148,6 +159,8 @@
   <string name="various_heading">Vent på retning...</string>
   <string name="various_heading_unknown">Retning kan ikke findes</string>
   <string name="various_export_finished">Eksportproces afsluttet</string>
+  <string name="various_waiting_position">Stillingen er ikke tilgængelig</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap track visning</string>
   <!--Buttons presets messages-->

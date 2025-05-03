@@ -50,7 +50,6 @@
   <string name="prefs_displaytrack_osm">OSM pozadie</string>
   <string name="prefs_displaytrack_osm_summary">Zobraziť OpenStreetMap pod stopou. Potrebuje dátové pripojenie</string>
   <string name="prefs_output">Výstup GPX súboru</string>
-  <string name="prefs_storage_dir">Adresár externého úložiska (SD)</string>
   <string name="prefs_storage_dir_hint">Použité až v ďalšej stope (nie v aktuálnej)</string>
   <string name="prefs_output_one_dir_per_track">Jeden adresár na stopu</string>
   <string name="prefs_output_one_dir_per_track_summary">Uloží každú stopu a priradené súbory do jej vlastného adresára</string>
@@ -59,6 +58,7 @@
   <string-array name="prefs_output_filename_keys">
     <item>Názov stopy</item>
     <item>Názov, dátum a čas spustenia</item>
+    <item>Dátum a čas spustenia, názov</item>
     <item>Dátum a čas spustenia</item>
   </string-array>
   <string name="prefs_output_accuracy">Presnosť v GPX súbore</string>

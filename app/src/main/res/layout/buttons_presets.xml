@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/buttons_presets"
-    android:paddingTop="4dp">
+    android:paddingTop="4dp"
+    android:fitsSystemWindows="true">
 
     <TextView
         android:layout_width="match_parent"

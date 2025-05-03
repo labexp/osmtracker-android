@@ -27,7 +27,4 @@ It's recommended to run the tests locally before making a new pull request to ma
 
 ## Translations
 OSMTracker is translated using Transifex (see the [wiki](https://github.com/labexp/osmtracker-android/wiki/Translating)).
-To update translations:
-* Create a python3 virtual environment: `$python3 -m venv .venv` (.venv folder is already added to gitignore file). Remember the virtualenv activates with the command `$source .venv/bin/activate` and deactivates with `deactivate`. 
-* Install Transifex CLI Client following the instructions in [this page](https://docs.transifex.com/client/installing-the-client#installing-on-macos-and-linux). 
-* Execute `(.venv) $ tx pull --minimum-perc 1` to get the updated translations with at least 1% of completeness.
+Once translations are complete, they will be updated via automated Transifex PR.

@@ -1,0 +1,65 @@
+name: "Feature Request"
+description: "Suggest an enhancement or new feature for OSMTracker for Android."
+labels: "enhancement"
+body:
+  - type: markdown
+    attributes:
+      value: "**Thank you for suggesting a new feature! Before submitting your request, please review the [Discussions](https://github.com/labexp/osmtracker-android/discussions) and make sure this feature hasn't already been requested by searching through [existing issues](https://github.com/labexp/osmtracker-android/issues).\nPlease complete the following details to help us better understand your proposal.**"
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Briefly explain the requested functionality."
+      placeholder: "Describe the feature here..."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: use_cases
+    attributes:
+      label: "Use Cases"
+      description: "Who would use this functionality?"
+      placeholder: "Describe who would benefit from this feature..."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: benefits
+    attributes:
+      label: "Benefits"
+      description: "How would this improve OSMTracker?"
+      placeholder: "Explain how this feature would enhance the application..."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives"
+      description: "Are there other options that could be implemented/considered instead?"
+      placeholder: "Describe alternatives you've considered..."
+    validations:
+      required: false
+  
+  - type: textarea
+    id: example
+    attributes:
+      label: "Example (optional)"
+      description: "Provide visual or schematic examples of how the feature would look/function."
+      placeholder: "Attach or describe visual examples..."
+    validations:
+      required: false
+  
+  - type: checkboxes
+    id: submission_checklist
+    attributes:
+      label: "Submission Checklist"
+      description: "Please confirm the following before submitting:"
+      options:
+        - label: "I have verified that this feature hasn't been requested previously."
+          required: true
+        - label: "I have provided sufficient information to understand my proposal."
+          required: true
+        - label: "I am willing to provide additional information if necessary."
+          required: true
