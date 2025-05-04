@@ -271,4 +271,5 @@
     <string name="app_intro_slide2_title">Happy tracking 🗺 😎</string>
     <string name="app_intro_slide2_description">OSMTracker for Android will use your GPS location to record trackpoints and waypoints, even when the App is running in background.
 \nYour data is not used to support ads.</string>
+    <string name="no_app_to_handle_file_type">No application was found to open this file.</string>
 </resources>
