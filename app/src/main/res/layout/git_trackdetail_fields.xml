@@ -9,30 +9,6 @@
         android:inputType="text"
         android:singleLine="false" />
 
-    <!-- Esto es un comentario escrito en un documento XML
-    <LinearLayout
-        android:id="@+id/git_list_repo_buttons"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/git_trackdetail_item_description"
-        android:layout_margin="15dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/git_update_list_repos_btn_ok"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="Actualizar Repositorios" />
-
-        <Spinner
-            android:id="@+id/item_git_spinner_repos"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-    </LinearLayout> -->
-
     <Spinner
         android:id="@+id/item_git_spinner_repos"
         android:layout_width="fill_parent"
