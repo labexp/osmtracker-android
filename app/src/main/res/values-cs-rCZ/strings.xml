@@ -195,6 +195,12 @@
   <string name="github_repository_settings_branch_name">Název oddělené větve:</string>
   <string name="github_repository_settings_valid_server">Úložiště na Github je platné</string>
   <string name="github_repository_settings_invalid_server">Github úložiště je neplatné</string>
+  <!--Upload to GitHub-->
+  <!--GitHubConfig-->
+  <!--GitHubUpload-->
+  <!--GitHubNewFork-->
+  <!--GitHubPullRequest-->
+  <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
   <string name="app_intro">OSMTracker pro Android™ Úvod</string>
   <!--Intro - slide1-->
