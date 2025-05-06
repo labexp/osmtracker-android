@@ -5,6 +5,7 @@
   <!--Zoom in/out in map view-->
   <string name="acc.zoom_in">Inzoomen</string>
   <string name="acc.zoom_out">Uitzoomen</string>
+  <string name="acc.zoom_center">Centreren</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">Aanduiding satelliet-signaalsterkte</string>
   <string name="acc.record_indicator">Aanduiding opname bezig</string>

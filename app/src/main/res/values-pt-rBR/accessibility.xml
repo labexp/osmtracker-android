@@ -5,6 +5,7 @@
   <!--Zoom in/out in map view-->
   <string name="acc.zoom_in">Aumentar zoom</string>
   <string name="acc.zoom_out">Diminuir zoom</string>
+  <string name="acc.zoom_center">Centro de zoom</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">Indicador de força do sinal de satélite</string>
   <string name="acc.record_indicator">Indicador do progresso da gravação</string>

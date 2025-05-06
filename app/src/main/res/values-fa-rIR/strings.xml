@@ -37,8 +37,6 @@
   <string name="trackmgr_contextmenu_stop">توقف ثبت مسیر</string>
   <string name="trackmgr_contextmenu_resume">ادامهٔ ثبت مسیر</string>
   <string name="trackmgr_contextmenu_delete">حذف</string>
-  <string name="trackmgr_contextmenu_export">خروجی در قالب GPX</string>
-  <string name="trackmgr_contextmenu_share">همرسانی GPX</string>
   <string name="trackmgr_contextmenu_osm_upload">بارگذاری در OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">نمایش</string>
   <string name="trackmgr_contextmenu_details">جزئیات</string>
@@ -84,6 +82,7 @@
   <string name="gpsstatus_record_voicerec">ضبط صدا</string>
   <string name="gpsstatus_record_stillimage">گرفتن عکس</string>
   <string name="gpsstatus_record_textnote">یادداشت متنی</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">تنظیمات</string>
   <string name="menu_waypointlist">نقاط بین‌راهی</string>
@@ -106,6 +105,7 @@
   <string name="error_externalstorage_not_writable_hint">لطفاً مطمئن شوید حافظهٔ خارجی دستگاه به‌درستی جاگذاری و سوار (mount) شده باشد.</string>
   <string name="error_voicerec_failed">ضبط صدا با اشکال مواجه شد</string>
   <string name="error_userlayout_parsing">خطا هنگام تجزیهٔ فایل چیدمان XML. لطفاً به چیدمان پیشفرض برگردانید.</string>
+  <!--messages-->
   <!--GPX-->
   <string name="gpx_track_name">با OSM Tracker for Android™‎ ضبط شده است</string>
   <string name="gpx_hdop_approximation_cmt">هشدار: مقادیر HDOP همان مقادیر HDOP دریافتی از دستگاه GPS نیست؛ بلکه بر اساس دقت مکانی بر حسب متر تقریب زده شده.</string>
@@ -139,6 +139,7 @@
   <string name="various_heading">منتظر جهت حرکت...</string>
   <string name="various_heading_unknown">سیستم قادر به تشخیص جهت حرکت نیست</string>
   <string name="various_export_finished">فرآیند برون‌برد با موفقیت پایان یافت</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">نمایش مسیر اوپن‌استریت‌مپ</string>
   <!--Buttons presets messages-->

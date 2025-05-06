@@ -148,8 +148,15 @@ public class GPSLogger extends Service implements LocationListener {
 				// Delete an existing waypoint
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
+					Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
-					dataHelper.deleteWayPoint(uuid);
+					String link = extras.getString(OSMTracker.INTENT_KEY_LINK);
+					String filePath = null;
+					try {
+						filePath = link.equals("null") ? null : DataHelper.getTrackDirectory(trackId, context) + "/" + link;
+					}
+					catch(NullPointerException ne){}
+					dataHelper.deleteWayPoint(uuid, filePath);
 				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction())) {
 				Bundle extras = intent.getExtras();

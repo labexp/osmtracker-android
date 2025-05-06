@@ -37,8 +37,8 @@
   <string name="trackmgr_contextmenu_stop">Zakończ rejestrację</string>
   <string name="trackmgr_contextmenu_resume">Wznów rejestrację</string>
   <string name="trackmgr_contextmenu_delete">Usuń</string>
-  <string name="trackmgr_contextmenu_export">Eksport do GPX</string>
-  <string name="trackmgr_contextmenu_share">Udostępnij GPX</string>
+  <string name="trackmgr_contextmenu_export">Eksport</string>
+  <string name="trackmgr_contextmenu_share">Udostępnij</string>
   <string name="trackmgr_contextmenu_osm_upload">Wyślij do OpenStreetMap</string>
   <string name="trackmgr_contextmenu_display">Wyświetl</string>
   <string name="trackmgr_contextmenu_details">Szczegóły</string>
@@ -86,6 +86,7 @@
 głosową</string>
   <string name="gpsstatus_record_stillimage">Zrób zdjęcie</string>
   <string name="gpsstatus_record_textnote">Notka</string>
+  <!--edit_waypoint_dialog-->
   <!--Menu-->
   <string name="menu_settings">Ustawienia</string>
   <string name="menu_waypointlist">Punkty nawigacji</string>
@@ -149,6 +150,7 @@ głosową</string>
   <string name="various_heading">Oczekuję na kierunek...</string>
   <string name="various_heading_unknown">Kierunek nie może zostać określony</string>
   <string name="various_export_finished">Proces eksportu zakończony sukcesem</string>
+  <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Podgląd śladu w OpenStreetMap</string>
   <!--Buttons presets messages-->

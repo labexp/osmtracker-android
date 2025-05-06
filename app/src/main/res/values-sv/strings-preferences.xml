@@ -65,8 +65,11 @@
   <string-array name="prefs_output_filename_keys">
     <item>Spårets namn</item>
     <item>Namn, startdatum och tid</item>
+    <item>Startdatum och tid, namn</item>
     <item>Startdatum och tid</item>
   </string-array>
+  <string name="prefs_output_filename_label">Filnamnsetikett</string>
+  <string name="prefs_output_filename_label_summary">Denna etikett kommer att läggas till i slutet av filnamnet</string>
   <string name="prefs_output_accuracy">Noggrannhet</string>
   <string name="prefs_output_accuracy_summary">Tillåt noggrannhetsinformation i GPX-filen, i vägpunktsnamnet eller i en egen tagg.</string>
   <string-array name="prefs_output_accuracy_keys">

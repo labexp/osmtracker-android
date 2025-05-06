@@ -65,8 +65,11 @@
   <string-array name="prefs_output_filename_keys">
     <item>Nom de la trace</item>
     <item>Nom, date et heure de début</item>
+    <item>Date et heure de début, nom</item>
     <item>Date et heure de début</item>
   </string-array>
+  <string name="prefs_output_filename_label">Étiquette du nom de fichier</string>
+  <string name="prefs_output_filename_label_summary">Cette étiquette sera ajoutée à la fin du nom de fichier</string>
   <string name="prefs_output_accuracy">Contenu du fichier GPX</string>
   <string name="prefs_output_accuracy_summary">Intègre la précision au fichier GPX, dans le nom des waypoint ou dans un tag séparé</string>
   <string-array name="prefs_output_accuracy_keys">

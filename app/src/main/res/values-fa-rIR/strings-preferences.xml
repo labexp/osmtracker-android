@@ -50,17 +50,11 @@
   <string name="prefs_displaytrack_osm">نقشهٔ پس‌زمینه</string>
   <string name="prefs_displaytrack_osm_summary">نمایش نقشهٔ OpenStreetMap زیر رد. به ارتباط اینترنتی نیاز دارد</string>
   <string name="prefs_output">تنظیمات GPS</string>
-  <string name="prefs_storage_dir">شاخهٔ حافظهٔ خارجی (SD)</string>
   <string name="prefs_storage_dir_hint">موثر برای رد بعدی (روی رد فعلی تاثیر نمی‌گذارد)</string>
   <string name="prefs_output_one_dir_per_track">یک شاخه برای هر رد</string>
   <string name="prefs_output_one_dir_per_track_summary">هر رد و فایل‌های پیوست آن را در شاخهٔ مجزا ذخیره کن</string>
   <string name="prefs_output_filename">نام فایل برای ردهای نام‌دار</string>
   <string name="prefs_output_filename_summary">الگو برای نام فایل، اگر رد نام داشته باشد</string>
-  <string-array name="prefs_output_filename_keys">
-    <item>نام رد</item>
-    <item>نام، تاریخ و ساعت شروع</item>
-    <item>تاریخ و ساعت شروع</item>
-  </string-array>
   <string name="prefs_output_accuracy">ثبت دقت در فایل GPX</string>
   <string name="prefs_output_accuracy_summary">اطلاعات دقت را به فایل GPX اضافه می‌کند: در کنار نام نقطهٔ بین‌راهی یا در توضیحات نقطهٔ بین‌راهی</string>
   <string-array name="prefs_output_accuracy_keys">
