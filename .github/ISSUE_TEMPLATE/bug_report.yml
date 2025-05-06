@@ -1,0 +1,77 @@
+name: "Bug Report"
+description: "Report an issue or bug with OSMTracker for Android."
+labels: "bug"
+body:
+  - type: markdown
+    attributes:
+      value: "**Thank you for reporting a bug! Before reporting, please have a look at the [Q&A](https://github.com/labexp/osmtracker-android/discussions/categories/q-a), make sure the issue has no duplicate and hasn't been already addressed by searching through [the existing and past issues](https://github.com/labexp/osmtracker-android/issues).\nPlease fill out the following details to help us diagnose the issue.**"
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Provide a clear and concise description of the issue."
+      placeholder: "Describe the issue here..."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: "Steps to Reproduce"
+      description: "Please list the steps to reproduce the issue."
+      value: |
+        1. 
+        2. 
+        3. 
+      placeholder: "Step-by-step instructions..."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Logs or Console Errors (if applicable)"
+      description: |
+        If available, please paste or attach any relevant logs or error messages.  
+        - On Android, you can use [adb logcat](https://developer.android.com/studio/command-line/logcat) to capture logs.
+      render: "plaintext"
+    validations:
+      required: false
+  
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots or Videos (Optional)"
+      description: "Attach any relevant screenshots or videos."
+    validations:
+      required: false
+
+  - type: input
+    id: android_version
+    attributes:
+      label: "Android Version"
+      placeholder: "e.g., Android 12"
+    validations:
+      required: true
+  
+  - type: input
+    id: device_model
+    attributes:
+      label: "Device Model"
+      placeholder: "e.g., Samsung Galaxy S21"
+    validations:
+      required: true
+  
+  - type: checkboxes
+    id: submission_checklist
+    attributes:
+      label: "Submission Checklist"
+      description: "Please confirm the following before submitting:"
+      options:
+        - label: "I am reporting an issue, not asking a question."
+          required: true
+        - label: "I have updated to the latest OSMTracker version, and the issue still exists."
+          required: true
+        - label: "I have checked the Q&A Discussions, open and closed issues, and the wiki, but did not find a solution."
+          required: false

@@ -1,0 +1,19 @@
+Bug fixes:
+
+* Export to Documents folder.
+* Correct update date of traces and OSM update date.
+* Export file names format.
+
+Improvements:
+
+* Optional label in export filename.
+* Share traces as zip with including the trace and associated multimedia files.
+* Preview, edit and delete waypoints.
+
+UI Enhancements:
+
+* Large text compatibility.
+* New map design.
+* Trace separator in the list.
+
+Language translation updates (thanks translators!)

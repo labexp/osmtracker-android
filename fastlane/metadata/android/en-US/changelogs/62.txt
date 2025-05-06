@@ -1,0 +1,18 @@
+Features:
+
+* Switch to Oauth2
+* Multiple segments per track functionality.
+
+Improvements:
+
+* update translations (de, no, nl, el, da, ar, pt_PT, fa_IR, tr_TR, cs_CZ, zh_TW, fr_FR, tr, vi, zh_CN, ta, sv, sr, sr@latin, sk, pt_BR, ru, ko, nb, lt, ja, kn, hr, it, gl, hu, fr, es, ca, fi, fa), thanks translators!.
+
+Bug fixes:
+
+* Export tracks and custom layouts in scoped storage in android 11+.
+
+Known bugs:
+
+* Take photos in traces is not working
+
+Fix the issues requested by Google Play to list OSMTracker again

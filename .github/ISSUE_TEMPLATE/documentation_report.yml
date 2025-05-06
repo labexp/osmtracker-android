@@ -1,0 +1,65 @@
+name: "Documentation Report"
+description: "Report errors or suggest improvements for project documentation."
+labels: "documentation"
+body:
+  - type: markdown
+    attributes:
+      value: "**Thank you for helping us improve our documentation! Please complete the following information to help us address the issue efficiently.**"
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Explain the problem or the section that needs improvement in the documentation."
+      placeholder: "Describe the documentation issue here..."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: affected_section
+    attributes:
+      label: "Affected Section"
+      description: "Indicate which part of the documentation contains the error. This can be specified using a URL, section, or specific page."
+      placeholder: "E.g., https://example.com/docs/section or 'Installation Guide' section or page 3 of PDF manual..."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: error_found
+    attributes:
+      label: "Error Found"
+      description: "Describe what is wrong. This could be: lack of clarity, spelling/grammar errors, outdated information, or missing information."
+      placeholder: "Detail the specific error or issue found..."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: improvement_proposal
+    attributes:
+      label: "Improvement Proposal (optional)"
+      description: "How should the documentation be corrected or improved?"
+      placeholder: "Suggest how the documentation could be improved..."
+    validations:
+      required: false
+  
+  - type: textarea
+    id: error_evidence
+    attributes:
+      label: "Evidence of Error (optional)"
+      description: "Provide evidence of the error, such as screenshots, manual captures, videos, or examples."
+      placeholder: "Upload or describe evidence of the documentation issue..."
+    validations:
+      required: false
+  
+  - type: checkboxes
+    id: submission_checklist
+    attributes:
+      label: "Submission Checklist"
+      description: "Please confirm the following before submitting:"
+      options:
+        - label: "I have verified that this documentation issue hasn't been reported previously."
+          required: true
+        - label: "I have provided specific details about the location of the issue in the documentation."
+          required: true
+        - label: "The information I've provided is accurate and clear."
+          required: true
