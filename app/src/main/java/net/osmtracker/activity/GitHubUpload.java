@@ -36,6 +36,7 @@ import net.osmtracker.util.Callback;
 import net.osmtracker.util.DialogUtils;
 import net.osmtracker.util.GitHubUtils;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -168,6 +169,7 @@ public class GitHubUpload extends Activity {
      * Either starts uploading directly if we are authenticated against GitHub
      */
     private void startUploadGitHub(final String fileInBase64, String filename, String commitMsj){
+        filename = filename.substring(0, filename.lastIndexOf("."));
         String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename;
 
         ProgressDialog progressDialog = new ProgressDialog(this);

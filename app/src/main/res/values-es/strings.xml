@@ -207,9 +207,11 @@
   <string name="repository_information_error">Error al obtener información del repositorio</string>
   <string name="successfully_uploaded">Subido exitosamente</string>"
   <string name="error_uploading">Error al subir</string>
+
   <string name="uploading_file">Subiendo: </string>
   <string name="gpx_file_read_error">Error al leer el archivo GPX</string>
   <string name="gpx_file_not_found">No se encontró el archivo GPX</string>
+
   <string name="item_selected">Selecciono el elemento: </string>
   <string name="github_repository_private">Privado: </string>
   <string name="github_no_repository_name">Indique el nombre del repositorio</string>
