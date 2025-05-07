@@ -41,6 +41,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackmgr_contextmenu_export">Exporteren</string>
   <string name="trackmgr_contextmenu_share">Delen</string>
   <string name="trackmgr_contextmenu_osm_upload">Uploaden naar OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_github_upload">Uploaden naar GitHub</string>
   <string name="trackmgr_contextmenu_display">Weergeven</string>
   <string name="trackmgr_contextmenu_details">Details</string>
   <string name="trackmgr_contextmenu_title">Traject #{0}</string>
@@ -197,7 +198,29 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="github_repository_settings_valid_server">Github-repository geldig</string>
   <string name="github_repository_settings_invalid_server">Github-repository ongeldig</string>
   <!--Upload to GitHub-->
+  <string name="successfully_created">met succes aangemaakt</string>
+  <string name="error_creating">Fout bij aanmaken</string>
+  <string name="db_error">Database-fout</string>
+  <string name="successfully_saved">met succes opgeslagen</string>
+  <string name="saving_error">Fout bij opslaan</string>
+  <string name="pr_status">Status van pull-request:</string>
+  <string name="repository_information_error">Fout in repository-informatie</string>
+  <string name="successfully_uploaded">Met succes geüpload</string>
+  <string name="error_uploading">Fout bij uploaden</string>
+  <string name="gpx_file_read_error">Fout bij lezen van GPX-bestand</string>
+  <string name="gpx_file_not_found">GPX-bestand niet gevonden</string>
+  <string name="uploading_file">Bestand uploaden:</string>
+  <string name="item_selected">Item geselecteerd:</string>
+  <string name="github_repository_private">Persoonlijk:</string>
+  <string name="github_creating_repository">Repository aanmaken</string>
+  <string name="github_no_repository_name">U moet een repository-naam opgeven</string>
+  <string name="error_field_required">U moet een waarde opgeven voor dit veld</string>
   <!--GitHubConfig-->
+  <string name="github_config_btn">Configureren</string>
+  <string name="github_token_placeholder">GitHub-token:</string>
+  <string name="github_get_token_btn">Token ophalen:</string>
+  <string name="how_to_get_ghToken_guide_title">Hoe een GitHub-token te verkrijgen:</string>
+  <string name="how_to_get_ghToken_guide_step_1">1. Klik op de knop om de GitHub website te openen en een token aan te maken. Log in met uw GitHub account als dat nodig is.</string>
   <!--GitHubUpload-->
   <!--GitHubNewFork-->
   <!--GitHubPullRequest-->
