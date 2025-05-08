@@ -1,3 +1,0 @@
-Bug fixes:
-
-* Export track.

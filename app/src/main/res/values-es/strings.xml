@@ -40,7 +40,6 @@
   <string name="trackmgr_contextmenu_export">Exportar</string>
   <string name="trackmgr_contextmenu_share">Compartir</string>
   <string name="trackmgr_contextmenu_osm_upload">Subir a OpenStreetMap</string>
-  <string name="trackmgr_contextmenu_github_upload">Subir a GitHub</string>
   <string name="trackmgr_contextmenu_display">Visualizar</string>
   <string name="trackmgr_contextmenu_details">Detalles</string>
   <string name="trackmgr_contextmenu_title">Traza #{0}</string>
@@ -196,54 +195,6 @@
   <string name="github_repository_settings_branch_name">Nombre de la rama: </string>
   <string name="github_repository_settings_valid_server">Repositorio de GitHub válido</string>
   <string name="github_repository_settings_invalid_server">Repositorio de GitHub inválido</string>
-
-  <!-- Upload to GitHub functionality-->
-  <string name="successfully_created">Creado exitosamente</string>
-  <string name="error_creating">Error al crear</string>
-  <string name="db_error">Error en base de datos</string>
-  <string name="successfully_saved">Guardado exitosamente</string>
-  <string name="saving_error">Error al guardar</string>
-  <string name="pr_status">Estado del pull request: </string>
-  <string name="repository_information_error">Error al obtener información del repositorio</string>
-  <string name="successfully_uploaded">Subido exitosamente</string>"
-  <string name="error_uploading">Error al subir</string>
-  <string name="gpx_file_read_error">Error al leer el archivo GPX</string>
-  <string name="gpx_file_not_found">No se encontró el archivo GPX</string>
-  <string name="uploading_file">Subiendo: </string>
-  <string name="item_selected">Selecciono el elemento: </string>
-  <string name="github_repository_private">Privado: </string>
-  <string name="github_no_repository_name">Indique el nombre del repositorio</string>
-  <string name="error_field_required">Campo requerido</string>
-  <!-- GitHubConfig -->
-  <string name="github_config_btn">Configurar</string>
-  <string name="github_token_placeholder">Token de GitHub:</string>
-  <string name="github_get_token_btn">Obtener token</string>
-  <string name="github_token_guide_title">Cómo obtener un token de GitHub:</string>
-  <string name="how_to_get_ghToken_guide_step_1">1. Haga clic en el botón para abrir el sitio web de GitHub y crear un token. Inicie sesión con su cuenta de GitHub si es necesario.</string>
-  <string name="how_to_get_ghToken_guide_step_2">2. Seleccione \"Tokens (Clásicos)\" y haga clic en el botón \"Generar nuevo token\".</string>
-  <string name="how_to_get_ghToken_guide_step_3">3. Asigne un nombre descriptivo a su token.</string>
-  <string name="how_to_get_ghToken_guide_step_4">4. Seleccione una fecha de expiración. Recomendamos \"Sin expiración\" para evitar repetir este paso.</string>
-  <string name="how_to_get_ghToken_guide_step_5">5. Seleccione los permisos que desee otorgar al token (OSMTracker solo necesita el permiso de repositorio).</string>
-  <string name="how_to_get_ghToken_guide_step_6">6. Haga clic en el botón \"Generar token\".</string>
-  <string name="how_to_get_ghToken_guide_step_7">7. Copie el token generado y péguelo en el campo \"Token de GitHub\".</string>
-  <string name="how_to_get_ghToken_guide_note">⚠️ Puede guardar en blanco para borrar sus credenciales.</string>
-  <!-- GitHubUpload -->
-  <string name="upload_to_github_description">Mensaje del commit:</string>
-  <string name="upload_to_github_create_fork">Crear\nfork</string>
-  <string name="upload_to_github_open_pull_request">Abrir pull request</string>
-  <string name="upload_to_github_select_repo">Seleccione un repositorio</string>
-  <string name="upload_to_github_create_repository">Crear repositorio</string>
-  <string name="upload_to_github_commit_btn">Hacer commit</string>
-  <string name="upload_to_github_configure">Configurar</string>
-  <!-- GitHubNewFork -->
-  <string name="upload_to_github_forked_repo_owner">Usuario del repositorio original</string>
-  <string name="upload_to_github_forked_repo_name">Nombre del repositorio original</string>
-  <string name="create">Crear</string>
-  <!-- GitHubPullRequest -->
-  <string name="upload_to_github_pr_title">Título del Pull Request</string>
-  <string name="upload_to_github_pr_description">Descripción del Pull Request</string>
-  <!-- END Upload to GitHub functionality-->
-
   <!--App Introduction-->
   <string name="app_intro">Introducción a OSMTracker para Android ™</string>
   <!--Intro - slide1-->

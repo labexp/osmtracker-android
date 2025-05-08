@@ -43,7 +43,6 @@
     <string name="trackmgr_contextmenu_export">Export</string>
     <string name="trackmgr_contextmenu_share">Share</string>
     <string name="trackmgr_contextmenu_osm_upload">Upload to OpenStreetMap</string>
-    <string name="trackmgr_contextmenu_github_upload">Upload to GitHub</string>
     <string name="trackmgr_contextmenu_display">Display</string>
     <string name="trackmgr_contextmenu_details">Details</string>
     <string name="trackmgr_contextmenu_title">Track #{0}</string>
@@ -213,54 +212,6 @@
     <string name="github_repository_settings_branch_name">Branch name: </string>
     <string name="github_repository_settings_valid_server">Github Repository valid</string>
     <string name="github_repository_settings_invalid_server">Github Repository invalid</string>
-
-    <!-- Upload to GitHub-->
-    <string name="successfully_created">successfully created</string>
-    <string name="error_creating">Error creating</string>
-    <string name="db_error">Database error</string>
-    <string name="successfully_saved">successfully saved</string>
-    <string name="saving_error">Saving error</string>
-    <string name="pr_status">Pull request status: </string>
-    <string name="repository_information_error">Error with repository information</string>
-    <string name="successfully_uploaded">Successfully uploaded</string>"
-    <string name="error_uploading">Error uploading</string>
-    <string name="gpx_file_read_error">Error reading the GPX file</string>
-    <string name="gpx_file_not_found">GPX file not found</string>
-    <string name="uploading_file">Uploading file: </string>
-    <string name="item_selected">Item Selected: </string>
-    <string name="github_repository_private">Private: </string>
-    <string name="github_creating_repository">Creating repository</string>
-    <string name="github_no_repository_name">You must specify a repository name</string>
-    <string name="error_field_required">You must specify a value for this field</string>
-    <!-- GitHubConfig -->
-    <string name="github_config_btn">Configure</string>
-    <string name="github_token_placeholder">GitHub token:</string>
-    <string name="github_get_token_btn">Get token</string>
-    <string name="how_to_get_ghToken_guide_title">How to get a GitHub Token:</string>
-    <string name="how_to_get_ghToken_guide_step_1">1. Click the button to open the GitHub website and create a token. Sign In with your GitHub account if needed.</string>
-    <string name="how_to_get_ghToken_guide_step_2">2. Select \"Tokens (Classic)\" and click \"Generate new token\" button.</string>
-    <string name="how_to_get_ghToken_guide_step_3">3. Assign a descriptive name to your token.</string>
-    <string name="how_to_get_ghToken_guide_step_4">4. Select an expiration date. We recommend \"No expiration\" to avoid repeating this step.</string>"
-    <string name="how_to_get_ghToken_guide_step_5">5. Select the scope or permissions you want to grant for this token (OSMTracker just need the repo permission).</string>
-    <string name="how_to_get_ghToken_guide_step_6">6. Click the \"Generate token\" button.</string>
-    <string name="how_to_get_ghToken_guide_step_7">7. Copy the generated token and paste it in the field \"GitHub token\".</string>
-    <string name="how_to_get_ghToken_guide_note">⚠️ You can save blank to delete your credentials.</string>
-    <!-- GitHubUpload -->
-    <string name="upload_to_github_description">Commit message:</string>
-    <string name="upload_to_github_create_fork">Create\nfork</string>
-    <string name="upload_to_github_open_pull_request">Open pull request</string>
-    <string name="upload_to_github_select_repo">Select a repository</string>
-    <string name="upload_to_github_create_repository">Create repository</string>
-    <string name="upload_to_github_commit_btn">Commit</string>
-    <string name="upload_to_github_configure">Configure</string>
-    <!-- GitHubNewFork -->
-    <string name="upload_to_github_forked_repo_owner">Original Repository Username</string>
-    <string name="upload_to_github_forked_repo_name">Original Repository Name</string>
-    <string name="create">Create</string>
-    <!-- GitHubPullRequest -->
-    <string name="upload_to_github_pr_title">Pull Request Title</string>
-    <string name="upload_to_github_pr_description">Pull Request Description</string>
-    <!-- END Upload to GitHub functionality-->
 
     <!-- App Introduction -->
     <string name="app_intro">OSMTracker for Android™ Introduction</string>

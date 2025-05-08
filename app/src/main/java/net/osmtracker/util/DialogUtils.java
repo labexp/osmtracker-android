@@ -24,26 +24,4 @@ public class DialogUtils {
 				}
 			}).create().show();
 	}
-
-	/**
-	 * Displays a standard success alert dialog.
-	 *
-	 * @param context The application context.
-	 * @param message The message to display in the dialog.
-	 */
-	public static void showSuccessDialog(Context context, int message) {
-		if (context == null) {
-			throw new IllegalArgumentException("Context cannot be null");
-		}
-
-		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		builder.setTitle("Success")
-				.setIcon(android.R.drawable.ic_dialog_info)
-				.setMessage(message)
-				.setCancelable(true)
-				.setNeutralButton(android.R.string.ok, (dialog, which) -> dialog.dismiss());
-
-		AlertDialog dialog = builder.create();
-		dialog.show();
-	}
 }
