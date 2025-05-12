@@ -40,6 +40,7 @@
   <string name="trackmgr_contextmenu_export">匯出</string>
   <string name="trackmgr_contextmenu_share">分享</string>
   <string name="trackmgr_contextmenu_osm_upload">上傳至 OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_github_upload">上傳至 GitHub</string>
   <string name="trackmgr_contextmenu_display">顯示</string>
   <string name="trackmgr_contextmenu_details">詳細資訊</string>
   <string name="trackmgr_contextmenu_title">軌跡 #{0}</string>
@@ -196,7 +197,28 @@
   <string name="github_repository_settings_valid_server">Github 程式庫有效</string>
   <string name="github_repository_settings_invalid_server">Github 程式庫無效</string>
   <!--Upload to GitHub-->
+  <string name="successfully_created">成功建立</string>
+  <string name="error_creating">建立時發生錯誤</string>
+  <string name="db_error">資料庫錯誤</string>
+  <string name="successfully_saved">成功儲存</string>
+  <string name="saving_error">儲存時發生錯誤</string>
+  <string name="pr_status">拉取請求 (pull request) 狀態：</string>
+  <string name="repository_information_error">程式庫資訊有錯誤</string>
+  <string name="successfully_uploaded">成功上傳</string>
+  <string name="error_uploading">上傳時發生錯誤</string>
+  <string name="gpx_file_read_error">讀取 GPX 檔案時發生錯誤</string>
+  <string name="gpx_file_not_found">沒有找到 GPX 檔案</string>
+  <string name="uploading_file">上傳檔案：</string>
+  <string name="item_selected">已經選取物件：</string>
+  <string name="github_repository_private">私人的：</string>
+  <string name="github_creating_repository">創建程式庫</string>
+  <string name="github_no_repository_name">你必須指定程式庫名稱</string>
+  <string name="error_field_required">你必須為這一欄位指定值</string>
   <!--GitHubConfig-->
+  <string name="github_config_btn">設定</string>
+  <string name="github_token_placeholder">GitHub 令牌：</string>
+  <string name="github_get_token_btn">取得令牌</string>
+  <string name="how_to_get_ghToken_guide_title">如何取得 GitHub 令牌：</string>
   <!--GitHubUpload-->
   <!--GitHubNewFork-->
   <!--GitHubPullRequest-->
