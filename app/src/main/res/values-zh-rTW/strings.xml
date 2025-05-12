@@ -219,7 +219,18 @@
   <string name="github_token_placeholder">GitHub 令牌：</string>
   <string name="github_get_token_btn">取得令牌</string>
   <string name="how_to_get_ghToken_guide_title">如何取得 GitHub 令牌：</string>
+  <string name="how_to_get_ghToken_guide_step_1">1. 點按鈕來開啟 GitHub 網站與新增令牌。如果有需要則以你的 GitHub 帳號登入。</string>
+  <string name="how_to_get_ghToken_guide_step_2">2. 選取「令牌 (古典)」然後點「新增新令牌」按鈕。</string>
+  <string name="how_to_get_ghToken_guide_step_3">3. 指定敘述性名稱到你的令牌。</string>
+  <string name="how_to_get_ghToken_guide_note">⚠️ 你可以儲存空白來刪除憑證。</string>
   <!--GitHubUpload-->
+  <string name="upload_to_github_description">提交訊息：</string>
+  <string name="upload_to_github_create_fork">新增\n分支</string>
+  <string name="upload_to_github_open_pull_request">開啟拉取請求 (pull request)</string>
+  <string name="upload_to_github_select_repo">選取程式庫</string>
+  <string name="upload_to_github_create_repository">創建程式庫</string>
+  <string name="upload_to_github_commit_btn">提交</string>
+  <string name="upload_to_github_configure">設定</string>
   <!--GitHubNewFork-->
   <!--GitHubPullRequest-->
   <!--END Upload to GitHub functionality-->
