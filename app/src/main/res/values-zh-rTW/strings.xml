@@ -222,6 +222,10 @@
   <string name="how_to_get_ghToken_guide_step_1">1. 點按鈕來開啟 GitHub 網站與新增令牌。如果有需要則以你的 GitHub 帳號登入。</string>
   <string name="how_to_get_ghToken_guide_step_2">2. 選取「令牌 (古典)」然後點「新增新令牌」按鈕。</string>
   <string name="how_to_get_ghToken_guide_step_3">3. 指定敘述性名稱到你的令牌。</string>
+  <string name="how_to_get_ghToken_guide_step_4">4. 選擇失效日期，我們建議「不會失效」來避難重覆此步驟。</string>
+  <string name="how_to_get_ghToken_guide_step_5">5. 選擇你要這個的令牌允許權限範圍 (OSMTracker只需要程式庫的權限)。</string>
+  <string name="how_to_get_ghToken_guide_step_6">6. 點「產生令牌」按鈕。</string>
+  <string name="how_to_get_ghToken_guide_step_7">7. 複製產生的令牌以及貼到「GitHub令牌」欄位。</string>
   <string name="how_to_get_ghToken_guide_note">⚠️ 你可以儲存空白來刪除憑證。</string>
   <!--GitHubUpload-->
   <string name="upload_to_github_description">提交訊息：</string>
@@ -232,7 +236,12 @@
   <string name="upload_to_github_commit_btn">提交</string>
   <string name="upload_to_github_configure">設定</string>
   <!--GitHubNewFork-->
+  <string name="upload_to_github_forked_repo_owner">原始程式庫使用者名稱</string>
+  <string name="upload_to_github_forked_repo_name">原始程式庫名稱</string>
+  <string name="create">創建</string>
   <!--GitHubPullRequest-->
+  <string name="upload_to_github_pr_title">拉取請求 (pull request) 標題</string>
+  <string name="upload_to_github_pr_description">拉取請求 (pull request) 敘述</string>
   <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
   <string name="app_intro">OSMTracker for Android™ 說明</string>
