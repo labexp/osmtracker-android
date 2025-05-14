@@ -40,6 +40,7 @@
   <string name="trackmgr_contextmenu_export">匯出</string>
   <string name="trackmgr_contextmenu_share">分享</string>
   <string name="trackmgr_contextmenu_osm_upload">上傳至 OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_github_upload">上傳至 GitHub</string>
   <string name="trackmgr_contextmenu_display">顯示</string>
   <string name="trackmgr_contextmenu_details">詳細資訊</string>
   <string name="trackmgr_contextmenu_title">軌跡 #{0}</string>
@@ -196,10 +197,51 @@
   <string name="github_repository_settings_valid_server">Github 程式庫有效</string>
   <string name="github_repository_settings_invalid_server">Github 程式庫無效</string>
   <!--Upload to GitHub-->
+  <string name="successfully_created">成功建立</string>
+  <string name="error_creating">建立時發生錯誤</string>
+  <string name="db_error">資料庫錯誤</string>
+  <string name="successfully_saved">成功儲存</string>
+  <string name="saving_error">儲存時發生錯誤</string>
+  <string name="pr_status">拉取請求 (pull request) 狀態：</string>
+  <string name="repository_information_error">程式庫資訊有錯誤</string>
+  <string name="successfully_uploaded">成功上傳</string>
+  <string name="error_uploading">上傳時發生錯誤</string>
+  <string name="gpx_file_read_error">讀取 GPX 檔案時發生錯誤</string>
+  <string name="gpx_file_not_found">沒有找到 GPX 檔案</string>
+  <string name="uploading_file">上傳檔案：</string>
+  <string name="item_selected">已經選取物件：</string>
+  <string name="github_repository_private">私人的：</string>
+  <string name="github_creating_repository">創建程式庫</string>
+  <string name="github_no_repository_name">你必須指定程式庫名稱</string>
+  <string name="error_field_required">你必須為這一欄位指定值</string>
   <!--GitHubConfig-->
+  <string name="github_config_btn">設定</string>
+  <string name="github_token_placeholder">GitHub 令牌：</string>
+  <string name="github_get_token_btn">取得令牌</string>
+  <string name="how_to_get_ghToken_guide_title">如何取得 GitHub 令牌：</string>
+  <string name="how_to_get_ghToken_guide_step_1">1. 點按鈕來開啟 GitHub 網站與新增令牌。如果有需要則以你的 GitHub 帳號登入。</string>
+  <string name="how_to_get_ghToken_guide_step_2">2. 選取「令牌 (古典)」然後點「新增新令牌」按鈕。</string>
+  <string name="how_to_get_ghToken_guide_step_3">3. 指定敘述性名稱到你的令牌。</string>
+  <string name="how_to_get_ghToken_guide_step_4">4. 選擇失效日期，我們建議「不會失效」來避難重覆此步驟。</string>
+  <string name="how_to_get_ghToken_guide_step_5">5. 選擇你要這個的令牌允許權限範圍 (OSMTracker只需要程式庫的權限)。</string>
+  <string name="how_to_get_ghToken_guide_step_6">6. 點「產生令牌」按鈕。</string>
+  <string name="how_to_get_ghToken_guide_step_7">7. 複製產生的令牌以及貼到「GitHub令牌」欄位。</string>
+  <string name="how_to_get_ghToken_guide_note">⚠️ 你可以儲存空白來刪除憑證。</string>
   <!--GitHubUpload-->
+  <string name="upload_to_github_description">提交訊息：</string>
+  <string name="upload_to_github_create_fork">新增\n分支</string>
+  <string name="upload_to_github_open_pull_request">開啟拉取請求 (pull request)</string>
+  <string name="upload_to_github_select_repo">選取程式庫</string>
+  <string name="upload_to_github_create_repository">創建程式庫</string>
+  <string name="upload_to_github_commit_btn">提交</string>
+  <string name="upload_to_github_configure">設定</string>
   <!--GitHubNewFork-->
+  <string name="upload_to_github_forked_repo_owner">原始程式庫使用者名稱</string>
+  <string name="upload_to_github_forked_repo_name">原始程式庫名稱</string>
+  <string name="create">創建</string>
   <!--GitHubPullRequest-->
+  <string name="upload_to_github_pr_title">拉取請求 (pull request) 標題</string>
+  <string name="upload_to_github_pr_description">拉取請求 (pull request) 敘述</string>
   <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
   <string name="app_intro">OSMTracker for Android™ 說明</string>
