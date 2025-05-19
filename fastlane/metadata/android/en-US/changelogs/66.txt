@@ -1,0 +1,8 @@
+Bug fixes:
+ 
+* Warn user when no photo or audio app is installed (for waypoints preview).
+
+New feature: 
+* Upload tracks to GitHub. Auto-rename duplicates with (#)
+
+Language translation updates (thanks translators!)

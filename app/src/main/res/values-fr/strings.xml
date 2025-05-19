@@ -195,6 +195,12 @@
   <string name="github_repository_settings_branch_name">Nom de la branche :</string>
   <string name="github_repository_settings_valid_server">Répertoire GitHub valide</string>
   <string name="github_repository_settings_invalid_server">Répertoire GitHub invalide</string>
+  <!--Upload to GitHub-->
+  <!--GitHubConfig-->
+  <!--GitHubUpload-->
+  <!--GitHubNewFork-->
+  <!--GitHubPullRequest-->
+  <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
   <string name="app_intro">OSMTracker pour Android™ Introduction</string>
   <!--Intro - slide1-->
