@@ -51,7 +51,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Nightly Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v2.2
         with:
           tag_name: 'nightly'
           name: 'Nightly Build'
