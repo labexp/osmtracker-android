@@ -56,7 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">Mostra OpenStreetMap sotto la traccia. È necessaria una connessione dati</string>
   <string name="prefs_displaytrack_osm_summary_ask">Mostra sempre lo sfondo OpenStreetMap? Richiede una connessione dati</string>
   <string name="prefs_output">Salvataggio file GPX</string>
-  <string name="prefs_storage_dir">Cartella di archiviazione nei documenti</string>
+  <string name="prefs_storage_dir">Cartella di archiviazione in ‘documents’</string>
   <string name="prefs_storage_dir_hint">Valido per la traccia successiva (non per quella attuale)</string>
   <string name="prefs_output_one_dir_per_track">Una directory per traccia</string>
   <string name="prefs_output_one_dir_per_track_summary">Salva ogni traccia e i file associati nella propria directory</string>

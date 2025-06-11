@@ -1,0 +1,181 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText
+        android:id="@+id/git_configuration_user_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="@string/github_repository_settings_username"
+        android:inputType="text"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/git_configuration_user_token"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_below="@id/git_configuration_user_name"
+        android:hint="@string/github_token_placeholder"
+        android:inputType="text"
+        android:singleLine="true" />
+
+    <LinearLayout
+        android:id="@+id/git_configuration_gide_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/git_configuration_user_token"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_get_ghToken_guide_title"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/git_configuration_user_token_step1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/git_configuration_gide_text"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_get_ghToken_guide_step_1"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+        <Button
+            android:id="@+id/git_link_create_token_btn_ok"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:text="@string/github_get_token_btn" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/git_configuration_user_token_step2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/git_configuration_user_token_step1"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_get_ghToken_guide_step_2"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/git_configuration_user_token_step3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/git_configuration_user_token_step2"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_get_ghToken_guide_step_3"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/git_configuration_user_token_step4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/git_configuration_user_token_step3"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_get_ghToken_guide_step_4"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/git_configuration_user_token_step5"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/git_configuration_user_token_step4"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_get_ghToken_guide_step_5"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/git_configuration_user_token_step6"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/git_configuration_user_token_step5"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_get_ghToken_guide_step_6"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/git_configuration_user_token_step7"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/git_configuration_user_token_step6"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_get_ghToken_guide_step_7"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/git_configuration_user_token_note"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/git_configuration_user_token_step7"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_get_ghToken_guide_note"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+    </LinearLayout>
+
+</merge>
