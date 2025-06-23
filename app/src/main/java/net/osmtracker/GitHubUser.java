@@ -1,38 +1,40 @@
 package net.osmtracker;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 public class GitHubUser {
 
-    private int id;
-    private String username;
-    private String token;
+    private static final String PREF_NAME = "GitHubPrefs";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_TOKEN = "token";
 
-    public GitHubUser() {
-        setId(-1);
-        setUsername("");
-        setToken("");
+    private SharedPreferences sharedPreferences;
+
+    public GitHubUser(Context context) {
+        sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void saveCredentials(String username, String token) {
+        sharedPreferences.edit()
+                .putString(KEY_USERNAME, username)
+                .putString(KEY_TOKEN, token)
+                .apply();
     }
 
     public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+        return sharedPreferences.getString(KEY_USERNAME, "");
     }
 
     public String getToken() {
-        return token;
+        return sharedPreferences.getString(KEY_TOKEN, "");
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public boolean hasCredentials() {
+        return !getUsername().isEmpty() && getToken().length() == 40;
+    }
+
+    public void clear() {
+        sharedPreferences.edit().clear().apply();
     }
 }
