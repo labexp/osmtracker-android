@@ -21,7 +21,6 @@ import com.android.volley.toolbox.Volley;
 
 import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
-import net.osmtracker.db.DbGitHubUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +32,7 @@ public class GitHubNewFork extends Activity {
 
     EditText editTextRootUsername, editTextRootRepo;
     private String BaseURL = "https://api.github.com";
-    GitHubUser gitHubUser;
+    private GitHubUser gitHubUser;
     private String newForkFullName;
 
     @Override
@@ -42,8 +41,7 @@ public class GitHubNewFork extends Activity {
         setContentView(R.layout.git_create_fork);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        DbGitHubUser dbGitHubUser = new DbGitHubUser(GitHubNewFork.this);
-        gitHubUser = dbGitHubUser.getUser();
+        gitHubUser = new GitHubUser(this);
 
         editTextRootUsername = findViewById(R.id.git_username_to_fork_editText_user);
         editTextRootRepo = findViewById(R.id.git_repo_to_fork_editText_name);
