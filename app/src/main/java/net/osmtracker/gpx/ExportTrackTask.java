@@ -348,8 +348,16 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 		fw.write("\t\t" + "<trkseg>" + "\n");
 
 		int i=0;
+		int prevSegId=-1;
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(),i++) {
 			StringBuffer out = new StringBuffer();
+			int segId = c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_SEG_ID));
+			if(prevSegId != -1 && segId != prevSegId) {
+				fw.write("\t\t" + "</trkseg>" + "\n");
+				fw.write("\t\t" + "<trkseg>" + "\n");
+			}
+			prevSegId = segId;
+			
 			out.append("\t\t\t" + "<trkpt lat=\""
 					+ c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE)) + "\" "
 					+ "lon=\"" + c.getDouble(c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE)) + "\">" + "\n");

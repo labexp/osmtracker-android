@@ -23,6 +23,7 @@ import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.overlay.WayPointsOverlay;
+import net.osmtracker.overlay.Polylines;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -33,7 +34,6 @@ import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
 import org.osmdroid.views.overlay.mylocation.SimpleLocationOverlay;
 
@@ -118,7 +118,7 @@ public class DisplayTrackMap extends Activity {
 	/**
 	 * OSM view overlay that displays current path
 	 */
-	private Polyline polyline;
+	private Polylines polylines;
 
 	/**
 	 * OSM view overlay that displays waypoints
@@ -157,6 +157,11 @@ public class DisplayTrackMap extends Activity {
 	 * Initially null, to indicate that no data has yet been read.
 	 */
 	private Integer lastTrackPointIdProcessed = null;
+
+	/**
+	 * The id of the last segment
+	 */
+	private int prevSegmentId=-1;
 
 	/**
 	 * Observes changes on track points
@@ -303,6 +308,7 @@ public class DisplayTrackMap extends Activity {
 		// This ensures that all waypoints for the track will be reloaded
 		// from the database to populate the path layout
 		lastTrackPointIdProcessed = null;
+		prevSegmentId = -1;
 
 		// Reload path
 		pathChanged();
@@ -321,7 +327,7 @@ public class DisplayTrackMap extends Activity {
 		getContentResolver().unregisterContentObserver(trackpointContentObserver);
 
 		// Clear the points list.
-		polyline.setPoints(new ArrayList<>());
+		polylines.clear();
 
 		super.onPause();
 	}
@@ -387,12 +393,8 @@ public class DisplayTrackMap extends Activity {
 		this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
 		// set with to hopefully DPI independent 0.5mm
-		polyline = new Polyline();
-		Paint paint = polyline.getOutlinePaint();
-		paint.setColor(Color.BLUE);
-		paint.setStrokeWidth((float) (metrics.densityDpi / 25.4 / 2));
-		osmView.getOverlayManager().add(polyline);
-
+		polylines = new Polylines(Color.BLUE, (float)(metrics.densityDpi / 25.4 / 2), osmView);
+		
 		myLocationOverlay = new SimpleLocationOverlay(this);
 		osmView.getOverlays().add(myLocationOverlay);
 
@@ -439,7 +441,7 @@ public class DisplayTrackMap extends Activity {
 
 		// Projection: The columns to retrieve. Here, we want the latitude, 
 		// longitude and primary key only
-		String[] projection = {TrackContentProvider.Schema.COL_LATITUDE, TrackContentProvider.Schema.COL_LONGITUDE, TrackContentProvider.Schema.COL_ID};
+		String[] projection = {TrackContentProvider.Schema.COL_LATITUDE, TrackContentProvider.Schema.COL_LONGITUDE, TrackContentProvider.Schema.COL_ID, TrackContentProvider.Schema.COL_SEG_ID };
 		// Selection: The where clause to use
 		String selection = null;
 		// SelectionArgs: The parameter replacements to use for the '?' in the selection		
@@ -470,13 +472,20 @@ public class DisplayTrackMap extends Activity {
 				int primaryKeyColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_ID);
 				int latitudeColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE);
 				int longitudeColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE);
+				int segmentIdColumnIndex = c.getColumnIndex(TrackContentProvider.Schema.COL_SEG_ID);
 
 				// Add each new point to the track
 				while (!c.isAfterLast()) {
 					lastLat = c.getDouble(latitudeColumnIndex);
 					lastLon = c.getDouble(longitudeColumnIndex);
 					lastTrackPointIdProcessed = c.getInt(primaryKeyColumnIndex);
-					polyline.addPoint(new GeoPoint(lastLat, lastLon));
+					int segmentId = c.getInt(segmentIdColumnIndex);
+					if(segmentId != prevSegmentId) {
+						polylines.nextSegment();
+					}
+					prevSegmentId = segmentId;
+
+					polylines.addPoint(new GeoPoint(lastLat, lastLon));
 					if (doInitialBoundsCalc) {
 						if (lastLat < minLat) minLat = lastLat;
 						if (lastLon < minLon) minLon = lastLon;
