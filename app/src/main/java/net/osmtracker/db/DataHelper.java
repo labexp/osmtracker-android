@@ -127,7 +127,7 @@ public class DataHelper {
 	 * @param pressure
 	 *            atmospheric pressure
 	 */
-	public void track(long trackId, Location location, float azimuth, int accuracy, float pressure) {
+	public void track(long trackId, Location location, float azimuth, int accuracy, float pressure, boolean newSeg, long segId) {
 		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location + " azimuth: " + azimuth + ", accuracy: " + accuracy);
 		ContentValues values = new ContentValues();
 		values.put(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
@@ -161,6 +161,8 @@ public class DataHelper {
 			values.put(TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE, pressure);
 		}
 
+		values.put(TrackContentProvider.Schema.COL_SEG_ID, segId);
+		
 		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 		contentResolver.insert(Uri.withAppendedPath(trackUri, TrackContentProvider.Schema.TBL_TRACKPOINT + "s"), values);
 	}
