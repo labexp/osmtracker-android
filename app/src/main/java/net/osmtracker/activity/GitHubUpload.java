@@ -265,12 +265,17 @@ public class GitHubUpload extends Activity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                Toast.makeText(GitHubUpload.this, "R.string.upload_to_github_select_repo", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void listRepos() {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getString(R.string.retrieving_repositories));
+        progressDialog.setCancelable(true);
+        progressDialog.show();
+
         RequestQueue queue = Volley.newRequestQueue(this);
         String fullURL = getUserReposUrl();
 
@@ -281,17 +286,7 @@ public class GitHubUpload extends Activity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        for (int i = 0; i < response.length(); i++) {
-                            // creating a new json object and
-                            // getting each object from our json array.
-                            try {
-                                JSONObject responseObj = response.getJSONObject(i);
-                                ArrayListRepos.add(responseObj.getString("full_name"));
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
+                        listRepoResponseAction(response, progressDialog);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -316,6 +311,35 @@ public class GitHubUpload extends Activity {
         queue.getCache().clear();
 
         queue.add(getResquest);
+    }
+
+    /**
+     * This method is called when the list of repositories is retrieved
+     * from the server.
+     *
+     * @param response JSONArray with the repositories
+     * @param progressDialog ProgressDialog
+     */
+    private void listRepoResponseAction(JSONArray response, ProgressDialog progressDialog) {
+        boolean errorOcurred = false;
+        for (int i = 0; i < response.length(); i++) {
+            // creating a new json object and
+            // getting each object from our json array.
+            try {
+                JSONObject responseObj = response.getJSONObject(i);
+                ArrayListRepos.add(responseObj.getString("full_name"));
+            } catch (JSONException e) {
+                progressDialog.dismiss();
+                Toast.makeText(GitHubUpload.this, R.string.error_retrieving_repositories, Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                errorOcurred = true;
+                break;
+            }
+        }
+        if (!errorOcurred) {
+            Toast.makeText(GitHubUpload.this, R.string.successfully_retrieved_repositories, Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
+        }
     }
 
     public String getRepoName() {
