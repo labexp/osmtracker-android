@@ -47,11 +47,14 @@ public class GitHubConfig extends Activity {
                 String username = editTextUserName.getText().toString().trim();
                 String ghToken = editTextUserToken.getText().toString().trim();
 
+                // Empty is enabled to allow saving without credentials to erase the existing ones
+                /*
                 if (username.isEmpty()) {
                     editTextUserName.setError("Username required");
                     return;
                 }
-                if (ghToken.length() != 40) {
+                */
+                if (ghToken.length() != 40 && !ghToken.isEmpty()) {
                     editTextUserToken.setError("Token must be 40 characters");
                     return;
                 }
