@@ -55,7 +55,7 @@ public class GitHubConfig extends Activity {
                 }
                 */
                 if (ghToken.length() != 40 && !ghToken.isEmpty()) {
-                    editTextUserToken.setError("Token must be 40 characters");
+                    editTextUserToken.setError(getString(R.string.error_gh_token_lenght));
                     return;
                 }
 

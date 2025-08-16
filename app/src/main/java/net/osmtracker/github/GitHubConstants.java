@@ -10,6 +10,12 @@ public final class GitHubConstants {
     private GitHubConstants() {
         // Private constructor to prevent instantiation
     }
+
+    //String fullURL = GITHUB_API_URL+"/repos/"+repoFullName;
+    public static String getRepoUrl(String repoFullName) {
+        return GITHUB_API_REPOS_URL + "/" + repoFullName;
+    }
+
     /**
      * Builds the URL to fetch a repository's forks.
      *
@@ -41,7 +47,6 @@ public final class GitHubConstants {
     }
 
     /**
-     * String fullURL = getBaseURL() + "/user/repos?" + "sort=" + sortBy ;
      * Builds the URL to fetch a user's repositories with optional sorting.
      * @param sortBy The sorting parameter.
      * @return The complete URL for the user's repositories endpoint.
