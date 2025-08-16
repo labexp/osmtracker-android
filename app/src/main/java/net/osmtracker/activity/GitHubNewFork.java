@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 
 import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
+import static net.osmtracker.github.GitHubConstants.getRepoForksUrl;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,9 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GitHubNewFork extends Activity {
-
     EditText editTextRootUsername, editTextRootRepo;
-    private String BaseURL = "https://api.github.com";
     private GitHubUser gitHubUser;
     private String newForkFullName;
 
@@ -69,7 +68,6 @@ public class GitHubNewFork extends Activity {
                 createNewFork(username, repo);
                 //Toast.makeText(GitHubNewFork.this, R.string.successfully_created, Toast.LENGTH_SHORT).show();
                 //finish();
-
             }
         });
 
@@ -78,7 +76,6 @@ public class GitHubNewFork extends Activity {
         btnCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
             }
         });
@@ -88,7 +85,7 @@ public class GitHubNewFork extends Activity {
     }
 
     private void createNewFork(String username, String repo) {
-        String fullURL = getBaseURL() + "/repos/"+ username +"/"+ repo +"/forks?name=fork";
+        String fullURL = getRepoForksUrl(username, repo);
 
         JsonObjectRequest  postResquest= new JsonObjectRequest(
                 Request.Method.POST,
@@ -119,13 +116,8 @@ public class GitHubNewFork extends Activity {
                 headers.put("Authorization", "Bearer " + gitHubUser.getToken());
                 return headers;
             }
-
         };
         Volley.newRequestQueue(this).add(postResquest);
-    }
-
-    public String getBaseURL() {
-        return BaseURL;
     }
 
     public void setNewForkFullName(String newForkFullName) {
