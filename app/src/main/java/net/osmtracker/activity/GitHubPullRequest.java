@@ -103,7 +103,7 @@ public class GitHubPullRequest extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                String errorMsg = "Error al crear PR.";
+                String errorMsg = "Error while creating the PR";
                 if (error.networkResponse != null && error.networkResponse.data != null) {
                     try {
                         String responseBody = new String(error.networkResponse.data, "utf-8");
