@@ -272,8 +272,7 @@ public class GitHubUpload extends Activity {
 
     private void listRepos() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String sortBy = "updated";
-        String fullURL = getUserReposUrl(sortBy);
+        String fullURL = getUserReposUrl();
 
         JsonArrayRequest getResquest = new JsonArrayRequest(
                 Request.Method.GET,
