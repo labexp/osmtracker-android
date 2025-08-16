@@ -21,6 +21,8 @@ import com.android.volley.toolbox.Volley;
 
 import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
+import static net.osmtracker.github.GitHubConstants.GITHUB_API_URL;
+import static net.osmtracker.github.GitHubConstants.getRepoPullsUrl;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,9 +34,8 @@ import java.util.Map;
 public class GitHubPullRequest extends Activity {
 
     EditText editTextTitle, editTextBody;
-    private String BaseURL = "https://api.github.com";
-    private String RepoOrigen;
-    private String DefaultBranch;
+    private String repoOrigen;
+    private String defaultBranch;
     private GitHubUser gitHubUser;
 
     @Override
@@ -84,7 +85,7 @@ public class GitHubPullRequest extends Activity {
     }
 
     private void createPullRequest() {
-        String fullURL = getBaseURL()+"/repos/"+getRepoOrigen()+"/pulls";
+        String fullURL = getRepoPullsUrl(this.repoOrigen);
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
                 Request.Method.POST,
@@ -154,7 +155,7 @@ public class GitHubPullRequest extends Activity {
     }
 
     private void getInfoRepo(String repoFullName) {
-        String fullURL = getBaseURL()+"/repos/"+repoFullName;
+        String fullURL = GITHUB_API_URL+"/repos/"+repoFullName;
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
                 Request.Method.GET,
@@ -187,23 +188,16 @@ public class GitHubPullRequest extends Activity {
         Volley.newRequestQueue(this).add(postResquest);
     }
 
-    public String getBaseURL() {
-        return BaseURL;
-    }
-
-    public String getRepoOrigen() {
-        return RepoOrigen;
-    }
 
     public void setRepoOrigen(String repoOrigen) {
-        RepoOrigen = repoOrigen;
+        this.repoOrigen = repoOrigen;
     }
 
     public String getDefaultBranch() {
-        return DefaultBranch;
+        return defaultBranch;
     }
 
     public void setDefaultBranch(String defaultBranch) {
-        DefaultBranch = defaultBranch;
+        this.defaultBranch = defaultBranch;
     }
 }

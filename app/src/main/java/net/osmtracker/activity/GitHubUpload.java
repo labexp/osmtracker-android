@@ -34,6 +34,8 @@ import net.osmtracker.R;
 import net.osmtracker.util.Callback;
 import net.osmtracker.util.DialogUtils;
 import net.osmtracker.util.GitHubUtils;
+import static net.osmtracker.github.GitHubConstants.getRepoFileContentUrl;
+import static net.osmtracker.github.GitHubConstants.getUserReposUrl;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,9 +52,7 @@ import java.util.Map;
 
 
 public class GitHubUpload extends Activity {
-
     private ArrayList<String> ArrayListRepos;
-    private String BaseURL = "https://api.github.com";
     private GitHubUser gitHubUser;
     private String  RepoName = "";
     EditText editTextCommitMsj;
@@ -166,7 +166,8 @@ public class GitHubUpload extends Activity {
      * Either starts uploading directly if we are authenticated against GitHub
      */
     private void startUploadGitHub(final String fileInBase64, String filename, String commitMsj){
-        String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename;
+        //String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename;
+        String fullURL = getRepoFileContentUrl(getRepoName(), filename);
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(this.getResources().getString(R.string.uploading_file) + filename);
@@ -271,8 +272,8 @@ public class GitHubUpload extends Activity {
 
     private void listRepos() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String sortBy = "created";
-        String fullURL = getBaseURL() + "/user/repos?" + "sort=" + sortBy ;
+        String sortBy = "updated";
+        String fullURL = getUserReposUrl(sortBy);
 
         JsonArrayRequest getResquest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -325,9 +326,4 @@ public class GitHubUpload extends Activity {
     public void setRepoName(String repoName) {
         RepoName = repoName;
     }
-
-    public String getBaseURL() {
-        return BaseURL;
-    }
-
 }
