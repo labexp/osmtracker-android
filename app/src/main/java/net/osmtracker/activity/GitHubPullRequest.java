@@ -21,8 +21,8 @@ import com.android.volley.toolbox.Volley;
 
 import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
-import static net.osmtracker.github.GitHubConstants.GITHUB_API_URL;
 import static net.osmtracker.github.GitHubConstants.getRepoPullsUrl;
+import static net.osmtracker.github.GitHubConstants.getRepoUrl;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,7 +104,7 @@ public class GitHubPullRequest extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                String errorMsg = "Error while creating the PR";
+                String errorMsg = getString(R.string.error_gh_pr_creation);
                 if (error.networkResponse != null && error.networkResponse.data != null) {
                     try {
                         String responseBody = new String(error.networkResponse.data, "utf-8");
@@ -155,7 +155,7 @@ public class GitHubPullRequest extends Activity {
     }
 
     private void getInfoRepo(String repoFullName) {
-        String fullURL = GITHUB_API_URL+"/repos/"+repoFullName;
+        String fullURL = getRepoUrl(repoFullName);
 
         JsonObjectRequest postResquest= new JsonObjectRequest(
                 Request.Method.GET,

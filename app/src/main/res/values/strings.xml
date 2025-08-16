@@ -128,6 +128,8 @@
     <string name="error_externalstorage_not_writable_hint">Please check if ext. storage is correctly inserted and mounted.</string>
     <string name="error_voicerec_failed">Voice recording has failed</string>
     <string name="error_userlayout_parsing">Error while parsing XML layout file. Please revert to default layout.</string>
+    <string name="error_gh_token_lenght">Token must be 40 characters</string>
+    <string name="error_gh_pr_creation">Error while creating the PR</string>"
 
     <!-- messages -->
     <string name="permission_required">Permission required</string>
@@ -232,6 +234,9 @@
     <string name="github_creating_repository">Creating repository</string>
     <string name="github_no_repository_name">You must specify a repository name</string>
     <string name="error_field_required">You must specify a value for this field</string>
+    <string name="retrieving_repositories">Retrieving repositories...</string>
+    <string name="error_retrieving_repositories">Error retrieving repositories</string>
+    <string name="successfully_retrieved_repositories">Successfully retrieved repositories</string>
     <!-- GitHubConfig -->
     <string name="github_config_btn">Configure</string>
     <string name="github_token_placeholder">GitHub token:</string>
