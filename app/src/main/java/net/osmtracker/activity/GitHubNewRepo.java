@@ -22,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 
 import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
+import static net.osmtracker.github.GitHubConstants.GITHUB_API_USER_REPOS_URL;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +34,6 @@ import java.util.Map;
 public class GitHubNewRepo extends Activity {
 
     EditText editTextNewRepo;
-    private String BaseURL = "https://api.github.com";
     private GitHubUser gitHubUser;
     private String newRepoFullName;
 
@@ -77,7 +77,7 @@ public class GitHubNewRepo extends Activity {
     }
 
     private void createNewRepo(String repoName, boolean isPrivate) {
-        String fullURL = getBaseURL()+"/user/repos";
+        String fullURL = GITHUB_API_USER_REPOS_URL;
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(this.getResources().getString(R.string.github_creating_repository));
@@ -138,10 +138,6 @@ public class GitHubNewRepo extends Activity {
             }
         };
         Volley.newRequestQueue(this).add(postResquest);
-    }
-
-    public String getBaseURL() {
-        return BaseURL;
     }
 
     public void setNewRepoFullName(String newRepoFullName) {

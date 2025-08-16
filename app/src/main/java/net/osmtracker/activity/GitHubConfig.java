@@ -14,11 +14,9 @@ import android.widget.Toast;
 
 import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
+import static net.osmtracker.github.GitHubConstants.GITHUB_TOKENS_URL;
 
 public class GitHubConfig extends Activity {
-
-    private final static String GitHubToken_URL = "https://github.com/settings/tokens";
-
     EditText editTextUserName, editTextUserToken;
     private GitHubUser gitHubUser;
 
@@ -37,7 +35,7 @@ public class GitHubConfig extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(GitHubToken_URL));
+                intent.setData(Uri.parse(GITHUB_TOKENS_URL));
                 startActivity(intent);
             }
         });
