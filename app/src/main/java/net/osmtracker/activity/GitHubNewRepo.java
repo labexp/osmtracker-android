@@ -144,6 +144,14 @@ public class GitHubNewRepo extends Activity {
         return BaseURL;
     }
 
+    public void setBaseURL(String baseURL) {
+        BaseURL = baseURL;
+    }
+
+    public String getNewRepoFullName() {
+        return newRepoFullName;
+    }
+
     public void setNewRepoFullName(String newRepoFullName) {
         this.newRepoFullName = newRepoFullName;
     }

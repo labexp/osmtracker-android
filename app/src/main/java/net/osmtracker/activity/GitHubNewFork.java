@@ -128,6 +128,14 @@ public class GitHubNewFork extends Activity {
         return BaseURL;
     }
 
+    public void setBaseURL(String baseURL) {
+        BaseURL = baseURL;
+    }
+
+    public String getNewForkFullName() {
+        return newForkFullName;
+    }
+
     public void setNewForkFullName(String newForkFullName) {
         this.newForkFullName = newForkFullName;
     }

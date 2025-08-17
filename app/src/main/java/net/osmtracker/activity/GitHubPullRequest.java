@@ -191,6 +191,10 @@ public class GitHubPullRequest extends Activity {
         return BaseURL;
     }
 
+    public void setBaseURL(String baseURL) {
+        BaseURL = baseURL;
+    }
+
     public String getRepoOrigen() {
         return RepoOrigen;
     }

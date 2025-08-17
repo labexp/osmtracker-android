@@ -330,4 +330,7 @@ public class GitHubUpload extends Activity {
         return BaseURL;
     }
 
+    public void setBaseURL(String baseURL) {
+        BaseURL = baseURL;
+    }
 }
