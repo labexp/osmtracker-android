@@ -1,9 +1,9 @@
 package net.osmtracker.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 
 import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
+import net.osmtracker.db.DbGitHubUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +36,7 @@ public class GitHubPullRequest extends Activity {
     private String BaseURL = "https://api.github.com";
     private String RepoOrigen;
     private String DefaultBranch;
-    private GitHubUser gitHubUser;
+    GitHubUser gitHubUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,8 @@ public class GitHubPullRequest extends Activity {
         editTextTitle = findViewById(R.id.git_title_pullrequest_editText);
         editTextBody = findViewById(R.id.git_body_pullrequest_editText);
 
-        gitHubUser = new GitHubUser(this);
+        DbGitHubUser dbGitHubUser = new DbGitHubUser(GitHubPullRequest.this);
+        gitHubUser = dbGitHubUser.getUser();
 
         Bundle bundle = GitHubPullRequest.this.getIntent().getExtras();
         if (bundle != null){
@@ -103,18 +105,7 @@ public class GitHubPullRequest extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                String errorMsg = "Error al crear PR.";
-                if (error.networkResponse != null && error.networkResponse.data != null) {
-                    try {
-                        String responseBody = new String(error.networkResponse.data, "utf-8");
-                        Log.e("PR_ERROR", responseBody);
-                        errorMsg += "\n" + responseBody;
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Toast.makeText(GitHubPullRequest.this, errorMsg, Toast.LENGTH_LONG).show();
-                error.printStackTrace();
+                Toast.makeText(GitHubPullRequest.this, R.string.error_creating, Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -164,8 +155,7 @@ public class GitHubPullRequest extends Activity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            setRepoOrigen(response.getJSONObject("parent").getString("full_name")); //org.json.JSONException: No value for parent
-                            //setRepoOrigen(response.getString("full_name"));
+                            setRepoOrigen(response.getJSONObject("parent").getString("full_name"));
                             setDefaultBranch(response.getString("default_branch"));
                         } catch (JSONException e) {
                             e.printStackTrace();

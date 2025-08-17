@@ -31,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 
 import net.osmtracker.GitHubUser;
 import net.osmtracker.R;
+import net.osmtracker.db.DbGitHubUser;
 import net.osmtracker.util.Callback;
 import net.osmtracker.util.DialogUtils;
 import net.osmtracker.util.GitHubUtils;
@@ -53,7 +54,7 @@ public class GitHubUpload extends Activity {
 
     private ArrayList<String> ArrayListRepos;
     private String BaseURL = "https://api.github.com";
-    private GitHubUser gitHubUser;
+    GitHubUser gitHubUser;
     private String  RepoName = "";
     EditText editTextCommitMsj;
     private static int TIME_OUT_MINS = 15;
@@ -70,7 +71,8 @@ public class GitHubUpload extends Activity {
         ArrayListRepos = new ArrayList<>();
         ArrayListRepos.add(getString(R.string.upload_to_github_select_repo));
 
-        gitHubUser = new GitHubUser(this);
+        DbGitHubUser dbGitHubUser = new DbGitHubUser(GitHubUpload.this);
+        gitHubUser = dbGitHubUser.getUser();
 
         listRepos();
         openActivityOnClick(R.id.git_create_fork_btn_ok, GitHubNewFork.class, null);

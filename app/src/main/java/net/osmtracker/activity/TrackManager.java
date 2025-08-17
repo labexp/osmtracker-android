@@ -17,7 +17,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -40,6 +39,7 @@ import net.osmtracker.GitHubUser;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
+import net.osmtracker.db.DbGitHubUser;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.exception.CreateTrackException;
 import net.osmtracker.gpx.ExportToStorageTask;
@@ -567,7 +567,8 @@ public class TrackManager extends AppCompatActivity
 		}
 
 		try {
-			gitHubUser = new GitHubUser(this);
+			DbGitHubUser dbGitHubUser = new DbGitHubUser(context);
+			gitHubUser = dbGitHubUser.getUser();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
