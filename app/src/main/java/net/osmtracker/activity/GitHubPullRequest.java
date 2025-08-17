@@ -24,6 +24,7 @@ import net.osmtracker.R;
 import static net.osmtracker.github.GitHubConstants.getRepoPullsUrl;
 import static net.osmtracker.github.GitHubConstants.getRepoUrl;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -104,14 +105,23 @@ public class GitHubPullRequest extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                String errorMsg = getString(R.string.error_gh_pr_creation);
+                String errorMsg = "";
                 if (error.networkResponse != null && error.networkResponse.data != null) {
                     try {
                         String responseBody = new String(error.networkResponse.data, "utf-8");
                         Log.e("PR_ERROR", responseBody);
-                        errorMsg += "\n" + responseBody;
+                        JSONObject github_response = new JSONObject(responseBody);
+                        JSONArray github_errors = github_response.getJSONArray("errors");
+                        for (int i = 0; i < github_errors.length(); i++) {
+                            JSONObject github_error = github_errors.getJSONObject(i);
+                            errorMsg += github_error.getString("message") + "\n";
+                        }
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } finally {
+                        errorMsg += getString(R.string.error_gh_pr_creation);
                     }
                 }
                 Toast.makeText(GitHubPullRequest.this, errorMsg, Toast.LENGTH_LONG).show();
