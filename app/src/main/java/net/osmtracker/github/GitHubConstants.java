@@ -43,7 +43,7 @@ public final class GitHubConstants {
      * @return The complete URL for the file content endpoint.
      */
     public static String getRepoFileContentUrl(String repoOrigen, String filename) {
-        return GITHUB_API_REPOS_URL + repoOrigen + "/contents/" + filename;
+        return GITHUB_API_REPOS_URL + "/" + repoOrigen + "/contents/" + filename;
     }
 
     /**
