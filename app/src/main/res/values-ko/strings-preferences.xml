@@ -80,7 +80,7 @@
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
     <item>사이클 지도</item>
-    <item>OpenTopo</item>
+    <item>MapQuest Open</item>
   </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>없음</item>
