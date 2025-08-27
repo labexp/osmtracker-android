@@ -88,7 +88,7 @@
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
     <item>Biciklis térkép</item>
-    <item>OpenTopo</item>
+    <item>MapQuest Open</item>
   </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Semmi</item>
