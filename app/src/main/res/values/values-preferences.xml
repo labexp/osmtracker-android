@@ -44,9 +44,9 @@
 	</string-array>
 	
 	<string-array name="prefs_map_tile_values">
-		<item>MAPNIK</item>
-		<item>CYCLEMAP</item>
-		<item>MAPQUESTOSM</item>
+		<item>Mapnik</item>
+		<item>CyclOSM</item>
+		<item>OpenTopoMap</item>
 	</string-array>
 	<string-array name="prefs_compass_heading_values">
 		<item >none</item>

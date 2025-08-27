@@ -74,7 +74,7 @@
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
     <item>Bản đồ Xe đạp</item>
-    <item>MapQuest Mở</item>
+    <item>yMapQuest Mở</item>
   </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Không xuất</item>

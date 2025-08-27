@@ -86,7 +86,7 @@
   <string-array name="prefs_map_tile_keys">
     <item>Mapnik</item>
     <item>Cycle Map</item>
-    <item>MapQuest Open</item>
+    <item>OpenTopo</item>
   </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Нет</item>
