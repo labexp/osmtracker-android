@@ -1,6 +1,11 @@
 package net.osmtracker.github;
 
 public final class GitHubConstants {
+    // Config constans
+    public static final String SHARED_PREFS_NAME = "GitHubPrefs";
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_TOKEN = "token";
+    // URL constants
     public static String GITHUB_API_URL = "https://api.github.com";
     public static String GITHUB_TOKENS_URL = "https://github.com/settings/tokens";
     public static String GITHUB_API_REPOS_URL = GITHUB_API_URL + "/repos";

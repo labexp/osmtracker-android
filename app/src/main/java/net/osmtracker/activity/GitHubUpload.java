@@ -166,7 +166,6 @@ public class GitHubUpload extends Activity {
      * Either starts uploading directly if we are authenticated against GitHub
      */
     private void startUploadGitHub(final String fileInBase64, String filename, String commitMsj){
-        //String fullURL = getBaseURL()+"/repos/"+getRepoName()+"/contents/"+filename;
         String fullURL = getRepoFileContentUrl(getRepoName(), filename);
 
         ProgressDialog progressDialog = new ProgressDialog(this);
