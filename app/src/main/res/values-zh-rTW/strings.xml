@@ -119,6 +119,8 @@
   <string name="error_externalstorage_not_writable_hint">請檢查外部儲存媒體是否正確安置與掛載。</string>
   <string name="error_voicerec_failed">語音錄製失敗</string>
   <string name="error_userlayout_parsing">解析 XML 外觀配置檔時發生錯誤。請改用預設外觀。</string>
+  <string name="error_gh_token_lenght">令牌必須至少有40個字元</string>
+  <string name="error_gh_pr_creation">新增 PR 時發生錯誤</string>
   <!--messages-->
   <string name="permission_required">需要權限</string>
   <string name="storage_permission_for_export_GPX">要匯出 GPS 軌跡則需寫入儲存裝置的權限。</string>
@@ -214,6 +216,9 @@
   <string name="github_creating_repository">創建程式庫</string>
   <string name="github_no_repository_name">你必須指定程式庫名稱</string>
   <string name="error_field_required">你必須為這一欄位指定值</string>
+  <string name="retrieving_repositories">從程式庫取得資訊…</string>
+  <string name="error_retrieving_repositories">從程式庫取得資訊發生錯誤</string>
+  <string name="successfully_retrieved_repositories">成功從程式庫取得資訊</string>
   <!--GitHubConfig-->
   <string name="github_config_btn">設定</string>
   <string name="github_token_placeholder">GitHub 令牌：</string>
