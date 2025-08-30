@@ -222,6 +222,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="how_to_get_ghToken_guide_title">Hoe een GitHub-token te verkrijgen:</string>
   <string name="how_to_get_ghToken_guide_step_1">1. Klik op de knop om de GitHub website te openen en een token aan te maken. Log in met uw GitHub account als dat nodig is.</string>
   <!--GitHubUpload-->
+  <string name="upload_to_github_configure">Configureren</string>
   <!--GitHubNewFork-->
   <!--GitHubPullRequest-->
   <!--END Upload to GitHub functionality-->
