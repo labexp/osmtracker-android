@@ -120,6 +120,8 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="error_externalstorage_not_writable_hint">Controleer of de SD-kaart correct geplaatst is.</string>
   <string name="error_voicerec_failed">Stemopname mislukt</string>
   <string name="error_userlayout_parsing">Fout bij inlezen van XML lay-out-bestand. Gelieve terug te keren naar de standaard lay-out.</string>
+  <string name="error_gh_token_lenght">Token moet 40 tekens bevatten</string>
+  <string name="error_gh_pr_creation">Fout bij aanmaken van PR</string>
   <!--messages-->
   <string name="permission_required">Toestemming vereist</string>
   <string name="storage_permission_for_export_GPX">Om het GPX-traject op te slaan, moeten we in de opslag schrijven.</string>
@@ -203,7 +205,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="db_error">Database-fout</string>
   <string name="successfully_saved">met succes opgeslagen</string>
   <string name="saving_error">Fout bij opslaan</string>
-  <string name="pr_status">Status van pull-request:</string>
+  <string name="pr_status">Status van pull request:</string>
   <string name="repository_information_error">Fout in repository-informatie</string>
   <string name="successfully_uploaded">Met succes geüpload</string>
   <string name="error_uploading">Fout bij uploaden</string>
@@ -215,16 +217,37 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="github_creating_repository">Repository aanmaken</string>
   <string name="github_no_repository_name">U moet een repository-naam opgeven</string>
   <string name="error_field_required">U moet een waarde opgeven voor dit veld</string>
+  <string name="retrieving_repositories">Repository\'s ophalen...</string>
+  <string name="error_retrieving_repositories">Fout bij ophalen repository\'s</string>
+  <string name="successfully_retrieved_repositories">Repository\'s met succes opgehaald</string>
   <!--GitHubConfig-->
   <string name="github_config_btn">Configureren</string>
   <string name="github_token_placeholder">GitHub-token:</string>
   <string name="github_get_token_btn">Token ophalen:</string>
   <string name="how_to_get_ghToken_guide_title">Hoe een GitHub-token te verkrijgen:</string>
   <string name="how_to_get_ghToken_guide_step_1">1. Klik op de knop om de GitHub website te openen en een token aan te maken. Log in met uw GitHub account als dat nodig is.</string>
+  <string name="how_to_get_ghToken_guide_step_2">2. Selecteer \"Tokens (klassiek)\" en klik op de knop \"Nieuw token genereren\".</string>
+  <string name="how_to_get_ghToken_guide_step_3">3. Wijs een beschrijvende naam toe aan uw token</string>
+  <string name="how_to_get_ghToken_guide_step_4">4. Selecteer een vervaldatum. We bevelen \'geen vervaldatum\' aan om te vermijden dat u deze stap moet herhalen.</string>
+  <string name="how_to_get_ghToken_guide_step_5">5. Selecteer het bereik of de machtigingen die u voor dit token wilt toekennen (OSMTracker heeft alleen de repo-machtiging nodig).</string>
+  <string name="how_to_get_ghToken_guide_step_6">6. Klik op de knop ‘Token genereren’.</string>
+  <string name="how_to_get_ghToken_guide_step_7">7. Kopieer het gegenereerde token en plak het in het veld \"GitHub-token\".</string>
+  <string name="how_to_get_ghToken_guide_note">⚠️ U kunt leeg opslaan om uw aanmeldingsgegevens te verwijderen</string>
   <!--GitHubUpload-->
+  <string name="upload_to_github_description">Commit-bericht:</string>
+  <string name="upload_to_github_create_fork">Fork/nmaken</string>
+  <string name="upload_to_github_open_pull_request">Pull request openen</string>
+  <string name="upload_to_github_select_repo">Selecteer een repository</string>
+  <string name="upload_to_github_create_repository">Repository aanmaken</string>
+  <string name="upload_to_github_commit_btn">Commit</string>
   <string name="upload_to_github_configure">Configureren</string>
   <!--GitHubNewFork-->
+  <string name="upload_to_github_forked_repo_owner">Gebruikersnaam van originele repository</string>
+  <string name="upload_to_github_forked_repo_name">Naam van originele repository</string>
+  <string name="create">Aanmaken</string>
   <!--GitHubPullRequest-->
+  <string name="upload_to_github_pr_title">Pull request titel</string>
+  <string name="upload_to_github_pr_description">Pull request beschrijving</string>
   <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
   <string name="app_intro">Introductie voor OSMTracker voor Android™</string>
@@ -235,4 +258,5 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="app_intro_slide2_title">Veel plezier met tracken! 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker voor Android zal uw gps-locatie gebruiken om trajectpunten en referentiepunten op te nemen, zelfs wanneer de app op de achtergrond actief is.
 \nUw gegevens worden niet gebruikt om reclame te ondersteunen.</string>
+  <string name="no_app_to_handle_file_type">Er is geen toepassing gevonden om dit bestand te openen.</string>
 </resources>
