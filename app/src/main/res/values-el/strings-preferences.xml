@@ -56,6 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">Εμφανίζει τον χάρτη του OpenStreetMap κάτω από το ίχνος. Χρειάζεται σύνδεση δεδομένων</string>
   <string name="prefs_displaytrack_osm_summary_ask">Πάντα εμφάνιση του υπόβαθρου OpenStreetMap; Απαιτεί σύνδεση δεδομένων</string>
   <string name="prefs_output">Ρυθμίσεις GPX</string>
+  <string name="prefs_storage_dir">Φάκελος αποθήκευσης στα έγγραφα</string>
   <string name="prefs_storage_dir_hint">Θα επηρεάσει το επόμενο ίχνος (όχι το τρέχων)</string>
   <string name="prefs_output_one_dir_per_track">Ένα ευρετήριο ανά ίχνος</string>
   <string name="prefs_output_one_dir_per_track_summary">Αποθήκευση κάθε ίχνους και των σχετικών του αρχείων στον δικό του κατάλογο</string>
@@ -67,6 +68,8 @@
     <item>Ημερομηνία και ώρα έναρξης, Όνομα</item>
     <item>Ημερομηνία και ώρα έναρξης</item>
   </string-array>
+  <string name="prefs_output_filename_label">Ετικέτα ονόματος αρχείου</string>
+  <string name="prefs_output_filename_label_summary">Αυτή η ετικέτα θα προστεθεί στο τέλος του ονόματος αρχείου</string>
   <string name="prefs_output_accuracy">Ακρίβεια στο αρχείο GPX</string>
   <string name="prefs_output_accuracy_summary">Προσθήκη ακρίβειας στο αρχείο GPX,  με το όνομα σημείου διαδρομής ή στο σχόλιο του σημείου</string>
   <string-array name="prefs_output_accuracy_keys">

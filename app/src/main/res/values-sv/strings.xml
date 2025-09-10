@@ -195,6 +195,12 @@
   <string name="github_repository_settings_branch_name">Branch-namn: </string>
   <string name="github_repository_settings_valid_server">Github Repository giltigt</string>
   <string name="github_repository_settings_invalid_server">Github Repository felaktigt</string>
+  <!--Upload to GitHub-->
+  <!--GitHubConfig-->
+  <!--GitHubUpload-->
+  <!--GitHubNewFork-->
+  <!--GitHubPullRequest-->
+  <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
   <string name="app_intro">Introduktion till OSMTracker for Android™</string>
   <!--Intro - slide1-->

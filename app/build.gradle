@@ -15,7 +15,7 @@ android {
         multiDexEnabled true
 
         // Version code should be increased after each release
-        versionCode 65
+        versionCode 69
         versionName new Date().format('yyyy.MM.dd')
 
         testApplicationId "net.osmtracker.test"
@@ -78,6 +78,7 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-android:6.1.20'
     // OAuth
     implementation 'net.openid:appauth:0.11.1'
+    implementation 'com.android.volley:volley:1.2.1'
     // For upload traces to osm server
     implementation('de.westnordost:osmapi-traces:3.1') {
         // Already included in Android
