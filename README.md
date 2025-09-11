@@ -23,6 +23,15 @@ Here is a screenshot of the main screen with its default buttons. You can [custo
 - Contributions are welcome, please visit our [contributor guide](https://github.com/labexp/osmtracker-android/blob/master/CONTRIBUTING.md)
 - Translations can be done on [Transifex](https://explore.transifex.com/labexp/osmtracker-android/)
 
+## Community & Support 🌐
+
+Join our **Telegram group** to connect with users, developers, translators, and contributors:  
+👉 [https://t.me/OSMTracker](https://t.me/OSMTracker)
+
+Use this space for real-time discussions, guidance, and support.  
+For bug reports or feature requests, continue using the [GitHub Issues](https://github.com/labexp/osmtracker-android/issues) tracker.
+
+
 ## Note 📝
 
 OSMTracker for Android™ official source code repository is [https://github.com/labexp/osmtracker-android](https://github.com/labexp/osmtracker-android).
