@@ -116,6 +116,13 @@
 			android:defaultValue="false" />
 		<ListPreference
 			android:defaultValue="none"
+			android:key="ui.map.tile"
+			android:title="@string/prefs_map_tile"
+			android:summary="@string/prefs_map_tile_summary"
+			android:entries="@array/prefs_map_tile_keys"
+			android:entryValues="@array/prefs_map_tile_values" />
+		<ListPreference
+			android:defaultValue="none"
 			android:key="ui.orientation"
 			android:title="@string/prefs_ui_orientation"
 			android:summary="@string/prefs_ui_orientation_summary"
