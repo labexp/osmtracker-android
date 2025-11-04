@@ -14,8 +14,8 @@
 
 [comment]: # (Link to the ISSUES related, if applicable)
 [comment]: # (* Related to: ISSUE #number)
-## 🛠️ Related issues
-- ISSUES #add-ISSUE-if-applicable
+## 🛠️ Related issues (if applicable)
+- ISSUES #add-ISSUE
 
 
 
