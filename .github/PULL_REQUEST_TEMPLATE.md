@@ -11,8 +11,6 @@
 
 ## 📖 Description
 [comment]: # (Provide a clear explanation of the changes in this PR)
-[comment]: # (Include information about what problem it solves, how it is implemented, and if it affects UI/API)
-
 ## 🖼️ Screenshots (if applicable)
 - Include any relevant screenshots or examples of the changes made. This helps reviewers visualize the updates
 
@@ -24,7 +22,7 @@
 [comment]: # ([x] : done)
 [comment]: # (Make sure how your PR looks clicking the "Preview" tab at the top of this editor)
 
-- [ ] The PR is proposed to the correct branch (Branch created under branch DEVELOP).
+- [ ] The PR is proposed to the DEVELOP branch.
 - [ ] The changes have been tested on the target Android API and minimum Android API.
 - [ ] Automated tests have been added (if applicable).
 - [ ] The feature is well documented.
@@ -34,4 +32,3 @@
 ## 📝 Additional Notes
 - Any additional context, questions, or considerations for the reviewers.
 - Take a look at our [Contributing Guide](https://github.com/labexp/osmtracker-android/blob/develop/CONTRIBUTING.md) before submitting your PR.
-- Don't forget your branch must be created from `develop`, **not** from `master`.
