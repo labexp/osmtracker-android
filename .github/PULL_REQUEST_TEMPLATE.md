@@ -4,6 +4,11 @@
 ## 🛠️ Issue
 - Closes #add-your-issue-ID
 
+[comment]: # (Link to the ISSUES related, if applicable)
+[comment]: # (* Related to: ISSUE #number)
+## 🛠️ Related issues (if applicable)
+- ISSUES #add-ISSUE
+
 ## 📖 Description
 [comment]: # (Provide a clear explanation of the changes in this PR)
 [comment]: # (Include information about what problem it solves, how it is implemented, and if it affects UI/API)
@@ -12,15 +17,7 @@
 - Include any relevant screenshots or examples of the changes made. This helps reviewers visualize the updates
 
 
-[comment]: # (Link to the ISSUES related, if applicable)
-[comment]: # (* Related to: ISSUE #number)
-## 🛠️ Related issues (if applicable)
-- ISSUES #add-ISSUE
-
-
-
-
-### Pull Request Checklist
+## ✅ Pull Request Checklist
 [comment]: # (Please confirm the following before submitting your PR)
 [comment]: # (To check a task please put a "x" inside the `[]`)
 [comment]: # ([ ] : not done)
