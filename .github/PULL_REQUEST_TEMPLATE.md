@@ -36,5 +36,5 @@
 
 ## 📝 Additional Notes
 - Any additional context, questions, or considerations for the reviewers.
-- Take a look at our [Contributing Guide](../CONTRIBUTING.md) before submitting your PR.
+- Take a look at our [Contributing Guide](https://github.com/labexp/osmtracker-android/blob/develop/CONTRIBUTING.md) before submitting your PR.
 - Don't forget your branch must be created from `develop`, **not** from `master`.
