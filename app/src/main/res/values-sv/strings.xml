@@ -40,6 +40,7 @@
   <string name="trackmgr_contextmenu_export">Exportera</string>
   <string name="trackmgr_contextmenu_share">Dela</string>
   <string name="trackmgr_contextmenu_osm_upload">Ladda upp till OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_github_upload">Ladda upp till GitHub</string>
   <string name="trackmgr_contextmenu_display">Visa spår på skärm</string>
   <string name="trackmgr_contextmenu_details">Visa detaljer</string>
   <string name="trackmgr_contextmenu_title">Spår #{0}</string>
@@ -63,6 +64,7 @@
   <string name="trackdetail_osm_upload_notyet">(inte uppladdad än)</string>
   <string name="trackdetail_export_display">Visa</string>
   <string name="trackdetail_name">Namn</string>
+  <string name="trackdetail_name_and_title">Namn och titel</string>
   <string name="trackdetail_description">Beskrivning</string>
   <string name="trackdetail_tags">Etiketter (kommaseparerade)</string>
   <string name="trackdetail_description_mandatory">Du måste ange en beskrivning</string>
@@ -118,6 +120,7 @@
   <string name="error_externalstorage_not_writable_hint">Kontrollera att minneskortet är korrekt isatt och fungerar.</string>
   <string name="error_voicerec_failed">Röstinspelningen misslyckades</string>
   <string name="error_userlayout_parsing">Ett fel inträffade när layoutfilen lästes in. Återställ orginalfilen.</string>
+  <string name="error_gh_pr_creation">Fel vid skapande av PR</string>
   <!--messages-->
   <string name="permission_required">Tillstånd krävs</string>
   <string name="storage_permission_for_export_GPX">För att exportera GPX-spåret behöver vi skriva till enhetens filsystem.</string>
@@ -196,6 +199,22 @@
   <string name="github_repository_settings_valid_server">Github Repository giltigt</string>
   <string name="github_repository_settings_invalid_server">Github Repository felaktigt</string>
   <!--Upload to GitHub-->
+  <string name="successfully_created">skapad framgångsrikt</string>
+  <string name="error_creating">Fel vid skapande</string>
+  <string name="db_error">Databasfel</string>
+  <string name="successfully_saved">sparade framgångsrikt</string>
+  <string name="saving_error">Sparfel</string>
+  <string name="pr_status">Status på pull request</string>
+  <string name="repository_information_error">Fel med repository-information</string>
+  <string name="successfully_uploaded">Laddade upp framgångsrikt</string>
+  <string name="error_uploading">Fel vid uppladdning</string>
+  <string name="gpx_file_read_error">Fel vid läsnng av GPX-fil</string>
+  <string name="gpx_file_not_found">GPX-fil hittades inte</string>
+  <string name="uploading_file">Laddar upp fil</string>
+  <string name="github_repository_private">Privat:</string>
+  <string name="github_creating_repository">Skapar repository</string>
+  <string name="github_no_repository_name">Du måste ange ett repository-namn</string>
+  <string name="error_field_required">Du måste ange ett värde på detta fällt</string>
   <!--GitHubConfig-->
   <!--GitHubUpload-->
   <!--GitHubNewFork-->
