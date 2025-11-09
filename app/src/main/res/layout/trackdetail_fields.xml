@@ -8,7 +8,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
-        android:text="@string/trackdetail_name_and_title" />
+        android:text="@string/trackdetail_name"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryText" />
 
     <EditText
         android:id="@+id/trackdetail_item_name"
@@ -19,14 +21,17 @@
         android:hint="@string/trackdetail_name"
         android:inputType="text"
         android:minHeight="48dp"
-        android:singleLine="true" />
+        android:singleLine="true"
+         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
-        android:text="@string/trackdetail_description" />
+        android:text="@string/trackdetail_description"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryText" />
 
     <EditText
         android:id="@+id/trackdetail_item_description"
@@ -44,7 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
-        android:text="@string/trackdetail_tags" />
+        android:text="@string/trackdetail_tags"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryText" />
 
     <EditText
         android:id="@+id/trackdetail_item_tags"
