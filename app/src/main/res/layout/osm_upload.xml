@@ -32,9 +32,16 @@
             android:text="@string/tracklogger_btnBack" />
     </LinearLayout>
 
-    <include
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/trackdetail_fields" />
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/trackdetail_buttons"
+            android:orientation="vertical" >
+
+        <include
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/trackdetail_fields" />
+    </LinearLayout>
 
 </RelativeLayout>
