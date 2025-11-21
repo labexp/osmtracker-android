@@ -87,6 +87,12 @@ dependencies {
         exclude group: 'net.sf.kxml', module: 'kxml2'
         exclude group: 'xmlpull', module: 'xmlpull'
     }
+    // For upload notes to osm server
+    implementation ('de.westnordost:osmapi-notes:3.1'){
+        // Already included in Android
+        exclude group: 'net.sf.kxml', module: 'kxml2'
+        exclude group: 'xmlpull', module: 'xmlpull'
+    }
     // App intro
     implementation 'com.github.AppIntro:AppIntro:6.3.1'
 
