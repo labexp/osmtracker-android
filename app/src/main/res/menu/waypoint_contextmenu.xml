@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/wplist_contextmenu_osm_note_upload"
+        android:title="@string/wplist_contextmenu_osm_note_upload" />
+</menu>
