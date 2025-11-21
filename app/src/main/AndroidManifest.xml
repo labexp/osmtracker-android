@@ -108,6 +108,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.AvailableLayouts" />
+        <activity android:name=".activity.OpenStreetMapNotesUpload"/>
 
         <service
             android:name=".service.gps.GPSLogger"
