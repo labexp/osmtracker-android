@@ -25,6 +25,7 @@
   <string name="wplist_accuracy">Accur: </string>
   <string name="wplist_compass">Comp. head.:</string>
   <string name="wplist_compass_accuracy">Comp. accur.:</string>
+  <string name="wplist_contextmenu_osm_note_upload">Upload as OSM note</string>
   <!--Track Manager-->
   <string name="trackmgr">Track manager</string>
   <string name="trackmgr_tracklist">Track list:</string>
@@ -83,6 +84,14 @@
   <string name="osm_upload_bad_response">The OSM server returned an error: ({0}) message {1}</string>
   <string name="osm_upload_unauthorized">Authorization error. Would you like to clear the saved OpenStreetMap credentials?</string>
   <string name="osm_upload_sucess">OpenStreetMap upload succeeded</string>
+  <!-- OSM Notes Upload -->
+  <string name="osm_note_upload">OpenStreetMap notes upload</string>
+  <string name="osm_note_upload_error">Error while uploading note</string>
+  <string name="osm_note_label">Note text</string>
+  <string name="osm_note_upload_ok">Upload</string>
+  <string name="osm_note_upload_cancel">Cancel</string>
+  <string name="osm_note_footer">via %1$s %2$s</string>
+  <string name="osm_note_upload_unauthorized">Authorization error. If you previously granted the app permission to upload traces, you must clear your saved credentials in order to authorize the app to upload traces and <b>notes</b>. Would you like to clear your saved OpenStreetMap credentials?</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Voice record</string>
   <string name="gpsstatus_record_stillimage">Take photo</string>
