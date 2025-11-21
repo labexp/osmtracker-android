@@ -1,0 +1,65 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <!-- Note Name Label -->
+        <TextView
+            android:id="@+id/osm_note_upload_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/osm_note_label"
+            android:textStyle="bold"/>
+
+        <!-- Note text content-->
+        <TextView
+            android:id="@+id/wplist_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="{name}"
+            android:textColor="@android:color/holo_green_light"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+                android:id="@+id/osm_note_footer"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_green_light" />
+
+        <!-- Buttons Row -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+            <Button
+                android:id="@+id/osm_note_upload_button_ok"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/osm_note_upload_ok" />
+
+            <Button
+                android:id="@+id/osm_note_upload_button_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="@string/osm_note_upload_cancel" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
