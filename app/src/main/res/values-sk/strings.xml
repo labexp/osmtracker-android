@@ -31,13 +31,16 @@
   <string name="trackmgr_waypoints_count">Body trasy: </string>
   <string name="trackmgr_trackpoints_count">Trasové body: </string>
   <string name="trackmgr_empty">Nemáte zaznamenané žiadne prejdené trasy.</string>
+  <string name="trackmgr_newtrack_hint">Zapnúť záznam novej stopy.</string>
   <string name="trackmgr_newtrack_error">Nedá sa vytvoriť nový záznam trasy: {0}</string>
   <string name="trackmgr_continuetrack_hint">Práve zaznamenávate <b>stopu #{0}</b>\nPre pokračovanie ju zvoľte v zozname</string>
   <string name="trackmgr_contextmenu_stop">Zastaviť záznam</string>
   <string name="trackmgr_contextmenu_resume">Pokračovať v zázname</string>
   <string name="trackmgr_contextmenu_delete">Odstrániť</string>
   <string name="trackmgr_contextmenu_export">Exportovať</string>
+  <string name="trackmgr_contextmenu_share">Zdieľať</string>
   <string name="trackmgr_contextmenu_osm_upload">Odoslať na OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_github_upload">Nahrať na GitHub</string>
   <string name="trackmgr_contextmenu_display">Zobraziť</string>
   <string name="trackmgr_contextmenu_details">Podrobnosti</string>
   <string name="trackmgr_contextmenu_title">Záznam #{0}</string>
@@ -47,6 +50,7 @@
   <string name="trackmgr_exporting_prepare">Pripravuje sa export...</string>
   <string name="trackmgr_export_error">Nedá sa exportovať stopa: {0}</string>
   <string name="trackmgr_exportall_confirm">Všetky stop budú exportované, čo môže chvíľu trvať. Pokračovať?</string>
+  <string name="trackmgr_prepare_for_share_error">Nepodarilo sa spracovať stopu: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Podrobnosti o stope</string>
   <string name="trackdetail_startdate">Čas začatia:</string>
@@ -59,6 +63,8 @@
   <string name="trackdetail_export_notyet">(Zatiaľ neexportovaná)</string>
   <string name="trackdetail_osm_upload_notyet">(Zatiaľ neodovzdané)</string>
   <string name="trackdetail_export_display">Zobraziť</string>
+  <string name="trackdetail_name">Názov</string>
+  <string name="trackdetail_name_and_title">Názov a hlavička</string>
   <string name="trackdetail_description">Popis</string>
   <string name="trackdetail_tags">Tagy (oddelené čiarkou)</string>
   <string name="trackdetail_description_mandatory">Musíte zadať popis</string>
@@ -82,6 +88,16 @@
   <string name="gpsstatus_record_stillimage">Zachytiť fotografiu</string>
   <string name="gpsstatus_record_textnote">Písomná poznámka</string>
   <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Názov prechodného bodu/text</string>
+  <string name="waypoint_name_hint">Zadať názov prechodného bodu</string>
+  <string name="edit_waypoint_bt_preview">Otvoriť súbor</string>
+  <string name="edit_waypoint_bt_save">Uložiť</string>
+  <string name="edit_waypoint_bt_delete">Odstrániť</string>
+  <string name="edit_waypoint_bt_cancel">Zrušiť</string>
+  <string name="delete_waypoint_confirm_dialog_title">Odstrániť prechodný bod</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Vymazať tento prechodný bod?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Odstrániť</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Zrušiť</string>
   <!--Menu-->
   <string name="menu_settings">Nastavenia</string>
   <string name="menu_waypointlist">Cestovné body</string>
@@ -104,7 +120,15 @@
   <string name="error_externalstorage_not_writable_hint">Prosím, skontrolujte, či je ext. úložisko správne vložené a pripojené.</string>
   <string name="error_voicerec_failed">Hlasový záznam zlyhal</string>
   <string name="error_userlayout_parsing">Chyba počas analýzi XML súboru rozloženia. Prosím, vráťte sa k štandardnému rozloženiu.</string>
+  <string name="error_gh_token_lenght">Token musí mať 40 znakov</string>
   <!--messages-->
+  <string name="permission_required">Vyžaduje sa oprávnenie</string>
+  <string name="storage_permission_for_export_GPX">Pre export GPX stopy sa vyžaduje zápis na úložisko.</string>
+  <string name="storage_permission_for_display_track">Na správne zobrazenie stopy sa vyžaduje prístup k úložisku.</string>
+  <string name="storage_permission_for_share_track">Na správne zdieľanie stopy sa vyžaduje prístup k úložisku.</string>
+  <string name="storage_permission_for_upload_to_OSM">Na nahratie stopy do OSM sa vyžaduje prístup k úložisku.</string>
+  <string name="acccept">Prijať</string>
+  <string name="gps_perms_required">Bez povelenia GPS nemožno pokračovať</string>
   <!--GPX-->
   <string name="gpx_track_name">Stopované s OSMTracker-om pre Android™</string>
   <string name="gpx_hdop_approximation_cmt">Varovanie: Hodnoty HDOP nie sú vrátené HDOP z GPS zariadenia. Sú odhadnuté pre presnosť umiestnenia v metroch, a nemali by byť vložené do účtu.</string>
@@ -137,6 +161,8 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Čaká sa na smerovanie...</string>
   <string name="various_heading_unknown">Nedá sa zistiť smerovanie</string>
+  <string name="various_export_finished">Proces exportovania prebehol úspešne</string>
+  <string name="various_waiting_position">Poloha nie je dostupná</string>
   <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Zobrazenie OpenStreetMap stopy</string>
@@ -148,8 +174,10 @@
   <string name="buttons_presets_unsuccessful_update">Rozloženie nebolo aktualizované, skúste inokedy</string>
   <string name="buttons_presets_delete_message">Naozaj chcete vymazať rozloženie {0} ?</string>
   <string name="buttons_presets_delete_positive_confirmation">Áno</string>
+  <string name="buttons_presets_successful_delete">Rozloženie bolo úspešne odstránené</string>
   <string name="buttons_presets_icon_directory_deleted">Priečinok piktogramov bol úspešne vymazaný</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Tento súbor nemal priradený žiadny priečinok pre priktogramy</string>
+  <string name="buttons_presets_unsuccessful_delete">Rozloženie sa nepodarilo odstrániť</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Chyba: nepodarilo sa pripojiť na Internet</string>
   <string name="available_layouts_response_null_exception">Chyba: nepodarilo sa pripojiť na predvolený repozitár s prisposobenými rozloženiami tlačidiel</string>
@@ -170,6 +198,35 @@
   <string name="github_repository_settings_branch_name">Názov vetvy:</string>
   <string name="github_repository_settings_valid_server">Platný názov Github repozitára</string>
   <string name="github_repository_settings_invalid_server">Neplatný názov Github repozitára</string>
+  <!--Upload to GitHub-->
+  <string name="successfully_created">úspešne vytvorené</string>
+  <string name="error_creating">Chyba pri vytváraní</string>
+  <string name="db_error">Chyba databázy</string>
+  <string name="successfully_saved">úspešne uložené</string>
+  <string name="saving_error">Chyba pri ukladaní</string>
+  <string name="repository_information_error">Chyba s infomáciami o repozitári</string>
+  <string name="successfully_uploaded">Úspešne nahraté</string>
+  <string name="error_uploading">Chyba pri nahrávaní</string>
+  <string name="gpx_file_read_error">Chyba pri načítaní GPX súboru</string>
+  <string name="gpx_file_not_found">Nenašiel sa GPX súbor</string>
+  <string name="uploading_file">Nahrávanie súboru:</string>
+  <string name="item_selected">Vybratá položka:</string>
+  <string name="github_repository_private">Súkromné:</string>
+  <string name="github_creating_repository">Vytváranie repozitára</string>
+  <string name="github_no_repository_name">Musíte zadať názov repozitára</string>
+  <string name="error_field_required">Musíte zadať hodnotu do tohto poľa</string>
+  <string name="retrieving_repositories">Získavam repozitáre...</string>
+  <string name="error_retrieving_repositories">Chyba pri získavaní repozitárov</string>
+  <string name="successfully_retrieved_repositories">Získavanie repozitárov prebehlo úspešne</string>
+  <!--GitHubConfig-->
+  <string name="github_config_btn">Nastaviť</string>
+  <string name="github_token_placeholder">Token GitHubu:</string>
+  <string name="github_get_token_btn">Získať token:</string>
+  <!--GitHubUpload-->
+  <string name="upload_to_github_configure">Nastaviť</string>
+  <!--GitHubNewFork-->
+  <!--GitHubPullRequest-->
+  <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
   <!--Intro - slide1-->
   <!--Intro - slide2-->
