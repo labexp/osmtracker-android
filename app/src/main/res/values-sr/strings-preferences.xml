@@ -64,7 +64,7 @@
   <string-array name="prefs_output_filename_keys">
     <item>Назив праћења</item>
     <item>Назив, почетни датум и време</item>
-    <item>Почетни датум и време, Назив</item>
+    <item>Почетни датум и време, назив</item>
     <item>Почетни датум и време</item>
   </string-array>
   <string name="prefs_output_accuracy">Тачност у GPX фајлу</string>
