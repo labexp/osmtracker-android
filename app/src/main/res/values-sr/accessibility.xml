@@ -7,9 +7,9 @@
   <string name="acc.zoom_out">Умањи</string>
   <string name="acc.zoom_center">Центрирај</string>
   <!--GPS status bar-->
-  <string name="acc.sat_indicator">Показатељ јачине сигнала сателита</string>
+  <string name="acc.sat_indicator">Показатељ сигнала сателита</string>
   <string name="acc.record_indicator">Показатељ напретка снимања</string>
   <!--Track list-->
   <string name="acc.track_status">Показатељ стања путање</string>
-  <string name="acc.upload_status">Показатељ стања слања Отворене мапе</string>
+  <string name="acc.upload_status">Показатељ слања на Отворене мапе</string>
 </resources>
