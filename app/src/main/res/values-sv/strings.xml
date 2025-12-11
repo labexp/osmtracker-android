@@ -40,6 +40,7 @@
   <string name="trackmgr_contextmenu_export">Exportera</string>
   <string name="trackmgr_contextmenu_share">Dela</string>
   <string name="trackmgr_contextmenu_osm_upload">Ladda upp till OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_github_upload">Ladda upp till GitHub</string>
   <string name="trackmgr_contextmenu_display">Visa spår på skärm</string>
   <string name="trackmgr_contextmenu_details">Visa detaljer</string>
   <string name="trackmgr_contextmenu_title">Spår #{0}</string>
@@ -63,6 +64,7 @@
   <string name="trackdetail_osm_upload_notyet">(inte uppladdad än)</string>
   <string name="trackdetail_export_display">Visa</string>
   <string name="trackdetail_name">Namn</string>
+  <string name="trackdetail_name_and_title">Namn och titel</string>
   <string name="trackdetail_description">Beskrivning</string>
   <string name="trackdetail_tags">Etiketter (kommaseparerade)</string>
   <string name="trackdetail_description_mandatory">Du måste ange en beskrivning</string>
@@ -118,6 +120,8 @@
   <string name="error_externalstorage_not_writable_hint">Kontrollera att minneskortet är korrekt isatt och fungerar.</string>
   <string name="error_voicerec_failed">Röstinspelningen misslyckades</string>
   <string name="error_userlayout_parsing">Ett fel inträffade när layoutfilen lästes in. Återställ orginalfilen.</string>
+  <string name="error_gh_token_lenght">Token måste vara 40 tecken lång</string>
+  <string name="error_gh_pr_creation">Fel vid skapande av PR</string>
   <!--messages-->
   <string name="permission_required">Tillstånd krävs</string>
   <string name="storage_permission_for_export_GPX">För att exportera GPX-spåret behöver vi skriva till enhetens filsystem.</string>
@@ -196,10 +200,54 @@
   <string name="github_repository_settings_valid_server">Github Repository giltigt</string>
   <string name="github_repository_settings_invalid_server">Github Repository felaktigt</string>
   <!--Upload to GitHub-->
+  <string name="successfully_created">skapad framgångsrikt</string>
+  <string name="error_creating">Fel vid skapande</string>
+  <string name="db_error">Databasfel</string>
+  <string name="successfully_saved">sparade framgångsrikt</string>
+  <string name="saving_error">Sparfel</string>
+  <string name="pr_status">Status på pull request</string>
+  <string name="repository_information_error">Fel med repository-information</string>
+  <string name="successfully_uploaded">Laddade upp framgångsrikt</string>
+  <string name="error_uploading">Fel vid uppladdning</string>
+  <string name="gpx_file_read_error">Fel vid läsnng av GPX-fil</string>
+  <string name="gpx_file_not_found">GPX-fil hittades inte</string>
+  <string name="uploading_file">Laddar upp fil</string>
+  <string name="item_selected">Valt objekt:</string>
+  <string name="github_repository_private">Privat:</string>
+  <string name="github_creating_repository">Skapar repository</string>
+  <string name="github_no_repository_name">Du måste ange ett repository-namn</string>
+  <string name="error_field_required">Du måste ange ett värde på detta fällt</string>
+  <string name="retrieving_repositories">Hämtar arkiv...</string>
+  <string name="error_retrieving_repositories">Fel vid hämtning av arkiv</string>
+  <string name="successfully_retrieved_repositories">Lyckades hämta arkiven</string>
   <!--GitHubConfig-->
+  <string name="github_config_btn">Konfigurera</string>
+  <string name="github_token_placeholder">GitHub-token:</string>
+  <string name="github_get_token_btn">Hämta token</string>
+  <string name="how_to_get_ghToken_guide_title">Så här får du en GitHub-token:</string>
+  <string name="how_to_get_ghToken_guide_step_1">1. Klicka på knappen för att öppna GitHub-webbplatsen och skapa en token. Logga in med ditt GitHub-konto om det behövs.</string>
+  <string name="how_to_get_ghToken_guide_step_2">2. Välj \"Tokens (Klassisk)\" och klicka på knappen \"Generera ny token\".</string>
+  <string name="how_to_get_ghToken_guide_step_3">3. Ge din token ett beskrivande namn.</string>
+  <string name="how_to_get_ghToken_guide_step_4">4. Välj ett utgångsdatum. Vi rekommenderar \"Inget utgångsdatum\" för att undvika att upprepa detta steg.</string>
+  <string name="how_to_get_ghToken_guide_step_5">5. Välj det omfång eller de behörigheter du vill bevilja för denna token (OSMTracker behöver bara repo-behörigheten).</string>
+  <string name="how_to_get_ghToken_guide_step_6">6. Klicka på knappen \"Generera token\".</string>
+  <string name="how_to_get_ghToken_guide_step_7">7. Kopiera den genererade token och klistra in den i fältet \"GitHub token\".</string>
+  <string name="how_to_get_ghToken_guide_note">⚠️ Du kan spara tomt för att radera dina inloggningsuppgifter.</string>
   <!--GitHubUpload-->
+  <string name="upload_to_github_description">Förbindelse medlande</string>
+  <string name="upload_to_github_create_fork">Skapa\ngren</string>
+  <string name="upload_to_github_open_pull_request">Öppna dra-förfrågan</string>
+  <string name="upload_to_github_select_repo">Välj ett arkiv</string>
+  <string name="upload_to_github_create_repository">Skapa arkiv</string>
+  <string name="upload_to_github_commit_btn">Förbinda</string>
+  <string name="upload_to_github_configure">Konfigurera</string>
   <!--GitHubNewFork-->
+  <string name="upload_to_github_forked_repo_owner">Ursprungligt användarnamn för arkivet</string>
+  <string name="upload_to_github_forked_repo_name">Ursprungligt arkivnamn</string>
+  <string name="create">Skapa</string>
   <!--GitHubPullRequest-->
+  <string name="upload_to_github_pr_title">Titel för dra-förfrågan</string>
+  <string name="upload_to_github_pr_description">Beskrivning av dra-förfrågan</string>
   <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
   <string name="app_intro">Introduktion till OSMTracker for Android™</string>
@@ -210,4 +258,5 @@
   <string name="app_intro_slide2_title">Lycka till med spårningen 🗺😎</string>
   <string name="app_intro_slide2_description">OSMTracker för Android kommer att använda din GPS-position för att spela in spårpunkter och vägpunkter, även när appen körs i bakgrunden.
 \nDina data används inte för annonsering.</string>
+  <string name="no_app_to_handle_file_type">Ingen app hittades för att öppna den här filen.</string>
 </resources>
