@@ -85,11 +85,6 @@
   <string name="prefs_osm_clear_oauth_data_dialog">Az OSMTrackert majd újból azonosítani kell a nyomvonalak feltöltéséhez. Biztosan ezt szeretné?</string>
   <string name="prefs_map_tile">Térképcsempe-szolgáltató</string>
   <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Biciklis térkép</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Semmi</item>
     <item>megjegyzésben</item>
