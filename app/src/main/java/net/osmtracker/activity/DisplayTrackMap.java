@@ -255,13 +255,13 @@ public class DisplayTrackMap extends Activity {
 								 "© OpenStreetMap contributors"));
 	}
 
-//	/**
-//	 * Returns a ITileSource for the map according to the selected mapTile
-//	 * String. The default is mapnik.
-//	 *
-//	 * @param mapTile String that is the name of the tile provider
-//	 * @return ITileSource with the selected Tile-Source
-//	 */
+	/**
+	 * Returns a ITileSource for the map according to the selected mapTile
+	 * String. The default is mapnik.
+	 *
+	 * @param mapTile String that is the name of the tile provider
+	 * @return ITileSource with the selected Tile-Source
+	 */
 	private ITileSource selectMapTile(String mapTile) {
 		try {
 			return TileSourceFactory.getTileSource(mapTile);

@@ -107,16 +107,16 @@
 	<string name="prefs_osm_clear_oauth_data_dialog">You\'ll have to authorize OSMTracker to upload tracks again. Are you sure?</string>
 	
 	<string name="prefs_map_tile">Map tile provider</string>
-	<string name="prefs_map_tile_summary"></string>
-	<string-array name="prefs_map_tile_keys">
+	<string name="prefs_map_tile_summary">Select the tile provider for rendering the map</string>
+	<string-array name="prefs_map_tile_keys" translatable="false">
 		<item>Mapnik</item>
 		<item>CyclOSM</item>
 		<item>OpenTopo</item>
 	</string-array>
 	<string-array name="prefs_compass_heading_keys">
-		<item >None</item>
-		<item >in comment</item>
-		<item >in extension</item>
+		<item>None</item>
+		<item>in comment</item>
+		<item>in extension</item>
 	</string-array>
 	<string name="prefs_compass_heading">Export compass heading</string>
 	<string name="prefs_compass_heading_summary">Defines if and how the compass data should be exported to the GPX file</string>
