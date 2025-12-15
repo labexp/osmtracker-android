@@ -85,7 +85,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">OSM-Anmeldedaten und -berechtigungen vergessen und OSMTracker neu danach fragen lassen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Sie müssen OSMTracker erneut zum Hochladen von Routen autorisieren. Sind Sie sicher?</string>
   <string name="prefs_map_tile">Anbieter von Kartenkacheln</string>
-  <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_compass_heading_keys">
     <item>kein Export</item>
     <item>im Kommentar</item>
