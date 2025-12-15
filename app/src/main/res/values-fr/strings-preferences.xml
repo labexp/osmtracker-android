@@ -86,11 +86,6 @@
   <string name="prefs_osm_clear_oauth_data_dialog">Vous devrez vous reconnecter à OpenStreetMap. Êtes-vous sûr ?</string>
   <string name="prefs_map_tile">Fournisseur de tuiles de carte</string>
   <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Aucun</item>
     <item>En commentaire</item>

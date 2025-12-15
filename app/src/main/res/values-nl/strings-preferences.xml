@@ -86,11 +86,6 @@
   <string name="prefs_osm_clear_oauth_data_dialog">U zal OSMTracker terug moeten autoriseren om trajecten te uploaden. Bent u zeker?</string>
   <string name="prefs_map_tile">Kaartvak-provider</string>
   <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Geen</item>
     <item>in opmerking</item>

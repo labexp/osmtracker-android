@@ -86,11 +86,6 @@
   <string name="prefs_osm_clear_oauth_data_dialog">Sie müssen OSMTracker erneut zum Hochladen von Routen autorisieren. Sind Sie sicher?</string>
   <string name="prefs_map_tile">Anbieter von Kartenkacheln</string>
   <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>kein Export</item>
     <item>im Kommentar</item>

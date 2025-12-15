@@ -86,11 +86,6 @@
   <string name="prefs_osm_clear_oauth_data_dialog">Terá de autorizar novamente o OSMTracker para poder enviar trilhos para o OpenStreetMap. Quer continuar?</string>
   <string name="prefs_map_tile">Fornecedor de mosaicos de mapas</string>
   <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Não exportar</item>
     <item>No comentário</item>
