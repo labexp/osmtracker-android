@@ -85,12 +85,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">Glöm bort inloggning och tillstånd och tvinga OSMTracker att fråga om detta igen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Du måste godkänna OSMTracker för att kunna ladda upp spår igen. Är du säker?</string>
   <string name="prefs_map_tile">Tillhandahållare av kartrutor</string>
-  <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Ingen</item>
     <item>i kommentar</item>
