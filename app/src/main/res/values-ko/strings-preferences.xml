@@ -76,7 +76,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">OSM 자격 증명과 권한을 잊고 강제로 OSMTracker에 다시 묻도록 합니다</string>
   <string name="prefs_osm_clear_oauth_data_dialog">트랙을 올리려면 OSMTracker를 다시 인증해야 합니다. 지우겠습니까?</string>
   <string name="prefs_map_tile">지도 타일 제공자</string>
-  <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_compass_heading_keys">
     <item>없음</item>
     <item>주석에서</item>
