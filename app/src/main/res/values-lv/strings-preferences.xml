@@ -75,7 +75,6 @@
   <string name="prefs_osm_clear_oauth_data">Atiestatīt OSM autentifikāciju</string>
   <string name="prefs_osm_clear_oauth_data_summary">Aizmirst OSM konta informāciju un atļaujas, un pieprasīt OSMTracker tās pieprasīt atkārtoti</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Tev būs atkārtoti jāautorizē OSMTracker lai augšupielādētu ierakstus. Vai esi pārliecināts?</string>
-  <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_compass_heading_keys">
     <item>Nekur</item>
     <item>komentārā</item>
