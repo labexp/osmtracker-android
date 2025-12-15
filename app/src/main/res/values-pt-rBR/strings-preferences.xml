@@ -80,7 +80,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">Esquecer as credenciais e permissões OSM e forçar o OSMTracker a perguntar isso novamente</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Você vai ter que autorizar OSMTracker para carregar trilhas novamente. Tem certeza?</string>
   <string name="prefs_map_tile">Provedor de blocos de mapas</string>
-  <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_compass_heading_keys">
     <item>Nenhum</item>
     <item>em comentário</item>
