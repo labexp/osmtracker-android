@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
-        android:text="@string/trackdetail_name_and_title" />
+        android:text="@string/trackdetail_name" />
 
     <EditText
         android:id="@+id/trackdetail_item_name"
