@@ -37,7 +37,10 @@
   <string name="trackmgr_contextmenu_stop">Заустави праћење</string>
   <string name="trackmgr_contextmenu_resume">Настави праћење</string>
   <string name="trackmgr_contextmenu_delete">Обриши</string>
+  <string name="trackmgr_contextmenu_export">Извези</string>
+  <string name="trackmgr_contextmenu_share">Подели</string>
   <string name="trackmgr_contextmenu_osm_upload">Пошаљи на OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_github_upload">Отпреми на GitHub</string>
   <string name="trackmgr_contextmenu_display">Приказ</string>
   <string name="trackmgr_contextmenu_details">Детаљи</string>
   <string name="trackmgr_contextmenu_title">Праћење #{0}</string>
@@ -59,6 +62,8 @@
   <string name="trackdetail_export_notyet">(још није извезено)</string>
   <string name="trackdetail_osm_upload_notyet">(још није послато)</string>
   <string name="trackdetail_export_display">Приказ</string>
+  <string name="trackdetail_name">Назив</string>
+  <string name="trackdetail_name_and_title">Назив и наслов</string>
   <string name="trackdetail_description">Опис</string>
   <string name="trackdetail_tags">Ознаке (раздвој запетом)</string>
   <string name="trackdetail_description_mandatory">Морате унети опис</string>
@@ -82,6 +87,12 @@
   <string name="gpsstatus_record_stillimage">Сликај</string>
   <string name="gpsstatus_record_textnote">Белешка</string>
   <!--edit_waypoint_dialog-->
+  <string name="edit_waypoint_bt_preview">Отвори датотеку</string>
+  <string name="edit_waypoint_bt_save">Сачувај</string>
+  <string name="edit_waypoint_bt_delete">Обриши</string>
+  <string name="edit_waypoint_bt_cancel">Откажи</string>
+  <string name="delete_waypoint_confirm_bt_ok">Обриши</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Откажи</string>
   <!--Menu-->
   <string name="menu_settings">Поставке</string>
   <string name="menu_waypointlist">Пролазне тачке</string>
@@ -104,7 +115,9 @@
   <string name="error_externalstorage_not_writable_hint">Проверите да ли је спољно складиште убачено и монтирано.</string>
   <string name="error_voicerec_failed">Гласовна белешка није успела</string>
   <string name="error_userlayout_parsing">Грешка при читању XML фајла распореда. Вратите на подразумевани распоред.</string>
+  <string name="error_gh_token_lenght">Потребно је да токен има 40 знакова</string>
   <!--messages-->
+  <string name="permission_required">Потребна су права</string>
   <!--GPX-->
   <string name="gpx_track_name">Испраћено са OSM пратиоцем за Андроид</string>
   <string name="gpx_hdop_approximation_cmt">Пажња: HDOP вредности нису са GPS уређаја већ процењене на основу прецизности локације у метрима.</string>
@@ -137,6 +150,8 @@
   <!--parameters: (heading in degrees)-->
   <string name="various_heading">Чекам правац...</string>
   <string name="various_heading_unknown">Правац се не може одредити</string>
+  <string name="various_export_finished">Успешно је завршен поступак извоза</string>
+  <string name="various_waiting_position">Позиција није доступна</string>
   <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">OpenStreetMap приказ праћења</string>
@@ -148,8 +163,10 @@
   <string name="buttons_presets_unsuccessful_update">Распоред није послат. Покушајте касније</string>
   <string name="buttons_presets_delete_message">Заиста желите да обришете распоред {0} ?</string>
   <string name="buttons_presets_delete_positive_confirmation">Да</string>
+  <string name="buttons_presets_successful_delete">Распоред успешно уклоњен</string>
   <string name="buttons_presets_icon_directory_deleted">Директоријум са иконама успешно обрисан</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Овај фајл није имао придружени директоријум са иконама</string>
+  <string name="buttons_presets_unsuccessful_delete">Распоред није могуће уклонити</string>
   <!--Available Layouts messages-->
   <string name="available_layouts_connection_error">Грешка: не могу да се повежем на интернет</string>
   <string name="available_layouts_response_null_exception">Грешка: не могу да се повежем на ризницу подразумеваних посебних распореда</string>
@@ -170,7 +187,32 @@
   <string name="github_repository_settings_branch_name">Назив гране:</string>
   <string name="github_repository_settings_valid_server">Гитхаб ризница исправна</string>
   <string name="github_repository_settings_invalid_server">Гитхаб ризница неисправна</string>
+  <!--Upload to GitHub-->
+  <string name="successfully_created">успешно направљено</string>
+  <string name="error_creating">Грешка приликом прављења</string>
+  <string name="db_error">Грешка базе података</string>
+  <string name="successfully_saved">успешно сачувано</string>
+  <string name="saving_error">Грешка приликом чувања</string>
+  <string name="pr_status">Статус захтева за спајање:</string>
+  <string name="repository_information_error">Грешка у вези са информацијама спремишта</string>
+  <string name="successfully_uploaded">Учитавање је било успешно</string>
+  <string name="error_uploading">Грешка приликом отпремања</string>
+  <string name="gpx_file_read_error">Грешка приликом читања GPX датотеке</string>
+  <string name="gpx_file_not_found">Није пронађена GPX датотека</string>
+  <string name="uploading_file">Отпремање датотеке:</string>
+  <string name="item_selected">Одабрана ставка:</string>
+  <string name="github_repository_private">Приватно:</string>
+  <string name="github_creating_repository">Прављење спремишта</string>
+  <!--GitHubConfig-->
+  <string name="how_to_get_ghToken_guide_note">⚠️ Можете да сачувате „размак” како бисте уклонили своје акредитиве.</string>
+  <!--GitHubUpload-->
+  <!--GitHubNewFork-->
+  <!--GitHubPullRequest-->
+  <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
+  <string name="app_intro">Упутство за коришћење апликације OSMTracker за Android™</string>
   <!--Intro - slide1-->
+  <string name="app_intro_slide1_title">Добро дошли у OSMTracker за Android™ 👋</string>
   <!--Intro - slide2-->
+  <string name="app_intro_slide2_title">Срећан пут и успешно праћење 🗺 😎</string>
 </resources>

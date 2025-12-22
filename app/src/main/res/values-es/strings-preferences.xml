@@ -85,7 +85,7 @@
   <string name="prefs_osm_clear_oauth_data_summary">Olvidar las credenciales y permisos de OSM, y forzar a que OSMTracker los vuelva a solicitar</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Deberá autorizar a OSMTracker para volver a subir las pistas. ¿Está seguro?</string>
   <string name="prefs_map_tile">Proveedor de mosaicos de mapas</string>
-  <string name="prefs_map_tile_summary"></string>
+  <string name="prefs_map_tile_summary">Escoja el proveedor de mosaicos para mostrar el mapa</string>
   <string-array name="prefs_compass_heading_keys">
     <item>Ninguno</item>
     <item>en comentario</item>
