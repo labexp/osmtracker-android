@@ -64,7 +64,6 @@
   <string name="trackdetail_osm_upload_notyet">(inte uppladdad än)</string>
   <string name="trackdetail_export_display">Visa</string>
   <string name="trackdetail_name">Namn</string>
-  <string name="trackdetail_name_and_title">Namn och titel</string>
   <string name="trackdetail_description">Beskrivning</string>
   <string name="trackdetail_tags">Etiketter (kommaseparerade)</string>
   <string name="trackdetail_description_mandatory">Du måste ange en beskrivning</string>
