@@ -68,7 +68,6 @@
     <string name="trackdetail_osm_upload_notyet">(Not uploaded yet)</string>
     <string name="trackdetail_export_display">Display</string>
     <string name="trackdetail_name">Name</string>
-    <string name="trackdetail_name_and_title">Name and title</string>
     <string name="trackdetail_description">Description</string>
     <string name="trackdetail_tags">Tags (comma separated)</string>
     <string name="trackdetail_description_mandatory">You must enter a description</string>
