@@ -64,7 +64,6 @@
   <string name="trackdetail_osm_upload_notyet">(Zatiaľ neodovzdané)</string>
   <string name="trackdetail_export_display">Zobraziť</string>
   <string name="trackdetail_name">Názov</string>
-  <string name="trackdetail_name_and_title">Názov a hlavička</string>
   <string name="trackdetail_description">Popis</string>
   <string name="trackdetail_tags">Tagy (oddelené čiarkou)</string>
   <string name="trackdetail_description_mandatory">Musíte zadať popis</string>

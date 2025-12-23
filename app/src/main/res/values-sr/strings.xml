@@ -63,7 +63,6 @@
   <string name="trackdetail_osm_upload_notyet">(још није послато)</string>
   <string name="trackdetail_export_display">Приказ</string>
   <string name="trackdetail_name">Назив</string>
-  <string name="trackdetail_name_and_title">Назив и наслов</string>
   <string name="trackdetail_description">Опис</string>
   <string name="trackdetail_tags">Ознаке (раздвој запетом)</string>
   <string name="trackdetail_description_mandatory">Морате унети опис</string>

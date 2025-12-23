@@ -65,7 +65,6 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackdetail_osm_upload_notyet">(Nog niet geüpload)</string>
   <string name="trackdetail_export_display">Weergeven</string>
   <string name="trackdetail_name">Naam</string>
-  <string name="trackdetail_name_and_title">Naam en titel</string>
   <string name="trackdetail_description">Beschrijving</string>
   <string name="trackdetail_tags">Tags (kommagescheiden)</string>
   <string name="trackdetail_description_mandatory">Een beschrijving is vereist</string>
