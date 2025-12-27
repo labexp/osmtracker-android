@@ -1,133 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<ListPreference
-		android:title="@string/prefs_voicerec_duration"
-		android:key="voicerec.duration"
-		android:entryValues="@array/prefs_voicerec_durations"
-		android:defaultValue="2"
-		android:entries="@array/prefs_voicerec_durations"/>
-	<CheckBoxPreference
-		android:key="sound_enabled"
-		android:title="@string/prefs_sound_enabled"
-		android:summary="@string/prefs_sound_enabled_summary"
-		android:defaultValue="true" />
-	<CheckBoxPreference
-		android:key="gpx.use_barometer"
-		android:title="@string/prefs_use_barometer"
-		android:summary="@string/prefs_use_barometer_summary"
-		android:defaultValue="false" />
-	<com.android.internal.preference.YesNoPreference android:key="osm.oauth.clear-data"
-		android:title="@string/prefs_osm_clear_oauth_data" android:summary="@string/prefs_osm_clear_oauth_data_summary"
-		android:dialogMessage="@string/prefs_osm_clear_oauth_data_dialog" android:dialogIcon="@android:drawable/ic_dialog_alert" />
-	
-	<PreferenceCategory android:title="@string/prefs_gps">
-		<Preference
-			android:summary="@string/prefs_gps_os_settings_summary"
-			android:title="@string/prefs_gps_os_settings"
-			android:key="gps.ossettings" />
-		<CheckBoxPreference
-			android:key="gps.checkstartup"
-			android:title="@string/prefs_check_gps_startup"
-			android:summary="@string/prefs_check_gps_startup_summary"
-			android:defaultValue="true" />
-		<CheckBoxPreference
-			android:key="gps.ignoreclock"
-			android:title="@string/prefs_gps_ignore_clock"
-			android:summary="@string/prefs_gps_ignore_clock_summary"
-			android:defaultValue="false" />
-		<EditTextPreference
-			android:key="gps.logging.interval"
-			android:title="@string/prefs_gps_logging_interval"
-			android:summary="@string/prefs_gps_logging_interval_summary"
-			android:defaultValue="0"
-			android:inputType="number" />
-		<EditTextPreference
-			android:key="gps.logging.min_distance"
-			android:title="@string/prefs_gps_logging_min_distance"
-			android:summary="@string/prefs_gps_logging_min_distance_summary"
-			android:defaultValue="0"
-			android:inputType="number" />
-	</PreferenceCategory>
-	
-	<PreferenceCategory android:title="@string/prefs_output">
-		<EditTextPreference android:key="logging.storage.dir"
-			android:defaultValue="/osmtracker" android:title="@string/prefs_storage_dir" android:dialogMessage="@string/prefs_storage_dir_hint"/>
-		<CheckBoxPreference
-			android:key="gpx.directory_per_track"
-			android:title="@string/prefs_output_one_dir_per_track"
-			android:summary="@string/prefs_output_one_dir_per_track_summary"
-			android:defaultValue="true" />
-		<ListPreference android:key="gpx.filename" android:defaultValue="name_date" android:summary="@string/prefs_output_filename_summary"
-			android:title="@string/prefs_output_filename" android:entryValues="@array/prefs_output_filename_values"
-			android:entries="@array/prefs_output_filename_keys" />
-		<EditTextPreference android:key="gpx.filename.label" android:defaultValue="" android:summary="@string/prefs_output_filename_label_summary"
-			android:title="@string/prefs_output_filename_label"/>
-		<ListPreference
-			android:key="gpx.accuracy"
-			android:defaultValue="none"
-			android:summary="@string/prefs_output_accuracy_summary"
-			android:title="@string/prefs_output_accuracy"
-			android:entryValues="@array/prefs_output_accuracy_values"
-			android:entries="@array/prefs_output_accuracy_keys" />
-		<CheckBoxPreference
-			android:key="gpx.hdop.approximation"
-			android:title="@string/prefs_output_gpx_hdop_approximation"
-			android:summary="@string/prefs_output_gpx_hdop_approximation_summary"
-			android:defaultValue="false" />
-		<ListPreference
-			android:key="gpx.compass_heading"
-			android:summary="@string/prefs_compass_heading_summary"
-			android:title="@string/prefs_compass_heading"
-			android:entryValues="@array/prefs_compass_heading_values"
-			android:entries="@array/prefs_compass_heading_keys"/>
-	</PreferenceCategory>
+    <Preference app:title="@string/prefs"/>
 
-	<PreferenceCategory android:title="@string/prefs_ui">
-		<ListPreference
-			android:defaultValue="none"
-			android:key="ui.picture.source"
-			android:title="@string/prefs_ui_picture_source"
-			android:summary="@string/prefs_ui_picture_source_summary"
-			android:entries="@array/prefs_ui_picture_source_keys"
-			android:entryValues="@array/prefs_ui_picture_source_values" />
-		<CheckBoxPreference
-			android:key="ui.display_keep_on"
-			android:title="@string/prefs_display_always_on"
-			android:summary="@string/prefs_display_always_on_summary"
-			android:defaultValue="true" />
-		<ListPreference
-			android:entries="@array/prefs_theme_keys"
-			android:title="@string/prefs_theme"
-			android:entryValues="@array/prefs_theme_values"
-			android:key="ui.theme"
-			android:summary="@string/prefs_theme_summary"
-			android:defaultValue="@style/DefaultTheme" />
-		<PreferenceScreen android:key="prefs_ui_buttons_layout" android:title="@string/prefs_ui_buttons_layout" android:summary="@string/prefs_ui_buttons_layout_summary">
-			<intent android:action="launch_buttons_presets" />
-		</PreferenceScreen>
-		<CheckBoxPreference
-			android:key="ui.displaytrack.osm"
-			android:title="@string/prefs_displaytrack_osm"
-			android:summary="@string/prefs_displaytrack_osm_summary"
-			android:defaultValue="false" />
-		<ListPreference
-			android:defaultValue="none"
-			android:key="ui.map.tile"
-			android:title="@string/prefs_map_tile"
-			android:summary="@string/prefs_map_tile_summary"
-			android:entries="@array/prefs_map_tile_keys"
-			android:entryValues="@array/prefs_map_tile_values" />
-		<ListPreference
-			android:defaultValue="none"
-			android:key="ui.orientation"
-			android:title="@string/prefs_ui_orientation"
-			android:summary="@string/prefs_ui_orientation_summary"
-			android:entries="@array/prefs_ui_orientation_options_keys"
-			android:entryValues="@array/prefs_ui_orientation_options_values" />
-	</PreferenceCategory>
+    <ListPreference
+        app:defaultValue="2"
+        app:entries="@array/prefs_voicerec_durations"
+        app:entryValues="@array/prefs_voicerec_durations"
+        app:key="voicerec.duration"
+        app:title="@string/prefs_voicerec_duration" />
+    <CheckBoxPreference
+        app:defaultValue="true"
+        app:key="sound_enabled"
+        app:summary="@string/prefs_sound_enabled_summary"
+        app:title="@string/prefs_sound_enabled" />
+    <CheckBoxPreference
+        app:defaultValue="false"
+        app:key="gpx.use_barometer"
+        app:summary="@string/prefs_use_barometer_summary"
+        app:title="@string/prefs_use_barometer" />
+    <Preference
+        app:key="osm.oauth.clear-data"
+        app:icon="@android:drawable/ic_dialog_alert"
+        app:summary="@string/prefs_osm_clear_oauth_data_summary"
+        app:title="@string/prefs_osm_clear_oauth_data" />
+
+    <PreferenceCategory app:title="@string/prefs_gps">
+        <Preference
+            app:key="gps.ossettings"
+            app:summary="@string/prefs_gps_os_settings_summary"
+            app:title="@string/prefs_gps_os_settings" />
+        <CheckBoxPreference
+            app:defaultValue="true"
+            app:key="gps.checkstartup"
+            app:summary="@string/prefs_check_gps_startup_summary"
+            app:title="@string/prefs_check_gps_startup" />
+        <CheckBoxPreference
+            app:defaultValue="false"
+            app:key="gps.ignoreclock"
+            app:summary="@string/prefs_gps_ignore_clock_summary"
+            app:title="@string/prefs_gps_ignore_clock" />
+        <EditTextPreference
+            android:inputType="number"
+            app:defaultValue="0"
+            app:key="gps.logging.interval"
+            app:summary="@string/prefs_gps_logging_interval_summary"
+            app:title="@string/prefs_gps_logging_interval" />
+        <EditTextPreference
+            android:inputType="number"
+            app:defaultValue="0"
+            app:key="gps.logging.min_distance"
+            app:summary="@string/prefs_gps_logging_min_distance_summary"
+            app:title="@string/prefs_gps_logging_min_distance" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/prefs_output">
+        <EditTextPreference
+            app:defaultValue="/osmtracker"
+            app:dialogMessage="@string/prefs_storage_dir_hint"
+            app:key="logging.storage.dir"
+            app:title="@string/prefs_storage_dir" />
+        <CheckBoxPreference
+            app:defaultValue="true"
+            app:key="gpx.directory_per_track"
+            app:summary="@string/prefs_output_one_dir_per_track_summary"
+            app:title="@string/prefs_output_one_dir_per_track" />
+        <ListPreference
+            app:defaultValue="name_date"
+            app:entries="@array/prefs_output_filename_keys"
+            app:entryValues="@array/prefs_output_filename_values"
+            app:key="gpx.filename"
+            app:summary="@string/prefs_output_filename_summary"
+            app:title="@string/prefs_output_filename" />
+        <EditTextPreference
+            app:defaultValue=""
+            app:key="gpx.filename.label"
+            app:summary="@string/prefs_output_filename_label_summary"
+            app:title="@string/prefs_output_filename_label" />
+        <ListPreference
+            app:defaultValue="none"
+            app:entries="@array/prefs_output_accuracy_keys"
+            app:entryValues="@array/prefs_output_accuracy_values"
+            app:key="gpx.accuracy"
+            app:summary="@string/prefs_output_accuracy_summary"
+            app:title="@string/prefs_output_accuracy" />
+        <CheckBoxPreference
+            app:defaultValue="false"
+            app:key="gpx.hdop.approximation"
+            app:summary="@string/prefs_output_gpx_hdop_approximation_summary"
+            app:title="@string/prefs_output_gpx_hdop_approximation" />
+        <ListPreference
+            app:entries="@array/prefs_compass_heading_keys"
+            app:entryValues="@array/prefs_compass_heading_values"
+            app:key="gpx.compass_heading"
+            app:summary="@string/prefs_compass_heading_summary"
+            app:title="@string/prefs_compass_heading" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/prefs_ui">
+        <ListPreference
+            app:defaultValue="none"
+            app:entries="@array/prefs_ui_picture_source_keys"
+            app:entryValues="@array/prefs_ui_picture_source_values"
+            app:key="ui.picture.source"
+            app:summary="@string/prefs_ui_picture_source_summary"
+            app:title="@string/prefs_ui_picture_source" />
+        <CheckBoxPreference
+            app:defaultValue="true"
+            app:key="ui.display_keep_on"
+            app:summary="@string/prefs_display_always_on_summary"
+            app:title="@string/prefs_display_always_on" />
+        <ListPreference
+            app:defaultValue="@style/DefaultTheme"
+            app:entries="@array/prefs_theme_keys"
+            app:entryValues="@array/prefs_theme_values"
+            app:key="ui.theme"
+            app:summary="@string/prefs_theme_summary"
+            app:title="@string/prefs_theme" />
+        <Preference
+            app:key="ui.buttons.layout"
+            app:summary="@string/prefs_ui_buttons_layout_summary"
+            app:title="@string/prefs_ui_buttons_layout" />
+        <CheckBoxPreference
+            app:defaultValue="false"
+            app:key="ui.displaytrack.osm"
+            app:summary="@string/prefs_displaytrack_osm_summary"
+            app:title="@string/prefs_displaytrack_osm" />
+        <ListPreference
+            app:defaultValue="none"
+            app:entries="@array/prefs_map_tile_keys"
+            app:entryValues="@array/prefs_map_tile_values"
+            app:key="ui.map.tile"
+            app:summary="@string/prefs_map_tile_summary"
+            app:title="@string/prefs_map_tile" />
+        <ListPreference
+            app:defaultValue="none"
+            app:entries="@array/prefs_ui_orientation_options_keys"
+            app:entryValues="@array/prefs_ui_orientation_options_values"
+            app:key="ui.orientation"
+            app:summary="@string/prefs_ui_orientation_summary"
+            app:title="@string/prefs_ui_orientation" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

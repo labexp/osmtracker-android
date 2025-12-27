@@ -1,12 +1,9 @@
 package net.osmtracker.layouts;
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.PreferenceMatchers.withTitleText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -17,11 +14,13 @@ import static net.osmtracker.util.WaitForView.waitForView;
 
 import android.Manifest;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import androidx.lifecycle.Lifecycle;
+import androidx.preference.PreferenceManager;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.GrantPermissionRule;
 
 import net.osmtracker.OSMTracker;
@@ -101,7 +100,11 @@ public class DownloadLayoutTest {
 		// Click on "Settings" in this menu
 		onView(withText(TestUtils.getStringResource(R.string.menu_settings))).perform(click());
 		// Click on "Buttons presets" settings
-		onData(withTitleText(TestUtils.getStringResource(R.string.prefs_ui_buttons_layout))).perform(scrollTo(), click());
+		onView(ViewMatchers.withId(androidx.preference.R.id.recycler_view))
+				.perform(RecyclerViewActions.actionOnItem(
+						ViewMatchers.hasDescendant(withText(R.string.prefs_ui_buttons_layout)),
+						click()
+				));
 		// Wait for "+" to be visible
 		onView(isRoot()).perform(waitForView(R.id.launch_available, WAIT_VIEW_TIMEOUT));
 		// Perform a click action on the "+" button

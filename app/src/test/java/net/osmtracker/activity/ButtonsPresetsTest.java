@@ -5,7 +5,6 @@ import android.widget.CheckBox;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,6 +31,8 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyPrivate;
 import static org.powermock.api.mockito.PowerMockito.when;
+
+import androidx.preference.PreferenceManager;
 
 @RunWith(PowerMockRunner.class)
 @PowerMockIgnore("jdk.internal.reflect.*")

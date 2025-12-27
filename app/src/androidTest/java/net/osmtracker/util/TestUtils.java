@@ -4,13 +4,13 @@ import static net.osmtracker.util.LogcatHelper.checkLogForMessage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
+import androidx.preference.PreferenceManager;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import net.osmtracker.OSMTracker;
-import net.osmtracker.activity.Preferences;
 import net.osmtracker.data.Mocks;
+import net.osmtracker.db.DataHelper;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -66,7 +66,7 @@ public class TestUtils {
         writeToFile(newLayout, Mocks.MOCK_LAYOUT_CONTENT);
 
         // Create the icons directory
-        File iconsDir = createDirectory(layoutsDir, layoutName + Preferences.ICONS_DIR_SUFFIX);
+        File iconsDir = createDirectory(layoutsDir, layoutName + DataHelper.LAYOUTS_ICONS_DIR_SUFFIX);
 
         // And put some mock files inside
         int pngsToCreate = 4;
@@ -109,7 +109,7 @@ public class TestUtils {
      */
     public static File getLayoutsDirectory(){
         String appDirectory = getAppDirectory().getAbsolutePath();
-        File layoutsDirectory = new File(appDirectory + File.separator + Preferences.LAYOUTS_SUBDIR);
+        File layoutsDirectory = new File(appDirectory + File.separator + DataHelper.LAYOUTS_SUBDIR);
         layoutsDirectory.mkdirs();
         return layoutsDirectory;
     }

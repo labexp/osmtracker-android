@@ -2,9 +2,11 @@ package net.osmtracker.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
+
 import net.osmtracker.OSMTracker;
-import net.osmtracker.activity.Preferences;
+import net.osmtracker.db.DataHelper;
 
 /**
  * Created by labexp on 13/12/17.
@@ -66,7 +68,7 @@ public class URLCreator {
         String[] ghParams = getGithubParams(context);
 
         String url = RAW_CONTENT + ghParams[USERNAME] + "/" + ghParams[REPO] + "/" + ghParams[BRANCH]
-                + "/layouts/" + layoutFolderName + "/" + iso + Preferences.LAYOUT_FILE_EXTENSION;
+                + "/layouts/" + layoutFolderName + "/" + iso + DataHelper.LAYOUT_FILE_EXTENSION;
         return url;
     }
 
