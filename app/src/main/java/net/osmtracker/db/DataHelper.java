@@ -8,9 +8,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.location.Location;
 import android.net.Uri;
-import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.db.model.Track;
@@ -54,6 +54,12 @@ public class DataHelper {
 	public static final String EXTENSION_ZIP = ".zip";
 
 	/**
+	 * File extension for layout files
+	 */
+
+	public static final String LAYOUT_FILE_EXTENSION = ".xml";
+
+	/**
 	 * GPX Files MIME standard for sharing
 	 */
 	public static final String MIME_TYPE_GPX = "application/gpx+xml";
@@ -67,6 +73,19 @@ public class DataHelper {
 	 * Image Files MIME
 	 */
 	public static final String MIME_TYPE_IMAGE = "image/*";
+
+	/**
+	 * Directory containing user layouts, relative to storage dir.
+	 */
+	public static final String LAYOUTS_SUBDIR = "layouts";
+
+	/**
+	 * The suffix that must be added to the layout's name for getting its icons directory
+	 * Example: water_supply       <- layout name
+	 *          water_supply_icons <- icon directory
+	 */
+
+	public static final String LAYOUTS_ICONS_DIR_SUFFIX = "_icons";
 
 	/**
 	 * APP sign plus FileProvider = authority

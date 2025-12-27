@@ -52,7 +52,9 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".activity.Preferences"
-            android:label="@string/prefs" />
+            android:exported="false"
+            android:label="@string/prefs"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.WaypointList"
             android:label="@string/wplist" />

@@ -22,7 +22,7 @@ import androidx.test.rule.GrantPermissionRule;
 
 import net.osmtracker.R;
 import net.osmtracker.activity.ButtonsPresets;
-import net.osmtracker.activity.Preferences;
+import net.osmtracker.db.DataHelper;
 import net.osmtracker.util.CustomLayoutsUtils;
 
 import org.junit.After;
@@ -98,6 +98,6 @@ public class DeleteLayoutTest {
 		assertFalse(filesAfterDeletion.contains(layoutFileName));
 
 		// Check the icons folder was deleted
-		assertFalse(filesAfterDeletion.contains(layoutName + Preferences.ICONS_DIR_SUFFIX));
+		assertFalse(filesAfterDeletion.contains(layoutName + DataHelper.LAYOUTS_ICONS_DIR_SUFFIX));
 	}
 }

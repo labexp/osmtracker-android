@@ -21,6 +21,7 @@
 	<string name="prefs_gps_logging_interval">GPS logging interval</string>
 	<string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (affects battery life)</string>
 	<string name="prefs_gps_logging_interval_seconds">seconds</string>
+    <string name="prefs_gps_logging_interval_empty">GPS logging interval cannot be empty</string>
 
 	<string name="prefs_gps_logging_min_distance">GPS logging distance</string>
 	<string name="prefs_gps_logging_min_distance_summary">Min. distance between track points in meters, use 0 for the shortest possible</string>

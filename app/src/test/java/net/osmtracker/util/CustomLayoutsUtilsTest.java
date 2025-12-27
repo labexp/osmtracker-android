@@ -3,7 +3,6 @@ package net.osmtracker.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
-import android.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 
@@ -25,6 +24,8 @@ import static org.junit.Assert.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
+
+import androidx.preference.PreferenceManager;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(PreferenceManager.class)

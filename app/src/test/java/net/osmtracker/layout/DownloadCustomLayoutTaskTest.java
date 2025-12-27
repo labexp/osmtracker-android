@@ -3,11 +3,10 @@ package net.osmtracker.layout;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import net.osmtracker.OSMTracker;
-import net.osmtracker.activity.Preferences;
+import net.osmtracker.db.DataHelper;
 import net.osmtracker.util.UnitTestUtils;
 
 import org.junit.Test;
@@ -23,6 +22,8 @@ import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
+
+import androidx.preference.PreferenceManager;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({PreferenceManager.class, Environment.class, Log.class})
@@ -68,7 +69,7 @@ public class DownloadCustomLayoutTaskTest {
         // Check if layout was downloaded at .../osmtracker/layouts/abc_en.xml
         String expectedLayoutFilePath = mockContext.getExternalFilesDir(null)
                 + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator
-                + Preferences.LAYOUTS_SUBDIR + File.separator
+                + DataHelper.LAYOUTS_SUBDIR + File.separator
                 + expectedLayoutFilename;
 
         System.out.println(expectedLayoutFilePath);

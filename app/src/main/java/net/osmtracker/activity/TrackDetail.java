@@ -24,9 +24,10 @@ import android.database.Cursor;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
