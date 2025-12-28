@@ -100,45 +100,74 @@ public class Preferences extends AppCompatActivity {
 			});
 
 			// Update GPS logging interval summary to the current value
-			preference = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL);
-			preference.setSummary(
-					prefs.getString(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)
-							+ " " + getResources().getString(R.string.prefs_gps_logging_interval_seconds)
-							+ ". " + getResources().getString(R.string.prefs_gps_logging_interval_summary));
-			preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-				@Override
-				public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
-					String val = (String) newValue;
-					// don't allow the logging_min_distance to be empty
-					if (TextUtils.isEmpty(val)) {
-						Toast.makeText(requireContext(), R.string.prefs_gps_logging_interval_empty, Toast.LENGTH_SHORT).show();
-						return false; // Don't save
-					} else {
-						// Set summary with the interval and "seconds"
-						preference.setSummary(newValue
+			EditTextPreference GPSLoggingInterval =	findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL);
+			if (GPSLoggingInterval != null) {
+
+				GPSLoggingInterval.setSummary(
+						prefs.getString(
+								OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)
 								+ " " + getResources().getString(R.string.prefs_gps_logging_interval_seconds)
 								+ ". " + getResources().getString(R.string.prefs_gps_logging_interval_summary));
-						return true;
+
+				GPSLoggingInterval.setOnBindEditTextListener(editText -> {
+					// forces the dialog to only accept numbers
+					editText.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+					// move cursor to the end of the text
+					editText.setSelection(editText.getText().length());
+				});
+
+				GPSLoggingInterval.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					@Override
+					public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+						String val = (String) newValue;
+						// don't allow the logging_min_distance to be empty
+						if (TextUtils.isEmpty(val)) {
+							Toast.makeText(requireContext(), R.string.prefs_gps_logging_interval_empty, Toast.LENGTH_SHORT).show();
+							return false; // Don't save
+						} else {
+							// Set summary with the interval and "seconds"
+							preference.setSummary(newValue
+									+ " " + getResources().getString(R.string.prefs_gps_logging_interval_seconds)
+									+ ". " + getResources().getString(R.string.prefs_gps_logging_interval_summary));
+							return true;
+						}
 					}
-				}
-			});
+				});
+			}
 
 			// Update GPS min. distance summary to the current value
-			preference = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE);
-			preference.setSummary(
-					prefs.getString(OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE)
-							+ " " + getResources().getString(R.string.prefs_gps_logging_min_distance_meters)
-							+ ". " + getResources().getString(R.string.prefs_gps_logging_min_distance_summary));
-			preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-				@Override
-				public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
-					// Set summary with the interval and "seconds"
-					preference.setSummary(newValue
-							+ " " + getResources().getString(R.string.prefs_gps_logging_min_distance_meters)
-							+ ". " + getResources().getString(R.string.prefs_gps_logging_min_distance_summary));
-					return true;
-				}
-			});
+			EditTextPreference GPSLoggingMinDistance = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE);
+			if (GPSLoggingMinDistance != null) {
+				GPSLoggingMinDistance.setSummary(
+						prefs.getString(OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE)
+								+ " " + getResources().getString(R.string.prefs_gps_logging_min_distance_meters)
+								+ ". " + getResources().getString(R.string.prefs_gps_logging_min_distance_summary));
+
+				GPSLoggingMinDistance.setOnBindEditTextListener(editText -> {
+					// forces the dialog to only accept numbers
+					editText.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+					// move cursor to the end of the text
+					editText.setSelection(editText.getText().length());
+				});
+
+				GPSLoggingMinDistance.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					@Override
+					public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+						String val = (String) newValue;
+						// don't allow the logging_min_distance to be empty
+						if (TextUtils.isEmpty(val)) {
+							Toast.makeText(requireContext(), R.string.prefs_gps_logging_min_distance_meters_empty, Toast.LENGTH_SHORT).show();
+							return false; // Don't save
+						} else {
+							// Set summary with the interval and "seconds"
+							preference.setSummary(newValue
+									+ " " + getResources().getString(R.string.prefs_gps_logging_min_distance_meters)
+									+ ". " + getResources().getString(R.string.prefs_gps_logging_min_distance_summary));
+							return true;
+						}
+					}
+				});
+			}
 
 
 
