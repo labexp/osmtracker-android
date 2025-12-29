@@ -91,6 +91,7 @@
             app:summary="@string/prefs_output_gpx_hdop_approximation_summary"
             app:title="@string/prefs_output_gpx_hdop_approximation" />
         <ListPreference
+            app:defaultValue="none"
             app:entries="@array/prefs_compass_heading_keys"
             app:entryValues="@array/prefs_compass_heading_values"
             app:key="gpx.compass_heading"
@@ -100,7 +101,7 @@
 
     <PreferenceCategory app:title="@string/prefs_ui">
         <ListPreference
-            app:defaultValue="none"
+            app:defaultValue="camera"
             app:entries="@array/prefs_ui_picture_source_keys"
             app:entryValues="@array/prefs_ui_picture_source_values"
             app:key="ui.picture.source"
@@ -112,7 +113,7 @@
             app:summary="@string/prefs_display_always_on_summary"
             app:title="@string/prefs_display_always_on" />
         <ListPreference
-            app:defaultValue="@style/DefaultTheme"
+            app:defaultValue="net.osmtracker:style/DefaultTheme"
             app:entries="@array/prefs_theme_keys"
             app:entryValues="@array/prefs_theme_values"
             app:key="ui.theme"
@@ -128,7 +129,8 @@
             app:summary="@string/prefs_displaytrack_osm_summary"
             app:title="@string/prefs_displaytrack_osm" />
         <ListPreference
-            app:defaultValue="none"
+            app:defaultValue="Mapnik"
+            app:dependency="ui.displaytrack.osm"
             app:entries="@array/prefs_map_tile_keys"
             app:entryValues="@array/prefs_map_tile_values"
             app:key="ui.map.tile"
