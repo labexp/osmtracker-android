@@ -53,7 +53,10 @@ public class Preferences extends AppCompatActivity {
 
 
 			// GPS Settings
-			setupGPSOSSettings();
+			// Open Android GPS Settings screen
+			setupPreferenceNavigation(
+					OSMTracker.Preferences.KEY_GPS_OSSETTINGS,
+					new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 			// GPSLogging Interval
 			setupEditTextNum(
 					OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL,
@@ -72,23 +75,16 @@ public class Preferences extends AppCompatActivity {
 
 			//GPX Settings
 			setupStorageDirectory();
-			setupButtonsLayout();
-			setupButtonScreenOrientation();
+			//Explicit execution of buttons presets window
+			setupPreferenceNavigation(
+					OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
+					new Intent(requireContext(), ButtonsPresets.class));
+			// Screen Orientation
+			setupListPreference(
+					OSMTracker.Preferences.KEY_UI_ORIENTATION,
+					getString(R.string.prefs_ui_orientation_summary)
+			);
 
-		}
-
-		/**
-		 * Explicit execution of buttons presets window
-		 */
-		private void setupButtonsLayout() {
-
-			Preference UIButtonsLayout = findPreference(
-					OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT);
-			if (UIButtonsLayout == null) return;
-			UIButtonsLayout.setOnPreferenceClickListener(preference -> {
-				startActivity(new Intent(requireContext(), ButtonsPresets.class));
-				return true;
-			});
 		}
 
 		/**
@@ -128,20 +124,6 @@ public class Preferences extends AppCompatActivity {
 					return false; //ignores the user input
 				}
 
-				return true;
-			});
-		}
-
-		/**
-		 * Open Android GPS Settings screen
-		 */
-		private void setupGPSOSSettings() {
-			Preference GPSOSSettings = findPreference(OSMTracker.Preferences.KEY_GPS_OSSETTINGS);
-
-			if (GPSOSSettings == null) return;
-
-			GPSOSSettings.setOnPreferenceClickListener(preference -> {
-				startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 				return true;
 			});
 		}
@@ -196,6 +178,22 @@ public class Preferences extends AppCompatActivity {
 		}
 
 		/**
+		 * Setup a preference that launches an activity via Intent
+		 * @param preferenceKey The preference key
+		 * @param intent The intent to launch
+		 */
+		private void setupPreferenceNavigation(String preferenceKey, Intent intent) {
+			Preference preference = findPreference(preferenceKey);
+
+			if (preference == null) return;
+
+			preference.setOnPreferenceClickListener(p -> {
+				startActivity(intent);
+				return true;
+			});
+		}
+
+		/**
 		 *
 		 * @param preferenceKey   from OSMTracker.Preferences
 		 * @param valueSuffix     appended to the end of the value, shown in the summary
@@ -230,22 +228,23 @@ public class Preferences extends AppCompatActivity {
 		}
 
 		/**
-		 * Button screen orientation option
+		 * Setup a ListPreference with a custom two lines summary, displays the selected entry
+		 *  on the first line, and the static summary on the second line.
+		 *
+		 * @param preferenceKey preference identifier
+		 * @param staticSummary text to show on the second line
 		 */
-		private void setupButtonScreenOrientation() {
-			ListPreference uiOrientationPref = findPreference(
-					OSMTracker.Preferences.KEY_UI_ORIENTATION);
+		private void setupListPreference(String preferenceKey, String staticSummary) {
+			ListPreference listPref = findPreference(preferenceKey);
 
-			if (uiOrientationPref == null) return;
+			if (listPref == null) return;
 
-			String summary = getString(R.string.prefs_ui_orientation_summary);
-
-			uiOrientationPref.setSummaryProvider(preference -> {
-				ListPreference listPref = (ListPreference) preference;
-				CharSequence entry = listPref.getEntry();
+			listPref.setSummaryProvider(preference -> {
+				ListPreference lp = (ListPreference) preference;
+				CharSequence entry = lp.getEntry();
 				// Null check: entry might be null if no value is selected
 				String displayValue = Objects.requireNonNull(entry).toString();
-				return displayValue + ".\n" + summary;
+				return displayValue + ".\n" + staticSummary;
 			});
 		}
 
