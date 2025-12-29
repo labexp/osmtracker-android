@@ -48,16 +48,16 @@ public class Preferences extends AppCompatActivity {
 			SharedPreferences prefs =
 					PreferenceManager.getDefaultSharedPreferences(requireContext());
 
+			// General settings
 			setupVoiceRecDuration();
 			setupOSMAuthClearData(prefs);
 
-
 			// GPS Settings
-			// Open Android GPS Settings screen
+			//Open Android GPS Settings screen
 			setupPreferenceNavigation(
 					OSMTracker.Preferences.KEY_GPS_OSSETTINGS,
 					new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-			// GPSLogging Interval
+			//GPSLogging Interval
 			setupEditTextNum(
 					OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL,
 					getString(R.string.prefs_gps_logging_interval_seconds),
@@ -73,12 +73,44 @@ public class Preferences extends AppCompatActivity {
 			);
 
 
-			//GPX Settings
+			// GPX Settings
 			setupStorageDirectory();
+			//Filename
+			setupListPreference(
+					OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
+					getString(R.string.prefs_output_filename_summary)
+			);
+			//Accuracy
+			setupListPreference(
+					OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
+					getString(R.string.prefs_output_accuracy_summary)
+			);
+			//Compas Heading
+			setupListPreference(
+					OSMTracker.Preferences.KEY_OUTPUT_COMPASS,
+					getString(R.string.prefs_compass_heading_summary)
+			);
+
+			// User Interface Settings
+			// Camera
+			setupListPreference(
+					OSMTracker.Preferences.KEY_UI_PICTURE_SOURCE,
+					getString(R.string.prefs_ui_picture_source_summary)
+			);
+			// App Theme
+			setupListPreference(
+					OSMTracker.Preferences.KEY_UI_THEME,
+					getString(R.string.prefs_theme_summary)
+			);
 			//Explicit execution of buttons presets window
 			setupPreferenceNavigation(
 					OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
 					new Intent(requireContext(), ButtonsPresets.class));
+			//Map tile provider
+			setupListPreference(
+					OSMTracker.Preferences.KEY_UI_MAP_TILE,
+					getString(R.string.prefs_map_tile_summary)
+			);
 			// Screen Orientation
 			setupListPreference(
 					OSMTracker.Preferences.KEY_UI_ORIENTATION,
