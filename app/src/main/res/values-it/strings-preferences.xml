@@ -85,7 +85,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">Dimentica le credenziali e le autorizzazioni di OSM e forza OSMTracker a chiederle di nuovo</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Devi autorizzare nuovamente OSMTracker a caricare i tracciati. Sei sicuro?</string>
   <string name="prefs_map_tile">Fornitore dei tasselli della mappa</string>
-  <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_compass_heading_keys">
     <item>Nessuno</item>
     <item>come commento</item>
