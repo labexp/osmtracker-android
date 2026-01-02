@@ -123,6 +123,39 @@ public class PreferencesTest {
 	}
 
 	/**
+	 * Test that the Reset button in numeric preferences restores the default value.
+	 */
+	@Test
+	public void testResetButtonResetsValue() {
+		String title = context.getString(R.string.prefs_gps_logging_interval);
+		String suffix = context.getString(R.string.prefs_gps_logging_interval_seconds);
+		String defaultValue = OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL;
+
+		scrollToAndClick(title);
+
+		// Set a custom value "50"
+		onView(withId(android.R.id.edit)).perform(clearText(), typeText("50"));
+		onView(withText(android.R.string.ok)).perform(click());
+
+		// Verify custom value is set
+		onView(ViewMatchers.isAssignableFrom(RecyclerView.class))
+				.check(matches(hasDescendant(withText(stringContainsInOrder(Arrays.asList("50",
+						suffix))))));
+
+		// Reopen dialog
+		scrollToAndClick(title);
+
+		// Click the Reset button (Neutral button)
+		onView(withText(R.string.prefs_reset_default_value)).perform(click());
+
+		// Verify value is back to default "0"
+		onView(ViewMatchers.isAssignableFrom(RecyclerView.class))
+				.check(matches(hasDescendant(withText(stringContainsInOrder(Arrays.asList(
+						defaultValue,
+						suffix))))));
+	}
+
+	/**
 	 * Test ListPreference custom summary logic (Screen Orientation)
 	 * Should show "Selected Value. \n ..." (don't check for the 2nd line of the summary)
 	 */
