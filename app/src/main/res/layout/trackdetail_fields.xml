@@ -57,11 +57,19 @@
         android:minHeight="48dp"
         android:singleLine="true" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/trackdetail_visibility" />
+
     <Spinner
         android:id="@+id/trackdetail_item_osm_visibility"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        style="@style/Widget.AppCompat.Spinner.Underlined" />
 
 </merge>
