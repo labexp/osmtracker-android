@@ -101,4 +101,5 @@
   </string-array>
   <string name="prefs_compass_heading">Export compass heading</string>
   <string name="prefs_compass_heading_summary">Defines if and how the compass data should be exported to the GPX file</string>
+  <string name="prefs_reset_default_value">Reset default value</string>
 </resources>
