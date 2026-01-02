@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.preference.EditTextPreference;
+import androidx.preference.EditTextPreferenceDialogFragmentCompat;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -42,6 +46,9 @@ public class Preferences extends AppCompatActivity {
 	}
 
 	public static class SettingsFragment extends PreferenceFragmentCompat {
+
+		private static final String EXTRA_DEFAULT_VALUE = "DEFAULT_VALUE";
+
 		@Override
 		public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 			setPreferencesFromResource(R.xml.preferences, rootKey);
@@ -62,14 +69,16 @@ public class Preferences extends AppCompatActivity {
 					OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL,
 					getString(R.string.prefs_gps_logging_interval_seconds),
 					getString(R.string.prefs_gps_logging_interval_summary),
-					getString(R.string.prefs_gps_logging_interval_empty)
+					getString(R.string.prefs_gps_logging_interval_empty),
+					OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL
 			);
 			//GPS Logging Min Distance
 			setupEditTextNum(
 					OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE,
 					getString(R.string.prefs_gps_logging_min_distance_meters),
 					getString(R.string.prefs_gps_logging_min_distance_summary),
-					getString(R.string.prefs_gps_logging_min_distance_empty)
+					getString(R.string.prefs_gps_logging_min_distance_empty),
+					OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE
 			);
 
 
@@ -231,11 +240,15 @@ public class Preferences extends AppCompatActivity {
 		 * @param valueSuffix     appended to the end of the value, shown in the summary
 		 * @param summary         static summary to be appended to the end of the summary
 		 * @param validationError in case of empty value
+		 * @param defaultValue	  value to be used for the reset button
 		 */
 		private void setupEditTextNum(String preferenceKey, String valueSuffix, String summary,
-									  String validationError) {
+									  String validationError, String defaultValue) {
 			EditTextPreference numInputPref = findPreference(preferenceKey);
 			if (numInputPref == null) return;
+
+			// Store default value in Extras so it can be retrieved by the Reset Dialog
+			numInputPref.getExtras().putString(EXTRA_DEFAULT_VALUE, defaultValue);
 
 			// Set input type to number and move cursor to the end
 			numInputPref.setOnBindEditTextListener(editText -> {
@@ -258,6 +271,58 @@ public class Preferences extends AppCompatActivity {
 				return true;
 			});
 		}
+
+		@SuppressWarnings("deprecation") // Required to link the dialog to the fragment
+		@Override
+		public void onDisplayPreferenceDialog(Preference preference) {
+
+			// Retrieve the default value defined in extras.
+			// If null, it means this preference doesn't support the reset feature.
+			// Fallback to the default dialog behavior.
+			String defaultValue = preference.getExtras().getString(EXTRA_DEFAULT_VALUE);
+			if (defaultValue == null) {
+				super.onDisplayPreferenceDialog(preference);
+				return;
+			}
+
+			// Create the standard dialog fragment
+			final EditTextPreferenceDialogFragmentCompat dialogFragment =
+					EditTextPreferenceDialogFragmentCompat.newInstance(preference.getKey());
+			dialogFragment.setTargetFragment(this, 0);
+			dialogFragment.show(
+					getParentFragmentManager(),
+					"androidx.preference.PreferenceFragment.DIALOG");
+
+			// Inject the button after the dialog is shown
+			getParentFragmentManager().registerFragmentLifecycleCallbacks(
+					new FragmentManager.FragmentLifecycleCallbacks() {
+				@Override
+				public void onFragmentStarted(
+						@androidx.annotation.NonNull FragmentManager fm,
+						@androidx.annotation.NonNull androidx.fragment.app.Fragment f) {
+					if (f == dialogFragment) {
+						android.app.Dialog dialog = dialogFragment.getDialog();
+						if (dialog instanceof androidx.appcompat.app.AlertDialog alertDialog) {
+
+							// Configure the Neutral Button for reset default value
+							Button btnReset = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+							btnReset.setText(R.string.prefs_reset_default_value);
+							btnReset.setVisibility(android.view.View.VISIBLE);
+
+							btnReset.setOnClickListener(v -> {
+								if (preference instanceof EditTextPreference) {
+									((EditTextPreference) preference).setText(defaultValue);
+									alertDialog.dismiss();
+								}
+							});
+						}
+						// Cleanup
+						getParentFragmentManager().unregisterFragmentLifecycleCallbacks(this);
+					}
+				}
+			}, false);
+		}
+
 
 		/**
 		 * Setup a ListPreference with a custom two lines summary, displays the selected entry
