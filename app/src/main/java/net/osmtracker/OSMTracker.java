@@ -40,6 +40,7 @@ public class OSMTracker {
 		public final static String KEY_UI_MAP_TILE = "ui.map.tile";
 		public final static String KEY_SOUND_ENABLED = "sound_enabled";
 		public final static String KEY_UI_ORIENTATION = "ui.orientation";
+		public final static String KEY_OSM_TRACK_VISIBILITY = "osm.track.visibility";
 		public final static String KEY_OSM_OAUTH2_ACCESSTOKEN = "osm.oauth2.accesstoken";
 		public final static String KEY_OSM_OAUTH_CLEAR_DATA = "osm.oauth.clear-data";
 
@@ -90,6 +91,7 @@ public class OSMTracker {
 		public final static boolean VAL_UI_DISPLAYTRACK_OSM = false;
 		public final static boolean VAL_UI_DISPLAY_KEEP_ON = true;
 		public final static boolean VAL_SOUND_ENABLED = true;
+		public final static String VAL_OSM_TRACK_VISIBILITY = "identifiable";
 		public final static String VAL_UI_ORIENTATION_NONE = "none";
 		public final static String VAL_UI_ORIENTATION_PORTRAIT = "portrait";
 		public final static String VAL_UI_ORIENTATION_LANDSCAPE = "landscape";

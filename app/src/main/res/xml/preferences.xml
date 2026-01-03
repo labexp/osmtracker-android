@@ -20,6 +20,13 @@
         app:key="gpx.use_barometer"
         app:summary="@string/prefs_use_barometer_summary"
         app:title="@string/prefs_use_barometer" />
+    <ListPreference
+        app:defaultValue="identifiable"
+        app:entries="@array/prefs_osm_visibility_keys"
+        app:entryValues="@array/prefs_osm_visibility_values"
+        app:key="osm.track.visibility"
+        app:summary="@string/prefs_osm_visibility_summary"
+        app:title="@string/prefs_osm_visibility" />
     <Preference
         app:key="osm.oauth.clear-data"
         app:icon="@android:drawable/ic_dialog_alert"

@@ -57,6 +57,11 @@ public class Preferences extends AppCompatActivity {
 
 			// General settings
 			setupVoiceRecDuration();
+			// OSM track visibility
+			setupListPreference(
+					OSMTracker.Preferences.KEY_OSM_TRACK_VISIBILITY,
+					getString(R.string.prefs_osm_visibility_summary)
+			);
 			setupOSMAuthClearData(prefs);
 
 			// GPS Settings
