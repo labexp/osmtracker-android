@@ -17,6 +17,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -635,6 +636,7 @@ public class TrackManager extends AppCompatActivity
 	 * @throws CreateTrackException
 	 */
 	private long createNewTrack() throws CreateTrackException {
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		Date startDate = new Date();
 
 		// Create entry in TRACK table
@@ -644,6 +646,12 @@ public class TrackManager extends AppCompatActivity
 		values.put(TrackContentProvider.Schema.COL_START_DATE, startDate.getTime());
 		values.put(TrackContentProvider.Schema.COL_ACTIVE,
 				TrackContentProvider.Schema.VAL_TRACK_ACTIVE);
+		String visibility = preferences.getString(
+				OSMTracker.Preferences.KEY_OSM_TRACK_VISIBILITY,
+				OSMTracker.Preferences.VAL_OSM_TRACK_VISIBILITY
+		);
+		Log.d(TAG, "Visibility: " + visibility);
+		values.put(TrackContentProvider.Schema.COL_OSM_VISIBILITY, visibility);
 		Uri trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI_TRACK, values);
 		long trackId = ContentUris.parseId(trackUri);
 

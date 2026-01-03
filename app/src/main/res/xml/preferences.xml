@@ -21,7 +21,7 @@
         app:summary="@string/prefs_use_barometer_summary"
         app:title="@string/prefs_use_barometer" />
     <ListPreference
-        app:defaultValue="identifiable"
+        app:defaultValue="Identifiable"
         app:entries="@array/prefs_osm_visibility_keys"
         app:entryValues="@array/prefs_osm_visibility_values"
         app:key="osm.track.visibility"

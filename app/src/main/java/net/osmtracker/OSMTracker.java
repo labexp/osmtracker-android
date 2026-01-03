@@ -1,6 +1,8 @@
 package net.osmtracker;
 
 
+import net.osmtracker.db.model.Track;
+
 /**
  * Constants & app-wide variables.
  * 
@@ -91,7 +93,8 @@ public class OSMTracker {
 		public final static boolean VAL_UI_DISPLAYTRACK_OSM = false;
 		public final static boolean VAL_UI_DISPLAY_KEEP_ON = true;
 		public final static boolean VAL_SOUND_ENABLED = true;
-		public final static String VAL_OSM_TRACK_VISIBILITY = "identifiable";
+		// Matches Track.OSMVisibility.Identifiable;
+		public final static String VAL_OSM_TRACK_VISIBILITY = "Identifiable";
 		public final static String VAL_UI_ORIENTATION_NONE = "none";
 		public final static String VAL_UI_ORIENTATION_PORTRAIT = "portrait";
 		public final static String VAL_UI_ORIENTATION_LANDSCAPE = "landscape";
