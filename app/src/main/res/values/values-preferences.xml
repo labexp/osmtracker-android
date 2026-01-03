@@ -55,4 +55,11 @@
 		<item>extension</item>
 	</string-array>
 
+    <string-array name="prefs_osm_visibility_values">
+        <item>private</item>
+        <item>trackable</item>
+        <item>public</item>
+        <item>identifiable</item>
+    </string-array>
+
 </resources>
