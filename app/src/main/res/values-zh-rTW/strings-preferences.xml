@@ -14,6 +14,7 @@
   <string name="prefs_gps_logging_interval">GPS 記錄頻率</string>
   <string name="prefs_gps_logging_interval_summary">使用 0 會盡可能的記錄資料 (會影響電池續航力)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
+  <string name="prefs_gps_logging_interval_empty">GPS 記錄頻率不能是空白的</string>
   <string name="prefs_gps_logging_min_distance">GPS 記錄距離</string>
   <string name="prefs_gps_logging_min_distance_summary">以公尺尺度的航點之間最小距離，設為 0 則是最小的可能</string>
   <string name="prefs_gps_logging_min_distance_meters">公尺</string>
