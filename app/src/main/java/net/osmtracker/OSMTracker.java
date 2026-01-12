@@ -1,8 +1,6 @@
 package net.osmtracker;
 
 
-import net.osmtracker.db.model.Track;
-
 /**
  * Constants & app-wide variables.
  * 
