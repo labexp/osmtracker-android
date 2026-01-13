@@ -67,6 +67,7 @@
   <string name="trackdetail_description">Description</string>
   <string name="trackdetail_tags">Tags (comma separated)</string>
   <string name="trackdetail_description_mandatory">You must enter a description</string>
+  <string name="trackdetail_visibility">Visibility</string>
   <string name="osm_visibility_private">Private</string>
   <string name="osm_visibility_public">Public</string>
   <string name="osm_visibility_trackable">Trackable</string>
