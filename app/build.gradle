@@ -61,6 +61,8 @@ android {
     }
     testOptions {
         unitTests.returnDefaultValues = true
+        // This flag is required for Robolectric to find XML resources
+        unitTests.includeAndroidResources = true
         unitTests.all {
             it.jvmArgs = [
                 '--add-opens', 'java.base/java.io=ALL-UNNAMED',
@@ -99,7 +101,9 @@ dependencies {
 
     // Required -- JUnit 4 framework
     testImplementation 'junit:junit:4.13.2'
-    // Robolectric environment
+    // Robolectric
+    testImplementation 'org.robolectric:robolectric:4.11.1'
+    // AndroidX Test core for Robolectric
     testImplementation "androidx.test:core:1.6.1"
     // Mockito framework
     testImplementation "org.mockito:mockito-core:3.12.4"
