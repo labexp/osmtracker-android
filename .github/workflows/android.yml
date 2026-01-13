@@ -43,7 +43,9 @@ jobs:
           path: app/build/outputs/apk/debug/OSMTracker-debug-*.apk
 
       - name: Run unit tests and jacoco coverage
-        run: ./gradlew testDebugUnitTest jacocoTestReport --stacktrace
+        run: ./gradlew testDebugUnitTest jacocoTestReport --stacktrace -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g"
+        env:
+          GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g"
 
       - name: Enable KVM
         run: |
