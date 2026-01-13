@@ -84,6 +84,14 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">Fill HDOP in GPX with an approximation value from accuracy</string>
   <string name="prefs_sound_enabled">Enable sound</string>
   <string name="prefs_sound_enabled_summary">Play sounds when voice recording starts and ends</string>
+  <string name="prefs_osm_visibility">Track Visibility</string>
+  <string name="prefs_osm_visibility_summary">Preferred visibility of traces uploaded to openstreetmap.org</string>
+  <string-array name="prefs_osm_visibility_keys">
+    <item>Private</item>
+    <item>Trackable</item>
+    <item>Public</item>
+    <item>Identifiable</item>
+  </string-array>
   <string name="prefs_osm_clear_oauth_data">Reset OSM authentication</string>
   <string name="prefs_osm_clear_oauth_data_summary">Forget OSM credentials and permissions and force OSMTracker to ask them again</string>
   <string name="prefs_osm_clear_oauth_data_dialog">You\'ll have to authorize OSMTracker to upload tracks again. Are you sure?</string>
