@@ -85,7 +85,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">Αγνόηση των διαπιστευτηρίων και των αδειών του OSM και εξαναγκασμός του OSMTracker να τα ζητήσει ξανά</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Θα πρέπει να εξουσιοδοτήσετε το OSMTracker να στείλει τα ίχνη ξανά. Είστε σίγουρος;</string>
   <string name="prefs_map_tile">Πάροχος πλακιδίων χάρτη</string>
-  <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_compass_heading_keys">
     <item>Κανένα</item>
     <item>σε σχόλιο</item>
