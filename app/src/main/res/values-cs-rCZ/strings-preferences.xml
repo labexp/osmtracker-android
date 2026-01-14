@@ -85,6 +85,7 @@
   <string name="prefs_osm_clear_oauth_data_summary">Zapomenout OSM údaje pro přihlášení a pověření a přiměj OSMTracker, aby se znovu zeptal</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Je třeba autorizace OSMTrackeru pro opakované nahrání. Jste si jisti?</string>
   <string name="prefs_map_tile">Poskytovatel mapových dlaždic</string>
+  <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_compass_heading_keys">
     <item>Nikde</item>
     <item>V komentáři</item>
