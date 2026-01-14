@@ -82,7 +82,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">OSM bilgilerini ve izinlerini unut ve OSMTracker\'ı bunları tekrar sormaya zorla</string>
   <string name="prefs_osm_clear_oauth_data_dialog">İzleme yüklemek için OSMTracker\'a tekrardan yetki vermeniz gerekecek. Emin misiniz?</string>
   <string name="prefs_map_tile">Harita kutucuğu sağlayıcısı</string>
-  <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_compass_heading_keys">
     <item>Hiçbiri</item>
     <item>yorumda</item>
