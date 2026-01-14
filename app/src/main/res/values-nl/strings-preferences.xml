@@ -14,11 +14,9 @@
   <string name="prefs_gps_logging_interval">Gps-loginterval</string>
   <string name="prefs_gps_logging_interval_summary">Gebruik 0 voor de kortst mogelijke (beïnvloedt levensduur van de batterij)</string>
   <string name="prefs_gps_logging_interval_seconds">seconden</string>
-  <string name="prefs_gps_logging_interval_empty">Gps-loginterval mag niet leeg zijn</string>
   <string name="prefs_gps_logging_min_distance">Gps-logafstand</string>
   <string name="prefs_gps_logging_min_distance_summary">Minimale afstand tussen trajectpunten in meter. Gebruik 0 voor de kortst mogelijke afstand</string>
   <string name="prefs_gps_logging_min_distance_meters">meter</string>
-  <string name="prefs_gps_logging_min_distance_empty">Minimale afstand tussen trajectpunten in mag niet leeg zijn</string>
   <string name="prefs_ui">Gebruikersinterface</string>
   <string name="prefs_ui_picture_source">Standaard fotobron</string>
   <string name="prefs_ui_picture_source_summary">Foto\'s nemen van camera of galerij?</string>
@@ -60,7 +58,6 @@
   <string name="prefs_output">GPX-instellingen</string>
   <string name="prefs_storage_dir">Opslagmap in documenten</string>
   <string name="prefs_storage_dir_hint">Effectief voor het volgende traject (niet het huidige)</string>
-  <string name="prefs_storage_dir_empty">Opslagmap-waarde mag niet leeg zijn</string>
   <string name="prefs_output_one_dir_per_track">Een map per traject</string>
   <string name="prefs_output_one_dir_per_track_summary">Elk traject en bijbehorende bestanden in eigen map opslaan</string>
   <string name="prefs_output_filename">Bestandsnaam voor trajecten</string>
