@@ -82,6 +82,7 @@
   <string name="prefs_osm_clear_oauth_data_summary">OSMの認証と許可を消去し、強制的にOSMTrackerが再び確認するようにする</string>
   <string name="prefs_osm_clear_oauth_data_dialog">再びトラックをアップロードするには、OSMTrackerの認証が必要です。続けますか？</string>
   <string name="prefs_map_tile">地図タイルプロバイダー</string>
+  <string name="prefs_map_tile_summary"></string>
   <string-array name="prefs_compass_heading_keys">
     <item>なし</item>
     <item>コメント内</item>
