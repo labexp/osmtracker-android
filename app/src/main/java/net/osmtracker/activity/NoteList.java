@@ -195,11 +195,13 @@ public class NoteList extends ListActivity {
 	 * @param cursor The cursor positioned at the selected note.
 	 */
 	private void uploadNoteToOSM(Cursor cursor) {
+		long noteId = cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID));
 		String noteText = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
 		double lat = cursor.getDouble(cursor.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE));
 		double lon = cursor.getDouble(cursor.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE));
 
 		Intent intent = new Intent(this, OpenStreetMapNotesUpload.class);
+		intent.putExtra("noteId", noteId);
 		intent.putExtra("noteContent", noteText);
 		intent.putExtra("appName", getString(R.string.app_name));
 		intent.putExtra("latitude", lat);

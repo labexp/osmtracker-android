@@ -41,6 +41,8 @@ public class OpenStreetMapNotesUpload extends Activity {
 
     private static final String TAG = OpenStreetMapNotesUpload.class.getSimpleName();
 
+	private long noteId;
+
     private double latitude;
     private double longitude;
 
@@ -75,6 +77,7 @@ public class OpenStreetMapNotesUpload extends Activity {
         String appName = extras.getString("appName", getString(R.string.app_name));
         String version = extras.getString("version", "");
 
+		if (extras.containsKey("noteId")) noteId = extras.getLong("noteId");
         if (extras.containsKey("latitude")) latitude = extras.getDouble("latitude");
         if (extras.containsKey("longitude")) longitude = extras.getDouble("longitude");
 
@@ -86,7 +89,7 @@ public class OpenStreetMapNotesUpload extends Activity {
         btnOk.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startUpload();
+                startUpload(noteId);
             }
         });
         final Button btnCancel = (Button) findViewById(R.id.osm_note_upload_button_cancel);
@@ -104,11 +107,11 @@ public class OpenStreetMapNotesUpload extends Activity {
      * Either starts uploading directly if we are authenticated against OpenStreetMap,
      * or ask the user to authenticate via the browser.
      */
-    private void startUpload() {
+    private void startUpload(long noteId) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if ( prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN) ) {
             // Re-use saved token
-            uploadToOsm(prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN, ""));
+            uploadToOsm(prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN, ""), noteId);
         } else {
             // Open browser and request token
             requestOsmAuth();
@@ -169,7 +172,7 @@ public class OpenStreetMapNotesUpload extends Activity {
                                 editor.putString(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN, resp.accessToken);
                                 editor.apply();
                                 //continue with the note Upload.
-                                uploadToOsm(resp.accessToken);
+                                uploadToOsm(resp.accessToken, noteId);
                             } else {
                                 // authorization failed, check ex for more details
                                 Log.e(TAG, "OAuth failed.");
@@ -185,7 +188,7 @@ public class OpenStreetMapNotesUpload extends Activity {
     /**
      * Uploads notes to OSM.
      */
-    public void uploadToOsm(String accessToken) {
+    public void uploadToOsm(String accessToken, long noteId) {
         String noteText = noteContentView.getText().toString();
         String footer = noteFooterView.getText().toString();
         if (!footer.isEmpty()) {
@@ -194,6 +197,7 @@ public class OpenStreetMapNotesUpload extends Activity {
         new UploadToOpenStreetMapNotesTask(
                 OpenStreetMapNotesUpload.this,
                 accessToken,
+				noteId,
                 noteText,
                 latitude,
                 longitude

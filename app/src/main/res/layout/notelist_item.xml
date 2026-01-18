@@ -19,13 +19,17 @@
 			android:textColor="@android:color/holo_green_light"
 			android:textAppearance="?android:attr/textAppearanceLarge" />
 
-		<TextView
-			android:id="@+id/notelist_item_timestamp"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="{timestamp}"
-			android:gravity="end" />
+        <ImageView
+            android:id="@+id/notelist_item_upload_status_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical|end"
+            android:padding="2dp"
+            android:contentDescription="@string/acc.upload_status"
+            android:src="@android:drawable/stat_sys_upload_done"
+            android:background="@null"
+            android:stateListAnimator="@null"
+            android:duplicateParentState="false" />
 	</TableRow>
 
 	<TableRow
@@ -41,6 +45,14 @@
 			android:text="{location}"
 			android:layout_span="2"
 			android:gravity="start" />
+
+        <TextView
+            android:id="@+id/notelist_item_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="{timestamp}"
+            android:gravity="end" />
 	</TableRow>
 
 </TableLayout>

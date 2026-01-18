@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -64,12 +65,22 @@ public class NoteListAdapter extends CursorAdapter {
 	 */
 	private View bind(Cursor cursor, TableLayout tl, Context context) {
 		TextView vName = tl.findViewById(R.id.notelist_item_name);
+		ImageView vUploadStatus = tl.findViewById(R.id.notelist_item_upload_status_icon);
 		TextView vLocation = tl.findViewById(R.id.notelist_item_location);
 		TextView vTimestamp = tl.findViewById(R.id.notelist_item_timestamp);
 
 		// Bind name
 		String name = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
 		vName.setText(name);
+
+		// Upload status
+		if (cursor.isNull(cursor.getColumnIndex(TrackContentProvider.Schema.COL_OSM_UPLOAD_DATE))) {
+			vUploadStatus.setVisibility(View.GONE);
+		}
+		else{
+			vUploadStatus.setImageResource(android.R.drawable.stat_sys_upload_done);
+			vUploadStatus.setVisibility(View.VISIBLE);
+		}
 
 		// Bind location
 		StringBuffer locationAsString = new StringBuffer();
