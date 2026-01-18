@@ -62,4 +62,10 @@
         <item>Identifiable</item>   <!-- Matches Track.OSMVisibility.Identifiable -->
     </string-array>
 
+    <string-array name="prefs_notes_values" translatable="false">
+        <item>waypoint</item>
+        <item>osm_note</item>
+        <item>both</item>
+    </string-array>
+
 </resources>
