@@ -133,7 +133,16 @@ public class OSMTracker {
 	 * Intent for deleting a previously tracked waypoint
 	 */
 	public final static String INTENT_DELETE_WP = OSMTracker.PACKAGE_NAME + ".intent.DELETE_WP";
-	
+
+	/**
+	 * Intent for tracking a note
+	 */
+	public final static String INTENT_TRACK_NOTE = OSMTracker.PACKAGE_NAME + ".intent.TRACK_NOTE";
+	/**
+	 * Intent for updating a previously tracked waypoint
+	 */
+	public final static String INTENT_UPDATE_NOTE = OSMTracker.PACKAGE_NAME + ".intent.UPDATE_NOTE";
+
 	/**
 	 * Intent to start tracking
 	 */

@@ -307,7 +307,76 @@ public class DataHelper {
 			Log.v(TAG, "File deleted: " + filepath);
 		}
 	}
-	
+
+	/**
+	 * Tracks a note point with link
+	 *
+	 * @param trackId 	Id of the track
+	 * @param location 	Location of note
+	 * @param name		text of the note
+	 * @param uuid		Unique id of the note
+	 */
+	public void trackNote(long trackId, Location location, String name, String uuid) {
+		Log.d(TAG, "Tracking note '" + name + "', track=" + trackId + ", uuid=" + uuid
+				+ ", nbSatellites=" + location.getExtras().getInt("satellites")
+				+ ", location=" + location);
+
+		ContentValues values = new ContentValues();
+		values.put(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
+		values.put(TrackContentProvider.Schema.COL_LATITUDE, location.getLatitude());
+		values.put(TrackContentProvider.Schema.COL_LONGITUDE, location.getLongitude());
+		values.put(TrackContentProvider.Schema.COL_NAME, name);
+
+		if (uuid != null) {
+			values.put(TrackContentProvider.Schema.COL_UUID, uuid);
+		}
+
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		if (prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_IGNORE_CLOCK, OSMTracker.Preferences.VAL_GPS_IGNORE_CLOCK)) {
+			// Use OS clock
+			values.put(TrackContentProvider.Schema.COL_TIMESTAMP, System.currentTimeMillis());
+		} else {
+			// Use GPS clock
+			values.put(TrackContentProvider.Schema.COL_TIMESTAMP, location.getTime());
+		}
+
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+		contentResolver.insert(Uri.withAppendedPath(trackUri,
+				TrackContentProvider.Schema.TBL_NOTE + "s"), values);
+	}
+
+	/**
+	 * Updates a note
+	 *
+	 * @param trackId 	Id of the track
+	 * @param uuid 		Unique ID of the target waypoint
+	 * @param name		New text value for the note
+	 */
+	public void updateNote(long trackId, String uuid, String name) {
+		Log.v(TAG, "Updating note with uuid '" + uuid + "'. New values: name='" + name);
+		if (uuid != null) {
+			ContentValues values = new ContentValues();
+			if (name != null) {
+				values.put(TrackContentProvider.Schema.COL_NAME, name);
+			}
+
+			Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+			contentResolver.update(Uri.withAppendedPath(trackUri, TrackContentProvider.Schema.TBL_NOTE + "s"), values,
+					"uuid = ?", new String[] { uuid });
+		}
+	}
+
+	/**
+	 * Deletes a note
+	 *
+	 * @param uuid Unique ID of the target waypoint
+	 */
+	public void deleteNote(String uuid) {
+		Log.v(TAG, "Deleting note with uuid '" + uuid);
+		if (uuid != null) {
+			contentResolver.delete(Uri.withAppendedPath(TrackContentProvider.CONTENT_URI_WAYPOINT_UUID, uuid), null, null);
+		}
+	}
 	
 	/**
 	 * Stop tracking by making the track inactive

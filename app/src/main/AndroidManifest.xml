@@ -59,6 +59,9 @@
             android:name=".activity.WaypointList"
             android:label="@string/wplist" />
         <activity
+            android:name=".activity.NoteList"
+            android:label="@string/notelist" />
+        <activity
             android:name=".activity.TrackDetail"
             android:label="@string/trackdetail" />
         <activity

@@ -25,12 +25,12 @@
   <string name="wplist_accuracy">Accur: </string>
   <string name="wplist_compass">Comp. head.:</string>
   <string name="wplist_compass_accuracy">Comp. accur.:</string>
-  <string name="wplist_contextmenu_osm_note_upload">Upload as OSM note</string>
   <!--Track Manager-->
   <string name="trackmgr">Track manager</string>
   <string name="trackmgr_tracklist">Track list:</string>
   <string name="trackmgr_waypoints_count">Waypoints: </string>
   <string name="trackmgr_trackpoints_count">Trackpoints: </string>
+  <string name="trackmgr_notes_count">Notes: </string>
   <string name="trackmgr_empty">You don\'t have any tracks.</string>
   <string name="trackmgr_newtrack_hint">Press to record a new track.</string>
   <string name="trackmgr_newtrack_error">Unable to create a new track: {0}</string>
@@ -107,6 +107,17 @@
   <string name="delete_waypoint_confirm_dialog_msg">Delete this waypoint?</string>
   <string name="delete_waypoint_confirm_bt_ok">Delete</string>
   <string name="delete_waypoint_confirm_bt_cancel">Cancel</string>
+  <!-- osm Notes-->
+  <string name="note_name_label">Note Name/text</string>
+  <string name="edit_note_bt_update">Save</string>
+  <string name="edit_note_bt_delete">Delete</string>
+  <string name="edit_note_bt_cancel">Cancel</string>
+  <string name="delete_note_confirm_dialog_title">Delete note</string>
+  <string name="delete_note_confirm_dialog_msg">Delete this note?</string>
+  <string name="delete_note_confirm_bt_ok">Delete</string>
+  <string name="delete_note_confirm_bt_cancel">Cancel</string>
+  <string name="notelist">Note list</string>
+  <string name="osm_note_bt_upload">Upload as OSM note</string>
   <!--Menu-->
   <string name="menu_settings">Settings</string>
   <string name="menu_waypointlist">Waypoints</string>
