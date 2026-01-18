@@ -36,6 +36,8 @@ public class TrackContentProvider extends ContentProvider {
 	 */
 	public static final Uri CONTENT_URI_TRACK = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACK);
 
+	public static final Uri CONTENT_URI_NOTE = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_NOTE);
+
 	/**
 	 * Uri for the active track
 	 */
@@ -116,7 +118,7 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/#", Schema.URI_CODE_WAYPOINT_ID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/uuid/*", Schema.URI_CODE_WAYPOINT_UUID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACKPOINT + "/#", Schema.URI_CODE_TRACKPOINT_ID);
-		
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_NOTE + "/#", Schema.URI_CODE_NOTE_ID);
 	}
 	
 	/**
@@ -488,6 +490,16 @@ public class TrackContentProvider extends ContentProvider {
 			}
 			table = Schema.TBL_NOTE;
 			break;
+		case Schema.URI_CODE_NOTE_ID:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			table = Schema.TBL_NOTE;
+			String noteId = uri.getLastPathSegment();
+			selection = Schema.COL_ID + " = ?";
+			selectionArgs = new String[] {noteId};
+			break;
 		case Schema.URI_CODE_TRACK_ID:
 			if (selectionIn != null || selectionArgsIn != null) {
 				// Any selection/selectionArgs will be ignored
@@ -572,6 +584,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final int URI_CODE_WAYPOINT_ID = 11;
 		public static final int URI_CODE_TRACKPOINT_ID = 12;
 		public static final int URI_CODE_TRACK_NOTES = 13;
+		public static final int URI_CODE_NOTE_ID = 14;
 
 
 		public static final int VAL_TRACK_ACTIVE = 1;

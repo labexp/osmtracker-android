@@ -11,6 +11,7 @@ import android.util.Log;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
+import net.osmtracker.db.DataHelper;
 import net.osmtracker.util.DialogUtils;
 
 import de.westnordost.osmapi.OsmConnection;
@@ -36,6 +37,8 @@ public class UploadToOpenStreetMapNotesTask extends AsyncTask<Void, Void, Void> 
     private final Activity activity;
     private final String accessToken;
 
+	private final long noteId;
+
     /** Note text */
     private final String noteText;
 
@@ -60,10 +63,11 @@ public class UploadToOpenStreetMapNotesTask extends AsyncTask<Void, Void, Void> 
     private final int okResultCode = 1;
 
     // Not using an activity yet
-    public UploadToOpenStreetMapNotesTask(Activity activity, String accessToken, String noteText,
-                                          double latitude, double longitude) {
+    public UploadToOpenStreetMapNotesTask(Activity activity, String accessToken, long noteId,
+										  String noteText, double latitude, double longitude) {
         this.activity = activity;
         this.accessToken = accessToken;
+		this.noteId = noteId;
         this.noteText = noteText;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -100,6 +104,8 @@ public class UploadToOpenStreetMapNotesTask extends AsyncTask<Void, Void, Void> 
                 break;
             case okResultCode:
                 dialog.dismiss();
+				// Success ! Update database and close activity
+				DataHelper.setNoteUploadDate(noteId, System.currentTimeMillis(), activity.getContentResolver());
 
                 new AlertDialog.Builder(activity)
                     .setTitle(android.R.string.dialog_alert_title)

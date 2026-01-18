@@ -437,6 +437,12 @@ public class DataHelper {
 		cr.update(trackUri, values, null, null);		
 	}
 
+	public static void setNoteUploadDate(long noteId, long uploadTime, ContentResolver cr) {
+		Uri noteUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_NOTE, noteId);
+		ContentValues values = new ContentValues();
+		values.put(TrackContentProvider.Schema.COL_OSM_UPLOAD_DATE, uploadTime);
+		cr.update(noteUri, values, null, null);
+	}
 	/**
 	 * Renames a file inside track directory, keeping the extension
 	 * 
