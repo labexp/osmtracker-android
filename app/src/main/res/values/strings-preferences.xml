@@ -12,6 +12,13 @@
   <string name="prefs_gps_ignore_clock_summary">Ignore GPS clock and use Android clock for timestamps</string>
   <string name="prefs_use_barometer">Log barometric pressure [hPa]</string>
   <string name="prefs_use_barometer_summary">Toggling requires track restart</string>
+  <string name="prefs_notes">Text notes</string>
+  <string name="prefs_notes_summary">Choose how the values of the Note Text button in layouts will be saved as </string>
+  <string-array name="prefs_notes_keys">
+      <item>Waypoint</item>
+      <item>OSM Note</item>
+      <item>Both</item>
+  </string-array>
   <string name="prefs_gps_logging_interval">GPS logging interval</string>
   <string name="prefs_gps_logging_interval_summary">Use 0 for the shortest possible (affects battery life)</string>
   <string name="prefs_gps_logging_interval_seconds">seconds</string>
