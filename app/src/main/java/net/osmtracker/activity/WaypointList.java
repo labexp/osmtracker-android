@@ -5,19 +5,18 @@ import android.app.ListActivity;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
-import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.Button;
+import android.widget.CursorAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 import androidx.core.content.FileProvider;
 import net.osmtracker.R;
 import net.osmtracker.db.DataHelper;
@@ -44,8 +43,6 @@ public class WaypointList extends ListActivity {
 		listView.setFitsSystemWindows(true);
 		listView.setClipToPadding(false);
 		listView.setPadding(0, 48, 0, 0);
-
-        registerForContextMenu(listView);
 	}
 
 	@Override
@@ -227,44 +224,4 @@ public class WaypointList extends ListActivity {
 		return path.endsWith(DataHelper.EXTENSION_3GPP);
 	}
 
-    // Where the menu items get defined
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        getMenuInflater().inflate(R.menu.waypoint_contextmenu, menu);
-    }
-
-    // What happens when a menu item is selected
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-        final Cursor cursor = ((CursorAdapter) getListAdapter()).getCursor();
-        if (!cursor.moveToPosition(info.position)) return super.onContextItemSelected(item);
-
-        // Menu options when you long press on a waypoint
-        switch (item.getItemId()) {
-            case R.id.wplist_contextmenu_osm_note_upload:
-                String noteText = cursor.getString(cursor.getColumnIndex(TrackContentProvider.Schema.COL_NAME));
-                String appName = getString(R.string.app_name);
-                double lat = cursor.getDouble(cursor.getColumnIndex(TrackContentProvider.Schema.COL_LATITUDE));
-                double lon = cursor.getDouble(cursor.getColumnIndex(TrackContentProvider.Schema.COL_LONGITUDE));
-
-                Intent intent = new Intent(this, OpenStreetMapNotesUpload.class);
-                intent.putExtra("noteContent", noteText);
-                intent.putExtra("appName", appName);
-                // Retrieve app. version number
-                try {
-                    PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), 0);
-                    String version = pi.versionName;
-                    intent.putExtra("version", version);
-                } catch (PackageManager.NameNotFoundException nnfe) {
-                    // Should not occur
-                }
-                intent.putExtra("latitude", lat);
-                intent.putExtra("longitude", lon);
-                startActivity(intent);
-                return true;
-        }
-        return super.onContextItemSelected(item);
-    }
 }
