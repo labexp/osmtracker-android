@@ -4,9 +4,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.WindowManager.LayoutParams;
 import android.widget.EditText;
+
+import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -25,6 +28,7 @@ public class TextNoteDialog extends AlertDialog {
 	 * bundle key for waypoint uuid
 	 */
 	private static final String KEY_WAYPOINT_UUID = "WAYPOINT_UUID";
+	private static final String KEY_NOTE_UUID = "NOTE_UUID";
 	
 	/**
 	 * bundle key for waypoints track id
@@ -54,6 +58,8 @@ public class TextNoteDialog extends AlertDialog {
 	 */
 	private long noteTrackId;
 
+	boolean saveAsWayPoint, saveAsNote = false;
+
 	private Context context;
 
 	public TextNoteDialog(Context context, long trackId) {
@@ -76,25 +82,26 @@ public class TextNoteDialog extends AlertDialog {
 				(dialog, which) -> {
 
 
-			// CHECK Prefs to select if note is added as trackpoint, note or both
 			String noteText = input.getText().toString();
 
-			// Track waypoint with user input text
-			Intent intent = new Intent(OSMTracker.INTENT_UPDATE_WP);
-			intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, wayPointTrackId);
-			intent.putExtra(OSMTracker.INTENT_KEY_NAME, input.getText().toString());
-			intent.putExtra(OSMTracker.INTENT_KEY_UUID, TextNoteDialog.this.wayPointUuid);
-			intent.setPackage(getContext().getPackageName());
-			context.sendBroadcast(intent);
+			if (saveAsWayPoint) {
+				// Track waypoint with user input text
+				Intent intent = new Intent(OSMTracker.INTENT_UPDATE_WP);
+				intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, wayPointTrackId);
+				intent.putExtra(OSMTracker.INTENT_KEY_NAME, noteText);
+				intent.putExtra(OSMTracker.INTENT_KEY_UUID, TextNoteDialog.this.wayPointUuid);
+				intent.setPackage(getContext().getPackageName());
+				context.sendBroadcast(intent);
+			}
 
-			// For testing, this will be both (tp and note) case pref.
-			Intent noteIntent = new Intent(OSMTracker.INTENT_UPDATE_NOTE);
-			noteIntent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, noteTrackId);
-			noteIntent.putExtra(OSMTracker.INTENT_KEY_NAME, noteText);
-			noteIntent.putExtra(OSMTracker.INTENT_KEY_UUID, wayPointUuid);
-			noteIntent.setPackage(getContext().getPackageName());
-			context.sendBroadcast(noteIntent);
-
+			if (saveAsNote) {
+				Intent noteIntent = new Intent(OSMTracker.INTENT_UPDATE_NOTE);
+				noteIntent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, noteTrackId);
+				noteIntent.putExtra(OSMTracker.INTENT_KEY_NAME, noteText);
+				noteIntent.putExtra(OSMTracker.INTENT_KEY_UUID, noteUuid);
+				noteIntent.setPackage(getContext().getPackageName());
+				context.sendBroadcast(noteIntent);
+			}
 		});
 		
 		this.setButton(DialogInterface.BUTTON_NEGATIVE,
@@ -122,31 +129,52 @@ public class TextNoteDialog extends AlertDialog {
 	 */
 	@Override
 	protected void onStart() {
-		if (wayPointUuid == null) {
-			// there is no UUID set for the waypoint we're working on
-			// so we need to generate a UUID and track this point
-			wayPointUuid = UUID.randomUUID().toString();
-			Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
-			intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, wayPointTrackId);
-			intent.putExtra(OSMTracker.INTENT_KEY_UUID, wayPointUuid);
-			intent.putExtra(OSMTracker.INTENT_KEY_NAME, context.getResources().getString(R.string.gpsstatus_record_textnote));
-			intent.setPackage(getContext().getPackageName());
-			context.sendBroadcast(intent);
+
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String prefSaveAs = prefs.getString(
+				OSMTracker.Preferences.KEY_USE_NOTES,
+				OSMTracker.Preferences.VAL_USE_NOTES);
+		switch (prefSaveAs) {
+			case "waypoint":
+				saveAsWayPoint = true;
+				saveAsNote = false;
+				break;
+			case "osm_note":
+				saveAsWayPoint = false;
+				saveAsNote = true;
+				break;
+			default: // Assuming "both" is the default
+				saveAsWayPoint = true;
+				saveAsNote = true;
+				break;
 		}
 
-		if (noteUuid == null) {
+		if (saveAsWayPoint) {
+			if (wayPointUuid == null) {
+				// there is no UUID set for the waypoint we're working on
+				// so we need to generate a UUID and track this point
+				wayPointUuid = UUID.randomUUID().toString();
+				Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
+				intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, wayPointTrackId);
+				intent.putExtra(OSMTracker.INTENT_KEY_UUID, wayPointUuid);
+				intent.putExtra(OSMTracker.INTENT_KEY_NAME, context.getResources().getString(R.string.gpsstatus_record_textnote));
+				intent.setPackage(getContext().getPackageName());
+				context.sendBroadcast(intent);
+			}
+		}
 
-			// there is no UUID set for the note we're working on
-			// so we need to generate a UUID and track this note
-			noteUuid = UUID.randomUUID().toString();
-			Intent noteIntent = new Intent(OSMTracker.INTENT_TRACK_NOTE);
-			noteIntent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, noteTrackId);
-			noteIntent.putExtra(OSMTracker.INTENT_KEY_UUID, noteUuid);
-			noteIntent.putExtra(OSMTracker.INTENT_KEY_NAME, context.getResources().getString(R.string.gpsstatus_record_textnote));
-			noteIntent.setPackage(getContext().getPackageName());
-			context.sendBroadcast(noteIntent);
-
-
+		if (saveAsNote) {
+			if (noteUuid == null) {
+				// there is no UUID set for the note we're working on
+				// so we need to generate a UUID and track this note
+				noteUuid = UUID.randomUUID().toString();
+				Intent noteIntent = new Intent(OSMTracker.INTENT_TRACK_NOTE);
+				noteIntent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, noteTrackId);
+				noteIntent.putExtra(OSMTracker.INTENT_KEY_UUID, noteUuid);
+				noteIntent.putExtra(OSMTracker.INTENT_KEY_NAME, context.getResources().getString(R.string.gpsstatus_record_textnote));
+				noteIntent.setPackage(getContext().getPackageName());
+				context.sendBroadcast(noteIntent);
+			}
 		}
 
 		getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
@@ -160,6 +188,7 @@ public class TextNoteDialog extends AlertDialog {
 	 */
 	public void resetValues() {
 		wayPointUuid = null;
+		noteUuid = null;
 		input.setText("");
 	}
 
@@ -174,6 +203,7 @@ public class TextNoteDialog extends AlertDialog {
 		}
 		wayPointUuid = savedInstanceState.getString(KEY_WAYPOINT_UUID);
 		wayPointTrackId = savedInstanceState.getLong(KEY_WAYPOINT_TRACKID);
+		noteUuid = savedInstanceState.getString(KEY_NOTE_UUID);
 		super.onRestoreInstanceState(savedInstanceState);
 	}
 
@@ -184,8 +214,13 @@ public class TextNoteDialog extends AlertDialog {
 	public Bundle onSaveInstanceState() {
 		Bundle extras = super.onSaveInstanceState();
 		extras.putString(KEY_INPUT_TEXT, input.getText().toString());
-		extras.putLong(KEY_WAYPOINT_TRACKID, wayPointTrackId);
-		extras.putString(KEY_WAYPOINT_UUID, wayPointUuid);
+		if (saveAsWayPoint) {
+			extras.putLong(KEY_WAYPOINT_TRACKID, wayPointTrackId);
+			extras.putString(KEY_WAYPOINT_UUID, wayPointUuid);
+		}
+		if (saveAsNote) {
+			extras.putString(KEY_NOTE_UUID, noteUuid);
+		}
 		return extras;
 	}
 }
