@@ -74,6 +74,8 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 
 	/** Does this track have any waypoints?  If true, underline Waypoint count in the list. */
 	private boolean trackHasWaypoints = false;
+	// Does this track have any notes?  If true, underline Notes count in the list.
+	private boolean trackHasNotes = false;
 
 	/**
 	 * List with track info
@@ -154,6 +156,8 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		data.add(map);
 
 		// Notes count
+		final int notesCount = t.getNoteCount();
+		trackHasNotes = (notesCount > 0);
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_notes_count));
 		map.put(ITEM_VALUE, Integer.toString(t.getNoteCount()));
@@ -383,21 +387,32 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		 * Get the layout for this list item. (<tt>trackdetail_item.xml</tt>)
 		 * @param position  Item number in the list
 		 */
-		public View getView(final int position, View convertView, ViewGroup parent)
-		{
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			View v = super.getView(position, convertView, parent);
 			if (! (v instanceof ViewGroup))
 				return v;  // should not happen; v is trackdetail_item, a LinearLayout
 
-			final boolean wantsUnderline = ((position == WP_COUNT_INDEX) && trackHasWaypoints);
+			// Get the data for the current row
+			Map<String, String> item = (Map<String, String>) getItem(position);
+			String key = item.get(ITEM_KEY);
+			boolean wantsUnderline = false;
+
+			// Check the key to decide if we should underline
+			if (getString(R.string.trackmgr_waypoints_count).equals(key) && trackHasWaypoints) {
+				wantsUnderline = trackHasWaypoints;
+			} else if (getString(R.string.trackmgr_notes_count).equals(key) && trackHasNotes) {
+				wantsUnderline = trackHasNotes;
+			}
+
+
 			View vi = ((ViewGroup) v).findViewById(R.id.trackdetail_item_key);
-			if ((vi != null) && (vi instanceof TextView))
-			{
-				final int flags = ((TextView) vi).getPaintFlags();
+			if ((vi != null) && (vi instanceof TextView)) {
+				TextView tv = (TextView) vi;
+				final int flags = tv.getPaintFlags();
 				if (wantsUnderline)
-					((TextView) vi).setPaintFlags(flags | Paint.UNDERLINE_TEXT_FLAG);
+					tv.setPaintFlags(flags | Paint.UNDERLINE_TEXT_FLAG);
 				else
-					((TextView) vi).setPaintFlags(flags & ~Paint.UNDERLINE_TEXT_FLAG);
+					tv.setPaintFlags(flags & ~Paint.UNDERLINE_TEXT_FLAG);
 			}
 			return v;
 		}
