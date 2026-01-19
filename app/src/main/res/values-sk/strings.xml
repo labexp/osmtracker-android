@@ -82,6 +82,8 @@
   <string name="osm_upload_bad_response">Server OSM vrátil chybu: ({0}) správa o chybe {1}</string>
   <string name="osm_upload_unauthorized">Chyba autorizácie. Chcete odstrániť poverenia pre OpenStreetMap uložené v zariadení?</string>
   <string name="osm_upload_sucess">Odovzdávanie do OpenStreetMap bolo úspešné</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload_cancel">Zrušiť</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Hlasový záznam</string>
   <string name="gpsstatus_record_stillimage">Zachytiť fotografiu</string>
@@ -97,6 +99,12 @@
   <string name="delete_waypoint_confirm_dialog_msg">Vymazať tento prechodný bod?</string>
   <string name="delete_waypoint_confirm_bt_ok">Odstrániť</string>
   <string name="delete_waypoint_confirm_bt_cancel">Zrušiť</string>
+  <!--osm Notes-->
+  <string name="edit_note_bt_update">Uložiť</string>
+  <string name="edit_note_bt_delete">Odstrániť</string>
+  <string name="edit_note_bt_cancel">Zrušiť</string>
+  <string name="delete_note_confirm_bt_ok">Odstrániť</string>
+  <string name="delete_note_confirm_bt_cancel">Zrušiť</string>
   <!--Menu-->
   <string name="menu_settings">Nastavenia</string>
   <string name="menu_waypointlist">Cestovné body</string>
