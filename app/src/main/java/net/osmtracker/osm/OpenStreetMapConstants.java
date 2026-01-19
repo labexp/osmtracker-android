@@ -14,8 +14,7 @@ public class OpenStreetMapConstants {
 	}
 
 	public static class OAuth2 {
-        // Client ID prod was changed to test notes uploading with new scope, must be changed back
-        public static final String CLIENT_ID_PROD = "2gBvqUryethglDBRXIZvXA-ijLMp--r6NUHV19NyRz4";
+		public static final String CLIENT_ID_PROD = "6s8TuIQoPeq89ZWUFOXU7EZ-ZaCUVtUoNZFIKCMdU-E";
 		public static final String CLIENT_ID_DEV = "94Ht-oVBJ2spydzfk18s1RV2z7NS98SBwMfzSCqLQLE"; // DEV
 
 		public static final String CLIENT_ID = (DEV_MODE) ? CLIENT_ID_DEV : CLIENT_ID_PROD;
