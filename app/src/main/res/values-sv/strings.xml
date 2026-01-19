@@ -82,6 +82,8 @@
   <string name="osm_upload_bad_response">OSM-servern returnerade ett fel: ({0}) meddelande {1}</string>
   <string name="osm_upload_unauthorized">Inloggningsfel. Vill du ta bort sparade inloggningsdata till OpenStreetMap</string>
   <string name="osm_upload_sucess">Uppladdning till OpenStreetMap klar</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload_cancel">Avboka</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Röstnotering</string>
   <string name="gpsstatus_record_stillimage">Bildnotering</string>
@@ -97,6 +99,12 @@
   <string name="delete_waypoint_confirm_dialog_msg">Vill du ta bort den här waypointen?</string>
   <string name="delete_waypoint_confirm_bt_ok">Radera</string>
   <string name="delete_waypoint_confirm_bt_cancel">Avboka</string>
+  <!--osm Notes-->
+  <string name="edit_note_bt_update">Spara</string>
+  <string name="edit_note_bt_delete">Radera</string>
+  <string name="edit_note_bt_cancel">Avboka</string>
+  <string name="delete_note_confirm_bt_ok">Radera</string>
+  <string name="delete_note_confirm_bt_cancel">Avboka</string>
   <!--Menu-->
   <string name="menu_settings">Inställningar</string>
   <string name="menu_waypointlist">Vägpunkter</string>
