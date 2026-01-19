@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
+  <!--Preferences-->
   <string name="prefs">設定</string>
   <string name="prefs_gps">GPS</string>
   <string name="prefs_gps_os_settings">GPSの設定</string>
