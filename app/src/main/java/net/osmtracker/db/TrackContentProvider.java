@@ -119,6 +119,7 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/uuid/*", Schema.URI_CODE_WAYPOINT_UUID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACKPOINT + "/#", Schema.URI_CODE_TRACKPOINT_ID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_NOTE + "/#", Schema.URI_CODE_NOTE_ID);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_NOTE + "/uuid/*", Schema.URI_CODE_NOTE_UUID);
 	}
 	
 	/**
@@ -137,6 +138,14 @@ public class TrackContentProvider extends ContentProvider {
 	 */
 	public static final Uri waypointUri(long waypointId) {
 		return ContentUris.withAppendedId(CONTENT_URI_WAYPOINT, waypointId);
+	}
+
+	/**
+	 * @param noteId target note id
+	 * @return Uri for the note
+	 */
+	public static final Uri noteUri(long noteId) {
+		return ContentUris.withAppendedId(CONTENT_URI_NOTE, noteId);
 	}
 
 	/**
@@ -219,6 +228,14 @@ public class TrackContentProvider extends ContentProvider {
 			String uuid = uri.getLastPathSegment();
 			if(uuid != null){
 				count = dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, Schema.COL_UUID + " = ?", new String[]{uuid});
+			}else{
+				count = 0;
+			}
+			break;
+		case Schema.URI_CODE_NOTE_UUID:
+			String noteUUID = uri.getLastPathSegment();
+			if(noteUUID != null){
+				count = dbHelper.getWritableDatabase().delete(Schema.TBL_NOTE, Schema.COL_UUID + " = ?", new String[]{noteUUID});
 			}else{
 				count = 0;
 			}
@@ -385,6 +402,16 @@ public class TrackContentProvider extends ContentProvider {
 			qb.setTables(Schema.TBL_NOTE);
 			selection = Schema.COL_TRACK_ID + " = ?";
 			selectionArgs = new String[] {trackId};
+			break;
+		case Schema.URI_CODE_NOTE_ID:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			String noteId = uri.getPathSegments().get(1);
+			qb.setTables(Schema.TBL_NOTE);
+			selection = Schema.COL_ID + " = ?";
+			selectionArgs = new String[] {noteId};
 			break;
 		case Schema.URI_CODE_TRACK_START:
 			if (selectionIn != null || selectionArgsIn != null) {
@@ -585,6 +612,7 @@ public class TrackContentProvider extends ContentProvider {
 		public static final int URI_CODE_TRACKPOINT_ID = 12;
 		public static final int URI_CODE_TRACK_NOTES = 13;
 		public static final int URI_CODE_NOTE_ID = 14;
+		public static final int URI_CODE_NOTE_UUID = 15;
 
 
 		public static final int VAL_TRACK_ACTIVE = 1;

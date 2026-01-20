@@ -60,6 +60,7 @@
             android:label="@string/wplist" />
         <activity
             android:name=".activity.NoteList"
+            android:theme="@style/AppTheme"
             android:label="@string/notelist" />
         <activity
             android:name=".activity.TrackDetail"

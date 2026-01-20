@@ -349,7 +349,7 @@ public class DataHelper {
 	 * Updates a note
 	 *
 	 * @param trackId 	Id of the track
-	 * @param uuid 		Unique ID of the target waypoint
+	 * @param uuid 		Unique ID of the target note
 	 * @param name		New text value for the note
 	 */
 	public void updateNote(long trackId, String uuid, String name) {
@@ -374,7 +374,7 @@ public class DataHelper {
 	public void deleteNote(String uuid) {
 		Log.v(TAG, "Deleting note with uuid '" + uuid);
 		if (uuid != null) {
-			contentResolver.delete(Uri.withAppendedPath(TrackContentProvider.CONTENT_URI_WAYPOINT_UUID, uuid), null, null);
+			contentResolver.delete(Uri.withAppendedPath(TrackContentProvider.CONTENT_URI_NOTE_UUID, uuid), null, null);
 		}
 	}
 	

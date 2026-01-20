@@ -1,4 +1,4 @@
-package net.osmtracker.test.db.model;
+package net.osmtracker.db.model;
 
 import android.content.ContentResolver;
 import android.database.Cursor;
