@@ -70,6 +70,8 @@
             android:label="@string/osm_upload"
             android:exported="true">
         </activity>
+        <activity android:name=".activity.OpenStreetMapNotesUpload"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name="net.openid.appauth.RedirectUriReceiverActivity"
             tools:node="replace" android:exported="true">
@@ -114,7 +116,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.AvailableLayouts" />
-        <activity android:name=".activity.OpenStreetMapNotesUpload"/>
 
         <service
             android:name=".service.gps.GPSLogger"
