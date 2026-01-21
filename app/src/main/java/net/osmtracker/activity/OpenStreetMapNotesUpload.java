@@ -1,19 +1,18 @@
 package net.osmtracker.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import net.openid.appauth.AuthorizationException;
 import net.openid.appauth.AuthorizationRequest;
@@ -21,15 +20,17 @@ import net.openid.appauth.AuthorizationResponse;
 import net.openid.appauth.AuthorizationService;
 import net.openid.appauth.AuthorizationServiceConfiguration;
 import net.openid.appauth.ResponseTypeValues;
-import net.openid.appauth.TokenResponse;
+
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.osm.OpenStreetMapConstants;
 import net.osmtracker.osm.UploadToOpenStreetMapNotesTask;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
- * <p>Uploads a note on OSM using the API and
- * OAuth authentication.</p>
+ * <p>Uploads a note on OSM using the API and OAuth authentication.</p>
  *
  * <p>This activity may be called twice during a single
  * upload cycle: First to start the upload, then a second
@@ -37,7 +38,7 @@ import net.osmtracker.osm.UploadToOpenStreetMapNotesTask;
  *
  * @author Most of the code was made by Nicolas Guillaumin, adapted by Jose Andrés Vargas Serrano
  */
-public class OpenStreetMapNotesUpload extends Activity {
+public class OpenStreetMapNotesUpload extends AppCompatActivity {
 
     private static final String TAG = OpenStreetMapNotesUpload.class.getSimpleName();
 
@@ -51,19 +52,39 @@ public class OpenStreetMapNotesUpload extends Activity {
 
     /** URL that the browser will call once the user is authenticated */
     public final static String OAUTH2_CALLBACK_URL = "osmtracker://osm-upload/oath2-completed/";
-    public final static int RC_AUTH = 7;
-
     private AuthorizationService authService;
+	private ActivityResultLauncher<Intent> authLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        View uploadNoteView = getLayoutInflater().inflate(R.layout.osm_note_upload, null);
-        setContentView(uploadNoteView);
-        setTitle(R.string.osm_note_upload);
+		super.onCreate(savedInstanceState);
 
-        noteContentView = uploadNoteView.findViewById(R.id.wplist_item_name);
-        noteFooterView = uploadNoteView.findViewById(R.id.osm_note_footer);
+		// Register the launcher
+		authLauncher = registerForActivityResult(
+				new ActivityResultContracts.StartActivityForResult(),
+				result -> {
+					// This replaces the logic previously in onActivityResult
+					Intent data = result.getData();
+					// RC_AUTH logic
+					if (data != null) {
+						AuthorizationResponse resp = AuthorizationResponse.fromIntent(data);
+						AuthorizationException ex = AuthorizationException.fromIntent(data);
+
+						if (resp != null) {
+							exchangeAuthorizationCode(resp);
+						} else {
+							Log.e(TAG, "Authorization failed: " + (ex != null ? ex.getMessage() : "Unknown error"));
+							Toast.makeText(this, R.string.osm_upload_oauth_failed, Toast.LENGTH_SHORT).show();
+						}
+					}
+				}
+		);
+
+
+		setContentView(R.layout.osm_note_upload);
+		setTitle(R.string.osm_note_upload);
+		noteContentView = findViewById(R.id.wplist_item_name);
+		noteFooterView = findViewById(R.id.osm_note_footer);
 
         // Read and cache extras
         Bundle extras = getIntent().getExtras();
@@ -85,20 +106,10 @@ public class OpenStreetMapNotesUpload extends Activity {
         noteContentView.setText(initialNoteText);
         noteFooterView.setText(getString(R.string.osm_note_footer, appName, version));
 
-        final Button btnOk = (Button) findViewById(R.id.osm_note_upload_button_ok);
-        btnOk.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startUpload(noteId);
-            }
-        });
-        final Button btnCancel = (Button) findViewById(R.id.osm_note_upload_button_cancel);
-        btnCancel.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        final Button btnOk = findViewById(R.id.osm_note_upload_button_ok);
+        btnOk.setOnClickListener(v -> startUpload(noteId));
+        final Button btnCancel = findViewById(R.id.osm_note_upload_button_cancel);
+        btnCancel.setOnClickListener(v -> finish());
 
     }
 
@@ -109,100 +120,96 @@ public class OpenStreetMapNotesUpload extends Activity {
      */
     private void startUpload(long noteId) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if ( prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN) ) {
-            // Re-use saved token
-            uploadToOsm(prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN, ""), noteId);
-        } else {
-            // Open browser and request token
+		String accessToken = prefs.getString(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN, null);
+
+		if (accessToken != null && !accessToken.isEmpty()) {
+			// STATE: AUTHORIZED. Re-use saved token
+			Log.d(TAG, "Token found, proceeding to upload note to OSM.");
+			uploadToOsm(accessToken, noteId);
+		} else {
+			// STATE: UNAUTHORIZED. Open browser and request token
+			Log.d(TAG, "No token found, requesting authorization.");
             requestOsmAuth();
         }
     }
     /*
-     * Init Authorization request workflow.
+     * Init Authorization request workflow. Launches browser to request authorization.
      */
     public void requestOsmAuth() {
         // Authorization service configuration
-        AuthorizationServiceConfiguration serviceConfig =
-            new AuthorizationServiceConfiguration(
+        AuthorizationServiceConfiguration serviceConfig = new AuthorizationServiceConfiguration(
                 Uri.parse(OpenStreetMapConstants.OAuth2.Urls.AUTHORIZATION_ENDPOINT),
                 Uri.parse(OpenStreetMapConstants.OAuth2.Urls.TOKEN_ENDPOINT));
 
-        // Obtaining an authorization code
-        Uri redirectURI = Uri.parse(OAUTH2_CALLBACK_URL);
-        AuthorizationRequest.Builder authRequestBuilder =
-            new AuthorizationRequest.Builder(
-                serviceConfig, OpenStreetMapConstants.OAuth2.CLIENT_ID,
-                ResponseTypeValues.CODE, redirectURI);
-        AuthorizationRequest authRequest = authRequestBuilder
-            .setScope(OpenStreetMapConstants.OAuth2.SCOPE)
-            .build();
+		// Obtaining an authorization code
+		AuthorizationRequest authRequest = new AuthorizationRequest.Builder(
+				serviceConfig,
+				OpenStreetMapConstants.OAuth2.CLIENT_ID,
+				ResponseTypeValues.CODE,
+				Uri.parse(OAUTH2_CALLBACK_URL))
+				.setScope(OpenStreetMapConstants.OAuth2.SCOPE)
+				.build();
 
-        // Start activity.
+		// Start activity.
         authService = new AuthorizationService(this);
         Intent authIntent = authService.getAuthorizationRequestIntent(authRequest);
-        startActivityForResult(authIntent, RC_AUTH); //when done onActivityResult will be called.
+		//when done onActivityResult will be called.
+		// Use the launcher instead of startActivityForResult
+		authLauncher.launch(authIntent);
     }
 
+	private void exchangeAuthorizationCode(AuthorizationResponse resp) {
+		authService.performTokenRequest(resp.createTokenExchangeRequest(), (tokenResp, tokenEx) -> {
+			if (tokenResp != null && tokenResp.accessToken != null) {
+				// STATE: TRANSITION TO AUTHORIZED
+				persistToken(tokenResp.accessToken);
+				uploadToOsm(tokenResp.accessToken, noteId);
+			} else {
+				Log.e(TAG, "Token exchange failed");
+			}
+		});
+	}
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // User is returning from authentication
-        if (requestCode == RC_AUTH) {
-            // Handling the authorization response
-            AuthorizationResponse resp = AuthorizationResponse.fromIntent(data);
-            AuthorizationException ex = AuthorizationException.fromIntent(data);
-            // ... process the response or exception ...
-            if (ex != null) {
-                Log.e(TAG, "Authorization Error. Exception received from server.");
-                Log.e(TAG, ex.getMessage());
-            } else if (resp == null) {
-                Log.e(TAG, "Authorization Error. Null response from server.");
-            } else {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-                //Exchanging the authorization code
-                authService.performTokenRequest(
-                    resp.createTokenExchangeRequest(),
-                    new AuthorizationService.TokenResponseCallback() {
-                        @Override public void onTokenRequestCompleted(
-                                TokenResponse resp, AuthorizationException ex) {
-                            if (resp != null) {
-                                // exchange succeeded
-                                SharedPreferences.Editor editor = prefs.edit();
-                                editor.putString(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN, resp.accessToken);
-                                editor.apply();
-                                //continue with the note Upload.
-                                uploadToOsm(resp.accessToken, noteId);
-                            } else {
-                                // authorization failed, check ex for more details
-                                Log.e(TAG, "OAuth failed.");
-                            }
-                        }
-                    });
-            }
-        } else {
-            Log.e(TAG, "Unexpected requestCode:" + requestCode + ".");
-        }
-    }
+	private void persistToken(String token) {
+		PreferenceManager.getDefaultSharedPreferences(this).edit()
+				.putString(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN, token)
+				.apply();
+	}
 
     /**
      * Uploads notes to OSM.
      */
     public void uploadToOsm(String accessToken, long noteId) {
-        String noteText = noteContentView.getText().toString();
-        String footer = noteFooterView.getText().toString();
-        if (!footer.isEmpty()) {
-            noteText = noteText + "\n\n" + footer;
-        }
-        new UploadToOpenStreetMapNotesTask(
-                OpenStreetMapNotesUpload.this,
-                accessToken,
-				noteId,
-                noteText,
-                latitude,
-                longitude
-        ).execute();
-    }
+		String noteText = noteContentView.getText().toString();
+		String footer = noteFooterView.getText().toString();
+		if (!footer.isEmpty()) {
+			noteText = noteText + "\n\n" + footer;
+		}
 
+		// Final variables for the background thread
+		final String finalNoteText = noteText;
+
+		// This replaces the deprecated AsyncTask.execute()
+		ExecutorService executor = Executors.newSingleThreadExecutor();
+		executor.execute(() -> {
+			try {
+				new UploadToOpenStreetMapNotesTask(
+						OpenStreetMapNotesUpload.this,
+						accessToken,
+						noteId,
+						finalNoteText,
+						latitude,
+						longitude
+				).run();
+			} catch (Exception e) {
+				Log.e(TAG, "Error during OSM Note upload", e);
+				runOnUiThread(() ->
+						Toast.makeText(this, R.string.osm_upload_error, Toast.LENGTH_SHORT).show()
+				);
+			} finally {
+				executor.shutdown();
+			}
+		});
+	}
 
 }
