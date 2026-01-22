@@ -1,29 +1,32 @@
 package net.osmtracker.db.model;
 
-import android.content.ContentResolver;
 import android.database.Cursor;
 
 import net.osmtracker.db.TrackContentProvider;
-import net.osmtracker.db.model.Track;
 import static net.osmtracker.db.TrackContentProvider.Schema.*;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.powermock.api.mockito.PowerMockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-//@RunWith(PowerMockRunner.class)
+@RunWith(RobolectricTestRunner.class)
+@Config(sdk = 25)
 public class TrackTest {
 
     final long START_DATE = 123;
     final String NAME = "some name";
     final String DESCRIPTION = "foo desc";
     final String TAGS = "tag1,tag2,tag3";
-    final List TAGS_LIST = Arrays.asList("tag1","tag2","tag3");
+    final List<String> TAGS_LIST = Arrays.asList("tag1","tag2","tag3");
     final String VISIBILITY = Track.OSMVisibility.Public.name();
     final int TRACKPOINT_COUNT = 10;
     final int WAYPOINT_COUNT = 20;
@@ -60,12 +63,10 @@ public class TrackTest {
     @Test
     public void testBuild(){
 
-        int trackId = 1;
-        ContentResolver resolver = null; // Not used in the method
         Cursor mockCursor = initMockCursor();
         boolean withExtraInfo = false;
 
-        Track t = Track.build(1, mockCursor, resolver, withExtraInfo);
+        Track t = Track.build(1, mockCursor, null, withExtraInfo);
 
 
         try {
@@ -86,7 +87,7 @@ public class TrackTest {
 
 
         }catch (Exception e){
-            e.printStackTrace();
+			throw new RuntimeException("Reflection failed during Track fields verification", e);
         }
     }
 }
