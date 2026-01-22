@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
+  <!--Preferences-->
   <string name="prefs">設定</string>
   <string name="prefs_gps">GPS</string>
   <string name="prefs_gps_os_settings">GPS 設定</string>
@@ -11,6 +12,13 @@
   <string name="prefs_gps_ignore_clock_summary">忽略 GPS 的時間，改用 Android 系統時間</string>
   <string name="prefs_use_barometer">記錄氣壓 [hPa]</string>
   <string name="prefs_use_barometer_summary">切換需要重新啟動軌跡記錄</string>
+  <string name="prefs_notes">文字註解</string>
+  <string name="prefs_notes_summary">選取註解文字按鈕的值的儲存樣式</string>
+  <string-array name="prefs_notes_keys">
+    <item>路徑</item>
+    <item>OSM 註解</item>
+    <item>全部</item>
+  </string-array>
   <string name="prefs_gps_logging_interval">GPS 記錄頻率</string>
   <string name="prefs_gps_logging_interval_summary">使用 0 會盡可能的記錄資料 (會影響電池續航力)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
@@ -84,6 +92,14 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">在 GPX 檔中填入 HDOP 近似值</string>
   <string name="prefs_sound_enabled">使用聲音</string>
   <string name="prefs_sound_enabled_summary">當錄製語音期間可播放聲音</string>
+  <string name="prefs_osm_visibility">軌跡可見度</string>
+  <string name="prefs_osm_visibility_summary">上傳到 openstreetmap.org 偏好的軌跡可見度</string>
+  <string-array name="prefs_osm_visibility_keys">
+    <item>私人</item>
+    <item>可追蹤</item>
+    <item>公開</item>
+    <item>可識別</item>
+  </string-array>
   <string name="prefs_osm_clear_oauth_data">重新設定 OSM 認證</string>
   <string name="prefs_osm_clear_oauth_data_summary">捨棄現存的 OSM 認證與權限資訊，強制 OSMTracker 重新取得它們</string>
   <string name="prefs_osm_clear_oauth_data_dialog">您必須重新認證 OSMTracker 方能繼續上傳軌跡資料，確定嗎？</string>
