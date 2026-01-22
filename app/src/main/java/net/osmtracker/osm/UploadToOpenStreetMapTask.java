@@ -124,7 +124,6 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 			DataHelper.setTrackUploadDate(trackId, System.currentTimeMillis(), activity.getContentResolver());
 			
 			new AlertDialog.Builder(activity)
-				.setTitle(android.R.string.dialog_alert_title)
 				.setIcon(android.R.drawable.ic_dialog_info)
 				.setMessage(R.string.osm_upload_sucess)
 				.setCancelable(true)
