@@ -12,6 +12,13 @@
   <string name="prefs_gps_ignore_clock_summary">忽略 GPS 的時間，改用 Android 系統時間</string>
   <string name="prefs_use_barometer">記錄氣壓 [hPa]</string>
   <string name="prefs_use_barometer_summary">切換需要重新啟動軌跡記錄</string>
+  <string name="prefs_notes">文字註解</string>
+  <string name="prefs_notes_summary">選取註解文字按鈕的值的儲存樣式</string>
+  <string-array name="prefs_notes_keys">
+    <item>路徑</item>
+    <item>OSM 註解</item>
+    <item>全部</item>
+  </string-array>
   <string name="prefs_gps_logging_interval">GPS 記錄頻率</string>
   <string name="prefs_gps_logging_interval_summary">使用 0 會盡可能的記錄資料 (會影響電池續航力)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
