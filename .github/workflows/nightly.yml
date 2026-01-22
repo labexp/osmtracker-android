@@ -4,31 +4,56 @@ on:
   schedule: # Scheduled jobs only run on the default repository branch
     - cron: "0 1 * * *"
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to run the workflow on'
-        default: 'develop'
-        required: true
 
 jobs:
-  nightly_build:
-    name: Nightly build
+  check-recent-commits:
+    runs-on: ubuntu-latest
+    outputs:
+      has_recent_commits: ${{ steps.check-commits.outputs.has_recent_commits }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for git log
+          ref: develop    # Checkout the develop branch specifically
+
+      - name: Check for recent commits on develop branch
+        id: check-commits
+        run: |
+          # Get the current timestamp and calculate 24 hours ago
+          CURRENT_TIMESTAMP=$(date +%s)
+          TWENTY_FOUR_HOURS_AGO=$((CURRENT_TIMESTAMP - 86400))
+
+          # Check if there are any commits in the last 24 hours
+          RECENT_COMMITS=$(git log --since="$TWENTY_FOUR_HOURS_AGO" --oneline | wc -l)
+
+          if [ "$RECENT_COMMITS" -gt 0 ]; then
+            echo "Found $RECENT_COMMITS commits in the last 24 hours"
+            echo "has_recent_commits=true" >> $GITHUB_OUTPUT
+          else
+            echo "No commits found in the last 24 hours"
+            echo "has_recent_commits=false" >> $GITHUB_OUTPUT
+          fi
+
+  build:
+    needs: check-recent-commits
+    if: needs.check-recent-commits.outputs.has_recent_commits == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.branch }}
+          ref: develop    # Build from develop branch
 
-      - name: Setup Java JDK
+      - name: Set up Java JDK
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'gradle'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
 
       - name: Build with Gradle
         run: ./gradlew assembleDebug --stacktrace
@@ -45,13 +70,18 @@ jobs:
           name: nightly-${{ env.ARTIFACT_DATE }}
           path: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
 
-      - name: Delete existing Nightly release
-        run: gh release delete nightly --cleanup-tag --yes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check if nightly tag exists and delete
+        run: |
+          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+          if gh release view nightly > /dev/null 2>&1; then
+            echo "Nightly tag exists, deleting release..."
+            gh release delete nightly --cleanup-tag --yes
+          else
+            echo "Nightly tag does not exist, skipping deletion"
+          fi
 
       - name: Create GitHub Nightly Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v2.2.2
         with:
           tag_name: 'nightly'
           name: 'Nightly Build'
@@ -60,3 +90,12 @@ jobs:
           files: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
           body: "Nightly build for OSMTracker"
           token: ${{ secrets.GITHUB_TOKEN }}
+
+
+  skip-build:
+    needs: check-recent-commits
+    if: needs.check-recent-commits.outputs.has_recent_commits == 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip build notification
+        run: echo "No recent commits in the last 24 hours. Skipping build."
