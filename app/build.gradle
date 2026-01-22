@@ -114,9 +114,6 @@ dependencies {
     // Mockito framework
     testImplementation "org.mockito:mockito-core:3.12.4"
 
-    testImplementation 'org.powermock:powermock-core:2.0.9'
-    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
-    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
     // Required for local unit tests. Prevent null in JSONObject, JSONArray, etc.
     testImplementation 'org.json:json:20240303'
 
