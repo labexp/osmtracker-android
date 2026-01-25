@@ -51,6 +51,14 @@
 			android:summary="@string/prefs_gps_logging_min_distance_summary"
 			android:defaultValue="0"
 			android:inputType="number" />
+		<EditTextPreference
+			android:key="gps_min_accuracy"
+			android:defaultValue="0"
+			android:title="@string/prefs_gps_min_accuracy"
+			android:summary="@string/prefs_gps_min_accuracy_summary"
+			android:dialogTitle="@string/prefs_gps_min_accuracy_dialog_title"
+			android:inputType="number"
+			android:persistent="true" />
 	</PreferenceCategory>
 	
 	<PreferenceCategory android:title="@string/prefs_output">

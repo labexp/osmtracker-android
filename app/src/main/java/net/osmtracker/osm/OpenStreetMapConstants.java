@@ -6,6 +6,7 @@ public class OpenStreetMapConstants {
 	private static final String OSM_API_URL_DEV = "https://master.apis.dev.openstreetmap.org";
 	private static final String OSM_API_URL_PROD = "https://www.openstreetmap.org";
 	private static final String OSM_API_URL = (DEV_MODE) ? OSM_API_URL_DEV : OSM_API_URL_PROD;
+	public static final String PREFS_GPS_MIN_ACCURACY = "gps_min_accuracy";
 
 	public static class Api {
 

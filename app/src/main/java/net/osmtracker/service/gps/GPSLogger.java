@@ -10,6 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -31,6 +32,7 @@ import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.listener.PressureListener;
 import net.osmtracker.listener.SensorListener;
+import net.osmtracker.osm.OpenStreetMapConstants;
 
 /**
  * GPS logging service.
@@ -56,6 +58,14 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Is GPS enabled ?
 	 */
 	private boolean isGpsEnabled = false;
+	/**
+	 * Minimum accuracy in meters for starting
+	 */
+	private int minAccuracy = 0;
+	/**
+	 * Precision of the accuracy in meters is satisfied ?
+	 */
+	private boolean isAccuracySatisfied = false;
 
 	/**
 	 * Use barometer yes/no ?
@@ -223,6 +233,18 @@ public class GPSLogger extends Service implements LocationListener {
 		use_barometer = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
 				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
 
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
+		try {
+			minAccuracy = Integer.parseInt(prefs.getString(OpenStreetMapConstants.PREFS_GPS_MIN_ACCURACY, "0"));
+		} catch (NumberFormatException e) {
+			minAccuracy = 0;
+		}
+		// minimum precision enabled 
+		if (minAccuracy > 0) {
+			isAccuracySatisfied = false;
+		} else {
+			isAccuracySatisfied = true;
+		}
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(OSMTracker.INTENT_TRACK_WP);
@@ -307,7 +329,20 @@ public class GPSLogger extends Service implements LocationListener {
 	}
 
 	@Override
-	public void onLocationChanged(Location location) {		
+	public void onLocationChanged(Location location) {
+		if (location == null){
+			return;
+		}
+		// Wait for minimum accuracy before starting
+		if(!isAccuracySatisfied){
+			if(location.hasAccuracy() && location.getAccuracy() <= minAccuracy){
+				// Precision achieved we unlocked the door and began recording this one and the following ones.
+				isAccuracySatisfied = true;
+			}
+			else {
+				return;
+			}
+		}
 		// We're receiving location, so GPS is enabled
 		isGpsEnabled = true;
 		
