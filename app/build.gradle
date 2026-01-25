@@ -61,6 +61,8 @@ android {
     }
     testOptions {
         unitTests.returnDefaultValues = true
+        // This flag is required for Robolectric to find XML resources
+        unitTests.includeAndroidResources = true
         unitTests.all {
             it.jvmArgs = [
                 '--add-opens', 'java.base/java.io=ALL-UNNAMED',
@@ -85,6 +87,12 @@ dependencies {
         exclude group: 'net.sf.kxml', module: 'kxml2'
         exclude group: 'xmlpull', module: 'xmlpull'
     }
+    // For upload notes to osm server
+    implementation ('de.westnordost:osmapi-notes:3.1'){
+        // Already included in Android
+        exclude group: 'net.sf.kxml', module: 'kxml2'
+        exclude group: 'xmlpull', module: 'xmlpull'
+    }
     // App intro
     implementation 'com.github.AppIntro:AppIntro:6.3.1'
 
@@ -95,22 +103,23 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.preference:preference:1.2.0'
 
     // Required -- JUnit 4 framework
     testImplementation 'junit:junit:4.13.2'
-    // Robolectric environment
+    // Robolectric
+    testImplementation 'org.robolectric:robolectric:4.11.1'
+    // AndroidX Test core for Robolectric
     testImplementation "androidx.test:core:1.6.1"
     // Mockito framework
     testImplementation "org.mockito:mockito-core:3.12.4"
 
-    testImplementation 'org.powermock:powermock-core:2.0.9'
-    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
-    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
     // Required for local unit tests. Prevent null in JSONObject, JSONArray, etc.
     testImplementation 'org.json:json:20240303'
 
     // Required for instrumented tests
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.7.0'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test:rules:1.6.1'
 }

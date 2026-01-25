@@ -10,13 +10,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+
+import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -26,6 +27,9 @@ import net.osmtracker.overlay.WayPointsOverlay;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.tileprovider.tilesource.ITileSource;
+import org.osmdroid.tileprovider.tilesource.XYTileSource;
+
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
@@ -231,8 +235,7 @@ public class DisplayTrackMap extends Activity {
 	public void selectTileSource() {
 		String mapTile = prefs.getString(OSMTracker.Preferences.KEY_UI_MAP_TILE, OSMTracker.Preferences.VAL_UI_MAP_TILE_MAPNIK);
 		Log.e("TileMapName active", mapTile);
-		//osmView.setTileSource(selectMapTile(mapTile));
-		osmView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
+		osmView.setTileSource(selectMapTile(mapTile));
 	}
 
 	/**
@@ -243,23 +246,32 @@ public class DisplayTrackMap extends Activity {
 	}
 
 
-//	/**
-//	 * Returns a ITileSource for the map according to the selected mapTile
-//	 * String. The default is mapnik.
-//	 *
-//	 * @param mapTile String that is the name of the tile provider
-//	 * @return ITileSource with the selected Tile-Source
-//	 */
-//	private ITileSource selectMapTile(String mapTile) {
-//		try {
-//			Field f = TileSourceFactory.class.getField(mapTile);
-//			return (ITileSource) f.get(null);
-//		} catch (Exception e) {
-//			Log.e(TAG, "Invalid tile source '"+mapTile+"'", e);
-//			Log.e(TAG, "Default tile source selected: '" + TileSourceFactory.DEFAULT_TILE_SOURCE.name() +"'");
-//			return TileSourceFactory.DEFAULT_TILE_SOURCE;
-//		}
-//	}
+	static {
+		TileSourceFactory.addTileSource(new XYTileSource("CyclOSM",
+								 0, 18, 256, ".png", 
+								 new String[] {
+									 "https://a.tile-cyclosm.openstreetmap.fr/cyclosm/",
+									 "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/",
+									 "https://c.tile-cyclosm.openstreetmap.fr/cyclosm/"},
+								 "© OpenStreetMap contributors"));
+	}
+
+	/**
+	 * Returns a ITileSource for the map according to the selected mapTile
+	 * String. The default is mapnik.
+	 *
+	 * @param mapTile String that is the name of the tile provider
+	 * @return ITileSource with the selected Tile-Source
+	 */
+	private ITileSource selectMapTile(String mapTile) {
+		try {
+			return TileSourceFactory.getTileSource(mapTile);
+		} catch (Exception e) {
+			Log.e(TAG, "Invalid tile source '"+mapTile+"'", e);
+			Log.e(TAG, "Default tile source selected: '" + TileSourceFactory.DEFAULT_TILE_SOURCE.name() +"'");
+			return TileSourceFactory.DEFAULT_TILE_SOURCE;
+		}
+	}
 
 
 	@Override

@@ -9,9 +9,14 @@
   <string name="prefs_check_gps_startup_summary">Skontrolovať, či je GPS vypnuté po spustení a navrhnúť jeho zapnutie</string>
   <string name="prefs_gps_ignore_clock">Ignorovať čas GPS</string>
   <string name="prefs_gps_ignore_clock_summary">Ignorovať čas GPS a použiť čas Androidu pre časové značky</string>
+  <string name="prefs_use_barometer">Zaznamenávať barometrický tlak [hPa]</string>
+  <string name="prefs_use_barometer_summary">Prepínač vyžaduje reštart stopy</string>
   <string name="prefs_gps_logging_interval">Interval logovania GPS</string>
   <string name="prefs_gps_logging_interval_summary">Použite 0 pre najkratší možný (Ovplyvní výdrž batérie)</string>
   <string name="prefs_gps_logging_interval_seconds">sekundy</string>
+  <string name="prefs_gps_logging_min_distance">Vzdialenosť medzi záznamami GPS</string>
+  <string name="prefs_gps_logging_min_distance_summary">Najmenšia vzdialenosť medzi bodmi stopy v metroch. Pre najhustejší záznam použite 0</string>
+  <string name="prefs_gps_logging_min_distance_meters">metrov</string>
   <string name="prefs_ui">Užívateľské rozhranie</string>
   <string name="prefs_ui_picture_source">Predvolený zdroj fotografií</string>
   <string name="prefs_ui_picture_source_summary">Zachytiť fotografie fotoaparátom alebo vybrať z galérie?</string>
@@ -49,7 +54,9 @@
   <string name="prefs_display_always_on_summary">Obrazovka zostane zapnutá počas stopovania. Vypnite pre úsporu batérie</string>
   <string name="prefs_displaytrack_osm">OSM pozadie</string>
   <string name="prefs_displaytrack_osm_summary">Zobraziť OpenStreetMap pod stopou. Potrebuje dátové pripojenie</string>
+  <string name="prefs_displaytrack_osm_summary_ask">Vždy zobrazovať na pozadí OpenStreetMap. Vyžaduje dátové pripojenie</string>
   <string name="prefs_output">Výstup GPX súboru</string>
+  <string name="prefs_storage_dir">Ukladať do priečinka pre dokumenty</string>
   <string name="prefs_storage_dir_hint">Použité až v ďalšej stope (nie v aktuálnej)</string>
   <string name="prefs_output_one_dir_per_track">Jeden adresár na stopu</string>
   <string name="prefs_output_one_dir_per_track_summary">Uloží každú stopu a priradené súbory do jej vlastného adresára</string>
@@ -61,6 +68,8 @@
     <item>Dátum a čas spustenia, názov</item>
     <item>Dátum a čas spustenia</item>
   </string-array>
+  <string name="prefs_output_filename_label">Štítok názvu súboru</string>
+  <string name="prefs_output_filename_label_summary">Tento štítok bude pripojený na koniec názvu súboru</string>
   <string name="prefs_output_accuracy">Presnosť v GPX súbore</string>
   <string name="prefs_output_accuracy_summary">Povoliť informácie o presnosti v GPX súbore, s názvom cestovného bodu alebo v oddelenom poli</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -75,16 +84,12 @@
   <string name="prefs_osm_clear_oauth_data">Vymazať autentifikáciu OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Vymaže prihlasovacie údaje a oprávnenia OSM uložené v telefóne a prinúti OSMTracker, aby si ich opätovne vyžiadal</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Znova sa pokúšate autorizovať OSMTracker, aby mohol nahrávať záznamy stôp. Ste si istý?</string>
-  <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
+  <string name="prefs_map_tile">Poskytovateľ mapových dlaždíc</string>
   <string-array name="prefs_compass_heading_keys">
     <item>Žiadne</item>
     <item>V komentári</item>
     <item>V rozšírení</item>
   </string-array>
+  <string name="prefs_compass_heading">Exportovať aj smer kompasu</string>
   <string name="prefs_compass_heading_summary">Určiť, či a ako sa majú exportovať údaje kompasu do súboru GPX</string>
 </resources>

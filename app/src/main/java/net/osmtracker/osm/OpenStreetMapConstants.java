@@ -20,7 +20,7 @@ public class OpenStreetMapConstants {
 
 		public static final String CLIENT_ID = (DEV_MODE) ? CLIENT_ID_DEV : CLIENT_ID_PROD;
 
-		public static final String SCOPE = "write_gpx";
+        public static final String SCOPE = "write_gpx write_notes";
 		public static final String USER_AGENT = "OSMTracker for Android™";
 
 		public static class Urls {

@@ -82,6 +82,8 @@
   <string name="osm_upload_bad_response">Сервер OSM вернул ошибку:  ({0}) текст {1}</string>
   <string name="osm_upload_unauthorized">Ошибка авторизации.  Удалить сохраненные учетные данные OpenStreetMap?</string>
   <string name="osm_upload_sucess">Загрузка на OpenStreetMap завершена</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload_cancel">Отмена</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Запись аудио</string>
   <string name="gpsstatus_record_stillimage">Сделать фото</string>
@@ -97,6 +99,12 @@
   <string name="delete_waypoint_confirm_dialog_msg">Удалить эту точку?</string>
   <string name="delete_waypoint_confirm_bt_ok">Удалить</string>
   <string name="delete_waypoint_confirm_bt_cancel">Отмена</string>
+  <!--osm Notes-->
+  <string name="edit_note_bt_update">Сохранить</string>
+  <string name="edit_note_bt_delete">Удалить</string>
+  <string name="edit_note_bt_cancel">Отмена</string>
+  <string name="delete_note_confirm_bt_ok">Удалить</string>
+  <string name="delete_note_confirm_bt_cancel">Отмена</string>
   <!--Menu-->
   <string name="menu_settings">Настройки</string>
   <string name="menu_waypointlist">Путевые точки</string>

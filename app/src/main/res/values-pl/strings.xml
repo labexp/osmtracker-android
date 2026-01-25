@@ -82,6 +82,8 @@
   <string name="osm_upload_bad_response">Serwer OSM zwrócił błąd ({0}) o treści {1}</string>
   <string name="osm_upload_unauthorized">Błąd uwierzytelniania. Czy chcesz usunąć zapisane ustawienia uwierzytelniania OSM?</string>
   <string name="osm_upload_sucess">Wysyłanie zakończone pomyślnie!</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload_cancel">Anulować</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Nagraj notkę 
 głosową</string>
@@ -98,6 +100,12 @@ głosową</string>
   <string name="delete_waypoint_confirm_dialog_msg">Usunąć ten punkt nawigacji?</string>
   <string name="delete_waypoint_confirm_bt_ok">Usuwać</string>
   <string name="delete_waypoint_confirm_bt_cancel">Anulować</string>
+  <!--osm Notes-->
+  <string name="edit_note_bt_update">Ratować</string>
+  <string name="edit_note_bt_delete">Usuwać</string>
+  <string name="edit_note_bt_cancel">Anulować</string>
+  <string name="delete_note_confirm_bt_ok">Usuwać</string>
+  <string name="delete_note_confirm_bt_cancel">Anulować</string>
   <!--Menu-->
   <string name="menu_settings">Ustawienia</string>
   <string name="menu_waypointlist">Punkty nawigacji</string>

@@ -99,6 +99,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ ")";
 
 	/**
+	 * SQL for creating table NOTE
+	 * @since 18 (version 2026.02)
+	 */
+	private static final String SQL_CREATE_TABLE_NOTE = ""
+		+ "create table " + TrackContentProvider.Schema.TBL_NOTE + " ("
+		+ TrackContentProvider.Schema.COL_ID + " integer primary key autoincrement,"
+		+ TrackContentProvider.Schema.COL_TRACK_ID + " integer not null,"
+		+ TrackContentProvider.Schema.COL_UUID + " text,"
+		+ TrackContentProvider.Schema.COL_LATITUDE + " double not null,"
+		+ TrackContentProvider.Schema.COL_LONGITUDE + " double not null,"
+		+ TrackContentProvider.Schema.COL_TIMESTAMP + " long not null,"
+		+ TrackContentProvider.Schema.COL_NAME + " text,"
+		+ TrackContentProvider.Schema.COL_OSM_UPLOAD_DATE + " long" // null indicates not yet uploaded
+	    + ")";
+
+	/**
 	 * Database name.
 	 */
 	public static final String DB_NAME = OSMTracker.class.getSimpleName();
@@ -123,9 +139,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * v16: add TBL_TRACKPOINT.COL_COMPASS, TBL_TRACKPOINT.COL_COMPASS_ACCURACY,
 	 *          TBL_WAYPOINT.COL_COMPASS and TBL_WAYPOINT.COL_COMPASS_ACCURACY
 	 * v17: add TBL_TRACKPOINT.COL_ATMOSPHERIC_PRESSURE and TBL_WAYPOINT.COL_ATMOSPHERIC_PRESSURE
+	 * v18: add TBL_NOTE
 	 *</pre>
 	 */
-	private static final int DB_VERSION = 17;
+	private static final int DB_VERSION = 18;
 
 	private Context context;
 
@@ -144,6 +161,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_CREATE_IDX_WAYPOINT_TRACK);
 		db.execSQL("drop table if exists " + TrackContentProvider.Schema.TBL_TRACK);
 		db.execSQL(SQL_CREATE_TABLE_TRACK);
+		db.execSQL("drop table if exists " + TrackContentProvider.Schema.TBL_NOTE);
+		db.execSQL(SQL_CREATE_TABLE_NOTE);
 	}
 
 	@Override
@@ -181,6 +200,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		case 16:
 			db.execSQL("alter table " + TrackContentProvider.Schema.TBL_TRACKPOINT + " add column " + TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null");
 			db.execSQL("alter table " + TrackContentProvider.Schema.TBL_WAYPOINT + " add column " + TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null");
+		case 17:
+			db.execSQL(SQL_CREATE_TABLE_NOTE);
 		}
 	}
 

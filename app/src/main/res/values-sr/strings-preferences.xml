@@ -64,7 +64,7 @@
   <string-array name="prefs_output_filename_keys">
     <item>Назив праћења</item>
     <item>Назив, почетни датум и време</item>
-    <item>Почетни датум и време, Назив</item>
+    <item>Почетни датум и време, назив</item>
     <item>Почетни датум и време</item>
   </string-array>
   <string name="prefs_output_accuracy">Тачност у GPX фајлу</string>
@@ -82,12 +82,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">Заборави OSM акредитиве и дозволе и присили OSM пратиоца да их затражи поново</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Мораћете поново да овластите OSM пратиоца да шаље праћења. Сигурни сте?</string>
   <string name="prefs_map_tile">Добављач поља мапе</string>
-  <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Без усмерења</item>
     <item>У коментару</item>

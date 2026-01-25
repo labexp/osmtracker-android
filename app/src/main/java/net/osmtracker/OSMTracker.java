@@ -24,6 +24,7 @@ public class OSMTracker {
 		public final static String KEY_GPS_LOGGING_INTERVAL = "gps.logging.interval";
 		public final static String KEY_GPS_LOGGING_MIN_DISTANCE = "gps.logging.min_distance";
 		public final static String KEY_USE_BAROMETER = "gpx.use_barometer";
+		public final static String KEY_USE_NOTES = "gpx.notes";
 		public final static String KEY_OUTPUT_FILENAME = "gpx.filename";
 		public final static String KEY_OUTPUT_FILENAME_LABEL  = "gpx.filename.label";
 		public final static String KEY_OUTPUT_ACCURACY = "gpx.accuracy";
@@ -40,6 +41,7 @@ public class OSMTracker {
 		public final static String KEY_UI_MAP_TILE = "ui.map.tile";
 		public final static String KEY_SOUND_ENABLED = "sound_enabled";
 		public final static String KEY_UI_ORIENTATION = "ui.orientation";
+		public final static String KEY_OSM_TRACK_VISIBILITY = "osm.track.visibility";
 		public final static String KEY_OSM_OAUTH2_ACCESSTOKEN = "osm.oauth2.accesstoken";
 		public final static String KEY_OSM_OAUTH_CLEAR_DATA = "osm.oauth.clear-data";
 
@@ -60,6 +62,7 @@ public class OSMTracker {
 		public final static String VAL_GPS_LOGGING_INTERVAL = "0";
 		public final static String VAL_GPS_LOGGING_MIN_DISTANCE = "0";
 		public final static boolean VAL_USE_BAROMETER = false;
+		public final static String VAL_USE_NOTES = "both";
 		
 		public final static String VAL_OUTPUT_FILENAME_NAME = "name";
 		public final static String VAL_OUTPUT_FILENAME_NAME_DATE = "name_date";
@@ -90,6 +93,8 @@ public class OSMTracker {
 		public final static boolean VAL_UI_DISPLAYTRACK_OSM = false;
 		public final static boolean VAL_UI_DISPLAY_KEEP_ON = true;
 		public final static boolean VAL_SOUND_ENABLED = true;
+		// Matches Track.OSMVisibility.Identifiable;
+		public final static String VAL_OSM_TRACK_VISIBILITY = "Identifiable";
 		public final static String VAL_UI_ORIENTATION_NONE = "none";
 		public final static String VAL_UI_ORIENTATION_PORTRAIT = "portrait";
 		public final static String VAL_UI_ORIENTATION_LANDSCAPE = "landscape";
@@ -128,7 +133,16 @@ public class OSMTracker {
 	 * Intent for deleting a previously tracked waypoint
 	 */
 	public final static String INTENT_DELETE_WP = OSMTracker.PACKAGE_NAME + ".intent.DELETE_WP";
-	
+
+	/**
+	 * Intent for tracking a note
+	 */
+	public final static String INTENT_TRACK_NOTE = OSMTracker.PACKAGE_NAME + ".intent.TRACK_NOTE";
+	/**
+	 * Intent for updating a previously tracked waypoint
+	 */
+	public final static String INTENT_UPDATE_NOTE = OSMTracker.PACKAGE_NAME + ".intent.UPDATE_NOTE";
+
 	/**
 	 * Intent to start tracking
 	 */
