@@ -2,11 +2,12 @@ package net.osmtracker.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.activity.AvailableLayouts;
-import net.osmtracker.activity.Preferences;
+import net.osmtracker.db.DataHelper;
 import net.osmtracker.layout.GetStringResponseTask;
 
 import java.io.BufferedReader;
@@ -32,7 +33,7 @@ public class CustomLayoutsUtils {
      */
     public static String convertFileName(String fileName) {
         //Remove de file extension
-        String subname = fileName.replace(Preferences.LAYOUT_FILE_EXTENSION,"");
+        String subname = fileName.replace(DataHelper.LAYOUT_FILE_EXTENSION,"");
 
         //Check if it has iso:
         if(subname.matches("\\w+_..")){
@@ -49,7 +50,7 @@ public class CustomLayoutsUtils {
      * @return Layout filename.
      */
     public static String unconvertFileName(String representation){
-        return representation.replace(" ","_") + Preferences.LAYOUT_FILE_EXTENSION;
+        return representation.replace(" ","_") + DataHelper.LAYOUT_FILE_EXTENSION;
     }
 
     /**

@@ -6,8 +6,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -123,7 +124,6 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 			DataHelper.setTrackUploadDate(trackId, System.currentTimeMillis(), activity.getContentResolver());
 			
 			new AlertDialog.Builder(activity)
-				.setTitle(android.R.string.dialog_alert_title)
 				.setIcon(android.R.drawable.ic_dialog_info)
 				.setMessage(R.string.osm_upload_sucess)
 				.setCancelable(true)

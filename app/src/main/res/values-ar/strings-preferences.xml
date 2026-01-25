@@ -76,12 +76,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">ننسى بيانات اعتماد OSM والأذونات وأجبر OSMTracker على طلبها مرة أخرى</string>
   <string name="prefs_osm_clear_oauth_data_dialog">لابد من السماح لـOSMTracker برفع المسارات مرة أخرى. هل أنت متأكد؟</string>
   <string name="prefs_map_tile">مزود الصور المتجانبة للخريطة</string>
-  <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>خريطة الدراجات</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>لا شيء</item>
     <item>في التعليق</item>

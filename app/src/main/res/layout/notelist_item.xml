@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="72dp"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/notelist_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:text="{name}"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/holo_green_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/notelist_item_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:gravity="start"
+        android:orientation="horizontal"
+        android:text="{location}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notelist_item_name" />
+
+    <TextView
+        android:id="@+id/notelist_item_timestamp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="{timestamp}"
+        android:gravity="end"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/notelist_item_name"
+        app:layout_constraintLeft_toRightOf="@id/notelist_item_location"/>
+
+    <ImageView
+        android:id="@+id/notelist_item_upload_status_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@null"
+        android:contentDescription="@string/acc.upload_status"
+        android:duplicateParentState="false"
+        android:padding="2dp"
+        android:src="@android:drawable/stat_sys_upload_done"
+        android:stateListAnimator="@null"
+        app:layout_constraintBaseline_toBaselineOf="@id/notelist_item_name"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

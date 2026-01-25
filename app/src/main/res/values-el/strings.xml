@@ -83,6 +83,8 @@
   <string name="osm_upload_bad_response">Ο εξυπηρετητής OSM απέδωσε σφάλμα: ({0}) μήνυμα {1}</string>
   <string name="osm_upload_unauthorized">Σφάλμα επαλήθευσης. Θελε να εκκαθαρίσετε τα αποθηκευμένα πιστοποιητικά για το OSM;</string>
   <string name="osm_upload_sucess">Αποστολή στο OpenStreetMap επιτυχής</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload_cancel">Ακύρωση</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Ηχογράφηση</string>
   <string name="gpsstatus_record_stillimage">Φωτογράφιση</string>
@@ -94,6 +96,12 @@
   <string name="edit_waypoint_bt_cancel">Ακύρωση</string>
   <string name="delete_waypoint_confirm_bt_ok">Διαγραφή</string>
   <string name="delete_waypoint_confirm_bt_cancel">Ακύρωση</string>
+  <!--osm Notes-->
+  <string name="edit_note_bt_update">Αποθήκευση</string>
+  <string name="edit_note_bt_delete">Διαγραφή</string>
+  <string name="edit_note_bt_cancel">Ακύρωση</string>
+  <string name="delete_note_confirm_bt_ok">Διαγραφή</string>
+  <string name="delete_note_confirm_bt_cancel">Ακύρωση</string>
   <!--Menu-->
   <string name="menu_settings">Ρυθμίσεις</string>
   <string name="menu_waypointlist">Σημεία</string>

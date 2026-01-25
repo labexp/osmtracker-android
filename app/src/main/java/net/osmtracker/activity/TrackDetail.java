@@ -24,10 +24,10 @@ import android.database.Cursor;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import android.util.Log;
+import androidx.preference.PreferenceManager;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -74,6 +74,8 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 
 	/** Does this track have any waypoints?  If true, underline Waypoint count in the list. */
 	private boolean trackHasWaypoints = false;
+	// Does this track have any notes?  If true, underline Notes count in the list.
+	private boolean trackHasNotes = false;
 
 	/**
 	 * List with track info
@@ -129,7 +131,7 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 			return;  // <--- Early return ---
 		}
 
-		// Bind WP count, TP count, start date, etc.
+		// Bind WP count, TP count, Note count, start date, etc.
 		// Fill name-field only if empty (in case changed by user/restored by onRestoreInstanceState) 
 		Track t = Track.build(trackId, cursor, cr, true);
 
@@ -151,6 +153,14 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		map = new HashMap<String, String>();
 		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_trackpoints_count));
 		map.put(ITEM_VALUE, Integer.toString(t.getTpCount()));
+		data.add(map);
+
+		// Notes count
+		final int notesCount = t.getNoteCount();
+		trackHasNotes = (notesCount > 0);
+		map = new HashMap<String, String>();
+		map.put(ITEM_KEY, getResources().getString(R.string.trackmgr_notes_count));
+		map.put(ITEM_VALUE, Integer.toString(t.getNoteCount()));
 		data.add(map);
 
 		// Start date
@@ -335,22 +345,34 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 	}
 	
 	/**
-	 * Handle clicks on list items; for Waypoint count, show this track's list of waypoints ({@link WaypointList}).
+	 * Handle clicks on list items; for Waypoint count and note count, show this track's list of
+	 * waypoints ({@link WaypointList}) or notes ({@link NoteList}).
 	 * Ignore all other clicks.
 	 * @param position  Item number in the list; this method assumes Waypoint count is position 0 (first item).
 	 */
 	public void onItemClick(AdapterView<?> parent, View view, final int position, final long rowid) {
-		if (position != WP_COUNT_INDEX) {
-			return;
-		}
+		// Get the Map associated with the clicked row
+		Map<String, String> clickedItem;
+		clickedItem = (Map<String, String>) parent.getItemAtPosition(position);
 
-		Intent i = new Intent(this, WaypointList.class);
-		i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
-		startActivity(i);
+		if (clickedItem != null) {
+			String key = clickedItem.get(ITEM_KEY);
+
+			// You can now logic based on the text if positions are dynamic
+			if (getString(R.string.trackmgr_waypoints_count).equals(key)) {
+				Intent i = new Intent(this, WaypointList.class);
+				i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
+				startActivity(i);
+			} else if (getString(R.string.trackmgr_notes_count).equals(key)) {
+				Intent i = new Intent(this, NoteList.class);
+				i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
+				startActivity(i);
+			}
+		}
 	}
 	
 	/**
-	 * Extend SimpleAdapter so we can underline the clickable Waypoint count.
+	 * Extend SimpleAdapter so we can underline the clickable Waypoint and Note count.
 	 * Always uses <tt>R.layout.trackdetail_item</tt> as its list item resource.
 	 */
 	private class TrackDetailSimpleAdapter extends SimpleAdapter
@@ -365,21 +387,32 @@ public class TrackDetail extends TrackDetailEditor implements AdapterView.OnItem
 		 * Get the layout for this list item. (<tt>trackdetail_item.xml</tt>)
 		 * @param position  Item number in the list
 		 */
-		public View getView(final int position, View convertView, ViewGroup parent)
-		{
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			View v = super.getView(position, convertView, parent);
 			if (! (v instanceof ViewGroup))
 				return v;  // should not happen; v is trackdetail_item, a LinearLayout
 
-			final boolean wantsUnderline = ((position == WP_COUNT_INDEX) && trackHasWaypoints);
+			// Get the data for the current row
+			Map<String, String> item = (Map<String, String>) getItem(position);
+			String key = item.get(ITEM_KEY);
+			boolean wantsUnderline = false;
+
+			// Check the key to decide if we should underline
+			if (getString(R.string.trackmgr_waypoints_count).equals(key) && trackHasWaypoints) {
+				wantsUnderline = trackHasWaypoints;
+			} else if (getString(R.string.trackmgr_notes_count).equals(key) && trackHasNotes) {
+				wantsUnderline = trackHasNotes;
+			}
+
+
 			View vi = ((ViewGroup) v).findViewById(R.id.trackdetail_item_key);
-			if ((vi != null) && (vi instanceof TextView))
-			{
-				final int flags = ((TextView) vi).getPaintFlags();
+			if ((vi != null) && (vi instanceof TextView)) {
+				TextView tv = (TextView) vi;
+				final int flags = tv.getPaintFlags();
 				if (wantsUnderline)
-					((TextView) vi).setPaintFlags(flags | Paint.UNDERLINE_TEXT_FLAG);
+					tv.setPaintFlags(flags | Paint.UNDERLINE_TEXT_FLAG);
 				else
-					((TextView) vi).setPaintFlags(flags & ~Paint.UNDERLINE_TEXT_FLAG);
+					tv.setPaintFlags(flags & ~Paint.UNDERLINE_TEXT_FLAG);
 			}
 			return v;
 		}

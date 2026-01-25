@@ -1,241 +1,359 @@
 package net.osmtracker.activity;
 
-import java.io.File;
-import java.io.FilenameFilter;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.preference.EditTextPreference;
+import androidx.preference.EditTextPreferenceDialogFragmentCompat;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.os.Environment;
-
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-
+import java.io.File;
+import java.util.Objects;
 
 /**
- * Manages preferences screen.
- * 
- * @author Nicolas Guillaumin
- *
+ * Manages preferences screen
  */
-public class Preferences extends PreferenceActivity {
-
-	@SuppressWarnings("unused")
-	private static final String TAG = Preferences.class.getSimpleName();
-	
-	/**
-	 * Directory containing user layouts, relative to storage dir.
-	 */
-	public static final String LAYOUTS_SUBDIR = "layouts";
-	
-	/**
-	 * File extension for layout files
-	 */
-
-	public static final String LAYOUT_FILE_EXTENSION = ".xml";
-
-	/**
-	 * The suffix that must be added to the layout's name for getting its icons directory
-	 * Example: water_supply       <- layout name
-	 *          water_supply_icons <- icon directory
-	 */
-
-	public static final String ICONS_DIR_SUFFIX = "_icons";
+public class Preferences extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.preferences);
-		ListView listView = getListView();
-		listView.setFitsSystemWindows(true);
-		listView.setClipToPadding(false);
-		listView.setPadding(0, 48, 0, 0);
+		setContentView(R.layout.settings_activity);
+		if (savedInstanceState == null) {
+			getSupportFragmentManager()
+					.beginTransaction()
+					.replace(R.id.settings, new SettingsFragment())
+					.commit();
+		}
+		ActionBar actionBar = getSupportActionBar();
+		if (actionBar != null) {
+			actionBar.setDisplayHomeAsUpEnabled(true);
+		}
+	}
 
-		// Set summary of some preferences to their actual values
-		// and register a change listener to set again the summary in case of change
-		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+	public static class SettingsFragment extends PreferenceFragmentCompat {
 
-		// Explicit execution of buttons presets window
-		Preference buttonLayoutPref = findPreference("prefs_ui_buttons_layout");
-		if (buttonLayoutPref != null) {
-			buttonLayoutPref.setOnPreferenceClickListener(preference -> {
-				Intent intent = new Intent(this, ButtonsPresets.class);
+		private static final String EXTRA_DEFAULT_VALUE = "DEFAULT_VALUE";
+
+		@Override
+		public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+			setPreferencesFromResource(R.xml.preferences, rootKey);
+			SharedPreferences prefs =
+					PreferenceManager.getDefaultSharedPreferences(requireContext());
+
+			// General settings
+			setupVoiceRecDuration();
+			// Notes
+			setupListPreference(
+					OSMTracker.Preferences.KEY_USE_NOTES,
+					getString(R.string.prefs_notes_summary)
+			);
+			// OSM track visibility
+			setupListPreference(
+					OSMTracker.Preferences.KEY_OSM_TRACK_VISIBILITY,
+					getString(R.string.prefs_osm_visibility_summary)
+			);
+			setupOSMAuthClearData(prefs);
+
+			// GPS Settings
+			//Open Android GPS Settings screen
+			setupPreferenceNavigation(
+					OSMTracker.Preferences.KEY_GPS_OSSETTINGS,
+					new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+			//GPSLogging Interval
+			setupEditTextNum(
+					OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL,
+					getString(R.string.prefs_gps_logging_interval_seconds),
+					getString(R.string.prefs_gps_logging_interval_summary),
+					getString(R.string.prefs_gps_logging_interval_empty),
+					OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL
+			);
+			//GPS Logging Min Distance
+			setupEditTextNum(
+					OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE,
+					getString(R.string.prefs_gps_logging_min_distance_meters),
+					getString(R.string.prefs_gps_logging_min_distance_summary),
+					getString(R.string.prefs_gps_logging_min_distance_empty),
+					OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE
+			);
+
+
+			// GPX Settings
+			setupStorageDirectory();
+			//Filename
+			setupListPreference(
+					OSMTracker.Preferences.KEY_OUTPUT_FILENAME,
+					getString(R.string.prefs_output_filename_summary)
+			);
+			//Accuracy
+			setupListPreference(
+					OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
+					getString(R.string.prefs_output_accuracy_summary)
+			);
+			//Compas Heading
+			setupListPreference(
+					OSMTracker.Preferences.KEY_OUTPUT_COMPASS,
+					getString(R.string.prefs_compass_heading_summary)
+			);
+
+			// User Interface Settings
+			// Camera
+			setupListPreference(
+					OSMTracker.Preferences.KEY_UI_PICTURE_SOURCE,
+					getString(R.string.prefs_ui_picture_source_summary)
+			);
+			// App Theme
+			setupListPreference(
+					OSMTracker.Preferences.KEY_UI_THEME,
+					getString(R.string.prefs_theme_summary)
+			);
+			//Explicit execution of buttons presets window
+			setupPreferenceNavigation(
+					OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
+					new Intent(requireContext(), ButtonsPresets.class));
+			//Map tile provider
+			setupListPreference(
+					OSMTracker.Preferences.KEY_UI_MAP_TILE,
+					getString(R.string.prefs_map_tile_summary)
+			);
+			// Screen Orientation
+			setupListPreference(
+					OSMTracker.Preferences.KEY_UI_ORIENTATION,
+					getString(R.string.prefs_ui_orientation_summary)
+			);
+
+		}
+
+		/**
+		 *
+		 */
+		private void setupStorageDirectory() {
+			// External storage directory
+			EditTextPreference storageDirPref = findPreference(
+					OSMTracker.Preferences.KEY_STORAGE_DIR);
+
+			if (storageDirPref == null) return;
+
+			// Set summary provider
+			storageDirPref.setSummaryProvider(preference -> {
+				String val = storageDirPref.getText();
+				if (TextUtils.isEmpty(val)) {
+					return OSMTracker.Preferences.VAL_STORAGE_DIR;
+				}
+				return val;
+			});
+
+			// Enforce the leading slash
+			storageDirPref.setOnPreferenceChangeListener((preference, newValue) -> {
+				String val = newValue.toString().trim();
+				// Empty
+				if (TextUtils.isEmpty(val)) {
+					Toast.makeText(requireContext(),
+							R.string.prefs_storage_dir_empty,
+							Toast.LENGTH_SHORT).show();
+					return false;
+				}
+
+				// Ensure there is always a leading slash
+				if (!val.startsWith(File.separator)) {
+					String fixedVal = File.separator + val;
+					((EditTextPreference) preference).setText(fixedVal);
+					return false; //ignores the user input
+				}
+
+				return true;
+			});
+		}
+
+		/**
+		 * Voice record duration: set a custom SummaryProvider
+		 */
+		private void setupVoiceRecDuration() {
+			Preference voiceRec = findPreference(OSMTracker.Preferences.KEY_VOICEREC_DURATION);
+
+			if (voiceRec == null) return;
+
+			voiceRec.setSummaryProvider(
+					(Preference.SummaryProvider<ListPreference>) preference -> {
+						// Return your combined string
+						return preference.getEntry() + " "
+								+ getString(R.string.prefs_voicerec_duration_seconds);
+					});
+		}
+
+		/**
+		 * Clear OSM data: Disable if there's no OSM data stored
+		 *
+		 * @param prefs SharedPreferences
+		 */
+		private void setupOSMAuthClearData(SharedPreferences prefs) {
+
+			Preference OSMAuthClearData = findPreference(
+					OSMTracker.Preferences.KEY_OSM_OAUTH_CLEAR_DATA);
+
+			if (OSMAuthClearData == null) return;
+
+			String tokenKey = OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN;
+			OSMAuthClearData.setEnabled(prefs.contains(tokenKey));
+			// Set a Click Listener to show the confirmation dialog
+			OSMAuthClearData.setOnPreferenceClickListener(preference -> {
+				new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+						.setTitle(preference.getTitle())
+						.setMessage(R.string.prefs_osm_clear_oauth_data_dialog)
+						.setIcon(preference.getIcon())
+						.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+							// User clicked OK: Clear the data
+							prefs.edit().remove(tokenKey).apply();
+							// Disable the button now that data is gone
+							preference.setEnabled(false);
+						})
+						.setNegativeButton(android.R.string.cancel, null)
+						.show();
+				return true;
+			});
+
+		}
+
+		/**
+		 * Setup a preference that launches an activity via Intent
+		 * @param preferenceKey The preference key
+		 * @param intent The intent to launch
+		 */
+		private void setupPreferenceNavigation(String preferenceKey, Intent intent) {
+			Preference preference = findPreference(preferenceKey);
+
+			if (preference == null) return;
+
+			preference.setOnPreferenceClickListener(p -> {
 				startActivity(intent);
 				return true;
 			});
 		}
 
-		// External storage directory
-		EditTextPreference storageDirPref = (EditTextPreference) findPreference(OSMTracker.Preferences.KEY_STORAGE_DIR);
-		storageDirPref.setSummary(prefs.getString(OSMTracker.Preferences.KEY_STORAGE_DIR, OSMTracker.Preferences.VAL_STORAGE_DIR));
-		storageDirPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			@Override
-			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				// Ensure there is always a leading slash
-				if (! ((String) newValue).startsWith(File.separator)) {
-					newValue = File.separator + (String) newValue;
+		/**
+		 *
+		 * @param preferenceKey   from OSMTracker.Preferences
+		 * @param valueSuffix     appended to the end of the value, shown in the summary
+		 * @param summary         static summary to be appended to the end of the summary
+		 * @param validationError in case of empty value
+		 * @param defaultValue	  value to be used for the reset button
+		 */
+		private void setupEditTextNum(String preferenceKey, String valueSuffix, String summary,
+									  String validationError, String defaultValue) {
+			EditTextPreference numInputPref = findPreference(preferenceKey);
+			if (numInputPref == null) return;
+
+			// Store default value in Extras so it can be retrieved by the Reset Dialog
+			numInputPref.getExtras().putString(EXTRA_DEFAULT_VALUE, defaultValue);
+
+			// Set input type to number and move cursor to the end
+			numInputPref.setOnBindEditTextListener(editText -> {
+				editText.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+				editText.setSelection(editText.getText().length());
+			});
+
+			// Set summary provider
+			numInputPref.setSummaryProvider(preference -> {
+				EditTextPreference editTextPreference = (EditTextPreference) preference;
+				return editTextPreference.getText() + " " + valueSuffix + ". " + summary;
+			});
+
+			numInputPref.setOnPreferenceChangeListener((preference, newValue) -> {
+				String val = (String) newValue;
+				if (TextUtils.isEmpty(val)) {
+					Toast.makeText(requireContext(), validationError, Toast.LENGTH_SHORT).show();
+					return false;
 				}
-
-				// Set summary with the directory value
-				preference.setSummary((String) newValue);
-
 				return true;
-			}
-		});
-
-		// Voice record duration
-		Preference pref = findPreference(OSMTracker.Preferences.KEY_VOICEREC_DURATION);
-		pref.setSummary(prefs.getString(OSMTracker.Preferences.KEY_VOICEREC_DURATION, OSMTracker.Preferences.VAL_VOICEREC_DURATION) + " " + getResources().getString(R.string.prefs_voicerec_duration_seconds));
-		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			@Override
-			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				// Set summary with the number of seconds, following by "seconds"
-				preference.setSummary(newValue+ " " + getResources().getString(R.string.prefs_voicerec_duration_seconds));
-				return true;
-			}
-		});
-
-		// Use barometer yes/no
-		pref = findPreference(OSMTracker.Preferences.KEY_USE_BAROMETER);
-		pref.setSummary(getResources().getString(R.string.prefs_use_barometer_summary));
-
-
-		// Update GPS logging interval summary to the current value
-		pref = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL);
-		pref.setSummary(
-				prefs.getString(OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)
-						+ " " + getResources().getString(R.string.prefs_gps_logging_interval_seconds)
-						+ ". " + getResources().getString(R.string.prefs_gps_logging_interval_summary));
-		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			@Override
-			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				// Set summary with the interval and "seconds"
-				preference.setSummary(newValue
-						+ " " + getResources().getString(R.string.prefs_gps_logging_interval_seconds)
-						+ ". " + getResources().getString(R.string.prefs_gps_logging_interval_summary));
-				return true;
-			}
-		});
-
-		// Update GPS min. distance summary to the current value
-		pref = findPreference(OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE);
-		pref.setSummary(
-				prefs.getString(OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE)
-						+ " " + getResources().getString(R.string.prefs_gps_logging_min_distance_meters)
-						+ ". " + getResources().getString(R.string.prefs_gps_logging_min_distance_summary));
-		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			@Override
-			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				// Set summary with the interval and "seconds"
-				preference.setSummary(newValue
-						+ " " + getResources().getString(R.string.prefs_gps_logging_min_distance_meters)
-						+ ". " + getResources().getString(R.string.prefs_gps_logging_min_distance_summary));
-				return true;
-			}
-		});
-
-		// don't allow the logging_min_distance to be empty
-		final EditText et = ((EditTextPreference)pref).getEditText();
-		final EditTextPreference etp = (EditTextPreference)pref;
-		et.addTextChangedListener(
-				new TextWatcher() {
-					@Override
-					public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-					}
-
-					@Override
-					public void onTextChanged(CharSequence s, int start, int before, int count) {
-						if (s.length() >= 0) {
-							try {
-								Button bt_ok = ((AlertDialog) etp.getDialog()).getButton(AlertDialog.BUTTON_POSITIVE);
-								if (s.length() == 0) {
-									bt_ok.setEnabled(false);
-								} else {
-									((AlertDialog) etp.getDialog()).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
-								}
-							} catch (Exception ex) {
-							}
-						}
-					}
-
-					@Override
-					public void afterTextChanged(Editable s) {
-					}
-				}
-		);
-
-		pref = findPreference(OSMTracker.Preferences.KEY_GPS_OSSETTINGS);
-		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-				return true;
-			}
-		});
-
-		// Button screen orientation option
-		pref = findPreference(OSMTracker.Preferences.KEY_UI_ORIENTATION);
-		ListPreference orientationListPreference = (ListPreference) pref;
-		String displayValueKey = prefs.getString(OSMTracker.Preferences.KEY_UI_ORIENTATION, OSMTracker.Preferences.VAL_UI_ORIENTATION);
-		int displayValueIndex = orientationListPreference.findIndexOfValue(displayValueKey);
-		String displayValue = orientationListPreference.getEntries()[displayValueIndex].toString();
-		orientationListPreference.setSummary(displayValue + ".\n" 
-				+ getResources().getString(R.string.prefs_ui_orientation_summary));
-
-		// Set a listener to update the preference display after a change is made
-		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			@Override
-			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				// Set summary with the display text of the item and a description of the preference
-				ListPreference orientationListPreference = (ListPreference)preference;
-				// Pull the display string from the list preference rather than simply using the key value
-				int newValueIndex = orientationListPreference.findIndexOfValue((String)newValue);
-				String newPreferenceDisplayValue = orientationListPreference.getEntries()[newValueIndex].toString();
-
-				preference.setSummary(newPreferenceDisplayValue
-						+ ".\n" + getResources().getString(R.string.prefs_ui_orientation_summary));
-				return true;
-			}
-		});
-
-		// Clear OSM data: Disable if there's no OSM data stored
-		pref = findPreference(OSMTracker.Preferences.KEY_OSM_OAUTH_CLEAR_DATA);
-		if (prefs.contains(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN)) {
-			pref.setEnabled(true);
-		} else {
-			pref.setEnabled(false);
+			});
 		}
-		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			@Override
-			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				// Clear data
-				Editor editor = prefs.edit();
-				editor.remove(OSMTracker.Preferences.KEY_OSM_OAUTH2_ACCESSTOKEN);
-				editor.commit();
 
-				preference.setEnabled(false);
-				return false;
+		@SuppressWarnings("deprecation") // Required to link the dialog to the fragment
+		@Override
+		public void onDisplayPreferenceDialog(Preference preference) {
+
+			// Retrieve the default value defined in extras.
+			// If null, it means this preference doesn't support the reset feature.
+			// Fallback to the default dialog behavior.
+			String defaultValue = preference.getExtras().getString(EXTRA_DEFAULT_VALUE);
+			if (defaultValue == null) {
+				super.onDisplayPreferenceDialog(preference);
+				return;
 			}
-		});
+
+			// Create the standard dialog fragment
+			final EditTextPreferenceDialogFragmentCompat dialogFragment =
+					EditTextPreferenceDialogFragmentCompat.newInstance(preference.getKey());
+			dialogFragment.setTargetFragment(this, 0);
+			dialogFragment.show(
+					getParentFragmentManager(),
+					"androidx.preference.PreferenceFragment.DIALOG");
+
+			// Inject the button after the dialog is shown
+			getParentFragmentManager().registerFragmentLifecycleCallbacks(
+					new FragmentManager.FragmentLifecycleCallbacks() {
+				@Override
+				public void onFragmentStarted(
+						@androidx.annotation.NonNull FragmentManager fm,
+						@androidx.annotation.NonNull androidx.fragment.app.Fragment f) {
+					if (f == dialogFragment) {
+						android.app.Dialog dialog = dialogFragment.getDialog();
+						if (dialog instanceof androidx.appcompat.app.AlertDialog alertDialog) {
+
+							// Configure the Neutral Button for reset default value
+							Button btnReset = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+							btnReset.setText(R.string.prefs_reset_default_value);
+							btnReset.setVisibility(android.view.View.VISIBLE);
+
+							btnReset.setOnClickListener(v -> {
+								if (preference instanceof EditTextPreference) {
+									((EditTextPreference) preference).setText(defaultValue);
+									alertDialog.dismiss();
+								}
+							});
+						}
+						// Cleanup
+						getParentFragmentManager().unregisterFragmentLifecycleCallbacks(this);
+					}
+				}
+			}, false);
+		}
+
+
+		/**
+		 * Setup a ListPreference with a custom two lines summary, displays the selected entry
+		 *  on the first line, and the static summary on the second line.
+		 *
+		 * @param preferenceKey preference identifier
+		 * @param staticSummary text to show on the second line
+		 */
+		private void setupListPreference(String preferenceKey, String staticSummary) {
+			ListPreference listPref = findPreference(preferenceKey);
+
+			if (listPref == null) return;
+
+			listPref.setSummaryProvider(preference -> {
+				ListPreference lp = (ListPreference) preference;
+				CharSequence entry = lp.getEntry();
+				// Null check: entry might be null if no value is selected
+				String displayValue = Objects.requireNonNull(entry).toString();
+				return displayValue + ".\n" + staticSummary;
+			});
+		}
 
 	}
-	
 }

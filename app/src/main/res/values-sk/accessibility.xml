@@ -5,6 +5,7 @@
   <!--Zoom in/out in map view-->
   <string name="acc.zoom_in">Priblížiť</string>
   <string name="acc.zoom_out">Oddialiť</string>
+  <string name="acc.zoom_center">Priblížiť na stred</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">Indikátor sily signálu satelitov</string>
   <string name="acc.record_indicator">Indikátor prebiehajúceho záznamu</string>

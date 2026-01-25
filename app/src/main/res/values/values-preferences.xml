@@ -44,14 +44,28 @@
 	</string-array>
 	
 	<string-array name="prefs_map_tile_values">
-		<item>MAPNIK</item>
-		<item>CYCLEMAP</item>
-		<item>MAPQUESTOSM</item>
+		<item>Mapnik</item>
+		<item>CyclOSM</item>
+		<item>OpenTopoMap</item>
 	</string-array>
+
 	<string-array name="prefs_compass_heading_values">
-		<item >none</item>
-		<item >comment</item>
-		<item >extension</item>
+		<item>none</item>
+		<item>comment</item>
+		<item>extension</item>
 	</string-array>
+
+    <string-array name="prefs_osm_visibility_values" translatable="false">
+        <item>Private</item>        <!-- Matches Track.OSMVisibility.Private -->
+        <item>Trackable</item>      <!-- Matches Track.OSMVisibility.Trackable -->
+        <item>Public</item>         <!-- Matches Track.OSMVisibility.Public -->
+        <item>Identifiable</item>   <!-- Matches Track.OSMVisibility.Identifiable -->
+    </string-array>
+
+    <string-array name="prefs_notes_values" translatable="false">
+        <item>waypoint</item>
+        <item>osm_note</item>
+        <item>both</item>
+    </string-array>
 
 </resources>

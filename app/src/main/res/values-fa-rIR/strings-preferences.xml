@@ -70,11 +70,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">اعتبارنامه‌ها و مجوزهای OSM را فراموش کن و OSMTracker را مجبور به درخواست دوبارهٔ آن‌ها کن</string>
   <string name="prefs_osm_clear_oauth_data_dialog">باید به OSMTracker مجوز بدهید تا دوباره بتوانید ردها را بارگذاری کنید. مطمئن هستید؟</string>
   <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>خالی</item>
     <item>در توضیحات</item>

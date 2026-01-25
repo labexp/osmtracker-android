@@ -82,6 +82,8 @@
   <string name="osm_upload_bad_response">O servidor do OSM retornou um erro: ({0}) message {1}</string>
   <string name="osm_upload_unauthorized">Erro de autorização. Gostaria de limpar as credencias do OpenStreetMaps salvas?</string>
   <string name="osm_upload_sucess">Enviado com sucesso para o OpenStreetMap</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload_cancel">Cancelar</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Gravar voz</string>
   <string name="gpsstatus_record_stillimage">Tirar foto</string>
@@ -97,6 +99,12 @@
   <string name="delete_waypoint_confirm_dialog_msg">Apagar este ponto de referência?</string>
   <string name="delete_waypoint_confirm_bt_ok">Apagar</string>
   <string name="delete_waypoint_confirm_bt_cancel">Cancelar</string>
+  <!--osm Notes-->
+  <string name="edit_note_bt_update">Salvar</string>
+  <string name="edit_note_bt_delete">Apagar</string>
+  <string name="edit_note_bt_cancel">Cancelar</string>
+  <string name="delete_note_confirm_bt_ok">Apagar</string>
+  <string name="delete_note_confirm_bt_cancel">Cancelar</string>
   <!--Menu-->
   <string name="menu_settings">Configurações</string>
   <string name="menu_waypointlist">Pontos de referência</string>

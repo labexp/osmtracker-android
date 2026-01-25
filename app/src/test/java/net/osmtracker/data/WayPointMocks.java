@@ -3,10 +3,6 @@ package net.osmtracker.data;
 
 import net.osmtracker.db.model.WayPoint;
 
-import java.util.Date;
-
-import static net.osmtracker.util.UnitTestUtils.createDateFrom;
-
 public class WayPointMocks {
 
     // WayPoints of gpx-test.gpx
