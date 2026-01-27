@@ -90,6 +90,15 @@ public class Preferences extends AppCompatActivity {
 					getString(R.string.prefs_gps_logging_min_distance_empty),
 					OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE
 			);
+			// GPS Minimum Accuracy
+			setupEditTextNum(
+					OSMTracker.Preferences.KEY_GPS_MIN_ACCURACY,
+					getString(R.string.prefs_gps_logging_min_distance_meters),
+					getString(R.string.prefs_gps_min_accuracy_summary),
+					getString(R.string.prefs_gps_logging_interval_empty),
+					OSMTracker.Preferences.VAL_GPS_MIN_ACCURACY
+			);
+
 
 
 			// GPX Settings

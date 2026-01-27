@@ -260,16 +260,17 @@ public class GPSLogger extends Service implements LocationListener {
 		use_barometer = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
 				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
 
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
-		try {
-			minAccuracy = Integer.parseInt(prefs.getString(OpenStreetMapConstants.PREFS_GPS_MIN_ACCURACY, "0"));
-		} catch (NumberFormatException e) {
-			minAccuracy = 0;
-		}
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
+
+        try {
+            minAccuracy = Integer.parseInt(prefs.getString(
+                    OSMTracker.Preferences.KEY_GPS_MIN_ACCURACY,
+                    OSMTracker.Preferences.VAL_GPS_MIN_ACCURACY));
+        } catch (NumberFormatException e) {
+            minAccuracy = Integer.parseInt(OSMTracker.Preferences.VAL_GPS_MIN_ACCURACY);
+        }
 		// minimum precision enabled 
-		if (minAccuracy > 0) {
-			isAccuracySatisfied = false;
-		} else {
+		if (minAccuracy == 0) {
 			isAccuracySatisfied = true;
 		}
 		// Register our broadcast receiver
