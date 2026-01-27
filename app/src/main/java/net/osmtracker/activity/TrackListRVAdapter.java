@@ -52,6 +52,7 @@ public class TrackListRVAdapter extends RecyclerView.Adapter<TrackListRVAdapter.
         private final TextView vNameOrStartDate;
         private final TextView vWps;
         private final TextView vTps;
+		private final TextView vNotesCount;
         private final ImageView vStatus;
         private final ImageView vUploadStatus;
 
@@ -62,6 +63,7 @@ public class TrackListRVAdapter extends RecyclerView.Adapter<TrackListRVAdapter.
             vNameOrStartDate = (TextView) view.findViewById(R.id.trackmgr_item_nameordate);
             vWps = (TextView) view.findViewById(R.id.trackmgr_item_wps);
             vTps = (TextView) view.findViewById(R.id.trackmgr_item_tps);
+			vNotesCount = view.findViewById(R.id.trackmgr_item_notes_count);
             vStatus = (ImageView) view.findViewById(R.id.trackmgr_item_statusicon);
             vUploadStatus = (ImageView) view.findViewById(R.id.trackmgr_item_upload_statusicon);
 
