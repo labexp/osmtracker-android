@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
+  <!--Preferences-->
   <string name="prefs">Configurações</string>
   <string name="prefs_gps">GPS</string>
   <string name="prefs_gps_os_settings">Configurações do GPS</string>
@@ -11,12 +12,21 @@
   <string name="prefs_gps_ignore_clock_summary">Ignorar relógio do GPS e usar relógio do Android para os registros de tempo</string>
   <string name="prefs_use_barometer">Log da pressão barométrica [hPa]</string>
   <string name="prefs_use_barometer_summary">Alternar requer o reinício da trilha</string>
+  <string name="prefs_notes">Notas de texto</string>
+  <string name="prefs_notes_summary">Escolha como os valores do botão Texto da Nota nos layouts serão salvos.</string>
+  <string-array name="prefs_notes_keys">
+    <item>Waypoint</item>
+    <item>Nota do OSM</item>
+    <item>Ambas</item>
+  </string-array>
   <string name="prefs_gps_logging_interval">Intervalo de registros do GPS</string>
   <string name="prefs_gps_logging_interval_summary">Use 0 para o menor possível (afeta a duração da bateria)</string>
   <string name="prefs_gps_logging_interval_seconds">segundos</string>
+  <string name="prefs_gps_logging_interval_empty">O intervalo de registro de GPS não pode estar vazio.</string>
   <string name="prefs_gps_logging_min_distance">Distância de registro do GPS</string>
   <string name="prefs_gps_logging_min_distance_summary">Distância mínima entre os pontos da trilha em metros, use 0 para o mais curto possível</string>
   <string name="prefs_gps_logging_min_distance_meters">metros</string>
+  <string name="prefs_gps_logging_min_distance_empty">A distância mínima entre os pontos de rastreamento não pode ser vazia.</string>
   <string name="prefs_ui">Interface do usuário</string>
   <string name="prefs_ui_picture_source">Fonte padrão das imagens</string>
   <string name="prefs_ui_picture_source_summary">Tirar foto com a câmera ou escolher da galeria?</string>
@@ -58,6 +68,7 @@
   <string name="prefs_output">Configurações GPX</string>
   <string name="prefs_storage_dir">Pasta do armazenamento nos documentos</string>
   <string name="prefs_storage_dir_hint">Terá efeito na próxima trilha (não na atual)</string>
+  <string name="prefs_storage_dir_empty">O valor da pasta de armazenamento não pode estar vazio.</string>
   <string name="prefs_output_one_dir_per_track">Uma pasta por trilha</string>
   <string name="prefs_output_one_dir_per_track_summary">Salvar cada trilha e arquivos associados em uma pasta própria</string>
   <string name="prefs_output_filename">Nome do arquivo para trilhas nomeadas</string>
@@ -76,6 +87,14 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">Preencha HDOP no GPX com um valor de aproximação de precisão</string>
   <string name="prefs_sound_enabled">Ativar som</string>
   <string name="prefs_sound_enabled_summary">Tocar som quando gravação de voz começa e termina</string>
+  <string name="prefs_osm_visibility">Visibilidade da trilha</string>
+  <string name="prefs_osm_visibility_summary">Visibilidade preferencial das trilhas enviadas para openstreetmap.org</string>
+  <string-array name="prefs_osm_visibility_keys">
+    <item>Privado</item>
+    <item>Rastreável</item>
+    <item>Público</item>
+    <item>Identificável</item>
+  </string-array>
   <string name="prefs_osm_clear_oauth_data">Redefinir autenticação OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Esquecer as credenciais e permissões OSM e forçar o OSMTracker a perguntar isso novamente</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Você vai ter que autorizar OSMTracker para carregar trilhas novamente. Tem certeza?</string>
@@ -88,4 +107,5 @@
   </string-array>
   <string name="prefs_compass_heading">Exportar cabeçalho da bússola</string>
   <string name="prefs_compass_heading_summary">Define se e como os dados da bússola devem ser exportados para o arquivo GPX</string>
+  <string name="prefs_reset_default_value">Redefinir valor padrão</string>
 </resources>
