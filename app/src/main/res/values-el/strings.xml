@@ -233,6 +233,7 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Καλωσήρθατε στο OSMTracker για Android™ 👋</string>
   <string name="app_intro_slide1_description">Αυτή η εφαρμοφή είναι δωρεάν λογισμικό το οποίο σέβεται της ελευθερία σας!</string>
+  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Καλή ιχνηλάτηση 🗺 😎</string>
   <string name="app_intro_slide2_description">Το OSMTracker για Android θα χρησιμοποιήσει την τοποθεσία σας GPS για να καταγράψει σημεία ίχνους και σημεία διαδρομής, ακόμη κι αν εφαρμογή τρέχει στο παρασκήνιο.\nΤα δεδομένα σας δεν χρησιμοποιούνται για την υποστήριξη διαφημίσεων.</string>
