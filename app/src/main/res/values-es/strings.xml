@@ -274,6 +274,7 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Bienvenido a OSMTracker para Android ™ 👋</string>
   <string name="app_intro_slide1_description">¡Esta aplicación es un software libre que respeta tu libertad!</string>
+  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Feliz trazado 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker para Android usará su ubicación GPS para registrar puntos de traza y puntos, incluso cuando la aplicación se está ejecutando en segundo plano.
