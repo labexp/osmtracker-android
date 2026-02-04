@@ -261,6 +261,7 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Välkommen till OSMTracker for Android™ 👋</string>
   <string name="app_intro_slide1_description">Den här appen är fri programvara som respekterar din frihet!</string>
+  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Lycka till med spårningen 🗺😎</string>
   <string name="app_intro_slide2_description">OSMTracker för Android kommer att använda din GPS-position för att spela in spårpunkter och vägpunkter, även när appen körs i bakgrunden.
