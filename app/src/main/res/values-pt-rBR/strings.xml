@@ -274,6 +274,7 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Bem-vindo ao OSMTracker para Android ™ 👋</string>
   <string name="app_intro_slide1_description">Este App é um software gratuito que respeita a sua liberdade!</string>
+  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Boas trilhas 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker para Android usará sua localização GPS para registrar trackpoints e waypoints, mesmo quando o aplicativo está sendo executado em segundo plano.
