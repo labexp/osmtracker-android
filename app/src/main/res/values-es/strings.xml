@@ -30,6 +30,7 @@
   <string name="trackmgr_tracklist">Lista de trazas:</string>
   <string name="trackmgr_waypoints_count">Puntos de ref.:</string>
   <string name="trackmgr_trackpoints_count">P. de traza:</string>
+  <string name="trackmgr_notes_count">Notas:</string>
   <string name="trackmgr_empty">Usted no tiene ninguna traza.</string>
   <string name="trackmgr_newtrack_hint">Presione para grabar una nueva traza.</string>
   <string name="trackmgr_newtrack_error">No se puede crear una nueva traza: {0}</string>
@@ -67,6 +68,7 @@
   <string name="trackdetail_description">Descripción: </string>
   <string name="trackdetail_tags">Etiquetas (delimitado por comas)</string>
   <string name="trackdetail_description_mandatory">Debe introducir una descripción</string>
+  <string name="trackdetail_visibility">Visibilidad</string>
   <string name="osm_visibility_private">Privado</string>
   <string name="osm_visibility_public">Público</string>
   <string name="osm_visibility_trackable">Trazable</string>
@@ -83,7 +85,13 @@
   <string name="osm_upload_unauthorized">Error de autorización. ¿Desea borrar las credenciales de OSM guardadas?</string>
   <string name="osm_upload_sucess">La subida a OpenStreetMap tuvo éxito</string>
   <!--OSM Notes Upload-->
+  <string name="osm_note_upload">Subir notas a OpenStreetMap</string>
+  <string name="osm_note_upload_error">Error al subir la nota</string>
+  <string name="osm_note_label">Nota de texto</string>
+  <string name="osm_note_upload_ok">Subir</string>
   <string name="osm_note_upload_cancel">Cancelar</string>
+  <string name="osm_note_footer">via %1$s %2$s</string>
+  <string name="osm_note_upload_unauthorized">Error de autorización. Si usted previamente otorgó permisos a la aplicación para subir trazas, debe limpiar sus credenciales salvadas para autorizar la aplicación a subir trazas y <b>notas</b>. ¿Le gustaría limpiar sus credenciales de OpenStreetMap salvadas?</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Grabar voz</string>
   <string name="gpsstatus_record_stillimage">Tomar foto</string>
@@ -100,11 +108,16 @@
   <string name="delete_waypoint_confirm_bt_ok">Eliminar</string>
   <string name="delete_waypoint_confirm_bt_cancel">Cancelar</string>
   <!--osm Notes-->
+  <string name="note_name_label">Texto/Nombre de la Nota</string>
   <string name="edit_note_bt_update">Guardar</string>
   <string name="edit_note_bt_delete">Eliminar</string>
   <string name="edit_note_bt_cancel">Cancelar</string>
+  <string name="delete_note_confirm_dialog_title">Eliminar nota</string>
+  <string name="delete_note_confirm_dialog_msg">¿Eliminar esta nota?</string>
   <string name="delete_note_confirm_bt_ok">Eliminar</string>
   <string name="delete_note_confirm_bt_cancel">Cancelar</string>
+  <string name="notelist">Lista de notas</string>
+  <string name="osm_note_bt_upload">Subir como nota de OSM</string>
   <!--Menu-->
   <string name="menu_settings">Configuración</string>
   <string name="menu_waypointlist">Puntos</string>
