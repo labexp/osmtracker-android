@@ -261,6 +261,7 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Добро пожаловать в OSMTracker для Android ™ 👋</string>
   <string name="app_intro_slide1_description">Это свободное приложение, уважающее вашу свободу!</string>
+  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Удачного трекинга 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker для Android будет использовать ваше местоположение по GPS для записи точек трека и путевых точек, даже если приложение работает в фоновом режиме.

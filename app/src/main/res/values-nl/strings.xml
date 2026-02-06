@@ -262,6 +262,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Welkom bij OSMTracker voor Android™ 👋</string>
   <string name="app_intro_slide1_description">Deze app is gratis software die uw vrijheid respecteert!</string>
+  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Veel plezier met tracken! 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker voor Android zal uw gps-locatie gebruiken om trajectpunten en referentiepunten op te nemen, zelfs wanneer de app op de achtergrond actief is.
