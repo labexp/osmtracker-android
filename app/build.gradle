@@ -15,7 +15,7 @@ android {
         multiDexEnabled true
 
         // Version code should be increased after each release
-        versionCode 71
+        versionCode 72
         versionName new Date().format('yyyy.MM.dd')
 
         testApplicationId "net.osmtracker.test"
