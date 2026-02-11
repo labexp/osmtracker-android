@@ -43,7 +43,7 @@
             android:id="@+id/github_username"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:layout_weight="70"
             android:gravity="center"/>
     </LinearLayout>
@@ -65,7 +65,7 @@
             android:id="@+id/repository_name"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:layout_weight="70"
             android:gravity="center"/>
     </LinearLayout>
@@ -87,7 +87,7 @@
             android:id="@+id/branch_name"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:layout_weight="70"
             android:gravity="center"/>
     </LinearLayout>

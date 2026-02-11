@@ -54,6 +54,7 @@ public class TracklistAdapter extends CursorAdapter {
 		TextView vNameOrStartDate = (TextView) v.findViewById(R.id.trackmgr_item_nameordate);
 		TextView vWps = (TextView) v.findViewById(R.id.trackmgr_item_wps);
 		TextView vTps = (TextView) v.findViewById(R.id.trackmgr_item_tps);
+		TextView vNotesCount = v.findViewById(R.id.trackmgr_item_notes_count);
 		ImageView vStatus = (ImageView) v.findViewById(R.id.trackmgr_item_statusicon);
 		ImageView vUploadStatus = (ImageView) v.findViewById(R.id.trackmgr_item_upload_statusicon);
 
@@ -86,10 +87,11 @@ public class TracklistAdapter extends CursorAdapter {
 		String strTrackId = Long.toString(trackId);
 		vId.setText(strTrackId);
 
-		// Bind WP count, TP count, name
+		// Bind WP count, TP count, Notes count, name
 		Track t = Track.build(trackId, cursor, context.getContentResolver(), false);
 		vTps.setText(Integer.toString(t.getTpCount()));
 		vWps.setText(Integer.toString(t.getWpCount()));
+		vNotesCount.setText(Integer.toString(t.getNoteCount()));
 		vNameOrStartDate.setText(t.getDisplayName());
 
 		return v;

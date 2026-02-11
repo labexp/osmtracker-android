@@ -20,11 +20,11 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import android.database.Cursor;
 
@@ -117,7 +117,7 @@ public class GPSLogger extends Service implements LocationListener {
 	private boolean newSeg = false;
 
 	/**
-	 * Receives Intent for way point tracking, and stop/start logging.
+	 * Receives Intent for way point and notes tracking, and stop/start logging.
 	 */
 	private BroadcastReceiver receiver = new BroadcastReceiver() {
 
@@ -170,6 +170,33 @@ public class GPSLogger extends Service implements LocationListener {
 					}
 					catch(NullPointerException ne){}
 					dataHelper.deleteWayPoint(uuid, filePath);
+				}
+			} else if (OSMTracker.INTENT_TRACK_NOTE.equals(intent.getAction())) {
+				// Track a note
+				Bundle extras = intent.getExtras();
+				if (extras != null) {
+					// because of the gps logging interval our last fix could be very old
+					// so we'll request the last known location from the gps provider
+					if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+						lastLocation = lmgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+						if (lastLocation != null) {
+							//TODO: CHECK THIS
+							long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
+							String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
+							String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
+
+							dataHelper.trackNote(trackId, lastLocation, name, uuid);
+						}
+					}
+				}
+			} else if (OSMTracker.INTENT_UPDATE_NOTE.equals(intent.getAction())) {
+				// Update an existing note
+				Bundle extras = intent.getExtras();
+				if (extras != null) {
+					long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
+					String uuid = extras.getString(OSMTracker.INTENT_KEY_UUID);
+					String name = extras.getString(OSMTracker.INTENT_KEY_NAME);
+					dataHelper.updateNote(trackId, uuid, name);
 				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction())) {
 				newSeg = true;
@@ -241,6 +268,8 @@ public class GPSLogger extends Service implements LocationListener {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(OSMTracker.INTENT_TRACK_WP);
 		filter.addAction(OSMTracker.INTENT_UPDATE_WP);
+		filter.addAction(OSMTracker.INTENT_TRACK_NOTE);
+		filter.addAction(OSMTracker.INTENT_UPDATE_NOTE);
 		filter.addAction(OSMTracker.INTENT_DELETE_WP);
 		filter.addAction(OSMTracker.INTENT_START_TRACKING);
 		filter.addAction(OSMTracker.INTENT_STOP_TRACKING);

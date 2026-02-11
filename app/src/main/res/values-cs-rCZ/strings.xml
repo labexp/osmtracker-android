@@ -195,6 +195,12 @@
   <string name="github_repository_settings_branch_name">Název oddělené větve:</string>
   <string name="github_repository_settings_valid_server">Úložiště na Github je platné</string>
   <string name="github_repository_settings_invalid_server">Github úložiště je neplatné</string>
+  <!--Upload to GitHub-->
+  <!--GitHubConfig-->
+  <!--GitHubUpload-->
+  <!--GitHubNewFork-->
+  <!--GitHubPullRequest-->
+  <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
   <string name="app_intro">OSMTracker pro Android™ Úvod</string>
   <!--Intro - slide1-->
@@ -203,4 +209,5 @@
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Šťastné trasování 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker pro Android použije vaši polohu GPS k záznamu trasových bodů a bodů cest, i když je aplikace spuštěna na pozadí. \nVaše data se nepoužívají k podpoře reklam.</string>
+  <string name="no_app_to_handle_file_type">Nebyla nalezena žádná aplikace k otevření tohoto souboru.</string>
 </resources>

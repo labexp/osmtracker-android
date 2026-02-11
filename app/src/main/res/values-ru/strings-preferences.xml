@@ -56,6 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">Отображать картооснову OpenStreetMap при отображении трека. Требует интернет-соединения</string>
   <string name="prefs_displaytrack_osm_summary_ask">Всегда показывать OpenStreetMap в фоне? Требуется подключение к сети.</string>
   <string name="prefs_output">Настройки GPX файлов</string>
+  <string name="prefs_storage_dir">Папка хранилища в документах</string>
   <string name="prefs_storage_dir_hint">Будет использоваться для записи следующего трека (не для текущего)</string>
   <string name="prefs_output_one_dir_per_track">Отдельная директория для трека</string>
   <string name="prefs_output_one_dir_per_track_summary">Сохранять каждый трек и связанные файлы в отдельную директорию</string>
@@ -67,6 +68,8 @@
     <item>Дата и время старта, Имя</item>
     <item>Дата и время старта</item>
   </string-array>
+  <string name="prefs_output_filename_label">Метка имени файла</string>
+  <string name="prefs_output_filename_label_summary">Эта метка будет добавлена в конец имени файла</string>
   <string name="prefs_output_accuracy">Точность в GPX файл</string>
   <string name="prefs_output_accuracy_summary">Записывать информацию о точности в GPX файл, в название точки, или отдельным тэгом</string>
   <string-array name="prefs_output_accuracy_keys">
@@ -82,12 +85,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">Удалить учетные данные доступа к OSM и задать OSMTracker запросить их снова.</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Нужно будет заново авторизовать OSMTracker, чтобы закачивать треки. Вы уверены?</string>
   <string name="prefs_map_tile">Поставщик тайлов карт</string>
-  <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Нет</item>
     <item>в комментарии</item>

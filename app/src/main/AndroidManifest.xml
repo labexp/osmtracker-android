@@ -26,7 +26,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/HighContrast"
-        android:requestLegacyExternalStorage="true">
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true" >
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -51,10 +52,16 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".activity.Preferences"
-            android:label="@string/prefs" />
+            android:exported="false"
+            android:label="@string/prefs"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.WaypointList"
             android:label="@string/wplist" />
+        <activity
+            android:name=".activity.NoteList"
+            android:theme="@style/AppTheme"
+            android:label="@string/notelist" />
         <activity
             android:name=".activity.TrackDetail"
             android:label="@string/trackdetail" />
@@ -63,6 +70,8 @@
             android:label="@string/osm_upload"
             android:exported="true">
         </activity>
+        <activity android:name=".activity.OpenStreetMapNotesUpload"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name="net.openid.appauth.RedirectUriReceiverActivity"
             tools:node="replace" android:exported="true">
@@ -74,6 +83,21 @@
                     android:scheme="osmtracker"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.GitHubUpload"
+            android:label="Github" />
+        <activity
+            android:name=".activity.GitHubConfig"
+            android:label="Github" />
+        <activity
+            android:name=".activity.GitHubNewRepo"
+            android:label="Github" />
+        <activity
+            android:name=".activity.GitHubNewFork"
+            android:label="Github" />
+        <activity
+            android:name=".activity.GitHubPullRequest"
+            android:label="Github" />
         <activity
             android:name=".activity.About"
             android:label="@string/about" />

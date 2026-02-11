@@ -5,6 +5,7 @@
   <!--Zoom in/out in map view-->
   <string name="acc.zoom_in">Μεγέθυνση</string>
   <string name="acc.zoom_out">Σμίκρυνση</string>
+  <string name="acc.zoom_center">Κέντρο εστίασης</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">Δείκτης ισχύος σήματος δορυφόρου</string>
   <string name="acc.record_indicator">Δείκτης εγγραφής σε εξέλιξη</string>

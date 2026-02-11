@@ -3,80 +3,69 @@ package net.osmtracker.layout;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 import net.osmtracker.OSMTracker;
-import net.osmtracker.activity.Preferences;
-import net.osmtracker.util.UnitTestUtils;
+import net.osmtracker.db.DataHelper;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowEnvironment;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({PreferenceManager.class, Environment.class, Log.class})
-@PowerMockIgnore("jdk.internal.reflect.*")
+import androidx.preference.PreferenceManager;
+import androidx.test.core.app.ApplicationProvider;
+
+@RunWith(RobolectricTestRunner.class)
+@Config(sdk = 25)
 public class DownloadCustomLayoutTaskTest {
 
     DownloadCustomLayoutTask downloadCustomLayoutTask;
+	private Context context;
 
-    Context mockContext;
-    SharedPreferences mockPrefs;
-
-    //FIXME: layout name and iso are coded.
     String layoutName = "abc";
     String iso = "en";
     String expectedLayoutFilename = "abc_en.xml";
 
 
-    public void setupMocks() {
-        // Create SharedPreferences mock
-        mockPrefs = mock(SharedPreferences.class);
-        UnitTestUtils.setLayoutsTestingRepository(mockPrefs);
+	@Before
+	public void setUp() {
+		context = ApplicationProvider.getApplicationContext();
 
-        // Create PreferenceManager mock
-        mockContext = mock(Context.class);
-        mockStatic(PreferenceManager.class);
-        when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
-        // external storage is writeable
-        mockStatic(Environment.class);
-        when(Environment.getExternalStorageState()).thenReturn(Environment.MEDIA_MOUNTED);
-        // log
-        mockStatic(Log.class);
+		// Setup real SharedPreferences logic
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		prefs.edit()
+				.putString(OSMTracker.Preferences.KEY_GITHUB_USERNAME, "labexp")
+				.putString(OSMTracker.Preferences.KEY_REPOSITORY_NAME, "osmtracker-android-layouts")
+				.putString(OSMTracker.Preferences.KEY_BRANCH_NAME, "for_tests")
+				.apply();
 
-        downloadCustomLayoutTask = new DownloadCustomLayoutTask(mockContext);
-    }
+		// Setup Environment Shadow
+		ShadowEnvironment.setExternalStorageState(Environment.MEDIA_MOUNTED);
 
-    @Test
-    public void downloadLayoutWithoutIconsTest() {
-        setupMocks();
+		downloadCustomLayoutTask = new DownloadCustomLayoutTask(context);
+	}
 
-        boolean result = downloadCustomLayoutTask.downloadLayout(layoutName,iso);
-        assertEquals(true, result);
+	@Test
+	public void downloadLayoutWithoutIconsTest() {
+		boolean result = downloadCustomLayoutTask.downloadLayout(layoutName, iso);
+		assertTrue("Download should return true", result);
 
-        // Check if layout was downloaded at .../osmtracker/layouts/abc_en.xml
-        String expectedLayoutFilePath = mockContext.getExternalFilesDir(null)
-                + OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator
-                + Preferences.LAYOUTS_SUBDIR + File.separator
-                + expectedLayoutFilename;
+		// Check if layout was downloaded at .../osmtracker/layouts/abc_en.xml
+		File layoutsDir = new File(context.getExternalFilesDir(null),
+				OSMTracker.Preferences.VAL_STORAGE_DIR + File.separator + DataHelper.LAYOUTS_SUBDIR);
 
-        System.out.println(expectedLayoutFilePath);
-        File layoutFile = new File(expectedLayoutFilePath);
-        assertTrue(layoutFile.exists());
+		File layoutFile = new File(layoutsDir, expectedLayoutFilename);
 
-        // Add N icons to abc layout and check if the N icons are downloaded
-        // at ... /osmtracker/layouts/abc_icons.
+		System.out.println("Expected path: " + layoutFile.getAbsolutePath());
+		assertTrue("Layout file should exist at path", layoutFile.exists());
 
-    }
+		// Add N icons to abc layout and check if the N icons are downloaded
+		// at ... /osmtracker/layouts/abc_icons.
+	}
 }

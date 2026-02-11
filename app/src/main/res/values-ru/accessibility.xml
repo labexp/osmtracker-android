@@ -5,6 +5,7 @@
   <!--Zoom in/out in map view-->
   <string name="acc.zoom_in">Приблизить</string>
   <string name="acc.zoom_out">Отдалить</string>
+  <string name="acc.zoom_center">Приблизить к центру</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">Индикатор уровня спутникового сигнала</string>
   <string name="acc.record_indicator">Индикатор записи</string>

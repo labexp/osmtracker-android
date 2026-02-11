@@ -8,9 +8,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.location.Location;
 import android.net.Uri;
-import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.db.model.Track;
@@ -54,6 +54,12 @@ public class DataHelper {
 	public static final String EXTENSION_ZIP = ".zip";
 
 	/**
+	 * File extension for layout files
+	 */
+
+	public static final String LAYOUT_FILE_EXTENSION = ".xml";
+
+	/**
 	 * GPX Files MIME standard for sharing
 	 */
 	public static final String MIME_TYPE_GPX = "application/gpx+xml";
@@ -67,6 +73,19 @@ public class DataHelper {
 	 * Image Files MIME
 	 */
 	public static final String MIME_TYPE_IMAGE = "image/*";
+
+	/**
+	 * Directory containing user layouts, relative to storage dir.
+	 */
+	public static final String LAYOUTS_SUBDIR = "layouts";
+
+	/**
+	 * The suffix that must be added to the layout's name for getting its icons directory
+	 * Example: water_supply       <- layout name
+	 *          water_supply_icons <- icon directory
+	 */
+
+	public static final String LAYOUTS_ICONS_DIR_SUFFIX = "_icons";
 
 	/**
 	 * APP sign plus FileProvider = authority
@@ -290,7 +309,76 @@ public class DataHelper {
 			Log.v(TAG, "File deleted: " + filepath);
 		}
 	}
-	
+
+	/**
+	 * Tracks a note point with link
+	 *
+	 * @param trackId 	Id of the track
+	 * @param location 	Location of note
+	 * @param name		text of the note
+	 * @param uuid		Unique id of the note
+	 */
+	public void trackNote(long trackId, Location location, String name, String uuid) {
+		Log.d(TAG, "Tracking note '" + name + "', track=" + trackId + ", uuid=" + uuid
+				+ ", nbSatellites=" + location.getExtras().getInt("satellites")
+				+ ", location=" + location);
+
+		ContentValues values = new ContentValues();
+		values.put(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
+		values.put(TrackContentProvider.Schema.COL_LATITUDE, location.getLatitude());
+		values.put(TrackContentProvider.Schema.COL_LONGITUDE, location.getLongitude());
+		values.put(TrackContentProvider.Schema.COL_NAME, name);
+
+		if (uuid != null) {
+			values.put(TrackContentProvider.Schema.COL_UUID, uuid);
+		}
+
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		if (prefs.getBoolean(OSMTracker.Preferences.KEY_GPS_IGNORE_CLOCK, OSMTracker.Preferences.VAL_GPS_IGNORE_CLOCK)) {
+			// Use OS clock
+			values.put(TrackContentProvider.Schema.COL_TIMESTAMP, System.currentTimeMillis());
+		} else {
+			// Use GPS clock
+			values.put(TrackContentProvider.Schema.COL_TIMESTAMP, location.getTime());
+		}
+
+		Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+		contentResolver.insert(Uri.withAppendedPath(trackUri,
+				TrackContentProvider.Schema.TBL_NOTE + "s"), values);
+	}
+
+	/**
+	 * Updates a note
+	 *
+	 * @param trackId 	Id of the track
+	 * @param uuid 		Unique ID of the target note
+	 * @param name		New text value for the note
+	 */
+	public void updateNote(long trackId, String uuid, String name) {
+		Log.v(TAG, "Updating note with uuid '" + uuid + "'. New values: name='" + name);
+		if (uuid != null) {
+			ContentValues values = new ContentValues();
+			if (name != null) {
+				values.put(TrackContentProvider.Schema.COL_NAME, name);
+			}
+
+			Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
+			contentResolver.update(Uri.withAppendedPath(trackUri, TrackContentProvider.Schema.TBL_NOTE + "s"), values,
+					"uuid = ?", new String[] { uuid });
+		}
+	}
+
+	/**
+	 * Deletes a note
+	 *
+	 * @param uuid Unique ID of the target waypoint
+	 */
+	public void deleteNote(String uuid) {
+		Log.v(TAG, "Deleting note with uuid '" + uuid);
+		if (uuid != null) {
+			contentResolver.delete(Uri.withAppendedPath(TrackContentProvider.CONTENT_URI_NOTE_UUID, uuid), null, null);
+		}
+	}
 	
 	/**
 	 * Stop tracking by making the track inactive
@@ -351,6 +439,12 @@ public class DataHelper {
 		cr.update(trackUri, values, null, null);		
 	}
 
+	public static void setNoteUploadDate(long noteId, long uploadTime, ContentResolver cr) {
+		Uri noteUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_NOTE, noteId);
+		ContentValues values = new ContentValues();
+		values.put(TrackContentProvider.Schema.COL_OSM_UPLOAD_DATE, uploadTime);
+		cr.update(noteUri, values, null, null);
+	}
 	/**
 	 * Renames a file inside track directory, keeping the extension
 	 * 

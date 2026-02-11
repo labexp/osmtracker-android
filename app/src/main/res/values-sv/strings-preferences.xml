@@ -14,9 +14,11 @@
   <string name="prefs_gps_logging_interval">GPS logg-intervall</string>
   <string name="prefs_gps_logging_interval_summary">Använd 0 för kortast möjliga intervall (påverkar batteriets livslängd).</string>
   <string name="prefs_gps_logging_interval_seconds">sekunder</string>
+  <string name="prefs_gps_logging_interval_empty">GPS-loggningsintervallet får inte vara tomt</string>
   <string name="prefs_gps_logging_min_distance">GPS-loggningsavstånd</string>
   <string name="prefs_gps_logging_min_distance_summary">Minsta avstånd mellan spårpunkter i meter, använd 0 för kortast möjliga</string>
   <string name="prefs_gps_logging_min_distance_meters">meter</string>
+  <string name="prefs_gps_logging_min_distance_empty">Minsta avstånd mellan spårpunkter kan inte vara tomt</string>
   <string name="prefs_ui">Användargränssnitt</string>
   <string name="prefs_ui_picture_source">Vald bildkälla</string>
   <string name="prefs_ui_picture_source_summary">Välj bild från kamera eller galleri?</string>
@@ -58,6 +60,7 @@
   <string name="prefs_output">GPX-fil</string>
   <string name="prefs_storage_dir">Lagringsmapp i dokument</string>
   <string name="prefs_storage_dir_hint">Gäller för nästa och kommande spår, inte aktuellt spår.</string>
+  <string name="prefs_storage_dir_empty">Värdet för lagringsmappen får inte vara tomt</string>
   <string name="prefs_output_one_dir_per_track">En mapp per spår</string>
   <string name="prefs_output_one_dir_per_track_summary">Spara varje spår och relaterade filer i en egen mapp</string>
   <string name="prefs_output_filename">Spårens namn</string>
@@ -85,12 +88,7 @@
   <string name="prefs_osm_clear_oauth_data_summary">Glöm bort inloggning och tillstånd och tvinga OSMTracker att fråga om detta igen</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Du måste godkänna OSMTracker för att kunna ladda upp spår igen. Är du säker?</string>
   <string name="prefs_map_tile">Tillhandahållare av kartrutor</string>
-  <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
+  <string name="prefs_map_tile_summary">Välj rut-leverantör för att rendera kartan</string>
   <string-array name="prefs_compass_heading_keys">
     <item>Ingen</item>
     <item>i kommentar</item>

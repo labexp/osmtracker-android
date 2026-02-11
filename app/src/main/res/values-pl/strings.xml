@@ -40,6 +40,7 @@
   <string name="trackmgr_contextmenu_export">Eksport</string>
   <string name="trackmgr_contextmenu_share">Udostępnij</string>
   <string name="trackmgr_contextmenu_osm_upload">Wyślij do OpenStreetMap</string>
+  <string name="trackmgr_contextmenu_github_upload">Wyślij do GitHub</string>
   <string name="trackmgr_contextmenu_display">Wyświetl</string>
   <string name="trackmgr_contextmenu_details">Szczegóły</string>
   <string name="trackmgr_contextmenu_title">Ślad #{0}</string>
@@ -81,12 +82,30 @@
   <string name="osm_upload_bad_response">Serwer OSM zwrócił błąd ({0}) o treści {1}</string>
   <string name="osm_upload_unauthorized">Błąd uwierzytelniania. Czy chcesz usunąć zapisane ustawienia uwierzytelniania OSM?</string>
   <string name="osm_upload_sucess">Wysyłanie zakończone pomyślnie!</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload_cancel">Anulować</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Nagraj notkę 
 głosową</string>
   <string name="gpsstatus_record_stillimage">Zrób zdjęcie</string>
   <string name="gpsstatus_record_textnote">Notka</string>
   <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Nazwa punktu nawigacji/tekst</string>
+  <string name="waypoint_name_hint">Wpisz nazwę punku nawigacji</string>
+  <string name="edit_waypoint_bt_preview">Otwórz plik</string>
+  <string name="edit_waypoint_bt_save">Ratować</string>
+  <string name="edit_waypoint_bt_delete">Usuwać</string>
+  <string name="edit_waypoint_bt_cancel">Anulować</string>
+  <string name="delete_waypoint_confirm_dialog_title">Usuń punkt nawigacji</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Usunąć ten punkt nawigacji?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Usuwać</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Anulować</string>
+  <!--osm Notes-->
+  <string name="edit_note_bt_update">Ratować</string>
+  <string name="edit_note_bt_delete">Usuwać</string>
+  <string name="edit_note_bt_cancel">Anulować</string>
+  <string name="delete_note_confirm_bt_ok">Usuwać</string>
+  <string name="delete_note_confirm_bt_cancel">Anulować</string>
   <!--Menu-->
   <string name="menu_settings">Ustawienia</string>
   <string name="menu_waypointlist">Punkty nawigacji</string>
@@ -150,6 +169,7 @@ głosową</string>
   <string name="various_heading">Oczekuję na kierunek...</string>
   <string name="various_heading_unknown">Kierunek nie może zostać określony</string>
   <string name="various_export_finished">Proces eksportu zakończony sukcesem</string>
+  <string name="various_waiting_position">Stanowisko niedostępne</string>
   <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
   <string name="displaytrackmap">Podgląd śladu w OpenStreetMap</string>
@@ -185,13 +205,62 @@ głosową</string>
   <string name="github_repository_settings_branch_name">Nazwa gałęzi:</string>
   <string name="github_repository_settings_valid_server">Repozytorium Github poprawne</string>
   <string name="github_repository_settings_invalid_server">Repozytorium Github niepoprawne</string>
+  <!--Upload to GitHub-->
+  <string name="successfully_created">Utworzono pomyślnie</string>
+  <string name="error_creating">Błąd podczas twaorzenia</string>
+  <string name="db_error">Błąd bazy danych</string>
+  <string name="successfully_saved">Zapisano pomyślnie</string>
+  <string name="saving_error">Błąd zapisu</string>
+  <string name="pr_status">Status wniosku o ściągnięcie:</string>
+  <string name="repository_information_error">Błąd z informacjami repozytorium</string>
+  <string name="successfully_uploaded">Przesłano pomyślnie</string>
+  <string name="error_uploading">Błąd podczas przesyłania</string>
+  <string name="gpx_file_read_error">Błąd podczas odczytywania pliku GPX</string>
+  <string name="gpx_file_not_found">Nie znaleziono pliku GPX</string>
+  <string name="uploading_file">Przesyłany plik:</string>
+  <string name="item_selected">Wybrane elementy:</string>
+  <string name="github_repository_private">Prywatne:</string>
+  <string name="github_creating_repository">Tworzenie repozytorium</string>
+  <string name="github_no_repository_name">Musisz określić nazwę repozytorium</string>
+  <string name="error_field_required">Musisz określić wartość dla tego pola</string>
+  <!--GitHubConfig-->
+  <string name="github_config_btn">Konfiguruj</string>
+  <string name="github_token_placeholder">Token GitHub:</string>
+  <string name="github_get_token_btn">Uzyskaj token</string>
+  <string name="how_to_get_ghToken_guide_title">Jak uzyskać token GitHub:</string>
+  <string name="how_to_get_ghToken_guide_step_1">1. Kliknij przycisk, aby otworzyć witrynę GitHub i utworzyć token. W razie potrzeby zaloguj się za pomocą konta GitHub.</string>
+  <string name="how_to_get_ghToken_guide_step_2">2. Wybierz „Tokeny (klasyczne)” i kliknij przycisk \"Wygeneruj nowy token”.</string>
+  <string name="how_to_get_ghToken_guide_step_3">3. Przypisz tokenowi opisową nazwę.</string>
+  <string name="how_to_get_ghToken_guide_step_4">4. Wybierz datę wygaśnięcia. Zalecamy wybranie opcji \"Bez wygaśnięcia”, aby uniknąć powtarzania tego kroku.</string>
+  <string name="how_to_get_ghToken_guide_step_5">5. Wybierz zakres lub uprawnienia, które chcesz przyznać dla tego tokena (OSMTracker potrzebuje tylko uprawnienia repo).</string>
+  <string name="how_to_get_ghToken_guide_step_6">6. Wybierz \"Generuj token\".</string>
+  <string name="how_to_get_ghToken_guide_step_7">7. Skopiuj wygenerowany token i wklej go w polu \"Token GitHub”.</string>
+  <string name="how_to_get_ghToken_guide_note">⚠️ Możesz zapisać puste, aby usunąć swoje dane uwierzytelniające.</string>
+  <!--GitHubUpload-->
+  <string name="upload_to_github_description">Wiadomość przyznania:</string>
+  <string name="upload_to_github_create_fork">Utwórz/nfork</string>
+  <string name="upload_to_github_open_pull_request">Otwarta prośba o ściągnięcie</string>
+  <string name="upload_to_github_select_repo">Wybierz repozytorium</string>
+  <string name="upload_to_github_create_repository">Utwórz repozytorium</string>
+  <string name="upload_to_github_commit_btn">Przyznaj</string>
+  <string name="upload_to_github_configure">Konfiguruj</string>
+  <!--GitHubNewFork-->
+  <string name="upload_to_github_forked_repo_owner">Oryginalna nazwa użytkowania repozytorium</string>
+  <string name="upload_to_github_forked_repo_name">Oryginalna nazwa repozytorium</string>
+  <string name="create">Utwórz</string>
+  <!--GitHubPullRequest-->
+  <string name="upload_to_github_pr_title">Tytuł wniosku o ściągnięcie</string>
+  <string name="upload_to_github_pr_description">Opis wniosku o ściągnięcie</string>
+  <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
   <string name="app_intro">Wprowadzenie do OSMTracker Android™</string>
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Witaj w OSMTracker Android™ 👋</string>
   <string name="app_intro_slide1_description">Ta aplikacja jest wolnym oprogramowaniem i szanuje Twoją wolność!</string>
+  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Miłego zbierania śladów 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker Android będzie używał Twojej pozycji GPS, aby zarejestrować punkty trasy i punkty orientacyjne, nawet jeśli aplikacja działa w tle.
 \n Twoje dane nie są używane w celach reklamowych.</string>
+  <string name="no_app_to_handle_file_type">Nie znaleziono aplikacji, która może otworzyć ten plik.</string>
 </resources>

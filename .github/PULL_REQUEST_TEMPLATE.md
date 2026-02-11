@@ -1,28 +1,40 @@
 [comment]: # (Thank you for your contribution! Please fill out the following details to help us review your pull request.)
+# 📝 Pull Request Title
 
-### Description
+## 🛠️ Issue
+- Closes #add-your-issue-ID
+
+[comment]: # (Link to the ISSUES related, if applicable)
+[comment]: # (* Related to: ISSUE #number)
+## 🛠️ Related issues (if applicable)
+- ISSUES #add-ISSUE
+
+
+
+## 📖 Description
 [comment]: # (Provide a clear explanation of the changes in this PR)
-[comment]: # (Include information about what problem it solves, how it is implemented, and if it affects UI/API)
 
 
 
-### Related issues
-[comment]: # (Link to the original bug report or related work in list format, if applicable)
-[comment]: # (* Closes: #number)
-[comment]: # (* Related to: #number)
+## 🖼️ Screenshots (if applicable)
+- Include any relevant screenshots or examples of the changes made. This helps reviewers visualize the updates
 
 
-##
 
-### Pull Request Checklist
+## ✅ Pull Request Checklist
 [comment]: # (Please confirm the following before submitting your PR)
 [comment]: # (To check a task please put a "x" inside the `[]`)
 [comment]: # ([ ] : not done)
 [comment]: # ([x] : done)
 [comment]: # (Make sure how your PR looks clicking the "Preview" tab at the top of this editor)
 
-- [ ] The PR is proposed to the proper branch.
+- [ ] The PR is proposed to the DEVELOP branch.
 - [ ] The changes have been tested on the target Android API and minimum Android API.
 - [ ] Automated tests have been added (if applicable).
 - [ ] The feature is well documented.
-- [ ] There is a reference to the original bug report and related work.
+- [ ] There is a reference to the original ISSUE and related work.
+
+
+## 📝 Additional Notes
+- Any additional context, questions, or considerations for the reviewers.
+- Take a look at our [Contributing Guide](https://github.com/labexp/osmtracker-android/blob/develop/CONTRIBUTING.md) before submitting your PR.

@@ -2,8 +2,9 @@ package net.osmtracker.gpx;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.db.DataHelper;

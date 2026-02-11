@@ -56,7 +56,7 @@
   <string name="prefs_displaytrack_osm_summary">Mostra OpenStreetMap sotto la traccia. È necessaria una connessione dati</string>
   <string name="prefs_displaytrack_osm_summary_ask">Mostra sempre lo sfondo OpenStreetMap? Richiede una connessione dati</string>
   <string name="prefs_output">Salvataggio file GPX</string>
-  <string name="prefs_storage_dir">Cartella di archiviazione nei documenti</string>
+  <string name="prefs_storage_dir">Cartella di archiviazione in ‘documents’</string>
   <string name="prefs_storage_dir_hint">Valido per la traccia successiva (non per quella attuale)</string>
   <string name="prefs_output_one_dir_per_track">Una directory per traccia</string>
   <string name="prefs_output_one_dir_per_track_summary">Salva ogni traccia e i file associati nella propria directory</string>
@@ -85,12 +85,6 @@
   <string name="prefs_osm_clear_oauth_data_summary">Dimentica le credenziali e le autorizzazioni di OSM e forza OSMTracker a chiederle di nuovo</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Devi autorizzare nuovamente OSMTracker a caricare i tracciati. Sei sicuro?</string>
   <string name="prefs_map_tile">Fornitore dei tasselli della mappa</string>
-  <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>Nessuno</item>
     <item>come commento</item>

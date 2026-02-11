@@ -36,6 +36,8 @@ public class TrackContentProvider extends ContentProvider {
 	 */
 	public static final Uri CONTENT_URI_TRACK = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_TRACK);
 
+	public static final Uri CONTENT_URI_NOTE = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_NOTE);
+
 	/**
 	 * Uri for the active track
 	 */
@@ -50,6 +52,11 @@ public class TrackContentProvider extends ContentProvider {
 	 * Uri for a specific waypoint by uuid
 	 */
 	public static final Uri CONTENT_URI_WAYPOINT_UUID = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_WAYPOINT + "/uuid");
+
+	/**
+	 * Uri for a specific note by uuid
+	 */
+	public static final Uri CONTENT_URI_NOTE_UUID = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_NOTE + "/uuid");
 
 	/**
 	 * Uri for a specific trackpoint
@@ -76,8 +83,17 @@ public class TrackContentProvider extends ContentProvider {
 		Schema.COL_OSM_VISIBILITY,
 		Schema.COL_START_DATE,
 		"count(" + Schema.TBL_TRACKPOINT + "." + Schema.COL_ID + ") as " + Schema.COL_TRACKPOINT_COUNT,
-		"(SELECT count("+Schema.TBL_WAYPOINT+"."+Schema.COL_TRACK_ID+") FROM "+Schema.TBL_WAYPOINT+" WHERE "+Schema.TBL_WAYPOINT+"."+Schema.COL_TRACK_ID+" = " + Schema.TBL_TRACK + "." + Schema.COL_ID + ") as " + Schema.COL_WAYPOINT_COUNT,
-		"(SELECT max("+Schema.TBL_TRACKPOINT+"."+Schema.COL_SEG_ID+") FROM "+Schema.TBL_TRACKPOINT+" WHERE "+Schema.TBL_TRACKPOINT+"."+Schema.COL_TRACK_ID+" = " + Schema.TBL_TRACK + "." + Schema.COL_ID + ") as " + Schema.COL_MAX_SEG_ID
+		"(SELECT max("+Schema.TBL_TRACKPOINT+"."+Schema.COL_SEG_ID+") FROM "+Schema.TBL_TRACKPOINT+" WHERE "+Schema.TBL_TRACKPOINT+"."+Schema.COL_TRACK_ID+" = " + Schema.TBL_TRACK + "." + Schema.COL_ID + ") as " + Schema.COL_MAX_SEG_ID,
+		"(SELECT count(" + Schema.TBL_WAYPOINT + "." + Schema.COL_TRACK_ID +") " +
+				"FROM " + Schema.TBL_WAYPOINT + " " +
+				"WHERE " +	Schema.TBL_WAYPOINT + "." + Schema.COL_TRACK_ID +" " +
+					"= " + Schema.TBL_TRACK + "." + Schema.COL_ID +") " +
+				"as " + Schema.COL_WAYPOINT_COUNT,
+		"(SELECT count(" + Schema.TBL_NOTE + "." + Schema.COL_TRACK_ID +") " +
+				"FROM " + Schema.TBL_NOTE + " " +
+				"WHERE " +	Schema.TBL_NOTE + "." + Schema.COL_TRACK_ID +" " +
+				"= " + Schema.TBL_TRACK + "." + Schema.COL_ID +") " +
+				"as " + Schema.COL_NOTE_COUNT,
 	};
 
 	/**
@@ -98,11 +114,13 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/start", Schema.URI_CODE_TRACK_START);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/end", Schema.URI_CODE_TRACK_END);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_WAYPOINT + "s", Schema.URI_CODE_TRACK_WAYPOINTS);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_NOTE + "s", Schema.URI_CODE_TRACK_NOTES);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACK + "/#/" + Schema.TBL_TRACKPOINT + "s", Schema.URI_CODE_TRACK_TRACKPOINTS);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/#", Schema.URI_CODE_WAYPOINT_ID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_WAYPOINT + "/uuid/*", Schema.URI_CODE_WAYPOINT_UUID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACKPOINT + "/#", Schema.URI_CODE_TRACKPOINT_ID);
-		
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_NOTE + "/#", Schema.URI_CODE_NOTE_ID);
+		uriMatcher.addURI(AUTHORITY, Schema.TBL_NOTE + "/uuid/*", Schema.URI_CODE_NOTE_UUID);
 	}
 	
 	/**
@@ -122,7 +140,25 @@ public class TrackContentProvider extends ContentProvider {
 	public static final Uri waypointUri(long waypointId) {
 		return ContentUris.withAppendedId(CONTENT_URI_WAYPOINT, waypointId);
 	}
-	
+
+	/**
+	 * @param noteId target note id
+	 * @return Uri for the note
+	 */
+	public static final Uri noteUri(long noteId) {
+		return ContentUris.withAppendedId(CONTENT_URI_NOTE, noteId);
+	}
+
+	/**
+	 * @param trackId target track id
+	 * @return Uri for the notes of the track
+	 */
+	public static final Uri notesUri(long trackId) {
+		return Uri.withAppendedPath(
+				ContentUris.withAppendedId(CONTENT_URI_TRACK, trackId),
+				Schema.TBL_NOTE + "s" );
+	}
+
 	/**
 	 * @param trackId target track id
 	 * @return Uri for the trackpoints of the track 
@@ -197,6 +233,14 @@ public class TrackContentProvider extends ContentProvider {
 				count = 0;
 			}
 			break;
+		case Schema.URI_CODE_NOTE_UUID:
+			String noteUUID = uri.getLastPathSegment();
+			if(noteUUID != null){
+				count = dbHelper.getWritableDatabase().delete(Schema.TBL_NOTE, Schema.COL_UUID + " = ?", new String[]{noteUUID});
+			}else{
+				count = 0;
+			}
+			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
@@ -208,7 +252,7 @@ public class TrackContentProvider extends ContentProvider {
 	/**
 	 * Match and get the URI type, if recognized:
 	 * Matches {@link Schema#URI_CODE_TRACK_TRACKPOINTS}, {@link Schema#URI_CODE_TRACK_WAYPOINTS},
-	 * or {@link Schema#URI_CODE_TRACK}.
+	 * {link Schema#URI_CODE_TRACK_NOTES} or {@link Schema#URI_CODE_TRACK}.
 	 * @throws IllegalArgumentException if not matched
 	 */
 	@Override
@@ -223,6 +267,9 @@ public class TrackContentProvider extends ContentProvider {
 		case Schema.URI_CODE_TRACK_WAYPOINTS:
 			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
 					+ Schema.TBL_WAYPOINT;
+		case Schema.URI_CODE_TRACK_NOTES:
+			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
+					+ Schema.TBL_NOTE;
 		case Schema.URI_CODE_TRACK:
 			return ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + OSMTracker.class.getPackage() + "."
 					+ Schema.TBL_TRACK;
@@ -267,6 +314,19 @@ public class TrackContentProvider extends ContentProvider {
 			} else {
 				throw new IllegalArgumentException("values should provide " + Schema.COL_LONGITUDE + ", "
 						+ Schema.COL_LATITUDE + ", " + Schema.COL_TIMESTAMP);
+			}
+			break;
+		case Schema.URI_CODE_TRACK_NOTES:
+			// Check that mandatory columns are present.
+			if (values.containsKey(Schema.COL_TRACK_ID) && values.containsKey(Schema.COL_LONGITUDE)
+					&& values.containsKey(Schema.COL_LATITUDE) && values.containsKey(Schema.COL_TIMESTAMP) ) {
+
+				long rowId = dbHelper.getWritableDatabase().insert(Schema.TBL_NOTE, null, values);
+				if (rowId > 0) {
+					Uri noteUri = ContentUris.withAppendedId(uri, rowId);
+					getContext().getContentResolver().notifyChange(noteUri, null);
+					return noteUri;
+				}
 			}
 			break;
 		case Schema.URI_CODE_TRACK:
@@ -333,6 +393,26 @@ public class TrackContentProvider extends ContentProvider {
 			qb.setTables(Schema.TBL_WAYPOINT);
 			selection = Schema.COL_TRACK_ID + " = ?";
 			selectionArgs = new String[] {trackId};
+			break;
+		case Schema.URI_CODE_TRACK_NOTES:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			trackId = uri.getPathSegments().get(1);
+			qb.setTables(Schema.TBL_NOTE);
+			selection = Schema.COL_TRACK_ID + " = ?";
+			selectionArgs = new String[] {trackId};
+			break;
+		case Schema.URI_CODE_NOTE_ID:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			String noteId = uri.getPathSegments().get(1);
+			qb.setTables(Schema.TBL_NOTE);
+			selection = Schema.COL_ID + " = ?";
+			selectionArgs = new String[] {noteId};
 			break;
 		case Schema.URI_CODE_TRACK_START:
 			if (selectionIn != null || selectionArgsIn != null) {
@@ -431,6 +511,23 @@ public class TrackContentProvider extends ContentProvider {
 			}
 			table = Schema.TBL_WAYPOINT;
 			break;
+		case Schema.URI_CODE_TRACK_NOTES:
+			if (selectionIn == null || selectionArgsIn == null) {
+				// Caller must narrow to a specific waypoint
+				throw new IllegalArgumentException();
+			}
+			table = Schema.TBL_NOTE;
+			break;
+		case Schema.URI_CODE_NOTE_ID:
+			if (selectionIn != null || selectionArgsIn != null) {
+				// Any selection/selectionArgs will be ignored
+				throw new UnsupportedOperationException();
+			}
+			table = Schema.TBL_NOTE;
+			String noteId = uri.getLastPathSegment();
+			selection = Schema.COL_ID + " = ?";
+			selectionArgs = new String[] {noteId};
+			break;
 		case Schema.URI_CODE_TRACK_ID:
 			if (selectionIn != null || selectionArgsIn != null) {
 				// Any selection/selectionArgs will be ignored
@@ -471,6 +568,7 @@ public class TrackContentProvider extends ContentProvider {
 	public static final class Schema {
 		public static final String TBL_TRACKPOINT = "trackpoint";
 		public static final String TBL_WAYPOINT = "waypoint";
+		public static final String TBL_NOTE = "note";
 		public static final String TBL_TRACK = "track";
 		public static final String COL_ID = "_id";
 		public static final String COL_TRACK_ID = "track_id";
@@ -504,6 +602,8 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_WAYPOINT_COUNT = "wp_count";
 		public static final String COL_MAX_SEG_ID = "max_segment_id";
 		
+		public static final String COL_NOTE_COUNT = "note_count";
+
 		// Codes for UriMatcher
 		public static final int URI_CODE_TRACK = 3;
 		public static final int URI_CODE_TRACK_ID = 4;
@@ -515,6 +615,9 @@ public class TrackContentProvider extends ContentProvider {
 		public static final int URI_CODE_TRACK_END = 10;
 		public static final int URI_CODE_WAYPOINT_ID = 11;
 		public static final int URI_CODE_TRACKPOINT_ID = 12;
+		public static final int URI_CODE_TRACK_NOTES = 13;
+		public static final int URI_CODE_NOTE_ID = 14;
+		public static final int URI_CODE_NOTE_UUID = 15;
 
 
 		public static final int VAL_TRACK_ACTIVE = 1;
