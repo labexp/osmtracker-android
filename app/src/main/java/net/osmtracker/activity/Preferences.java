@@ -349,8 +349,15 @@ public class Preferences extends AppCompatActivity {
 			listPref.setSummaryProvider(preference -> {
 				ListPreference lp = (ListPreference) preference;
 				CharSequence entry = lp.getEntry();
-				// Null check: entry might be null if no value is selected
-				String displayValue = Objects.requireNonNull(entry).toString();
+
+				// Handle cases where no value has been selected yet. (backwards compatibility)
+				String displayValue;
+				if (entry == null || TextUtils.isEmpty(entry)) {
+					// Fallback text if no value is set.
+					displayValue = getString(R.string.prefs_not_set);
+				} else {
+					displayValue = entry.toString();
+				}
 				return displayValue + ".\n" + staticSummary;
 			});
 		}
