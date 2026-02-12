@@ -30,6 +30,7 @@
   <string name="trackmgr_tracklist">Lista de trilhas:</string>
   <string name="trackmgr_waypoints_count">Pontos de referência:</string>
   <string name="trackmgr_trackpoints_count">Trajeto:</string>
+  <string name="trackmgr_notes_count">Notas:</string>
   <string name="trackmgr_empty">Você não tem nenhuma trilha.</string>
   <string name="trackmgr_newtrack_hint">Pressione para gravar uma nova trilha.</string>
   <string name="trackmgr_newtrack_error">Impossível criar uma nova trilha: {0}</string>
@@ -67,6 +68,7 @@
   <string name="trackdetail_description">Descrição</string>
   <string name="trackdetail_tags">Tags (separado com vírgula)</string>
   <string name="trackdetail_description_mandatory">Você precisa digitar uma descrição</string>
+  <string name="trackdetail_visibility">Visibilidade</string>
   <string name="osm_visibility_private">Privado</string>
   <string name="osm_visibility_public">Público</string>
   <string name="osm_visibility_trackable">Rastreável</string>
@@ -82,6 +84,14 @@
   <string name="osm_upload_bad_response">O servidor do OSM retornou um erro: ({0}) message {1}</string>
   <string name="osm_upload_unauthorized">Erro de autorização. Gostaria de limpar as credencias do OpenStreetMaps salvas?</string>
   <string name="osm_upload_sucess">Enviado com sucesso para o OpenStreetMap</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload">Carregamento de notas do OpenStreetMap</string>
+  <string name="osm_note_upload_error">Erro ao carregar a nota</string>
+  <string name="osm_note_label">Nota de texto</string>
+  <string name="osm_note_upload_ok">Enviar</string>
+  <string name="osm_note_upload_cancel">Cancelar</string>
+  <string name="osm_note_footer">via %1$s %2$s</string>
+  <string name="osm_note_upload_unauthorized">Erro de autorização. Se você já concedeu permissão ao aplicativo para enviar trilhas, é necessário limpar suas credenciais salvas para autorizar o aplicativo a enviar trilhas e <b>notas</b>.  Deseja limpar suas credenciais salvas do OpenStreetMap?</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Gravar voz</string>
   <string name="gpsstatus_record_stillimage">Tirar foto</string>
@@ -97,6 +107,17 @@
   <string name="delete_waypoint_confirm_dialog_msg">Apagar este ponto de referência?</string>
   <string name="delete_waypoint_confirm_bt_ok">Apagar</string>
   <string name="delete_waypoint_confirm_bt_cancel">Cancelar</string>
+  <!--osm Notes-->
+  <string name="note_name_label">Nome/texto da nota</string>
+  <string name="edit_note_bt_update">Salvar</string>
+  <string name="edit_note_bt_delete">Apagar</string>
+  <string name="edit_note_bt_cancel">Cancelar</string>
+  <string name="delete_note_confirm_dialog_title">Excluir nota</string>
+  <string name="delete_note_confirm_dialog_msg">Apagar esta nota?</string>
+  <string name="delete_note_confirm_bt_ok">Apagar</string>
+  <string name="delete_note_confirm_bt_cancel">Cancelar</string>
+  <string name="notelist">Lista de notas</string>
+  <string name="osm_note_bt_upload">Enviar como nota OSM</string>
   <!--Menu-->
   <string name="menu_settings">Configurações</string>
   <string name="menu_waypointlist">Pontos de referência</string>
@@ -253,6 +274,9 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Bem-vindo ao OSMTracker para Android ™ 👋</string>
   <string name="app_intro_slide1_description">Este App é um software gratuito que respeita a sua liberdade!</string>
+  <!--Intro - slide What's new-->
+  <string name="app_intro_slide_whats_new_title">O que há de novo nesta versão?</string>
+  <string name="app_intro_slide_whats_new_description">Agora podemos enviar notas para o OSM, e os mapas CyclOSM e OpenTopo estão disponíveis novamente. Aproveitem!</string>
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Boas trilhas 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker para Android usará sua localização GPS para registrar trackpoints e waypoints, mesmo quando o aplicativo está sendo executado em segundo plano.

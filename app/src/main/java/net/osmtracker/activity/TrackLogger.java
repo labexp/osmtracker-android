@@ -20,7 +20,6 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
@@ -36,6 +35,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
@@ -313,7 +313,7 @@ public class TrackLogger extends Activity {
 				File layoutFile = new File(
 						this.getExternalFilesDir(null),
 						OSMTracker.Preferences.VAL_STORAGE_DIR
-						+ File.separator + Preferences.LAYOUTS_SUBDIR
+						+ File.separator + DataHelper.LAYOUTS_SUBDIR
 						+ File.separator + userLayout);
 				mainLayout = new UserDefinedLayout(this, currentTrackId, layoutFile);
 			}

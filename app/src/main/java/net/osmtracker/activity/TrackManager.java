@@ -1,11 +1,11 @@
 package net.osmtracker.activity;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +23,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Base64OutputStream;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -53,8 +52,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.util.Base64;
 import java.util.Date;
 
 /**
@@ -639,6 +636,7 @@ public class TrackManager extends AppCompatActivity
 	 * @throws CreateTrackException
 	 */
 	private long createNewTrack() throws CreateTrackException {
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		Date startDate = new Date();
 
 		// Create entry in TRACK table
@@ -648,6 +646,12 @@ public class TrackManager extends AppCompatActivity
 		values.put(TrackContentProvider.Schema.COL_START_DATE, startDate.getTime());
 		values.put(TrackContentProvider.Schema.COL_ACTIVE,
 				TrackContentProvider.Schema.VAL_TRACK_ACTIVE);
+		String visibility = preferences.getString(
+				OSMTracker.Preferences.KEY_OSM_TRACK_VISIBILITY,
+				OSMTracker.Preferences.VAL_OSM_TRACK_VISIBILITY
+		);
+		Log.d(TAG, "Visibility: " + visibility);
+		values.put(TrackContentProvider.Schema.COL_OSM_VISIBILITY, visibility);
 		Uri trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI_TRACK, values);
 		long trackId = ContentUris.parseId(trackUri);
 

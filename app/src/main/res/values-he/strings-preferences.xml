@@ -69,12 +69,6 @@
   <string name="prefs_osm_clear_oauth_data">איפוס אימות פרטי משתמש OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">מחק את אימות פרטי משתמש OSM ואלץ את הכנסתם מחדש</string>
   <string name="prefs_osm_clear_oauth_data_dialog">ידרש אימות מחדש כדי לשוב ולהעלות מסלולים. את/ה בטוח/ה?</string>
-  <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
   <string-array name="prefs_compass_heading_keys">
     <item>ללא שמירה</item>
     <item>כהערה</item>

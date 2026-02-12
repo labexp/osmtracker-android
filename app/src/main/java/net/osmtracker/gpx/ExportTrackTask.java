@@ -10,7 +10,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.media.MediaScannerConnection;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -35,6 +34,8 @@ import java.util.regex.Pattern;
 
 import static net.osmtracker.db.DataHelper.EXTENSION_GPX;
 import static net.osmtracker.util.FileSystemUtils.getUniqueChildNameFor;
+
+import androidx.preference.PreferenceManager;
 
 /**
  * Base class to writes a GPX file and export

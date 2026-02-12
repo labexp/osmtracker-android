@@ -51,7 +51,7 @@ public class Track {
 	private String description;
 	private OSMVisibility visibility;
 	private List<String> tags = new ArrayList<String>();
-	private int tpCount, wpCount;
+	private int tpCount, wpCount, noteCount;
 	private long trackDate;
 	private long trackId;
 	
@@ -92,7 +92,9 @@ public class Track {
 		out.tpCount = tc.getInt(tc.getColumnIndex(TrackContentProvider.Schema.COL_TRACKPOINT_COUNT));
 		
 		out.wpCount = tc.getInt(tc.getColumnIndex(TrackContentProvider.Schema.COL_WAYPOINT_COUNT));
-		
+
+		out.noteCount = tc.getInt(tc.getColumnIndex(TrackContentProvider.Schema.COL_NOTE_COUNT));
+
 		if(withExtraInformation){
 			out.readExtraInformation();
 		}
@@ -145,6 +147,10 @@ public class Track {
 		this.wpCount = wpCount;
 	}
 
+	public void setNoteCount(int noteCount) {
+		this.noteCount = noteCount;
+	}
+
 	public void setTracktDate(long tracktDate) {
 		this.trackDate = tracktDate;
 	}
@@ -189,6 +195,10 @@ public class Track {
 	
 	public Integer getTpCount() {
 		return tpCount;
+	}
+
+	public Integer getNoteCount() {
+		return noteCount;
 	}
 
 	// @deprecated

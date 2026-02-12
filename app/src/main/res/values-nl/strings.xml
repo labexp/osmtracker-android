@@ -83,6 +83,8 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="osm_upload_bad_response">Foutmelding van de OSM server:  ({0}) bericht {1}</string>
   <string name="osm_upload_unauthorized">Foute naam/wachtwoord. Wilt u de opgeslagen OpenStreetMap aanmeldgegevens wissen?</string>
   <string name="osm_upload_sucess">Uploaden naar OpenStreetMap geslaagd</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload_cancel">Annuleren</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Stemopname</string>
   <string name="gpsstatus_record_stillimage">Foto nemen</string>
@@ -98,6 +100,12 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="delete_waypoint_confirm_dialog_msg">Dit referentiepunt verwijderen?</string>
   <string name="delete_waypoint_confirm_bt_ok">Verwijderen</string>
   <string name="delete_waypoint_confirm_bt_cancel">Annuleren</string>
+  <!--osm Notes-->
+  <string name="edit_note_bt_update">Opslaan</string>
+  <string name="edit_note_bt_delete">Verwijderen</string>
+  <string name="edit_note_bt_cancel">Annuleren</string>
+  <string name="delete_note_confirm_bt_ok">Verwijderen</string>
+  <string name="delete_note_confirm_bt_cancel">Annuleren</string>
   <!--Menu-->
   <string name="menu_settings">Instellingen</string>
   <string name="menu_waypointlist">Referentiepunten</string>
@@ -254,6 +262,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Welkom bij OSMTracker voor Android™ 👋</string>
   <string name="app_intro_slide1_description">Deze app is gratis software die uw vrijheid respecteert!</string>
+  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Veel plezier met tracken! 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker voor Android zal uw gps-locatie gebruiken om trajectpunten en referentiepunten op te nemen, zelfs wanneer de app op de achtergrond actief is.

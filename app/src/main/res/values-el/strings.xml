@@ -83,6 +83,8 @@
   <string name="osm_upload_bad_response">Ο εξυπηρετητής OSM απέδωσε σφάλμα: ({0}) μήνυμα {1}</string>
   <string name="osm_upload_unauthorized">Σφάλμα επαλήθευσης. Θελε να εκκαθαρίσετε τα αποθηκευμένα πιστοποιητικά για το OSM;</string>
   <string name="osm_upload_sucess">Αποστολή στο OpenStreetMap επιτυχής</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload_cancel">Ακύρωση</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Ηχογράφηση</string>
   <string name="gpsstatus_record_stillimage">Φωτογράφιση</string>
@@ -94,6 +96,12 @@
   <string name="edit_waypoint_bt_cancel">Ακύρωση</string>
   <string name="delete_waypoint_confirm_bt_ok">Διαγραφή</string>
   <string name="delete_waypoint_confirm_bt_cancel">Ακύρωση</string>
+  <!--osm Notes-->
+  <string name="edit_note_bt_update">Αποθήκευση</string>
+  <string name="edit_note_bt_delete">Διαγραφή</string>
+  <string name="edit_note_bt_cancel">Ακύρωση</string>
+  <string name="delete_note_confirm_bt_ok">Διαγραφή</string>
+  <string name="delete_note_confirm_bt_cancel">Ακύρωση</string>
   <!--Menu-->
   <string name="menu_settings">Ρυθμίσεις</string>
   <string name="menu_waypointlist">Σημεία</string>
@@ -225,6 +233,7 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Καλωσήρθατε στο OSMTracker για Android™ 👋</string>
   <string name="app_intro_slide1_description">Αυτή η εφαρμοφή είναι δωρεάν λογισμικό το οποίο σέβεται της ελευθερία σας!</string>
+  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Καλή ιχνηλάτηση 🗺 😎</string>
   <string name="app_intro_slide2_description">Το OSMTracker για Android θα χρησιμοποιήσει την τοποθεσία σας GPS για να καταγράψει σημεία ίχνους και σημεία διαδρομής, ακόμη κι αν εφαρμογή τρέχει στο παρασκήνιο.\nΤα δεδομένα σας δεν χρησιμοποιούνται για την υποστήριξη διαφημίσεων.</string>

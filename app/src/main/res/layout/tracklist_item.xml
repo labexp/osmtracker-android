@@ -105,6 +105,31 @@
 		app:layout_constraintTop_toTopOf="@id/trackmgr_item_trackpoints"
 		app:layout_constraintBottom_toBottomOf="@id/trackmgr_item_trackpoints"/>
 
+    <TextView
+        android:id="@+id/trackmgr_item_notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/trackmgr_notes_count"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:duplicateParentState="false"
+        app:layout_constraintStart_toEndOf="@id/id_container"
+        app:layout_constraintTop_toBottomOf="@id/trackmgr_item_trackpoints"/>
+
+    <TextView
+        android:id="@+id/trackmgr_item_notes_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="{z}"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:duplicateParentState="false"
+        app:layout_constraintStart_toEndOf="@id/trackmgr_item_notes"
+        app:layout_constraintTop_toTopOf="@id/trackmgr_item_notes"
+        app:layout_constraintBottom_toBottomOf="@id/trackmgr_item_notes"/>
+
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/icons_container"
 		android:layout_width="wrap_content"

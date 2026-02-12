@@ -10,10 +10,11 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.media.MediaRecorder.OnInfoListener;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
+
+import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;

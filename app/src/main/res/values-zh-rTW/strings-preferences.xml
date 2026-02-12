@@ -11,12 +11,21 @@
   <string name="prefs_gps_ignore_clock_summary">忽略 GPS 的時間，改用 Android 系統時間</string>
   <string name="prefs_use_barometer">記錄氣壓 [hPa]</string>
   <string name="prefs_use_barometer_summary">切換需要重新啟動軌跡記錄</string>
+  <string name="prefs_notes">文字註解</string>
+  <string name="prefs_notes_summary">選取註解文字按鈕的值的儲存樣式</string>
+  <string-array name="prefs_notes_keys">
+    <item>路徑</item>
+    <item>OSM 註解</item>
+    <item>全部</item>
+  </string-array>
   <string name="prefs_gps_logging_interval">GPS 記錄頻率</string>
   <string name="prefs_gps_logging_interval_summary">使用 0 會盡可能的記錄資料 (會影響電池續航力)</string>
   <string name="prefs_gps_logging_interval_seconds">秒</string>
+  <string name="prefs_gps_logging_interval_empty">GPS 記錄頻率不能是空白的</string>
   <string name="prefs_gps_logging_min_distance">GPS 記錄距離</string>
   <string name="prefs_gps_logging_min_distance_summary">以公尺尺度的航點之間最小距離，設為 0 則是最小的可能</string>
   <string name="prefs_gps_logging_min_distance_meters">公尺</string>
+  <string name="prefs_gps_logging_min_distance_empty">軌跡點之間最短距離不能是空白的</string>
   <string name="prefs_ui">使用者介面</string>
   <string name="prefs_ui_picture_source">預設照片來源</string>
   <string name="prefs_ui_picture_source_summary">拍張照或從相簿挑選？</string>
@@ -58,6 +67,7 @@
   <string name="prefs_output">GPX 相關設定</string>
   <string name="prefs_storage_dir">文件當中的儲存資料夾</string>
   <string name="prefs_storage_dir_hint">設定值將在記錄下一筆軌跡資料時生效 (不是目前這筆)</string>
+  <string name="prefs_storage_dir_empty">儲存目標不能是空白的</string>
   <string name="prefs_output_one_dir_per_track">給每筆軌跡各配置一個專屬資料夾</string>
   <string name="prefs_output_one_dir_per_track_summary">將每筆軌跡以及相關的檔案一起放在專屬的資料夾當中</string>
   <string name="prefs_output_filename">軌跡資料檔命名</string>
@@ -81,16 +91,19 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">在 GPX 檔中填入 HDOP 近似值</string>
   <string name="prefs_sound_enabled">使用聲音</string>
   <string name="prefs_sound_enabled_summary">當錄製語音期間可播放聲音</string>
+  <string name="prefs_osm_visibility">軌跡可見度</string>
+  <string name="prefs_osm_visibility_summary">上傳到 openstreetmap.org 偏好的軌跡可見度</string>
+  <string-array name="prefs_osm_visibility_keys">
+    <item>私人</item>
+    <item>可追蹤</item>
+    <item>公開</item>
+    <item>可識別</item>
+  </string-array>
   <string name="prefs_osm_clear_oauth_data">重新設定 OSM 認證</string>
   <string name="prefs_osm_clear_oauth_data_summary">捨棄現存的 OSM 認證與權限資訊，強制 OSMTracker 重新取得它們</string>
   <string name="prefs_osm_clear_oauth_data_dialog">您必須重新認證 OSMTracker 方能繼續上傳軌跡資料，確定嗎？</string>
   <string name="prefs_map_tile">地圖圖磚提供者</string>
-  <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
+  <string name="prefs_map_tile_summary">選擇渲染地圖的圖磚提供者</string>
   <string-array name="prefs_compass_heading_keys">
     <item>無</item>
     <item>於註解</item>
@@ -98,4 +111,5 @@
   </string-array>
   <string name="prefs_compass_heading">匯出羅盤方位</string>
   <string name="prefs_compass_heading_summary">定義羅盤資料要如何匯出到 GPX 檔案</string>
+  <string name="prefs_reset_default_value">重設預設值</string>
 </resources>

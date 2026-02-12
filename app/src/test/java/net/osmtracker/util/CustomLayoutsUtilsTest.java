@@ -2,116 +2,77 @@ package net.osmtracker.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
-import android.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(PreferenceManager.class)
-@PowerMockIgnore("jdk.internal.reflect.*")
+import androidx.preference.PreferenceManager;
+import androidx.test.core.app.ApplicationProvider;
+
+@RunWith(RobolectricTestRunner.class)
+@Config(sdk = 25)
 public class CustomLayoutsUtilsTest {
 
-    Context mockContext;
-    SharedPreferences mockPrefs;
-    AssetManager mockAssetManager;
-    InputStream resultStream;
-    InputStream expectedStream;
+	private Context context;
+	private SharedPreferences prefs;
 
-    public void setupMocks() {
-        // Create SharedPreferences mock
-        mockPrefs = mock(SharedPreferences.class);
-        when(mockPrefs.getString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT,
-                OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT))
-                .thenReturn("transporte publico");
+	@Before
+	public void setUp() {
+		context = ApplicationProvider.getApplicationContext();
+		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		// Ensure a clean state for every test
+		prefs.edit().clear().apply();
+	}
 
-        // Create PreferenceManager mock
-        mockContext = mock(Context.class);
+	@Test
+	public void convertFileName() {
+		assertEquals("public transport", CustomLayoutsUtils.convertFileName("public_transport.xml"));
+		assertEquals("simple", CustomLayoutsUtils.convertFileName("simple.xml"));
+	}
 
-        mockStatic(PreferenceManager.class);
+	@Test
+	public void unconvertFileName() {
+		assertEquals("public_transport.xml", CustomLayoutsUtils.unconvertFileName("public transport"));
+	}
 
-        when(PreferenceManager.getDefaultSharedPreferences(mockContext)).thenReturn(mockPrefs);
+	@Test
+	public void createFileName() {
+		assertEquals("public_transport_es.xml", CustomLayoutsUtils.createFileName("public transport", "es"));
+	}
 
-        mockAssetManager = mock(AssetManager.class);
+	@Test
+	public void getStringFromStream() throws IOException {
+		String content = "GPX Test Content" + System.lineSeparator() + "Second Line";
+		InputStream inputStream = new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8));
+		String result = CustomLayoutsUtils.getStringFromStream(inputStream);
+		assertEquals(content, result);
+	}
 
-        try {
-            resultStream = new FileInputStream("./src/test/assets/gpx/gpx-test.gpx");
-            expectedStream = new FileInputStream("./src/test/assets/gpx/gpx-test.gpx");
-            when(mockContext.getAssets()).thenReturn(mockAssetManager);
-            when(mockAssetManager.open("result.gpx")).thenReturn(resultStream);
-            when(mockAssetManager.open("expected.gpx")).thenReturn(expectedStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	@Test
+	public void getCurrentLayoutName() {
+		// Set value in real Robolectric preferences
+		prefs.edit().putString(OSMTracker.Preferences.KEY_UI_BUTTONS_LAYOUT, "transporte publico").apply();
+		String result = CustomLayoutsUtils.getCurrentLayoutName(context);
+		assertEquals("transporte publico", result);
+	}
 
-    @Test
-    public void convertFileName() {
-        String result = CustomLayoutsUtils.convertFileName("public_transport.xml");
-        String expected = "public transport";
-        assertEquals(result, expected);
-    }
-
-    @Test
-    public void unconvertFileName() {
-        String result = CustomLayoutsUtils.unconvertFileName("public transport");
-        String expected = "public_transport.xml";
-        assertEquals(result, expected);
-    }
-
-    @Test
-    public void createFileName() {
-        String result = CustomLayoutsUtils.createFileName("public transport", "es");
-        String expected = "public_transport_es.xml";
-        assertEquals(result, expected);
-    }
-
-    @Test
-    public void getStringFromStream() throws IOException {
-        setupMocks();
-
-        InputStream resultIs = mockAssetManager.open("result.gpx");
-        String result = CustomLayoutsUtils.getStringFromStream(resultIs);
-
-        String expected;
-        try (InputStream expectedIs = mockAssetManager.open("expected.gpx");
-             InputStreamReader expectedIsr = new InputStreamReader(expectedIs, StandardCharsets.UTF_8);
-             BufferedReader expectedReader = new BufferedReader(expectedIsr)) {
-             StringBuilder expectedBuilder = new StringBuilder();
-             String line;
-             while ((line = expectedReader.readLine()) != null) {
-                 expectedBuilder.append(line).append(System.lineSeparator());
-             }
-             expected = expectedBuilder.toString();
-        }
-        assertEquals("String should have same content", expected, result);
-    }
-
-    @Test
-    public void getCurrentLayoutName() {
-        setupMocks();
-        String result = CustomLayoutsUtils.getCurrentLayoutName(mockContext);
-        String expected = "transporte publico";
-        assertEquals(result, expected);
-    }
+	@Test
+	public void getCurrentLayoutName_ReturnsDefaultWhenEmpty() {
+		// Test fallback logic
+		String result = CustomLayoutsUtils.getCurrentLayoutName(context);
+		assertEquals(OSMTracker.Preferences.VAL_UI_BUTTONS_LAYOUT, result);
+	}
 
 }

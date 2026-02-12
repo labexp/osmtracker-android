@@ -11,12 +11,21 @@
   <string name="prefs_gps_ignore_clock_summary">Ignorar el reloj GPS y utilizar el reloj Android como marcas de tiempo</string>
   <string name="prefs_use_barometer">Registro de presión barométrica [hPa]</string>
   <string name="prefs_use_barometer_summary">Alternar requiere reiniciar la traza</string>
+  <string name="prefs_notes">Notas de texto</string>
+  <string name="prefs_notes_summary">Escoja cómo se guardarán los valores del botón Nota de Texto de la disposición de botones</string>
+  <string-array name="prefs_notes_keys">
+    <item>Waypoint</item>
+    <item>Nota de OSM</item>
+    <item>Ambas</item>
+  </string-array>
   <string name="prefs_gps_logging_interval">Intervalo de registro de GPS</string>
   <string name="prefs_gps_logging_interval_summary">Utilice 0 para el más breve posible (afecta a la vida de la batería)</string>
   <string name="prefs_gps_logging_interval_seconds">segundos</string>
+  <string name="prefs_gps_logging_interval_empty">La distancia de registro GPS no puede estar vacía</string>
   <string name="prefs_gps_logging_min_distance">Distancia de registro GPS</string>
   <string name="prefs_gps_logging_min_distance_summary">Distancia min. entre puntos de traza en metros, utilice 0 para la menor distancia posible</string>
   <string name="prefs_gps_logging_min_distance_meters">metros</string>
+  <string name="prefs_gps_logging_min_distance_empty">La distancia mínima entre puntos de traza no puede estar vacía</string>
   <string name="prefs_ui">Interfaz de usuario</string>
   <string name="prefs_ui_picture_source">Fuente de fotos predeterminada</string>
   <string name="prefs_ui_picture_source_summary">¿Tomar fotos desde la cámara o la galería?</string>
@@ -38,7 +47,7 @@
   <string-array name="prefs_ui_orientation_options_keys">
     <item>Automático</item>
     <item>Vertical</item>
-    <item>Apaisado</item>
+    <item>Horizontal</item>
   </string-array>
   <string name="prefs_voicerec_duration">Duración de la grabación de voz</string>
   <string name="prefs_voicerec_duration_seconds">segundos</string>
@@ -58,6 +67,7 @@
   <string name="prefs_output">Configuraciones GPX</string>
   <string name="prefs_storage_dir">Carpeta de almacenamiento en Documentos</string>
   <string name="prefs_storage_dir_hint">Se hará efectivo en la traza siguiente (no la actual)</string>
+  <string name="prefs_storage_dir_empty">El valor de la carpeta de almacenamiento no puede estar vacía</string>
   <string name="prefs_output_one_dir_per_track">Una carpeta por cada traza</string>
   <string name="prefs_output_one_dir_per_track_summary">Guarda cada rastro y los archivos asociados en su propia carpeta</string>
   <string name="prefs_output_filename">Nombre del archivo para las trazas con nombre</string>
@@ -81,16 +91,19 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">Rellenar el HDOP en el GPX con un valor de aproximación de la precisión</string>
   <string name="prefs_sound_enabled">Habilitar el sonido</string>
   <string name="prefs_sound_enabled_summary">Reproducir sonidos cuando la grabación de voz comienza y termina</string>
+  <string name="prefs_osm_visibility">Visibilidad de la traza</string>
+  <string name="prefs_osm_visibility_summary">Visibilidad preferida para las trazas al subirlas a openstreetmap.org</string>
+  <string-array name="prefs_osm_visibility_keys">
+    <item>Privado</item>
+    <item>Trazable</item>
+    <item>Público</item>
+    <item>Identificable</item>
+  </string-array>
   <string name="prefs_osm_clear_oauth_data">Restablecer la autenticación OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Olvidar las credenciales y permisos de OSM, y forzar a que OSMTracker los vuelva a solicitar</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Deberá autorizar a OSMTracker para volver a subir las pistas. ¿Está seguro?</string>
   <string name="prefs_map_tile">Proveedor de mosaicos de mapas</string>
-  <string name="prefs_map_tile_summary"></string>
-  <string-array name="prefs_map_tile_keys">
-    <item>Mapnik</item>
-    <item>Cycle Map</item>
-    <item>MapQuest Open</item>
-  </string-array>
+  <string name="prefs_map_tile_summary">Escoja el proveedor de mosaicos para mostrar el mapa</string>
   <string-array name="prefs_compass_heading_keys">
     <item>Ninguno</item>
     <item>en comentario</item>
@@ -98,4 +111,6 @@
   </string-array>
   <string name="prefs_compass_heading">Exportar rumbo de la brújula</string>
   <string name="prefs_compass_heading_summary">Define el si y cómo los datos de brújula deben ser exportados al archivo GPX</string>
+  <string name="prefs_reset_default_value">Reestablecer valor predeterminado</string>
+  <string name="prefs_not_set">No establecido</string>
 </resources>
