@@ -26,6 +26,9 @@
   <string name="prefs_gps_logging_min_distance_summary">Min. distance between track points in meters, use 0 for the shortest possible</string>
   <string name="prefs_gps_logging_min_distance_meters">meters</string>
   <string name="prefs_gps_logging_min_distance_empty">Min. distance between track points cannot be empty</string>
+  <string name="prefs_gps_min_accuracy">GPS minimum accuracy</string>
+  <string name="prefs_gps_min_accuracy_summary">Wait until accuracy is better than this value (in meters) to start recording. 0 to disable.</string>
+  <string name="prefs_gps_min_accuracy_dialog_title">Enter minimum accuracy (meters)</string>
   <string name="prefs_ui">User interface</string>
   <string name="prefs_ui_picture_source">Default photo source</string>
   <string name="prefs_ui_picture_source_summary">Take photos from camera or gallery?</string>
