@@ -83,6 +83,7 @@ public class TrackContentProvider extends ContentProvider {
 		Schema.COL_OSM_VISIBILITY,
 		Schema.COL_START_DATE,
 		"count(" + Schema.TBL_TRACKPOINT + "." + Schema.COL_ID + ") as " + Schema.COL_TRACKPOINT_COUNT,
+		"(SELECT max("+Schema.TBL_TRACKPOINT+"."+Schema.COL_SEG_ID+") FROM "+Schema.TBL_TRACKPOINT+" WHERE "+Schema.TBL_TRACKPOINT+"."+Schema.COL_TRACK_ID+" = " + Schema.TBL_TRACK + "." + Schema.COL_ID + ") as " + Schema.COL_MAX_SEG_ID,
 		"(SELECT count(" + Schema.TBL_WAYPOINT + "." + Schema.COL_TRACK_ID +") " +
 				"FROM " + Schema.TBL_WAYPOINT + " " +
 				"WHERE " +	Schema.TBL_WAYPOINT + "." + Schema.COL_TRACK_ID +" " +
@@ -593,10 +594,14 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_COMPASS = "compass_heading";
 		public static final String COL_COMPASS_ACCURACY = "compass_accuracy";
 		public static final String COL_ATMOSPHERIC_PRESSURE = "atmospheric_pressure";
-		
+
+		public static final String COL_SEG_ID = "segment_id";
+
 		// virtual colums that are used in some sqls but dont exist in database
 		public static final String COL_TRACKPOINT_COUNT = "tp_count";
 		public static final String COL_WAYPOINT_COUNT = "wp_count";
+		public static final String COL_MAX_SEG_ID = "max_segment_id";
+		
 		public static final String COL_NOTE_COUNT = "note_count";
 
 		// Codes for UriMatcher

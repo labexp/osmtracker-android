@@ -6,6 +6,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,11 +26,14 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import android.database.Cursor;
+
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.activity.TrackLogger;
 import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
+import net.osmtracker.db.model.Track;
 import net.osmtracker.listener.PressureListener;
 import net.osmtracker.listener.SensorListener;
 
@@ -83,6 +88,11 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private long currentTrackId = -1;
 
+    	/**
+	 * Current Segment ID
+	 */
+	private long currentSegmentId = -1;
+
 	/**
 	 * the timestamp of the last GPS fix we used
 	 */
@@ -130,7 +140,7 @@ public class GPSLogger extends Service implements LocationListener {
 							dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
 
 							// If there is a waypoint in the track, there should also be a trackpoint
-							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
 						}
 					}
 				}
@@ -313,12 +323,31 @@ public class GPSLogger extends Service implements LocationListener {
 		super.onDestroy();
 	}
 
+	private long getSegIdFor(long trackId) {
+		ContentResolver cr = getContentResolver();
+		try(Cursor cursor =
+		    cr.query(ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
+			     null, null, null, null)) {
+
+			if (! cursor.moveToFirst())	{
+				Log.v(TAG, "Track "+trackId+" not found");
+				return 0;  // <--- Early return ---
+			}
+
+			return Track
+				.build(trackId, cursor, cr, true)
+				.getMaxSegId();
+		}
+	}
+
 	/**
 	 * Start GPS tracking.
 	 */
 	private void startTracking(long trackId) {
 		currentTrackId = trackId;
-		Log.v(TAG, "Starting track logging for track #" + trackId);
+		currentSegmentId = getSegIdFor(trackId)+1;
+		Log.v(TAG, "Starting track logging for track #" + trackId +
+		      "/" + currentSegmentId);
 		// Refresh notification with correct Track ID
 		NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		nmgr.notify(NOTIFICATION_ID, getNotification());
@@ -347,7 +376,7 @@ public class GPSLogger extends Service implements LocationListener {
 			lastLocation = location;
 			
 			if (isTracking) {
-				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
 			}
 		}
 	}
