@@ -51,9 +51,10 @@ public class Track {
 	private String description;
 	private OSMVisibility visibility;
 	private List<String> tags = new ArrayList<String>();
-	private int tpCount, wpCount, noteCount, maxSegId;
+	private int tpCount, wpCount, noteCount;
 	private long trackDate;
 	private long trackId;
+	private long maxSegId;
 	
 	private Long startDate=null, endDate=null;
 	private Float startLat=null, startLong=null, endLat=null, endLong=null;
@@ -95,7 +96,7 @@ public class Track {
 
 		out.noteCount = tc.getInt(tc.getColumnIndex(TrackContentProvider.Schema.COL_NOTE_COUNT));
 
-		int maxSegIdIdx = tc.getColumnIndex(TrackContentProvider.Schema.COL_MAX_SEG_ID);
+		int maxSegIdIdx = tc.getColumnIndex(TrackContentProvider.Schema.COL_SEG_ID_MAX);
 		out.maxSegId = tc.isNull(maxSegIdIdx) ? 0 :tc.getInt(maxSegIdIdx);
 
 		if(withExtraInformation){
@@ -154,10 +155,6 @@ public class Track {
 		this.noteCount = noteCount;
 	}
 
-	public void setMaxSegId(int maxSegId) {
-		this.maxSegId = maxSegId;
-	}
-
 	public void setTracktDate(long tracktDate) {
 		this.trackDate = tracktDate;
 	}
@@ -200,7 +197,7 @@ public class Track {
 		return wpCount;
 	}
 	
-	public Integer getMaxSegId() {
+	public long getMaxSegId() {
 		return maxSegId;
 	}
 
