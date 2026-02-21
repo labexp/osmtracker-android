@@ -96,8 +96,7 @@ public class Track {
 
 		out.noteCount = tc.getInt(tc.getColumnIndex(TrackContentProvider.Schema.COL_NOTE_COUNT));
 
-		int maxSegIdIdx = tc.getColumnIndex(TrackContentProvider.Schema.COL_SEG_ID_MAX);
-		out.maxSegId = tc.isNull(maxSegIdIdx) ? 0 :tc.getInt(maxSegIdIdx);
+		out.maxSegId = tc.getLong(tc.getColumnIndex(TrackContentProvider.Schema.COL_SEG_ID_MAX));
 
 		if(withExtraInformation){
 			out.readExtraInformation();
