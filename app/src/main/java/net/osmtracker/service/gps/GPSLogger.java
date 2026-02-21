@@ -114,7 +114,6 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private PressureListener pressureListener = new PressureListener();
 
-	private boolean newSeg = false;
 
 	/**
 	 * Receives Intent for way point and notes tracking, and stop/start logging.
@@ -143,7 +142,6 @@ public class GPSLogger extends Service implements LocationListener {
 
 							// If there is a waypoint in the track, there should also be a trackpoint
 							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
-							newSeg = false;
 						}
 					}
 				}
@@ -199,7 +197,6 @@ public class GPSLogger extends Service implements LocationListener {
 					dataHelper.updateNote(trackId, uuid, name);
 				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction())) {
-				newSeg = true;
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
 					Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
@@ -381,7 +378,6 @@ public class GPSLogger extends Service implements LocationListener {
 			
 			if (isTracking) {
 				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
-				newSeg = false;
 			}
 		}
 	}
