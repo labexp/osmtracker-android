@@ -142,9 +142,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 *          TBL_WAYPOINT.COL_COMPASS and TBL_WAYPOINT.COL_COMPASS_ACCURACY
 	 * v17: add TBL_TRACKPOINT.COL_ATMOSPHERIC_PRESSURE and TBL_WAYPOINT.COL_ATMOSPHERIC_PRESSURE
 	 * v18: add TBL_NOTE
+	 * v19: add TBL_TRACKPOINT.COL_SEG_ID for track segments support
 	 *</pre>
 	 */
-	private static final int DB_VERSION = 18;
+	private static final int DB_VERSION = 19;
 
 	private Context context;
 
