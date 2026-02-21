@@ -142,7 +142,7 @@ public class GPSLogger extends Service implements LocationListener {
 							dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
 
 							// If there is a waypoint in the track, there should also be a trackpoint
-							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), newSeg, currentSegmentId);
+							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
 							newSeg = false;
 						}
 					}
@@ -380,7 +380,7 @@ public class GPSLogger extends Service implements LocationListener {
 			lastLocation = location;
 			
 			if (isTracking) {
-				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), newSeg, currentSegmentId);
+				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
 				newSeg = false;
 			}
 		}
