@@ -146,7 +146,7 @@ public class DataHelper {
 	 * @param pressure
 	 *            atmospheric pressure
 	 */
-	public void track(long trackId, Location location, float azimuth, int accuracy, float pressure, boolean newSeg, long segId) {
+	public void track(long trackId, Location location, float azimuth, int accuracy, float pressure, long segId) {
 		Log.v(TAG, "Tracking (trackId=" + trackId + ") location: " + location + " azimuth: " + azimuth + ", accuracy: " + accuracy);
 		ContentValues values = new ContentValues();
 		values.put(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
