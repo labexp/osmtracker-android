@@ -273,7 +273,7 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * @param target Target GPX file
 	 * @throws IOException
 	 */
-	private void writeGpxFile(String trackName, String tags, String track_description, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
+	protected void writeGpxFile(String trackName, String tags, String track_description, Cursor cTrackPoints, Cursor cWayPoints, File target) throws IOException {
 
 		String accuracyOutput = PreferenceManager.getDefaultSharedPreferences(context).getString(
 				OSMTracker.Preferences.KEY_OUTPUT_ACCURACY,
@@ -329,7 +329,7 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * @param compass Indicates if and how to write compass heading to the GPX ('none', 'comment', 'extension')
 	 * @throws IOException
 	 */
-	private void writeTrackPoints(String trackName, Writer fw, Cursor c, boolean fillHDOP, String compass) throws IOException {
+	protected void writeTrackPoints(String trackName, Writer fw, Cursor c, boolean fillHDOP, String compass) throws IOException {
 		// Update dialog every 1%
 		int dialogUpdateThreshold = c.getCount() / 100;
 		if (dialogUpdateThreshold == 0) {
@@ -419,7 +419,7 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 	 * @param compass Indicates if and how to write compass heading to the GPX ('none', 'comment', 'extension')
 	 * @throws IOException
 	 */
-	private void writeWayPoints(Writer fw, Cursor c, String accuracyInfo, boolean fillHDOP, String compass) throws IOException {
+	protected void writeWayPoints(Writer fw, Cursor c, String accuracyInfo, boolean fillHDOP, String compass) throws IOException {
 
 		// Update dialog every 1%
 		int dialogUpdateThreshold = c.getCount() / 100;
