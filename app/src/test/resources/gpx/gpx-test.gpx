@@ -29,6 +29,8 @@
 					<compass_accuracy>2.0</compass_accuracy>
 				</extensions>
 			</trkpt>
+		</trkseg>
+		<trkseg>
 			<trkpt lat="10.0377106969496" lon="-84.2123268390527">
 				<ele>1007.3209409276</ele>
 				<time>2001-05-16T23:20:26Z</time>
