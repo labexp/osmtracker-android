@@ -17,6 +17,8 @@ import net.osmtracker.db.model.Track;
 import net.osmtracker.db.model.TrackPoint;
 import net.osmtracker.db.model.WayPoint;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -406,6 +408,24 @@ public class DataHelper {
 		}
 		ca.close();
 		return currentTrackId;
+	}
+
+	/**
+	 * Find the segment ID for a track
+	 * @param trackId Id of the track
+	 * @param cr  {@link ContentResolver} for query
+	 * @return  the segment ID for the track, or 0 if not found
+	 */
+	public static long getSegmentIdFor(long trackId, @NotNull ContentResolver cr) {
+		Cursor ca = cr.query(ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK,
+						trackId),null, null, null, null);
+
+		if (! ca.moveToFirst())	{
+			Log.v(TAG, "Track " + trackId + " not found");
+			return 0;  // <--- Early return ---
+		}
+
+		return Track.build(trackId, ca, cr, true).getMaxSegId();
 	}
 
 	/**
