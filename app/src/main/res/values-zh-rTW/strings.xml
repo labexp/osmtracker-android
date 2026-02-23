@@ -274,6 +274,9 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">歡迎使用 OSMTracker for Android™👋</string>
   <string name="app_intro_slide1_description">這款 App 是尊重你自由的自由軟體</string>
+  <!--Intro - slide What's new-->
+  <string name="app_intro_slide_whats_new_title">新版本推出什麼新功能呢？</string>
+  <string name="app_intro_slide_whats_new_description">如今我們能夠上傳註解到 OSM，恢復介接 CyclOSM 以及 OpenTopo 圖磚。請享用！</string>
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">記錄快樂🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker for Android  會使用你的 GPS 位置來記錄航點和路徑，即便 App 在背景執行。

@@ -257,6 +257,7 @@ głosową</string>
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Witaj w OSMTracker Android™ 👋</string>
   <string name="app_intro_slide1_description">Ta aplikacja jest wolnym oprogramowaniem i szanuje Twoją wolność!</string>
+  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Miłego zbierania śladów 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker Android będzie używał Twojej pozycji GPS, aby zarejestrować punkty trasy i punkty orientacyjne, nawet jeśli aplikacja działa w tle.

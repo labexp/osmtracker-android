@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Preferences-->
-  <!--Preferences-->
   <string name="prefs">設定</string>
   <string name="prefs_gps">GPS</string>
   <string name="prefs_gps_os_settings">GPS 設定</string>
@@ -113,4 +112,5 @@
   <string name="prefs_compass_heading">匯出羅盤方位</string>
   <string name="prefs_compass_heading_summary">定義羅盤資料要如何匯出到 GPX 檔案</string>
   <string name="prefs_reset_default_value">重設預設值</string>
+  <string name="prefs_not_set">還未設定</string>
 </resources>

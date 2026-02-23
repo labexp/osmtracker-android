@@ -274,6 +274,9 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Welcome to OSMTracker for Android™ 👋</string>
   <string name="app_intro_slide1_description">This App is free software that respects your freedom!</string>
+  <!--Intro - slide What's new-->
+  <string name="app_intro_slide_whats_new_title">What\'s new in this version?</string>
+  <string name="app_intro_slide_whats_new_description">Now we can upload notes to OSM, and CyclOSM and OpenTopo map tiles are available again. Enjoy! </string>
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Happy tracking 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker for Android will use your GPS location to record trackpoints and waypoints, even when the App is running in background.

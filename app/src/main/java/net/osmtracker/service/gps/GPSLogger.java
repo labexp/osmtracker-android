@@ -68,6 +68,11 @@ public class GPSLogger extends Service implements LocationListener {
 	private boolean isAccuracySatisfied = false;
 
 	/**
+	 * Precision of the accuracy in meters is satisfied ?
+	 */
+	private boolean isAccuracySatisfied = false;
+
+	/**
 	 * Use barometer yes/no ?
 	 */
 	private boolean use_barometer = false;
@@ -103,6 +108,10 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private long gpsLoggingInterval;
 	private long gpsLoggingMinDistance;
+	/**
+	 * Minimum accuracy in meters for starting defined in the preferences
+	 */
+	private long gpsLoggingMinAccuracy;
 	
 	/**
 	 * sensors for magnetic orientation
@@ -257,6 +266,8 @@ public class GPSLogger extends Service implements LocationListener {
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 		gpsLoggingMinDistance = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
+		gpsLoggingMinAccuracy = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
+				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_ACCURACY, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_ACCURACY));
 		use_barometer = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
 				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
 
@@ -365,7 +376,7 @@ public class GPSLogger extends Service implements LocationListener {
 		}
 		// Wait for minimum accuracy before starting
 		if(!isAccuracySatisfied){
-			if(location.hasAccuracy() && location.getAccuracy() <= minAccuracy){
+			if(location.hasAccuracy() && location.getAccuracy() <= gpsLoggingMinAccuracy){
 				// Precision achieved we unlocked the door and began recording this one and the following ones.
 				isAccuracySatisfied = true;
 			}

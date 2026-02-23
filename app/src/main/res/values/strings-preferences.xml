@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <!-- Preferences -->
   <!--Preferences-->
   <string name="prefs">Settings</string>
   <string name="prefs_gps">GPS</string>
@@ -30,6 +29,7 @@
   <string name="prefs_gps_min_accuracy">GPS minimum accuracy</string>
   <string name="prefs_gps_min_accuracy_summary">Wait until accuracy is better than this value (in meters) to start recording. 0 to disable.</string>
   <string name="prefs_gps_min_accuracy_dialog_title">Enter minimum accuracy (meters)</string>
+  <string name="prefs_gps_min_accuracy_empty">GPS logging accuracy cannot be empty</string>
   <string name="prefs_ui">User interface</string>
   <string name="prefs_ui_picture_source">Default photo source</string>
   <string name="prefs_ui_picture_source_summary">Take photos from camera or gallery?</string>
@@ -121,4 +121,5 @@
   <string name="prefs_compass_heading">Export compass heading</string>
   <string name="prefs_compass_heading_summary">Defines if and how the compass data should be exported to the GPX file</string>
   <string name="prefs_reset_default_value">Reset default value</string>
+  <string name="prefs_not_set">Not set</string>
 </resources>
