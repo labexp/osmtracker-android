@@ -351,7 +351,6 @@ public abstract class ExportTrackTask extends AsyncTask<Void, Long, Boolean> {
 		int prevSegId=-1;
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext(),i++) {
 			StringBuffer out = new StringBuffer();
-
 			int segId = c.getInt(c.getColumnIndex(TrackContentProvider.Schema.COL_SEG_ID));
 			if(prevSegId != -1 && segId != prevSegId) {
 				fw.write("\t\t" + "</trkseg>" + "\n");

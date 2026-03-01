@@ -117,6 +117,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	    + ")";
 
 	/**
+	 * SQL for creating table OVERLAY
+	 * @since 20
+	 */
+	private static final String SQL_CREATE_TABLE_OVERLAY = ""
+		+ "create table " + TrackContentProvider.Schema.TBL_OVERLAY + " ("
+		+ TrackContentProvider.Schema.COL_TRACK_ID + " integer primary key,"
+		+ TrackContentProvider.Schema.COL_OVERLAY_ID + " integer not null"
+		+ ")";
+
+	/**
 	 * Database name.
 	 */
 	public static final String DB_NAME = OSMTracker.class.getSimpleName();
@@ -146,7 +156,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * v20: normalize TBL_TRACK.COL_OSM_VISIBILITY to Identifiable
 	 *</pre>
 	 */
-	private static final int DB_VERSION = 20;
+	private static final int DB_VERSION = 21;
 
 	private Context context;
 
@@ -167,6 +177,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_CREATE_TABLE_TRACK);
 		db.execSQL("drop table if exists " + TrackContentProvider.Schema.TBL_NOTE);
 		db.execSQL(SQL_CREATE_TABLE_NOTE);
+		db.execSQL(SQL_CREATE_TABLE_OVERLAY);
 	}
 
 	@Override
@@ -218,6 +229,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 							Track.OSMVisibility.Trackable.name(),
 							Track.OSMVisibility.Identifiable.name()
 			});
+		case 20:
+			db.execSQL(SQL_CREATE_TABLE_OVERLAY);
 		}
 	}
 
