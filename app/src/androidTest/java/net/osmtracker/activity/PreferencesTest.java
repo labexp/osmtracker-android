@@ -1,7 +1,5 @@
 package net.osmtracker.activity;
 
-import android.util.Log;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -38,8 +36,7 @@ import java.util.Arrays;
 
 @RunWith(AndroidJUnit4.class)
 public class PreferencesTest {
-	private static final String TAG = "PreferencesTest";
-	
+
 	private Context context;
 	private ActivityScenario<Preferences> activity;
 
@@ -65,26 +62,19 @@ public class PreferencesTest {
 	 */
 	@Test
 	public void testStorageDirectoryValidatesNonEmpty() {
-		Log.i(TAG, "[1] Entering Test 1");
 		String keyTitle = context.getString(R.string.prefs_storage_dir);
-		// Log.i(TAG, "[2] Test 1");
 		String defaultValue = OSMTracker.Preferences.VAL_STORAGE_DIR;
-		// Log.i(TAG, "[3] Test 1");
 
 		// Looks for storage directory preference
 		scrollToAndClick(keyTitle);
-		// Log.i(TAG, "[4] Test 1");
 
 		// Try to save an empty value
 		onView(withId(android.R.id.edit)).perform(clearText());
-		// Log.i(TAG, "[5] Test 1");
 		onView(withText(android.R.string.ok)).perform(click());
-		// Log.i(TAG, "[6] Test 1");
 
 		// Open the preference to verify the value in the list remains the default (unchanged)
 		onView(ViewMatchers.isAssignableFrom(RecyclerView.class))
 				.check(matches(hasDescendant(withText(defaultValue))));
-		// Log.i(TAG, "[7] Test 1");
 	}
 
 	/**
