@@ -52,6 +52,8 @@
   <string name="trackmgr_export_error">Unable to export track: {0}</string>
   <string name="trackmgr_exportall_confirm">All tracks will be exported, which could take a long time. Are you sure?</string>
   <string name="trackmgr_prepare_for_share_error">Unable to process the track: {0}</string>
+  <!--Track Picker -->
+  <string name="trackpckr_tracklist">List of tracks to overlay:</string>
   <!--Track Detail-->
   <string name="trackdetail">Track Details</string>
   <string name="trackdetail_startdate">Start time:</string>
@@ -133,6 +135,7 @@
   <string name="menu_export">Export as GPX</string>
   <string name="menu_osm_upload">OpenStreetMap upload</string>
   <string name="menu_center_to_gps">Center to GPS</string>
+  <string name="menu_overlay_other">Overlay other</string>
   <string name="menu_exportall">Export all as GPX</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">Unable to write to external storage.</string>

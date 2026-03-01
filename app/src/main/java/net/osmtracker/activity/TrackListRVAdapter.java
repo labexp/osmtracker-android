@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.Color;
+import android.util.TypedValue;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.osmtracker.R;
 import net.osmtracker.db.TracklistAdapter;
+import net.osmtracker.db.TrackContentProvider;
 
 public class TrackListRVAdapter extends RecyclerView.Adapter<TrackListRVAdapter.TrackItemVH> {
 
@@ -36,10 +39,15 @@ public class TrackListRVAdapter extends RecyclerView.Adapter<TrackListRVAdapter.
     }
 
     public interface TrackListRecyclerViewAdapterListener {
-        void onClick(long trackId);
+        default void onClick(long trackId) {};
 
         void onCreateContextMenu(ContextMenu contextMenu, View view,
                                  ContextMenu.ContextMenuInfo contextMenuInfo, long trackId);
+	default void onClick(TrackItemVH item, long trackId) {
+	    onClick(trackId);
+	}
+	default void initializeItem(TrackItemVH item, long trackId) {
+	}
     }
 
     /**
@@ -104,8 +112,22 @@ public class TrackListRVAdapter extends RecyclerView.Adapter<TrackListRVAdapter.
         @Override
         public void onClick(View v) {
             long trackId = Long.parseLong(getvId().getText().toString());
-            mHandler.onClick(trackId);
+            mHandler.onClick(this, trackId);
         }
+
+	public void activate(boolean state) {
+	    if(state)
+		itemView.setBackgroundColor(Color.RED);
+	    else {
+		TypedValue outValue = new TypedValue();
+		itemView
+		    .getContext()
+		    .getTheme()
+		    .resolveAttribute(android.R.attr.selectableItemBackground,
+				      outValue, true);
+		itemView.setBackgroundResource(outValue.resourceId);
+	    }
+	}
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
@@ -130,8 +152,11 @@ public class TrackListRVAdapter extends RecyclerView.Adapter<TrackListRVAdapter.
         // contents of the view with that element
 
         // Passing the binding operation to cursor loader
-        cursorAdapter.getCursor().moveToPosition(position);
-        cursorAdapter.bindView(holder.itemView, context, cursorAdapter.getCursor());
+        Cursor cursor = cursorAdapter.getCursor();
+        cursor.moveToPosition(position);
+        cursorAdapter.bindView(holder.itemView, context, cursor);
+        mHandler.initializeItem(holder,
+                                cursor.getLong(cursor.getColumnIndex(TrackContentProvider.Schema.COL_ID)));
     }
 
     @Override
