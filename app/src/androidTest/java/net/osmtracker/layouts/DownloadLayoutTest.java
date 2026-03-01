@@ -65,7 +65,7 @@ public class DownloadLayoutTest {
 		activity.close();
 	}
 
-        @Test
+	@Test
 	public void downloadLayoutTest() {
 		deleteLayoutsDirectory();
 
