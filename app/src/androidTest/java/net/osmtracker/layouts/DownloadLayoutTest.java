@@ -67,7 +67,6 @@ public class DownloadLayoutTest {
 
         @Test
 	public void downloadLayoutTest() {
-		if(true) return;
 		deleteLayoutsDirectory();
 
 		TestUtils.setLayoutsTestingRepository();
