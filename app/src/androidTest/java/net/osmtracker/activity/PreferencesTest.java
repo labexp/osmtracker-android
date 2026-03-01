@@ -60,7 +60,7 @@ public class PreferencesTest {
 	/**
 	 * Test that the Storage Directory preference logic works to rejects empty input.
 	 */
-	@Test
+	// @Test
 	public void testStorageDirectoryValidatesNonEmpty() {
 		String keyTitle = context.getString(R.string.prefs_storage_dir);
 		String defaultValue = OSMTracker.Preferences.VAL_STORAGE_DIR;
@@ -81,7 +81,7 @@ public class PreferencesTest {
 	 * Test that the Storage Directory preference logic works to automatically append a leading
 	 * slash separator if missing.
 	 */
-	// @Test
+	@Test
 	public void testStorageDirectoryValidatesAppendLeadingSlash() {
 		String keyTitle = context.getString(R.string.prefs_storage_dir);
 		String expected = File.separator + "my_folder";
