@@ -12,6 +12,7 @@ import androidx.test.core.app.ApplicationProvider;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
+import net.osmtracker.osm.OpenStreetMapConstants;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,22 +22,26 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowActivity;
+import org.robolectric.shadows.ShadowLog;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(sdk = 25)
+@Config(sdk = 25, shadows = {ShadowLog.class})
 public class OpenStreetMapNotesUploadTest {
 
 	private Intent intent;
 
 	@Before
 	public void setUp() {
+		ShadowLog.stream = System.out;
+		// Switch to Dev/Master API for this test
+		OpenStreetMapConstants.setDevelopmentMode(true);
 		// Prepare a valid intent with extras
 		intent = new Intent(ApplicationProvider.getApplicationContext(),
 				OpenStreetMapNotesUpload.class);
 		intent.putExtra("noteId", 123L);
 		intent.putExtra("noteContent", "Test Note Content");
-		intent.putExtra("latitude", 45.0);
-		intent.putExtra("longitude", 9.0);
+		intent.putExtra("latitude", 10.034071);
+		intent.putExtra("longitude", -84.209481);
 		intent.putExtra("version", "3.0.1");
 		intent.putExtra("appName", "OSMTrackerTest");
 
