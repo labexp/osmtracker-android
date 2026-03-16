@@ -39,7 +39,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ TrackContentProvider.Schema.COL_TIMESTAMP + " long not null,"
 		+ TrackContentProvider.Schema.COL_COMPASS + " double null,"
 		+ TrackContentProvider.Schema.COL_COMPASS_ACCURACY + " integer null,"
-		+ TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null" + ")";
+		+ TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null,"
+		+ TrackContentProvider.Schema.COL_SEG_ID + " integer not null default 0"
+		+ ")";
 
 	/**
 	 * SQL for creating index TRACKPOINT_idx (track id)
@@ -140,9 +142,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 *          TBL_WAYPOINT.COL_COMPASS and TBL_WAYPOINT.COL_COMPASS_ACCURACY
 	 * v17: add TBL_TRACKPOINT.COL_ATMOSPHERIC_PRESSURE and TBL_WAYPOINT.COL_ATMOSPHERIC_PRESSURE
 	 * v18: add TBL_NOTE
+	 * v19: add TBL_TRACKPOINT.COL_SEG_ID for track segments support
 	 *</pre>
 	 */
-	private static final int DB_VERSION = 18;
+	private static final int DB_VERSION = 19;
 
 	private Context context;
 
@@ -202,6 +205,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			db.execSQL("alter table " + TrackContentProvider.Schema.TBL_WAYPOINT + " add column " + TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE + " double null");
 		case 17:
 			db.execSQL(SQL_CREATE_TABLE_NOTE);
+		case 18:
+			db.execSQL("alter table "+TrackContentProvider.Schema.TBL_TRACKPOINT + " add column " + TrackContentProvider.Schema.COL_SEG_ID + " integer default 0");
 		}
 	}
 

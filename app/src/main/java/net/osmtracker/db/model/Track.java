@@ -54,6 +54,7 @@ public class Track {
 	private int tpCount, wpCount, noteCount;
 	private long trackDate;
 	private long trackId;
+	private long maxSegId;
 	
 	private Long startDate=null, endDate=null;
 	private Float startLat=null, startLong=null, endLat=null, endLong=null;
@@ -94,6 +95,8 @@ public class Track {
 		out.wpCount = tc.getInt(tc.getColumnIndex(TrackContentProvider.Schema.COL_WAYPOINT_COUNT));
 
 		out.noteCount = tc.getInt(tc.getColumnIndex(TrackContentProvider.Schema.COL_NOTE_COUNT));
+
+		out.maxSegId = tc.getLong(tc.getColumnIndex(TrackContentProvider.Schema.COL_SEG_ID_MAX));
 
 		if(withExtraInformation){
 			out.readExtraInformation();
@@ -193,6 +196,10 @@ public class Track {
 		return wpCount;
 	}
 	
+	public long getMaxSegId() {
+		return maxSegId;
+	}
+
 	public Integer getTpCount() {
 		return tpCount;
 	}

@@ -98,6 +98,11 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private long currentTrackId = -1;
 
+    	/**
+	 * Current Segment ID
+	 */
+	private long currentSegmentId = -1;
+
 	/**
 	 * the timestamp of the last GPS fix we used
 	 */
@@ -149,7 +154,7 @@ public class GPSLogger extends Service implements LocationListener {
 							dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
 
 							// If there is a waypoint in the track, there should also be a trackpoint
-							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
 						}
 					}
 				}
@@ -352,7 +357,8 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private void startTracking(long trackId) {
 		currentTrackId = trackId;
-		Log.v(TAG, "Starting track logging for track #" + trackId);
+		currentSegmentId = DataHelper.getSegmentIdFor(trackId, getContentResolver()) + 1;
+		Log.v(TAG, "Starting track logging for track #" + trackId + " segment #" +"/" + currentSegmentId);
 		// Refresh notification with correct Track ID
 		NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		nmgr.notify(NOTIFICATION_ID, getNotification());
@@ -394,7 +400,7 @@ public class GPSLogger extends Service implements LocationListener {
 			lastLocation = location;
 			
 			if (isTracking) {
-				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
 			}
 		}
 	}
