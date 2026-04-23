@@ -4,6 +4,7 @@
 		<!-- item name="android:background">#ffffff</item -->
 		<item name="android:buttonStyle">@style/Widget.Button</item>
 		<item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
+		<item name="actionOverflowMenuStyle">@style/PopupMenu</item>
 	</style>
 
 	<style name="Widget.Button" parent="@android:style/Widget.DeviceDefault.Button">
@@ -13,6 +14,10 @@
 
 	<style name="Widget.Button.Toggle" parent="@android:style/Widget.DeviceDefault.Button.Toggle">
 			<item name="android:textColor">#ffffff</item>
+	</style>
+	
+	<style name="PopupMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+		<item name="android:popupBackground">@drawable/menu_border_background</item>
 	</style>
 
 </resources>
