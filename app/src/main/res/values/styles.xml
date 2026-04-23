@@ -9,8 +9,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         -->
         <item name="actionOverflowMenuStyle">@style/PopupMenu</item>
+        <item name="popupMenuStyle">@style/PopupMenu</item>
         <item name="android:contextPopupMenuStyle">@style/PopupMenu</item>
-        <item name="android:panelBackground">@drawable/menu_border_background</item>
     </style>
 
     <!-- Base application theme. -->
