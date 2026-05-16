@@ -171,7 +171,7 @@ public class OSMTracker {
 	/**
 	 * Key for extra data "overlaidTrackId" in Intent
 	 */
-	public final static String INTENT_OVERLAID_TRACK_ID = "overlaidTrackId";
+	public final static String INTENT_KEY_OVERLAID_TRACK_ID = "overlaidTrackId";
 
 	/**
 	 * Approximation factor for calculating Horizontal Dilution of Precision

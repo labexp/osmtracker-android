@@ -68,7 +68,7 @@ public class TrackPicker extends AppCompatActivity
 	protected void onResume() {
 		activatedItem = null;
 		Intent i = getIntent();
-		overlaidTrackId = i.getLongExtra(OSMTracker.INTENT_OVERLAID_TRACK_ID, 0);
+		overlaidTrackId = i.getLongExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID, 0);
 		currentTrackId = i.getLongExtra(TrackContentProvider.Schema.COL_TRACK_ID, 0);
 		setRecyclerView();
 		super.onResume();
@@ -117,7 +117,7 @@ public class TrackPicker extends AppCompatActivity
 
 		overlaidTrackId = select(item, trackId);
 		Intent data = new Intent();
-		data.putExtra(OSMTracker.INTENT_OVERLAID_TRACK_ID,
+		data.putExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID,
 			      overlaidTrackId);
 		setResult(RESULT_OK, data);
 		finish();
