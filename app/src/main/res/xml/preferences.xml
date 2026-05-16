@@ -67,6 +67,11 @@
             app:key="gps.logging.min_distance"
             app:summary="@string/prefs_gps_logging_min_distance_summary"
             app:title="@string/prefs_gps_logging_min_distance" />
+        <CheckBoxPreference
+            app:defaultValue="false"
+            app:key="gps.logging.dist_gt_accuracy"
+            app:summary="@string/prefs_gps_logging_distance_gt_accuracy_summary"
+            app:title="@string/prefs_gps_logging_distance_gt_accuracy" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/prefs_output">
