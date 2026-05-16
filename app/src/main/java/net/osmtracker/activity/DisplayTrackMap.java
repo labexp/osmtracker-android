@@ -403,7 +403,7 @@ public class DisplayTrackMap extends Activity {
 				// Start track picker activity
 				Intent i = new Intent(this, TrackPicker.class);
 				i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
-				i.putExtra(OSMTracker.INTENT_OVERLAID_TRACK_ID, overlaidTrackId);
+				i.putExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID, overlaidTrackId);
 				startActivityForResult(i, RC_PICK_OVERLAID);
 				break;
 			case R.id.displaytrackmap_menu_settings:
@@ -419,7 +419,7 @@ public class DisplayTrackMap extends Activity {
 				     Intent data) {
 		if(requestCode == RC_PICK_OVERLAID &&
 		   resultCode == RESULT_OK) {
-			overlaidTrackId = data.getLongExtra(OSMTracker.INTENT_OVERLAID_TRACK_ID,0);
+			overlaidTrackId = data.getLongExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID,0);
 			final DataHelper dataHelper = new DataHelper(this);
 			dataHelper.updateOverlay(currentTrackId,overlaidTrackId);
 		}
