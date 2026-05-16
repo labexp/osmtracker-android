@@ -1,6 +1,5 @@
 package net.osmtracker.activity;
 
-import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,18 +11,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.widget.ImageView;
 
 import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
+import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.overlay.WayPointsOverlay;
 import net.osmtracker.overlay.Polylines;
+import net.osmtracker.service.gps.GPSLoggerConnectionListener;
+import net.osmtracker.service.gps.GPSLoggerServiceConnection;
+import net.osmtracker.service.gps.GPSLogger;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -50,7 +55,7 @@ import java.util.List;
  * @author Viesturs Zarins
  *
  */
-public class DisplayTrackMap extends Activity {
+public class DisplayTrackMap extends GPSLoggerConnectionListener {
 
 	private static final String TAG = DisplayTrackMap.class.getSimpleName();
 
@@ -147,6 +152,11 @@ public class DisplayTrackMap extends Activity {
 	private boolean zoomedToTrackAlready = false;
 
 	/**
+	 * Are we currently tracking?
+	 */
+	private boolean isTracking;
+
+	/**
 	 * the last position we know
 	 */
 	private GeoPoint currentPosition;
@@ -173,6 +183,75 @@ public class DisplayTrackMap extends Activity {
 	 */
 	private SharedPreferences prefs = null;
 
+	private ImageView startStopButton = null;
+	
+	private GPSLogger gpsLogger;
+
+	private GPSLoggerServiceConnection gpsLoggerConnection;
+
+	private synchronized GPSLoggerServiceConnection getGpsLoggerConnection() {
+		if(gpsLoggerConnection == null)
+			gpsLoggerConnection = new GPSLoggerServiceConnection(this);
+		return gpsLoggerConnection;
+	}
+	
+	private synchronized void unbindGpsLoggerConnection() {
+		if(gpsLoggerConnection != null) {
+			unbindService(gpsLoggerConnection);
+			gpsLoggerConnection=null;
+		}
+	}
+
+	@Override
+	public long getCurrentTrackId() {
+		return currentTrackId;
+	}
+	
+	@Override
+	public void setGpsLogger(GPSLogger l) {
+		gpsLogger = l;
+		if(l == null)
+			isTracking = false;
+		updateTrackingIcon();
+	}
+
+	private boolean isTracking() {
+		if(gpsLogger != null &&
+		   gpsLogger.isTracking())
+			isTracking = true;
+		return isTracking;
+	}
+
+	private void updateTrackingIcon() {
+		if(startStopButton != null)
+			startStopButton.setImageResource(isTracking() ?
+							 R.drawable.started :
+							 R.drawable.stopped);
+	}
+
+	private void toggleStartStop() {
+		DataHelper dataHelper = new DataHelper(this);
+		boolean forceTracking = false;
+		if(isTracking()) {
+			// currently tracking => stop it
+			Intent intent = new Intent(OSMTracker.INTENT_STOP_TRACKING);
+			intent.setPackage(getPackageName());
+			sendBroadcast(intent);
+
+			isTracking = false;
+			dataHelper.stopTracking(currentTrackId);
+		} else {
+			// currently not tracking => start it
+			Intent intent = new Intent(this, GPSLogger.class);
+			intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
+			startService(intent);
+			bindService(intent, getGpsLoggerConnection(), 0);
+			isTracking = true;
+			TrackManager.setActiveTrack(this, currentTrackId);
+		}
+		updateTrackingIcon();
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -183,6 +262,9 @@ public class DisplayTrackMap extends Activity {
 		setContentView(R.layout.displaytrackmap);
 
 		currentTrackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
+		long activeTrackId =
+			DataHelper.getActiveTrackId(getContentResolver());
+		isTracking = currentTrackId == activeTrackId;
 		setTitle(getTitle() + ": #" + currentTrackId);
 
 		// Initialize OSM view
@@ -232,8 +314,23 @@ public class DisplayTrackMap extends Activity {
 				osmViewController.animateTo(currentPosition,CENTER_DEFAULT_ZOOM_LEVEL, ANIMATION_DURATION_MS);
 			}
 		});
+		startStopButton =
+			(ImageView)findViewById(R.id.displaytrackmap_imgStartStop);
+		if(activeTrackId == currentTrackId ||
+		   activeTrackId == TrackManager.TRACK_ID_NO_TRACK) {
+			updateTrackingIcon();
+			startStopButton.setOnClickListener(view -> toggleStartStop());
+		} else {
+			startStopButton.setVisibility(View.INVISIBLE);
+		}
 	}
 
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		unbindGpsLoggerConnection();
+	}
+	
 	/**
 	 * Sets the map tile provider according to the user's demands in the settings.
 	 */
