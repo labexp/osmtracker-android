@@ -136,6 +136,8 @@ CI runs connected tests against API 26 using the
 [android-emulator-runner](https://github.com/ReactiveCircus/android-emulator-runner)
 GitHub Action.
 
+💡 **Tip:** You can also connect a physical device wirelessly. See [Appendix: Wireless device connection](#Appendix-Wireless-device-connection) at the end of this document.
+
 ---
 
 ## 6. Generating the coverage report
@@ -401,3 +403,47 @@ Ensure you run both tasks together:
 
 Running `jacocoTestReport` alone (without fresh test execution data) produces an empty
 report because JaCoCo needs the `.exec` file generated during the test run.
+
+
+## Appendix. Wireless device connection
+
+You can run instrumented tests on a physical Android device without a USB cable using **Wireless Debugging** (Android 11 and later).
+
+### Prerequisites
+
+- Device with Android 11 (API 30) or higher
+- Computer and device on the **same Wi-Fi network**
+- SDK Platform-Tools version 30.0.0 or higher
+
+### Steps to connect
+
+**On your Android device:**
+  - Enable **Developer Options** (tap "Build Number" 7 times in Settings → About phone)
+  - Go to **Settings → Developer Options**
+  - Enable **Wireless Debugging**
+  - Tap **Pair device with pairing code**
+
+**On your computer:**
+```bash
+ # Pair with the device (use the IP, port, and code shown on your device)
+ adb pair 192.168.1.45:39123
+ # Enter the 6-digit pairing code when prompted
+
+# Connect to the device
+ adb connect 192.168.1.45:54321
+
+ # Verify connection
+ adb devices
+ ```
+
+### Disconnecting from a device 
+
+Disconnect a specific device
+```bash
+adb disconnect 192.168.1.45
+```
+
+Disconnect all wireless devices
+```bash
+adb disconnect
+```
