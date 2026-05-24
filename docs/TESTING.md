@@ -338,6 +338,17 @@ capabilities: [JAVA_COMPILER]
 org.gradle.java.home=/path/to/your/jdk17
 ```
 
+**Alternative fix (command line):** Pass the JDK path directly to Gradle without modifying
+`gradle.properties`. Use the `-Dorg.gradle.java.home` flag:
+
+```bash
+# Example using a local JDK 17 installation
+./gradlew assembleDebug -Dorg.gradle.java.home=/home/user/.jdks/jbr-17.0.9
+
+# Run tests with a specific JDK
+./gradlew testDebugUnitTest -Dorg.gradle.java.home=/opt/jdk-17.0.14
+
+
 Common locations:
 
 | Environment | Path |
