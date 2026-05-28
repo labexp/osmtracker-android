@@ -171,6 +171,10 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 		}
 	}
 
+	protected GpsTracesApi createGpsTracesApi(OsmConnection connection) {
+		return new GpsTracesApi(connection);
+	}
+
 	@Override
 	protected Void doInBackground(Void... params) {
 		OsmConnection osm = new OsmConnection(OpenStreetMapConstants.Api.OSM_API_URL_PATH,
@@ -179,7 +183,7 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 		List<String> tags = new ArrayList<>();
 		tags.add(this.tags);
 		try (InputStream is = new FileInputStream(gpxFile)) {
-			long gpxAPI = new GpsTracesApi(osm).create(filename, getVisibilityForOsmapi(visibility),
+			long gpxAPI = createGpsTracesApi(osm).create(filename, getVisibilityForOsmapi(visibility),
 					description, tags, is);
 			Log.v(TAG, "Gpx file uploaded. GPX id: " + gpxAPI);
 			resultCode = okResultCode;

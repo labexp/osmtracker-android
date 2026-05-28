@@ -114,6 +114,7 @@ dependencies {
     testImplementation "androidx.test:core:1.6.1"
     // Mockito framework
     testImplementation "org.mockito:mockito-core:3.12.4"
+    testImplementation "org.mockito:mockito-inline:3.12.4"
 
     // Required for local unit tests. Prevent null in JSONObject, JSONArray, etc.
     testImplementation 'org.json:json:20240303'
