@@ -94,7 +94,6 @@ public class DatabaseHelperTestBugs {
      */
     @Test
     public void bug_B10_segmentId_missingNotNull_afterUpgradeFrom18() {
-	if(true) return;
         SQLiteDatabase rawDb = SQLiteDatabase.create(null);
         try {
             // Simulate v18 trackpoint schema (no segment_id)
@@ -130,7 +129,6 @@ public class DatabaseHelperTestBugs {
      */
     @Test
     public void bug_B10_segmentId_allowsNullInsert_afterUpgrade() {
-	if(true) return;
         SQLiteDatabase rawDb = SQLiteDatabase.create(null);
         try {
             rawDb.execSQL("create table trackpoint ("
@@ -186,7 +184,6 @@ public class DatabaseHelperTestBugs {
      */
     @Test
     public void bug_B10_segmentId_freshInstall_defaultsToZeroWhenNullInserted() {
-	if(true) return;
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
