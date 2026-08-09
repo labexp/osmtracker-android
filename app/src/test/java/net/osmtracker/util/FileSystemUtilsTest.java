@@ -43,14 +43,12 @@ public class FileSystemUtilsTest {
 
     @Test
     public void testCopyFileSuccess() {
-	if(true) return;
         assertTrue(FileSystemUtils.copyFile(destinationDirectory, sourceFile, "target.txt"));
         assertTrue(targetFile.exists());
     }
 
     @Test
     public void testCopyFileFailure() {
-	if(true) return;
         // Attempt to copy to a non-existent directory
         File nonExistentDirectory = new File(temporaryFolder.getRoot(), "nonExistentDir");
         assertFalse(FileSystemUtils.copyFile(nonExistentDirectory, sourceFile, "target.txt"));
@@ -58,7 +56,6 @@ public class FileSystemUtilsTest {
 
     @Test
     public void testCopyDirectoryContentsSuccess() throws IOException {
-	if(true) return;
         // Create a file in the source directory
         File fileInSourceDirectory = new File(sourceDirectory, "fileInSource.txt");
         assertTrue(fileInSourceDirectory.createNewFile());
@@ -69,7 +66,6 @@ public class FileSystemUtilsTest {
 
     @Test
     public void testCopyDirectoryContentsFailure() {
-	if(true) return;
         // Attempt to copy from a non-existent directory
         File nonExistentDirectory = new File(temporaryFolder.getRoot(), "nonExistentDir");
         assertFalse(FileSystemUtils.copyDirectoryContents(destinationDirectory, nonExistentDirectory));
@@ -77,35 +73,30 @@ public class FileSystemUtilsTest {
 
     @Test
     public void testCopyDirectoryContentsDestinationNull() {
-	if(true) return;
         // Attempt to copy with a null destination directory
         assertFalse(FileSystemUtils.copyDirectoryContents(null, sourceDirectory));
     }
 
     @Test
     public void testCopyDirectoryContentsSourceNull() {
-	if(true) return;
         // Attempt to copy with a null source directory
         assertFalse(FileSystemUtils.copyDirectoryContents(destinationDirectory, null));
     }
 
     @Test
     public void testDeleteFileSuccess() {
-	if(true) return;
         assertTrue(FileSystemUtils.delete(sourceFile, false));
         assertFalse(sourceFile.exists());
     }
 
     @Test
     public void testDeleteDirectorySuccess() {
-	if(true) return;
         assertTrue(FileSystemUtils.delete(sourceDirectory, true));
         assertFalse(sourceDirectory.exists());
     }
 
     @Test
     public void testDeleteDirectoryFailure() throws IOException {
-	if(true) return;
         // Create a nested directory structure
         File nestedDirectory = new File(sourceDirectory, "nestedDir");
         assertTrue(nestedDirectory.mkdir());
@@ -118,7 +109,6 @@ public class FileSystemUtilsTest {
 
     @Test
     public void testGetUniqueChildNameFor() throws IOException {
-	if(true) return;
         String uniqueName = FileSystemUtils.getUniqueChildNameFor(destinationDirectory, "test", ".txt");
         assertEquals("test.txt", uniqueName);
 

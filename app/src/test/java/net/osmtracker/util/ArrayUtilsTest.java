@@ -12,28 +12,24 @@ public class ArrayUtilsTest {
 
 	@Test
 	public void findMinAsc() {
-		if(true) return;
 		double min = ArrayUtils.findMin(arrayAsc, 0);
 		assertTrue(min == 1);
 	}
 
 	@Test
 	public void findMinDesc() {
-		if(true) return;
 		double min = ArrayUtils.findMin(arrayDesc, 2);
 		assertTrue(min == 1);
 	}
 
 	@Test
 	public void findMaxAsc() {
-		if(true) return;
 		double max = ArrayUtils.findMax(arrayAsc, 0);
 		assertTrue(max == 3);
 	}
 
 	@Test
 	public void findMaxDesc() {
-		if(true) return;
 		double max = ArrayUtils.findMax(arrayDesc, 2);
 		assertTrue(max == 3);
 	}

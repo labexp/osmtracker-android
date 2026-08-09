@@ -62,7 +62,6 @@ public class ExportToStorageTaskTest {
 
 	@Test
 	public void testBuildGPXFilename_OnlyTrackName() {
-		if(true) return;
 		setupFilenamePreference(Preferences.VAL_OUTPUT_FILENAME_NAME);
 		Assert.assertEquals("MyTrack.gpx",
 				executeBuildFilename(TRACK_NAME, createDate()));
@@ -70,7 +69,6 @@ public class ExportToStorageTaskTest {
 
 	@Test
 	public void testBuildGPXFilename_TrackNameAndDate() {
-		if(true) return;
 		setupFilenamePreference(Preferences.VAL_OUTPUT_FILENAME_NAME_DATE);
 		assertEquals("MyTrack_" + DATE_STRING + ".gpx",
 				executeBuildFilename(TRACK_NAME, createDate()));
@@ -78,7 +76,6 @@ public class ExportToStorageTaskTest {
 
 	@Test
 	public void testBuildGPXFilename_DateAndTrackName() {
-		if(true) return;
 		setupFilenamePreference(Preferences.VAL_OUTPUT_FILENAME_DATE_NAME);
 		assertEquals(DATE_STRING + "_MyTrack" + ".gpx",
 				executeBuildFilename(TRACK_NAME, createDate()));
@@ -86,7 +83,6 @@ public class ExportToStorageTaskTest {
 
 	@Test
 	public void testBuildGPXFilename_OnlyDate() {
-		if(true) return;
 		setupFilenamePreference(Preferences.VAL_OUTPUT_FILENAME_DATE);
 		assertEquals(DATE_STRING + ".gpx",
 				executeBuildFilename(TRACK_NAME, createDate()));
@@ -94,7 +90,6 @@ public class ExportToStorageTaskTest {
 
 	@Test
 	public void testBuildGPXFilename_Sanitization() {
-		if(true) return;
 		String dirtyName = ":M/y*T@r~a\\c?k:";
 		setupFilenamePreference(Preferences.VAL_OUTPUT_FILENAME_NAME);
 		assertEquals(";M_y_T_r_a_c_k;.gpx",
@@ -103,7 +98,6 @@ public class ExportToStorageTaskTest {
 
 	@Test
 	public void testBuildGPXFilename_FallbackToDateWhenNameEmpty() {
-		if(true) return;
 		String emptyName = "";
 		setupFilenamePreference(Preferences.VAL_OUTPUT_FILENAME_NAME);
 		// Should fallback to the timestamp if name is missing
@@ -115,7 +109,6 @@ public class ExportToStorageTaskTest {
 
 	@Test
 	public void testGetExportDirectory_CreatesMissingFolders() throws Exception {
-		if(true) return;
 		ShadowEnvironment.setExternalStorageState(Environment.MEDIA_MOUNTED);
 		prefs.edit().putString(Preferences.KEY_STORAGE_DIR, "NewAppFolder").apply();
 
@@ -127,14 +120,12 @@ public class ExportToStorageTaskTest {
 
 	@Test
 	public void testGetExportDirectory_ThrowsWhenNotWritable() {
-		if(true) return;
 		ShadowEnvironment.setExternalStorageState(Environment.MEDIA_MOUNTED_READ_ONLY);
 		assertThrows(ExportTrackException.class, () -> task.getBaseExportDirectory());
 	}
 
 	@Test
 	public void testGetSanitizedTrackName_ReplacesSlashes() {
-		if(true) return;
 		Track mockTrack = new Track();
 		mockTrack.setName("Category/Sub/Track");
 		when(mockDataHelper.getTrackByStartDate(any(Date.class))).thenReturn(mockTrack);

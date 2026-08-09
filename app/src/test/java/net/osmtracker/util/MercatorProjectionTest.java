@@ -60,7 +60,6 @@ public class MercatorProjectionTest {
 
     @Test
     public void testProject() {
-	if(true) return;
         MercatorProjection projection = new MercatorProjection(minLat, minLon, maxLat, maxLon, 720, 1280);
         int[] point = projection.project(lon, lat);
         assertNotNull(point);
@@ -71,7 +70,6 @@ public class MercatorProjectionTest {
 
     @Test
     public void testFormatDegreesAsDMS() {
-	if(true) return;
         String formattedDms = MercatorProjection.formatDegreesAsDMS(degre, isLat);
         assertEquals(expectedDms, formattedDms);
     }

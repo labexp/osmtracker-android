@@ -86,7 +86,6 @@ public class ExportToTempFileTaskTest {
 
 	@Test
 	public void testExportMatchesGpxResource() throws Exception {
-		if(true) return;
 		try (
 				MatrixCursor pointCursor = createPointCursor();
 				MatrixCursor wptCursor = createWptCursor()

@@ -47,7 +47,6 @@ public class ThemeValidatorTest {
 
     @Test
     public void validateDefaultTheme(){
-	if(true) return;
 		// Set a valid theme in preferences
 		realPrefs.edit().putString(
 				OSMTracker.Preferences.KEY_UI_THEME,
@@ -63,7 +62,6 @@ public class ThemeValidatorTest {
      *  verify methods of the mocked editor so that the preferences are saved.*/
     @Test
     public void validateWrongTheme(){
-	if(true) return;
 		// Set an invalid theme in preferences
 		realPrefs.edit().putString(
 				OSMTracker.Preferences.KEY_UI_THEME,

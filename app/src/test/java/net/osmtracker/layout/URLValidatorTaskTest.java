@@ -12,7 +12,6 @@ public class URLValidatorTaskTest {
 
     @Test
     public void customLayoutsRepoValidatorTest() {
-	if(true) return;
         String validUser = OSMTracker.Preferences.VAL_GITHUB_USERNAME;
         String validRepository = OSMTracker.Preferences.VAL_REPOSITORY_NAME;
         String validBranch = OSMTracker.Preferences.VAL_BRANCH_NAME;

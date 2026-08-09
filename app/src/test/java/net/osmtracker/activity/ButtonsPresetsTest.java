@@ -46,7 +46,6 @@ public class ButtonsPresetsTest {
 
 	@Test
 	public void getIsoTest() throws Exception {
-		if(true) return;
 		int VALUE = 0, EXPECTED = 1;
 		String[][] cases = {
 				{"test_es.xml", "es"},
@@ -67,7 +66,6 @@ public class ButtonsPresetsTest {
 
 	@Test
 	public void testSelectLayout_UpdatesUIAndPreferences() throws Exception {
-		if(true) return;
 		// 1. Setup: Create two CheckBoxes to simulate "old" and "new" selection
 		CheckBox oldCheckBox = new CheckBox(activity);
 		oldCheckBox.setText("Default");
@@ -110,7 +108,6 @@ public class ButtonsPresetsTest {
 	@Test
 	@SuppressWarnings("unchecked") // Suppress cast warning for the internal Hashtable
 	public void testRefreshActivity_PopulatesUIFromFilesystem() throws Exception {
-		if(true) return;
 		// 1. Setup: Mock the SD Card being mounted
 		ShadowEnvironment.setExternalStorageState(Environment.MEDIA_MOUNTED);
 
