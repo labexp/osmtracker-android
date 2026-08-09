@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Generic strings-->
-  <string name="app_name">OSMTracker Android™-ra</string>
+  <string name="app_name">OSMTracker for Android™</string>
   <string name="app_short_name">OSMTracker</string>
-  <string name="app_description">A Windows Mobile OSMTracker által inspirált program lehetővé teszi az utazások nyomon követését, a jelentős úticélok megjelölését (hangfelvétel, fényképek), valamint GPX formátumba exportálását, hogy később az OpenStreetMap eszközökkel, például a JOSM-mal is használhassa őket.</string>
+  <string name="app_description">Ez az Windows Mobile-on futó OSMTracker által ihletett alkalmazás lehetővé teszi az utazások nyomon követését, a fontosabb útpontok megjelölését (hangfelvétel, fotók), valamint azok GPX formátumban való exportálását későbbi felhasználás céljából olyan OpenStreetMap-eszközökkel, mint például a JOSM.</string>
   <!--TrackLogger-->
   <string name="tracklogger">Nyomvonalrögzítő</string>
-  <string name="tracklogger_waiting_gps">Várakozás a GPS beállására a gombok engedélyezéséhez…</string>
+  <string name="tracklogger_waiting_gps">Várakozás a GPS-vételre a gombok engedélyezéséhez…</string>
   <string name="tracklogger_voicerec_title">Hangrögzítés</string>
   <string name="tracklogger_voicerec_text">{0} másodperces hangfájl rögzítése.</string>
   <string name="tracklogger_voicerec_stop">Leállítás</string>
   <string name="tracklogger_btnBack">Vissza</string>
   <string name="tracklogger_tracked">Rögzítve:</string>
   <string name="tracklogger_gps_disabled">GPS kikapcsolva</string>
-  <string name="tracklogger_gps_disabled_hint">A GPS ki van kapcsolva. Szeretné engedélyezni?</string>
+  <string name="tracklogger_gps_disabled_hint">A GPS ki van kapcsolva. Szeretnéd engedélyezni?</string>
   <string name="tracklogger_choose_gallery_camera">Galéria vagy kamera?</string>
   <string name="tracklogger_camera">Fénykép készítése a kamerával</string>
   <string name="tracklogger_gallery">Fénykép kiválasztása galériából</string>
@@ -23,32 +23,34 @@
   <string name="wplist_longitude">Hossz.:</string>
   <string name="wplist_elevation">Mag.:</string>
   <string name="wplist_accuracy">Pontosság:</string>
-  <string name="wplist_compass">Iránytű állása:</string>
-  <string name="wplist_compass_accuracy">Iránytű pontossága:</string>
+  <string name="wplist_compass">Iránytű:</string>
+  <string name="wplist_compass_accuracy">Iránytű pontos.:</string>
   <!--Track Manager-->
   <string name="trackmgr">Nyomvonalkezelő</string>
   <string name="trackmgr_tracklist">Nyomvonallista:</string>
-  <string name="trackmgr_waypoints_count">Útpontok:</string>
-  <string name="trackmgr_trackpoints_count">Nyompontok:</string>
-  <string name="trackmgr_empty">Nincs egyetlen nyomvonala sem.</string>
-  <string name="trackmgr_newtrack_hint">Nyomja meg új nyomvonal rögzítéséhez.</string>
+  <string name="trackmgr_waypoints_count">Útpontok: </string>
+  <string name="trackmgr_trackpoints_count">Nyompontok: </string>
+  <string name="trackmgr_notes_count">Jegyzetek: </string>
+  <string name="trackmgr_empty">Nincsenek nyomvonalak.</string>
+  <string name="trackmgr_newtrack_hint">Nyomd meg új nyomvonal rögzítéséhez.</string>
   <string name="trackmgr_newtrack_error">Nem sikerült új nyomvonalat létrehozni: {0}</string>
-  <string name="trackmgr_continuetrack_hint">Jelenleg a <b>#{0}.nyomvonalat</b> rögzíti\nVálasszon a listáról a folytatáshoz.</string>
+  <string name="trackmgr_continuetrack_hint">Jelenleg a <b>#{0}. nyomvonalat</b> rögzíted\nVálassz a listáról a folytatáshoz.</string>
   <string name="trackmgr_contextmenu_stop">Nyomvonalkészítés leállítása</string>
   <string name="trackmgr_contextmenu_resume">Nyomvonalkészítés folytatása</string>
   <string name="trackmgr_contextmenu_delete">Törlés</string>
   <string name="trackmgr_contextmenu_export">Exportálás</string>
-  <string name="trackmgr_contextmenu_share">Megosztása</string>
-  <string name="trackmgr_contextmenu_osm_upload">Feltöltés az OpenStreetMapre</string>
+  <string name="trackmgr_contextmenu_share">Megosztás</string>
+  <string name="trackmgr_contextmenu_osm_upload">Feltöltés OpenStreetMapre</string>
+  <string name="trackmgr_contextmenu_github_upload">Feltöltés GitHubra</string>
   <string name="trackmgr_contextmenu_display">Megjelenítés</string>
   <string name="trackmgr_contextmenu_details">Részletek</string>
   <string name="trackmgr_contextmenu_title">{0}. nyomvonal </string>
   <string name="trackmgr_delete_confirm"> {0}. nyomvonal törlődik</string>
-  <string name="trackmgr_deleteall_confirm">Minden nyomvonal törlésre kerül. Biztosan ezt akarja?</string>
+  <string name="trackmgr_deleteall_confirm">Minden nyomvonal törlésre kerül. Biztosan ezt szeretnéd?</string>
   <string name="trackmgr_exporting">#{0} nyomvonal exportálása…</string>
   <string name="trackmgr_exporting_prepare">Exportálás előkészítése…</string>
   <string name="trackmgr_export_error">{0} nyomvonal exportálása sikertelen</string>
-  <string name="trackmgr_exportall_confirm">Minden nyomvonal exportáltatik, ami sokáig tarthat. Biztosan ezt akarja?</string>
+  <string name="trackmgr_exportall_confirm">Minden nyomvonal exportálva lesz, ami sokáig tarthat. Biztosan ezt szeretnéd?</string>
   <string name="trackmgr_prepare_for_share_error">Nem sikerült a következő nyomvonal feldolgozása: {0}</string>
   <!--Track Detail-->
   <string name="trackdetail">Nyomvonal részletei</string>
@@ -57,7 +59,7 @@
   <string name="trackdetail_startloc">Kezdőpont:</string>
   <string name="trackdetail_endloc">Végpont:</string>
   <string name="trackdetail_exportdate">Exportálva:</string>
-  <string name="trackdetail_osm_upload_date">Feltöltve az OpenStreetMapre:</string>
+  <string name="trackdetail_osm_upload_date">Feltöltve OpenStreetMapre:</string>
   <string name="trackdetail_btn_export">Exportálás GPX fájlként</string>
   <string name="trackdetail_export_notyet">(Még nincs exportálva)</string>
   <string name="trackdetail_osm_upload_notyet">(Még nincs feltöltve)</string>
@@ -65,7 +67,8 @@
   <string name="trackdetail_name">Név</string>
   <string name="trackdetail_description">Leírás</string>
   <string name="trackdetail_tags">Címkék (vesszővel elválasztva)</string>
-  <string name="trackdetail_description_mandatory">Meg kell adnia egy leírást</string>
+  <string name="trackdetail_description_mandatory">Meg kell adnod egy leírást</string>
+  <string name="trackdetail_visibility">Láthatóság</string>
   <string name="osm_visibility_private">Privát</string>
   <string name="osm_visibility_public">Nyilvános</string>
   <string name="osm_visibility_trackable">Követhető</string>
@@ -73,27 +76,56 @@
   <!--OSM upload-->
   <string name="osm_upload">OpenStreetMap feltöltés</string>
   <string name="osm_upload_ok">Mentés és feltöltés</string>
-  <string name="osm_upload_tmpfile_failed">Nem sikerült a nyomvonal exportálása az ideiglenes fájlba.</string>
-  <string name="osm_upload_oauth_failed">Az OSM bejelentkezés nem sikerült</string>
-  <string name="osm_upload_sending">#{0} nyomvonal küldése…</string>
+  <string name="osm_upload_tmpfile_failed">Nem sikerült a nyomvonalat ideiglenes fájlba exportálni.</string>
+  <string name="osm_upload_oauth_failed">Nem sikerült bejelentkezni OSM-re</string>
+  <string name="osm_upload_sending">{0}. nyomvonal küldése…</string>
   <string name="osm_upload_waiting_response">Várakozás az OpenStreetMap-szerver válaszára…</string>
   <string name="osm_upload_error">Hiba a nyomvonal feltöltésekor</string>
   <string name="osm_upload_bad_response">Az OSM szerver hibával tért vissza: ({0}) üzenet {1}</string>
-  <string name="osm_upload_unauthorized">Bejelentkezési hiba. Szeretné törölni a mentett OpenStreetMap bejelentkezési információkat?</string>
-  <string name="osm_upload_sucess">OpenStreetMap feltöltés sikeres</string>
+  <string name="osm_upload_unauthorized">Bejelentkezési hiba. Szeretnéd törölni a mentett OpenStreetMap bejelentkezési adatokat?</string>
+  <string name="osm_upload_sucess">OpenStreetMap-feltöltés sikeres</string>
+  <!--OSM Notes Upload-->
+  <string name="osm_note_upload">OpenStreetMap jegyzetek feltöltése</string>
+  <string name="osm_note_upload_error">Hiba a jegyzet feltöltésekor</string>
+  <string name="osm_note_label">Jegyzet szövege</string>
+  <string name="osm_note_upload_ok">Feltöltés</string>
+  <string name="osm_note_upload_cancel">Mégsem</string>
+  <string name="osm_note_footer">%1$s %2$s</string>
+  <string name="osm_note_upload_unauthorized">Hitelesítési hiba. Ha korábban már megadtad az alkalmazásnak a nyomvonalak feltöltéséhez szükséges engedélyt, törölnöd kell a mentett hitelesítő adatokat ahhoz, hogy az alkalmazás újra engedélyt kapjon a nyomvonalak és a <b>jegyzetek</b> feltöltésére. Szeretnéd törölni a mentett OpenStreetMap-hitelesítő adataidat?</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Hangrögzítés</string>
   <string name="gpsstatus_record_stillimage">Fényképezés</string>
-  <string name="gpsstatus_record_textnote">Szöveges megjegyzés</string>
+  <string name="gpsstatus_record_textnote">Megjegyzés</string>
   <!--edit_waypoint_dialog-->
+  <string name="waypoint_name_label">Útpont neve/szövege</string>
+  <string name="waypoint_name_hint">Adja meg az útpont nevét</string>
+  <string name="edit_waypoint_bt_preview">Fájl megnyitása</string>
+  <string name="edit_waypoint_bt_save">Mentés</string>
+  <string name="edit_waypoint_bt_delete">Törlés</string>
+  <string name="edit_waypoint_bt_cancel">Mégsem</string>
+  <string name="delete_waypoint_confirm_dialog_title">Útpont törlése</string>
+  <string name="delete_waypoint_confirm_dialog_msg">Törlöd ezt az útpontot?</string>
+  <string name="delete_waypoint_confirm_bt_ok">Törlés</string>
+  <string name="delete_waypoint_confirm_bt_cancel">Mégsem</string>
+  <!--osm Notes-->
+  <string name="note_name_label">Jegyzet neve/szövege</string>
+  <string name="edit_note_bt_update">Mentés</string>
+  <string name="edit_note_bt_delete">Törlés</string>
+  <string name="edit_note_bt_cancel">Mégsem</string>
+  <string name="delete_note_confirm_dialog_title">Jegyzet törlése</string>
+  <string name="delete_note_confirm_dialog_msg">Törlöd ezt a jegyzetet?</string>
+  <string name="delete_note_confirm_bt_ok">Törlés</string>
+  <string name="delete_note_confirm_bt_cancel">Mégsem</string>
+  <string name="notelist">Jegyzetek</string>
+  <string name="osm_note_bt_upload">Feltöltés OSM jegyzetként</string>
   <!--Menu-->
   <string name="menu_settings">Beállítások</string>
   <string name="menu_waypointlist">Útpontok</string>
   <string name="menu_about">Névjegy</string>
   <string name="menu_displaytrack">Nyomvonal megjelenítése</string>
-  <string name="menu_stoptracking">Leállítás &amp; mentés</string>
+  <string name="menu_stoptracking">Leállítás és mentés</string>
   <string name="menu_newtrack">Új nyomvonal</string>
-  <string name="menu_deletetracks">Minden nyomvonal törlése</string>
+  <string name="menu_deletetracks">Összes nyomvonal törlése</string>
   <string name="menu_continue">Nyomvonal folytatása</string>
   <string name="menu_stopcurrenttrack">Aktuális nyomvonalrögzítés leállítása</string>
   <string name="menu_save">Mentés</string>
@@ -101,32 +133,41 @@
   <string name="menu_export">Exportálás GPX fájlként</string>
   <string name="menu_osm_upload">OpenStreetMap feltöltés</string>
   <string name="menu_center_to_gps">GPS-hez központosítás</string>
-  <string name="menu_exportall">Minden exportálása GPX fájlba</string>
+  <string name="menu_exportall">Összes exportálása GPX fájlba</string>
   <!--Errors-->
-  <string name="error_externalstorage_not_writable">A külső tárolóra írás nem sikerült.</string>
+  <string name="error_externalstorage_not_writable">Nem lehet külső tárhelyre írni.</string>
   <string name="error_create_track_dir">%s nyomvonalmappa létrehozása sikertelen</string>
-  <string name="error_externalstorage_not_writable_hint">Kérjük, ellenőrizze a külső tároló csatlakoztatását.</string>
+  <string name="error_externalstorage_not_writable_hint">Ellenőrizd, hogy a külső tárhely be van helyezve és felcsatolva.</string>
   <string name="error_voicerec_failed">Hangrögzítés sikertelen</string>
-  <string name="error_userlayout_parsing">Hiba az XML-sémafájl értelmezésekor. Kérjük, térjen vissza az alapértelmezett sémához.</string>
+  <string name="error_userlayout_parsing">Hiba az XML-elrendezés értelmezésekor. Kérlek, térj vissza az alapértelmezett elrendezéshez.</string>
+  <string name="error_gh_token_lenght">A token 40 karakteres kell legyen</string>
+  <string name="error_gh_pr_creation">Hiba a PR létrehozásakor</string>
   <!--messages-->
+  <string name="permission_required">Engedély szükséges</string>
+  <string name="storage_permission_for_export_GPX">A GPX-nyomvonal exportálásához adatokat kell írni a tárhelyre.</string>
+  <string name="storage_permission_for_display_track">A nyomvonal megfelelő megjelenítéséhez hozzáférésre van szükségünk a tárhelyhez.</string>
+  <string name="storage_permission_for_share_track">A nyomvonal megosztásához hozzáférésre van szükségünk a tárhelyhez.</string>
+  <string name="storage_permission_for_upload_to_OSM">A nyomvonal feltöltéséhez OSM-re hozzáférésre van szükségünk a tárhelyhez.</string>
+  <string name="acccept">Elfogadás</string>
+  <string name="gps_perms_required">A GPS-hozzáférés engedélyezése nélkül nem lehet folytatni</string>
   <!--GPX-->
-  <string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
-  <string name="gpx_hdop_approximation_cmt">Figyelem: A HDOP értékek nem azok a HDOP értékek, amit a GPS eszköz ad vissza. Ezek becsült értékek a hely pontosságából, méterben.</string>
+  <string name="gpx_track_name">Rögzítette az OSMTracker for Android™</string>
+  <string name="gpx_hdop_approximation_cmt">Figyelem: A HDOP értékek nem azok a HDOP értékek, amit a GPS eszköz ad vissza. Ezek becsült értékek a pozíció pontosságából, méterben.</string>
   <!--About screen-->
   <string name="about">Névjegy</string>
-  <string name="about_text">További információkért, dokumentációért és hibabejelentésért, kérjük tekintse meg a projekt honlapját:</string>
-  <string name="about_translate_text">Segítsen az OSMTracker fordításában:</string>
-  <string name="about_debug_info">Hibakeresési információ</string>
+  <string name="about_text">További információkért, dokumentációért és hibabejelentésért tekintsd meg a projekt honlapját:</string>
+  <string name="about_translate_text">Segíts az OSMTracker fordításában:</string>
+  <string name="about_debug_info">Hibakeresési információk</string>
   <string name="about_export_db">Adatbázis exportálása</string>
   <string name="about_exporting_db">Adatbázis exportálása folyamatban…</string>
   <string name="about_export_db_result">Adatbázis exportálásának eredménye: %s</string>
   <!--Notification-->
   <string name="notification_ticker_text">Az OSMTracker éppen nyomvonalat rögzít</string>
   <string name="notification_title">Az OSMTracker éppen nyomvonalat rögzít (#{0})</string>
-  <string name="notification_text">Érintse meg itt a fő képernyő mgjelenítéséhez</string>
+  <string name="notification_text">Koppints a fő képernyő megjelenítéséhez</string>
   <!--Display track-->
   <string name="displaytrack">Nyomvonal megjelenítése</string>
-  <string name="displaytrack_map">Háttér térkép megjelenítése</string>
+  <string name="displaytrack_map">Háttértérkép megjelenítése</string>
   <string name="displaytrack_north">É</string>
   <!--Track detail-->
   <string name="trackdetail_save">Mentés</string>
@@ -135,25 +176,26 @@
   <string name="various_accuracy">Pontosság</string>
   <string name="various_accuracy_with_sats">Pontosság {0}{1} ({2}/{3})</string>
   <!--parameters: (accuracy, meters, used sats, visible sats)-->
-  <string name="various_waiting_gps_fix">Várakozás a GPS-javításra… ({0}/{1})</string>
+  <string name="various_waiting_gps_fix">Várakozás a GPS-jelre… ({0}/{1})</string>
   <!--parameters: (used sats, visible sats)-->
   <string name="various_heading_display">{0}°</string>
   <!--parameters: (heading in degrees)-->
-  <string name="various_heading">Várakozás az irányra…</string>
-  <string name="various_heading_unknown">Az irány nem határozható meg</string>
+  <string name="various_heading">Várakozás az irányszögre…</string>
+  <string name="various_heading_unknown">Az irányszög nem határozható meg</string>
   <string name="various_export_finished">Az exportálási folyamat sikeresen befejeződött</string>
+  <string name="various_waiting_position">Nem található a pozíció</string>
   <string name="various_position_lat_lon">{0} {1} / {2} {3}</string>
   <!--OSM map view-->
-  <string name="displaytrackmap">OpenStreetMap nyomvonal megjelenítése</string>
+  <string name="displaytrackmap">OpenStreetMap-nyomvonal megjelenítése</string>
   <!--Buttons presets messages-->
-  <string name="buttons_presets_context_menu_update_install">Frissítés &amp; telepítés</string>
+  <string name="buttons_presets_context_menu_update_install">Frissítés és telepítés</string>
   <string name="buttons_presets_context_menu_delete">Törlés</string>
   <string name="buttons_presets_updating_layout">Frissítés…</string>
-  <string name="buttons_presets_successful_update">Az elrendezés sikeresen frissül</string>
-  <string name="buttons_presets_unsuccessful_update">Az elrendezés nem frissült, próbálja meg később újra</string>
-  <string name="buttons_presets_delete_message">Biztosan törölni szeretné ezt az elrendezést: {0}?</string>
+  <string name="buttons_presets_successful_update">Az elrendezés sikeresen frissült</string>
+  <string name="buttons_presets_unsuccessful_update">Az elrendezés nem frissült, próbáld meg később újra</string>
+  <string name="buttons_presets_delete_message">Biztosan törölni szeretnéd ezt az elrendezést: {0}?</string>
   <string name="buttons_presets_delete_positive_confirmation">Igen</string>
-  <string name="buttons_presets_successful_delete">Az elrendezés sikeresen törlődött</string>
+  <string name="buttons_presets_successful_delete">Az elrendezés sikeresen törölve</string>
   <string name="buttons_presets_icon_directory_deleted">Az ikonmappa sikeresen törölve</string>
   <string name="buttons_presets_icon_directory_does_not_exist">Ehhez a fájlhoz nem volt ikonmappa társítva</string>
   <string name="buttons_presets_unsuccessful_delete">Az elrendezést nem sikerült törölni</string>
@@ -162,28 +204,82 @@
   <string name="available_layouts_response_null_exception">Hiba: nem sikerül csatlakozni az egyedi elrendezések alapértelmezett tárházához</string>
   <string name="available_layouts_connecting_message">(Kapcsolódás…)</string>
   <string name="available_layouts_description_dialog_positive_confirmation">Letöltés</string>
-  <string name="available_layouts_not_available_language">Az Ön nyelve nem áll rendelkezésre, válasszon egyet a listából</string>
+  <string name="available_layouts_not_available_language">A te nyelved nem áll rendelkezésre. Válassz egyet a listából</string>
   <string name="available_layouts_language_dialog_title">Rendelkezésre álló nyelvek</string>
   <string name="available_layouts_checking_language_dialog">Helyi nyelvű verziók ellenőrzése</string>
   <string name="available_layouts_downloading_dialog">Letöltés…</string>
   <string name="available_layouts_successful_download">Az elrendezés sikeresen letöltve</string>
-  <string name="available_layouts_unsuccessful_download">Az elrendezés nem tölthető le, próbálja meg később újra</string>
+  <string name="available_layouts_unsuccessful_download">Az elrendezés nem tölthető le, próbáld meg később újra</string>
   <string name="available_layouts_null_response_received">Hiba történt az adatok kiszolgálóról történő lekérdezése közben</string>
   <!--Github Repository Settings-->
   <string name="github_repository_settings_default_checkbox">Alapértelmezett</string>
   <string name="github_repository_settings_custom_checkbox">Egyedi</string>
   <string name="github_repository_settings_username">Github felhasználónév:</string>
-  <string name="github_repository_settings_repository_name">Tár neve:</string>
+  <string name="github_repository_settings_repository_name">Tároló neve:</string>
   <string name="github_repository_settings_branch_name">Ág neve:</string>
-  <string name="github_repository_settings_valid_server">A Github tár érvényes</string>
-  <string name="github_repository_settings_invalid_server">A Github tár érvénytelen</string>
+  <string name="github_repository_settings_valid_server">A Github tároló érvényes</string>
+  <string name="github_repository_settings_invalid_server">A Github tároló érvénytelen</string>
+  <!--Upload to GitHub-->
+  <string name="successfully_created">sikeresen létrehozva</string>
+  <string name="error_creating">Létrehozási hiba</string>
+  <string name="db_error">Adatbázishiba</string>
+  <string name="successfully_saved">sikeresen elmentve</string>
+  <string name="saving_error">Mentési hiba</string>
+  <string name="pr_status">Pull request állapota: </string>
+  <string name="repository_information_error">Hiba a tároló adataival kapcsolatban</string>
+  <string name="successfully_uploaded">Feltöltés sikeres</string>
+  <string name="error_uploading">Hiba a feltöltés során</string>
+  <string name="gpx_file_read_error">Hiba a GPX-fájl olvasásakor</string>
+  <string name="gpx_file_not_found">A GPX-fájl nem található</string>
+  <string name="uploading_file">Fájl feltöltése: </string>
+  <string name="item_selected">Kiválasztott elem: </string>
+  <string name="github_repository_private">Privát: </string>
+  <string name="github_creating_repository">Tároló létrehozása</string>
+  <string name="github_no_repository_name">Meg kell adnod egy tároló nevét</string>
+  <string name="error_field_required">Meg kell adnod egy értéket ehhez a mezőhöz</string>
+  <string name="retrieving_repositories">Tárolók lekérdezése...</string>
+  <string name="error_retrieving_repositories">Nem sikerült lekérdezni a tárolókat</string>
+  <string name="successfully_retrieved_repositories">Tárolók sikeresen lekérdezve</string>
+  <!--GitHubConfig-->
+  <string name="github_config_btn">Beállítás</string>
+  <string name="github_token_placeholder">GitHub token:</string>
+  <string name="github_get_token_btn">Token kérése</string>
+  <string name="how_to_get_ghToken_guide_title">Hogyan szerezhetek GitHub-tokent:</string>
+  <string name="how_to_get_ghToken_guide_step_1">1. Kattints a gombra a GitHub megnyitásához és egy token létrehozásához. Szükség esetén jelentkezz be GitHub-fiókoddal.</string>
+  <string name="how_to_get_ghToken_guide_step_2">2. Válaszd ki a „Tokens (Classic)” lehetőséget, majd kattints a „Generate new token” gombra.</string>
+  <string name="how_to_get_ghToken_guide_step_3">3. Adj egy leíró nevet a tokennek.</string>
+  <string name="how_to_get_ghToken_guide_step_4">4. Válassz ki egy lejárati dátumot. Javasoljuk a „No expiration” opciót, hogy elkerüld ennek a lépésnek az ismétlését.</string>
+  <string name="how_to_get_ghToken_guide_step_5">5. Válaszd ki a tokenhez megadni kívánt jogosultsági köröket vagy engedélyeket (az OSMTrackernek csak a repo engedélyre van szüksége).</string>
+  <string name="how_to_get_ghToken_guide_step_6">6. Kattints a \"Generate token\" gombra.</string>
+  <string name="how_to_get_ghToken_guide_step_7">7. Másold ki a generált tokent, és illeszd be a „GitHub token” mezőbe.</string>
+  <string name="how_to_get_ghToken_guide_note">⚠️ A bejelentkezési adataid törléséhez hagyhatod üresen a mezőt.</string>
+  <!--GitHubUpload-->
+  <string name="upload_to_github_description">Commit üzenet:</string>
+  <string name="upload_to_github_create_fork">Létrehozás\nforkolás</string>
+  <string name="upload_to_github_open_pull_request">Pull request nyitása</string>
+  <string name="upload_to_github_select_repo">Tároló kiválasztása</string>
+  <string name="upload_to_github_create_repository">Tároló létrehozása</string>
+  <string name="upload_to_github_commit_btn">Beküldés</string>
+  <string name="upload_to_github_configure">Beállítás</string>
+  <!--GitHubNewFork-->
+  <string name="upload_to_github_forked_repo_owner">Eredeti tároló felhasználónév</string>
+  <string name="upload_to_github_forked_repo_name">Eredeti tároló neve</string>
+  <string name="create">Létrehozás</string>
+  <!--GitHubPullRequest-->
+  <string name="upload_to_github_pr_title">Pull request címe</string>
+  <string name="upload_to_github_pr_description">Pull request leírása</string>
+  <!--END Upload to GitHub functionality-->
   <!--App Introduction-->
-  <string name="app_intro">OSMTracker Android™-ra – bevezetés</string>
+  <string name="app_intro">OSMTracker for Android™ – bemutatkozás</string>
   <!--Intro - slide1-->
-  <string name="app_intro_slide1_title">Isten hozta az OSMTracker for Android™ 👋 alkalmazásban</string>
-  <string name="app_intro_slide1_description">Ez az alkalmazás szabad szoftver, amely tiszteletben tartja az Ön szabadságát!</string>
+  <string name="app_intro_slide1_title">Üdvözöl az OSMTracker for Android™ 👋</string>
+  <string name="app_intro_slide1_description">Ez az alkalmazás szabad szoftver, amely tiszteletben tartja a szabadságodat!</string>
+  <!--Intro - slide What's new-->
+  <string name="app_intro_slide_whats_new_title">Mik az újdonságai ennek a verziónak?</string>
+  <string name="app_intro_slide_whats_new_description">Mostantól jegyzeteket is fel lehet tölteni OSM-be, és ismét elérhetőek a CyclOSM, valamint az OpenTopo térképcsempék. Jó szórakozást!</string>
   <!--Intro - slide2-->
-  <string name="app_intro_slide2_title">Jó nyomvonalkövetést! 🗺 😎</string>
-  <string name="app_intro_slide2_description">Az OSMTracker for Android az Ön GPS helyzetének segítségével rögzít nyomvonalpontokat és útpontokat, még akkor is, ha az alkalmazás a háttérben fut.
-\nAz Ön adatait nem használjuk fel hirdetések támogatására.</string>
+  <string name="app_intro_slide2_title">Jó nyomvonalrögzítést! 🗺 😎</string>
+  <string name="app_intro_slide2_description">Az OSMTracker for Android az GPS-pozíciód segítségével rögzít nyomvonalpontokat és útpontokat, még akkor is, ha az alkalmazás a háttérben fut.
+\nAz adataidat nem használjuk fel hirdetésekhez.</string>
+  <string name="no_app_to_handle_file_type">Nem található alkalmazás a fájl megnyitásához.</string>
 </resources>
