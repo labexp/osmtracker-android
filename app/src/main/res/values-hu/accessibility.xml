@@ -5,10 +5,11 @@
   <!--Zoom in/out in map view-->
   <string name="acc.zoom_in">Nagyítás</string>
   <string name="acc.zoom_out">Kicsinyítés</string>
+  <string name="acc.zoom_center">Nagyítás a középpontra</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">Műholdas jel erősségének kijelzője</string>
   <string name="acc.record_indicator">Rögzítés folyamatban kijelző</string>
   <!--Track list-->
-  <string name="acc.track_status">Nyomkövetés állapot kijelző</string>
+  <string name="acc.track_status">Nyomvonalrögzítési állapot kijelző</string>
   <string name="acc.upload_status">OpenStreetMap feltöltés állapot kijelző</string>
 </resources>

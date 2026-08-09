@@ -38,29 +38,27 @@ cd osmtracker-android
 3. Build the project (`Ctrl + F9` or the 🛠️ hammer button)
 
 
-
 ## 🧪 3. Running Tests
 
-This repository has an automated way to run the tests on branches but if you already have the project installed on you computer then you can also run them from a terminal.
-It's recommended to run the tests locally before making a new pull request to make sure the changes doesn't break any previous functionality. You can run the tests locally as follows:
- - Make sure you are at the *root directory of the project*
-	 - `$ cd YOUR_PATH/osmtracker-android`
+This repository has automated tests that run on CI for every branch, but it's highly recommended to run them locally before submitting a pull request to ensure your changes don't break existing functionality.
 
-### 📱 Instrumentation Tests (Require Emulator or Device)
- - For running **instrumentation** tests it's needed to previously start up an emulator (or real device),  you can do it from Android Studio but also without it using the command line. For that,  you need to move to the Android SDK installation directory and look for a folder called `emulator` once there, start any already created emulator by typing:
-	-	`$ ./emulator -avd NAME` to start the emulator called *NAME* (run `$ ./emulator -list-avds` for a valid list of AVD names)
-	- When  it's up, go back to the root project folder and run the instrumentation tests with
-	- `$ ./gradlew connectedAndroidTest`
+For **detailed instructions** covering unit tests, instrumented tests, coverage reports, and troubleshooting, please refer to:
 
-### ✅ Unit Tests
- - For running the **unit tests** no emulator or device is needed, just run 
-	 - `$ ./gradlew test`
- - Now just wait for gradle to run the tests for you, it'll show the results of which tests passed or failed when it's finished
+👉 **[docs/TESTING.md](docs/TESTING.md)** 👈
 
 
 ## 🌍 4. Translations
-OSMTracker is translated using Transifex (see the [wiki](https://github.com/labexp/osmtracker-android/wiki/Translating)).
-Once translations are complete, they will be updated via automated Transifex PR.
+
+OSMTracker is translated using **[Transifex](https://www.transifex.com/)**, a localization platform that makes it easy for contributors to translate the app into their native language.
+
+**How to help translate**
+
+1. Go to the **[OSMTracker for Android™ project on Transifex](https://explore.transifex.com/labexp/osmtracker-android/)**
+2. Create a free Transifex account (if you don't have one)
+3. Select your language from the list
+4. Start translating strings
+
+Once translations are complete on Transifex, they will be automatically synced to the repository via an automated Transifex Pull Request. This integration is configured using the [transifex.yml](transifex.yml) file in the repository root. For technical details about how the GitHub integration works, see the [Transifex GitHub Integration Guide](https://help.transifex.com/en/articles/6265125-github-installation-and-configuration).
 
 
 ## 🧑‍💻 5. Git Workflow (GitFlow)
