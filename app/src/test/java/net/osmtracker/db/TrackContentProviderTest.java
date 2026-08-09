@@ -111,7 +111,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void insert_track_returnsUriWithId() {
-	if(true) return;
         ContentValues values = new ContentValues();
         values.put(TrackContentProvider.Schema.COL_START_DATE, 123456789L);
         Uri uri = resolver.insert(TrackContentProvider.CONTENT_URI_TRACK, values);
@@ -121,7 +120,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void insert_track_requiresStartDate() {
-	if(true) return;
         ContentValues values = new ContentValues();
         values.put(TrackContentProvider.Schema.COL_NAME, "No start date");
         assertThrows(IllegalArgumentException.class,
@@ -130,7 +128,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void insert_trackpoint_succeeds() {
-	if(true) return;
         long trackId = insertTrack();
         Uri uri = insertTrackpoint(trackId, 0);
         assertNotNull("trackpoint insert should return a URI", uri);
@@ -138,7 +135,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void insert_waypoint_succeeds() {
-	if(true) return;
         long trackId = insertTrack();
         Uri uri = insertWaypoint(trackId, "wp-uuid-1");
         assertNotNull("waypoint insert should return a URI", uri);
@@ -146,7 +142,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void insert_note_succeeds() {
-	if(true) return;
         long trackId = insertTrack();
         Uri uri = insertNote(trackId, "note-uuid-1");
         assertNotNull("note insert should return a URI", uri);
@@ -154,7 +149,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void insert_unknownUri_throws() {
-	if(true) return;
         Uri badUri = Uri.parse("content://" + TrackContentProvider.AUTHORITY + "/nonexistent");
         ContentValues values = new ContentValues();
         values.put("foo", "bar");
@@ -166,7 +160,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackTrackpoints_returnsOnlyMatchingTrack() {
-	if(true) return;
         long track1 = insertTrack();
         long track2 = insertTrack();
         insertTrackpoint(track1, 0);
@@ -185,7 +178,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackWaypoints_returnsOnlyMatchingTrack() {
-	if(true) return;
         long track1 = insertTrack();
         long track2 = insertTrack();
         insertWaypoint(track1, "wp-1");
@@ -204,7 +196,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackNotes_returnsOnlyMatchingTrack() {
-	if(true) return;
         long track1 = insertTrack();
         long track2 = insertTrack();
         insertNote(track1, "n-1");
@@ -223,7 +214,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackStart_returnsFirstTrackpoint() {
-	if(true) return;
         long trackId = insertTrack();
         // Insert multiple trackpoints
         insertTrackpoint(trackId, 0);
@@ -242,7 +232,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackEnd_returnsLastTrackpoint() {
-	if(true) return;
         long trackId = insertTrack();
         insertTrackpoint(trackId, 0);
         insertTrackpoint(trackId, 1);
@@ -259,7 +248,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackById_returnsCorrectTrack() {
-	if(true) return;
         long trackId = insertTrack();
         insertTrack(); // another track
 
@@ -277,7 +265,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackActive_returnsOnlyActiveTracks() {
-	if(true) return;
         long trackId = insertTrack();
         insertTrack(); // inactive track
 
@@ -299,7 +286,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackList_includesTrackpointCount() {
-	if(true) return;
         long trackId = insertTrack();
         insertTrackpoint(trackId, 0);
         insertTrackpoint(trackId, 0);
@@ -320,7 +306,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackList_includesWaypointCount() {
-	if(true) return;
         long trackId = insertTrack();
         insertWaypoint(trackId, "wp-a");
         insertWaypoint(trackId, "wp-b");
@@ -340,7 +325,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackList_includesNoteCount() {
-	if(true) return;
         long trackId = insertTrack();
         insertNote(trackId, "n-a");
 
@@ -359,7 +343,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void query_trackList_includesMaxSegmentId() {
-	if(true) return;
         long trackId = insertTrack();
         insertTrackpoint(trackId, 0);
         insertTrackpoint(trackId, 2);
@@ -382,7 +365,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void update_trackById_updatesName() {
-	if(true) return;
         long trackId = insertTrack();
         Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
 
@@ -404,7 +386,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void update_trackActive_updatesAllActive() {
-	if(true) return;
         long track1 = insertTrack();
         long track2 = insertTrack();
 
@@ -435,7 +416,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void update_noteById_updatesNote() {
-	if(true) return;
         long trackId = insertTrack();
         Uri noteUri = insertNote(trackId, "note-update");
         long noteId = ContentUris.parseId(noteUri);
@@ -461,7 +441,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void delete_trackById_removesTrackWaypointsTrackpoints() {
-	if(true) return;
         long trackId = insertTrack();
         insertTrackpoint(trackId, 0);
         insertTrackpoint(trackId, 1);
@@ -504,7 +483,6 @@ public class TrackContentProviderTest {
     @Ignore("Bug B11 — delete(TRACK_ID) does not delete notes. See docs/BUGS_TrackContentProvider.md")
     @Test
     public void delete_trackById_alsoRemovesNotes() {
-	if(true) return;
         long trackId = insertTrack();
         insertNote(trackId, "n-del-1");
         insertNote(trackId, "n-del-2");
@@ -524,7 +502,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void delete_waypointByUuid_removesWaypoint() {
-	if(true) return;
         long trackId = insertTrack();
         insertWaypoint(trackId, "wp-to-delete");
         insertWaypoint(trackId, "wp-to-keep");
@@ -547,7 +524,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void delete_noteByUuid_removesNote() {
-	if(true) return;
         long trackId = insertTrack();
         insertNote(trackId, "note-to-delete");
         insertNote(trackId, "note-to-keep");
@@ -569,7 +545,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void delete_unknownUri_throws() {
-	if(true) return;
         Uri badUri = Uri.parse("content://" + TrackContentProvider.AUTHORITY + "/nonexistent");
         assertThrows(IllegalArgumentException.class,
                 () -> resolver.delete(badUri, null, null));
@@ -579,7 +554,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void getType_track_returnsDirType() {
-	if(true) return;
         String type = resolver.getType(TrackContentProvider.CONTENT_URI_TRACK);
         assertNotNull(type);
         assertTrue("should be a dir type", type.startsWith(ContentResolver.CURSOR_DIR_BASE_TYPE));
@@ -588,7 +562,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void getType_trackTrackpoints_returnsDirType() {
-	if(true) return;
         long trackId = insertTrack();
         String type = resolver.getType(TrackContentProvider.trackPointsUri(trackId));
         assertNotNull(type);
@@ -598,7 +571,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void getType_trackWaypoints_returnsDirType() {
-	if(true) return;
         long trackId = insertTrack();
         String type = resolver.getType(TrackContentProvider.waypointsUri(trackId));
         assertNotNull(type);
@@ -608,7 +580,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void getType_trackNotes_returnsDirType() {
-	if(true) return;
         long trackId = insertTrack();
         String type = resolver.getType(TrackContentProvider.notesUri(trackId));
         assertNotNull(type);
@@ -622,7 +593,6 @@ public class TrackContentProviderTest {
     @Ignore("Bug B12 — getType() throws for TRACK_ID URI. See docs/BUGS_TrackContentProvider.md")
     @Test
     public void getType_trackId_returnsItemType() {
-	if(true) return;
         long trackId = insertTrack();
         Uri trackUri = ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId);
         String type = resolver.getType(trackUri);
@@ -633,7 +603,6 @@ public class TrackContentProviderTest {
     @Ignore("Bug B12 — getType() throws for TRACK_ACTIVE URI. See docs/BUGS_TrackContentProvider.md")
     @Test
     public void getType_trackActive_returnsDirType() {
-	if(true) return;
         String type = resolver.getType(TrackContentProvider.CONTENT_URI_TRACK_ACTIVE);
         assertNotNull(type);
         assertTrue("should be a dir type", type.startsWith(ContentResolver.CURSOR_DIR_BASE_TYPE));
@@ -642,7 +611,6 @@ public class TrackContentProviderTest {
     @Ignore("Bug B12 — getType() throws for WAYPOINT_ID URI. See docs/BUGS_TrackContentProvider.md")
     @Test
     public void getType_waypointId_returnsItemType() {
-	if(true) return;
         String type = resolver.getType(TrackContentProvider.waypointUri(1));
         assertNotNull(type);
         assertTrue("should be an item type", type.startsWith(ContentResolver.CURSOR_ITEM_BASE_TYPE));
@@ -651,7 +619,6 @@ public class TrackContentProviderTest {
     @Ignore("Bug B12 — getType() throws for WAYPOINT_UUID URI. See docs/BUGS_TrackContentProvider.md")
     @Test
     public void getType_waypointUuid_returnsItemType() {
-	if(true) return;
         Uri uri = Uri.withAppendedPath(TrackContentProvider.CONTENT_URI_WAYPOINT_UUID, "test-uuid");
         String type = resolver.getType(uri);
         assertNotNull(type);
@@ -661,7 +628,6 @@ public class TrackContentProviderTest {
     @Ignore("Bug B12 — getType() throws for TRACKPOINT_ID URI. See docs/BUGS_TrackContentProvider.md")
     @Test
     public void getType_trackpointId_returnsItemType() {
-	if(true) return;
         String type = resolver.getType(TrackContentProvider.trackpointUri(1));
         assertNotNull(type);
         assertTrue("should be an item type", type.startsWith(ContentResolver.CURSOR_ITEM_BASE_TYPE));
@@ -670,7 +636,6 @@ public class TrackContentProviderTest {
     @Ignore("Bug B12 — getType() throws for NOTE_ID URI. See docs/BUGS_TrackContentProvider.md")
     @Test
     public void getType_noteId_returnsItemType() {
-	if(true) return;
         String type = resolver.getType(TrackContentProvider.noteUri(1));
         assertNotNull(type);
         assertTrue("should be an item type", type.startsWith(ContentResolver.CURSOR_ITEM_BASE_TYPE));
@@ -679,7 +644,6 @@ public class TrackContentProviderTest {
     @Ignore("Bug B12 — getType() throws for NOTE_UUID URI. See docs/BUGS_TrackContentProvider.md")
     @Test
     public void getType_noteUuid_returnsItemType() {
-	if(true) return;
         Uri uri = Uri.withAppendedPath(TrackContentProvider.CONTENT_URI_NOTE_UUID, "test-uuid");
         String type = resolver.getType(uri);
         assertNotNull(type);
@@ -689,7 +653,6 @@ public class TrackContentProviderTest {
     @Ignore("Bug B12 — getType() throws for TRACK_START URI. See docs/BUGS_TrackContentProvider.md")
     @Test
     public void getType_trackStart_returnsItemType() {
-	if(true) return;
         long trackId = insertTrack();
         String type = resolver.getType(TrackContentProvider.trackStartUri(trackId));
         assertNotNull(type);
@@ -699,7 +662,6 @@ public class TrackContentProviderTest {
     @Ignore("Bug B12 — getType() throws for TRACK_END URI. See docs/BUGS_TrackContentProvider.md")
     @Test
     public void getType_trackEnd_returnsItemType() {
-	if(true) return;
         long trackId = insertTrack();
         String type = resolver.getType(TrackContentProvider.trackEndUri(trackId));
         assertNotNull(type);
@@ -710,7 +672,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void waypointsUri_hasCorrectFormat() {
-	if(true) return;
         Uri uri = TrackContentProvider.waypointsUri(42);
         assertEquals("content://" + TrackContentProvider.AUTHORITY + "/track/42/waypoints",
                 uri.toString());
@@ -718,7 +679,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void trackPointsUri_hasCorrectFormat() {
-	if(true) return;
         Uri uri = TrackContentProvider.trackPointsUri(42);
         assertEquals("content://" + TrackContentProvider.AUTHORITY + "/track/42/trackpoints",
                 uri.toString());
@@ -726,7 +686,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void notesUri_hasCorrectFormat() {
-	if(true) return;
         Uri uri = TrackContentProvider.notesUri(42);
         assertEquals("content://" + TrackContentProvider.AUTHORITY + "/track/42/notes",
                 uri.toString());
@@ -734,7 +693,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void trackStartUri_hasCorrectFormat() {
-	if(true) return;
         Uri uri = TrackContentProvider.trackStartUri(42);
         assertEquals("content://" + TrackContentProvider.AUTHORITY + "/track/42/start",
                 uri.toString());
@@ -742,7 +700,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void trackEndUri_hasCorrectFormat() {
-	if(true) return;
         Uri uri = TrackContentProvider.trackEndUri(42);
         assertEquals("content://" + TrackContentProvider.AUTHORITY + "/track/42/end",
                 uri.toString());
@@ -750,7 +707,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void waypointUri_hasCorrectFormat() {
-	if(true) return;
         Uri uri = TrackContentProvider.waypointUri(7);
         assertEquals("content://" + TrackContentProvider.AUTHORITY + "/waypoint/7",
                 uri.toString());
@@ -758,7 +714,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void noteUri_hasCorrectFormat() {
-	if(true) return;
         Uri uri = TrackContentProvider.noteUri(7);
         assertEquals("content://" + TrackContentProvider.AUTHORITY + "/note/7",
                 uri.toString());
@@ -766,7 +721,6 @@ public class TrackContentProviderTest {
 
     @Test
     public void trackpointUri_hasCorrectFormat() {
-	if(true) return;
         Uri uri = TrackContentProvider.trackpointUri(7);
         assertEquals("content://" + TrackContentProvider.AUTHORITY + "/trackpoint/7",
                 uri.toString());
