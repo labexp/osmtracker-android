@@ -176,6 +176,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_CREATE_TABLE_TRACK);
 		db.execSQL("drop table if exists " + TrackContentProvider.Schema.TBL_NOTE);
 		db.execSQL(SQL_CREATE_TABLE_NOTE);
+		db.execSQL(SQL_CREATE_TABLE_OVERLAY);
 	}
 
 	@Override
