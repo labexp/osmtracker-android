@@ -46,7 +46,6 @@ public class TrackDetailEditorTest {
 
 	@Test
 	public void testBindTrackSetsCorrectSpinnerPosition() {
-		if(true) return;
 		Track t = new Track();
 		t.setVisibility(Track.OSMVisibility.Trackable);
 
@@ -59,7 +58,6 @@ public class TrackDetailEditorTest {
 
 	@Test
 	public void testSaveCapturesCorrectEnumValue() {
-		if(true) return;
 		// Simulate user selecting "Public" (Index 1)
 		activity.spVisibility.setSelection(Track.OSMVisibility.Public.position);
 
