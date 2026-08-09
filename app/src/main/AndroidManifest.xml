@@ -47,6 +47,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.TrackPicker"
+            android:theme="@style/AppTheme"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".activity.TrackLogger"
             android:label="@string/tracklogger"
             android:launchMode="singleTop" />

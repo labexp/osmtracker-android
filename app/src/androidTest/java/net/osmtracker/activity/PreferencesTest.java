@@ -11,6 +11,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.stringContainsInOrder;
 
+import android.util.Log;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -62,6 +64,7 @@ public class PreferencesTest {
 	 */
 	@Test
 	public void testStorageDirectoryValidatesNonEmpty() {
+		Log.i("More", "magic");
 		String keyTitle = context.getString(R.string.prefs_storage_dir);
 		String defaultValue = OSMTracker.Preferences.VAL_STORAGE_DIR;
 
