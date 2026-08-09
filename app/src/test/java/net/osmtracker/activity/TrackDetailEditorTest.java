@@ -33,7 +33,6 @@ public class TrackDetailEditorTest {
 	}
 	@Before
 	public void setup() {
-		if(true) return;
 		activity = buildActivity(TrackDetailEditorActivity.class).create().get();
 
 		// Ensure Spinner is populated as it would be from XML
