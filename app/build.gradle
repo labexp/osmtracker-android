@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'net.osmtracker'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "net.osmtracker"
