@@ -96,6 +96,13 @@ public class DatabaseHelperTestBugs {
     public void bug_B10_segmentId_missingNotNull_afterUpgradeFrom18() {
         SQLiteDatabase rawDb = SQLiteDatabase.create(null);
         try {
+            // v18 track table, needed by the visibility normalization in case 19
+            rawDb.execSQL("create table track ("
+                    + "_id integer primary key autoincrement,"
+                    + "name text,"
+                    + "start_date long not null,"
+                    + "osm_visibility text)");
+
             // Simulate v18 trackpoint schema (no segment_id)
             rawDb.execSQL("create table trackpoint ("
                     + "_id integer primary key autoincrement,"
@@ -110,7 +117,7 @@ public class DatabaseHelperTestBugs {
                     + "compass_accuracy integer null,"
                     + "atmospheric_pressure double null)");
 
-            dbHelper.onUpgrade(rawDb, 18, 19);
+            dbHelper.onUpgrade(rawDb, 18, 20);
 
             assertFalse("Bug B10: segment_id should be NOT NULL but is nullable after upgrade",
                     isColumnNotNull(rawDb, TrackContentProvider.Schema.TBL_TRACKPOINT,
@@ -131,6 +138,12 @@ public class DatabaseHelperTestBugs {
     public void bug_B10_segmentId_allowsNullInsert_afterUpgrade() {
         SQLiteDatabase rawDb = SQLiteDatabase.create(null);
         try {
+            // v18 track table, needed by the visibility normalization in case 19
+            rawDb.execSQL("create table track ("
+                    + "_id integer primary key autoincrement,"
+                    + "name text,"
+                    + "start_date long not null,"
+                    + "osm_visibility text)");
             rawDb.execSQL("create table trackpoint ("
                     + "_id integer primary key autoincrement,"
                     + "track_id integer not null,"
@@ -144,7 +157,7 @@ public class DatabaseHelperTestBugs {
                     + "compass_accuracy integer null,"
                     + "atmospheric_pressure double null)");
 
-            dbHelper.onUpgrade(rawDb, 18, 19);
+            dbHelper.onUpgrade(rawDb, 18, 20);
 
             // Insert with explicit NULL for segment_id
             ContentValues values = new ContentValues();

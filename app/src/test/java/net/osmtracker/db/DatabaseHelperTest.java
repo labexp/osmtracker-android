@@ -264,13 +264,13 @@ public class DatabaseHelperTest {
                         TrackContentProvider.Schema.COL_ACTIVE));
     }
 
-    /** track.osm_visibility must default to 'Private'. */
+    /** track.osm_visibility must default to 'Identifiable'. */
     @Test
-    public void columnSchema_track_osmVisibility_defaultsToPrivate() {
+    public void columnSchema_track_osmVisibility_defaultsToIdentifiable() {
         String dflt = getColumnDefault(db, TrackContentProvider.Schema.TBL_TRACK,
                 TrackContentProvider.Schema.COL_OSM_VISIBILITY);
-        assertEquals("osm_visibility must default to 'Private'",
-                "'" + Track.OSMVisibility.Private + "'", dflt);
+        assertEquals("osm_visibility must default to 'Identifiable'",
+                "'" + Track.OSMVisibility.Identifiable.name() + "'", dflt);
     }
 
     /** note table must have exactly 8 columns. */
@@ -399,13 +399,68 @@ public class DatabaseHelperTest {
     // ── Group V: onUpgrade() paths ────────────────────────────────────────────
 
     /**
-     * Upgrading from v18 (which lacks segment_id) to v19 must add the segment_id column
-     * to the trackpoint table.
-     */
+	 * Upgrading from v19 with legacy visibility values must normalize them
+	 * to the current default. OSM dropped Public and Private for GPS traces.
+	 * See: <a href="https://github.com/labexp/osmtracker-android/issues/710">...</a>
+	 */
     @Test
-    public void onUpgrade_from18to19_addsSegmentIdColumn() {
+    public void onUpgrade_from19to20_normalizesLegacyVisibility() {
         SQLiteDatabase rawDb = SQLiteDatabase.create(null);
         try {
+            rawDb.execSQL("create table track ("
+                    + "_id integer primary key autoincrement,"
+                    + "name text,"
+                    + "start_date long not null,"
+                    + "osm_visibility text)");
+
+            rawDb.execSQL("insert into track (name, start_date, osm_visibility) values ('a', 1, 'Private')");
+            rawDb.execSQL("insert into track (name, start_date, osm_visibility) values ('b', 2, 'Public')");
+            rawDb.execSQL("insert into track (name, start_date, osm_visibility) values ('c', 3, 'Trackable')");
+            rawDb.execSQL("insert into track (name, start_date, osm_visibility) values ('d', 4, 'Identifiable')");
+            rawDb.execSQL("insert into track (name, start_date, osm_visibility) values ('e', 5, 'Garbage')");
+            rawDb.execSQL("insert into track (name, start_date, osm_visibility) values ('f', 6, null)");
+
+            dbHelper.onUpgrade(rawDb, 19, 20);
+
+			try (Cursor c = rawDb.rawQuery("select name, osm_visibility from track order by start_date", null)) {
+				// Private -> Identifiable
+				assertTrue(c.moveToNext());
+				assertEquals("Identifiable", c.getString(1));
+				// Public -> Identifiable
+				assertTrue(c.moveToNext());
+				assertEquals("Identifiable", c.getString(1));
+				// Trackable -> unchanged
+				assertTrue(c.moveToNext());
+				assertEquals("Trackable", c.getString(1));
+				// Identifiable -> unchanged
+				assertTrue(c.moveToNext());
+				assertEquals("Identifiable", c.getString(1));
+				// Garbage -> Identifiable
+				assertTrue(c.moveToNext());
+				assertEquals("Identifiable", c.getString(1));
+				// null -> Identifiable
+				assertTrue(c.moveToNext());
+				assertEquals("Identifiable", c.getString(1));
+			}
+        } finally {
+            rawDb.close();
+        }
+    }
+
+    /**
+     * Upgrading from v18 (which lacks segment_id) to  the current version must add
+     * the segment_id column to the trackpoint table.
+     */
+    @Test
+    public void onUpgrade_from18to20_addsSegmentIdColumn() {
+        SQLiteDatabase rawDb = SQLiteDatabase.create(null);
+        try {
+            // v18 track table, needed by the visibility normalization in case 19
+            rawDb.execSQL("create table track ("
+                    + "_id integer primary key autoincrement,"
+                    + "name text,"
+                    + "start_date long not null,"
+                    + "osm_visibility text)");
             // Simulate v18 trackpoint schema (no segment_id)
             rawDb.execSQL("create table trackpoint ("
                     + "_id integer primary key autoincrement,"
@@ -420,7 +475,7 @@ public class DatabaseHelperTest {
                     + "compass_accuracy integer null,"
                     + "atmospheric_pressure double null)");
 
-            dbHelper.onUpgrade(rawDb, 18, 19);
+            dbHelper.onUpgrade(rawDb, 18, 20);
 
             List<String> cols = getColumnNames(rawDb, TrackContentProvider.Schema.TBL_TRACKPOINT);
             assertTrue("segment_id column must exist after upgrade from v18",
@@ -431,12 +486,12 @@ public class DatabaseHelperTest {
     }
 
     /**
-     * Upgrading from v12 to v19 must add the osm_upload_date, description, tags, and
+     * Upgrading from v12 to v20 must add the osm_upload_date, description, tags, and
      * osm_visibility columns to the track table, as well as the speed column to trackpoint,
      * and create the note table.
      */
     @Test
-    public void onUpgrade_from12to19_addsExpectedTrackColumns() {
+    public void onUpgrade_from12to20_addsExpectedTrackColumns() {
         SQLiteDatabase rawDb = SQLiteDatabase.create(null);
         try {
             // v12 track schema
@@ -472,7 +527,7 @@ public class DatabaseHelperTest {
                     + "link text,"
                     + "nb_satellites integer not null)");
 
-            dbHelper.onUpgrade(rawDb, 12, 19);
+            dbHelper.onUpgrade(rawDb, 12, 20);
 
             List<String> trackCols = getColumnNames(rawDb, TrackContentProvider.Schema.TBL_TRACK);
             assertTrue("osm_upload_date must exist after v12 upgrade",
@@ -511,7 +566,7 @@ public class DatabaseHelperTest {
     public void onUpgrade_preV12_callsOnCreateAndCreatesAllTables() {
         SQLiteDatabase rawDb = SQLiteDatabase.create(null);
         try {
-            dbHelper.onUpgrade(rawDb, 11, 19);
+            dbHelper.onUpgrade(rawDb, 11, 20);
 
             for (String table : new String[]{
                     TrackContentProvider.Schema.TBL_TRACKPOINT,
@@ -576,9 +631,9 @@ public class DatabaseHelperTest {
 
     // ── Group VII: Version ────────────────────────────────────────────────────
 
-    /** The database version must be 19. */
+    /** The database version must be 20. */
     @Test
-    public void dbVersion_is19() {
-        assertEquals("DB_VERSION must be 19", 19, db.getVersion());
+    public void dbVersion_is20() {
+        assertEquals("DB_VERSION must be 20", 20, db.getVersion());
     }
 }
