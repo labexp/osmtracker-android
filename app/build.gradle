@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "net.osmtracker"
         minSdk 25
-        targetSdk 35
+        targetSdk 36
         multiDexEnabled true
 
         // Version code should be increased after each release
