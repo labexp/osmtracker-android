@@ -2,7 +2,6 @@ package net.osmtracker.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,7 +40,6 @@ public class GitHubNewRepo extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.git_newrepo);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         editTextNewRepo = findViewById(R.id.git_newrepo_name);
 
         gitHubUser = new GitHubUser(this);
