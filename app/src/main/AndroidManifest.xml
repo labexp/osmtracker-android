@@ -48,6 +48,7 @@
         </activity>
         <activity
             android:name=".activity.TrackLogger"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|smallestScreenSize"
             android:enableOnBackInvokedCallback="false"
             android:label="@string/tracklogger"
             android:launchMode="singleTop" />
