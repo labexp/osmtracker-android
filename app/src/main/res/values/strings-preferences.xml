@@ -94,9 +94,7 @@
   <string name="prefs_osm_visibility">Track Visibility</string>
   <string name="prefs_osm_visibility_summary">Preferred visibility of traces uploaded to openstreetmap.org</string>
   <string-array name="prefs_osm_visibility_keys">
-    <item>Private</item>
     <item>Trackable</item>
-    <item>Public</item>
     <item>Identifiable</item>
   </string-array>
   <string name="prefs_osm_clear_oauth_data">Reset OSM authentication</string>
