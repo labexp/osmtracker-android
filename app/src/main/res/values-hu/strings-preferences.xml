@@ -94,9 +94,7 @@
   <string name="prefs_osm_visibility">Nyomvonalak láthatósága</string>
   <string name="prefs_osm_visibility_summary">Nyomvonalak preferált láthatósága openstreetmap.org-ra való feltöltéskor</string>
   <string-array name="prefs_osm_visibility_keys">
-    <item>Magán</item>
     <item>Követhető</item>
-    <item>Nyilvános</item>
     <item>Azonosítható</item>
   </string-array>
   <string name="prefs_osm_clear_oauth_data">OSM-bejelentkezés alaphelyzetbe állítása</string>

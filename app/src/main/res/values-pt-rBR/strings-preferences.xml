@@ -89,9 +89,7 @@
   <string name="prefs_osm_visibility">Visibilidade da trilha</string>
   <string name="prefs_osm_visibility_summary">Visibilidade preferencial das trilhas enviadas para openstreetmap.org</string>
   <string-array name="prefs_osm_visibility_keys">
-    <item>Privado</item>
     <item>Rastreável</item>
-    <item>Público</item>
     <item>Identificável</item>
   </string-array>
   <string name="prefs_osm_clear_oauth_data">Redefinir autenticação OSM</string>
