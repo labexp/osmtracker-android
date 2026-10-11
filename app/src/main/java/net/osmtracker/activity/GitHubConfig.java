@@ -2,7 +2,6 @@ package net.osmtracker.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +23,6 @@ public class GitHubConfig extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.github_configuration_token);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         editTextUserName = findViewById(R.id.git_configuration_user_name);
         editTextUserToken = findViewById(R.id.git_configuration_user_token);
