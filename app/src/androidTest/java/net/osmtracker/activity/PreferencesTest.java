@@ -3,6 +3,7 @@ package net.osmtracker.activity;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
@@ -91,9 +92,10 @@ public class PreferencesTest {
 		scrollToAndClick(keyTitle);
 
 		// Try to type a value without a slash
-		onView(withId(android.R.id.edit)).perform(clearText());
-		onView(withId(android.R.id.edit))
-				.perform(typeText("my_folder"));
+		onView(withId(android.R.id.edit)).perform(
+				clearText(),
+				typeText("my_folder"),
+				closeSoftKeyboard());
 		onView(withText(android.R.string.ok)).perform(click());
 
 		// Open the preference to verify the value in the list is the expected
@@ -112,8 +114,10 @@ public class PreferencesTest {
 		scrollToAndClick(title);
 
 		// Enter a valid number
-		onView(withId(android.R.id.edit))
-				.perform(clearText(), typeText("30"));
+		onView(withId(android.R.id.edit)).perform(
+				clearText(),
+				typeText("30"),
+				closeSoftKeyboard());
 		onView(withText(android.R.string.ok)).perform(click());
 
 		// Verify summary format: "30 seconds. <Static Summary>"
@@ -134,7 +138,10 @@ public class PreferencesTest {
 		scrollToAndClick(title);
 
 		// Set a custom value "50"
-		onView(withId(android.R.id.edit)).perform(clearText(), typeText("50"));
+		onView(withId(android.R.id.edit)).perform(
+				clearText(),
+				typeText("50"),
+				closeSoftKeyboard());
 		onView(withText(android.R.string.ok)).perform(click());
 
 		// Verify custom value is set

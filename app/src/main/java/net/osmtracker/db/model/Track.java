@@ -23,10 +23,8 @@ public class Track {
 	private static final DateFormat DATE_FORMAT = DateFormat.getDateTimeInstance();
 
 	public enum OSMVisibility {
-		Private(0, R.string.osm_visibility_private),
-		Public(1, R.string.osm_visibility_public),
-		Trackable(2, R.string.osm_visibility_trackable),
-		Identifiable(3, R.string.osm_visibility_identifiable);
+		Trackable(0, R.string.osm_visibility_trackable),
+		Identifiable(1, R.string.osm_visibility_identifiable);
 		
 		public final int position;
 		public final int resId;
