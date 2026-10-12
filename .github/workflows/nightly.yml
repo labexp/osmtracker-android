@@ -51,10 +51,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
-
       - name: Build with Gradle
         run: ./gradlew assembleDebug --stacktrace
 
