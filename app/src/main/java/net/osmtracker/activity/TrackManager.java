@@ -1,5 +1,6 @@
 package net.osmtracker.activity;
 
+import android.app.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -76,7 +77,7 @@ public class TrackManager extends AppCompatActivity
 	private static final String PREV_VISIBLE = "prev_visible";
 
 	/** Constant used if no track is active (-1)*/
-	private static final long TRACK_ID_NO_TRACK = -1;
+	public static final long TRACK_ID_NO_TRACK = -1;
 
 	// The active track being recorded, if any, or {TRACK_ID_NO_TRACK};
 	// value is updated in {@link #onResume()}
@@ -774,12 +775,17 @@ public class TrackManager extends AppCompatActivity
 
 		// to be sure that no tracking will be in progress when we set a new track
 		stopActiveTrack();
+		setActiveTrack(this, trackId);
+	}
 
+	public static void setActiveTrack(Activity activity, long trackId){
 		// set the track active
 		ContentValues values = new ContentValues();
 		values.put(TrackContentProvider.Schema.COL_ACTIVE,
 				TrackContentProvider.Schema.VAL_TRACK_ACTIVE);
-		getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values,
+		activity
+			.getContentResolver()
+			.update(TrackContentProvider.CONTENT_URI_TRACK, values,
 				TrackContentProvider.Schema.COL_ID + " = ?",
 				new String[] {Long.toString(trackId)});
 	}
