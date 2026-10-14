@@ -631,9 +631,9 @@ public class DatabaseHelperTest {
 
     // ── Group VII: Version ────────────────────────────────────────────────────
 
-    /** The database version must be 20. */
+    /** The database version must be 21. */
     @Test
-    public void dbVersion_is20() {
-        assertEquals("DB_VERSION must be 20", 20, db.getVersion());
+    public void dbVersion_is21() {
+        assertEquals("DB_VERSION must be 21", 21, db.getVersion());
     }
 }
