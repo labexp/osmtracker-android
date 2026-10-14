@@ -385,6 +385,46 @@ public class DataHelper {
 	}
 	
 	/**
+	 * Updates overlaid track of trackId
+	 *
+	 * @param trackId 	Id of the track
+	 * @param overlay 	id of the track
+	 */
+	public void updateOverlay(long trackId, long overlay) {
+		Log.v(TAG, "Changing overlay track=" + trackId +
+		      ", overlay=" + overlay);
+
+		// delete old
+		contentResolver.delete(ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_OVERLAY, trackId), null, null);
+
+                // insert new
+                if(overlay != 0) {
+                    ContentValues values = new ContentValues();
+                    values.put(TrackContentProvider.Schema.COL_TRACK_ID, trackId);
+                    values.put(TrackContentProvider.Schema.COL_OVERLAY_ID, overlay);
+                    contentResolver.insert(TrackContentProvider.CONTENT_URI_OVERLAY, values);
+                }
+	}
+
+	/**
+	 * Find the ID for track overlaying trackId
+	 * @param trackId Id of the track
+	 * @param cr  {@link ContentResolver} for query
+	 * @return  the track ID for the overlaid track, or 0 if not found
+	 */
+	public static long queryOverlay(long trackId, @NotNull ContentResolver cr) {
+		Cursor ca = cr.query(ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_OVERLAY,
+								trackId),null, null, null, null);
+
+		long overlayTrackId = 0;
+ 		if (ca.moveToFirst())
+			overlayTrackId = ca.getLong(ca.getColumnIndex(TrackContentProvider.Schema.COL_OVERLAY_ID));
+		ca.close();
+		return overlayTrackId;
+	}
+
+
+	/**
 	 * Stop tracking by making the track inactive
 	 * @param trackId Id of the track
 	 */
