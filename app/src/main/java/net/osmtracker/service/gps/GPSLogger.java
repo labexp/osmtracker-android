@@ -98,6 +98,7 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private long gpsLoggingInterval;
 	private long gpsLoggingMinDistance;
+	private boolean gpsLoggingDistGtAccuracy;
 	
 	/**
 	 * sensors for magnetic orientation
@@ -254,6 +255,8 @@ public class GPSLogger extends Service implements LocationListener {
 				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
 		use_barometer = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
 				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
+		gpsLoggingDistGtAccuracy = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
+				OSMTracker.Preferences.KEY_GPS_LOGGING_DIST_GT_ACCURACY, OSMTracker.Preferences.VAL_GPS_LOGGING_DIST_GT_ACCURACY);
 
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
@@ -348,6 +351,12 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
 		if((lastGPSTimestamp + gpsLoggingInterval) < System.currentTimeMillis()){
+			// next check whether distance is greater than accurracy
+			if(gpsLoggingDistGtAccuracy &&
+			   lastLocation != null &&
+			   location.distanceTo(lastLocation) <= location.getAccuracy())
+				return;
+
 			lastGPSTimestamp = System.currentTimeMillis(); // save the time of this fix
 		
 			lastLocation = location;
