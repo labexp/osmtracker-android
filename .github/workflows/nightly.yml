@@ -52,22 +52,19 @@ jobs:
           java-version: '17'
 
       - name: Setup Signing Keystore
-        run: |                 
+        run: |
           # 1. Decode nightly keystore secret
           echo "${{ secrets.NIGHTLY_KEYSTORE }}" | base64 -d > /tmp/nightly-keystore.jks
           echo "Keystore created in /tmp/nightly-keystore.jks"
-          
+
           # Verify
           echo "✅ Keystore created in: /tmp/nightly-keystore.jks"
           ls -la /tmp/nightly-keystore.jks
           echo "ks_path=/tmp/nightly-keystore.jks" >> $GITHUB_OUTPUT
-          
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
 
       - name: Build with Gradle
-        run: |        
+        run: |
           ./gradlew assembleDebug --stacktrace \
             -Pandroid.injected.signing.store.file="/tmp/nightly-keystore.jks" \
             -Pandroid.injected.signing.store.password="${{ secrets.KEYSTORE_PASSWORD }}" \
@@ -77,7 +74,7 @@ jobs:
       - name: Cleanup Keystore
         run: |
           echo "Cleaning keystore..."
-          rm -f app/nightly-keystore.jks
+          rm -f /tmp/nightly-keystore.jks
           echo "✅ Keystore removed"
 
       - name: Rename output APK
