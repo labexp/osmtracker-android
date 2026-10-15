@@ -88,10 +88,6 @@
   <string name="prefs_sound_enabled_summary">Tocar som quando gravação de voz começa e termina</string>
   <string name="prefs_osm_visibility">Visibilidade da trilha</string>
   <string name="prefs_osm_visibility_summary">Visibilidade preferencial das trilhas enviadas para openstreetmap.org</string>
-  <string-array name="prefs_osm_visibility_keys">
-    <item>Rastreável</item>
-    <item>Identificável</item>
-  </string-array>
   <string name="prefs_osm_clear_oauth_data">Redefinir autenticação OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Esquecer as credenciais e permissões OSM e forçar o OSMTracker a perguntar isso novamente</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Você vai ter que autorizar OSMTracker para carregar trilhas novamente. Tem certeza?</string>
