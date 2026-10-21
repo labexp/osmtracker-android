@@ -21,6 +21,8 @@ During release preparation, it is common to include some pull requests that were
 
 Once the release branch is frozen (that is, no more code changes are accepted and the branch becomes the release candidate), update the ["What's new" slide in the app intro](https://github.com/labexp/osmtracker-android/blob/master/app/src/main/java/net/osmtracker/activity/Intro.kt) with a summary of the changelog. 
 
+Keep the changelog short: a few bullet points describing user-facing changes. The full detail is in the code and the commit history. Note that the changelog will keep receiving translations after the branch is frozen.
+
 Increase `versionCode` in [app/build.gradle](app/build.gradle) to a value higher than the last release published on Google Play ([`versionName` is generated automatically](https://github.com/labexp/osmtracker-android/commit/cc8b65211ca9691e7da701be75288907aca11209) from the current date in format `yyyy.MM.dd`).
 
 
