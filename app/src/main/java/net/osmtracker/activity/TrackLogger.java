@@ -68,7 +68,8 @@ import java.util.UUID;
  * @author Nicolas Guillaumin
  * 
  */
-public class TrackLogger extends GPSLoggerConnectionListener {
+public class TrackLogger extends Activity
+	implements GPSLoggerConnectionListener {
 
 	private static final String TAG = TrackLogger.class.getSimpleName();
 

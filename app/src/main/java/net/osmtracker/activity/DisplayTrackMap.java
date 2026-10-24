@@ -1,5 +1,6 @@
 package net.osmtracker.activity;
 
+import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,7 +56,8 @@ import java.util.List;
  * @author Viesturs Zarins
  *
  */
-public class DisplayTrackMap extends GPSLoggerConnectionListener {
+public class DisplayTrackMap extends Activity
+	implements GPSLoggerConnectionListener {
 
 	private static final String TAG = DisplayTrackMap.class.getSimpleName();
 
