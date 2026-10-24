@@ -202,9 +202,8 @@ public class DisplayTrackMap extends Activity {
 		setTitle(getTitle() + ": #" + currentTrackId);
 
 		final DataHelper dataHelper = new DataHelper(this);
-		overlaidTrackId = dataHelper.queryOverlay(currentTrackId,
-							  getContentResolver());
-
+		// TODO: read overlaidTrackId from persistent store here
+		
 		// Initialize OSM view
 		Configuration.getInstance().load(this, prefs);
 
@@ -421,7 +420,7 @@ public class DisplayTrackMap extends Activity {
 		   resultCode == RESULT_OK) {
 			overlaidTrackId = data.getLongExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID,0);
 			final DataHelper dataHelper = new DataHelper(this);
-			dataHelper.updateOverlay(currentTrackId,overlaidTrackId);
+			// TODO: update overlaidTrackId in persistent store here
 		}
 	}
 
