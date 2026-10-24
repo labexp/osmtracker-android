@@ -1,6 +1,5 @@
 package net.osmtracker.activity;
 
-import android.app.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -775,17 +774,12 @@ public class TrackManager extends AppCompatActivity
 
 		// to be sure that no tracking will be in progress when we set a new track
 		stopActiveTrack();
-		setActiveTrack(this, trackId);
-	}
 
-	public static void setActiveTrack(Activity activity, long trackId){
 		// set the track active
 		ContentValues values = new ContentValues();
 		values.put(TrackContentProvider.Schema.COL_ACTIVE,
 				TrackContentProvider.Schema.VAL_TRACK_ACTIVE);
-		activity
-			.getContentResolver()
-			.update(TrackContentProvider.CONTENT_URI_TRACK, values,
+		getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values,
 				TrackContentProvider.Schema.COL_ID + " = ?",
 				new String[] {Long.toString(trackId)});
 	}

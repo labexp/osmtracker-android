@@ -1,6 +1,7 @@
 package net.osmtracker.activity;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -248,8 +249,16 @@ public class DisplayTrackMap extends Activity
 			intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 			startService(intent);
 			bindService(intent, getGpsLoggerConnection(), 0);
+
+			// update DB, copied from TrackManager
+			ContentValues values = new ContentValues();
+			values.put(TrackContentProvider.Schema.COL_ACTIVE,
+				   TrackContentProvider.Schema.VAL_TRACK_ACTIVE);
+			getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values,
+						    TrackContentProvider.Schema.COL_ID + " = ?",
+						    new String[] {Long.toString(currentTrackId)});
+
 			isTracking = true;
-			TrackManager.setActiveTrack(this, currentTrackId);
 		}
 		updateTrackingIcon();
 	}
