@@ -69,8 +69,6 @@
   <string name="trackdetail_tags">Címkék (vesszővel elválasztva)</string>
   <string name="trackdetail_description_mandatory">Meg kell adnod egy leírást</string>
   <string name="trackdetail_visibility">Láthatóság</string>
-  <string name="osm_visibility_private">Privát</string>
-  <string name="osm_visibility_public">Nyilvános</string>
   <string name="osm_visibility_trackable">Követhető</string>
   <string name="osm_visibility_identifiable">Azonosítható</string>
   <!--OSM upload-->

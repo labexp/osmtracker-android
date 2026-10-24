@@ -15,6 +15,7 @@ Whether you're fixing a bug, adding a new feature, or improving documentation �
 7. 📜 Code Style & Commit Guidelines
 8. 🚀 How to Submit a Pull Request
 9. 💬 Community & Support
+10. 📦 Releasing
 
 ---
 
@@ -135,3 +136,8 @@ fix bug
 - (Optional): Join the contributors chat/[Telegram](https://t.me/OSMTracker).
 
 Let's build something awesome together! 🚀
+---
+
+## 📦 10. Releasing
+
+Maintainers preparing a new release should follow the release process documented in [docs/RELEASING.md](docs/RELEASING.md).

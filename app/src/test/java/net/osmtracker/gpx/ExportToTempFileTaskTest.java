@@ -1,6 +1,7 @@
 package net.osmtracker.gpx;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -57,7 +58,7 @@ public class ExportToTempFileTaskTest {
 		providerController = Robolectric.buildContentProvider(TrackContentProvider.class)
 				.create(TrackContentProvider.AUTHORITY);
 
-		// Set up locale and preferences to to match gpx-test.gpx file
+		// Set up locale and preferences to match gpx-test.gpx file
 		Locale esLocale = new Locale("es");
 		Locale.setDefault(esLocale);
 		context.getResources().getConfiguration().setLocale(esLocale);
@@ -87,7 +88,7 @@ public class ExportToTempFileTaskTest {
 	@Test
 	public void testExportMatchesGpxResource() throws Exception {
 		try (
-				MatrixCursor pointCursor = createPointCursor();
+				MatrixCursor pointCursor = createPointCursor(new Double[]{35.635440826416, 52.0706405639648});
 				MatrixCursor wptCursor = createWptCursor()
 		) {
 			TestTempExportTask task = new TestTempExportTask(context, testTrackId);
@@ -107,8 +108,26 @@ public class ExportToTempFileTaskTest {
 		}
 	}
 
+	@Test
+	public void writeGpxFile_omitsAccuracyTag_whenAccuracyIsNull() throws Exception {
+		try (MatrixCursor pointCursor = createPointCursor(new Double[]{null, null});
+			 MatrixCursor wptCursor = createWptCursor()) {
+
+			TestTempExportTask task = new TestTempExportTask(context, testTrackId);
+			File outputFile = task.getTmpFile();
+
+			task.writeGpxFile("track", "osmtracker", null,
+					pointCursor, wptCursor, outputFile);
+
+			String actualXml = FileUtils.readFileToString(outputFile, StandardCharsets.UTF_8.name());
+
+			assertFalse("GPX should not contain <accuracy> when the trackpoint has no accuracy",
+					actualXml.contains("<accuracy>"));
+		}
+	}
+
 	// Helper method to create the point cursor
-	private MatrixCursor createPointCursor() {
+	private MatrixCursor createPointCursor(Double[] accuracies) {
 		String[] ptColumns = new String[] {
 				TrackContentProvider.Schema.COL_LATITUDE,
 				TrackContentProvider.Schema.COL_LONGITUDE,
@@ -122,11 +141,13 @@ public class ExportToTempFileTaskTest {
 				TrackContentProvider.Schema.COL_ATMOSPHERIC_PRESSURE,
 		};
 
+		//35.635440826416
+		//52.0706405639648
 		MatrixCursor pointCursor = new MatrixCursor(ptColumns);
 		pointCursor.addRow(new Object[]{10.0375690436648, -84.2122886824885, 1015.13159253262,
-				990055225000L, 0, 35.635440826416, 0.361938893795013, 204.690002441406, 2.0, null});
+				990055225000L, 0, accuracies[0], 0.361938893795013, 204.690002441406, 2.0, null});
 		pointCursor.addRow(new Object[]{10.0377106969496, -84.2123268390527, 1007.3209409276,
-				990055226000L, 1, 52.0706405639648, 0.271533757448196, 204.360000610352, 2.0, null});
+				990055226000L, 1, accuracies[1], 0.271533757448196, 204.360000610352, 2.0, null});
 		return pointCursor;
 	}
 
