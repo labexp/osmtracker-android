@@ -6,8 +6,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -26,14 +24,11 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
-import android.database.Cursor;
-
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.activity.TrackLogger;
 import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
-import net.osmtracker.db.model.Track;
 import net.osmtracker.listener.PressureListener;
 import net.osmtracker.listener.SensorListener;
 
@@ -113,8 +108,6 @@ public class GPSLogger extends Service implements LocationListener {
 	 * sensor for atmospheric pressure
 	 */
 	private PressureListener pressureListener = new PressureListener();
-
-	private boolean newSeg = false;
 
 	/**
 	 * Receives Intent for way point and notes tracking, and stop/start logging.
@@ -198,7 +191,6 @@ public class GPSLogger extends Service implements LocationListener {
 					dataHelper.updateNote(trackId, uuid, name);
 				}
 			} else if (OSMTracker.INTENT_START_TRACKING.equals(intent.getAction())) {
-				newSeg = true;
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
 					Long trackId = extras.getLong(TrackContentProvider.Schema.COL_TRACK_ID);
@@ -324,23 +316,6 @@ public class GPSLogger extends Service implements LocationListener {
 		pressureListener.unregister();
 
 		super.onDestroy();
-	}
-
-	private long getSegIdFor(long trackId) {
-		ContentResolver cr = getContentResolver();
-		try(Cursor cursor =
-		    cr.query(ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
-			     null, null, null, null)) {
-
-			if (! cursor.moveToFirst())	{
-				Log.v(TAG, "Track "+trackId+" not found");
-				return 0;  // <--- Early return ---
-			}
-
-			return Track
-				.build(trackId, cursor, cr, true)
-				.getMaxSegId();
-		}
 	}
 
 	/**
