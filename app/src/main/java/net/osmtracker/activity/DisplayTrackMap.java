@@ -1,6 +1,7 @@
 package net.osmtracker.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +23,7 @@ import androidx.preference.PreferenceManager;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.TrackContentProvider;
+import net.osmtracker.db.DataHelper;
 import net.osmtracker.overlay.WayPointsOverlay;
 import net.osmtracker.overlay.Polylines;
 
@@ -101,6 +103,11 @@ public class DisplayTrackMap extends Activity {
 	private static final long ANIMATION_DURATION_MS = 1000;
 
 	/**
+	 * Request Code for picking overlaid track
+	 */
+	public final static int RC_PICK_OVERLAID = 1;
+
+	/**
 	 * Main OSM view
 	 */
 	private MapView osmView;
@@ -121,6 +128,11 @@ public class DisplayTrackMap extends Activity {
 	private Polylines polylines;
 
 	/**
+	 * OSM view overlay that displays path of other track for comparison
+	 */
+	private Polylines polylinesOverlaid;
+
+	/**
 	 * OSM view overlay that displays waypoints
 	 */
 	private WayPointsOverlay wayPointsOverlay;
@@ -134,6 +146,11 @@ public class DisplayTrackMap extends Activity {
 	 * Current track id
 	 */
 	private long currentTrackId;
+
+	/**
+	 * Current overlaid track id
+	 */
+	private long overlaidTrackId=0;
 
 	/**
 	 * whether the map display should be centered to the gps location
@@ -173,6 +190,11 @@ public class DisplayTrackMap extends Activity {
 	 */
 	private SharedPreferences prefs = null;
 
+	/**
+	 * Separate SharedPreferences for overlays
+	 */
+	private static final String OVERLAY_PREFS_FILE = "overlays";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -184,6 +206,17 @@ public class DisplayTrackMap extends Activity {
 
 		currentTrackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 		setTitle(getTitle() + ": #" + currentTrackId);
+
+		final DataHelper dataHelper = new DataHelper(this);
+		try {
+			overlaidTrackId=
+				getSharedPreferences(OVERLAY_PREFS_FILE,
+						     MODE_PRIVATE)
+				.getLong(String.valueOf(currentTrackId), 0);
+		} catch(Exception e) {
+			overlaidTrackId=0;
+			// if it can't be read, assume there was none
+		}
 
 		// Initialize OSM view
 		Configuration.getInstance().load(this, prefs);
@@ -219,7 +252,7 @@ public class DisplayTrackMap extends Activity {
 		trackpointContentObserver = new ContentObserver(new Handler()) {
 			@Override
 			public void onChange(boolean selfChange) {
-				pathChanged();
+				pathChanged(polylines, currentTrackId);
 			}
 		};
 
@@ -299,10 +332,15 @@ public class DisplayTrackMap extends Activity {
 		// setKeepScreenOn depending on user's preferences
 		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
 
-		// Register content observer for any track point changes
-		getContentResolver().registerContentObserver(
-				TrackContentProvider.trackPointsUri(currentTrackId),
-				true, trackpointContentObserver);
+		// display "other" track
+		if(overlaidTrackId != 0) {
+			// from the database to populate the path layout
+			lastTrackPointIdProcessed = null;
+			prevSegmentId = -1;
+
+			// Reload path
+			pathChanged(polylinesOverlaid, overlaidTrackId);
+		}
 
 		// Forget the last waypoint read from the DB
 		// This ensures that all waypoints for the track will be reloaded
@@ -310,8 +348,15 @@ public class DisplayTrackMap extends Activity {
 		lastTrackPointIdProcessed = null;
 		prevSegmentId = -1;
 
-		// Reload path
-		pathChanged();
+		// Register content observer for any track point changes
+		getContentResolver().registerContentObserver(
+				TrackContentProvider.trackPointsUri(currentTrackId),
+				true, trackpointContentObserver);
+
+		// Reload path a first time after resume. If
+		// trackpointObserver was already invoked just now, this becomes
+		// a no-op
+		pathChanged(polylines, currentTrackId);
 
 		selectTileSource();
 
@@ -328,6 +373,7 @@ public class DisplayTrackMap extends Activity {
 
 		// Clear the points list.
 		polylines.clear();
+		polylinesOverlaid.clear();
 
 		super.onPause();
 	}
@@ -366,12 +412,35 @@ public class DisplayTrackMap extends Activity {
 					osmViewController.animateTo(currentPosition);
 				}
 				break;
+			case R.id.displaytrackmap_menu_overlay_other:
+				// Start track picker activity
+				Intent i = new Intent(this, TrackPicker.class);
+				i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
+				i.putExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID, overlaidTrackId);
+				startActivityForResult(i, RC_PICK_OVERLAID);
+				break;
 			case R.id.displaytrackmap_menu_settings:
 				// Start settings activity
 				startActivity(new Intent(this, Preferences.class));
 				break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode,
+				     Intent data) {
+		if(requestCode == RC_PICK_OVERLAID &&
+		   resultCode == RESULT_OK) {
+			overlaidTrackId = data.getLongExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID,0);
+			final DataHelper dataHelper = new DataHelper(this);
+			getSharedPreferences(OVERLAY_PREFS_FILE,
+					     MODE_PRIVATE)
+				.edit()
+				.putLong(String.valueOf(currentTrackId),
+					 overlaidTrackId)
+				.apply();
+		}
 	}
 
 	@Override
@@ -394,6 +463,7 @@ public class DisplayTrackMap extends Activity {
 
 		// set with to hopefully DPI independent 0.5mm
 		polylines = new Polylines(Color.BLUE, (float)(metrics.densityDpi / 25.4 / 2), osmView);
+		polylinesOverlaid = new Polylines(Color.RED, (float)(metrics.densityDpi / 25.4 / 2), osmView);
 		
 		myLocationOverlay = new SimpleLocationOverlay(this);
 		osmView.getOverlays().add(myLocationOverlay);
@@ -411,8 +481,10 @@ public class DisplayTrackMap extends Activity {
 	 * from {@link #onResume()}, and not the periodic call from
 	 * {@link ContentObserver#onChange(boolean) trackpointContentObserver.onChange(boolean)}
 	 * while recording.
+	 * @param polylines lineset to update
+	 * @param trackId trackid from which to draw lineset
 	 */
-	private void pathChanged() {
+	private synchronized void pathChanged(Polylines polylines, long trackId) {
 		if (isFinishing()) {
 			return;
 		}
@@ -424,10 +496,11 @@ public class DisplayTrackMap extends Activity {
 		boolean doInitialBoundsCalc = false;
 		double minLat = 91.0, minLon = 181.0;
 		double maxLat = -91.0, maxLon = -181.0;
-		if ((!zoomedToTrackAlready) && (lastTrackPointIdProcessed == null)) {
+		if (trackId == currentTrackId &&
+		    (!zoomedToTrackAlready) && (lastTrackPointIdProcessed == null)) {
 			final String[] proj_active = {TrackContentProvider.Schema.COL_ACTIVE};
 			Cursor cursor = getContentResolver().query(
-					ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, currentTrackId),
+					ContentUris.withAppendedId(TrackContentProvider.CONTENT_URI_TRACK, trackId),
 					proj_active, null, null, null);
 			if (cursor != null && cursor.moveToFirst()) {
 				int colIndex = cursor.getColumnIndex(TrackContentProvider.Schema.COL_ACTIVE);
@@ -460,7 +533,7 @@ public class DisplayTrackMap extends Activity {
 
 		// Retrieve any points we have not yet seen
 		Cursor c = getContentResolver().query(
-				TrackContentProvider.trackPointsUri(currentTrackId),
+				TrackContentProvider.trackPointsUri(trackId),
 				projection, selection, selectionArgs, TrackContentProvider.Schema.COL_ID + " asc");
 
 		if (c != null) {
