@@ -1,6 +1,7 @@
 package net.osmtracker.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -189,6 +190,11 @@ public class DisplayTrackMap extends Activity {
 	 */
 	private SharedPreferences prefs = null;
 
+	/**
+	 * Separate SharedPreferences for overlays
+	 */
+	private static final String OVERLAY_PREFS_FILE = "overlays";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -202,8 +208,16 @@ public class DisplayTrackMap extends Activity {
 		setTitle(getTitle() + ": #" + currentTrackId);
 
 		final DataHelper dataHelper = new DataHelper(this);
-		// TODO: read overlaidTrackId from persistent store here
-		
+		try {
+			overlaidTrackId=
+				getSharedPreferences(OVERLAY_PREFS_FILE,
+						     MODE_PRIVATE)
+				.getLong(String.valueOf(currentTrackId), 0);
+		} catch(Exception e) {
+			overlaidTrackId=0;
+			// if it can't be read, assume there was none
+		}
+
 		// Initialize OSM view
 		Configuration.getInstance().load(this, prefs);
 
@@ -420,7 +434,12 @@ public class DisplayTrackMap extends Activity {
 		   resultCode == RESULT_OK) {
 			overlaidTrackId = data.getLongExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID,0);
 			final DataHelper dataHelper = new DataHelper(this);
-			// TODO: update overlaidTrackId in persistent store here
+			getSharedPreferences(OVERLAY_PREFS_FILE,
+					     MODE_PRIVATE)
+				.edit()
+				.putLong(String.valueOf(currentTrackId),
+					 overlaidTrackId)
+				.apply();
 		}
 	}
 
