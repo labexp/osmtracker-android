@@ -1,0 +1,48 @@
+@startuml OSMTracker-Containers
+!pragma layout smetana
+!theme plain
+
+' C4-PlantUML Container diagram
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_TOP_DOWN()
+
+title OSMTracker for Android – Containers
+caption Containers inside OSMTracker for Android, and how they interact with external systems
+
+Person(user, "OSM Mapper / Outdoor User", "Records GPS tracks and adds POIs while surveying")
+
+System_Boundary(system, "OSMTracker for Android") {
+    Container(mobileApp, "Android Mobile App", "Java", "UI and background logic to record tracks, manage POIs, capture media, and upload/export")
+    ContainerDb(localDb, "Local Database", "SQLite", "Tracks, waypoints/POIs, settings, and related metadata")
+    Container(fileStore, "Local File Storage", "Android filesystem", "GPX exports, photos, audio notes and temporary ZIPs")
+}
+
+System_Ext(openStreetMap, "OpenStreetMap", "Uploads GPX traces; provides map tiles (HTTPS)")
+System_Ext(androidOS, "Android Operating System Services (GPS/Network/Media)", "Location updates; Camera/Microphone/Media APIs")
+System_Ext(githubApi, "GitHub API", "Upload trace files to a repository; list repos; open PRs")
+
+' People -> App
+Rel(user, mobileApp, "Uses to start/stop tracking, add POIs, take photos/voice notes")
+
+' Internal container relationships
+Rel(mobileApp, localDb, "Reads/Writes track and waypoint metadata")
+Rel(mobileApp, fileStore, "Reads/Writes GPX, photos, audio, ZIPs")
+
+' External relationships
+Rel(mobileApp, androidOS, "Receives location updates; triggers media capture", "Android APIs")
+Rel(mobileApp, openStreetMap, "Uploads GPX traces and notes; fetches map tiles", "REST/HTTPS")
+Rel(mobileApp, githubApi, "Lists repos, uploads files, opens PRs", "HTTPS")
+
+UpdateElementStyle(user, $fontColor="black", $bgColor="#CFE8FF", $borderColor="#3A8DFF")
+UpdateElementStyle(system, $fontColor="black", $bgColor="#C7F0D8", $borderColor="#1B8C3E")
+UpdateElementStyle(openStreetMap, $bgColor="#FFE4C4")
+UpdateElementStyle(androidOS, $bgColor="#FFE4C4")
+UpdateElementStyle(githubApi, $bgColor="#FFE4C4")
+UpdateElementStyle(localDb, $bgColor="#FFF9C4")
+UpdateElementStyle(fileStore, $bgColor="#FFF9C4")
+
+SHOW_LEGEND()
+
+footer Generated with C4-PlantUML.
+@enduml
