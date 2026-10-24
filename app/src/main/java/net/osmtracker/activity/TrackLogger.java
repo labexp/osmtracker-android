@@ -357,15 +357,15 @@ public class TrackLogger extends Activity
 			if(!buttonsEnabled){
 				Toast.makeText(this, R.string.tracklogger_waiting_gps, Toast.LENGTH_LONG).show();
 			}
+
 			mAudioManager.registerMediaButtonEventReceiver(mediaButtonReceiver);
-			gpsStarted = true;
+
+			//save the layout file name if it change, in tags array
+			String layoutName = CustomLayoutsUtils.getCurrentLayoutName(getApplicationContext());
+			layoutNameTags.add(layoutName);
+		} else {
+			((GpsStatusRecord) findViewById(R.id.gpsStatus)).showStopped();
 		}
-
-
-		//save the layout file name if it change, in tags array
-		String layoutName = CustomLayoutsUtils.getCurrentLayoutName(getApplicationContext());
-		layoutNameTags.add(layoutName);
-
 		super.onResume();
 	}
 
@@ -392,35 +392,38 @@ public class TrackLogger extends Activity
 		}
 	}
 
-	boolean gpsStarted = false;
-	
 	@Override
 	protected void onPause() {
-		if(gpsStarted) {
-			// Un-register GPS status update for upper controls
-			((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(false);
-
-			if (gpsLogger != null) {
-				if (!gpsLogger.isTracking()) {
-					Log.v(TAG, "Service is not tracking, trying to stopService()");
-					unbindService(gpsLoggerConnection);
-					stopService(gpsLoggerServiceIntent);
-				} else {
-					unbindService(gpsLoggerConnection);
-				}
-			}
 		
-			if (sensorListener!=null) {
-				sensorListener.unregister();
-			}
+		// Un-register GPS status update for upper controls
+		((GpsStatusRecord) findViewById(R.id.gpsStatus)).requestLocationUpdates(false);
 
-			if (pressureListener != null) {
-				pressureListener.unregister();
+		if (gpsLogger != null) {
+			if (!gpsLogger.isTracking()) {
+				Log.v(TAG, "Service is not tracking, trying to stopService()");
+				try {
+				    unbindService(gpsLoggerConnection);
+				} catch(Exception e) {
+				}
+				try {
+				    stopService(gpsLoggerServiceIntent);
+				} catch(Exception e) {
+				}
+			} else {
+				unbindService(gpsLoggerConnection);
 			}
-
-			mAudioManager.unregisterMediaButtonEventReceiver(mediaButtonReceiver);
-			gpsStarted = false;
 		}
+		
+		if (sensorListener!=null) {
+			sensorListener.unregister();
+		}
+
+		if (pressureListener != null) {
+			pressureListener.unregister();
+		}
+
+		mAudioManager.unregisterMediaButtonEventReceiver(mediaButtonReceiver);
+
 		super.onPause();
 	}
 
@@ -676,17 +679,6 @@ public class TrackLogger extends Activity
 	 */
 	public void setGpsLogger(GPSLogger l) {
 		this.gpsLogger = l;
-		if(l == null) {
-			setEnabledActionButtons(false);
-			return;
-		}
-		
-		// Update record status regarding of current tracking state
-		GpsStatusRecord gpsStatusRecord = (GpsStatusRecord) findViewById(R.id.gpsStatus);
-		if (gpsStatusRecord != null)
-			gpsStatusRecord.manageRecordingIndicator(getGpsLogger().isTracking());
-		if (!gpsLogger.isTracking())
-			setEnabledActionButtons(false);
 	}
 
 	/**

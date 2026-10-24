@@ -1,7 +1,10 @@
 package net.osmtracker.service.gps;
 
 import net.osmtracker.OSMTracker;
-import net.osmtracker.service.gps.GPSLoggerConnectionListener;
+import net.osmtracker.R;
+import net.osmtracker.activity.TrackLogger;
+import net.osmtracker.layout.GpsStatusRecord;
+//import net.osmtracker.service.gps.GPSLoggerConnectionListener;
 import net.osmtracker.db.TrackContentProvider;
 
 import android.content.ComponentName;
@@ -28,16 +31,24 @@ public class GPSLoggerServiceConnection implements ServiceConnection {
 	
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
+		activity.setEnabledActionButtons(false);
 		activity.setGpsLogger(null);
 	}
 
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder service) {
-		GPSLogger gpsLogger = ((GPSLogger.GPSLoggerBinder) service).getService();
-		activity.setGpsLogger(gpsLogger);
+		
+		activity.setGpsLogger( ((GPSLogger.GPSLoggerBinder) service).getService());
 
+		// Update record status regarding of current tracking state
+		GpsStatusRecord gpsStatusRecord = (GpsStatusRecord) activity.findViewById(R.id.gpsStatus);
+		if (gpsStatusRecord != null) {
+			gpsStatusRecord.manageRecordingIndicator(activity.getGpsLogger().isTracking());
+		}
+		
 		// If not already tracking, start tracking
-		if (!gpsLogger.isTracking()) {
+		if (!activity.getGpsLogger().isTracking()) {
+			activity.setEnabledActionButtons(false);
 			Intent intent = new Intent(OSMTracker.INTENT_START_TRACKING);
 			intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, activity.getCurrentTrackId());
 			intent.setPackage(activity.getPackageName());

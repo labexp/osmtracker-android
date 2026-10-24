@@ -58,7 +58,8 @@ import java.util.List;
  *
  */
 public class DisplayTrackMap extends Activity
-	implements GPSLoggerConnectionListener {
+	implements GPSLoggerConnectionListener
+{
 
 	private static final String TAG = DisplayTrackMap.class.getSimpleName();
 
@@ -216,6 +217,11 @@ public class DisplayTrackMap extends Activity
 		if(l == null)
 			isTracking = false;
 		updateTrackingIcon();
+	}
+
+	@Override
+	public GPSLogger getGpsLogger() {
+		return gpsLogger;
 	}
 
 	private boolean isTracking() {
