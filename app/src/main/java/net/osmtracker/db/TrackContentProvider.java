@@ -38,8 +38,6 @@ public class TrackContentProvider extends ContentProvider {
 
 	public static final Uri CONTENT_URI_NOTE = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_NOTE);
 
-	public static final Uri CONTENT_URI_OVERLAY = Uri.parse("content://" + AUTHORITY + "/" + Schema.TBL_OVERLAY);
-
 	/**
 	 * Uri for the active track
 	 */
@@ -127,8 +125,6 @@ public class TrackContentProvider extends ContentProvider {
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_TRACKPOINT + "/#", Schema.URI_CODE_TRACKPOINT_ID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_NOTE + "/#", Schema.URI_CODE_NOTE_ID);
 		uriMatcher.addURI(AUTHORITY, Schema.TBL_NOTE + "/uuid/*", Schema.URI_CODE_NOTE_UUID);
-		uriMatcher.addURI(AUTHORITY, Schema.TBL_OVERLAY, Schema.URI_CODE_OVERLAYS);
-		uriMatcher.addURI(AUTHORITY, Schema.TBL_OVERLAY + "/#", Schema.URI_CODE_OVERLAY_ID);
 	}
 	
 	/**
@@ -231,8 +227,6 @@ public class TrackContentProvider extends ContentProvider {
 			String trackId = Long.toString(ContentUris.parseId(uri));
 			dbHelper.getWritableDatabase().delete(Schema.TBL_WAYPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
 			dbHelper.getWritableDatabase().delete(Schema.TBL_TRACKPOINT, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
-			dbHelper.getWritableDatabase().delete(Schema.TBL_OVERLAY, Schema.COL_TRACK_ID + " = ?", new String[] {trackId});
-			dbHelper.getWritableDatabase().delete(Schema.TBL_OVERLAY, Schema.COL_OVERLAY_ID + " = ?", new String[] {trackId});
 			count = dbHelper.getWritableDatabase().delete(Schema.TBL_TRACK, Schema.COL_ID + " = ?", new String[] {trackId});
 			break;
 		case Schema.URI_CODE_WAYPOINT_UUID:
@@ -251,10 +245,6 @@ public class TrackContentProvider extends ContentProvider {
 				count = 0;
 			}
 			break;
-		case Schema.URI_CODE_OVERLAY_ID:
-			String oTrackId = Long.toString(ContentUris.parseId(uri));
-			count = dbHelper.getWritableDatabase().delete(Schema.TBL_OVERLAY, Schema.COL_TRACK_ID + " = ?", new String[] {oTrackId});
-                        break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
@@ -353,19 +343,6 @@ public class TrackContentProvider extends ContentProvider {
 				}
 			} else {
 				throw new IllegalArgumentException("values should provide " + Schema.COL_START_DATE);
-			}
-			break;
-		case Schema.URI_CODE_OVERLAYS:
-			if (values.containsKey(Schema.COL_TRACK_ID) &&
-			    values.containsKey(Schema.COL_OVERLAY_ID)) {
-				long rowId = dbHelper.getWritableDatabase().insert(Schema.TBL_OVERLAY, null, values);
-				if (rowId > 0) {
-					Uri overlayUri = ContentUris.withAppendedId(CONTENT_URI_OVERLAY, rowId);
-					getContext().getContentResolver().notifyChange(overlayUri, null);
-					return overlayUri;
-				}
-			} else {
-				throw new IllegalArgumentException("values should provide " + Schema.COL_TRACK_ID+ " and "+Schema.COL_OVERLAY_ID);
 			}
 			break;
 		default:
@@ -513,16 +490,6 @@ public class TrackContentProvider extends ContentProvider {
 			selection = Schema.TBL_TRACKPOINT + "." + Schema.COL_ID + " = ?";
 			selectionArgs = new String[] {trackPointId};
 			break;
-		case Schema.URI_CODE_OVERLAY_ID:
-			if (selectionIn != null || selectionArgsIn != null) {
-				// Any selection/selectionArgs will be ignored
-				throw new UnsupportedOperationException();
-			}
-			trackId = uri.getLastPathSegment();
-			qb.setTables(Schema.TBL_OVERLAY);
-			selection = Schema.TBL_OVERLAY + "." + Schema.COL_TRACK_ID + " = ?";
-			selectionArgs = new String[] {trackId};
-			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
@@ -607,7 +574,6 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String TBL_WAYPOINT = "waypoint";
 		public static final String TBL_NOTE = "note";
 		public static final String TBL_TRACK = "track";
-		public static final String TBL_OVERLAY = "overlay";
 		public static final String COL_ID = "_id";
 		public static final String COL_TRACK_ID = "track_id";
 		public static final String COL_UUID = "uuid";
@@ -633,7 +599,6 @@ public class TrackContentProvider extends ContentProvider {
 		public static final String COL_COMPASS_ACCURACY = "compass_accuracy";
 		public static final String COL_ATMOSPHERIC_PRESSURE = "atmospheric_pressure";
 		public static final String COL_SEG_ID = "segment_id";
-		public static final String COL_OVERLAY_ID = "overlay_id";
 
 		// virtual colums that are used in some sqls but dont exist in database
 		public static final String COL_TRACKPOINT_COUNT = "tp_count";
@@ -655,8 +620,6 @@ public class TrackContentProvider extends ContentProvider {
 		public static final int URI_CODE_TRACK_NOTES = 13;
 		public static final int URI_CODE_NOTE_ID = 14;
 		public static final int URI_CODE_NOTE_UUID = 15;
-		public static final int URI_CODE_OVERLAYS = 16;
-		public static final int URI_CODE_OVERLAY_ID = 17;
 
 
 		public static final int VAL_TRACK_ACTIVE = 1;
