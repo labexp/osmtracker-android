@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 import android.content.ContentValues;
 import android.content.ContentResolver;
+import android.content.ContentProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
+import net.osmtracker.db.DatabaseHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.service.gps.GPSLogger;
 import net.osmtracker.service.gps.GPSLoggerServiceConnection;
@@ -68,7 +70,7 @@ public class StartStopOnMapTest {
 		       NoSuchMethodException, InvocationTargetException
 	{
 		// Comment out to redirect log output to stdout:
-		ShadowLog.stream = System.out;
+		// ShadowLog.stream = System.out;
 
 		// application for creating activities, etc.
 		Application app = RuntimeEnvironment.getApplication();
@@ -109,22 +111,6 @@ public class StartStopOnMapTest {
 		mockStartStopButton = mock(ImageView.class);
 		setInternalState(displayTrackMap, "startStopButton", mockStartStopButton);
 		startStopButtonInOrder = inOrder(mockStartStopButton);
-	}
-
-	@After
-	public void tearDown() {
-		try {
-			ContentProviderClient client =
-				RuntimeEnvironment.getApplication()
-				.getContentResolver()
-				.acquireContentProviderClient(TrackContentProvider.AUTHORITY);
-
-			if (client != null) {
-				client.release();  // Release the client
-			}
-		} catch (Exception e) {
-			// Ignore
-		}
 	}
 
 	@Test
