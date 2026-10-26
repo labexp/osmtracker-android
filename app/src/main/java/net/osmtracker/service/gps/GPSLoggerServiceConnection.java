@@ -2,9 +2,7 @@ package net.osmtracker.service.gps;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
-import net.osmtracker.activity.TrackLogger;
 import net.osmtracker.layout.GpsStatusRecord;
-//import net.osmtracker.service.gps.GPSLoggerConnectionListener;
 import net.osmtracker.db.TrackContentProvider;
 
 import android.content.ComponentName;
