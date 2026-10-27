@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -250,35 +249,23 @@ public class DisplayTrackMap extends Activity
 
 			isTracking = false;
 			dataHelper.stopTracking(currentTrackId);
-			updateTrackingIcon();
 		} else {
 			// currently not tracking => start it
 			Intent intent = new Intent(this, GPSLogger.class);
 			intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
 			startService(intent);
-			new Handler(Looper.getMainLooper())
-				.post(() -> finishStartTracking(intent));
+			bindService(intent, getGpsLoggerConnection(), 0);
+
+			// update DB, copied from TrackManager
+			ContentValues values = new ContentValues();
+			values.put(TrackContentProvider.Schema.COL_ACTIVE,
+				   TrackContentProvider.Schema.VAL_TRACK_ACTIVE);
+			getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values,
+						    TrackContentProvider.Schema.COL_ID + " = ?",
+						    new String[] {Long.toString(currentTrackId)});
+
+			isTracking = true;
 		}
-	}
-
-	/**
-	 * Second part of StartTracking. Bind has to be done at a
-	 * later mainlooper invocation than startService or the
-	 * service might not yet been ready, especially in test
-	 * scenarios
-	 */
-	private void finishStartTracking(Intent intent) {
-		bindService(intent, getGpsLoggerConnection(), 0);
-
-		// update DB, copied from TrackManager
-		ContentValues values = new ContentValues();
-		values.put(TrackContentProvider.Schema.COL_ACTIVE,
-			   TrackContentProvider.Schema.VAL_TRACK_ACTIVE);
-		getContentResolver().update(TrackContentProvider.CONTENT_URI_TRACK, values,
-					    TrackContentProvider.Schema.COL_ID + " = ?",
-					    new String[] {Long.toString(currentTrackId)});
-
-		isTracking = true;
 		updateTrackingIcon();
 	}
 

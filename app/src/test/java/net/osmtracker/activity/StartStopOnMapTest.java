@@ -3,9 +3,9 @@ package net.osmtracker.activity;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
+import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.content.ContentResolver;
-import android.content.ContentProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.ImageView;
@@ -30,7 +30,6 @@ import androidx.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
-import net.osmtracker.db.DatabaseHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.service.gps.GPSLogger;
 import net.osmtracker.service.gps.GPSLoggerServiceConnection;
@@ -42,9 +41,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.any;
 import org.mockito.InOrder;
-
-import android.content.ContentProviderClient;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 25)
@@ -63,6 +63,7 @@ public class StartStopOnMapTest {
 	private InOrder startStopButtonInOrder;
 
 	private ShadowService shadowService;
+	private ComponentName componentName;
 
 	@Before
 	public void setUp()
@@ -107,10 +108,45 @@ public class StartStopOnMapTest {
 			.buildActivity(DisplayTrackMap.class, intent)
 			.create().get();
 
+		componentName = new ComponentName(context, GPSLogger.class);
+
+		// spy the startService call
+		displayTrackMap = spy(displayTrackMap);
+		doAnswer(invocation -> {
+			Intent expectedIntent = invocation.getArgument(0);
+			GPSLogger service = Robolectric
+			    .buildService(GPSLogger.class, expectedIntent)
+			    .create()
+			    .get();
+
+			// Create the real binder from the service
+			GPSLogger.GPSLoggerBinder binder = service.new GPSLoggerBinder();
+			shadowApplication
+			    .setComponentNameAndServiceForBindService(componentName,
+								      binder);
+			invocation.callRealMethod();
+			return null;
+		    }).when(displayTrackMap).startService(any(Intent.class));
+
 		// Create a mock start/stop button
 		mockStartStopButton = mock(ImageView.class);
 		setInternalState(displayTrackMap, "startStopButton", mockStartStopButton);
 		startStopButtonInOrder = inOrder(mockStartStopButton);
+	}
+
+	@After
+	public void tearDown() {
+		// Close all databases opened by SQLiteOpenHelper
+		resolver = null;
+		displayTrackMap = null;
+		context = null;
+		System.gc();
+		try {
+			// allow finalizers to run
+			Thread.sleep(10);
+		} catch(InterruptedException e) {
+		}
+		SQLiteDatabase.releaseMemory();
 	}
 
 	@Test
@@ -136,29 +172,13 @@ public class StartStopOnMapTest {
 			   .getLongExtra(TrackContentProvider.Schema.COL_TRACK_ID, -1L) ==
 			   TEST_TRACK_ID);
 
-		// Now that we have established that the application
-		// asked to start the service, actually do so
-
-		// Indeed, with Robolectric, the shadowApplication
-		// merely registers the *request* to start a service,
-		// but does not actually start it. This needs to be
-		// done "manually" here.
-		var serviceController = Robolectric
-			.buildService(GPSLogger.class, expectedIntent);
-		GPSLogger service = serviceController.get();
-
-		// Create the real binder from the service
-		ComponentName componentName = new ComponentName(RuntimeEnvironment.getApplication(), GPSLogger.class);
-		GPSLogger.GPSLoggerBinder binder = service.new GPSLoggerBinder();
-		shadowApplication
-		.setComponentNameAndServiceForBindService(componentName,
-							  binder);
-		serviceController.create();
-
-		shadowService = Shadow.extract(service);
-
 		// allow Android framework to process
 		ShadowLooper.idleMainLooper();
+
+		GPSLogger service =
+		    (GPSLogger) getInternalState(displayTrackMap, "gpsLogger");
+		assertNotNull("GPS Logger should not be null", service);
+		shadowService = Shadow.extract(service);
 
 		assertTrue("isTracking flag should be true after starting",
 			   isTracking(displayTrackMap));
