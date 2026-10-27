@@ -2,7 +2,6 @@ package net.osmtracker.service.gps;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
-import net.osmtracker.activity.TrackLogger;
 import net.osmtracker.layout.GpsStatusRecord;
 import net.osmtracker.db.TrackContentProvider;
 
@@ -20,11 +19,11 @@ import android.os.IBinder;
 public class GPSLoggerServiceConnection implements ServiceConnection {
 
 	/**
-	 * Reference to TrackLogger activity
+	 * Reference to client activity
 	 */
-	private TrackLogger activity;
+	private GPSLoggerConnectionListener activity;
 	
-	public GPSLoggerServiceConnection(TrackLogger tl) {
+	public GPSLoggerServiceConnection(GPSLoggerConnectionListener tl) {
 		activity = tl;
 	}
 	

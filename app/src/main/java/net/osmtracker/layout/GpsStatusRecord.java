@@ -128,6 +128,11 @@ public class GpsStatusRecord extends LinearLayout implements LocationListener {
 		}
 	}
 
+	public void showStopped() {
+		TextView tvAccuracy = findViewById(R.id.gpsstatus_record_tvAccuracy);
+		tvAccuracy.setText(R.string.various_stopped);
+	}
+
 	private GnssStatus.Callback mStatusCallback = new GnssStatus.Callback() {
 		@Override
 		public void onSatelliteStatusChanged(GnssStatus status) {

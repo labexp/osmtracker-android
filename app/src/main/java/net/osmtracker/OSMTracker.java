@@ -100,7 +100,7 @@ public class OSMTracker {
 		public final static String VAL_UI_ORIENTATION_LANDSCAPE = "landscape";
 		public final static String VAL_UI_ORIENTATION = VAL_UI_ORIENTATION_NONE;
 		
-		public final static String VAL_UI_MAP_TILE_MAPNIK = "MAPNIK";
+		public final static String VAL_UI_MAP_TILE_MAPNIK = "Mapnik";
 
 		//default values for repository settings
 		public final static String VAL_GITHUB_USERNAME = "labexp";

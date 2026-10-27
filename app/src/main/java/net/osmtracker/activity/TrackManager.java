@@ -76,7 +76,7 @@ public class TrackManager extends AppCompatActivity
 	private static final String PREV_VISIBLE = "prev_visible";
 
 	/** Constant used if no track is active (-1)*/
-	private static final long TRACK_ID_NO_TRACK = -1;
+	public static final long TRACK_ID_NO_TRACK = -1;
 
 	// The active track being recorded, if any, or {TRACK_ID_NO_TRACK};
 	// value is updated in {@link #onResume()}
