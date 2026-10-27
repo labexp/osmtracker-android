@@ -1,7 +1,6 @@
 package net.osmtracker.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -103,11 +102,6 @@ public class DisplayTrackMap extends Activity {
 	private static final long ANIMATION_DURATION_MS = 1000;
 
 	/**
-	 * Request Code for picking overlaid track
-	 */
-	public final static int RC_PICK_OVERLAID = 1;
-
-	/**
 	 * Main OSM view
 	 */
 	private MapView osmView;
@@ -146,11 +140,6 @@ public class DisplayTrackMap extends Activity {
 	 * Current track id
 	 */
 	private long currentTrackId;
-
-	/**
-	 * Current overlaid track id
-	 */
-	private long overlaidTrackId=0;
 
 	/**
 	 * whether the map display should be centered to the gps location
@@ -193,8 +182,8 @@ public class DisplayTrackMap extends Activity {
 	/**
 	 * Separate SharedPreferences for overlays
 	 */
-	private static final String OVERLAY_PREFS_FILE = "overlays";
-	
+	public static final String OVERLAY_PREFS_FILE = "overlays";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -208,15 +197,6 @@ public class DisplayTrackMap extends Activity {
 		setTitle(getTitle() + ": #" + currentTrackId);
 
 		final DataHelper dataHelper = new DataHelper(this);
-		try {
-			overlaidTrackId=
-				getSharedPreferences(OVERLAY_PREFS_FILE,
-						     MODE_PRIVATE)
-				.getLong(String.valueOf(currentTrackId), 0);
-		} catch(Exception e) {
-			overlaidTrackId=0;
-			// if it can't be read, assume there was none
-		}
 
 		// Initialize OSM view
 		Configuration.getInstance().load(this, prefs);
@@ -286,7 +266,7 @@ public class DisplayTrackMap extends Activity {
 
 	static {
 		TileSourceFactory.addTileSource(new XYTileSource("CyclOSM",
-								 0, 18, 256, ".png", 
+								 0, 18, 256, ".png",
 								 new String[] {
 									 "https://a.tile-cyclosm.openstreetmap.fr/cyclosm/",
 									 "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/",
@@ -329,6 +309,11 @@ public class DisplayTrackMap extends Activity {
 	}
 
 	private void resumeActivity() {
+		long overlaidTrackId =
+			getSharedPreferences(OVERLAY_PREFS_FILE,
+					     MODE_PRIVATE)
+			.getLong(String.valueOf(currentTrackId), 0);
+
 		// setKeepScreenOn depending on user's preferences
 		osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
 
@@ -416,8 +401,7 @@ public class DisplayTrackMap extends Activity {
 				// Start track picker activity
 				Intent i = new Intent(this, TrackPicker.class);
 				i.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
-				i.putExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID, overlaidTrackId);
-				startActivityForResult(i, RC_PICK_OVERLAID);
+				startActivity(i);
 				break;
 			case R.id.displaytrackmap_menu_settings:
 				// Start settings activity
@@ -425,22 +409,6 @@ public class DisplayTrackMap extends Activity {
 				break;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode,
-				     Intent data) {
-		if(requestCode == RC_PICK_OVERLAID &&
-		   resultCode == RESULT_OK) {
-			overlaidTrackId = data.getLongExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID,0);
-			final DataHelper dataHelper = new DataHelper(this);
-			getSharedPreferences(OVERLAY_PREFS_FILE,
-					     MODE_PRIVATE)
-				.edit()
-				.putLong(String.valueOf(currentTrackId),
-					 overlaidTrackId)
-				.apply();
-		}
 	}
 
 	@Override
@@ -464,7 +432,7 @@ public class DisplayTrackMap extends Activity {
 		// set with to hopefully DPI independent 0.5mm
 		polylines = new Polylines(Color.BLUE, (float)(metrics.densityDpi / 25.4 / 2), osmView);
 		polylinesOverlaid = new Polylines(Color.RED, (float)(metrics.densityDpi / 25.4 / 2), osmView);
-		
+
 		myLocationOverlay = new SimpleLocationOverlay(this);
 		osmView.getOverlays().add(myLocationOverlay);
 
@@ -512,18 +480,18 @@ public class DisplayTrackMap extends Activity {
 			}
 		}
 
-		// Projection: The columns to retrieve. Here, we want the latitude, 
+		// Projection: The columns to retrieve. Here, we want the latitude,
 		// longitude and primary key only
 		String[] projection = {TrackContentProvider.Schema.COL_LATITUDE, TrackContentProvider.Schema.COL_LONGITUDE, TrackContentProvider.Schema.COL_ID, TrackContentProvider.Schema.COL_SEG_ID };
 		// Selection: The where clause to use
 		String selection = null;
-		// SelectionArgs: The parameter replacements to use for the '?' in the selection		
+		// SelectionArgs: The parameter replacements to use for the '?' in the selection
 		String[] selectionArgs = null;
 
 		// Only request the track points that we have not seen yet
 		// If we have processed any track points in this session then
-		// lastTrackPointIdProcessed will not be null. We only want 
-		// to see data from rows with a primary key greater than lastTrackPointIdProcessed  
+		// lastTrackPointIdProcessed will not be null. We only want
+		// to see data from rows with a primary key greater than lastTrackPointIdProcessed
 		if (lastTrackPointIdProcessed != null) {
 			selection = TrackContentProvider.Schema.COL_ID + " > ?";
 			List<String> selectionArgsList = new ArrayList<>();

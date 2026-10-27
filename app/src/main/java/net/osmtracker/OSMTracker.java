@@ -169,11 +169,6 @@ public class OSMTracker {
 	public final static String INTENT_KEY_UUID = "uuid";
 
 	/**
-	 * Key for extra data "overlaidTrackId" in Intent
-	 */
-	public final static String INTENT_KEY_OVERLAID_TRACK_ID = "overlaidTrackId";
-
-	/**
 	 * Approximation factor for calculating Horizontal Dilution of Precision
 	 * from location.getAccuracy(). location.getAccuracy() returns an accuracy measured
 	 * in meters, and HDOP is obtained by dividing accuracy by this factor.

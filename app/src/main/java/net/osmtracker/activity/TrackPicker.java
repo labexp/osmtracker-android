@@ -13,10 +13,11 @@ import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.View;
 
-import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.activity.TrackListRVAdapter.TrackItemVH;
+
+import static net.osmtracker.activity.DisplayTrackMap.OVERLAY_PREFS_FILE;
 
 /**
  * Lists existing tracks. Each track is displayed using {@link RecyclerView}
@@ -39,13 +40,13 @@ public class TrackPicker extends AppCompatActivity
 
 	private RecyclerView recyclerView;
 
-	
+
 	// To check if the RecyclerView already has a
 	// DividerItemDecoration added
 	private boolean hasDivider;
 
 	private long overlaidTrackId;
-    
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,8 +69,11 @@ public class TrackPicker extends AppCompatActivity
 	protected void onResume() {
 		activatedItem = null;
 		Intent i = getIntent();
-		overlaidTrackId = i.getLongExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID, 0);
 		currentTrackId = i.getLongExtra(TrackContentProvider.Schema.COL_TRACK_ID, 0);
+		overlaidTrackId=
+			getSharedPreferences(OVERLAY_PREFS_FILE,
+					     MODE_PRIVATE)
+			.getLong(String.valueOf(currentTrackId), 0);
 		setRecyclerView();
 		super.onResume();
 	}
@@ -106,7 +110,7 @@ public class TrackPicker extends AppCompatActivity
 	}
 
 	private TrackItemVH activatedItem = null;
-	
+
 	@Override
 	public void onClick(TrackItemVH item, long trackId) {
 		Intent i;
@@ -116,10 +120,12 @@ public class TrackPicker extends AppCompatActivity
 			return;
 
 		overlaidTrackId = select(item, trackId);
-		Intent data = new Intent();
-		data.putExtra(OSMTracker.INTENT_KEY_OVERLAID_TRACK_ID,
-			      overlaidTrackId);
-		setResult(RESULT_OK, data);
+		getSharedPreferences(DisplayTrackMap.OVERLAY_PREFS_FILE,
+				     MODE_PRIVATE)
+			.edit()
+			.putLong(String.valueOf(currentTrackId), overlaidTrackId)
+			.apply();
+
 		finish();
 	}
 
