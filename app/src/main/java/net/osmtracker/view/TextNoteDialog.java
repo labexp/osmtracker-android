@@ -202,7 +202,7 @@ public class TextNoteDialog extends AlertDialog {
 			input.setText(text);
 		}
 		wayPointUuid = savedInstanceState.getString(KEY_WAYPOINT_UUID);
-		wayPointTrackId = savedInstanceState.getLong(KEY_WAYPOINT_TRACKID);
+		wayPointTrackId = savedInstanceState.getLong(KEY_WAYPOINT_TRACKID, wayPointTrackId);
 		noteUuid = savedInstanceState.getString(KEY_NOTE_UUID);
 		super.onRestoreInstanceState(savedInstanceState);
 	}
@@ -214,8 +214,10 @@ public class TextNoteDialog extends AlertDialog {
 	public Bundle onSaveInstanceState() {
 		Bundle extras = super.onSaveInstanceState();
 		extras.putString(KEY_INPUT_TEXT, input.getText().toString());
+		// saveAsWayPoint is only set once the dialog is shown, but the track id is needed even if
+		// the activity is recreated before that
+		extras.putLong(KEY_WAYPOINT_TRACKID, wayPointTrackId);
 		if (saveAsWayPoint) {
-			extras.putLong(KEY_WAYPOINT_TRACKID, wayPointTrackId);
 			extras.putString(KEY_WAYPOINT_UUID, wayPointUuid);
 		}
 		if (saveAsNote) {
