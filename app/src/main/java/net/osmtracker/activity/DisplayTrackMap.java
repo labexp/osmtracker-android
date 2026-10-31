@@ -22,7 +22,6 @@ import androidx.preference.PreferenceManager;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 import net.osmtracker.db.TrackContentProvider;
-import net.osmtracker.db.DataHelper;
 import net.osmtracker.overlay.WayPointsOverlay;
 import net.osmtracker.overlay.Polylines;
 
@@ -195,8 +194,6 @@ public class DisplayTrackMap extends Activity {
 
 		currentTrackId = getIntent().getExtras().getLong(TrackContentProvider.Schema.COL_TRACK_ID);
 		setTitle(getTitle() + ": #" + currentTrackId);
-
-		final DataHelper dataHelper = new DataHelper(this);
 
 		// Initialize OSM view
 		Configuration.getInstance().load(this, prefs);
