@@ -1,0 +1,36 @@
+@startuml OSMTracker-System-Context
+!pragma layout smetana
+!theme plain
+
+' C4-PlantUML Context diagram
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_TOP_DOWN()
+
+title OSMTracker for Android – System Context
+caption Context diagram showing OSMTracker for Android in its environment
+
+Person(user, "OSM Mapper / Outdoor User", "Records GPS tracks and adds POIs while surveying")
+
+System(system, "OSMTracker for Android", "Mobile app to record GPX tracks, capture photos/voice notes, and mark POIs")
+
+System_Ext(openStreetMap, "OpenStreetMap", "Uploads GPX traces, notes and provides map tiles for on-device maps")
+System_Ext(androidOS, "Android Operating System Services (GPS/Network/Media)", "Provides location updates and captures photos and voice notes via Android Camera/Media APIs")
+System_Ext(githubApi, "GitHub API", "Uploads GPX/trace files to a repository; lists repos; creates PRs")
+
+Rel(user, system, "Records tracks, creates POIs, takes photos/notes")
+
+Rel(system, androidOS, "Receives location updates and captures media", "Android APIs")
+
+Rel(system, openStreetMap, "Uploads GPX traces/notes and fetches data", "HTTPS/REST")
+Rel(system, githubApi, "Lists repos, uploads files, opens PRs", "HTTPS/REST with token")
+
+UpdateElementStyle(user, $fontColor="black", $bgColor="#CFE8FF", $borderColor="#3A8DFF")
+UpdateElementStyle(system, $fontColor="black", $bgColor="#C7F0D8", $borderColor="#1B8C3E")
+UpdateElementStyle(openStreetMap, $bgColor="#FFE4C4")
+UpdateElementStyle(githubApi, $bgColor="#FFE4C4")
+
+SHOW_LEGEND()
+
+footer Generated with C4-PlantUML.
+@enduml

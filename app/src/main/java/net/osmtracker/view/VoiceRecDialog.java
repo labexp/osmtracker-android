@@ -75,16 +75,6 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 	private Context context;
 	
 	/**
-	 * saves the orientation at the time when the dialog was started
-	 */
-	private int currentOrientation = -1;
-	
-	/**
-	 * saves the requested orientation at the time when the dialog was started to restore it when we stop recording
-	 */
-	private int currentRequestedOrientation = -1;
-	
-	/**
 	 * saves the time when this dialog was started.
 	 * This is needed to check if a key was pressed before the dialog was shown 
 	 */
@@ -132,16 +122,7 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 		this.setMessage(
 				context.getResources().getString(R.string.tracklogger_voicerec_text)
 				.replace("{0}", String.valueOf(recordingDuration)));
-		
-		// we need to avoid screen orientation change during recording because this causes some strange behavior
-		try{
-			this.currentOrientation = context.getResources().getConfiguration().orientation;
-			this.currentRequestedOrientation = this.getOwnerActivity().getRequestedOrientation();
-			this.getOwnerActivity().setRequestedOrientation(currentOrientation);
-		}catch(Exception e){
-			Log.w(TAG, "No OwnerActivity found for this Dialog. Use showDialog method within the activity to handle this Dialog and to avoid voice recording problems.");
-		}
-		
+
 		Log.d(TAG,"onStart() called");
 		if(wayPointUuid == null){
 			Log.d(TAG,"onStart() no UUID set, generating a new UUID");
@@ -263,13 +244,7 @@ public class VoiceRecDialog extends ProgressDialog implements OnInfoListener{
 		
 		wayPointUuid = null;
 		isRecording = false;
-		
-		try {
-			this.getOwnerActivity().setRequestedOrientation(currentRequestedOrientation);
-		} catch(Exception e) {
-			Log.w(TAG, "No OwnerActivity found for this Dialog. Use showDialog method within the activity to handle this Dialog and to avoid voice recording problems.");
-		}
-		
+
 		super.onStop();
 	}
 	

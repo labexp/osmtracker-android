@@ -27,7 +27,7 @@ public class TrackTest {
     final String DESCRIPTION = "foo desc";
     final String TAGS = "tag1,tag2,tag3";
     final List<String> TAGS_LIST = Arrays.asList("tag1","tag2","tag3");
-    final String VISIBILITY = Track.OSMVisibility.Public.name();
+    final String VISIBILITY = Track.OSMVisibility.Identifiable.name();
     final int TRACKPOINT_COUNT = 10;
     final int WAYPOINT_COUNT = 20;
 

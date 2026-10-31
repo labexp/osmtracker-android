@@ -69,8 +69,6 @@
   <string name="trackdetail_tags">標籤 (以半形逗號分隔)</string>
   <string name="trackdetail_description_mandatory">您必須填寫描述欄</string>
   <string name="trackdetail_visibility">能見度</string>
-  <string name="osm_visibility_private">私人</string>
-  <string name="osm_visibility_public">公開</string>
   <string name="osm_visibility_trackable">可追蹤的</string>
   <string name="osm_visibility_identifiable">可辨識的</string>
   <!--OSM upload-->

@@ -67,8 +67,6 @@
   <string name="trackdetail_description">Popis</string>
   <string name="trackdetail_tags">Tagy (oddelené čiarkou)</string>
   <string name="trackdetail_description_mandatory">Musíte zadať popis</string>
-  <string name="osm_visibility_private">Súkromný</string>
-  <string name="osm_visibility_public">Verejný</string>
   <string name="osm_visibility_trackable">Sledovateľné</string>
   <string name="osm_visibility_identifiable">Identifikovateľné</string>
   <!--OSM upload-->

@@ -24,16 +24,20 @@
 				<time>2001-05-16T23:20:25Z</time>
 				<hdop>8.908860206604</hdop>
 				<extensions>
+					<accuracy>35.635440826416</accuracy>
 					<speed>0.361938893795013</speed>
 					<compass>204.690002441406</compass>
 					<compass_accuracy>2.0</compass_accuracy>
 				</extensions>
 			</trkpt>
+		</trkseg>
+		<trkseg>
 			<trkpt lat="10.0377106969496" lon="-84.2123268390527">
 				<ele>1007.3209409276</ele>
 				<time>2001-05-16T23:20:26Z</time>
 				<hdop>13.0176601409912</hdop>
 				<extensions>
+					<accuracy>52.0706405639648</accuracy>
 					<speed>0.271533757448196</speed>
 					<compass>204.360000610352</compass>
 					<compass_accuracy>2.0</compass_accuracy>
