@@ -24,7 +24,6 @@ public class OSMTracker {
 		public final static String KEY_GPS_LOGGING_INTERVAL = "gps.logging.interval";
 		public final static String KEY_GPS_LOGGING_MIN_DISTANCE = "gps.logging.min_distance";
 		public final static String KEY_GPS_LOGGING_DIST_GT_ACCURACY = "gps.logging.dist_gt_accuracy";
-
 		public final static String KEY_USE_BAROMETER = "gpx.use_barometer";
 		public final static String KEY_USE_NOTES = "gpx.notes";
 		public final static String KEY_OUTPUT_FILENAME = "gpx.filename";
