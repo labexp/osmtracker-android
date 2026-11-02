@@ -351,11 +351,13 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
 		if((lastGPSTimestamp + gpsLoggingInterval) < System.currentTimeMillis()){
-			// next check whether distance is greater than accurracy
+			// Check whether distance is greater than accuracy
 			if(gpsLoggingDistGtAccuracy &&
 			   lastLocation != null &&
-			   location.distanceTo(lastLocation) <= location.getAccuracy())
+			   location.distanceTo(lastLocation) <= location.getAccuracy()) {
+				Log.d(TAG, "Location ignored because distance is less than accuracy");
 				return;
+			}
 
 			lastGPSTimestamp = System.currentTimeMillis(); // save the time of this fix
 		
