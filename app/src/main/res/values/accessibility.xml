@@ -6,6 +6,7 @@
   <string name="acc.zoom_in">Zoom in</string>
   <string name="acc.zoom_out">Zoom out</string>
   <string name="acc.zoom_center">Zoom center</string>
+  <string name="acc.start_stop">Start / Stop</string>
   <!--GPS status bar-->
   <string name="acc.sat_indicator">Satellite signal strength indicator</string>
   <string name="acc.record_indicator">Record in progress indicator</string>
