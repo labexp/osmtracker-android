@@ -136,6 +136,12 @@ public class StartStopOnMapTest {
 
 	@After
 	public void tearDown() {
+		// undo all preferences in order not to mess up other
+		// test sets
+		PreferenceManager
+		    .getDefaultSharedPreferences(context)
+		    .edit().clear().apply();
+
 		// Close all databases opened by SQLiteOpenHelper
 		resolver = null;
 		displayTrackMap = null;
