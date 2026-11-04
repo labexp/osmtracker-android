@@ -52,6 +52,7 @@
   <string name="trackmgr_export_error">Αδύνατη η εξαγωγή του ίχνους: {0}</string>
   <string name="trackmgr_exportall_confirm">Όλα τα ίχνη θα εξαχθούν, κάτι που μπορεί να πάρει ώρα. Είστε σίγουρος;</string>
   <string name="trackmgr_prepare_for_share_error">Αδύνατη η επεξεργασία του ίχνους: {0}</string>
+  <!--Track Picker-->
   <!--Track Detail-->
   <string name="trackdetail">Λεπτομέρειες Ίχνους</string>
   <string name="trackdetail_startdate">Χρόνος εκκίνησης:</string>
