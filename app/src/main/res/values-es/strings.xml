@@ -52,6 +52,7 @@
   <string name="trackmgr_export_error">No se puede exportar la traza: {0}</string>
   <string name="trackmgr_exportall_confirm">Se exportarán todas las trazas, lo cual podría tardar mucho tiempo. ¿Está seguro?</string>
   <string name="trackmgr_prepare_for_share_error">No se puede procesar la traza: {0}</string>
+  <!--Track Picker-->
   <!--Track Detail-->
   <string name="trackdetail">Detalles de la traza</string>
   <string name="trackdetail_startdate">Hora de inicio: </string>
