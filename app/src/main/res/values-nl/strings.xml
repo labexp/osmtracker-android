@@ -52,6 +52,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackmgr_export_error">Kan traject niet exporteren: {0}</string>
   <string name="trackmgr_exportall_confirm">Alle trajecten zullen geëxporteerd worden, wat lang kan duren. Bent u zeker?</string>
   <string name="trackmgr_prepare_for_share_error">Traject kon niet verwerkt worden: {0}</string>
+  <!--Track Picker-->
   <!--Track Detail-->
   <string name="trackdetail">Traject-details</string>
   <string name="trackdetail_startdate">Begintijd:</string>
