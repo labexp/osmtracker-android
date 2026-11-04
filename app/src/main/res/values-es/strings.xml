@@ -69,8 +69,6 @@
   <string name="trackdetail_tags">Etiquetas (delimitado por comas)</string>
   <string name="trackdetail_description_mandatory">Debe introducir una descripción</string>
   <string name="trackdetail_visibility">Visibilidad</string>
-  <string name="osm_visibility_private">Privado</string>
-  <string name="osm_visibility_public">Público</string>
   <string name="osm_visibility_trackable">Trazable</string>
   <string name="osm_visibility_identifiable">Identificable</string>
   <!--OSM upload-->

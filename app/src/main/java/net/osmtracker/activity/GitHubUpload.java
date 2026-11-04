@@ -3,7 +3,6 @@ package net.osmtracker.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,7 +63,6 @@ public class GitHubUpload extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload_github_menu);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         editTextCommitMsj = findViewById(R.id.git_trackdetail_item_description);
 
         ArrayListRepos = new ArrayList<>();

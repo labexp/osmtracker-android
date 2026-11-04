@@ -67,8 +67,6 @@
   <string name="trackdetail_description">Описание</string>
   <string name="trackdetail_tags">Метки (через запятую)</string>
   <string name="trackdetail_description_mandatory">Необходимо ввести описание</string>
-  <string name="osm_visibility_private">Частный</string>
-  <string name="osm_visibility_public">Общедоступный</string>
   <string name="osm_visibility_trackable">Отслеживаемый</string>
   <string name="osm_visibility_identifiable">Идентифицируемый</string>
   <!--OSM upload-->

@@ -50,21 +50,21 @@ public class TrackDetailEditorTest {
 
 		activity.bindTrack(t);
 
-		// Verify that position 2 - Trackable is selected in the UI
+		// Verify that position 0 - Trackable is selected in the UI
 		Assert.assertEquals(Track.OSMVisibility.Trackable.position,
 				activity.spVisibility.getSelectedItemPosition());
 	}
 
 	@Test
 	public void testSaveCapturesCorrectEnumValue() {
-		// Simulate user selecting "Public" (Index 1)
-		activity.spVisibility.setSelection(Track.OSMVisibility.Public.position);
+		// Simulate user selecting "Trackable" (Index 0)
+		activity.spVisibility.setSelection(Track.OSMVisibility.Trackable.position);
 
-		// Verify that save logic correctly converts position to "Public"
+		// Verify that save logic correctly converts position to "Trackable"
 		Track.OSMVisibility result = Track.OSMVisibility.fromPosition(
 				activity.spVisibility.getSelectedItemPosition());
 
-		Assert.assertEquals(Track.OSMVisibility.Public, result);
-		Assert.assertEquals(Track.OSMVisibility.Public.name(), result.name());
+		Assert.assertEquals(Track.OSMVisibility.Trackable, result);
+		Assert.assertEquals(Track.OSMVisibility.Trackable.name(), result.name());
 	}
 }

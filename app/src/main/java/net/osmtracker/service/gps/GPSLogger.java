@@ -83,6 +83,11 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private long currentTrackId = -1;
 
+    	/**
+	 * Current Segment ID
+	 */
+	private long currentSegmentId = -1;
+
 	/**
 	 * the timestamp of the last GPS fix we used
 	 */
@@ -93,6 +98,7 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private long gpsLoggingInterval;
 	private long gpsLoggingMinDistance;
+	private boolean gpsLoggingDistGtAccuracy;
 	
 	/**
 	 * sensors for magnetic orientation
@@ -130,7 +136,7 @@ public class GPSLogger extends Service implements LocationListener {
 							dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
 
 							// If there is a waypoint in the track, there should also be a trackpoint
-							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
 						}
 					}
 				}
@@ -249,6 +255,8 @@ public class GPSLogger extends Service implements LocationListener {
 				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
 		use_barometer = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
 				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
+		gpsLoggingDistGtAccuracy = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
+				OSMTracker.Preferences.KEY_GPS_LOGGING_DIST_GT_ACCURACY, OSMTracker.Preferences.VAL_GPS_LOGGING_DIST_GT_ACCURACY);
 
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
@@ -318,7 +326,8 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private void startTracking(long trackId) {
 		currentTrackId = trackId;
-		Log.v(TAG, "Starting track logging for track #" + trackId);
+		currentSegmentId = DataHelper.getSegmentIdFor(trackId, getContentResolver()) + 1;
+		Log.v(TAG, "Starting track logging for track #" + trackId + " segment #" +"/" + currentSegmentId);
 		// Refresh notification with correct Track ID
 		NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		nmgr.notify(NOTIFICATION_ID, getNotification());
@@ -342,12 +351,20 @@ public class GPSLogger extends Service implements LocationListener {
 		
 		// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
 		if((lastGPSTimestamp + gpsLoggingInterval) < System.currentTimeMillis()){
+			// Check whether distance is greater than accuracy
+			if(gpsLoggingDistGtAccuracy &&
+			   lastLocation != null &&
+			   location.distanceTo(lastLocation) <= location.getAccuracy()) {
+				Log.d(TAG, "Location ignored because distance is less than accuracy");
+				return;
+			}
+
 			lastGPSTimestamp = System.currentTimeMillis(); // save the time of this fix
 		
 			lastLocation = location;
 			
 			if (isTracking) {
-				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
 			}
 		}
 	}

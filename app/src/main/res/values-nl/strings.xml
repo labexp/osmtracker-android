@@ -68,8 +68,6 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackdetail_description">Beschrijving</string>
   <string name="trackdetail_tags">Tags (kommagescheiden)</string>
   <string name="trackdetail_description_mandatory">Een beschrijving is vereist</string>
-  <string name="osm_visibility_private">Persoonlijk</string>
-  <string name="osm_visibility_public">Publiek</string>
   <string name="osm_visibility_trackable">Te volgen</string>
   <string name="osm_visibility_identifiable">Te identificeren</string>
   <!--OSM upload-->
