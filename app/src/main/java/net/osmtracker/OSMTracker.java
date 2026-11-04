@@ -24,7 +24,6 @@ public class OSMTracker {
 		public final static String KEY_GPS_LOGGING_INTERVAL = "gps.logging.interval";
 		public final static String KEY_GPS_LOGGING_MIN_DISTANCE = "gps.logging.min_distance";
 		public final static String KEY_GPS_LOGGING_DIST_GT_ACCURACY = "gps.logging.dist_gt_accuracy";
-
 		public final static String KEY_USE_BAROMETER = "gpx.use_barometer";
 		public final static String KEY_USE_NOTES = "gpx.notes";
 		public final static String KEY_OUTPUT_FILENAME = "gpx.filename";
@@ -103,7 +102,7 @@ public class OSMTracker {
 		public final static String VAL_UI_ORIENTATION_LANDSCAPE = "landscape";
 		public final static String VAL_UI_ORIENTATION = VAL_UI_ORIENTATION_NONE;
 		
-		public final static String VAL_UI_MAP_TILE_MAPNIK = "Mapnik";
+		public final static String VAL_UI_MAP_TILE_MAPNIK = "MAPNIK";
 
 		//default values for repository settings
 		public final static String VAL_GITHUB_USERNAME = "labexp";
@@ -170,7 +169,7 @@ public class OSMTracker {
 	 * Key for extra data "uuid" in Intent
 	 */
 	public final static String INTENT_KEY_UUID = "uuid";
-
+	
 	/**
 	 * Approximation factor for calculating Horizontal Dilution of Precision
 	 * from location.getAccuracy(). location.getAccuracy() returns an accuracy measured
