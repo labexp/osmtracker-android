@@ -52,6 +52,7 @@
   <string name="trackmgr_export_error">Não foi possível exportar trilha: {0}</string>
   <string name="trackmgr_exportall_confirm">Todas as trilhas serão exportadas, o que poderá levar muito tempo. Tem certeza?</string>
   <string name="trackmgr_prepare_for_share_error">Incapaz de processar a trilha: {0}</string>
+  <!--Track Picker-->
   <!--Track Detail-->
   <string name="trackdetail">Detalhes da trilha</string>
   <string name="trackdetail_startdate">Início:</string>
