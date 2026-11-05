@@ -53,6 +53,7 @@
   <string name="trackmgr_exportall_confirm">Todas as trilhas serão exportadas, o que poderá levar muito tempo. Tem certeza?</string>
   <string name="trackmgr_prepare_for_share_error">Incapaz de processar a trilha: {0}</string>
   <!--Track Picker-->
+  <string name="trackpckr_tracklist">Lista de tracks para sobrepor:</string>
   <!--Track Detail-->
   <string name="trackdetail">Detalhes da trilha</string>
   <string name="trackdetail_startdate">Início:</string>
@@ -132,6 +133,7 @@
   <string name="menu_export">Exportar como GPX</string>
   <string name="menu_osm_upload">Enviar para o OpenStreetMap</string>
   <string name="menu_center_to_gps">Centralizar com GPS</string>
+  <string name="menu_overlay_other">Sobrepor outros</string>
   <string name="menu_exportall">Exportar tudo como GPX</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">Impossível gravar no armazenamento externo.</string>
