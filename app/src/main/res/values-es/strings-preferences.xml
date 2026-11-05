@@ -26,6 +26,8 @@
   <string name="prefs_gps_logging_min_distance_summary">Distancia min. entre puntos de traza en metros, utilice 0 para la menor distancia posible</string>
   <string name="prefs_gps_logging_min_distance_meters">metros</string>
   <string name="prefs_gps_logging_min_distance_empty">La distancia mínima entre puntos de traza no puede estar vacía</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy">Registro GPS solo rastrea puntos de traza más lejanos que la precisión.</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy_summary">Saltar el registro de un punto de traza si está más cerca del anterior de lo que indica su precisión GPS.</string>
   <string name="prefs_ui">Interfaz de usuario</string>
   <string name="prefs_ui_picture_source">Fuente de fotos predeterminada</string>
   <string name="prefs_ui_picture_source_summary">¿Tomar fotos desde la cámara o la galería?</string>
@@ -93,6 +95,10 @@
   <string name="prefs_sound_enabled_summary">Reproducir sonidos cuando la grabación de voz comienza y termina</string>
   <string name="prefs_osm_visibility">Visibilidad de la traza</string>
   <string name="prefs_osm_visibility_summary">Visibilidad preferida para las trazas al subirlas a openstreetmap.org</string>
+  <string-array name="prefs_osm_visibility_keys">
+    <item>Trazable</item>
+    <item>Identificable</item>
+  </string-array>
   <string name="prefs_osm_clear_oauth_data">Restablecer la autenticación OSM</string>
   <string name="prefs_osm_clear_oauth_data_summary">Olvidar las credenciales y permisos de OSM, y forzar a que OSMTracker los vuelva a solicitar</string>
   <string name="prefs_osm_clear_oauth_data_dialog">Deberá autorizar a OSMTracker para volver a subir las pistas. ¿Está seguro?</string>

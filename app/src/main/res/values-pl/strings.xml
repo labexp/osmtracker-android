@@ -51,6 +51,7 @@
   <string name="trackmgr_export_error">Nie można eksportować śladu: {0}</string>
   <string name="trackmgr_exportall_confirm">Wszystkie ślady zostaną wysłane, może to zająć dużo czasu. Jesteś pewien?</string>
   <string name="trackmgr_prepare_for_share_error">Nie można przetworzyć śladu: {0}</string>
+  <!--Track Picker-->
   <!--Track Detail-->
   <string name="trackdetail">Szczegóły śladu</string>
   <string name="trackdetail_startdate">Start:</string>

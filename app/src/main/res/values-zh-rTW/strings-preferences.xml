@@ -26,6 +26,8 @@
   <string name="prefs_gps_logging_min_distance_summary">以公尺尺度的航點之間最小距離，設為 0 則是最小的可能</string>
   <string name="prefs_gps_logging_min_distance_meters">公尺</string>
   <string name="prefs_gps_logging_min_distance_empty">軌跡點之間最短距離不能是空白的</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy">GPS 記錄只會記錄 GPS 準確度以外的點</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy_summary">如果航點比起先前航點的 GPS 準確度更近則跳過航點</string>
   <string name="prefs_ui">使用者介面</string>
   <string name="prefs_ui_picture_source">預設照片來源</string>
   <string name="prefs_ui_picture_source_summary">拍張照或從相簿挑選？</string>

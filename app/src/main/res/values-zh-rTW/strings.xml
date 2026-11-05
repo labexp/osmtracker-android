@@ -52,6 +52,7 @@
   <string name="trackmgr_export_error">無法匯出軌跡： {0}</string>
   <string name="trackmgr_exportall_confirm">將匯出所有軌跡，可能會耗費不少時間。您確定嗎？</string>
   <string name="trackmgr_prepare_for_share_error">無法處理軌跡：{0}</string>
+  <!--Track Picker-->
   <!--Track Detail-->
   <string name="trackdetail">軌跡細節</string>
   <string name="trackdetail_startdate">開始時間：</string>
