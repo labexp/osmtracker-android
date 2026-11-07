@@ -56,6 +56,14 @@ public class GPSLogger extends Service implements LocationListener {
 	 * Is GPS enabled ?
 	 */
 	private boolean isGpsEnabled = false;
+	/**
+	 * Minimum accuracy in meters for starting
+	 */
+	private int minAccuracy = 0;
+	/**
+	 * Precision of the accuracy in meters is satisfied ?
+	 */
+	private boolean isAccuracySatisfied = false;
 
 	/**
 	 * Use barometer yes/no ?
@@ -99,7 +107,11 @@ public class GPSLogger extends Service implements LocationListener {
 	private long gpsLoggingInterval;
 	private long gpsLoggingMinDistance;
 	private boolean gpsLoggingDistGtAccuracy;
-	
+	/**
+	 * Minimum accuracy in meters for starting defined in the preferences
+	 */
+	private long gpsLoggingMinAccuracy;
+
 	/**
 	 * sensors for magnetic orientation
 	 */
@@ -253,10 +265,15 @@ public class GPSLogger extends Service implements LocationListener {
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 		gpsLoggingMinDistance = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
+		gpsLoggingMinAccuracy = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
+				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_ACCURACY, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_ACCURACY));
 		use_barometer = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
 				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
 		gpsLoggingDistGtAccuracy = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_DIST_GT_ACCURACY, OSMTracker.Preferences.VAL_GPS_LOGGING_DIST_GT_ACCURACY);
+
+		// minimum precision enabled
+		isAccuracySatisfied = (gpsLoggingMinAccuracy == 0);
 
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
@@ -345,10 +362,22 @@ public class GPSLogger extends Service implements LocationListener {
 	}
 
 	@Override
-	public void onLocationChanged(Location location) {		
+	public void onLocationChanged(Location location) {
 		// We're receiving location, so GPS is enabled
 		isGpsEnabled = true;
-		
+
+		// Wait for minimum accuracy before starting
+		if(!isAccuracySatisfied){
+			if(location.hasAccuracy() && location.getAccuracy() <= gpsLoggingMinAccuracy){
+				// Precision achieved we unlocked the door and began recording this one and the following ones.
+				isAccuracySatisfied = true;
+			}
+			else {
+				Log.d(TAG, "Location discarded because min accuracy not satisfied");
+				return;
+			}
+		}
+
 		// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
 		if((lastGPSTimestamp + gpsLoggingInterval) < System.currentTimeMillis()){
 			// Check whether distance is greater than accuracy
