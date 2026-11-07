@@ -72,6 +72,13 @@
             app:key="gps.logging.dist_gt_accuracy"
             app:summary="@string/prefs_gps_logging_distance_gt_accuracy_summary"
             app:title="@string/prefs_gps_logging_distance_gt_accuracy" />
+        <EditTextPreference
+            android:inputType="number"
+            app:defaultValue="0"
+            app:key="gps.logging.min.accuracy"
+            app:summary="@string/prefs_gps_min_accuracy_summary"
+            app:title="@string/prefs_gps_min_accuracy"
+            app:dialogTitle="@string/prefs_gps_min_accuracy_dialog_title" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/prefs_output">
