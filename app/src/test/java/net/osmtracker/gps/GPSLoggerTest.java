@@ -50,6 +50,8 @@ public class GPSLoggerTest {
 		setInternalState(gpsLogger, "dataHelper", mockDataHelper);
 		setInternalState(gpsLogger, "isTracking", true);
 		setInternalState(gpsLogger, "gpsLoggingDistGtAccuracy", true);
+		setInternalState(gpsLogger, "gpsAccuracyToStart", 0L);
+		setInternalState(gpsLogger, "isStartAccuracySatisfied", true);
 	}
 
 	@Test
