@@ -28,10 +28,9 @@
   <string name="prefs_gps_logging_min_distance_empty">Min. distance between track points cannot be empty</string>
   <string name="prefs_gps_logging_distance_gt_accuracy">GPS Logging only track points farther than GPS accuracy</string>
   <string name="prefs_gps_logging_distance_gt_accuracy_summary">Skip a track point if it is closer to the previous one than its reported GPS accuracy</string>
-  <string name="prefs_gps_min_accuracy">GPS minimum accuracy</string>
-  <string name="prefs_gps_min_accuracy_summary">Wait until accuracy is better than this value (in meters) to start recording. 0 to disable.</string>
-  <string name="prefs_gps_min_accuracy_dialog_title">Enter minimum accuracy (meters)</string>
-  <string name="prefs_gps_min_accuracy_empty">GPS logging accuracy cannot be empty</string>
+  <string name="prefs_gps_min_accuracy">GPS minimum accuracy before starting</string>
+  <string name="prefs_gps_min_accuracy_summary">Recording starts after the GPS accuracy is better than this value (in meters), use 0 to start immediately.</string>
+  <string name="prefs_gps_min_accuracy_empty">GPS minimum accuracy cannot be empty</string>
     <string name="prefs_ui">User interface</string>
   <string name="prefs_ui_picture_source">Default photo source</string>
   <string name="prefs_ui_picture_source_summary">Take photos from camera or gallery?</string>
