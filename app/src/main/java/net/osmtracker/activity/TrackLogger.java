@@ -440,7 +440,7 @@ public class TrackLogger extends Activity {
 	 */
 	public void onGpsEnabled() {
 		// Buttons can be enabled
-		if (gpsLogger != null && gpsLogger.isTracking()) {
+		if (gpsLogger != null && gpsLogger.isTracking() && gpsLogger.isStartAccuracySatisfied()) {
 			setEnabledActionButtons(true);
 		}
 	}

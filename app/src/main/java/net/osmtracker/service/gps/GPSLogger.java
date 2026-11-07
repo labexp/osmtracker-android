@@ -471,4 +471,12 @@ public class GPSLogger extends Service implements LocationListener {
 		return isTracking;
 	}
 
+	/**
+	 * Getter for isStartAccuracySatisfied
+	 * @return true if the minimum start accuracy has been reached, otherwise false.
+	 */
+	public boolean isStartAccuracySatisfied() {
+		return isStartAccuracySatisfied;
+	}
+
 }
