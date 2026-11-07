@@ -8,7 +8,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         -->
-
+        <item name="actionOverflowMenuStyle">@style/PopupMenu</item>
+        <item name="popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:contextPopupMenuStyle">@style/PopupMenu</item>
     </style>
 
     <!-- Base application theme. -->
@@ -19,5 +21,10 @@
         <item name="colorAccent">@color/colorAccentLight</item>
         -->
     </style>
+
+    <style name="PopupMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@drawable/menu_border_background</item>
+    </style>
+
 
 </resources>

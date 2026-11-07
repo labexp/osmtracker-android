@@ -68,8 +68,6 @@
   <string name="trackdetail_description">Περιγραφή</string>
   <string name="trackdetail_tags">Ετικέτες (διαχωρισμένες με κόμμα)</string>
   <string name="trackdetail_description_mandatory">Πρέπει να εισάγετε μια περιγραφή</string>
-  <string name="osm_visibility_private">Ιδιωτικό</string>
-  <string name="osm_visibility_public">Δημόσιο</string>
   <string name="osm_visibility_trackable">Ανιχνεύσιμο</string>
   <string name="osm_visibility_identifiable">Αναγνωρίσιμο</string>
   <!--OSM upload-->

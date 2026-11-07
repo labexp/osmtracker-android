@@ -26,7 +26,12 @@
   <string name="prefs_gps_logging_min_distance_summary">Min. distance between track points in meters, use 0 for the shortest possible</string>
   <string name="prefs_gps_logging_min_distance_meters">meters</string>
   <string name="prefs_gps_logging_min_distance_empty">Min. distance between track points cannot be empty</string>
-  <string name="prefs_ui">User interface</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy">GPS Logging only track points farther than GPS accuracy</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy_summary">Skip a track point if it is closer to the previous one than its reported GPS accuracy</string>
+  <string name="prefs_gps_min_accuracy">GPS minimum accuracy before starting</string>
+  <string name="prefs_gps_min_accuracy_summary">Recording starts after the GPS accuracy is better than this value (in meters), use 0 to start immediately.</string>
+  <string name="prefs_gps_min_accuracy_empty">GPS minimum accuracy cannot be empty</string>
+    <string name="prefs_ui">User interface</string>
   <string name="prefs_ui_picture_source">Default photo source</string>
   <string name="prefs_ui_picture_source_summary">Take photos from camera or gallery?</string>
   <string-array name="prefs_ui_picture_source_keys">
@@ -94,9 +99,7 @@
   <string name="prefs_osm_visibility">Track Visibility</string>
   <string name="prefs_osm_visibility_summary">Preferred visibility of traces uploaded to openstreetmap.org</string>
   <string-array name="prefs_osm_visibility_keys">
-    <item>Private</item>
     <item>Trackable</item>
-    <item>Public</item>
     <item>Identifiable</item>
   </string-array>
   <string name="prefs_osm_clear_oauth_data">Reset OSM authentication</string>

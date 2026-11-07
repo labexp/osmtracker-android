@@ -69,8 +69,6 @@
   <string name="trackdetail_tags">Tags (separado com vírgula)</string>
   <string name="trackdetail_description_mandatory">Você precisa digitar uma descrição</string>
   <string name="trackdetail_visibility">Visibilidade</string>
-  <string name="osm_visibility_private">Privado</string>
-  <string name="osm_visibility_public">Público</string>
   <string name="osm_visibility_trackable">Rastreável</string>
   <string name="osm_visibility_identifiable">Identificável</string>
   <!--OSM upload-->

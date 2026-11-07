@@ -58,6 +58,11 @@ public class GPSLogger extends Service implements LocationListener {
 	private boolean isGpsEnabled = false;
 
 	/**
+	 * Precision of the accuracy in meters is satisfied ?
+	 */
+	private boolean isStartAccuracySatisfied = false;
+
+	/**
 	 * Use barometer yes/no ?
 	 */
 	private boolean use_barometer = false;
@@ -83,6 +88,11 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private long currentTrackId = -1;
 
+    	/**
+	 * Current Segment ID
+	 */
+	private long currentSegmentId = -1;
+
 	/**
 	 * the timestamp of the last GPS fix we used
 	 */
@@ -93,7 +103,10 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private long gpsLoggingInterval;
 	private long gpsLoggingMinDistance;
-	
+	private boolean gpsLoggingDistGtAccuracy;
+	// Minimum accuracy in meters for start logging. Defined in the preferences
+	private long gpsAccuracyToStart;
+
 	/**
 	 * sensors for magnetic orientation
 	 */
@@ -130,7 +143,7 @@ public class GPSLogger extends Service implements LocationListener {
 							dataHelper.wayPoint(trackId, lastLocation, name, link, uuid, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
 
 							// If there is a waypoint in the track, there should also be a trackpoint
-							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+							dataHelper.track(currentTrackId, lastLocation, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
 						}
 					}
 				}
@@ -247,8 +260,15 @@ public class GPSLogger extends Service implements LocationListener {
 				OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL, OSMTracker.Preferences.VAL_GPS_LOGGING_INTERVAL)) * 1000;
 		gpsLoggingMinDistance = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
 				OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_DISTANCE, OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE));
+		gpsAccuracyToStart = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(
+				OSMTracker.Preferences.KEY_GPS_START_ACCURACY, OSMTracker.Preferences.VAL_GPS_START_ACCURACY));
 		use_barometer = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
 				OSMTracker.Preferences.KEY_USE_BAROMETER, OSMTracker.Preferences.VAL_USE_BAROMETER);
+		gpsLoggingDistGtAccuracy = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getBoolean(
+				OSMTracker.Preferences.KEY_GPS_LOGGING_DIST_GT_ACCURACY, OSMTracker.Preferences.VAL_GPS_LOGGING_DIST_GT_ACCURACY);
+
+		// If the preference is 0, the filter is disabled: start with the latch open
+		isStartAccuracySatisfied = (gpsAccuracyToStart == 0);
 
 		// Register our broadcast receiver
 		IntentFilter filter = new IntentFilter();
@@ -318,7 +338,8 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	private void startTracking(long trackId) {
 		currentTrackId = trackId;
-		Log.v(TAG, "Starting track logging for track #" + trackId);
+		currentSegmentId = DataHelper.getSegmentIdFor(trackId, getContentResolver()) + 1;
+		Log.v(TAG, "Starting track logging for track #" + trackId + " segment #" +"/" + currentSegmentId);
 		// Refresh notification with correct Track ID
 		NotificationManager nmgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		nmgr.notify(NOTIFICATION_ID, getNotification());
@@ -336,18 +357,39 @@ public class GPSLogger extends Service implements LocationListener {
 	}
 
 	@Override
-	public void onLocationChanged(Location location) {		
+	public void onLocationChanged(Location location) {
 		// We're receiving location, so GPS is enabled
 		isGpsEnabled = true;
-		
+
+		// Wait for minimum accuracy before starting
+		if(!isStartAccuracySatisfied){
+			// Prevents a never satisfied condition when accuracy is not available in the device
+			if (!location.hasAccuracy() || location.getAccuracy() <= gpsAccuracyToStart) {
+				// Precision achieved we unlocked the door and began recording this one and the following ones.
+				isStartAccuracySatisfied = true;
+			}
+			else {
+				Log.d(TAG, "Location discarded because min accuracy not satisfied");
+				return;
+			}
+		}
+
 		// first of all we check if the time from the last used fix to the current fix is greater than the logging interval
 		if((lastGPSTimestamp + gpsLoggingInterval) < System.currentTimeMillis()){
+			// Check whether distance is greater than accuracy
+			if(gpsLoggingDistGtAccuracy &&
+			   lastLocation != null &&
+			   location.distanceTo(lastLocation) <= location.getAccuracy()) {
+				Log.d(TAG, "Location ignored because distance is less than accuracy");
+				return;
+			}
+
 			lastGPSTimestamp = System.currentTimeMillis(); // save the time of this fix
 		
 			lastLocation = location;
 			
 			if (isTracking) {
-				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure());
+				dataHelper.track(currentTrackId, location, sensorListener.getAzimuth(), sensorListener.getAccuracy(), pressureListener.getPressure(), currentSegmentId);
 			}
 		}
 	}
@@ -427,6 +469,14 @@ public class GPSLogger extends Service implements LocationListener {
 	 */
 	public boolean isTracking() {
 		return isTracking;
+	}
+
+	/**
+	 * Getter for isStartAccuracySatisfied
+	 * @return true if the minimum start accuracy has been reached, otherwise false.
+	 */
+	public boolean isStartAccuracySatisfied() {
+		return isStartAccuracySatisfied;
 	}
 
 }

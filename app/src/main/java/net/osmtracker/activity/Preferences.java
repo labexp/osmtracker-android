@@ -22,7 +22,6 @@ import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 
 import java.io.File;
-import java.util.Objects;
 
 /**
  * Manages preferences screen
@@ -74,6 +73,14 @@ public class Preferences extends AppCompatActivity {
 			setupPreferenceNavigation(
 					OSMTracker.Preferences.KEY_GPS_OSSETTINGS,
 					new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+			// GPS Logging Minimum Start Accuracy
+			setupEditTextNum(
+					OSMTracker.Preferences.KEY_GPS_START_ACCURACY,
+					getString(R.string.prefs_gps_logging_min_distance_meters),
+					getString(R.string.prefs_gps_min_accuracy_summary),
+					getString(R.string.prefs_gps_min_accuracy_empty),
+					OSMTracker.Preferences.VAL_GPS_START_ACCURACY
+			);
 			//GPSLogging Interval
 			setupEditTextNum(
 					OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL,
@@ -90,7 +97,6 @@ public class Preferences extends AppCompatActivity {
 					getString(R.string.prefs_gps_logging_min_distance_empty),
 					OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE
 			);
-
 
 			// GPX Settings
 			setupStorageDirectory();
@@ -229,7 +235,7 @@ public class Preferences extends AppCompatActivity {
 		}
 
 		/**
-		 * Setup a preference that launches an activity via Intent
+		 * Set up a preference that launches an activity via Intent
 		 * @param preferenceKey The preference key
 		 * @param intent The intent to launch
 		 */
@@ -335,7 +341,7 @@ public class Preferences extends AppCompatActivity {
 
 
 		/**
-		 * Setup a ListPreference with a custom two lines summary, displays the selected entry
+		 * Set up a ListPreference with a custom two lines summary, displays the selected entry
 		 *  on the first line, and the static summary on the second line.
 		 *
 		 * @param preferenceKey preference identifier

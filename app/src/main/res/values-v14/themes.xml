@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="DefaultTheme" parent="@android:style/Theme.DeviceDefault"/>
-    <style name="DarkTheme" parent="@android:style/Theme.DeviceDefault"/>
-    <style name="LightTheme" parent="@android:style/Theme.DeviceDefault.Light"/>
+    <style name="DefaultTheme" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:actionOverflowMenuStyle">@style/NativePopupMenu</item>
+        <item name="android:popupMenuStyle">@style/NativePopupMenu</item>
+        <item name="android:panelBackground">@drawable/menu_border_background</item>
+    </style>
+    <style name="DarkTheme" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:actionOverflowMenuStyle">@style/NativePopupMenu</item>
+        <item name="android:popupMenuStyle">@style/NativePopupMenu</item>
+        <item name="android:panelBackground">@drawable/menu_border_background</item>
+    </style>
+    <style name="LightTheme" parent="@android:style/Theme.DeviceDefault.Light">
+        <item name="android:actionOverflowMenuStyle">@style/NativePopupMenu</item>
+        <item name="android:popupMenuStyle">@style/NativePopupMenu</item>
+        <item name="android:panelBackground">@drawable/menu_border_background</item>
+    </style>
+    <style name="NativePopupMenu" parent="">
+        <item name="android:popupBackground">@drawable/menu_border_background</item>
+    </style>
 </resources>

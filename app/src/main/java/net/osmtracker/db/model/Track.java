@@ -23,10 +23,8 @@ public class Track {
 	private static final DateFormat DATE_FORMAT = DateFormat.getDateTimeInstance();
 
 	public enum OSMVisibility {
-		Private(0, R.string.osm_visibility_private),
-		Public(1, R.string.osm_visibility_public),
-		Trackable(2, R.string.osm_visibility_trackable),
-		Identifiable(3, R.string.osm_visibility_identifiable);
+		Trackable(0, R.string.osm_visibility_trackable),
+		Identifiable(1, R.string.osm_visibility_identifiable);
 		
 		public final int position;
 		public final int resId;
@@ -54,6 +52,7 @@ public class Track {
 	private int tpCount, wpCount, noteCount;
 	private long trackDate;
 	private long trackId;
+	private long maxSegId;
 	
 	private Long startDate=null, endDate=null;
 	private Float startLat=null, startLong=null, endLat=null, endLong=null;
@@ -94,6 +93,8 @@ public class Track {
 		out.wpCount = tc.getInt(tc.getColumnIndex(TrackContentProvider.Schema.COL_WAYPOINT_COUNT));
 
 		out.noteCount = tc.getInt(tc.getColumnIndex(TrackContentProvider.Schema.COL_NOTE_COUNT));
+
+		out.maxSegId = tc.getLong(tc.getColumnIndex(TrackContentProvider.Schema.COL_SEG_ID_MAX));
 
 		if(withExtraInformation){
 			out.readExtraInformation();
@@ -193,6 +194,10 @@ public class Track {
 		return wpCount;
 	}
 	
+	public long getMaxSegId() {
+		return maxSegId;
+	}
+
 	public Integer getTpCount() {
 		return tpCount;
 	}
