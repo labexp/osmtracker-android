@@ -73,6 +73,14 @@ public class Preferences extends AppCompatActivity {
 			setupPreferenceNavigation(
 					OSMTracker.Preferences.KEY_GPS_OSSETTINGS,
 					new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+			// GPS Logging Minimum Start Accuracy
+			setupEditTextNum(
+					OSMTracker.Preferences.KEY_GPS_START_ACCURACY,
+					getString(R.string.prefs_gps_logging_min_distance_meters),
+					getString(R.string.prefs_gps_min_accuracy_summary),
+					getString(R.string.prefs_gps_min_accuracy_empty),
+					OSMTracker.Preferences.VAL_GPS_START_ACCURACY
+			);
 			//GPSLogging Interval
 			setupEditTextNum(
 					OSMTracker.Preferences.KEY_GPS_LOGGING_INTERVAL,
@@ -88,14 +96,6 @@ public class Preferences extends AppCompatActivity {
 					getString(R.string.prefs_gps_logging_min_distance_summary),
 					getString(R.string.prefs_gps_logging_min_distance_empty),
 					OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_DISTANCE
-			);
-			// GPS Logging Minimum Accuracy
-			setupEditTextNum(
-					OSMTracker.Preferences.KEY_GPS_LOGGING_MIN_ACCURACY,
-					getString(R.string.prefs_gps_logging_min_distance_meters),
-					getString(R.string.prefs_gps_min_accuracy_summary),
-					getString(R.string.prefs_gps_min_accuracy_empty),
-					OSMTracker.Preferences.VAL_GPS_LOGGING_MIN_ACCURACY
 			);
 
 			// GPX Settings
