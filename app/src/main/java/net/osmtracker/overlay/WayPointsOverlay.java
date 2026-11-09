@@ -46,7 +46,7 @@ public class WayPointsOverlay extends ItemizedOverlay<OverlayItem> {
 			final long trackId
 			)
 	{
-		this(pContext.getResources().getDrawable(R.drawable.star), pContext, trackId);
+		this(pContext.getResources().getDrawable(R.drawable.map_pin), pContext, trackId);
 	}
 
 	@Override
