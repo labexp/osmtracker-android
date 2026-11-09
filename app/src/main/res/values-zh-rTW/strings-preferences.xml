@@ -28,6 +28,9 @@
   <string name="prefs_gps_logging_min_distance_empty">軌跡點之間最短距離不能是空白的</string>
   <string name="prefs_gps_logging_distance_gt_accuracy">GPS 記錄只會記錄 GPS 準確度以外的點</string>
   <string name="prefs_gps_logging_distance_gt_accuracy_summary">如果航點比起先前航點的 GPS 準確度更近則跳過航點</string>
+  <string name="prefs_gps_min_accuracy">GPS 至少要有基本的精確度才能開始記錄</string>
+  <string name="prefs_gps_min_accuracy_summary">只有在 GPS 的精確度提昇到這一數值 (公尺尺度) 之後才會開始記錄，設定為 0 則會馬上記錄。</string>
+  <string name="prefs_gps_min_accuracy_empty">GPS 的最低精確度不能是空白的</string>
   <string name="prefs_ui">使用者介面</string>
   <string name="prefs_ui_picture_source">預設照片來源</string>
   <string name="prefs_ui_picture_source_summary">拍張照或從相簿挑選？</string>
