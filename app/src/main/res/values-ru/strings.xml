@@ -51,6 +51,7 @@
   <string name="trackmgr_export_error">Невозможно экспортировать трек: {0}</string>
   <string name="trackmgr_exportall_confirm">Будут экспортированы все треки, что может занять продолжительное время. Вы уверены?</string>
   <string name="trackmgr_prepare_for_share_error">Невозможно обработать трек: {0}</string>
+  <!--Track Picker-->
   <!--Track Detail-->
   <string name="trackdetail">Подробности трека</string>
   <string name="trackdetail_startdate">Время начала:</string>

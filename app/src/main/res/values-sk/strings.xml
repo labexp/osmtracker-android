@@ -51,6 +51,7 @@
   <string name="trackmgr_export_error">Nedá sa exportovať stopa: {0}</string>
   <string name="trackmgr_exportall_confirm">Všetky stop budú exportované, čo môže chvíľu trvať. Pokračovať?</string>
   <string name="trackmgr_prepare_for_share_error">Nepodarilo sa spracovať stopu: {0}</string>
+  <!--Track Picker-->
   <!--Track Detail-->
   <string name="trackdetail">Podrobnosti o stope</string>
   <string name="trackdetail_startdate">Čas začatia:</string>

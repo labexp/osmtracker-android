@@ -51,6 +51,7 @@
   <string name="trackmgr_export_error">Kan inte exportera spår: {0}</string>
   <string name="trackmgr_exportall_confirm">Alla spår kommer att exporteras vilket kan ta lång tid. Är du säker?</string>
   <string name="trackmgr_prepare_for_share_error">Kan inte hantera spåret: {0}</string>
+  <!--Track Picker-->
   <!--Track Detail-->
   <string name="trackdetail">Spårdetaljer</string>
   <string name="trackdetail_startdate">Starttid:</string>

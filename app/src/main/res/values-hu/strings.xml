@@ -52,6 +52,7 @@
   <string name="trackmgr_export_error">{0} nyomvonal exportálása sikertelen</string>
   <string name="trackmgr_exportall_confirm">Minden nyomvonal exportálva lesz, ami sokáig tarthat. Biztosan ezt szeretnéd?</string>
   <string name="trackmgr_prepare_for_share_error">Nem sikerült a következő nyomvonal feldolgozása: {0}</string>
+  <!--Track Picker-->
   <!--Track Detail-->
   <string name="trackdetail">Nyomvonal részletei</string>
   <string name="trackdetail_startdate">Kezdési időpont:</string>
