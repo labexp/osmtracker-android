@@ -53,6 +53,7 @@
   <string name="trackmgr_exportall_confirm">將匯出所有軌跡，可能會耗費不少時間。您確定嗎？</string>
   <string name="trackmgr_prepare_for_share_error">無法處理軌跡：{0}</string>
   <!--Track Picker-->
+  <string name="trackpckr_tracklist">能夠套疊的軌跡清單：</string>
   <!--Track Detail-->
   <string name="trackdetail">軌跡細節</string>
   <string name="trackdetail_startdate">開始時間：</string>
@@ -132,6 +133,7 @@
   <string name="menu_export">匯出為 GPX 檔</string>
   <string name="menu_osm_upload">上傳到 OpenStreetMap</string>
   <string name="menu_center_to_gps">以 GPS 為中心</string>
+  <string name="menu_overlay_other">套疊其他</string>
   <string name="menu_exportall">全部匯出為 GPX 檔</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">無法寫入外部儲存媒體。</string>
