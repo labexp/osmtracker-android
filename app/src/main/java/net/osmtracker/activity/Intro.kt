@@ -40,14 +40,6 @@ class Intro : AppIntro() {
                 description = getString(R.string.app_intro_slide1_description)
         ))
 
-        // Whats new Fragment
-        addSlide(AppIntroFragment.createInstance(
-            title = getString(R.string.app_intro_slide_whats_new_title),
-            imageDrawable = R.drawable.icon_100x100,
-            backgroundColorRes = R.color.appintro_background_color,
-            description = getString(R.string.app_intro_slide_whats_new_description)
-        ))
-
         //TODO: change the image of slide number 2.
         addSlide(AppIntroFragment.createInstance(
                 title = getString(R.string.app_intro_slide2_title),

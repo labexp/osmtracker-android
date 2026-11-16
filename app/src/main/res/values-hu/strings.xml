@@ -153,6 +153,7 @@
   <string name="gpx_hdop_approximation_cmt">Figyelem: A HDOP értékek nem azok a HDOP értékek, amit a GPS eszköz ad vissza. Ezek becsült értékek a pozíció pontosságából, méterben.</string>
   <!--About screen-->
   <string name="about">Névjegy</string>
+  <string name="about_whats_new">Mik az újdonságai ennek a verziónak?</string>
   <string name="about_text">További információkért, dokumentációért és hibabejelentésért tekintsd meg a projekt honlapját:</string>
   <string name="about_translate_text">Segíts az OSMTracker fordításában:</string>
   <string name="about_debug_info">Hibakeresési információk</string>
@@ -272,9 +273,6 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Üdvözöl az OSMTracker for Android™ 👋</string>
   <string name="app_intro_slide1_description">Ez az alkalmazás szabad szoftver, amely tiszteletben tartja a szabadságodat!</string>
-  <!--Intro - slide What's new-->
-  <string name="app_intro_slide_whats_new_title">Mik az újdonságai ennek a verziónak?</string>
-  <string name="app_intro_slide_whats_new_description">Mostantól jegyzeteket is fel lehet tölteni OSM-be, és ismét elérhetőek a CyclOSM, valamint az OpenTopo térképcsempék. Jó szórakozást!</string>
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Jó nyomvonalrögzítést! 🗺 😎</string>
   <string name="app_intro_slide2_description">Az OSMTracker for Android az GPS-pozíciód segítségével rögzít nyomvonalpontokat és útpontokat, még akkor is, ha az alkalmazás a háttérben fut.

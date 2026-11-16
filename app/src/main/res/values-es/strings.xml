@@ -153,6 +153,7 @@
   <string name="gpx_hdop_approximation_cmt">Advertencia: los valores HDOP no son los valores HDOP devueltos por el dispositivo GPS. Son valores aproximados de acuerdo a la precisión de la ubicación en metros.</string>
   <!--About screen-->
   <string name="about">Acerca de</string>
+  <string name="about_whats_new">¿Qué novedades hay en esta versión?</string>
   <string name="about_text">Para más información, documentos e informe de incidencias, visite la web del proyecto:</string>
   <string name="about_translate_text">Ayúdanos a traducir OSMTracker:</string>
   <string name="about_debug_info">Info. de depuración</string>
@@ -272,9 +273,6 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Bienvenido a OSMTracker para Android ™ 👋</string>
   <string name="app_intro_slide1_description">¡Esta aplicación es un software libre que respeta tu libertad!</string>
-  <!--Intro - slide What's new-->
-  <string name="app_intro_slide_whats_new_title">¿Qué novedades hay en esta versión?</string>
-  <string name="app_intro_slide_whats_new_description">Ya podemos subir notas a OSM, y los mosaicos de mapas de CyclOSM y OpenTopo vuelven a estar disponibles. ¡Disfruten!</string>
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Feliz trazado 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker para Android usará su ubicación GPS para registrar puntos de traza y puntos, incluso cuando la aplicación se está ejecutando en segundo plano.

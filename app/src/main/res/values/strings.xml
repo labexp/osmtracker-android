@@ -156,6 +156,7 @@
   <string name="gpx_hdop_approximation_cmt">Warning: HDOP values aren\'t the HDOP as returned by the GPS device. They\'re approximated from the location accuracy in meters.</string>
   <!--About screen-->
   <string name="about">About</string>
+  <string name="about_whats_new">What\'s new in this version?</string>
   <string name="about_text">For more information, docs and issue report, please visit the project home page:</string>
   <string name="about_translate_text">Help translating OSMTracker:</string>
   <string name="about_debug_info">Debug info</string>
@@ -275,9 +276,6 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Welcome to OSMTracker for Android™ 👋</string>
   <string name="app_intro_slide1_description">This App is free software that respects your freedom!</string>
-  <!--Intro - slide What's new-->
-  <string name="app_intro_slide_whats_new_title">What\'s new in this version?</string>
-  <string name="app_intro_slide_whats_new_description">Now we can upload notes to OSM, and CyclOSM and OpenTopo map tiles are available again. Enjoy! </string>
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Happy tracking 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker for Android will use your GPS location to record trackpoints and waypoints, even when the App is running in background.
