@@ -41,7 +41,7 @@ The signing keystore and credentials are **not** stored in the repository. The m
 - Promote the release to **Production**. Wait at least one week after publishing the testing version.
 
 
-## 4. Tag the release in Git
+## 4. Tag the release in Git and publish the APK
 
 - Open the [releases page](https://github.com/labexp/osmtracker-android/releases) on GitHub.
 - Click **Draft a new release**.
@@ -49,6 +49,7 @@ The signing keystore and credentials are **not** stored in the repository. The m
 - Set the target branch to `master`.
 - Set the release title to `Release <version>` (e.g. `Release 2026.02`).
 - Write the release notes (same content as the PR changelog).
+- Attach the signed APK as a release asset. The APK is generated in step 2.
 - Publish the release.
 
 
