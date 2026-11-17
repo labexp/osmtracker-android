@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="about_link"><a href="https://github.com/labexp/osmtracker-android">https://github.com/labexp/osmtracker-android</a></string>
+    <string name="about_release_link"><a href="https://github.com/labexp/osmtracker-android/releases">https://github.com/labexp/osmtracker-android/releases</a></string>
+    <string name="about_link"><a href="https://github.com/labexp/osmtracker-android">https://github.com/labexp/osmtracker-android</a></string>
     <string name="about_translate_link">https://explore.transifex.com/labexp/osmtracker-android/</string>
     
 </resources>

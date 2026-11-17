@@ -26,6 +26,11 @@
   <string name="prefs_gps_logging_min_distance_summary">Distância mínima entre os pontos da trilha em metros, use 0 para o mais curto possível</string>
   <string name="prefs_gps_logging_min_distance_meters">metros</string>
   <string name="prefs_gps_logging_min_distance_empty">A distância mínima entre os pontos de rastreamento não pode ser vazia.</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy">O registro de GPS rastreia apenas pontos mais distantes do que a precisão.</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy_summary">Ignore um ponto de rastreamento se ele estiver mais próximo do anterior do que a precisão de GPS.</string>
+  <string name="prefs_gps_min_accuracy">Precisão mínima do GPS antes de iniciar</string>
+  <string name="prefs_gps_min_accuracy_summary">A captura começará quando a precisão do GPS for melhor que este valor (em metros); utilice 0 para começar imediatamente.</string>
+  <string name="prefs_gps_min_accuracy_empty">A precisão mínima do GPS não pode ser vazia.</string>
   <string name="prefs_ui">Interface do usuário</string>
   <string name="prefs_ui_picture_source">Fonte padrão das imagens</string>
   <string name="prefs_ui_picture_source_summary">Tirar foto com a câmera ou escolher da galeria?</string>
@@ -89,9 +94,7 @@
   <string name="prefs_osm_visibility">Visibilidade da trilha</string>
   <string name="prefs_osm_visibility_summary">Visibilidade preferencial das trilhas enviadas para openstreetmap.org</string>
   <string-array name="prefs_osm_visibility_keys">
-    <item>Privado</item>
     <item>Rastreável</item>
-    <item>Público</item>
     <item>Identificável</item>
   </string-array>
   <string name="prefs_osm_clear_oauth_data">Redefinir autenticação OSM</string>

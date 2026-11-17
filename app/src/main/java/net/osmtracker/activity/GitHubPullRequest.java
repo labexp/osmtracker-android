@@ -1,7 +1,6 @@
 package net.osmtracker.activity;
 
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,7 +42,6 @@ public class GitHubPullRequest extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.git_create_pullrequest);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         editTextTitle = findViewById(R.id.git_title_pullrequest_editText);
         editTextBody = findViewById(R.id.git_body_pullrequest_editText);
 

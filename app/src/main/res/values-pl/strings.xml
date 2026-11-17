@@ -67,8 +67,6 @@
   <string name="trackdetail_description">Opis</string>
   <string name="trackdetail_tags">Tagi (oddzielone przecinkami)</string>
   <string name="trackdetail_description_mandatory">Musisz wpisać opis.</string>
-  <string name="osm_visibility_private">Prywatny</string>
-  <string name="osm_visibility_public">Publiczny</string>
   <string name="osm_visibility_trackable">Niezidentyfikowany</string>
   <string name="osm_visibility_identifiable">Zidentyfikowany</string>
   <!--OSM upload-->

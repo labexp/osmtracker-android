@@ -67,8 +67,6 @@
   <string name="trackdetail_description">Beskrivning</string>
   <string name="trackdetail_tags">Etiketter (kommaseparerade)</string>
   <string name="trackdetail_description_mandatory">Du måste ange en beskrivning</string>
-  <string name="osm_visibility_private">Privat</string>
-  <string name="osm_visibility_public">Publik</string>
   <string name="osm_visibility_trackable">Spårbar</string>
   <string name="osm_visibility_identifiable">Identifierbar</string>
   <!--OSM upload-->

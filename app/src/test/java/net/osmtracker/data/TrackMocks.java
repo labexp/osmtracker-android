@@ -19,7 +19,7 @@ public class TrackMocks {
         track.setName("2020-12-30_17-20-17");
         track.setDescription(null);
         track.setTags("osmtracker");
-        track.setVisibility(Track.OSMVisibility.valueOf("Private"));
+        track.setVisibility(Track.OSMVisibility.valueOf("Identifiable"));
         track.setStartDate(1609370417227l);
         //TODO: check why TrackDate is used as startDate in Track.build)()
         track.setTrackDate(1609370417227l);

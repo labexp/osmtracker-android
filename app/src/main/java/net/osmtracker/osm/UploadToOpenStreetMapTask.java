@@ -85,7 +85,7 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 		this.gpxFile = gpxFile;
 		this.description = (description == null) ? "test" : description;
 		this.tags = (tags == null) ? "test" : tags;
-		this.visibility = (visibility == null) ? Track.OSMVisibility.Private : visibility;
+		this.visibility = visibility;
 	}
 	
 	@Override
@@ -199,11 +199,9 @@ public class UploadToOpenStreetMapTask extends AsyncTask<Void, Void, Void> {
 
 	private GpsTraceDetails.Visibility getVisibilityForOsmapi(Track.OSMVisibility visibility) {
 		switch (visibility) {
-			case Private: return GpsTraceDetails.Visibility.PRIVATE;
-			case Public: return GpsTraceDetails.Visibility.PUBLIC;
 			case Trackable: return GpsTraceDetails.Visibility.TRACKABLE;
 			case Identifiable: return GpsTraceDetails.Visibility.IDENTIFIABLE;
 		}
-		return null;
+		throw new IllegalStateException("Unexpected visibility: " + visibility);
 	}
 }

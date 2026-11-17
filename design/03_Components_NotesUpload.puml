@@ -1,0 +1,52 @@
+@startuml OSMTracker-Components-NotesUpload
+!pragma layout smetana
+!theme plain
+
+' C4-PlantUML Components diagram
+' Focused on the "Upload OpenStreetMap Notes" flow
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN()
+
+title OSMTracker for Android – Components (Notes Upload)
+caption Zoom-in of the Mobile App showing components involved in uploading Notes to OpenStreetMap
+
+Person(user, "OSM Mapper / Outdoor User", "Creates text notes and uploads them to OSM")
+
+Container_Boundary(app, "Android Mobile App") {
+  Component(waypointList, "WaypointList", "Activity", "Lists waypoints/notes; entry point to OSM Notes upload")
+  Component(osmNotesUpload, "OpenStreetMapNotesUpload", "Activity", "Collects note text and location; prepares upload")
+  Component(uploadNotesTask, "UploadToOpenStreetMapNotesTask", "AsyncTask", "Creates OSM Notes via OsmConnection + NotesApi")
+
+  Component(dataHelper, "DataHelper", "Helper", "Gateway to ContentProvider (SQLite) and per-track directories")
+  Component(contentProvider, "TrackContentProvider", "ContentProvider", "CRUD for tracks/points/waypoints; app-wide data access")
+  Component(dbHelper, "DatabaseHelper", "SQLiteOpenHelper", "Creates/upgrades schema; indices and columns for entities")
+}
+
+' External system for the flow
+System_Ext(osmNotesApi, "OpenStreetMap API — Notes", "Uploads the notes to OpenStreetMap")
+
+' User interaction with the UI
+Rel(user, waypointList, "Chooses notes to upload / opens upload screen")
+
+' Internal collaborations for the Notes flow
+Rel(waypointList, osmNotesUpload, "Starts upload with selected waypoint(s)")
+Rel(osmNotesUpload, dataHelper, "Reads waypoint(s) and metadata (location, text)")
+Rel(osmNotesUpload, uploadNotesTask, "Initiates upload of notes")
+Rel(dataHelper, contentProvider, "Uses ContentResolver to query waypoints/track data")
+Rel(contentProvider, dbHelper, "Uses SQLite database")
+
+' External connection
+Rel(uploadNotesTask, osmNotesApi, "Creates notes (HTTPS)")
+
+' Styling consistent with other C4 views
+UpdateElementStyle(user, $fontColor="black", $bgColor="#CFE8FF", $borderColor="#3A8DFF")
+UpdateElementStyle(app, $fontColor="black", $bgColor="#C7F0D8", $borderColor="#1B8C3E")
+UpdateElementStyle(osmNotesApi, $bgColor="#FFE4C4")
+UpdateElementStyle(contentProvider, $bgColor="#FFF9C4")
+UpdateElementStyle(dbHelper, $bgColor="#FFF9C4")
+
+SHOW_LEGEND()
+
+footer Generated with C4-PlantUML.
+@enduml
