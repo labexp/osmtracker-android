@@ -25,7 +25,6 @@ public class GetStringResponseTask extends AsyncTask<String, Integer, String> {
     protected String doInBackground(String... params) {
         try {
             URL url = new URL(params[0]);
-            HttpsURLConnection.setDefaultSSLSocketFactory(new TLSSocketFactory());
             HttpsURLConnection l_connection = (HttpsURLConnection) url.openConnection();
             return CustomLayoutsUtils.getStringFromStream(l_connection.getInputStream());
 
