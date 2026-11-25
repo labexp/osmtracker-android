@@ -30,6 +30,7 @@
   <string name="trackmgr_tracklist">Traject-lijst:</string>
   <string name="trackmgr_waypoints_count">Referentiepunten:</string>
   <string name="trackmgr_trackpoints_count">Trajectpunten:</string>
+  <string name="trackmgr_notes_count">Notities:</string>
   <string name="trackmgr_empty">U hebt geen trajecten.</string>
   <string name="trackmgr_newtrack_hint">Drukken om een traject op te nemen.</string>
   <string name="trackmgr_newtrack_error">Kan geen nieuw traject aanmaken: {0}</string>
@@ -52,6 +53,8 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackmgr_export_error">Kan traject niet exporteren: {0}</string>
   <string name="trackmgr_exportall_confirm">Alle trajecten zullen geëxporteerd worden, wat lang kan duren. Bent u zeker?</string>
   <string name="trackmgr_prepare_for_share_error">Traject kon niet verwerkt worden: {0}</string>
+  <!--Track Picker-->
+  <string name="trackpckr_tracklist">Lijst met trajecten die moeten worden overgelegd:</string>
   <!--Track Detail-->
   <string name="trackdetail">Traject-details</string>
   <string name="trackdetail_startdate">Begintijd:</string>
@@ -68,6 +71,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="trackdetail_description">Beschrijving</string>
   <string name="trackdetail_tags">Tags (kommagescheiden)</string>
   <string name="trackdetail_description_mandatory">Een beschrijving is vereist</string>
+  <string name="trackdetail_visibility">Zichtbaarheid</string>
   <string name="osm_visibility_trackable">Te volgen</string>
   <string name="osm_visibility_identifiable">Te identificeren</string>
   <!--OSM upload-->
@@ -82,7 +86,13 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="osm_upload_unauthorized">Foute naam/wachtwoord. Wilt u de opgeslagen OpenStreetMap aanmeldgegevens wissen?</string>
   <string name="osm_upload_sucess">Uploaden naar OpenStreetMap geslaagd</string>
   <!--OSM Notes Upload-->
+  <string name="osm_note_upload">OpenStreetMap notities upload</string>
+  <string name="osm_note_upload_error">Fout bij uploaden van notitie</string>
+  <string name="osm_note_label">Notitie-tekst</string>
+  <string name="osm_note_upload_ok">Uploaden</string>
   <string name="osm_note_upload_cancel">Annuleren</string>
+  <string name="osm_note_footer">via %1$s %2$s</string>
+  <string name="osm_note_upload_unauthorized">Autorisatiefout. Als u de app eerder toestemming hebt gegeven om trajecten te uploaden, moet u uw opgeslagen inloggegevens wissen om de app opnieuw toestemming te geven voor het uploaden van trajecten en <b>notities</b>. Wilt u uw opgeslagen OpenStreetMap-inloggegevens wissen?</string>
   <!--GPS Status & record bar-->
   <string name="gpsstatus_record_voicerec">Stemopname</string>
   <string name="gpsstatus_record_stillimage">Foto nemen</string>
@@ -99,11 +109,16 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="delete_waypoint_confirm_bt_ok">Verwijderen</string>
   <string name="delete_waypoint_confirm_bt_cancel">Annuleren</string>
   <!--osm Notes-->
+  <string name="note_name_label">Notitienaam/-tekst</string>
   <string name="edit_note_bt_update">Opslaan</string>
   <string name="edit_note_bt_delete">Verwijderen</string>
   <string name="edit_note_bt_cancel">Annuleren</string>
+  <string name="delete_note_confirm_dialog_title">Notitie verwijderen</string>
+  <string name="delete_note_confirm_dialog_msg">Deze notitie verwijderen?</string>
   <string name="delete_note_confirm_bt_ok">Verwijderen</string>
   <string name="delete_note_confirm_bt_cancel">Annuleren</string>
+  <string name="notelist">Notitie-lijst</string>
+  <string name="osm_note_bt_upload">Uploaden als OSM-notitie</string>
   <!--Menu-->
   <string name="menu_settings">Instellingen</string>
   <string name="menu_waypointlist">Referentiepunten</string>
@@ -119,6 +134,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="menu_export">Exporteren als GPX</string>
   <string name="menu_osm_upload">OpenStreetMap-upload</string>
   <string name="menu_center_to_gps">Centreren op gps</string>
+  <string name="menu_overlay_other">Andere overleggen</string>
   <string name="menu_exportall">Alles als GPX exporteren</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">Kan niet naar externe opslag schrijven.</string>
@@ -141,6 +157,7 @@ Selecteer het in de lijst om door te gaan.</string>
   <string name="gpx_hdop_approximation_cmt">Waarschuwing: HDOP-waarden worden niet uit de gps-apparaat gelezen. Ze worden benaderd op basis van de nauwkeurigheid van de locatie (in meter).</string>
   <!--About screen-->
   <string name="about">Over</string>
+  <string name="about_whats_new">Wat is er nieuw in deze versie?</string>
   <string name="about_text">Bezoek de project-webpagina voor meer informatie, documenten en melden van problemen.</string>
   <string name="about_translate_text">Help OSMTracker vertalen:</string>
   <string name="about_debug_info">Debug-info</string>
@@ -260,7 +277,6 @@ Selecteer het in de lijst om door te gaan.</string>
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Welkom bij OSMTracker voor Android™ 👋</string>
   <string name="app_intro_slide1_description">Deze app is gratis software die uw vrijheid respecteert!</string>
-  <!--Intro - slide What's new-->
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Veel plezier met tracken! 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker voor Android zal uw gps-locatie gebruiken om trajectpunten en referentiepunten op te nemen, zelfs wanneer de app op de achtergrond actief is.
