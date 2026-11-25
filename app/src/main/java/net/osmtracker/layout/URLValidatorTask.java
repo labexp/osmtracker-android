@@ -39,12 +39,11 @@ public class URLValidatorTask extends AsyncTask<String, Integer, Boolean>{
         try {
             URL url = new URL(server_url);
             // Open Url Connection
-            HttpsURLConnection.setDefaultSSLSocketFactory(new TLSSocketFactory());
             HttpsURLConnection httpConnection = (HttpsURLConnection) url.openConnection();
 
             //If Connection response is OK then change the status to true
             if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                Log.i(TAG, "Server returned HTTP " + httpConnection.getResponseCode()
+                Log.d(TAG, "Server returned HTTP " + httpConnection.getResponseCode()
                         + " " + httpConnection.getResponseMessage());
                 status = true;
             } else{
