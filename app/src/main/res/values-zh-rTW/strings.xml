@@ -52,6 +52,8 @@
   <string name="trackmgr_export_error">無法匯出軌跡： {0}</string>
   <string name="trackmgr_exportall_confirm">將匯出所有軌跡，可能會耗費不少時間。您確定嗎？</string>
   <string name="trackmgr_prepare_for_share_error">無法處理軌跡：{0}</string>
+  <!--Track Picker-->
+  <string name="trackpckr_tracklist">能夠套疊的軌跡清單：</string>
   <!--Track Detail-->
   <string name="trackdetail">軌跡細節</string>
   <string name="trackdetail_startdate">開始時間：</string>
@@ -69,8 +71,6 @@
   <string name="trackdetail_tags">標籤 (以半形逗號分隔)</string>
   <string name="trackdetail_description_mandatory">您必須填寫描述欄</string>
   <string name="trackdetail_visibility">能見度</string>
-  <string name="osm_visibility_private">私人</string>
-  <string name="osm_visibility_public">公開</string>
   <string name="osm_visibility_trackable">可追蹤的</string>
   <string name="osm_visibility_identifiable">可辨識的</string>
   <!--OSM upload-->
@@ -133,6 +133,7 @@
   <string name="menu_export">匯出為 GPX 檔</string>
   <string name="menu_osm_upload">上傳到 OpenStreetMap</string>
   <string name="menu_center_to_gps">以 GPS 為中心</string>
+  <string name="menu_overlay_other">套疊其他</string>
   <string name="menu_exportall">全部匯出為 GPX 檔</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">無法寫入外部儲存媒體。</string>
@@ -155,6 +156,7 @@
   <string name="gpx_hdop_approximation_cmt">警告：HDOP值並非GPS裝置回報的HDOP，HDOP值會與實際地點差大約幾公尺。</string>
   <!--About screen-->
   <string name="about">關於</string>
+  <string name="about_whats_new">新版本推出什麼新功能呢？</string>
   <string name="about_text">更多資訊、文件與問題回報，請洽本專案首頁：</string>
   <string name="about_translate_text">請幫忙翻譯 OSMTracker：</string>
   <string name="about_debug_info">除錯資訊</string>
@@ -274,9 +276,6 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">歡迎使用 OSMTracker for Android™👋</string>
   <string name="app_intro_slide1_description">這款 App 是尊重你自由的自由軟體</string>
-  <!--Intro - slide What's new-->
-  <string name="app_intro_slide_whats_new_title">新版本推出什麼新功能呢？</string>
-  <string name="app_intro_slide_whats_new_description">如今我們能夠上傳註解到 OSM，恢復介接 CyclOSM 以及 OpenTopo 圖磚。請享用！</string>
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">記錄快樂🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker for Android  會使用你的 GPS 位置來記錄航點和路徑，即便 App 在背景執行。

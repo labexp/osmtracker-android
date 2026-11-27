@@ -26,6 +26,11 @@
   <string name="prefs_gps_logging_min_distance_summary">Distancia min. entre puntos de traza en metros, utilice 0 para la menor distancia posible</string>
   <string name="prefs_gps_logging_min_distance_meters">metros</string>
   <string name="prefs_gps_logging_min_distance_empty">La distancia mínima entre puntos de traza no puede estar vacía</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy">Registro GPS solo rastrea puntos de traza más lejanos que la precisión.</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy_summary">Saltar el registro de un punto de traza si está más cerca del anterior de lo que indica su precisión GPS.</string>
+  <string name="prefs_gps_min_accuracy">Precisión mínima de GPS antes de iniciar</string>
+  <string name="prefs_gps_min_accuracy_summary">La grabación comenzará cuando la precisión del GPS sea mejor que este valor (en metros); utilice 0 para comenzar inmediatamente.</string>
+  <string name="prefs_gps_min_accuracy_empty">La precisión mínima de GPS no puede estar vacía</string>
   <string name="prefs_ui">Interfaz de usuario</string>
   <string name="prefs_ui_picture_source">Fuente de fotos predeterminada</string>
   <string name="prefs_ui_picture_source_summary">¿Tomar fotos desde la cámara o la galería?</string>
@@ -94,9 +99,7 @@
   <string name="prefs_osm_visibility">Visibilidad de la traza</string>
   <string name="prefs_osm_visibility_summary">Visibilidad preferida para las trazas al subirlas a openstreetmap.org</string>
   <string-array name="prefs_osm_visibility_keys">
-    <item>Privado</item>
     <item>Trazable</item>
-    <item>Público</item>
     <item>Identificable</item>
   </string-array>
   <string name="prefs_osm_clear_oauth_data">Restablecer la autenticación OSM</string>

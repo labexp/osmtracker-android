@@ -52,6 +52,8 @@
   <string name="trackmgr_export_error">No se puede exportar la traza: {0}</string>
   <string name="trackmgr_exportall_confirm">Se exportarán todas las trazas, lo cual podría tardar mucho tiempo. ¿Está seguro?</string>
   <string name="trackmgr_prepare_for_share_error">No se puede procesar la traza: {0}</string>
+  <!--Track Picker-->
+  <string name="trackpckr_tracklist">Lista de trazas para sobreponer:</string>
   <!--Track Detail-->
   <string name="trackdetail">Detalles de la traza</string>
   <string name="trackdetail_startdate">Hora de inicio: </string>
@@ -69,8 +71,6 @@
   <string name="trackdetail_tags">Etiquetas (delimitado por comas)</string>
   <string name="trackdetail_description_mandatory">Debe introducir una descripción</string>
   <string name="trackdetail_visibility">Visibilidad</string>
-  <string name="osm_visibility_private">Privado</string>
-  <string name="osm_visibility_public">Público</string>
   <string name="osm_visibility_trackable">Trazable</string>
   <string name="osm_visibility_identifiable">Identificable</string>
   <!--OSM upload-->
@@ -133,6 +133,7 @@
   <string name="menu_export">Exportar como GPX</string>
   <string name="menu_osm_upload">Subir a OpenStreetMap</string>
   <string name="menu_center_to_gps">Centrar a GPS</string>
+  <string name="menu_overlay_other">Sobreponer otra</string>
   <string name="menu_exportall">Exportar todas como GPX</string>
   <!--Errors-->
   <string name="error_externalstorage_not_writable">No se puede grabar en el almacenamiento externo.</string>
@@ -155,6 +156,7 @@
   <string name="gpx_hdop_approximation_cmt">Advertencia: los valores HDOP no son los valores HDOP devueltos por el dispositivo GPS. Son valores aproximados de acuerdo a la precisión de la ubicación en metros.</string>
   <!--About screen-->
   <string name="about">Acerca de</string>
+  <string name="about_whats_new">¿Qué novedades hay en esta versión?</string>
   <string name="about_text">Para más información, documentos e informe de incidencias, visite la web del proyecto:</string>
   <string name="about_translate_text">Ayúdanos a traducir OSMTracker:</string>
   <string name="about_debug_info">Info. de depuración</string>
@@ -274,9 +276,6 @@
   <!--Intro - slide1-->
   <string name="app_intro_slide1_title">Bienvenido a OSMTracker para Android ™ 👋</string>
   <string name="app_intro_slide1_description">¡Esta aplicación es un software libre que respeta tu libertad!</string>
-  <!--Intro - slide What's new-->
-  <string name="app_intro_slide_whats_new_title">¿Qué novedades hay en esta versión?</string>
-  <string name="app_intro_slide_whats_new_description">Ya podemos subir notas a OSM, y los mosaicos de mapas de CyclOSM y OpenTopo vuelven a estar disponibles. ¡Disfruten!</string>
   <!--Intro - slide2-->
   <string name="app_intro_slide2_title">Feliz trazado 🗺 😎</string>
   <string name="app_intro_slide2_description">OSMTracker para Android usará su ubicación GPS para registrar puntos de traza y puntos, incluso cuando la aplicación se está ejecutando en segundo plano.

@@ -11,6 +11,13 @@
   <string name="prefs_gps_ignore_clock_summary">Gps-klok negeren en de Android-klok gebruiken voor tijdstempels</string>
   <string name="prefs_use_barometer">Luchtdruk loggen [hPa]</string>
   <string name="prefs_use_barometer_summary">In-/uitschakelen vereist opnieuw starten van traject</string>
+  <string name="prefs_notes">Tekstnotities</string>
+  <string name="prefs_notes_summary">Kies hoe de waarden van de knop ‘Notitietekst’ in lay-outs worden opgeslagen</string>
+  <string-array name="prefs_notes_keys">
+    <item>Referentiepunt</item>
+    <item>OSM-notitie</item>
+    <item>Beide</item>
+  </string-array>
   <string name="prefs_gps_logging_interval">Gps-loginterval</string>
   <string name="prefs_gps_logging_interval_summary">Gebruik 0 voor de kortst mogelijke (beïnvloedt levensduur van de batterij)</string>
   <string name="prefs_gps_logging_interval_seconds">seconden</string>
@@ -19,6 +26,11 @@
   <string name="prefs_gps_logging_min_distance_summary">Minimale afstand tussen trajectpunten in meter. Gebruik 0 voor de kortst mogelijke afstand</string>
   <string name="prefs_gps_logging_min_distance_meters">meter</string>
   <string name="prefs_gps_logging_min_distance_empty">Minimale afstand tussen trajectpunten in mag niet leeg zijn</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy">Bij gps-logging worden alleen punten geregistreerd die verder liggen dan de gps-nauwkeurigheid</string>
+  <string name="prefs_gps_logging_distance_gt_accuracy_summary">Sla een trajectpunt over als het dichter bij het vorige punt ligt dan de opgegeven GPS-nauwkeurigheid</string>
+  <string name="prefs_gps_min_accuracy">Minimale gps-nauwkeurigheid vóór het starten</string>
+  <string name="prefs_gps_min_accuracy_summary">De opname begint zodra de gps-nauwkeurigheid beter is dan deze waarde (in meters); gebruik 0 om direct te beginnen.</string>
+  <string name="prefs_gps_min_accuracy_empty">De minimale gps-nauwkeurigheid mag niet leeg zijn</string>
   <string name="prefs_ui">Gebruikersinterface</string>
   <string name="prefs_ui_picture_source">Standaard fotobron</string>
   <string name="prefs_ui_picture_source_summary">Foto\'s nemen van camera of galerij?</string>
@@ -84,6 +96,12 @@
   <string name="prefs_output_gpx_hdop_approximation_summary">HDOP in GPX vullen met een benaderingswaarde van nauwkeurigheid</string>
   <string name="prefs_sound_enabled">Geluid inschakelen</string>
   <string name="prefs_sound_enabled_summary">Geluiden afspelen wanneer opnemen begint en eindigt</string>
+  <string name="prefs_osm_visibility">Traject-zichtbaarheid</string>
+  <string name="prefs_osm_visibility_summary">Gewenste zichtbaarheid van trajecten die naar openstreetmap.org zijn geüpload</string>
+  <string-array name="prefs_osm_visibility_keys">
+    <item>Traceerbaar</item>
+    <item>Identificeerbaar</item>
+  </string-array>
   <string name="prefs_osm_clear_oauth_data">OSM-authenticatie herstellen</string>
   <string name="prefs_osm_clear_oauth_data_summary">OSM-inloggegevens en toestemming vergeten en OSMTracker forceren om ze nogmaals op te vragen.</string>
   <string name="prefs_osm_clear_oauth_data_dialog">U zal OSMTracker terug moeten autoriseren om trajecten te uploaden. Bent u zeker?</string>
@@ -96,4 +114,6 @@
   </string-array>
   <string name="prefs_compass_heading">Kompasrichting exporteren</string>
   <string name="prefs_compass_heading_summary">Bepaalt of en hoe de kompas-data geëxporteerd moet worden naar het GPX-bestand</string>
+  <string name="prefs_reset_default_value">Standaardwaarde herstellen</string>
+  <string name="prefs_not_set">Niet ingesteld</string>
 </resources>

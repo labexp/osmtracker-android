@@ -440,7 +440,7 @@ public class TrackLogger extends Activity {
 	 */
 	public void onGpsEnabled() {
 		// Buttons can be enabled
-		if (gpsLogger != null && gpsLogger.isTracking()) {
+		if (gpsLogger != null && gpsLogger.isTracking() && gpsLogger.isStartAccuracySatisfied()) {
 			setEnabledActionButtons(true);
 		}
 	}
@@ -515,6 +515,8 @@ public class TrackLogger extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
+			// TODO(#713): migrate to OnBackPressedCallback. Opt-out set in AndroidManifest.xml.
+			// See https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture#update-custom
 		case KeyEvent.KEYCODE_BACK:
 			// Manage back button if we are on a sub-page
 			if (event.getRepeatCount() == 0) {

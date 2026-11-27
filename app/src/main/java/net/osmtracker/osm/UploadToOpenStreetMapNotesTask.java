@@ -72,6 +72,10 @@ public class UploadToOpenStreetMapNotesTask {
 		// 1. Prepare UI (Equivalent to onPreExecute)
 		activity.runOnUiThread(() -> progressDialog = createProgressDialog(activity));
 
+		Log.d(TAG, "DEV_MODE=" + OpenStreetMapConstants.DEV_MODE
+				+ ", OAuth2.USER_AGENT=" + OpenStreetMapConstants.OAuth2.USER_AGENT
+				+ ", API_URL=" + OpenStreetMapConstants.Api.OSM_API_URL_PATH);
+
 		// 2. Execute Network Logic (Equivalent to doInBackground)
 		OsmConnection osm = new OsmConnection(
 				OpenStreetMapConstants.Api.OSM_API_URL_PATH,
